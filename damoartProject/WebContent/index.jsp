@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>메인페이지 변경테스트~~~~~~~~~~~</h1>
+	<h1>메인페이지 변경테스트!! </h1>
 </body>
 </html>
