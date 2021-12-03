@@ -130,10 +130,10 @@
         <div id="header">
 
             <div id="header_1" align="center">
-                <a href=""><h2>DAMOART</h2></a>
+                <img src="resources/images/logo.png" width="250px" height="50px">
             </div>
 
-            <div id="header_2" align="center">
+            <div id="header_2" align="right">
                 <form action="" id="search_form">
                     <div id="search_box">
                         <input type="text" placeholder="검색어를 입력하세요.">                      
