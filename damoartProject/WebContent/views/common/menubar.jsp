@@ -16,11 +16,11 @@
 
         /* header부분 */
         div, input{ box-sizing:border-box;}
-        /* div, form{border:1px solid black;} */
+        /*div, form{border:1px solid black;}*/
         body{background-color:#e1d5bf;}
         .wrap{
             width:1000px;
-            height:1000px;
+            height:230px;
             margin:auto;
         }
         #header{
@@ -29,40 +29,41 @@
         }
         #header>div{height:100%; float:left;}
         #header_1{
-            width:25%;
-            padding-top:60px;
+            width:30%;
         }
         #header_2{
-            width:50%;
-        }
-        #header_1>a{
-            text-decoration:none;
-            color:black;
+            padding-top:60px;
+            width:40%;
         }
         
-        #header_2{position:relative;}
         #search_form{
-            width:100%;
-            height:20%;
-            margin:auto;
-            position:absolute;
-            top:0;
-            bottom:0;
-            left:0;
-            right:0;
+            width:95%;
+            height:45%;
+
         }
         #search_form>div{height:100%; float:left;}
         #search_box{width:90%;}
-        #search_btn{width:10%;}
+        #search_btn{width:10%; padding:3px;}
 
         #search_form input{width:100%; height:100%;}
 
         #header_3{
-            width:25%;
-            padding-top:20px;
-            padding-left:20px;
+            width:30%;
         }
-        #header_3>a{background-color:rgb(151, 138, 116)}
+        
+        #buttons{
+            padding-top:20px;
+            padding-left:60px;
+            width:100%;
+            height:50%;
+        }
+
+        #search_area{
+            width:100%;
+            height:50%;
+        }
+
+        #buttons>a{background-color:rgb(151, 138, 116)}
         
         /* menubar 부분 */
 
@@ -96,7 +97,7 @@
             line-height:60px;
         }
         #navi a:hover{
-            background:rgb(151, 138, 116);
+            background:rgb(182, 167, 141);
             color:white;
         }
         
@@ -111,6 +112,13 @@
             display:none;
         }
 
+        #navi>li>ul>li>a{
+            background:rgb(151, 138, 116);
+        }
+
+        #navi>li>ul>li>ul>li>a{
+            background:rgb(221, 206, 180);
+        }
 
         #navi>li>ul a{font-size:15px;}
         #navi>li>a:hover+ul{display:block;}
@@ -129,25 +137,30 @@
         <!-- header부분 -->
         <div id="header">
 
-            <div id="header_1" align="center">
-                <img src="resources/images/logo.png" width="250px" height="50px">
+            <div id="header_1">
             </div>
-
-            <div id="header_2" align="right">
-                <form action="" id="search_form">
-                    <div id="search_box">
-                        <input type="text" placeholder="검색어를 입력하세요.">                      
-                    </div>
-                    <div id="search_btn">
-                        <img src="resources/images/search.png" width="35px" height="35px">
-                    </div>
-                </form>
-
+            
+            <div id="header_2" align="center">
+                <img src="resources/images/logo.png" width="250px" height="50px">
+                
             </div>
             <div id="header_3">
-                <a href="" id="cart_btn" class="btn btn-dark btn-sm">장바구니</a>
-                <a href="" id="login_btn" class="btn btn-dark btn-sm">로그인</a>
-                <a href="" id="enroll_btn" class="btn btn-dark btn-sm">회원가입</a>
+                <div id="buttons">
+                    <a href="" id="cart_btn" class="btn btn-dark btn-sm">장바구니</a>
+                    <a href="" id="login_btn" class="btn btn-dark btn-sm">로그인</a>
+                    <a href="" id="enroll_btn" class="btn btn-dark btn-sm">회원가입</a>
+                </div>
+                <div id="search_area">
+                    <br>
+                    <form action="" id="search_form">
+                        <div id="search_box">
+                            <input type="text" placeholder="검색어를 입력하세요.">                      
+                        </div>
+                        <div id="search_btn" align="center">
+                            <img src="resources/images/search.png" width="33px" height="33px">
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
         
@@ -156,8 +169,7 @@
             <ul id="navi">
                 <li><a href="">전시</a>
                     <ul>
-                        <li><a href="">오픈 예정 전시</a>
-                        </li>
+                        <li><a href="">오픈 예정 전시</a></li>
                         <li><a href="">진행중 전시</a>
                             <ul id="navi_in">
                                 <li><a href="">지역별 전시</a></li>
