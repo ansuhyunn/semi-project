@@ -62,7 +62,7 @@
             padding-top:20px;
             padding-left:20px;
         }
-        #header_3>a{background-color:rgba(78, 67, 44, 0.6)}
+        #header_3>a{background-color:rgb(151, 138, 116)}
         
         /* menubar 부분 */
 
@@ -78,7 +78,7 @@
             height:100%;
         }
     
-    #navi>li{
+        #navi>li{
             float:left;
             width:25%;
             height:100%;
@@ -93,7 +93,6 @@
             width:100%;
             height:100%;
             display:block;
-            /* vertical-align:middle; */
             line-height:60px;
         }
         #navi a:hover{
@@ -107,37 +106,20 @@
             display:none;
         }
         #navi>li>ul>li>ul{
-            display:none;
-        }
-        
-        #navi_inin>li>ul{
             list-style-type:none;
             padding:0;
             display:none;
         }
-        #navi_in{
-            list-style-type:none;
-            padding:0;
-            margin:0;
-        }
-        #navi_inin a{
-            text-decoration:none;
-            color:orange;
-            font-size:15px;
-            font-weight:900;
-            display:block;
-            line-height:60px; 
-            text-align:center;
-        }
-        #navi_inin{
-            width:250px;
-            margin-left:249px;
-            display:none;
-        }
+
+
         #navi>li>ul a{font-size:15px;}
         #navi>li>a:hover+ul{display:block;}
         #navi>li>ul:hover{display:block;}
-        #navi_out:hover #navi_inin{display:block;}
+
+        #navi>li>ul>li>a:hover+ul{display:block;}
+        #navi>li>ul>li>ul:hover{display:block;}
+
+
 
     </style>
 </head>
@@ -174,9 +156,16 @@
             <ul id="navi">
                 <li><a href="">전시</a>
                     <ul>
-                        <li id="navi_out"><a href="">진행중전시</a>
+                        <li><a href="">오픈 예정 전시</a>
                         </li>
-                        <li><a href="">오픈 예정 전시</a></li>
+                        <li><a href="">진행중 전시</a>
+                            <ul id="navi_in">
+                                <li><a href="">지역별 전시</a></li>
+                                <li><a href="">이달의 전시</a></li>
+                                <li><a href="">무료 전시</a></li>
+                                <li><a href="">맞춤 전시 검색</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </li>
                 <li><a href="">BEST 전시</a>
@@ -197,14 +186,7 @@
                     </ul>
                 </li>
             </ul>
-            <div id="navi_inin">
-                <ul id="navi_in">
-                    <li><a href="">지역별 전시</a></li>
-                    <li><a href="">이달의 전시</a></li>
-                    <li><a href="">무료 전시</a></li>
-                    <li><a href="">맞춤 전시 검색</a></li>
-                </ul>
-            </div>
+
         </div>
     </div>
 </body>
