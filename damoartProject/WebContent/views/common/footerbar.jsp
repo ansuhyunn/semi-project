@@ -17,9 +17,13 @@
         /* footer바 부분 */
 
 		#outer{
-        position:absolute;
+        position:absolute; 
         z-index:-1;
 		}
+        #footer>div{width:100%;}
+        #footer_1{height:20%;}
+        #footer_2{height:80%;}
+
         #footer_1>a{
             text-decoration:none;
             color:rgb(46, 46, 46);
