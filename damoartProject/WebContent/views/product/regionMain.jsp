@@ -20,6 +20,7 @@
         margin: auto;
         margin-top: 120px;
     }
+    
     /* 페이지 이름 스타일 */
     .name{ width: 100%; height: 30px; }
     #name1{
@@ -28,7 +29,8 @@
         font-weight: bolder;
         float: left;
     }
-    /* 페이지 정렬 스타일 */
+
+    /* 페이지 정렬 버튼 스타일 */
     .name>a{
         width: 6%; 
         font-size: 10px;
@@ -39,7 +41,7 @@
     }
     a:hover{font-weight: 900;}
 
-    /* 버튼 스타일 */
+    /* 지역 버튼 스타일 */
     .button{padding: 20px;}
     .button *{
         margin-left: 30px;
