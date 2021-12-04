@@ -127,7 +127,26 @@
         #navi>li>ul>li>a:hover+ul{display:block;}
         #navi>li>ul>li>ul:hover{display:block;}
 
+        /* footer바 부분 */
 
+        #footer_1>a{
+            text-decoration:none;
+            color:rgb(46, 46, 46);
+            font-weight:600;
+            font-size:small;
+            margin:40px; 
+            vertical-align:middle; 
+            text-align:center;
+        }
+        #footer_2{
+            width:100%;
+            box-sizing:border-box;
+            margin:0; 
+            font-size:12px;
+            color:rgb(46, 46, 46);
+            height:20%;
+        }
+        /*#footer{background:rgb(203, 185, 153)}*/  
 
     </style>
 </head>
@@ -200,6 +219,26 @@
             </ul>
 
         </div>
+    </div>
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <!-- footer바 부분 -->
+    <hr>
+    <div id="footer">
+
+        <div id="footer_1" align="center">
+            <a href="">이용안내</a> |
+            <a href="">이용약관</a> |
+            <a href="">개인정보처리방침</a> |
+            <a href="">고객센터</a>
+            <br>
+            <br>
+            
+        </div>
+        <div id="footer_2" align="center">
+            Copyright © DAMOART All Right Reserved <br><br>
+        </div>
+
     </div>
 </body>
 </html>
