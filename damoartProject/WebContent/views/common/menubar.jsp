@@ -138,7 +138,7 @@
             vertical-align:middle; 
             text-align:center;
         }
-        #footer_2{
+        #footer_2>p{
             width:100%;
             box-sizing:border-box;
             margin:0; 
@@ -236,9 +236,8 @@
             
         </div>
         <div id="footer_2" align="center">
-            Copyright © DAMOART All Right Reserved <br><br>
+            <p>Copyright © DAMOART All Right Reserved <br><br></p>
         </div>
-
     </div>
 </body>
 </html>
