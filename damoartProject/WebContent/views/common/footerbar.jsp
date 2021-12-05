@@ -15,14 +15,7 @@
     <style>
 
         /* footer바 부분 */
-
-		#outer{
-        position:absolute; 
-        z-index:-1;
-		}
-        #footer>div{width:100%;}
-        #footer_1{height:20%;}
-        #footer_2{height:80%;}
+		body{background-color:#e1d5bf;}
 
         #footer_1>a{
             text-decoration:none;
@@ -45,12 +38,8 @@
 
     </style>
 </head>
-
 <body>
-	
-	<div id="outer">
 
-	    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 	    <!-- footer바 부분 -->
 	    <hr>
 	    <div id="footer">
@@ -68,6 +57,5 @@
 	            <p>Copyright © DAMOART All Right Reserved <br><br></p>
 	        </div>
 	    </div>
-    </div>
 </body>
-</html>
+</html></html>
