@@ -19,6 +19,8 @@
         height: 1000px;
         margin: auto;
         margin-top: 120px;
+        position:absolute;
+        z-index:-1;
     }
     
     /* 페이지 이름 스타일 */
