@@ -12,12 +12,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
 
 <style>
-    body{
-        width:1000px;
-        background-color:#e1d5bf;
-    } 
+
+    div{ box-sizing:border-box;}
 
     /* 장바구니 상단 스타일 */
     .cart_head{
@@ -25,13 +24,21 @@
         height: 200px;
         margin-top: 100px;
         font-size: 30px;
+    }
+
+    #cart02{
+        color: rgb(94,94,94);
+    }
+    
         
     /* 표 스타일 */
-    }
+  
     table {
-        width: 100%;
+        width: 1000px;
         border-top: 1px solid #444444;
         border-collapse: collapse;
+        margin-left: auto;
+        margin-right: auto;
     }
       th, td {
         border-bottom: 1px solid #444444;
@@ -45,30 +52,43 @@
     .cart_name {
         font-size: 13px;
         text-align: center;
+        margin-left: auto;
+        margin-right: auto;
     }
-
+ 
+    #cart_content {
+        height: 130px;
+        width: 850px;
+    }
     /* 장바구니 하단 스타일 */
     .cart_bottom{
         margin-top:20px;
-        margin-left: 60px;
-    }
-    .cart_bottom>a{
+        margin-left:310px;
         font-size: 13px;
-        padding: 5px;
+        padding: 5px;    
+    }
+
+    .cart_bottom>a{
+        margin-left: 10px;
         text-decoration: none;
         color: black;
     }
+
     .cart_bottom>b{
-        font-size: 13px;
+        margin-right: 310px;
         float: right;
+        font-size: 13px;
         padding: 5px;
     }
-    .button{
+
+    .button>.btn{
+        float: right;
+        margin-top: 10px;
+        margin-right: 310px;
         width: 80px;
         height: 30px;
         background-color: rgb(182, 167, 141);
-        float: right;
-        margin-top: 10px;
+        font-size: 13px;
     }
   
 </style>
@@ -79,57 +99,67 @@
 
     <!-- 장바구니 윗 부분 -->
     <div class="cart_head" align="center">
-        <b id="cart01">01 장바구니 ></b><b color="#7f7f7f"> 02 주문서작성/결제 > 03 주문완료</b>
+        <br>
+        <b id="cart01">01 장바구니 ></b><b id="cart02"> 02 주문서작성/결제 > 03 주문완료</b>
     </div>
 
     <!-- 장바구니 내용-->
+
     <div class="cart_name" align="center">
-        <table  width=850 height=400>
+        <table height=400>
             <tr id="cart_name" height=40>
-                <th width=400>상품</th>
+                <th colspan="3" width=400>상품</th>
                 <th width=130>옵션</th>
                 <th width=90>수량</th>
                 <th width=90>결제금액</th>
                 <th width=90>적립예상금액</th>
             </tr>
-            <div id="cart_content">
+
+            <div>
                 <tr id="cart_content">
-                    <th>dd</th>
-                    <th>dd</th>
-                    <th>dd</th>
-                    <th>dd</th>
-                    <th>dd</th>
+                    <td width="50"><input type="checkbox"></td>
+                    <td width="200"><img src= "<%=request.getContextPath()%>/resources/images/product/1_1.gif" width="80px" height="80px"></td>
+                    <td width="200">영국 테이트미술관 특별전</td>                           
+                    <td width="50"><select name="option">
+                        <option>어린이</option>
+                        <option>청소년</option>
+                        <option>성인</option>
+                    </td>
+                    <td width="50">1</td>
+                    <td width="50">14000￦</td>
+                    <td width="50">140￦</td>
                 </tr>
-                <tr>
-                    <th>dd</th>
-                    <th>dd</th>
-                    <th>dd</th>
-                    <th>dd</th>
-                    <th>dd</th>
-                </tr>
-                <tr>
-                    <th>dd</th>
-                    <th>dd</th>
-                    <th>dd</th>
-                    <th>dd</th>
-                    <th>dd</th>
-                </tr>
-         </div>
+                <tr id="cart_content">
+                    <td width="50"><input type="checkbox"></td>
+                    <td width="200"><img src= "<%=request.getContextPath()%>/resources/images/product/1_1.gif" width="80px" height="80px"></td>
+                    <td width="200">영국 테이트미술관 특별전</td>                           
+                    <td width="50"><select name="option">
+                        <option>어린이</option>
+                        <option>청소년</option>
+                        <option>성인</option>
+                    </td>
+                    <td width="50">1</td>
+                    <td width="50">14000￦</td>
+                    <td width="50">140￦</td>
+                </tr>         
+            </div>
     </table>
     </div>
     
     <!-- 장바구니 하단 -->
-    <div class="cart_bottom">
-        
-        <a href=""> <input type="checkbox"> 전체선택</a>
+    <div class="cart_bottom" width="800">
+        <input type="checkbox"> 전체선택
         <a href="">선택삭제</a>
-        <b>결제금액 30000</b>
+        <b>결제금액 28000￦</b>
+    </div>
+    <br>
+    <div class="button">
+     <a href="" button type="submit" class="btn"><b>주문하기</b></a>
     </div>
 
-    <div class="button">
-     <button class="btn">주문하기</button>
-    </div>
 
     <br><br><br><br><br><br><br><br>
+    
+    <%@ include file="../common/footerbar.jsp" %>
 </body>
 </html>

@@ -150,7 +150,7 @@
             </div>
             <div id="header_3">
                 <div id="buttons">
-                    <a href="" id="cart_btn" class="btn btn-dark btn-sm">장바구니</a>
+                    <a href="<%=contextPath%>/views/order/cart.jsp" id="cart_btn" class="btn btn-dark btn-sm">장바구니</a>
                     <a href="" id="login_btn" class="btn btn-dark btn-sm">로그인</a>
                     <a href="" id="enroll_btn" class="btn btn-dark btn-sm">회원가입</a>
                 </div>
