@@ -195,10 +195,10 @@
                 </li>
                 <li><a href="<%=contextPath%>/views/cscenter/client/csMain.jsp">고객센터</a>
                     <ul>
-                        <li><a href="">공지사항</a></li>
-                        <li><a href="">FAQ</a></li>
-                        <li><a href="">Q&A</a></li>
-                        <li><a href="">이용안내</a></li>
+                        <li><a href="<%=contextPath%>/views/cscenter/client/noticeMain.jsp">공지사항</a></li>
+                        <li><a href="<%=contextPath%>/views/cscenter/client/faqMain.jsp">FAQ</a></li>
+                        <li><a href="<%=contextPath%>/views/cscenter/client/qnaMain.jsp">Q&A</a></li>
+                        <li><a href="<%=contextPath%>/views/cscenter/client/guideMain.jsp">이용안내</a></li>
                     </ul>
                 </li>
             </ul>
