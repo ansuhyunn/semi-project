@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<% 
+	String contextPath = request.getContextPath();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -187,7 +191,7 @@
                         <li><a href="">EVENT</a></li>
                     </ul>
                 </li>
-                <li><a href="">고객센터</a>
+                <li><a href="<%=contextPath%>/views/cscenter/client/csMain.jsp">고객센터</a>
                     <ul>
                         <li><a href="">공지사항</a></li>
                         <li><a href="">FAQ</a></li>
