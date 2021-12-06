@@ -6,24 +6,20 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-    body{
-        width:1000px;
-        background-color:#e1d5bf;
-    }
-    div{box-sizing:border-box; border:1px solid black;}
-    
+    div{box-sizing:border-box; border:1px solid black; }
+  
     .wrap{
         width:1000px;
-        height:1200px;
-        margin:auto;
+        height:1300px;
+        margin:auto;      
     }
     .wrap>div{
         width:100%;
     }
-    #header{height:15%;}
-    #mp-head{height:20%;}
-    #mp-content{height:55%;}
-    #footer{height:10%;}
+    #mp-head{
+        margin-top:30px;
+    }
+    #mp-content{height:1000px;}
 
     #mp-content>div{
         height:100%;
@@ -32,53 +28,67 @@
     #content_1{width:20%;}
     #content_2{width:80%;}
 
-    #mp-head h1{
-        padding-top:20px;
+    #mp-head h3{
+		font-weight:bolder;
+		letter-spacing:-1px;
     }
     .mem-box{
-        height:100px;
+        height:120px;
         border:solid rgb(64, 64, 64); 
         border-width:thin;
     }
     .mem-box .txt{
         padding-left:300px;
-        line-height:60px;
-        font-size:20px;
-        font-weight:700px;
+        line-height:100px;
+        font-size:21px;
+        font-weight:700;
     }
-
+	#mp-content{
+		padding-top:50px;
+	}
+	
     ul{list-style:none;}
     #content_1 h2{
         padding-top:10px;
         font-size:17px;
-        line-height:24px;
+        font-weight:700;
+        line-height:24px;   
         letter-spacing:-1px;
+    }
+    #content_2 h4{
+    	padding-top:10px;
+    	font-size:20px;
+    	font-weight:600;
+    	letter-spacing:-1px;
     }
     #content_1 div{
         border:none;
         line-height:2em
     }
-    a{
+    #content_1 a{
         text-decoration:none;
         color:black;
         font-size:14px;
         letter-spacing:-0.8px;
+        
+    }
+    #content_1 a:hover{
+        color:rgb(151, 138, 116);
     }
 
     /*content_2*/
     .contents{
-        height:30%;
-        padding-left:25px;
+        height:33%;
+        padding-left:30px;
     }
 </style>
 </head>
 
 <body>
-
+	<%@ include file="../common/menubar.jsp" %>
     <div class="wrap">
-        <div id="header"></div><!--상단부 : 메뉴바 -->
         <div id="mp-head">
-            <h1 class="title" align="center">마이페이지</h1>
+            <h3 class="title" align="center">마이페이지</h3>
             <hr color="rgb(64, 64, 64)" size="1"><br>
             <div class="mem-box">
                 <p class="txt">
@@ -91,20 +101,21 @@
         <div id="mp-content"><!--내용물 : 마이페이지 -->
             <div id="content_1">
                 <ul>
+                	
                     <li><h2>마이쇼핑</h2></li>
                     <div>
                         <a href="" id="submenu">예매 내역</a> <br>
                         <a href="" id="submenu">취소/환불 내역</a> <br>
                         <a href="" id="submenu">적립금 내역</a> <br>
-                        <hr>
+                        <hr align="left" width="120" color="rgb(64, 64, 64)" size="1">
                         <a href="" id="submenu">최근 본 상품</a> <br>
                         <a href="" id="submenu">찜한 상품</a>
-                    </div>
+                    </div><br>
                     <li><h2>마이활동</h2></li>
                     <div>
                         <a href="" id="submenu">리뷰 내역</a> <br>
                         <a href="" id="submenu">Q&A 내역</a> <br>
-                    </div>
+                    </div><br>
                     <li><h2>마이정보</h2></li>
                     <div>
                         <a href="" id="submenu">회원정보 수정</a> <br>
@@ -114,23 +125,24 @@
             </div>
             <div id="content_2">
                 <div class="contents">
-                    <h2 class="contents_tit">예매 내역</h2>
+                    <h4 class="contents_tit">예매 내역</h4>
 
                 </div>
                 <div class="contents">
-                    <h2 class="contents_tit">찜한 상품</h2>
-                    <hr>
+                    <h4 class="contents_tit">찜한 상품</h4>
+                    <hr align="left" width="700" color="rgb(64, 64, 64)" size="1">
 
                 </div>
                 <div class="contents">
-                    <h2 class="contents_tit">Q&A 내역</h2>
-                    <hr>
+                    <h4 class="contents_tit">Q&A 내역</h4>
+                    <hr align="left" width="700" color="rgb(64, 64, 64)" size="1">
 
                 </div>
             </div>
+            
         </div>
-
-        <div id="footer"></div><!--하단부 : 푸터바 -->
+		<%@ include file="../common/footerbar.jsp" %>
     </div>    
+    
 </body>
 </html>

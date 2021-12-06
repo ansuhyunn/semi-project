@@ -15,7 +15,9 @@
     <style>
 
         /* footer바 부분 */
-		body{background-color:#e1d5bf;}
+		body{
+			background-color:#e1d5bf;
+		}
 
         #footer_1>a{
             text-decoration:none;
@@ -39,7 +41,7 @@
     </style>
 </head>
 <body>
-
+		
 	    <!-- footer바 부분 -->
 	    <hr>
 	    <div id="footer">
@@ -54,7 +56,7 @@
 	            
 	        </div>
 	        <div id="footer_2" align="center">
-	            <p>Copyright © DAMOART All Right Reserved <br><br></p>
+	            <p>Copyright © DAMOART All Right Reserved <br><br><br></p>
 	        </div>
 	    </div>
 </body>
