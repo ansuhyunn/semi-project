@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Popper JS -->
@@ -14,13 +14,15 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <style>
+	div{ box-sizing:border-box; }
+	
     .wrapper{
         width: 1000px;
         height: 1000px;
-        margin: auto;
-        margin-top: 120px;
         position:absolute;
         z-index:-1;
+        top: 0; left: 0; right: 0; bottom: 0; margin: auto;
+        margin-top: 350px;
     }
      /* 페이지 이름 스타일 */
     .name{ width: 100%; height: 30px; 
@@ -32,7 +34,6 @@
     /* 페이지 정렬 버튼 스타일 */
     #range{text-align: right; margin-right: 30px;}
     #range>a{
-        border: 1px solid black;
         width: 5%; 
         font-size: 10px;
         padding-top: 20px;
@@ -76,6 +77,8 @@
 </head>
 <body>
 
+    <%@ include file="../common/menubar.jsp" %>
+
     <div class="wrapper">
         <div class="name">BEST전시</div>
             <div id="range">
@@ -88,7 +91,7 @@
                 <div class="poster"></div>
                 <div class="info">
                     <p class="title">
-                        다모아트 특별전 : 무에서 ...
+                        	다모아트 특별전 : 무에서 ...
                     </p>
                     <p class="summary">
                         2021.12.01 ~ 2021.12.31<br>
@@ -100,7 +103,7 @@
                 <div class="poster"></div>
                 <div class="info">
                     <p class="title">
-                        다모아트 특별전 : 무에서 ...
+                        	다모아트 특별전 : 무에서 ...
                     </p>
                     <p class="summary">
                         2021.12.01 ~ 2021.12.31<br>
@@ -112,7 +115,7 @@
                 <div class="poster"></div>
                 <div class="info">
                     <p class="title">
-                        다모아트 특별전 : 무에서 ...
+                        	다모아트 특별전 : 무에서 ...
                     </p>
                     <p class="summary">
                         2021.12.01 ~ 2021.12.31<br>
@@ -124,7 +127,7 @@
                 <div class="poster"></div>
                 <div class="info">
                     <p class="title">
-                        다모아트 특별전 : 무에서 ...
+                       	 다모아트 특별전 : 무에서 ...
                     </p>
                     <p class="summary">
                         2021.12.01 ~ 2021.12.31<br>
@@ -134,5 +137,8 @@
             </div>
         </div>
     </div> 
+    
+    <%@ include file="../common/footerbar.jsp" %>
+    
 </body>
 </html>

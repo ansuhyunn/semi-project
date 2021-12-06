@@ -14,13 +14,14 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <style>
+	div{ box-sizing:border-box; }
     .wrapper{
         width: 1000px;
         height: 1000px;
-        margin: auto;
-        margin-top: 120px;
         position:absolute;
         z-index:-1;
+        top: 0; left: 0; right: 0; bottom: 0; margin: auto;
+        margin-top: 350px;
     }
      /* 페이지 이름 스타일 */
     .name{ width: 100%; height: 30px; }
@@ -39,7 +40,7 @@
         text-decoration: none;
         color: black;
     }
-    a:hover{font-weight: 900;}
+    a:hover{font-weight: bolder; text-decoration: none; color: black;}
     .content1{
         width: 100%;
         height: 300px;
@@ -135,6 +136,9 @@
                 </div>
             </div>
         </div>
-    </div>    
+    </div>   
+    
+    <%@ include file="../common/footerbar.jsp" %>
+     
 </body>
 </html>

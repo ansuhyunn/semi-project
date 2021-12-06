@@ -171,18 +171,18 @@
             <ul id="navi">
                 <li><a href="">전시</a>
                     <ul>
-                        <li><a href="">오픈 예정 전시</a></li>
+                        <li><a href="views/product/preMain.jsp">오픈 예정 전시</a></li>
                         <li><a href="">진행중 전시</a>
                             <ul id="navi_in">
-                                <li><a href="">지역별 전시</a></li>
-                                <li><a href="">이달의 전시</a></li>
-                                <li><a href="">무료 전시</a></li>
+                                <li><a href="views/product/regionMain.jsp">지역별 전시</a></li>
+                                <li><a href="views/product/monthMain.jsp">이달의 전시</a></li>
+                                <li><a href="views/product/freeMain.jsp">무료 전시</a></li>
                                 <li><a href="">맞춤 전시 검색</a></li>
                             </ul>
                         </li>
                     </ul>
                 </li>
-                <li><a href="">BEST 전시</a>
+                <li><a href="views/product/bestMain.jsp">BEST전시</a>
                     
                 </li>
                 <li><a href="">커뮤니티</a>
