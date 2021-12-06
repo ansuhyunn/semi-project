@@ -75,6 +75,8 @@
             width:1000px;
             height:60px;
             background:rgb(203, 185, 153);
+            position:absolute;
+            z-index:300;
         }
         #navi{
             list-style-type:none;
