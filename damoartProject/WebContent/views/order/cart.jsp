@@ -60,6 +60,15 @@
         height: 130px;
         width: 850px;
     }
+
+    #soldout{
+        color: rgb(94,94,94);
+    }
+
+    #soldout_item{
+        color: rgb(135, 56, 47);
+    }
+
     /* 장바구니 하단 스타일 */
     .cart_bottom{
         margin-top:20px;
@@ -85,10 +94,10 @@
         float: right;
         margin-top: 10px;
         margin-right: 310px;
-        width: 80px;
-        height: 30px;
+        width: 100px;
+        height: 35px;
         background-color: rgb(182, 167, 141);
-        font-size: 13px;
+        font-size: 14px;
     }
   
 </style>
@@ -115,11 +124,16 @@
                 <th width=90>적립예상금액</th>
             </tr>
 
+            <!--상품 있을 때-->
             <div>
                 <tr id="cart_content">
                     <td width="50"><input type="checkbox"></td>
                     <td width="200"><img src= "<%=request.getContextPath()%>/resources/images/product/1_1.gif" width="80px" height="80px"></td>
-                    <td width="200">영국 테이트미술관 특별전</td>                           
+                    <td width="200">
+                        영국 테이트미술관 특별전
+                      <br>북서울미술관
+                      <br>2021.12.21 ~ 22.05.08  
+                    </td>                           
                     <td width="50"><select name="option">
                         <option>어린이</option>
                         <option>청소년</option>
@@ -132,7 +146,11 @@
                 <tr id="cart_content">
                     <td width="50"><input type="checkbox"></td>
                     <td width="200"><img src= "<%=request.getContextPath()%>/resources/images/product/1_1.gif" width="80px" height="80px"></td>
-                    <td width="200">영국 테이트미술관 특별전</td>                           
+                    <td width="200">
+                        영국 테이트미술관 특별전
+                        <br>북서울미술관
+                        <br>2021.12.21 ~ 22.05.08 
+                    </td>                           
                     <td width="50"><select name="option">
                         <option>어린이</option>
                         <option>청소년</option>
@@ -143,6 +161,26 @@
                     <td width="50">140￦</td>
                 </tr>         
             </div>
+
+            <!--상품 없을 때-->
+            <tr>
+                <td colspan="7" width="800" height="300">
+                    <b>장바구니에 담긴 상품이 없습니다</b>
+                </td>
+            </tr>
+
+            <!--상품 품절일 때-->
+            <tr id="cart_content">
+                <td width="50"><input type="checkbox"></td>
+                <td width="200"><img src= "<%=request.getContextPath()%>/resources/images/product/1_1.gif" width="80px" height="80px"></td>
+                <td width="200" id="soldout">
+                    영국 테이트미술관 특별전
+                    <br>북서울미술관
+                    <br>2021.12.21 ~ 22.05.08 
+                </td>                           
+                <td id="soldout_item" colspan="4" width="200"><b>구매 할 수 없는 상품입니다</b></td>
+            </tr>   
+
     </table>
     </div>
     
