@@ -141,7 +141,6 @@
             </div>
             
         </div>
-		<%@ include file="../common/footerbar.jsp" %>
     </div>    
     
 </body>

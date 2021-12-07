@@ -146,7 +146,6 @@
             
             <div id="header_2" align="center">
                 <img src="<%=request.getContextPath() %>/resources/images/logo.png" width="250px" height="50px">
-                
             </div>
             <div id="header_3">
                 <div id="buttons">
