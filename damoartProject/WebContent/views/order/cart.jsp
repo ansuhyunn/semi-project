@@ -192,7 +192,7 @@
     </div>
     <br>
     <div class="button">
-     <a href="" button type="submit" class="btn"><b>주문하기</b></a>
+     <a href="../order/orderPage.jsp" button type="submit" class="btn"><b>주문하기</b></a>
     </div>
 
 
