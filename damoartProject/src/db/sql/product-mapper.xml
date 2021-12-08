@@ -83,7 +83,7 @@ SELECT
 
 
 <!-- 디테일 -->
-<entry key="selectMonthList">
+<entry key="selectDetailList">
 SELECT 
 	   PNO
 	 , TITLE
