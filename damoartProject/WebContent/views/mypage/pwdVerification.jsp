@@ -155,7 +155,6 @@
         height:40px;
         background:rgb(182, 167, 141);
         border:none;
-        border-radius:3px;
         font-size:15px;
         font-weight:600;
     }
