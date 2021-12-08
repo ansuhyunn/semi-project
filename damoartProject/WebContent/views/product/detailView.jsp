@@ -67,52 +67,63 @@
 	<div class="wrapper">
 		<div class="content1">
 			<div class="title" style="font-size: 40px; font-weight: bolder; margin-bottom: 7px;"><%= p.getTitle() %></div>
-			<div class="date" style="font-size: 13px;"><%= p.getsDate() %> ~ <%= p.geteDate() %></div>
+			<div class="date" style="font-size: 13px;"><%= p.getsDate() %> ~ <%= p.geteDate() %> <%= p.getArea() %></div>
 		</div>
 		<hr class="my-2">
 		<div class="content2" >
-			<div class="poster"><img src="" width="100%" height="100%"></div>
+			<div class="poster"><img src="<%=request.getContextPath()%>/<%= p.getMainImg() %>" width="100%" height="100%"></div>
 			<div class="info">
 				<table id="info">
 					<tr>
 						<th>기간</th>
-						<td></td>
+						<td><%= p.getsDate() %> ~ <%= p.geteDate() %></td>
 					</tr>
 					<tr>
 						<th>장소</th>
-						<td></td>
+						<td><%= p.getArea() %></td>
 					</tr>
 					<tr>
 						<th>관람연령</th>
-						<td></td>
+						<td><%= p.getAge() %></td>
 					</tr>
 					<tr>
 						<th>관람시간</th>
-						<td></td>
+						<td><%= p.getTime() %></td>
 					</tr>
 					<tr>
 						<th>가격</th>
-						<td></td>
+						<% if(p.getaPrice() == 0){ %>
+							<td> 무료관람 </td>
+						<% } else{ %>
+						<td>성인 : <%= p.getaPrice() %><br>
+							청소년 : <%= p.gettPrice() %><br>
+							소아 : <%= p.getcPrice() %><br>
+						</td>
+						<% } %>
 					</tr>
 					<tr>
 						<th>혜택</th>
-						<td></td>
+						<td><%= p.getEtc() %></td>
 					</tr>
 				</table>
 				<hr class="my-2">
-				<table id="pay">
-					<tr>
-						<th >옵션선택</th>
-						<td>
-							<select name="option" >
-								<option value="adult">성인</option>
-								<option value="teen">청소년</option>
-								<option value="child">소아</option>
-							</select>
-						</td>
-						<th>수량</th>
-						<td><input type="number" style="width: 50px;"></td>
-					</tr>
+				<form>
+					<table id="pay">
+						<tr>
+							<th >옵션선택</th>
+							<td>
+								<select name="option" >
+									<option value="<%= p.getaPrice() %>">성인</option>
+									<option value="<%= p.gettPrice() %>">청소년</option>
+									<option value="<%= p.getcPrice() %>">소아</option>
+								</select>
+							</td>
+							<th>수량</th>
+							<td><input type="number" style="width: 50px;"></td>
+						</tr>
+					</table>	
+				</form>
+				<table id="result">
 					<tr>
 						<td colspan="4" style="background-color: whitesmoke;">몇개샀는지~~</td>
 					</tr>
