@@ -5,13 +5,13 @@ import java.sql.Date;
 public class Product {
 
 	private int pNo;
-	private Date enrollDate;
+	private String enrollDate;
 	private String title;
 	private String region;
 	private String age;
 	private String area;
-	private Date sDate;
-	private Date eDate;
+	private String sDate;
+	private String eDate;
 	private String time;
 	private int aPrice;
 	private int tPrice;
@@ -25,8 +25,8 @@ public class Product {
 	public Product() {}
 
 	
-	public Product(int pNo, Date enrollDate, String title, String region, String age, String area, Date sDate,
-			Date eDate, String time, int aPrice, int tPrice, int cPrice, String mainImg, String detailImg, String etc,
+	public Product(int pNo, String enrollDate, String title, String region, String age, String area, String sDate,
+			String eDate, String time, int aPrice, int tPrice, int cPrice, String mainImg, String detailImg, String etc,
 			String soldOut) {
 		super();
 		this.pNo = pNo;
@@ -48,6 +48,24 @@ public class Product {
 	}
 	
 	
+	// 무료 조회 시 사용
+	public Product(int pNo, String title, String region, String age, String area, String sDate, String eDate, String time,
+			String mainImg, String detailImg, String etc) {
+		super();
+		this.pNo = pNo;
+		this.title = title;
+		this.region = region;
+		this.age = age;
+		this.area = area;
+		this.sDate = sDate;
+		this.eDate = eDate;
+		this.time = time;
+		this.mainImg = mainImg;
+		this.detailImg = detailImg;
+		this.etc = etc;
+	}
+
+
 	public int getpNo() {
 		return pNo;
 	}
@@ -56,11 +74,11 @@ public class Product {
 		this.pNo = pNo;
 	}
 
-	public Date getEnrollDate() {
+	public String getEnrollDate() {
 		return enrollDate;
 	}
 
-	public void setEnrollDate(Date enrollDate) {
+	public void setEnrollDate(String enrollDate) {
 		this.enrollDate = enrollDate;
 	}
 
@@ -96,19 +114,19 @@ public class Product {
 		this.area = area;
 	}
 
-	public Date getsDate() {
+	public String getsDate() {
 		return sDate;
 	}
 
-	public void setsDate(Date sDate) {
+	public void setsDate(String sDate) {
 		this.sDate = sDate;
 	}
 
-	public Date geteDate() {
+	public String geteDate() {
 		return eDate;
 	}
 
-	public void seteDate(Date eDate) {
+	public void seteDate(String eDate) {
 		this.eDate = eDate;
 	}
 
