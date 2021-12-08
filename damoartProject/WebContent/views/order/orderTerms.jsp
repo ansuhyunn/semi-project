@@ -30,7 +30,7 @@
         background-color: #fcf6dac4;
         font-size: 12px;
         width: 700px;
-        height: 100px;
+        height: 130px;
         overflow: scroll;
     }
 

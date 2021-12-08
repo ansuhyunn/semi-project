@@ -44,9 +44,6 @@
         border-bottom: 1px solid #444444;
         padding: 10px;
     }
-      th:first-child, td:first-child {
-        border-left: none;
-    }
 
     /* 장바구니 목록 스타일 */
     .cart_name {
@@ -109,13 +106,13 @@
     <!-- 장바구니 윗 부분 -->
     <div class="cart_head" align="center">
         <br>
-        <b id="cart01">01 장바구니 ></b><b id="cart02"> 02 주문서작성/결제 > 03 주문완료</b>
+        <b>01 장바구니 ></b><b id="cart02"> 02 주문서작성/결제 > 03 주문완료</b>
     </div>
 
     <!-- 장바구니 내용-->
 
     <div class="cart_name" align="center">
-        <table height=400>
+        <table>
             <tr id="cart_name" height=40>
                 <th colspan="3" width=400>상품</th>
                 <th width=130>옵션</th>
@@ -128,7 +125,7 @@
             <div>
                 <tr id="cart_content">
                     <td width="50"><input type="checkbox"></td>
-                    <td width="200"><img src= "<%=request.getContextPath()%>/resources/images/product/1_1.gif" width="80px" height="80px"></td>
+                    <td width="200"><img src= "<%=request.getContextPath()%>/resources/images/product/1M.gif" width="80px" height="80px"></td>
                     <td width="200">
                         영국 테이트미술관 특별전
                       <br>북서울미술관
@@ -145,7 +142,7 @@
                 </tr>
                 <tr id="cart_content">
                     <td width="50"><input type="checkbox"></td>
-                    <td width="200"><img src= "<%=request.getContextPath()%>/resources/images/product/1_1.gif" width="80px" height="80px"></td>
+                    <td width="200"><img src= "<%=request.getContextPath()%>/resources/images/product/1M.gif" width="80px" height="80px"></td>
                     <td width="200">
                         영국 테이트미술관 특별전
                         <br>북서울미술관
@@ -172,7 +169,7 @@
             <!--상품 품절일 때-->
             <tr id="cart_content">
                 <td width="50"><input type="checkbox"></td>
-                <td width="200"><img src= "<%=request.getContextPath()%>/resources/images/product/1_1.gif" width="80px" height="80px"></td>
+                <td width="200"><img src= "<%=request.getContextPath()%>/resources/images/product/1M.gif" width="80px" height="80px"></td>
                 <td width="200" id="soldout">
                     영국 테이트미술관 특별전
                     <br>북서울미술관
