@@ -12,7 +12,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
 <style>
     /*회원박스 스타일*/
     .mypage_top{
@@ -140,24 +139,35 @@
         font-weight:600;
     }
 
-    #pwd_confirm_context{
-        font-size:13px;
+    /*정보 테이블*/
+    .update_tbl th{
+        width:270px;
+        padding-left:120px;
+        padding:20px 0 0 100px;
+        font-size:14px;
     }
-    #pwd_input>input{
-        width:200px;
-        height:35px;
-        font-size:10px;
+    .update_tbl td{
+        padding-top:19px;
+        border-radius: 10px;
+    }
+    .update_tbl input{
+        width:300px; 
+        height:40px;
+        font-size:13px;
+        color: #4c4c4c;
         border-radius: 3px;
         border:1px solid #ccc;
     }
-    #check_btn{
+    .update_button button{
         width:100px;
         height:40px;
         background:rgb(182, 167, 141);
         border:none;
-        border-radius:3px;
         font-size:15px;
         font-weight:600;
+    }
+    .birth_day input{
+        width:97px;
     }
 </style>
 </head>
@@ -218,19 +228,64 @@
             <div class="contents">
                 <h4 class="contents_tit">회원정보 수정</h4>
                 <hr align="left" width="765" color="rgb(64, 64, 64)" size="1">
-                <br><br>
-                <div id="pwd_confirm_tit" align="center">
-                    비밀번호 재확인 
-                </div><br>
-                <div id="pwd_confirm_context" align="center">
-                    회원님의 개인정보 보호를 위한 본인 확인 절차이오니, <br>
-                    로그인 시 사용하시는 비밀번호를 입력해주세요. <br>
-                </div><br>
-                <div id="pwd_input" align="center">
-                    <input type="password" name="pwd" placeholder="비밀번호 입력" required>
-                </div><br>
-                <div id="pwd_confirm_btn" align="center">
-                    <button type="submit" id="check_btn" class="btn btn-sm btn-secondary">확인</button>
+                <div class="update_tbl">
+            
+                    <form action="" id="mypage-form" method="post">
+            
+                        <table >
+                            <tr>
+                                <th>이름</th> 
+                                <td><input type="text" name="userName" maxlength="12" value="userName" required></td> 
+                            </tr>
+                            <tr>
+                                <th>아이디</th>
+                                <td><input type="text" name="userId" maxlength="6" value="userId" readonly></td>
+                            </tr>
+                            <tr>
+                                <th>비밀번호</th> 
+                                <td><input type="password" name="userName" maxlength="12" value="userName" required></td> 
+                            </tr>
+                            <tr>
+                                <th>비밀번호 확인</th> 
+                                <td><input type="password" name="userName" maxlength="12" value="userName" required></td> 
+                            </tr>
+                            <tr>
+                                <th>닉네임</th> 
+                                <td><input type="text" name="userName" maxlength="12" value="userName" required></td> 
+                            </tr>
+                            <tr>
+                                <th>이메일</th>
+                                <td><input type="email" name="email" value="email" required></td>
+                            </tr>
+                            <tr>
+                                <th>휴대전화번호</th>
+                                <td><input type="text" name="phone" placeholder="- 포함해서 입력" value="phone" required></td>
+                            </tr>
+                            <tr>
+                                <th>생년월일</th>
+                                <td>
+                                    <div class="birth_day">
+                                        <input type="text" name="birth_year" id="birth_year" pattern="[0-9]*" value="" label="생년월일" size="4" maxlength="4" placeholder="YYYY">
+                                        <span class="bar"></span>
+                                        <input type="text" name="birth[]" id="birth_month" pattern="[0-9]*" value="" label="생년월일" size="2" maxlength="2" placeholder="MM">
+                                        <span class="bar"></span>
+                                        <input type="text" name="birth[]" id="birth_day" pattern="[0-9]*" value="" label="생년월일" size="2" maxlength="2" placeholder="DD">
+                                        </div>
+                                </td>
+                            </tr>
+
+                        </table>
+                        
+            
+                        <br><br>
+            
+                        <div class="update_button" align="center">
+                            <button type="submit" class="btn btn-sm btn-secondary">저장하기</button>
+                        </div>
+                        
+                        <br><br>
+                    </form>
+                    
                 </div>
             </div>
         </div>
