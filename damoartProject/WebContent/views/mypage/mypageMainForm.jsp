@@ -126,19 +126,6 @@
         padding-left:30px;
     }
 
-    /*예매내역*/
-    .order_box{
-        margin:auto;
-        width:765px; 
-        height:120px;
-        border-radius:10px;
-    }
-    
-    /*찜한상품, qna내역이 없을 경우*/
-    #exclamationmark_icon{
-    	padding-left:345px;
-        padding-top:35px;
-    }
 </style>
 </head>
 <body>
@@ -194,36 +181,10 @@
             </ul>
         </div>
         <div id="content_2">
-            <div class="contents">
-                <h4 class="contents_tit">예매 내역</h4><br>
-                <div class="order_box" style="background:rgba(255, 255, 255, 0.45)">
 
-                </div>
-            </div>
-            <div class="contents">
-                <h4 class="contents_tit">찜한 상품</h4>
-                <hr align="left" width="765" color="rgb(64, 64, 64)" size="1">
-                <!--찜한 내역이 없을 경우-->
-                <div id="exclamationmark_icon">
-                    <img src="<%=request.getContextPath() %>/resources/images/exclamationmark.png" width="70px" height="70px"> 
-                </div>
-                <br>
-                <div id="like_product_txt">
-                    <p align="center">찜한 내역이 없습니다.</p>
-                </div>
-
-            </div>
             <div class="contents">
                 <h4 class="contents_tit">Q&A 내역</h4>
                 <hr align="left" width="765" color="rgb(64, 64, 64)" size="1">
-                <!--Q&A 내역이 없을 경우-->
-                <div id="exclamationmark_icon">
-                    <img src="<%=request.getContextPath() %>/resources/images/exclamationmark.png" width="70px" height="70px"> 
-                </div>
-                <br>
-                <div id="qna_txt">
-                    <p align="center">Q&A 내역이 없습니다.</p>
-                </div>
             </div>
         </div>
     </div>
