@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.product.model.vo.Product" %>
 <% 
-	ArrayList<Product> monthList = (ArrayList<Product>)request.getAttribute("monthList");
-%>>
+	ArrayList<Product> ingList = (ArrayList<Product>)request.getAttribute("ingList");
+%>>%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -81,19 +81,14 @@
 
     <div class="wrapper">
         <div class="name">
-            <div id="name1">이달의 전시</div>
-            <a href="">높은가격순</a>
-            <a href="">낮은가격순</a>
-            <a href="">신규등록순</a>
-            <a href="">마감임박순</a>
-            <a href="">별점순</a>
+            <div id="name1">진행중 전시</div>
         </div>
         <hr class="my-2">
         <div class="content1">
-            <% if(monthList.isEmpty()) { %>
+            <% if(ingList.isEmpty()) { %>
         	<p> 결과가 없습니다 </p>
         <% } else {%> 
-	        <% for(Product p : monthList){ %>
+	        <% for(Product p : ingList){ %>
 	            <div class="content" id="">
 	           		<div class="poster">
 	                	<img src="<%=request.getContextPath()%>/<%= p.getMainImg() %>" width="100%" height="100%">
@@ -115,6 +110,6 @@
     </div>    
     
     <%@ include file="../common/footerbar.jsp" %>
-    
+
 </body>
 </html>

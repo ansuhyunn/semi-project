@@ -94,7 +94,10 @@
 	        <% for(Product p : freeList){ %>
 	            <div class="content" id="">
 	           		<div class="poster">
-	                	<img src="<%=request.getContextPath()%>/<%= p.getMainImg() %>" width="100%" height="100%">
+	                	<a href="<%=request.getContextPath()%>/detail.pro">
+	                		<input type="hidden" name="num" value="<%= p.getpNo() %>">	
+	                		<img src="<%=request.getContextPath()%>/<%= p.getMainImg() %>" width="100%" height="100%">
+	                	</a>
 	            	</div>
 	            	<div class="info">
 	                    <p class="title">
@@ -111,6 +114,18 @@
         	
         </div>
     </div>   
+    
+    <script>
+    	$(function(){												// 위에 다 실행 된 후 무조건 실행되는데
+    		$(".content1>.content>.poster>a").click(function(){				// .list-area>tbody>tr이 클릭되는 순간 실행되는 펑션
+    			const num = $(this).children().eq(0).text();			// 클릭된 tr의 자손들(td들)의 0번 인덱스 자손의 텍스트값 => 글번호
+    			console.log(num);
+    			
+    			location.href = '<%=contextPath%>/detail.pro?num=' + num;
+    		})
+    	})
+    </script>
+
     
     <%@ include file="../common/footerbar.jsp" %>
      

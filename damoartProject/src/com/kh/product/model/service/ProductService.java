@@ -36,5 +36,25 @@ public class ProductService {
 		close(conn); 
 		return list;
 	}
+	
+	
+	public ArrayList<Product> selectIngList() {
+		Connection conn = getConnection();
+		
+		ArrayList<Product> list = new ProductDao().selectIngList(conn);
+		
+		close(conn); 
+		return list;
+	}
+	
+	
+	public ArrayList<Product> selectDetailList(int pno) {
+		Connection conn = getConnection();
+		
+		ArrayList<Product> list = new ProductDao().selectDetailList(conn, pno);
+		
+		close(conn); 
+		return list;
+	}
 
 }
