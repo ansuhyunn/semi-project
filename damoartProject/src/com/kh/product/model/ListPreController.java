@@ -1,4 +1,4 @@
-package com.kh.product;
+package com.kh.product.model;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,16 +13,16 @@ import com.kh.product.model.service.ProductService;
 import com.kh.product.model.vo.Product;
 
 /**
- * Servlet implementation class ListFreeController
+ * Servlet implementation class ListPreController
  */
-@WebServlet("/free.pro")
-public class ListFreeController extends HttpServlet {
+@WebServlet("/pre.pro")
+public class ListPreController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ListFreeController() {
+    public ListPreController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,12 +31,10 @@ public class ListFreeController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ArrayList<Product> preList = new ProductService().selectPreList();
 		
-		ArrayList<Product> freeList = new ProductService().selectFreeList();
-		
-		request.setAttribute("freeList", freeList);
-		request.getRequestDispatcher("views/product/freeMain.jsp").forward(request, response);
-		
+		request.setAttribute("preList", preList);
+		request.getRequestDispatcher("views/product/preMain.jsp").forward(request, response);
 	}
 
 	/**

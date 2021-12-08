@@ -18,5 +18,23 @@ public class ProductService {
 		close(conn); 
 		return list;
 	}
+	
+	public ArrayList<Product> selectMonthList() {
+		Connection conn = getConnection();
+		
+		ArrayList<Product> list = new ProductDao().selectMonthList(conn);
+		
+		close(conn); 
+		return list;
+	}
+	
+	public ArrayList<Product> selectPreList() {
+		Connection conn = getConnection();
+		
+		ArrayList<Product> list = new ProductDao().selectPreList(conn);
+		
+		close(conn); 
+		return list;
+	}
 
 }

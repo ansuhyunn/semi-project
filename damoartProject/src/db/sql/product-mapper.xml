@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
-	
+
+<!-- 무료 전시 -->	
 <entry key="selectFreeList">
 SELECT 
 	   PNO
@@ -20,6 +21,48 @@ SELECT
    AND SOLDOUT = 'N'
 </entry>
 	
+
+<!-- 이달의 전시 -->
+<entry key="selectMonthList">
+SELECT 
+	   PNO
+	 , TITLE
+	 , REGION
+	 , AGE
+	 , AREA
+	 , S_DATE
+	 , E_DATE
+	 , TIME
+	 , MAIN_IMG
+	 , DETAIL_IMG
+	 , ETC
+  FROM PRODUCT
+ WHERE SUBSTR(S_DATE, 6, 2) = TO_CHAR(SYSDATE, 'MM')
+   AND SOLDOUT = 'N'
+</entry>
+
+
+<!-- 오픈예정 -->
+<entry key="selectPreList">
+SELECT 
+	   PNO
+	 , TITLE
+	 , REGION
+	 , AGE
+	 , AREA
+	 , S_DATE
+	 , E_DATE
+	 , TIME
+	 , MAIN_IMG
+	 , DETAIL_IMG
+	 , ETC
+  FROM PRODUCT
+ <![CDATA[WHERE FLOOR(MONTHS_BETWEEN(SYSDATE, TO_DATE(S_DATE, 'RRRRMMDD'))) < 0 ]]>
+   AND SOLDOUT = 'N'
+</entry>
+
+
+
 	
 	
 </properties>

@@ -13,16 +13,16 @@ import com.kh.product.model.service.ProductService;
 import com.kh.product.model.vo.Product;
 
 /**
- * Servlet implementation class ListFreeController
+ * Servlet implementation class ListMonthController
  */
-@WebServlet("/free.pro")
-public class ListFreeController extends HttpServlet {
+@WebServlet("/month.pro")
+public class ListMonthController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ListFreeController() {
+    public ListMonthController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,11 +32,11 @@ public class ListFreeController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		ArrayList<Product> freeList = new ProductService().selectFreeList();
+		ArrayList<Product> monthList = new ProductService().selectMonthList();
 		
-		request.setAttribute("freeList", freeList);
-		request.getRequestDispatcher("views/product/freeMain.jsp").forward(request, response);
-		
+		request.setAttribute("monthList", monthList);
+		request.getRequestDispatcher("views/product/monthMain.jsp").forward(request, response);
+				
 	}
 
 	/**

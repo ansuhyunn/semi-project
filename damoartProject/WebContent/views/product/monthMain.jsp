@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.product.model.vo.Product" %>
+<% 
+	ArrayList<Product> monthList = (ArrayList<Product>)request.getAttribute("monthList");
+%>>
 <!DOCTYPE html>
 <html>
 <head>
@@ -85,54 +88,27 @@
         </div>
         <hr class="my-2">
         <div class="content1">
-            <div class="content" id="">
-                <div class="poster"></div>
-                <div class="info">
-                    <p class="title">
-                        다모아트 특별전 : 무에서 ...
-                    </p>
-                    <p class="summary">
-                        2021.12.01 ~ 2021.12.31<br>
-                        KH강남점
-                    </p>
-                </div>
-            </div>
-            <div class="content" id="">
-                <div class="poster"></div>
-                <div class="info">
-                    <p class="title">
-                        다모아트 특별전 : 무에서 ...
-                    </p>
-                    <p class="summary">
-                        2021.12.01 ~ 2021.12.31<br>
-                        KH강남점
-                    </p>
-                </div>
-            </div>
-            <div class="content" id="">
-                <div class="poster"></div>
-                <div class="info">
-                    <p class="title">
-                        다모아트 특별전 : 무에서 ...
-                    </p>
-                    <p class="summary">
-                        2021.12.01 ~ 2021.12.31<br>
-                        KH강남점
-                    </p>
-                </div>
-            </div>
-            <div class="content" id="">
-                <div class="poster"></div>
-                <div class="info">
-                    <p class="title">
-                        다모아트 특별전 : 무에서 ...
-                    </p>
-                    <p class="summary">
-                        2021.12.01 ~ 2021.12.31<br>
-                        KH강남점
-                    </p>
-                </div>
-            </div>
+            <% if(monthList.isEmpty()) { %>
+        	<p> 결과가 없습니다 </p>
+        <% } else {%> 
+	        <% for(Product p : monthList){ %>
+	            <div class="content" id="">
+	           		<div class="poster">
+	                	<img src="<%=request.getContextPath()%>/<%= p.getMainImg() %>" width="100%" height="100%">
+	            	</div>
+	            	<div class="info">
+	                    <p class="title">
+	                        <%= p.getTitle() %>
+	                    </p>
+	                    <p class="summary">
+	                        <%= p.getsDate() %> ~ <%= p.geteDate() %><br>
+	                        <%= p.getArea() %>
+	                    </p>
+	                </div>
+	            </div>
+	        <% } %> 
+        <% } %> 
+                
         </div>
     </div>    
     

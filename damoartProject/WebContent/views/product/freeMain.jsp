@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.product.model.vo.Product" %>
 <% 
-	ArrayList<Product> list = (ArrayList<Product>)request.getAttribute("list");
+	ArrayList<Product> freeList = (ArrayList<Product>)request.getAttribute("freeList");
 %>>
 <!DOCTYPE html>
 <html>
@@ -88,10 +88,10 @@
         </div>
         <hr class="my-2">
         <div class="content1">
-        <% if(list.isEmpty()) { %>
+        <% if(freeList.isEmpty()) { %>
         	<p> 결과가 없습니다 </p>
         <% } else {%> 
-	        <% for(Product p : list){ %>
+	        <% for(Product p : freeList){ %>
 	            <div class="content" id="">
 	           		<div class="poster">
 	                	<img src="<%=request.getContextPath()%>/<%= p.getMainImg() %>" width="100%" height="100%">

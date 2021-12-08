@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -68,17 +69,17 @@
     <div class="wrapper">
         <div class="name">
             <div id="name1">이달의 전시</div>
-            <a href="./monthMain.jsp">+더보기</a>
+            <a href="<%=request.getContextPath() %>/month.pro">+더보기</a>
         </div>
         <hr class="my-2">
         <div class="content1">
             <div class="content" id="">
-            	<img src="<%=request.getContextPath() %>/resources/images/product/1M.gif" width="100%" height="100%">
+            	
             </div>
         </div>
         <div class="name">
             <div id="name1">지역별 전시</div>
-            <a href="./regionMain.jsp">+더보기</a>
+            <a href="<%=request.getContextPath() %>/regionMain.jsp">+더보기</a>
         </div>
         <hr class="my-2">
         <div class="content1">
@@ -93,10 +94,8 @@
         </div>
         <hr class="my-2">
         <div class="content1">
-            <div class="content" id=""></div>
-            <div class="content" id=""></div>
-            <div class="content" id=""></div>
-            <div class="content" id=""></div>
+       
+        	
         </div>
 
     </div> <!-- wrapper클래스 -->
