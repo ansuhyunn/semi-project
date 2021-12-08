@@ -133,36 +133,36 @@
         padding-left:30px;
     }
 
-    /*회원정보 수정*/
-    #pwd_confirm_tit{
+    .update_button button{
+        width:100px;
+        height:40px;
+        background:rgb(182, 167, 141);
+        border:none;
+        font-size:15px;
+        font-weight:600;
+    }
+    .delete_form{
+        padding-left:60px;
+        padding-top:20px;
+    }
+    .delete_tit h3{
         font-size:17px;
         font-weight:600;
     }
-
-    /*정보 테이블*/
-    .update_tbl th{
-        width:270px;
-        padding-left:120px;
-        padding:20px 0 0 100px;
-        font-size:14px;
+    .delete_guide{
+        width:600px;
+        border:1px solid black;
+        padding:20px 10px 10px 10px;
     }
-    .update_tbl td{
-        padding-top:19px;
-        border-radius: 10px;
-    }
-    .update_tbl input{
-        width:300px; 
-        height:40px;
+    .delete_tit, .delete_guide strong{
         font-size:13px;
-        color: #4c4c4c;
-        border-radius: 3px;
-        border:1px solid #ccc;
     }
-    .update_button button{
-        background:rgb(182, 167, 141);
+    .delete_guide p{
+        font-size:11px;
     }
-    .birth_day input{
-        width:97px;
+    .agreebox{
+        font-size:15px;
+        font-weight:600;
     }
 </style>
 </head>
@@ -221,66 +221,41 @@
         <div id="content_2">
 
             <div class="contents">
-                <h4 class="contents_tit">회원정보 수정</h4>
+                <h4 class="contents_tit">회원탈퇴</h4>
                 <hr align="left" width="765" color="rgb(64, 64, 64)" size="1">
-                <div class="update_tbl">
-            
-                    <form action="" id="mypage-form" method="post">
-            
-                        <table >
-                            <tr>
-                                <th>이름</th> 
-                                <td><input type="text" name="userName" maxlength="12" value="userName" required></td> 
-                            </tr>
-                            <tr>
-                                <th>아이디</th>
-                                <td><input type="text" name="userId" maxlength="6" value="userId" readonly></td>
-                            </tr>
-                            <tr>
-                                <th>비밀번호</th> 
-                                <td><input type="password" name="userName" maxlength="12" value="userName" required></td> 
-                            </tr>
-                            <tr>
-                                <th>비밀번호 확인</th> 
-                                <td><input type="password" name="userName" maxlength="12" value="userName" required></td> 
-                            </tr>
-                            <tr>
-                                <th>닉네임</th> 
-                                <td><input type="text" name="userName" maxlength="12" value="userName" required></td> 
-                            </tr>
-                            <tr>
-                                <th>이메일</th>
-                                <td><input type="email" name="email" value="email" required></td>
-                            </tr>
-                            <tr>
-                                <th>휴대전화번호</th>
-                                <td><input type="text" name="phone" placeholder="- 포함해서 입력" value="phone" required></td>
-                            </tr>
-                            <tr>
-                                <th>생년월일</th>
-                                <td>
-                                    <div class="birth_day">
-                                        <input type="text" name="birth_year" id="birth_year" pattern="[0-9]*" value="" label="생년월일" size="4" maxlength="4" placeholder="YYYY">
-                                        <span class="bar"></span>
-                                        <input type="text" name="birth[]" id="birth_month" pattern="[0-9]*" value="" label="생년월일" size="2" maxlength="2" placeholder="MM">
-                                        <span class="bar"></span>
-                                        <input type="text" name="birth[]" id="birth_day" pattern="[0-9]*" value="" label="생년월일" size="2" maxlength="2" placeholder="DD">
-                                        </div>
-                                </td>
-                            </tr>
-
-                        </table>
-                        
-            
-                        <br><br>
-            
-                        <div class="update_button" align="center">
-                            <button type="submit" class="btn btn-sm btn-secondary">저장하기</button>
-                        </div>
-                        
-                        <br><br>
-                    </form>
+                <div class="delete_form">
                     
+                    <div class="delete_tit">
+                        <h3>탈퇴 안내</h3>
+                        <p>* 회원탈퇴를 신청하기 전에 안내 사항을 꼭 확인해주세요.</p>
+                    </div> <br>
+                    <div class="delete_guide">
+                        <p>
+                            <strong>사용하고 계신 아이디는 탈퇴할 경우 복구가 불가합니다.</strong><br>
+                            탈퇴한 아이디는 본인과 타인 모두 재사용 및 복구가 불가하오니 신중하게 선택하시기 바랍니다.
+                        </p>
+                        <p>
+                            <strong>탈퇴 후 회원정보 및 서비스 이용기록은 모두 삭제됩니다.</strong><br>
+                            
+                        </p>
+                        <p>
+                            <strong>탈퇴 후에도 게시판형 서비스에 등록된 게시물은 그대로 남아있습니다.</strong><br>
+                            삭제를 원하는 게시글이 있다면 반드시 탈퇴 전 삭제하시기 바랍니다.
+                        </p>
+                    </div>
+            
+                    <br>
+                    <div class="agreebox">
+                        <input type="checkbox"></input> 
+                        안내 사항을 모두 확인하였으며, 이에 동의합니다.
+                    </div>
+
+                    <br><br>
+                    
+                </div>
+                <div class="update_button" align="center">
+                    <button type="button" class="btn btn-sm btn-secondary">취소</button>
+                    <button type="submit" class="btn btn-sm btn-secondary">탈퇴</button>
                 </div>
             </div>
         </div>
