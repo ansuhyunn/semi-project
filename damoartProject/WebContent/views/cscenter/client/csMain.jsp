@@ -14,16 +14,13 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <style>
     div{ box-sizing:border-box;}
-    .outer{
-    }
-
     #outer{
 
         width:1000px; 
         height:1050px; 
         padding:40px;
-        margin-top:50px;
         margin:auto;
+        margin-top:50px;
     }
 
     #outer>div{
@@ -49,6 +46,7 @@
         margin-left:38px;
         background:rgb(203, 185, 153);
     }
+
 
     #faq_area, #qna_area, #notice_area, #call_area{
         padding:15px;
@@ -76,7 +74,7 @@
 	
         <div id="outer">
 
-            <h4>고객센터</h4>
+            <h4 style="font-size: 23px; font-weight: bolder;">고객센터</h4>
             <br>
             <hr>
             <div id="faq_area">

@@ -145,7 +145,7 @@
             </div>
             
             <div id="header_2" align="center">
-                <img src="<%=request.getContextPath() %>/resources/images/logo.png" width="250px" height="50px">
+                <img src="<%=contextPath%>/resources/images/logo.png" width="250px" height="50px">
             </div>
             <div id="header_3">
                 <div id="buttons">
@@ -160,7 +160,7 @@
                             <input type="text" placeholder="검색어를 입력하세요.">                      
                         </div>
                         <div id="search_btn" align="center">
-                            <img src="<%=request.getContextPath() %>/resources/images/search.png" width="33px" height="33px">
+                            <img src="<%=contextPath%>/resources/images/search.png" width="33px" height="33px">
                         </div>
                     </form>
                 </div>
@@ -194,7 +194,7 @@
                 </li>
                 <li><a href="<%=contextPath%>/views/cscenter/client/csMain.jsp">고객센터</a>
                     <ul>
-                        <li><a href="<%=contextPath%>/views/cscenter/client/noticeMain.jsp">공지사항</a></li>
+                        <li><a href="<%=contextPath%>/list.no">공지사항</a></li>
                         <li><a href="<%=contextPath%>/views/cscenter/client/faqMain.jsp">FAQ</a></li>
                         <li><a href="<%=contextPath%>/views/cscenter/client/qnaMain.jsp">Q&A</a></li>
                         <li><a href="<%=contextPath%>/views/cscenter/client/guideMain.jsp">이용안내</a></li>
