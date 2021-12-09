@@ -175,7 +175,7 @@
                 <li><a href="">현황 관리</a>
                     <ul>
                         <li><a href="<%=contextPath%>/views/order/manageOrder.jsp">주문 내역 관리</a></li>
-                        <li><a href="<%=contextPath%>/views/order/manageCancle.jsp">취소 관리</a></li>
+                        <li><a href="<%=contextPath%>/views/order/manageCancel.jsp">취소 관리</a></li>
                         <li><a href="">판매 현황</a></li>
                     </ul>
                 </li>

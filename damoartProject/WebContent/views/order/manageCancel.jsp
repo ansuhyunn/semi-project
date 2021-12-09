@@ -126,19 +126,19 @@
 
 <div class="wrap">
     <div class="manage_head">
-        <p>현황 관리<b id="title"> > 주문 내역 관리</b></p>
+        <p>현황 관리<b id="title"> > 취소 관리</b></p>
     </div>
         <br><br><br>
         <!--주문 현황-->
         <div class="order_chart" align="center">
            <div class="box new_order">
-                신규주문&nbsp;&nbsp; 14
+                취소요청&nbsp;&nbsp; 4
            </div>
            <div class="box com_order">
-               결제완료&nbsp;&nbsp; 8
+               취소거절&nbsp;&nbsp; 1
            </div>
            <div class="box wait_order">
-                입금대기&nbsp;&nbsp; 6
+                취소완료&nbsp;&nbsp; 3
            </div>
         </div>
         
@@ -154,8 +154,8 @@
            
         <!--판매 리스트-->
         <div class="order_box">
-            <button class="btn" id="cancel"><b>판매취소</b></button>
-            <button class="btn" id="check"><b>입금확인처리</b></button>
+            <button class="btn" id="cancle"><b>취소 승인</b></button>
+            <button class="btn" id="check"><b>취소 거절</b></button>
             <div class="search">
                 <input type="text" placeholder="구매자 ID, 이름, 주문번호">
                 <button class="btn" id="search"><b>검색</b></button>
@@ -165,47 +165,46 @@
             <div class="chart">
                 <table class="chart_order">
                     <tr align="center" class="table_title">
-                        <th width="150" colspan="2">주문번호 / 시각</th>
+                        <th width="180" colspan="2">주문번호 / 시각</th>
                         <th width="220" colspan="2">주문상품</th>
-                        <th width="80">상품금액</th>
-                        <th width="60">수량</th>
-                        <th width="80">상태</th>
-                        <th width="170">결제내역</th>
+                        <th width="180">취소사유 / 시각</th>
+                        <th width="60">상태</th>
+                        <th width="200">환불정보</th>
                     </tr>
                     <tr align="center" class="table_content">
                         <td><input type="checkbox"></td>
-                        <td>user01 김아트<br>201223809342<br>2021-12-10 06:20</td>
+                        <td>user01 김아트<br>201223809342<br><small>2021-12-10 06:20</small></td>
                         <td width="60"><img src="<%=request.getContextPath()%>/resources/images/product/1M.gif" width="40px" height="40px"></td>
                         <td>A001<br>영국 테이트미술관 특별전</td>
-                        <td>14000￦</td>
-                        <td>2</td>
-                        <td>입금대기</td>
+                        <td>구매 의사 취소 <br> <small>2021-12-13 11:20</small></td>
+                        <td>취소요청</td>
                         <td>총 결제금액 &nbsp; 28000￦ <br>
-                            결제 방법 &nbsp; 무통장입금
+                            결제 방법 &nbsp; 무통장입금 <br>
+                            총 환불 금액 &nbsp; 28000￦
                         </td>
                     </tr>
                     <tr align="center" class="table_content">
                         <td><input type="checkbox"></td>
-                        <td>user01 김아트<br>201223809342<br>2021-12-10 06:20</td>
+                        <td>user01 김아트<br>201223809342<br><small>2021-12-10 06:20</small></td>
                         <td width="60"><img src="<%=request.getContextPath()%>/resources/images/product/1M.gif" width="40px" height="40px"></td>
                         <td>A001<br>영국 테이트미술관 특별전</td>
-                        <td>14000￦</td>
-                        <td>2</td>
-                        <td>취소완료</td>
+                        <td>상품 정보 상이 <br> <small>2021-12-13 11:20</small></td>
+                        <td>취소승인</td>
                         <td>총 결제금액 &nbsp; 28000￦ <br>
-                            결제 방법 &nbsp; 카드결제
+                            결제 방법 &nbsp; 카드결제 <br>
+                            총 환불 금액 &nbsp; 28000￦
                         </td>
                     </tr>
                     <tr align="center" class="table_content">
                         <td><input type="checkbox"></td>
-                        <td>user01 김아트<br>201223809342<br>2021-12-10 06:20</td>
+                        <td>user01 김아트<br>201223809342<br><small>2021-12-10 06:20</small></td>
                         <td width="60"><img src="<%=request.getContextPath()%>/resources/images/product/1M.gif" width="40px" height="40px"></td>
                         <td>A001<br>영국 테이트미술관 특별전</td>
-                        <td>14000￦</td>
-                        <td>2</td>
-                        <td>결제완료</td>
+                        <td>상품 잘못 주문 <br> <small>2021-12-13 11:20</small></td>
+                        <td>취소거절</td>
                         <td>총 결제금액 &nbsp; 28000￦ <br>
-                            결제 방법 &nbsp; 카드결제
+                            결제 방법 &nbsp; 무통장입금 <br>
+                            총 환불 금액 &nbsp; 28000￦
                         </td>
                     </tr>
                 </table>
