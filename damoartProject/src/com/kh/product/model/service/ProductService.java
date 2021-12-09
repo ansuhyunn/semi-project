@@ -10,6 +10,15 @@ import com.kh.product.model.vo.Product;
 
 public class ProductService {
 	
+	public ArrayList<Product> selectAllList() {
+		Connection conn = getConnection();
+		
+		ArrayList<Product> list = new ProductDao().selectFreeList(conn);
+		
+		close(conn); 
+		return list;
+	}
+	
 	public ArrayList<Product> selectFreeList() {
 		Connection conn = getConnection();
 		

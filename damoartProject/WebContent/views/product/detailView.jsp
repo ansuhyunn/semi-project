@@ -29,7 +29,7 @@
 	.content1{
 		width: 80%;
 		height: 100px;
-		margin-bottom: -20px;
+		margin-bottom: -30px;
 	}
 	.content2{
 		width: 90%;
@@ -57,7 +57,21 @@
 		width: 90%;
 		height: 67%;
 	}
-	.content3>a{text-decoration: none; color: black; font-size: 20px; font-weight: bolder; margin:60px;}
+	.content3>button{
+		color: whitesmoke; 
+		font-size: 18px; 
+		font-weight: bolder; 
+		margin:30px; 
+		width:150px;
+		margin-left: 40px;
+		margin-top: 50px;
+		margin-bottom: 10px;
+	}
+	.content4{
+		margin: auto;
+		margin-top: -1200px;
+		width: 80%;
+	}
 </style>
 </head>
 <body>
@@ -67,7 +81,7 @@
 	<% for(Product p : detailList){ %>
 	<div class="wrapper">
 		<div class="content1">
-			<div class="title" style="font-size: 40px; font-weight: bolder; margin-bottom: 7px;"><%= p.getTitle() %></div>
+			<div class="title" style="font-size: 30px; font-weight: bolder; margin-bottom: 7px;"><%= p.getTitle() %></div>
 			<div class="date" style="font-size: 13px;"><%= p.getsDate() %> ~ <%= p.geteDate() %> <%= p.getArea() %></div>
 		</div>
 		<hr class="my-2">
@@ -122,7 +136,8 @@
 							<th>수량</th>
 							<td><input type="number" style="width: 50px;"></td>
 						</tr>
-					</table>	
+					</table>
+					<button class="btn btn-secondary">선택</button>
 				</form>
 				<table id="result">
 					<tr>
@@ -136,29 +151,17 @@
 		</div>	
 
 		<div class="content3">
-			<button id="info1" onclick="chooseInfo(1)">상세정보</button>
-			<button id="info2" onclick="chooseInfo(2)">예매/취소안내</button>
-			<button id="info3" onclick="chooseInfo(3)">REVIEW</button>
-			<button id="info4" onclick="chooseInfo(4)">Q&A</button>
+			<button id="info1" class="btn btn-secondary" onclick="chooseInfo(1)">상세정보</button>
+			<button id="info2" class="btn btn-secondary" onclick="chooseInfo(2)">예매/취소안내</button>
+			<button id="info3" class="btn btn-secondary" onclick="chooseInfo(3)">REVIEW</button>
+			<button id="info4" class="btn btn-secondary" onclick="chooseInfo(4)">Q&A</button>
 			<hr class="my-2">
 		</div>
 		
-		<div class="content4" style="display:none">
-             <div><img src="<%=request.getContextPath()%>/<%= p.getDetailImg() %>" id="detail" onchange="loadImg(this, 1);"></div>
-             <div><img id="rcInfo" onchange="loadImg(this, 2);"></div>
+		<div class="content4">
+			<div class="detail"><img src="<%=request.getContextPath()%>/<%= p.getDetailImg()%>" width="100%" height="100%"></div>
         </div>
 		
-		<script>
-			function chooseInfo(num){
-				$("#info" + num).click();
-			}
-			function loadImg(div, num){
-				const result = new FileReader();
-				console.log(result);
-			}
-		</script>
-		
-
 	</div>
 	<% } %>
 	

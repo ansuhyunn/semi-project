@@ -170,7 +170,7 @@
         <!-- menubar부분 -->
         <div id="navigator">
             <ul id="navi">
-                <li><a href="<%=contextPath%>/views/product/productMain.jsp">전시</a>
+                <li><a href="<%=contextPath%>/all.pro">전시</a>
                     <ul>
                         <li><a href="<%=request.getContextPath()%>/pre.pro">오픈 예정 전시</a></li>
                         <li><a href="<%=request.getContextPath()%>/ing.pro">진행중 전시</a>

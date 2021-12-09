@@ -104,7 +104,9 @@
 	        <% for(Product p : monthList){ %>
 	            <div class="content" id="">
 	           		<div class="poster">
-	                	<img src="<%=request.getContextPath()%>/<%= p.getMainImg() %>" width="100%" height="100%">
+	                	<a href="<%=request.getContextPath()%>/detail.pro?num=<%=p.getpNo()%>">
+                            <img src="<%=request.getContextPath()%>/<%= p.getMainImg() %>" width="100%" height="100%">
+                        </a>
 	            	</div>
 	            	<div class="info">
 	                    <p class="title">

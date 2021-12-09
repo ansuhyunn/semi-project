@@ -95,33 +95,34 @@
         </div>
         <hr class="my-2">
         <div class="content1">
-	       <% if(preList.isEmpty()) { %>
-	       		<p> 결과가 없습니다 </p>
-	       <% } else {%> 
-	        <% for(Product p : preList){ %>
-	            <div class="content" id="">
-	           		<div class="poster">
-	                	<input type="hidden" name="num" value="<%= p.getpNo() %>">
-	                	<a href="<%=request.getContextPath()%>/detail.pro?num=<%=p.getpNo()%>">
-	                		<img src="<%=request.getContextPath()%>/<%= p.getMainImg() %>" width="100%" height="100%">
-	                	</a>
-	            	</div>
-	            	<div class="info">
-	                    <p class="title">
-	                        <%= p.getTitle() %>
-	                    </p>
-	                    <p class="summary">
-	                        <%= p.getsDate() %> ~ <%= p.geteDate() %><br>
-	                        <%= p.getArea() %>
-	                    </p>
-	                </div>
-	            </div>
+	        <% if(preList.isEmpty()) { %>
+	        	<p> 결과가 없습니다 </p>
+	        <% } else {%> 
+		        <% for(Product p : preList){ %>
+		            <div class="content" id="">
+		           		<div class="poster">
+		           			<input type="hidden" name="num" value="<%= p.getpNo() %>">
+		                	<a href="<%=request.getContextPath()%>/detail.pro?num=<%=p.getpNo()%>">
+		                		<img src="<%=request.getContextPath()%>/<%= p.getMainImg() %>" width="100%" height="100%">
+		                	</a>
+		            	</div>
+		            	<div class="info">
+		                    <p class="title">
+		                        <%= p.getTitle() %>
+		                    </p>
+		                    <p class="summary">
+		                        <%= p.getsDate() %> ~ <%= p.geteDate() %><br>
+		                        <%= p.getArea() %>
+		                    </p>
+		                </div>
+		            </div>
+		        <% } %> 
 	        <% } %> 
-	       <% } %> 
-        </div>
-    </div>    
+    	</div>    
     
     <%@ include file="../common/footerbar.jsp" %>
     
 </body>
 </html>
+
+

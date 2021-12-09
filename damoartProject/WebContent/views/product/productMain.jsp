@@ -55,7 +55,6 @@
         margin-bottom: 50px;
     }
     .content{
-        border: 1px solid black;
         width: 20%;
         height: 100%;
         float: left;
@@ -78,29 +77,69 @@
             
         </div>
         <hr class="my-2">
+        <% int i = 0; %>
         <div class="content1">
-            <div class="content" id="">
-            	
-            </div>
+       		<% if(monthList.isEmpty()) { %>
+	       			<p> 결과가 없습니다 </p>
+	        <% } else {%> 
+			        <% for(Product p : monthList){ %>
+			            <div class="content" id="">
+			           		<div class="poster">
+			                	<input type="hidden" name="num" value="<%= p.getpNo() %>">
+			                	<a href="<%=request.getContextPath()%>/detail.pro?num=<%=p.getpNo()%>">
+			                		<img src="<%=request.getContextPath()%>/<%= p.getMainImg() %>" width="100%" height="100%">
+			                	</a>
+			            	</div>
+			            </div>
+			        <% i++; if(i>3){ break; }%>   
+	       		<% } %> 	
+	       	<% } %> 		
         </div>
         <div class="name">
             <div id="name1">지역별 전시</div>
             <a href="<%=request.getContextPath() %>/region.pro">+더보기</a>
         </div>
         <hr class="my-2">
+        <% int j = 0; %>
         <div class="content1">
-	        <div class="content" id="">
-	           	
-		    </div>
+       		<% if(regionList.isEmpty()) { %>
+	       			<p> 결과가 없습니다 </p>
+	        <% } else {%> 
+			        <% for(Product p : regionList){ %>
+			            <div class="content" id="">
+			           		<div class="poster">
+			                	<input type="hidden" name="num" value="<%= p.getpNo() %>">
+			                	<a href="<%=request.getContextPath()%>/detail.pro?num=<%=p.getpNo()%>">
+			                		<img src="<%=request.getContextPath()%>/<%= p.getMainImg() %>" width="100%" height="100%">
+			                	</a>
+			            	</div>
+			            </div>
+			        <% j++; if(j>3){ break; }%>   
+	       		<% } %> 	
+	       	<% } %> 			
         </div>
         <div class="name">
             <div id="name1">무료 전시</div>
             <a href="<%=request.getContextPath() %>/free.pro">+더보기</a>
         </div>
         <hr class="my-2">
+        <% int k = 0; %>
         <div class="content1">
-       
-        	
+       		<% if(freeList.isEmpty()) { %>
+	       			<p> 결과가 없습니다 </p>
+	        <% } else {%> 
+			        <% for(Product p : freeList){ %>
+			            <div class="content" id="">
+			           		<div class="poster">
+			                	<input type="hidden" name="num" value="<%= p.getpNo() %>">
+			                	<a href="<%=request.getContextPath()%>/detail.pro?num=<%=p.getpNo()%>">
+			                		<img src="<%=request.getContextPath()%>/<%= p.getMainImg() %>" width="100%" height="100%">
+			                	</a>
+			            	</div>
+			            </div>
+			        <% k++; if(k>3){ break; }%>   
+	       		<% } %> 	
+	       	<% } %> 			
         </div>
 
     </div> <!-- wrapper클래스 -->

@@ -27,7 +27,7 @@
      /* 페이지 이름 스타일 */
     .name{ width: 100%; height: 30px; }
     #name1{
-        width: 82%;
+        width: 70%;
         font-size: 23px;
         font-weight: bolder;
         float: left;
@@ -36,7 +36,8 @@
     .name>a{
         width: 6%; 
         font-size: 10px;
-        padding-top: 20px;
+        margin-top: 10px;
+        padding-top: 10px;
         float: left;
         text-decoration: none;
         color: black;
@@ -88,6 +89,11 @@
     <div class="wrapper">
         <div class="name">
             <div id="name1">진행중 전시</div>
+            <a href="">높은가격순</a>
+            <a href="">낮은가격순</a>
+            <a href="">신규등록순</a>
+            <a href="">마감임박순</a>
+            <a href="">별점순</a>
         </div>
         <hr class="my-2">
         <div class="content1">
