@@ -132,12 +132,43 @@
         width:765px; 
         height:120px;
         border-radius:10px;
+        position:absolute;
     }
     
     /*찜한상품, qna내역이 없을 경우*/
     #exclamationmark_icon{
     	padding-left:345px;
         padding-top:35px;
+    }
+
+    .order_view{
+        color:#666;
+        text-decoration:none;
+    }
+
+    #step_li{
+        float:left;
+        position:relative;
+        width:29%;
+        height:100px;
+        margin:auto;
+        margin-top:10px;
+    }
+
+    em{
+        top:25px;
+        color:#888;
+        font-style:normal;
+        font-size:50px;
+        line-height:50px;
+        font-weight:500;
+        padding-left:140px;
+    }
+    span{
+        color: #666;
+        font-size:16px;
+        line-height:40px;
+        margin-left:120px;
     }
 </style>
 </head>
@@ -197,7 +228,22 @@
             <div class="contents">
                 <h4 class="contents_tit">예매 내역</h4><br>
                 <div class="order_box" style="background:rgba(255, 255, 255, 0.45)">
-
+                <a href="" class="order_view">
+                    <ul class="order-step">
+                        <li id="step_li">
+                            <em> 0 </em><br>
+                            <span>입금대기</span>
+                        </li>
+                        <li id="step_li">
+                            <em> 0 </em><br>
+                            <span>결제완료</span>
+                        </li>
+                        <li id="step_li">
+                            <em> 0 </em><br>
+                            <span>예매확정</span>
+                        </li>
+                    </ul>
+                </a>    
                 </div>
             </div>
             <div class="contents">
