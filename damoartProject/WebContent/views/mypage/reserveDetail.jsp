@@ -50,7 +50,7 @@
         height:1000px;
         background:#e1d5bf;
         margin:auto;
-        }
+    }
     #content_1, #content_2{
         box-sizing:border-box;
         height:100%;
@@ -65,12 +65,12 @@
         height:100%;
         float:left;
     }
+
     #content_1 h2{
         padding: 5px 0 20px 1px;
 		letter-spacing:-1px;
         font-size:28px;
         font-weight:700;
-        letter-spacing:-1px;
     }
     .mem-box{
         height:120px;
@@ -167,6 +167,29 @@
         line-height:40px;
         margin-left:120px;
     }
+
+    /*예매날짜*/
+    .order_date{
+        margin:auto;
+        margin-left:30px;
+        width:765px; 
+        height:60px;
+        border-radius:10px;
+        position:absolute;
+    }
+
+    .order_date>p{
+        font-size:14px;
+        font-weight:bold;
+        margin-left:20px;
+        margin-top:20px;
+    }
+
+    .select_date>li{
+        float:left;
+        width:auto;
+        height:28px;
+    }
 </style>
 </head>
 <body>
@@ -243,31 +266,70 @@
                 </a>    
                 </div>
             </div>
-            <div class="contents">
-                <h4 class="contents_tit">찜한 상품</h4>
-                <hr align="left" width="765" color="rgb(64, 64, 64)" size="1">
-                <!--찜한 내역이 없을 경우-->
-                <div id="exclamationmark_icon">
-                    <img src="<%=request.getContextPath() %>/resources/images/exclamationmark.png" width="70px" height="70px"> 
-                </div>
-                <br>
-                <div id="like_product_txt">
-                    <p align="center">찜한 내역이 없습니다.</p>
-                </div>
 
+            <div class="order_date" style="background:rgba(255, 255, 255, 0.74)">
+                <p>예매기간</p>
+                <ul class="select_date">
+                    <li>
+                        <button type="button">일주일</button>
+                    </li>
+                    <li>
+                        <button type="button">1개월</button>
+                    </li>
+                    <li>
+                        <button type="button">3개월</button>
+                    </li>
+                    <li>
+                        <button type="button">6개월</button>
+                    </li>
+                </ul>
             </div>
-            <div class="contents">
-                <h4 class="contents_tit">Q&A 내역</h4>
-                <hr align="left" width="765" color="rgb(64, 64, 64)" size="1">
-                <!--Q&A 내역이 없을 경우-->
-                <div id="exclamationmark_icon">
-                    <img src="<%=request.getContextPath() %>/resources/images/exclamationmark.png" width="70px" height="70px"> 
-                </div>
-                <br>
-                <div id="qna_txt">
-                    <p align="center">Q&A 내역이 없습니다.</p>
-                </div>
-            </div>
+            
+            <br><br><br><br>
+            <div class="select-range">
+				<select id="cal-start-year" title="년도를 선택하세요" style="width:76px;"><option value="2012">2012</option><option value="2013">2013</option><option value="2014">2014</option><option value="2015">2015</option><option value="2016">2016</option><option value="2017">2017</option><option value="2018">2018</option><option value="2019">2019</option><option value="2020">2020</option><option value="2021" selected="selected">2021</option></select>
+				<label for="cal-start-year">년</label>
+				<select id="cal-start-month" title="달월을 선택하세요" style="width:60px;">
+					<option value="01">1</option>
+					<option value="02">2</option>
+					<option value="03">3</option>
+					<option value="04">4</option>
+					<option value="05">5</option>
+					<option value="06">6</option>
+					<option value="07">7</option>
+					<option value="08">8</option>
+					<option value="09">9</option>
+					<option value="10">10</option>
+					<option value="11" selected="selected">11</option>
+					<option value="12">12</option>
+				</select>
+				<label for="cal-start-month">월</label>
+				<select id="cal-start-day" title="날일을 선택하세요" style="width:60px;">
+				<option value="01">1</option><option value="02">2</option><option value="03">3</option><option value="04">4</option><option value="05">5</option><option value="06">6</option><option value="07">7</option><option value="08">8</option><option value="09" selected="selected">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option></select>
+				<label for="cal-start-day">일</label>
+				<span class="des">~</span>
+				<select id="cal-end-year" title="년도를 선택하세요" style="width:76px;"><option value="2012">2012</option><option value="2013">2013</option><option value="2014">2014</option><option value="2015">2015</option><option value="2016">2016</option><option value="2017">2017</option><option value="2018">2018</option><option value="2019">2019</option><option value="2020">2020</option><option value="2021" selected="selected">2021</option></select>
+				<label for="cal-end-year">년</label>
+				<select id="cal-end-month" title="달월을 선택하세요" style="width:60px;">
+					<option value="01">1</option>
+					<option value="02">2</option>
+					<option value="03">3</option>
+					<option value="04">4</option>
+					<option value="05">5</option>
+					<option value="06">6</option>
+					<option value="07">7</option>
+					<option value="08">8</option>
+					<option value="09">9</option>
+					<option value="10">10</option>
+					<option value="11">11</option>
+					<option value="12" selected="selected">12</option>
+				</select>
+				<label for="cal-end-month">월</label>
+				<select id="cal-end-day" title="날일을 선택하세요" style="width:60px;">
+				<option value="01">1</option><option value="02">2</option><option value="03">3</option><option value="04">4</option><option value="05">5</option><option value="06">6</option><option value="07">7</option><option value="08">8</option><option value="09" selected="selected">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option></select>
+				<label for="cal-end-day">일</label>
+			</div>
+            
         </div>
     </div>
 
