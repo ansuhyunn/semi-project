@@ -49,7 +49,7 @@
 
    #cart_content {
        height: 130px;
-       width: 750px;
+       width: 850px;
    }
 
    .order_bottom{
@@ -266,9 +266,9 @@
         <input type="checkbox"><b>&nbsp;(필수) 구매하실 상품의 결제정보를 확인하였으며, 구매 진행에 동의합니다.</b>
         <br>
             <a href="../order/cart.jsp"><button class="btn" id="goBack"><b>돌아가기</b></button></a>
-            <a href="../order/order.jsp"><button type="submit" class="btn" id="goPay"><b>결제하기</b></button></a>
+            <a href=""><button type="submit" class="btn" id="goPay"><b>결제하기</b></button></a>
         </div>
-       <br><br><br>
+       <br><br>
         <%@ include file="../common/footerbar.jsp" %>
     </body>
     </html>
