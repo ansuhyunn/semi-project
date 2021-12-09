@@ -126,6 +126,122 @@ public class ProductDao {
 	}
 	
 	
+	// 지역별 메인 추출
+	public ArrayList<Product> selectRegionList(Connection conn){
+		ArrayList<Product> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectRegionList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Product(rset.getInt("PNO"),
+									 rset.getString("TITLE"),
+									 rset.getString("REGION"),
+									 rset.getString("AGE"),
+									 rset.getString("AREA"),
+									 rset.getString("S_DATE"),
+									 rset.getString("E_DATE"),
+									 rset.getString("TIME"),
+									 rset.getString("MAIN_IMG"),
+									 rset.getString("DETAIL_IMG"),
+									 rset.getString("ETC")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+	
+	
+	
+	public ArrayList<Product> selectRegionResultList(Connection conn, String value){
+		ArrayList<Product> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		if(value.equals("경기")) {
+			String sql = prop.getProperty("selectKIregionList");
+			try {
+				pstmt = conn.prepareStatement(sql);
+				rset = pstmt.executeQuery();
+				while(rset.next()) {
+					list.add(new Product(rset.getInt("PNO"),
+										 rset.getString("TITLE"),
+										 rset.getString("REGION"),
+										 rset.getString("AGE"),
+										 rset.getString("AREA"),
+										 rset.getString("S_DATE"),
+										 rset.getString("E_DATE"),
+										 rset.getString("TIME"),
+										 rset.getString("MAIN_IMG"),
+										 rset.getString("DETAIL_IMG"),
+										 rset.getString("ETC")));
+				}
+			}catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt);
+			}
+		}else if(value.equals("강원")) {
+			String sql = prop.getProperty("selectKCregionList");
+			try {
+				pstmt = conn.prepareStatement(sql);
+				rset = pstmt.executeQuery();
+				while(rset.next()) {
+					list.add(new Product(rset.getInt("PNO"),
+										 rset.getString("TITLE"),
+										 rset.getString("REGION"),
+										 rset.getString("AGE"),
+										 rset.getString("AREA"),
+										 rset.getString("S_DATE"),
+										 rset.getString("E_DATE"),
+										 rset.getString("TIME"),
+										 rset.getString("MAIN_IMG"),
+										 rset.getString("DETAIL_IMG"),
+										 rset.getString("ETC")));
+				}
+			}catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt);
+			}	
+		}else {
+			String sql = prop.getProperty("selectEtcRegionList");
+			try {
+				pstmt = conn.prepareStatement(sql);
+				rset = pstmt.executeQuery();
+				while(rset.next()) {
+					list.add(new Product(rset.getInt("PNO"),
+										 rset.getString("TITLE"),
+										 rset.getString("REGION"),
+										 rset.getString("AGE"),
+										 rset.getString("AREA"),
+										 rset.getString("S_DATE"),
+										 rset.getString("E_DATE"),
+										 rset.getString("TIME"),
+										 rset.getString("MAIN_IMG"),
+										 rset.getString("DETAIL_IMG"),
+										 rset.getString("ETC")));
+				}
+			}catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt);
+			}
+		}
+		return list;
+	}
+	
+	
 	// 진행중 추출
 	public ArrayList<Product> selectIngList(Connection conn){
 		ArrayList<Product> list = new ArrayList<>();
@@ -160,7 +276,7 @@ public class ProductDao {
 	}
 	
 	
-	// detail 추출
+	// detail 정보 추출
 	public ArrayList<Product> selectDetailList(Connection conn, int pno){
 		ArrayList<Product> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
@@ -194,6 +310,32 @@ public class ProductDao {
 		return list;
 	}
 	
+	
+	// detail 이미지 추출
+	public ArrayList<Product> selectDetailImg(Connection conn, int pno) {
+		ArrayList<Product> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectDetailImg");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, pno);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Product(rset.getString("DETAIL_IMG")));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
 	
 	
 }

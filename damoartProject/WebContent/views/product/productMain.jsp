@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.product.model.vo.Product" %>
+<% 
+	ArrayList<Product> freeList = (ArrayList<Product>)request.getAttribute("freeList");
+	ArrayList<Product> monthList = (ArrayList<Product>)request.getAttribute("monthList");
+	ArrayList<Product> regionList = (ArrayList<Product>)request.getAttribute("regionList");
+%>>
 
 <!DOCTYPE html>
 <html>
@@ -70,6 +75,7 @@
         <div class="name">
             <div id="name1">이달의 전시</div>
             <a href="<%=request.getContextPath() %>/month.pro">+더보기</a>
+            
         </div>
         <hr class="my-2">
         <div class="content1">
@@ -79,14 +85,13 @@
         </div>
         <div class="name">
             <div id="name1">지역별 전시</div>
-            <a href="<%=request.getContextPath() %>/regionMain.jsp">+더보기</a>
+            <a href="<%=request.getContextPath() %>/region.pro">+더보기</a>
         </div>
         <hr class="my-2">
         <div class="content1">
-            <div class="content" id=""></div>
-            <div class="content" id=""></div>
-            <div class="content" id=""></div>
-            <div class="content" id=""></div>
+	        <div class="content" id="">
+	           	
+		    </div>
         </div>
         <div class="name">
             <div id="name1">무료 전시</div>

@@ -17,7 +17,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <style>
-	div{ box-sizing:border-box; }
+	div{ box-sizing:border-box;}
     .wrapper{
         width: 1000px;
         height: 1000px;
@@ -41,7 +41,7 @@
         text-decoration: none;
         color: black;
     }
-    a:hover{font-weight: bolder; text-decoration: none; color: black;}
+    .name>a:hover{font-weight: bolder; text-decoration: none; color: black;}
     .content1{
         width: 100%;
         height: 300px;
@@ -54,12 +54,11 @@
         height: 100%;
         float: left;
         margin-left: 40px;
-        margin-bottom: 10px;
+        margin-bottom: 50px;
         margin-top: 0px;
         display: block;
     }
     .poster{
-        border: 1px solid black;
         width: 100%;
         height: 75%;
         width: 100%;
@@ -69,7 +68,14 @@
         width: 100%;
         height: 25%;
     }
-    .info>p{text-align: center;}
+    .info>p{
+        width: 100%;
+        text-align: center;
+        display: inline-block;
+        overflow:hidden;
+        text-overflow:ellipsis;
+        white-space:nowrap; 
+    }
     .title{font-weight: bolder; padding-top: 10px;}
     .summary{font-size: 12px; font-weight: bolder; margin-top: -10px;}
 </style>
@@ -91,7 +97,10 @@
 	        <% for(Product p : ingList){ %>
 	            <div class="content" id="">
 	           		<div class="poster">
-	                	<img src="<%=request.getContextPath()%>/<%= p.getMainImg() %>" width="100%" height="100%">
+	                	<input type="hidden" name="num" value="<%= p.getpNo() %>">
+	                	<a href="<%=request.getContextPath()%>/detail.pro?num=<%=p.getpNo()%>">
+	                		<img src="<%=request.getContextPath()%>/<%= p.getMainImg() %>" width="100%" height="100%">
+	                	</a>
 	            	</div>
 	            	<div class="info">
 	                    <p class="title">

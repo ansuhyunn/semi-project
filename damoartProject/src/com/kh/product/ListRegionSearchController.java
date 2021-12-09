@@ -13,16 +13,16 @@ import com.kh.product.model.service.ProductService;
 import com.kh.product.model.vo.Product;
 
 /**
- * Servlet implementation class DetailViewController
+ * Servlet implementation class ListRegionController
  */
-@WebServlet("/detail.pro")
-public class DetailViewController extends HttpServlet {
+@WebServlet("/regionResult.pro")
+public class ListRegionSearchController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DetailViewController() {
+    public ListRegionSearchController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,13 +31,13 @@ public class DetailViewController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int pno = Integer.parseInt(request.getParameter("num"));
+		String value = request.getParameter("value");
 		
-		ArrayList<Product> detailList = new ProductService().selectDetailList(pno);
+		ArrayList<Product> regionList = new ProductService().selectRegionResultList(value);
 		
-		request.setAttribute("detailList", detailList);
-		request.getRequestDispatcher("views/product/detailView.jsp").forward(request, response);
-	
+		request.setAttribute("regionList", regionList);
+		request.getRequestDispatcher("views/product/regionResult.jsp").forward(request, response);
+				
 	}
 
 	/**

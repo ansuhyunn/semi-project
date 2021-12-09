@@ -175,7 +175,7 @@
                         <li><a href="<%=request.getContextPath()%>/pre.pro">오픈 예정 전시</a></li>
                         <li><a href="<%=request.getContextPath()%>/ing.pro">진행중 전시</a>
                             <ul id="navi_in">
-                                <li><a href="<%=contextPath%>/views/product/regionMain.jsp">지역별 전시</a></li>
+                                <li><a href="<%=request.getContextPath() %>/region.pro">지역별 전시</a></li>
                                 <li><a href="<%=request.getContextPath()%>/month.pro">이달의 전시</a></li>
                                 <li><a href="<%=request.getContextPath()%>/free.pro">무료 전시</a></li>
                                 <li><a href="">맞춤 전시 검색</a></li>

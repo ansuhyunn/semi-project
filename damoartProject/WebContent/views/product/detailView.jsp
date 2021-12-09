@@ -2,7 +2,7 @@
     pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.product.model.vo.Product" %>
 <% 
 	ArrayList<Product> detailList = (ArrayList<Product>)request.getAttribute("detailList");
-%>>%>
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -63,6 +63,7 @@
 <body>
 
 	<%@ include file="../common/menubar.jsp" %>
+	
 	<% for(Product p : detailList){ %>
 	<div class="wrapper">
 		<div class="content1">
@@ -133,13 +134,29 @@
 				</table>
 			</div>
 		</div>	
+
 		<div class="content3">
-			<a href="">상세정보</a>
-			<a href="">예매/취소안내</a>
-			<a href="">관람후기</a>
-			<a href="">Q&A</a>
+			<button id="info1" onclick="chooseInfo(1)">상세정보</button>
+			<button id="info2" onclick="chooseInfo(2)">예매/취소안내</button>
+			<button id="info3" onclick="chooseInfo(3)">REVIEW</button>
+			<button id="info4" onclick="chooseInfo(4)">Q&A</button>
 			<hr class="my-2">
 		</div>
+		
+		<div class="content4" style="display:none">
+             <div><img src="<%=request.getContextPath()%>/<%= p.getDetailImg() %>" id="detail" onchange="loadImg(this, 1);"></div>
+             <div><img id="rcInfo" onchange="loadImg(this, 2);"></div>
+        </div>
+		
+		<script>
+			function chooseInfo(num){
+				$("#info" + num).click();
+			}
+			function loadImg(div, num){
+				const result = new FileReader();
+				console.log(result);
+			}
+		</script>
 		
 
 	</div>

@@ -38,6 +38,26 @@ public class ProductService {
 	}
 	
 	
+	public ArrayList<Product> selectRegionList() {
+		Connection conn = getConnection();
+		
+		ArrayList<Product> list = new ProductDao().selectRegionList(conn);
+		
+		close(conn); 
+		return list;
+	}
+	
+	
+	public ArrayList<Product> selectRegionResultList(String value) {
+		Connection conn = getConnection();
+		
+		ArrayList<Product> list = new ProductDao().selectRegionResultList(conn, value);
+		
+		close(conn); 
+		return list;
+	}
+	
+	
 	public ArrayList<Product> selectIngList() {
 		Connection conn = getConnection();
 		
@@ -54,6 +74,16 @@ public class ProductService {
 		ArrayList<Product> list = new ProductDao().selectDetailList(conn, pno);
 		
 		close(conn); 
+		return list;
+	}
+	
+	
+	public ArrayList<Product> selectDetailImg(int pno) {
+		Connection conn = getConnection();
+		
+		ArrayList<Product> list = new ProductDao().selectDetailImg(conn, pno);
+		
+		close(conn);
 		return list;
 	}
 

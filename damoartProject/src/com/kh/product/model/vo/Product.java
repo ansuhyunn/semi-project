@@ -64,7 +64,12 @@ public class Product {
 		this.detailImg = detailImg;
 		this.etc = etc;
 	}
-
+	
+	// 상세조회 이미지에 사용
+	public Product(String detailImg) {
+		super();
+		this.detailImg = detailImg;
+	}
 
 	public int getpNo() {
 		return pNo;

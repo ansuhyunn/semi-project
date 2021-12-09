@@ -13,16 +13,16 @@ import com.kh.product.model.service.ProductService;
 import com.kh.product.model.vo.Product;
 
 /**
- * Servlet implementation class DetailViewController
+ * Servlet implementation class DetailViewImgController
  */
-@WebServlet("/detail.pro")
-public class DetailViewController extends HttpServlet {
+@WebServlet("/img.pro")
+public class DetailViewImgController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DetailViewController() {
+    public DetailViewImgController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,13 +31,14 @@ public class DetailViewController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int pno = Integer.parseInt(request.getParameter("num"));
+		int pno = Integer.parseInt(request.getParameter("pno"));
+		ArrayList<Product> detailImg = new ProductService().selectDetailImg(pno);
 		
-		ArrayList<Product> detailList = new ProductService().selectDetailList(pno);
+		request.setAttribute("detailImg", detailImg);
 		
-		request.setAttribute("detailList", detailList);
-		request.getRequestDispatcher("views/product/detailView.jsp").forward(request, response);
-	
+		request.getRequestDispatcher("views/product/detailImg.jsp").forward(request, response);
+		
+		// 미완성~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	}
 
 	/**

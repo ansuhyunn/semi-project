@@ -3,7 +3,6 @@
 <% 
 	ArrayList<Product> regionList = (ArrayList<Product>)request.getAttribute("regionList");
 %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -119,12 +118,14 @@
         <hr class="my-2">                       <!-- 구분선-->
 
         <div class="button">
-            <button class="btn" value="서울" onclick="location.href='<%=request.getContextPath()%>/views/product/regionResult.pro';">서울</button>
-            <button class="btn" value="경기" onclick="location.href='<%=request.getContextPath()%>/views/product/regionResult.pro';">경기/인천</button>
+        	<% for(Product p : regionList){ %>
+            <button class="btn" onclick="location.href='<%=contextPath%>/views/product/regionResult.pro?value=<%=p.getRegion()%>';">서울</button>
+            <button class="btn" value="경기" onclick="location.href='<%=contextPath%>/views/product/regionResult.pro';">경기/인천</button>
             <button class="btn" value="강원" onclick="location.href='<%=request.getContextPath()%>/views/product/regionResult.pro';">강원/충청</button>
             <button class="btn" value="전라도" onclick="location.href='<%=request.getContextPath()%>/views/product/regionResult.pro';">전라도</button>
             <button class="btn" value="경상도" onclick="location.href='<%=request.getContextPath()%>/views/product/regionResult.pro';">경상도</button>
             <button class="btn" value="제주도" onclick="location.href='<%=request.getContextPath()%>/views/product/regionResult.pro';">제주도</button>
+        	<% } %> 
         </div>
 
         <div class="content1">
@@ -145,7 +146,7 @@
 		                    </p>
 		                    <p class="summary">
 		                        <%= p.getsDate() %> ~ <%= p.geteDate() %><br>
-		                        <%= p.getArea() %>
+		                        <%= p.getArea() %> 
 		                    </p>
 		                </div>
 		            </div>

@@ -27,7 +27,7 @@
      /* 페이지 이름 스타일 */
     .name{ width: 100%; height: 30px; }
     #name1{
-        width: 82%;
+        width: 70%;
         font-size: 23px;
         font-weight: bolder;
         float: left;
@@ -36,12 +36,13 @@
     .name>a{
         width: 6%; 
         font-size: 10px;
-        padding-top: 20px;
+        margin-top: 10px;
+        padding-top: 10px;
         float: left;
         text-decoration: none;
         color: black;
     }
-    a:hover{font-weight: bolder; text-decoration: none; color: black;}
+    .name>a:hover{font-weight: bolder; text-decoration: none; color: black;}
     .content1{
         width: 100%;
         height: 300px;
@@ -54,12 +55,11 @@
         height: 100%;
         float: left;
         margin-left: 40px;
-        margin-bottom: 10px;
+        margin-bottom: 50px;
         margin-top: 0px;
         display: block;
     }
     .poster{
-        border: 1px solid black;
         width: 100%;
         height: 75%;
         width: 100%;
@@ -69,7 +69,15 @@
         width: 100%;
         height: 25%;
     }
-    .info>p{text-align: center;}
+    /* 텍스트 글자수 표시 제한*/
+    .info>p{
+        width: 100%;
+        text-align: center;
+        display: inline-block;
+        overflow:hidden;
+        text-overflow:ellipsis;
+        white-space:nowrap; 
+    }
     .title{font-weight: bolder; padding-top: 10px;}
     .summary{font-size: 12px; font-weight: bolder; margin-top: -10px;}
 </style>

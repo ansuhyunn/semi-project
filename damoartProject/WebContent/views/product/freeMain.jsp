@@ -41,7 +41,7 @@
         text-decoration: none;
         color: black;
     }
-    a:hover{font-weight: bolder; text-decoration: none; color: black;}
+    .name>a:hover{font-weight: bolder; text-decoration: none; color: black;}
     .content1{
         width: 100%;
         height: 300px;
@@ -54,12 +54,11 @@
         height: 100%;
         float: left;
         margin-left: 40px;
-        margin-bottom: 10px;
+        margin-bottom: 50px;
         margin-top: 0px;
         display: block;
     }
     .poster{
-        border: 1px solid black;
         width: 100%;
         height: 75%;
         width: 100%;
@@ -69,7 +68,14 @@
         width: 100%;
         height: 25%;
     }
-    .info>p{text-align: center;}
+    .info>p{
+        width: 100%;
+        text-align: center;
+        display: inline-block;
+        overflow:hidden;
+        text-overflow:ellipsis;
+        white-space:nowrap; 
+    }
     .title{font-weight: bolder; padding-top: 10px;}
     .summary{font-size: 12px; font-weight: bolder; margin-top: -10px;}
 </style>
