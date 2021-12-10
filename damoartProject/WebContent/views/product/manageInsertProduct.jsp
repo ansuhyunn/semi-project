@@ -37,7 +37,7 @@
         </div>
         <hr class="my-2">
         <br>
-        <form action="/insert.pro" method="post" enctype="multipart/form-data">
+        <form action="<%= contextPath %>/manageInsert.pro" method="post" enctype="multipart/form-data">
             <table border=1px>
                 <tr>
                     <th>상품코드</th>

@@ -2,7 +2,7 @@
     pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.product.model.vo.Product, com.kh.common.PageInfo" %>
 <% 
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
-	ArrayList<Product> allList = (ArrayList<Product>)request.getAttribute("allList");
+	ArrayList<Product> preList = (ArrayList<Product>)request.getAttribute("preList");
 	
 	int currentPage = pi.getCurrentPage();
 	int startPage = pi.getStartPage();
@@ -73,11 +73,10 @@ div{ box-sizing:border-box; }
 	                <th>관람연령</th>
 	                <th>시작일</th>
 	                <th>종료일</th>
-	                <th>품절여부</th>
 	            </tr>
 	        </thead>
 	        <tbody>
-	            <% for(Product p : allList){ %>
+	            <% for(Product p : preList){ %>
 		            <tr>
 		                <td><input type="checkbox"></td>
 		                <td><%= p.getpNo() %></td>
@@ -85,11 +84,10 @@ div{ box-sizing:border-box; }
 		                <td><%= p.getTitle() %></td>
 		                <td><%= p.getRegion() %></td>
 		                <td><%= p.getArea() %></td>
-		                <td><%= p.getAge() %></td>
 		                <td><%= p.getTime() %></td>
+		                <td><%= p.getAge() %></td>
 		                <td><%= p.getsDate() %></td>
 		                <td><%= p.geteDate() %></td>
-		                <td><%= p.getSoldOut() %></td>
 		            </tr>
 		        <% } %>
 		     </tbody>    
@@ -117,7 +115,6 @@ div{ box-sizing:border-box; }
         </div>
         
         <div class="button">
-            <a href="<%= contextPath %>/views/product/manageInsertProduct.jsp" class="btn">등록</a>
             <a href="<%= contextPath %>/update.pro" class="btn">수정</a>
             <a href="<%= contextPath %>/delete.pro" class="btn">삭제</a>
         </div>

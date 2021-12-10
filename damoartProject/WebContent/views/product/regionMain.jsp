@@ -51,11 +51,11 @@
     .button *{
         margin-left: 30px;
         width: 120px;
-        background-color: rgb(182, 167, 141);
+        background-color: rgb(151, 138, 116);
         font-weight: bolder;
     }
     .button *:hover{
-        background-color: rgb(151, 138, 116);
+        background-color: rgb(203, 185, 153);
         color: whitesmoke;
         font-weight: bolder;
     }
@@ -111,7 +111,7 @@
             <div id="name1">지역별 전시</div>
             <a href="">높은가격순</a>
             <a href="">낮은가격순</a>
-            <a href="">신규등록순</a>
+            <a href="">오픈날짜순</a>
             <a href="">마감임박순</a>
             <a href="">별점순</a>
         </div>

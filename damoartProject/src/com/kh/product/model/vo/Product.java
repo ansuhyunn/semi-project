@@ -74,6 +74,24 @@ public class Product {
 	public int getpNo() {
 		return pNo;
 	}
+	
+	
+	// 관리자 전체조회용
+	public Product(int pNo, String enrollDate, String title, String region, String age, String area, String sDate,
+			String eDate, String time, String soldOut) {
+		super();
+		this.pNo = pNo;
+		this.enrollDate = enrollDate;
+		this.title = title;
+		this.region = region;
+		this.age = age;
+		this.area = area;
+		this.sDate = sDate;
+		this.eDate = eDate;
+		this.time = time;
+		this.soldOut = soldOut;
+	}
+
 
 	public void setpNo(int pNo) {
 		this.pNo = pNo;

@@ -73,7 +73,6 @@ div{ box-sizing:border-box; }
 	                <th>관람연령</th>
 	                <th>시작일</th>
 	                <th>종료일</th>
-	                <th>품절여부</th>
 	            </tr>
 	        </thead>
 	        <tbody>
@@ -89,7 +88,6 @@ div{ box-sizing:border-box; }
 		                <td><%= p.getTime() %></td>
 		                <td><%= p.getsDate() %></td>
 		                <td><%= p.geteDate() %></td>
-		                <td><%= p.getSoldOut() %></td>
 		            </tr>
 		        <% } %>
 		     </tbody>    
@@ -117,7 +115,6 @@ div{ box-sizing:border-box; }
         </div>
         
         <div class="button">
-            <a href="<%= contextPath %>/views/product/manageInsertProduct.jsp" class="btn">등록</a>
             <a href="<%= contextPath %>/update.pro" class="btn">수정</a>
             <a href="<%= contextPath %>/delete.pro" class="btn">삭제</a>
         </div>

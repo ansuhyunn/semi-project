@@ -178,7 +178,7 @@
                                 <li><a href="<%=request.getContextPath() %>/region.pro">지역별 전시</a></li>
                                 <li><a href="<%=request.getContextPath()%>/month.pro">이달의 전시</a></li>
                                 <li><a href="<%=request.getContextPath()%>/free.pro">무료 전시</a></li>
-                                <li><a href="">맞춤 전시 검색</a></li>
+                                <li><a href="<%=contextPath%>/views/product/searchProductMain.jsp">맞춤 전시 검색</a></li>
                             </ul>
                         </li>
                     </ul>

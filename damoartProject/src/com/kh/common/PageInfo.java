@@ -1,6 +1,6 @@
 package com.kh.common;
 
-public class PageInfoPro {
+public class PageInfo {
 	
 	private int listCount;
 	private int currentPage;
@@ -10,9 +10,9 @@ public class PageInfoPro {
 	private int startPage;
 	private int endPage;
 	
-	public PageInfoPro() {}
+	public PageInfo() {}
 
-	public PageInfoPro(int listCount, int currentPage, int pageLimit, int boardLimit, int maxPage, int startPage,
+	public PageInfo(int listCount, int currentPage, int pageLimit, int boardLimit, int maxPage, int startPage,
 			int endPage) {
 		super();
 		this.listCount = listCount;

@@ -64,7 +64,7 @@ ORDER BY TITLE
 </entry>
 
 
-<!-- 지역별 전시 -->
+<!-- 지역별 전시 = 전시 전체 조회-->
 <entry key="selectRegionList">
 SELECT 
 	   PNO
@@ -197,10 +197,81 @@ SELECT
 </entry>
 
 
+<!-- 각 화면 상품 정렬 기준 SQL -->
+<!-- 높은가격정렬 -->
+<entry key="selectHighPrice">
+SELECT 
+  	   PNO
+	 , TITLE
+	 , REGION
+	 , AGE
+	 , AREA
+	 , TO_CHAR(TO_DATE(S_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') S_DATE
+	 , TO_CHAR(TO_DATE(E_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') E_DATE
+	 , TIME
+	 , MAIN_IMG
+	 , DETAIL_IMG
+	 , ETC
+  FROM PRODUCT
+ ORDER BY A_PRICE DESC, T_PRICE DESC;
+</entry>
+
+<!-- 낮은가격정렬 -->
+<entry key="selectLowPrice">
+SELECT 
+  	   PNO
+	 , TITLE
+	 , REGION
+	 , AGE
+	 , AREA
+	 , TO_CHAR(TO_DATE(S_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') S_DATE
+	 , TO_CHAR(TO_DATE(E_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') E_DATE
+	 , TIME
+	 , MAIN_IMG
+	 , DETAIL_IMG
+	 , ETC
+  FROM PRODUCT
+ ORDER BY A_PRICE, T_PRICE;
+</entry>
+
+<!-- 오픈날짜정렬 -->
+<entry key="selectOpenDate">
+SELECT 
+  	   PNO
+	 , TITLE
+	 , REGION
+	 , AGE
+	 , AREA
+	 , TO_CHAR(TO_DATE(S_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') S_DATE
+	 , TO_CHAR(TO_DATE(E_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') E_DATE
+	 , TIME
+	 , MAIN_IMG
+	 , DETAIL_IMG
+	 , ETC
+  FROM PRODUCT
+ ORDER BY S_DATE;
+</entry>
+
+<!-- 종료날짜정렬 -->
+<entry key="selectEndDate">
+SELECT
+	   PNO
+	 , TITLE
+	 , REGION
+	 , AGE
+	 , AREA
+	 , TO_CHAR(TO_DATE(S_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') S_DATE
+	 , TO_CHAR(TO_DATE(E_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') E_DATE
+	 , TIME
+	 , MAIN_IMG
+	 , DETAIL_IMG
+	 , ETC
+  FROM PRODUCT
+ ORDER BY E_DATE;
+</entry>
+
+<!-- 별점순은 데이터 나오면 하기 -->
 
 
-
-
-	
 	
 </properties>

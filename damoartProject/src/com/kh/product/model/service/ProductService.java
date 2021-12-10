@@ -1,23 +1,17 @@
 package com.kh.product.model.service;
 
-import static com.kh.common.JDBCTemplate.*;
+import static com.kh.common.JDBCTemplate.close;
+import static com.kh.common.JDBCTemplate.getConnection;
 
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import com.kh.product.model.dao.ManageDao;
 import com.kh.product.model.dao.ProductDao;
 import com.kh.product.model.vo.Product;
 
 public class ProductService {
 	
-	public ArrayList<Product> selectAllList() {
-		Connection conn = getConnection();
-		
-		ArrayList<Product> list = new ProductDao().selectFreeList(conn);
-		
-		close(conn); 
-		return list;
-	}
 	
 	public ArrayList<Product> selectFreeList() {
 		Connection conn = getConnection();
@@ -95,5 +89,6 @@ public class ProductService {
 		close(conn);
 		return list;
 	}
+	
 
 }
