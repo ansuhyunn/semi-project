@@ -16,7 +16,7 @@ import com.kh.product.model.vo.Product;
 /**
  * Servlet implementation class ManageListViewController
  */
-@WebServlet("/list.man")
+@WebServlet("/managelist.man")
 public class ManageListViewController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
