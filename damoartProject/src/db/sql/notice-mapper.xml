@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
-	<entry key="">
+	<entry key="selectListCount">
+		SELECT COUNT(*) count
+		  FROM NOTICE
+		 WHERE STATUS = 'Y'	
+	</entry>
+	
+	<entry key="selectList">
+		SELECT *
+		  FROM (
+		        SELECT ROWNUM RNO, A.*
+		          FROM (
+		                SELECT 
+		                       NOTICE_NO
+		                     , NICKNAME
+		                     , NOTICE_TITLE
+		                     , TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') "CREATE_DATE"
+		                     , COUNT
+		                  FROM NOTICE N
+		                  JOIN MEMBER ON (NOTICE_WRITER = MEM_NO)
+		                 WHERE N.STATUS = 'Y'
+		                 ORDER BY NOTICE_NO DESC
+		                 ) A
+		        )
+		  WHERE RNO BETWEEN ? AND ?	
 	</entry>
 </properties>

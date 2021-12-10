@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.ArrayList, com.kh.common.model.vo.PageInfo, com.kh.cscenter.model.vo.Notice" %>
+    
+<% PageInfo pi = (PageInfo)request.getAttribute("pi");
+   ArrayList<Notice> list = (ArrayList<Notice>)request.getAttribute("list");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,6 +40,11 @@
     thead{
         background:rgb(203, 185, 153);
     }
+    
+    tbody th{
+        font-weight:500;
+        font-size:14px;/
+    }
 
     #outer>a{
         text-decoration:none;
@@ -49,9 +59,8 @@
 	
         <div id="outer">
             <a href="">고객센터</a>&gt<a href=""><b>공지사항</b></a>
-            <br>
             <br><br>
-			<h4 style="font-size: 23px; font-weight: bolder;">공지사항</h4>
+			<h4 style="font-size: 23px; font-weight: bolder;" align="center">공지사항</h4>
             <br>
             <hr>
             <br><br>
@@ -67,46 +76,27 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th>1</th>
-                            <th>damoart사이트 오픈</th>
-                            <th>관리자</th>
-                            <th>2021/12/12</th>
-                            <th>0</th>
-                        </tr>
-                        <tr>
-                            <th>1</th>
-                            <th>damoart사이트 오픈</th>
-                            <th>관리자</th>
-                            <th>2021/12/12</th>
-                            <th>0</th>
-                        </tr>
-                        <tr>
-                            <th>1</th>
-                            <th>damoart사이트 오픈</th>
-                            <th>관리자</th>
-                            <th>2021/12/12</th>
-                            <th>0</th>
-                        </tr>
-                        <tr>
-                            <th>1</th>
-                            <th>damoart사이트 오픈</th>
-                            <th>관리자</th>
-                            <th>2021/12/12</th>
-                            <th>0</th>
-                        </tr>
-                        <tr>
-                            <th>1</th>
-                            <th>damoart사이트 오픈</th>
-                            <th>관리자</th>
-                            <th>2021/12/12</th>
-                            <th>0</th>
-                        </tr>
+                    	<% if(list.isEmpty()) { %>
+	                        <tr>
+	                            <th colspan="5">게시글이 없습니다.</th>
+	                        </tr>
+                        <% }else { %>
+                        	<%for(Notice n : list) { %>
+		                        <tr>
+		                            <th><%=n.getNoticeNo() %></th>
+		                            <th><%=n.getNoticeTitle() %></th>
+		                            <th><%=n.getNoticeWriter() %></th>
+		                            <th><%=n.getCreateDate() %></th>
+		                            <th><%=n.getCount() %></th>
+		                        </tr>
+                        	<% } %>
+                        <% } %>
                     </tbody>
                 </table>
                 <br><br>
                 <div class="paging-area" align="center">
-                    페이징처리
+                    <button>&lt</button>
+                    <button>&gt</button>
                 </div>
                 <br>
                 <div class="search-area" align="center">
