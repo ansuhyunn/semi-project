@@ -5,13 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!-- Popper JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <style>
     /*회원박스 스타일*/
     .mypage_top{
@@ -57,7 +50,7 @@
         height:1000px;
         background:#e1d5bf;
         margin:auto;
-    }
+        }
     #content_1, #content_2{
         box-sizing:border-box;
         height:100%;
@@ -72,12 +65,15 @@
         height:100%;
         float:left;
     }
+    #content_1{width:20%;}
+    #content_2{width:80%;}
 
     #content_1 h2{
         padding: 5px 0 20px 1px;
 		letter-spacing:-1px;
         font-size:28px;
         font-weight:700;
+        letter-spacing:-1px;
     }
     .mem-box{
         height:120px;
@@ -125,97 +121,9 @@
 
     /*content_2*/
     .contents{
-        height:25%;
+        height:30%;
         padding-top:15px;
         padding-left:30px;
-    }
-
-    /*예매내역*/
-    .order_box{
-        margin:auto;
-        width:765px; 
-        height:120px;
-        border-radius:10px;
-        position:absolute;
-    }
-    
-    /*찜한상품, qna내역이 없을 경우*/
-    #exclamationmark_icon{
-    	padding-left:345px;
-        padding-top:35px;
-    }
-
-    .order_view{
-        color:#666;
-        text-decoration:none;
-    }
-
-    #step_li{
-        float:left;
-        position:relative;
-        width:29%;
-        height:100px;
-        margin:auto;
-        margin-top:10px;
-    }
-
-    em{
-        top:25px;
-        color:#888;
-        font-style:normal;
-        font-size:50px;
-        line-height:50px;
-        font-weight:500;
-        padding-left:140px;
-    }
-    span{
-        color: #666;
-        font-size:16px;
-        line-height:40px;
-        margin-left:120px;
-    }
-
-    /*예매날짜*/
-    .order_date{
-        margin:auto;
-        margin-left:30px;
-        width:765px; 
-        height:60px;
-        border-radius:10px;
-        position:absolute;
-    }
-
-    .order_date>p{
-        float:left;
-        font-size:14px;
-        font-weight:bold;
-        margin-left:20px;
-        margin-top:20px;
-        margin-right:20px;
-        letter-spacing: -0.5px;
-    }
-
-    .select_date>li{
-        float:left;
-        width:auto;
-        height:28px;
-        margin-left:5px;
-        margin-top:15px;
-    }
-
-    .select-range{
-        width:700px;
-        padding-left:20px;
-    }
-
-    .select-btn{
-        width:50px;
-        float:right;
-        margin-top:-30px;
-    }
-    #date_btn:focus{
-        background:rgb(182, 167, 141);
-        color:white;
     }
 
 </style>
@@ -273,63 +181,18 @@
             </ul>
         </div>
         <div id="content_2">
+
             <div class="contents">
-                <h4 class="contents_tit">예매 내역</h4><br>
-                <div class="order_box" style="background:rgba(255, 255, 255, 0.45)">
-                <a href="" class="order_view">
-                    <ul class="order-step">
-                        <li id="step_li">
-                            <em> 0 </em><br>
-                            <span>입금대기</span>
-                        </li>
-                        <li id="step_li">
-                            <em> 0 </em><br>
-                            <span>결제완료</span>
-                        </li>
-                        <li id="step_li">
-                            <em> 0 </em><br>
-                            <span>예매확정</span>
-                        </li>
-                    </ul>
-                </a>    
+                <h4 class="contents_tit">최근 본 상품</h4> 
+                최근 본 상품은 최대 <strong style="color:white">14일간</strong> 보관됩니다.
+                <hr align="left" width="765" color="rgb(64, 64, 64)" size="1">
+
+                <div class="product">
+                    
                 </div>
             </div>
 
-            <div class="order_date" style="background:rgba(255, 255, 255, 0.74)">
-                <p>예매기간</p>
-                <ul class="select_date">
-                    <li>
-                        <button type="button" id="date_btn">일주일</button>
-                    </li>
-                    <li>
-                        <button type="button" id="date_btn">1개월</button>
-                    </li>
-                    <li>
-                        <button type="button" id="date_btn">3개월</button>
-                    </li>
-                    <li>
-                        <button type="button" id="date_btn">6개월</button>
-                    </li>
-                </ul>
-                <div class="select-range" align="right">
-                    <input type="date" id="start" name="select-start" value="2021-12-01" min="2020-01-01"> ~
-                    <input type="date" id="end" name="select-end" value="2021-12-31" max="2022-12-31">
-                </div>
-                <div class="select-btn" align="left">
-                    <button type="button">조회</button>
-                </div>
-                
-            </div class="">
-            
-    
-            </div>
-
-            
         </div>
-
-        
-
-    
     </div>
 
     <%@ include file="../common/footerbar.jsp" %>

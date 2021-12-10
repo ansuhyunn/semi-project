@@ -194,7 +194,7 @@
                 </li>
                 <li><a href="<%=contextPath%>/views/cscenter/client/csMain.jsp">고객센터</a>
                     <ul>
-                        <li><a href="<%=contextPath%>/list.no">공지사항</a></li>
+                        <li><a href="<%=contextPath%>/list.no?cpage=1">공지사항</a></li>
                         <li><a href="<%=contextPath%>/views/cscenter/client/faqMain.jsp">FAQ</a></li>
                         <li><a href="<%=contextPath%>/views/cscenter/client/qnaMain.jsp">Q&A</a></li>
                         <li><a href="<%=contextPath%>/views/cscenter/client/guideMain.jsp">이용안내</a></li>

@@ -1,6 +1,5 @@
 package com.kh.cscenter.model.vo;
 
-import java.sql.Date;
 
 public class Notice {
 	
@@ -8,13 +7,13 @@ public class Notice {
 	private String noticeWriter;
 	private String noticeTitle;
 	private String noticeContent;
-	private Date createDate;
+	private String createDate;
 	private int count;
 	private String status;
 	
 	public Notice() {}
 
-	public Notice(int noticeNo, String noticeWriter, String noticeTitle, String noticeContent, Date createDate,
+	public Notice(int noticeNo, String noticeWriter, String noticeTitle, String noticeContent, String createDate,
 			int count, String status) {
 		super();
 		this.noticeNo = noticeNo;
@@ -24,6 +23,17 @@ public class Notice {
 		this.createDate = createDate;
 		this.count = count;
 		this.status = status;
+	}
+	
+	
+
+	public Notice(int noticeNo, String noticeWriter, String noticeTitle, String createDate, int count) {
+		super();
+		this.noticeNo = noticeNo;
+		this.noticeWriter = noticeWriter;
+		this.noticeTitle = noticeTitle;
+		this.createDate = createDate;
+		this.count = count;
 	}
 
 	public int getNoticeNo() {
@@ -58,11 +68,11 @@ public class Notice {
 		this.noticeContent = noticeContent;
 	}
 
-	public Date getCreateDate() {
+	public String getCreateDate() {
 		return createDate;
 	}
 
-	public void setCreateDate(Date createDate) {
+	public void setCreateDate(String createDate) {
 		this.createDate = createDate;
 	}
 
