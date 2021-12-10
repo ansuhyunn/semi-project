@@ -192,7 +192,7 @@
                         <li><a href="">EVENT</a></li>
                     </ul>
                 </li>
-                <li><a href="<%=contextPath%>/views/cscenter/client/csMain.jsp">고객센터</a>
+                <li><a href="<%=contextPath%>/csMain.cs">고객센터</a>
                     <ul>
                         <li><a href="<%=contextPath%>/list.no?cpage=1">공지사항</a></li>
                         <li><a href="<%=contextPath%>/views/cscenter/client/faqMain.jsp">FAQ</a></li>
