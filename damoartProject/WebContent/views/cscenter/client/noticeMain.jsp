@@ -4,6 +4,11 @@
     
 <% PageInfo pi = (PageInfo)request.getAttribute("pi");
    ArrayList<Notice> list = (ArrayList<Notice>)request.getAttribute("list");
+   
+   int currentPage = pi.getCurrentPage();
+   int startPage = pi.getStartPage();
+   int endPage = pi.getEndPage();
+   int maxPage = pi.getMaxPage();
 %>
 <!DOCTYPE html>
 <html>
@@ -95,8 +100,24 @@
                 </table>
                 <br><br>
                 <div class="paging-area" align="center">
-                    <button>&lt</button>
-                    <button>&gt</button>
+                	<% if(currentPage != 1) {%>
+                    	<button class="btn" onclick="location.href='<%=contextPath%>/list.no?cpage=<%=currentPage-1%>'">&lt;</button>
+                    <% }else { %>
+                    	<button class="btn" disabled>&lt;</button>
+                    <% } %>
+                    
+                    <% for(int p=startPage; p<=endPage; p++) { %>
+                    	<% if(p == currentPage) { %>
+                    		<button class="btn" disabled><%=p %></button>
+                    	<% }else { %>
+                    		<button class="btn" onclick="location.href='<%=contextPath %>/list.no?cpage=<%=p%>'"><%=p %></button>
+                    	<% } %>
+                    <% } %>
+                    <% if(currentPage != maxPage) {%>
+                    <button class="btn" onclick="location.href='<%=contextPath%>/list.no?cpage=<%=currentPage+1%>'">&gt;</button>
+                    <% }else { %>
+                    	<button class="btn" disabled>&gt;</button>
+                    <% } %>
                 </div>
                 <br>
                 <div class="search-area" align="center">

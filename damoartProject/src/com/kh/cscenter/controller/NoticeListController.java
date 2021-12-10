@@ -49,6 +49,10 @@ public class NoticeListController extends HttpServlet {
 		startPage = (currentPage - 1) / pageLimit * pageLimit + 1; // 페이징바의 시작 수
 		endPage = startPage + pageLimit - 1; // 페이징바의 끝 수
 		
+		if(endPage > maxPage) {
+			endPage = maxPage;
+		}
+		
 		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
 		
 		ArrayList<Notice> list = new NoticeService().selectList(pi); 
