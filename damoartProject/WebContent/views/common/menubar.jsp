@@ -145,7 +145,7 @@
             </div>
             
             <div id="header_2" align="center">
-                <img src="<%=contextPath%>/resources/images/logo.png" width="250px" height="50px">
+                <a href="<%=contextPath%>"><img src="<%=contextPath%>/resources/images/logo.png" width="250px" height="50px"></a>
             </div>
             <div id="header_3">
                 <div id="buttons">
@@ -160,7 +160,7 @@
                             <input type="text" placeholder="검색어를 입력하세요.">                      
                         </div>
                         <div id="search_btn" align="center">
-                            <img src="<%=contextPath%>/resources/images/search.png" width="33px" height="33px">
+                            <a href="<%=contextPath%>"><img src="<%=contextPath%>/resources/images/search.png" width="33px" height="33px"></a>
                         </div>
                     </form>
                 </div>
