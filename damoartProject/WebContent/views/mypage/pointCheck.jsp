@@ -125,54 +125,15 @@
 
     /*content_2*/
     .contents{
-        height:25%;
+        height:10%;
         padding-top:15px;
         padding-left:30px;
-    }
-
-    /*예매내역*/
-    .order_box{
-        margin:auto;
-        width:765px; 
-        height:120px;
-        border-radius:10px;
-        position:absolute;
     }
     
     /*찜한상품, qna내역이 없을 경우*/
     #exclamationmark_icon{
     	padding-left:345px;
         padding-top:35px;
-    }
-
-    .order_view{
-        color:#666;
-        text-decoration:none;
-    }
-
-    #step_li{
-        float:left;
-        position:relative;
-        width:29%;
-        height:100px;
-        margin:auto;
-        margin-top:10px;
-    }
-
-    em{
-        top:25px;
-        color:#888;
-        font-style:normal;
-        font-size:50px;
-        line-height:50px;
-        font-weight:500;
-        padding-left:140px;
-    }
-    span{
-        color: #666;
-        font-size:16px;
-        line-height:40px;
-        margin-left:120px;
     }
 
     /*예매날짜*/
@@ -218,6 +179,18 @@
         color:white;
     }
 
+    /*적립금 테이블*/
+    .container{
+        height:30%;
+        padding-top:70px;
+    }
+
+    .container th, #table_date{text-align:center;}
+
+    #table_point{
+        color:white;
+        font-weight:600;
+    }
 </style>
 </head>
 <body>
@@ -274,28 +247,8 @@
         </div>
         <div id="content_2">
             <div class="contents">
-                <h4 class="contents_tit">예매 내역</h4><br>
-                <div class="order_box" style="background:rgba(255, 255, 255, 0.45)">
-                <a href="" class="order_view">
-                    <ul class="order-step">
-                        <li id="step_li">
-                            <em> 0 </em><br>
-                            <span>입금대기</span>
-                        </li>
-                        <li>
-                        	
-                        </li>
-                        <li id="step_li">
-                            <em> 0 </em><br>
-                            <span>결제완료</span>
-                        </li>
-                        <li id="step_li">
-                            <em> 0 </em><br>
-                            <span>예매확정</span>
-                        </li>
-                    </ul>
-                </a>    
-                </div>
+                <h4 class="contents_tit">적립금 내역</h4>
+                <hr align="left" width="765" color="rgb(64, 64, 64)" size="1">
             </div>
 
             <div class="order_date" style="background:rgba(255, 255, 255, 0.74)">
@@ -322,9 +275,36 @@
                     <button type="button">조회</button>
                 </div>
                 
-            </div class="">
+            <div class="container">
+           
+                <table class="table">
+                  <thead>
+                    <tr style="background:rgb(203, 185, 153)">
+                      <th width="160">날짜</th>
+                      <th width="460">내용</th>
+                      <th width="110">적립/사용</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td id="table_date">2021-11-14</td>
+                      <td>회원가입 적립</td>
+                      <td id="table_point">+2000</td>
+                    </tr>
+                    <tr>
+                      <td id="table_date">2021-11-16</td>
+                      <td>주문 적립 <br>주문번호 : Y2023942140</td>
+                      <td id="table_point">+162</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>   
             
-    
             </div>
 
             
