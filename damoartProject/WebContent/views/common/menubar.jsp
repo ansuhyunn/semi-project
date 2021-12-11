@@ -67,7 +67,10 @@
             height:50%;
         }
 
-        #buttons>a{background-color:rgb(151, 138, 116)}
+        #buttons>a{
+            background-color:rgb(151, 138, 116);
+            color:white;
+        }
         
         /* menubar 부분 */
 
@@ -149,9 +152,9 @@
             </div>
             <div id="header_3">
                 <div id="buttons">
-                    <a href="<%=contextPath%>/views/order/cart.jsp" id="cart_btn" class="btn btn-dark btn-sm">장바구니</a>
-                    <a href="" id="login_btn" class="btn btn-dark btn-sm">로그인</a>
-                    <a href="" id="enroll_btn" class="btn btn-dark btn-sm">회원가입</a>
+                    <a href="<%=contextPath%>/views/order/cart.jsp" id="cart_btn" class="btn btn-sm">장바구니</a>
+                    <a href="" id="login_btn" class="btn btn-sm">로그인</a>
+                    <a href="" id="enroll_btn" class="btn btn-sm">회원가입</a>
                 </div>
                 <div id="search_area">
                     <br>
