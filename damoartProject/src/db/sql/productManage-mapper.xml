@@ -27,7 +27,7 @@ SELECT *
                      , TO_CHAR(TO_DATE(E_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') E_DATE
                      , SOLDOUT
                   FROM PRODUCT
-                 ORDER BY PNO DESC
+                 ORDER BY 1 
 			 ) A
 		 )
  WHERE RNUM BETWEEN ? AND ?
@@ -36,7 +36,7 @@ SELECT *
 
 
 <!-- 오픈 예정 전시 갯수 -->
-<entry key="selecPreCount">
+<entry key="selectPreCount">
 SELECT COUNT(*) COUNT
   FROM PRODUCT
 <![CDATA[WHERE FLOOR(MONTHS_BETWEEN(SYSDATE, TO_DATE(S_DATE, 'RRRRMMDD'))) < 0 ]]>
@@ -49,23 +49,57 @@ SELECT *
         SELECT ROWNUM RNUM, A.*
 	  	  FROM (
 	             SELECT 
-	                  PNO
-	                , TO_CHAR(ENROLL_DATE, 'RRRR.MM.DD') ENROLL_DATE
-	                , TITLE
-	                , REGION
-	                , AREA
-	                , TIME
-	                , AGE
-	                , TO_CHAR(TO_DATE(S_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') S_DATE
-	                , TO_CHAR(TO_DATE(E_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') E_DATE
-	                , SOLDOUT
-	             FROM PRODUCT
-	             <![CDATA[WHERE FLOOR(MONTHS_BETWEEN(SYSDATE, TO_DATE(S_DATE, 'RRRRMMDD'))) < 0 ]]>
+                        PNO
+                      , TO_CHAR(ENROLL_DATE, 'RRRR.MM.DD') ENROLL_DATE
+                      , TITLE
+                      , REGION
+                      , AREA
+                      , AGE
+                      , TIME
+                      , TO_CHAR(TO_DATE(S_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') S_DATE
+                      , TO_CHAR(TO_DATE(E_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') E_DATE
+                      , SOLDOUT
+                   FROM PRODUCT
+		           <![CDATA[WHERE FLOOR(MONTHS_BETWEEN(SYSDATE, TO_DATE(S_DATE, 'RRRRMMDD'))) < 0 ]]>
+				  ORDER BY 1 
 			 ) A
 		)
  WHERE RNUM BETWEEN ? AND ?
 </entry>
 
+
+
+<!-- 진행중 전시 갯수 -->
+<entry key="selectIngCount">
+SELECT COUNT(*) COUNT
+  FROM PRODUCT
+<![CDATA[WHERE FLOOR(MONTHS_BETWEEN(SYSDATE, TO_DATE(S_DATE, 'RRRRMMDD'))) >= 0 ]]>
+</entry>
+
+<!-- 진행중 전시 목록 -->
+<entry key="selectIngList">
+SELECT *
+  FROM (
+        SELECT ROWNUM RNUM, A.*
+	  	  FROM (
+	             SELECT 
+                        PNO
+                      , TO_CHAR(ENROLL_DATE, 'RRRR.MM.DD') ENROLL_DATE
+                      , TITLE
+                      , REGION
+                      , AREA
+                      , AGE
+                      , TIME
+                      , TO_CHAR(TO_DATE(S_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') S_DATE
+                      , TO_CHAR(TO_DATE(E_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') E_DATE
+                      , SOLDOUT
+                   FROM PRODUCT
+		           <![CDATA[WHERE FLOOR(MONTHS_BETWEEN(SYSDATE, TO_DATE(S_DATE, 'RRRRMMDD'))) >= 0 ]]>
+				  ORDER BY 1 
+			 ) A
+		)
+ WHERE RNUM BETWEEN ? AND ?
+</entry>
 
 
 	

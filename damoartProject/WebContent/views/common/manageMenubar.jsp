@@ -167,7 +167,7 @@
                 <li><a href="">상품 관리</a>
                     <ul>
                         <li><a href="<%=request.getContextPath()%>/managelist.man?cpage=1">전체 상품 관리</a></li>
-                        <li><a href="<%=request.getContextPath()%>/manageing.man?cpage=1">진행중 상품 관리</a></li>
+                        <li><a href="<%=request.getContextPath()%>/manageIng.man?cpage=1">진행중 상품 관리</a></li>
                         <li><a href="<%=request.getContextPath()%>/managePre.man?cpage=1">오픈예정 상품 관리</a></li>
                         <li><a href="">BEST 상품 관리</a></li>
                     </ul>

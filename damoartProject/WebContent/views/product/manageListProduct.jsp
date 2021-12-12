@@ -85,8 +85,8 @@ div{ box-sizing:border-box; }
 		                <td><%= p.getTitle() %></td>
 		                <td><%= p.getRegion() %></td>
 		                <td><%= p.getArea() %></td>
-		                <td><%= p.getAge() %></td>
 		                <td><%= p.getTime() %></td>
+		                <td><%= p.getAge() %></td>
 		                <td><%= p.getsDate() %></td>
 		                <td><%= p.geteDate() %></td>
 		                <td><%= p.getSoldOut() %></td>
@@ -98,7 +98,7 @@ div{ box-sizing:border-box; }
         <div class="paging-area" align="center">
         
 			<% if(currentPage != 1){ %>
-            	<button onclick="location.href='<%=contextPath%>/list.man?cpage=<%=currentPage-1%>';">&lt;</button>
+            	<button onclick="location.href='<%=contextPath%>/managelist.man?cpage=<%=currentPage-1%>';">&lt;</button>
             <% } %>
             
             <!-- 페이지 p가 startPage부터 endPage까지 1씩 증가 --> 
@@ -106,12 +106,12 @@ div{ box-sizing:border-box; }
             	<% if(currentPage == p) {%>
             		<button disabled><%= p %></button>		
 	            <% }else { %>
-	            	<button onclick="location.href='<%=contextPath%>/list.man?cpage=<%= p %>';"><%= p %></button>
+	            	<button onclick="location.href='<%=contextPath%>/managelist.man?cpage=<%= p %>';"><%= p %></button>
 	            <% } %>
             <% } %>
             
             <% if(currentPage != maxPage){%>
-            	<button onclick="location.href='<%=contextPath%>/list.man?cpage=<%=currentPage+1%>';">&gt;</button>
+            	<button onclick="location.href='<%=contextPath%>/managelist.man?cpage=<%=currentPage+1%>';">&gt;</button>
 			<% } %>
 			
         </div>

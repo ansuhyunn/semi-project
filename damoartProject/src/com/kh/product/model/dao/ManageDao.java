@@ -97,7 +97,7 @@ public class ManageDao {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String sql = prop.getProperty("selecPreCount");
+		String sql = prop.getProperty("selectPreCount");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -119,7 +119,7 @@ public class ManageDao {
 		
 		
 	// 오픈 예정 상품 list 만들기
-	public ArrayList<Product> selectpreList(Connection conn, PageInfo pi){
+	public ArrayList<Product> selectPreList(Connection conn, PageInfo pi){
 		ArrayList<Product> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -141,8 +141,74 @@ public class ManageDao {
 									 rset.getString("TITLE"),
 									 rset.getString("REGION"),
 									 rset.getString("AREA"),
-									 rset.getString("TIME"),
 									 rset.getString("AGE"),
+									 rset.getString("TIME"),
+									 rset.getString("S_DATE"),
+									 rset.getString("E_DATE"),
+									 rset.getString("SOLDOUT")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+	
+	
+	
+	// 진행중 상품
+	public int selectIngCount(Connection conn) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectIngCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				result = rset.getInt("COUNT");
+			}
+					
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return result;
+	}
+		
+		
+	// 진행중 상품 list 만들기
+	public ArrayList<Product> selectIngList(Connection conn, PageInfo pi){
+		ArrayList<Product> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectIngList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+			int endRow = startRow + pi.getBoardLimit() - 1;
+			
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Product(rset.getInt("PNO"),
+									 rset.getString("ENROLL_DATE"),
+									 rset.getString("TITLE"),
+									 rset.getString("REGION"),
+									 rset.getString("AREA"),
+									 rset.getString("AGE"),
+									 rset.getString("TIME"),
 									 rset.getString("S_DATE"),
 									 rset.getString("E_DATE"),
 									 rset.getString("SOLDOUT")));
