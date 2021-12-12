@@ -20,7 +20,7 @@
     }
 
     .manage_head{
-    width: 300px;
+    width: 100%;
     height: 50px;
     float: left;
     font-size: 20px;
@@ -112,6 +112,7 @@
     td{
         border-bottom: 1px solid black;
         height: 100px;
+        background-color: rgba(238, 232, 222, 0.829);
     }
     .table_title{
         height: 40px;
