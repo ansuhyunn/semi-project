@@ -49,8 +49,8 @@ public class Product {
 	
 	
 	// 무료 조회 시 사용
-	public Product(int pNo, String title, String region, String age, String area, String sDate, String eDate, String time,
-			String mainImg, String detailImg, String etc) {
+	public Product(int pNo, String title, String region, String age, String area, String sDate, 
+				   String eDate, String time, String mainImg, String detailImg, String etc) {
 		super();
 		this.pNo = pNo;
 		this.title = title;
@@ -77,18 +77,18 @@ public class Product {
 	
 	
 	// 관리자 전체조회용
-	public Product(int pNo, String enrollDate, String title, String region, String age, String area, String sDate,
-			String eDate, String time, String soldOut) {
+	public Product(int pNo, String enrollDate, String title, String region, String area, 
+				   String age, String time, String sDate, String eDate, String soldOut) {
 		super();
 		this.pNo = pNo;
 		this.enrollDate = enrollDate;
 		this.title = title;
 		this.region = region;
-		this.age = age;
 		this.area = area;
+		this.age = age;
+		this.time = time;
 		this.sDate = sDate;
 		this.eDate = eDate;
-		this.time = time;
 		this.soldOut = soldOut;
 	}
 

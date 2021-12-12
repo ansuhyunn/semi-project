@@ -2,7 +2,7 @@
     pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.product.model.vo.Product, com.kh.common.PageInfo" %>
 <% 
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
-	ArrayList<Product> allList = (ArrayList<Product>)request.getAttribute("allList");
+	ArrayList<Product> IngList = (ArrayList<Product>)request.getAttribute("IngList");
 	
 	int currentPage = pi.getCurrentPage();
 	int startPage = pi.getStartPage();
@@ -73,10 +73,11 @@ div{ box-sizing:border-box; }
 	                <th>관람연령</th>
 	                <th>시작일</th>
 	                <th>종료일</th>
+	                <th>품절여부</th>
 	            </tr>
 	        </thead>
 	        <tbody>
-	            <% for(Product p : allList){ %>
+	            <% for(Product p : IngList){ %>
 		            <tr>
 		                <td><input type="checkbox"></td>
 		                <td><%= p.getpNo() %></td>
@@ -84,10 +85,11 @@ div{ box-sizing:border-box; }
 		                <td><%= p.getTitle() %></td>
 		                <td><%= p.getRegion() %></td>
 		                <td><%= p.getArea() %></td>
-		                <td><%= p.getAge() %></td>
 		                <td><%= p.getTime() %></td>
+		                <td><%= p.getAge() %></td>
 		                <td><%= p.getsDate() %></td>
 		                <td><%= p.geteDate() %></td>
+		                <td><%= p.getSoldOut() %></td>
 		            </tr>
 		        <% } %>
 		     </tbody>    
@@ -96,7 +98,7 @@ div{ box-sizing:border-box; }
         <div class="paging-area" align="center">
         
 			<% if(currentPage != 1){ %>
-            	<button onclick="location.href='<%=contextPath%>/list.man?cpage=<%=currentPage-1%>';">&lt;</button>
+            	<button onclick="location.href='<%=contextPath%>/manageIng.man?cpage=<%=currentPage-1%>';">&lt;</button>
             <% } %>
             
             <!-- 페이지 p가 startPage부터 endPage까지 1씩 증가 --> 
@@ -104,12 +106,12 @@ div{ box-sizing:border-box; }
             	<% if(currentPage == p) {%>
             		<button disabled><%= p %></button>		
 	            <% }else { %>
-	            	<button onclick="location.href='<%=contextPath%>/list.man?cpage=<%= p %>';"><%= p %></button>
+	            	<button onclick="location.href='<%=contextPath%>/manageIng.man?cpage=<%= p %>';"><%= p %></button>
 	            <% } %>
             <% } %>
             
             <% if(currentPage != maxPage){%>
-            	<button onclick="location.href='<%=contextPath%>/list.man?cpage=<%=currentPage+1%>';">&gt;</button>
+            	<button onclick="location.href='<%=contextPath%>/manageIng.man?cpage=<%=currentPage+1%>';">&gt;</button>
 			<% } %>
 			
         </div>
