@@ -16,24 +16,24 @@
 <style>
 
     .wrap{
-        width: 1200px;
+        width: 100%;
     }
 
     .manage_head{
-    width: 100%;
+    width: 800px;
     height: 50px;
-    float: left;
     font-size: 20px;
-    margin-top: 70px;
+    margin: auto;
+    margin-top: 220px;
     }
 
     #title{
         font-size: 25px;
+        
     }
 
     .order_chart{    
         margin:auto;
-        margin-top: 80px;
         width:800px; 
         height:80px;
         border-radius:10px;
@@ -121,12 +121,12 @@
 </style>
 <body>
     
-   <%@ include file="../common/manageMenubar.jsp" %>
+   <%@ include file="../common/manageMenubar_2.jsp" %>
 
 <!--메뉴 이름-->
 
 <div class="wrap">
-    <div class="manage_head">
+    <div class="manage_head" align="center">
         <p>현황 관리<b id="title"> > 취소 관리</b></p>
     </div>
         <br><br><br>

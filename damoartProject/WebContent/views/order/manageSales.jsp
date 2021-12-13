@@ -16,19 +16,15 @@
 <style>
 
     .wrap{
-        width: 1200px;
-        height: 100%;
-        margin-top: 150px;
-        margin: auto;
+        width: 100%;
     }
 
     .manage_head{
-    width: 1000px;
+    width: 800px;
     height: 50px;
-    float: left;
     font-size: 20px;
-    margin-top: 70px;
-    margin-left: 80px;
+    margin: auto;
+    margin-top: 220px;
     }
     
     #title{
@@ -84,10 +80,8 @@
         padding: 7px;
         background-color: rgba(238, 232, 222, 0.829);
     }
-    th{
-        padding: 7px;
-        background-color: rgba(179, 165, 141, 0.829);
-    }
+
+  
 
     #btn{
         margin: 50px;
@@ -99,9 +93,11 @@
 </head>
 <body>
 
+    <%@ include file="../common/manageMenubar_2.jsp" %>
+
     <!-- 헤드 -->
     <div class="wrap">
-        <div class="manage_head">
+        <div class="manage_head" align="center">
             <p>현황 관리<b id="title"> > 판매 현황</b></p>
         </div>
     
@@ -122,9 +118,9 @@
 
     <!-- 조회 표 -->
     <div class="sales" align="center">
-        <table id="sales_table" style="width: 700px;" >
+        <table id="sales_table" style="width: 700px; background-color: rgba(179, 165, 141, 0.829);">
             <tr align="center">
-                <th width="130">일자</th>
+                <th width="130" style="padding: 7px;">일자</th>
                 <th width="130">주문수</th>
                 <th width="130">취소수</th>
                 <th width="155">주문액</th>
@@ -162,8 +158,8 @@
                 <!--주문 상품 표-->
                 <div class="sales_product">
                     <table width="700">
-                        <tr align="center">
-                            <th colspan="3" width="400">상품 정보</th>
+                        <tr align="center" style="background-color: rgba(179, 165, 141, 0.829);" >
+                            <th colspan="3" width="400" style="padding: 7px;">상품 정보</th>
                             <th width="100">주문수</th>
                             <th width="180">비고</th>
                         </tr>
