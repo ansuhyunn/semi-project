@@ -135,20 +135,13 @@
     }
 
     /*회원정보 수정*/
-    #pwd_confirm_tit{
+    #delete_success_tit{
         font-size:17px;
         font-weight:700;
     }
 
-    #pwd_confirm_context{
+    #delete_success_context{
         font-size:13px;
-    }
-    #pwd_input>input{
-        width:200px;
-        height:35px;
-        font-size:10px;
-        border-radius: 3px;
-        border:1px solid #ccc;
     }
     #check_btn{
         width:100px;
@@ -218,18 +211,15 @@
                 <h4 class="contents_tit">회원정보 수정</h4>
                 <hr align="left" width="765" color="rgb(64, 64, 64)" size="1">
                 <br><br>
-                <div id="pwd_confirm_tit" align="center">
-                    비밀번호 재확인 
+                <div id="delete_success_tit" align="center">
+                    회원탈퇴가 완료되었습니다. 
                 </div><br>
-                <div id="pwd_confirm_context" align="center">
-                    회원님의 개인정보 보호를 위한 본인 확인 절차이오니, <br>
-                    로그인 시 사용하시는 비밀번호를 입력해주세요. <br>
-                </div><br>
-                <div id="pwd_input" align="center">
-                    <input type="password" name="pwd" placeholder="비밀번호 입력" required>
-                </div><br>
-                <div id="pwd_confirm_btn" align="center">
-                    <button type="submit" id="check_btn" class="btn btn-sm btn-secondary">확인</button>
+                <div id="delete_success_context" align="center">
+                    그동안 DAMOART를 이용해주셔서 감사합니다. <br>
+                    보다 나은 서비스로 다시 만나뵐 수 있기를 바랍니다. <br>
+                </div><br><br>
+                <div id="delete_success_btn" align="center">
+                    <button type="submit" id="check_btn" class="btn btn-sm btn-secondary">홈 바로가기</button>
                 </div>
             </div>
         </div>

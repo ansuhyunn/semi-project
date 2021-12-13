@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <style>
     /*회원박스 스타일*/
     .mypage_top{
@@ -127,7 +128,7 @@
     .order_box{
         margin:auto;
         width:765px; 
-        height:120px;
+        height:130px;
         border-radius:10px;
         position:absolute;
     }
@@ -167,6 +168,7 @@
         line-height:40px;
         margin-left:120px;
     }
+    .fas fa-angle-right{size:50x;}
 </style>
 </head>
 <body>

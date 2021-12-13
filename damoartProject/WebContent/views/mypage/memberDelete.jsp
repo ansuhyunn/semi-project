@@ -250,7 +250,7 @@
                         안내 사항을 모두 확인하였으며, 이에 동의합니다.
                     </div>
 
-                    <br><br>
+                    <br><br><br>
                     
                 </div>
                 <div class="update_button" align="center">
@@ -260,7 +260,7 @@
             </div>
         </div>
     </div>
-
+    <br><br><br>
     <%@ include file="../common/footerbar.jsp" %>
 </body>
 </html>
