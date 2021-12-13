@@ -197,6 +197,11 @@
     }
     .container th, #table_category, #table_answer{text-align:center;}
 
+    .table tbody:hover{
+        cursor:pointer;
+    }
+
+    .qustion_open p{font-size:15px; font-weight:700;}
 </style>
 </head>
 <body>
@@ -281,7 +286,7 @@
                 <div class="select-btn" align="left">
                     <button type="button" class="btn btn-outline-secondary">조회</button>
                 </div>
-                
+                <br><br>
             <div class="container">
            
                 <table class="table">
@@ -295,6 +300,7 @@
                   </thead>
                   <tbody>
                     <!--Q&A 내역이 없을 경우-->
+                    <!--
                     <tr>
                         <td colspan="4" >
                             <div id="exclamationmark_icon">
@@ -311,30 +317,51 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                    </tr>
+                    </tr>-->
 
                     <!--Q&A 내역이 있을 경우-->
-                    <!--
-                    <tr>
+                    
+                    <tr class="qustion">
                       <td id="table_category">기타</td>
                       <td>1인당 몇장까지 구매 가능한가요?</td>
                       <td>2021-11-14</td>
                       <td id="table_answer">답변대기</td>
                     </tr>
+                    <tr class="qustion_open">
+                        <td></td>
+                        <td colspan="3">
+                            <div>
+                                <p>Q</p>
+                                문의상품 | 앨리스 달튼 브라운 전시 <br><br>
+                                <strong>1인당 몇장까지 구매 가능한가요?</strong>
+                            </div>
+                        </td> 
+                    </tr>                  
                     <tr>
                         <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
                     </tr>
-                    -->
                   </tbody>
                 </table>
               </div>   
             
             </div>
+            <script>
+                $(function(){
+                    $(".qustion").click(function(){
+                        const $tr = $(this).next();
 
-            
+                        if($tr.css("display") == "none"){
+                            $(this).siblings(".qustion_open").hide();
+                            $tr.show();
+                        }else{
+                            $tr.hide();
+                        }
+                    })
+                })
+            </script>
         </div>
 
         
