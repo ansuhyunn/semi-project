@@ -59,7 +59,7 @@ div{ box-sizing:border-box; }
 	<%@ include file="../common/manageMenubar.jsp" %>
 	
     <div class="wrapper">
-
+        
         <table border="1px" class="list-area">
 			<thead>
 	            <tr style="background-color: lightgrey;">

@@ -191,8 +191,8 @@
                 </li>
                 <li><a href="">커뮤니티</a>
                     <ul>
-                        <li><a href="">REVIEW</a></li>
-                        <li><a href="">EVENT</a></li>
+                        <li><a href="<%=contextPath%>/views/community/reviewMain.jsp">REVIEW</a></li>
+                        <li><a href="<%=contextPath%>/views/community/eventMain.jsp">EVENT</a></li>
                     </ul>
                 </li>
                 <li><a href="<%=contextPath%>/csMain.cs">고객센터</a>

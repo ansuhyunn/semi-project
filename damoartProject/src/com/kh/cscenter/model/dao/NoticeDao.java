@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import com.kh.common.model.vo.Attachment;
 import com.kh.common.model.vo.PageInfo;
 import com.kh.cscenter.model.vo.Notice;
 
@@ -86,4 +87,86 @@ public class NoticeDao {
 		return list;
 
 	}
+	
+	public int increaseCount(Connection conn, int noticeNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("increaseCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, noticeNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
+	public Notice selectNotice(Connection conn, int noticeNo) {
+		Notice n = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectNotice");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, noticeNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				n = new Notice(rset.getInt("notice_no"),
+							   rset.getString("NICKNAME"),
+							   rset.getString("notice_title"),
+							   rset.getString("notice_content"),
+							   rset.getString("create_date"),
+							   rset.getInt("count")
+						       );
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return n;
+		
+	}
+	
+	public ArrayList<Attachment> selectAttachment(Connection conn, int noticeNo) {
+		ArrayList<Attachment> atList = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectAttachment");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, noticeNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()){
+				atList.add(new Attachment(rset.getInt("file_no"),
+										  rset.getString("change_name"),
+										  rset.getString("file_path")
+						                  ));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return atList;
+			
+	}
+	
 }

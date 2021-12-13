@@ -81,7 +81,6 @@
 	<%@ include file="../../common/manageMenubar_2.jsp" %>
 		
 		<div id="outer">
-			<a href="">고객센터</a>&gt<a href=""><b>공지사항</b></a>
             <br><br>
 			<h4 style="font-weight: bolder;">공지사항 관리</h4>
             
@@ -96,7 +95,7 @@
                     </form>
                 </div>
                 <div class="button" width="50%">
-                    <a href="" class="btn btn-sm" id="enroll">공지 등록</a>
+                    <a href="<%= contextPath %>/enrollForm.no" class="btn btn-sm" id="enroll">공지 등록</a>
                     <a href="" class="btn btn-sm" id="delete">선택 삭제</a>
                 </div>
             </div>

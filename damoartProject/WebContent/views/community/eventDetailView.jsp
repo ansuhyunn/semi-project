@@ -29,11 +29,6 @@
     <%@ include file="../common/menubar.jsp" %>
 
 
-    
-    <%@ include file="../common/menubar.jsp" %>
-
-
-
     <div class="wrap">
 
         <div class="">

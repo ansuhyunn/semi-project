@@ -136,8 +136,8 @@
         padding-top:35px;
     }
 
-    /*예매날짜*/
-    .order_date{
+    /*기간설정*/
+    .date{
         margin:auto;
         margin-left:30px;
         width:765px; 
@@ -146,7 +146,7 @@
         position:absolute;
     }
 
-    .order_date>p{
+    .date>p{
         float:left;
         font-size:14px;
         font-weight:bold;
@@ -184,20 +184,24 @@
         color:white;
     }
 
-    /*적립금 테이블*/
+    /*Q&A 테이블*/
     .container{
         height:30%;
         padding-top:70px;
         font-size:13px;
     }
 
-    .container th, #table_date{text-align:center;}
-
-    #table_point{
-        color:black;
-        font-weight:600;
-        padding-left:30px;
+    #exclamationmark_icon{
+    	padding-left:320px;
+        padding-top:35px;
     }
+    .container th, #table_category, #table_answer{text-align:center;}
+
+    .table tbody:hover{
+        cursor:pointer;
+    }
+
+    .qustion_open p{font-size:15px; font-weight:700;}
 </style>
 </head>
 <body>
@@ -254,12 +258,12 @@
         </div>
         <div id="content_2">
             <div class="contents">
-                <h4 class="contents_tit">적립금 내역</h4>
+                <h4 class="contents_tit">Q&A 내역</h4>
                 <hr align="left" width="765" color="rgb(64, 64, 64)" size="1">
             </div>
 
-            <div class="order_date" style="background:rgba(255, 255, 255, 0.74)">
-                <p>예매기간</p>
+            <div class="date" style="background:rgba(255, 255, 255, 0.74)">
+                <p>기간</p>
                 <ul class="select_date">
                     <li>
                         <button type="button" id="date_btn" class="btn btn-outline-secondary">일주일</button>
@@ -282,29 +286,59 @@
                 <div class="select-btn" align="left">
                     <button type="button" class="btn btn-outline-secondary">조회</button>
                 </div>
-                
+                <br><br>
             <div class="container">
            
                 <table class="table">
                   <thead>
                     <tr style="background:rgb(203, 185, 153)">
-                      <th width="140">날짜</th>
-                      <th width="480">내용</th>
-                      <th width="110">적립/사용</th>
+                      <th width="140">분류</th>
+                      <th width="430">제목</th>
+                      <th width="110">등록일</th>
+                      <th width="110">답변상태</th>
                     </tr>
                   </thead>
                   <tbody>
+                    <!--Q&A 내역이 없을 경우-->
+                    <!--
                     <tr>
-                      <td id="table_date">2021-11-14</td>
-                      <td>회원가입 적립</td>
-                      <td id="table_point">+2000</td>
+                        <td colspan="4" >
+                            <div id="exclamationmark_icon">
+                                <img src="<%=request.getContextPath() %>/resources/images/exclamationmark.png" width="70px" height="70px"> 
+                            </div>
+                            <br>
+                            <div id="qna_txt">
+                                <p align="center">Q&A 내역이 없습니다.</p>
+                            </div>
+                        </td>
                     </tr>
                     <tr>
-                      <td id="table_date">2021-11-16</td>
-                      <td>주문 적립 <br>주문번호 : Y2023942140</td>
-                      <td id="table_point">+162</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>-->
+
+                    <!--Q&A 내역이 있을 경우-->
+                    
+                    <tr class="qustion">
+                      <td id="table_category">기타</td>
+                      <td>1인당 몇장까지 구매 가능한가요?</td>
+                      <td>2021-11-14</td>
+                      <td id="table_answer">답변대기</td>
                     </tr>
+                    <tr class="qustion_open">
+                        <td></td>
+                        <td colspan="3">
+                            <div>
+                                <p>Q</p>
+                                문의상품 | 앨리스 달튼 브라운 전시 <br><br>
+                                <strong>1인당 몇장까지 구매 가능한가요?</strong>
+                            </div>
+                        </td> 
+                    </tr>                  
                     <tr>
+                        <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -314,8 +348,20 @@
               </div>   
             
             </div>
+            <script>
+                $(function(){
+                    $(".qustion").click(function(){
+                        const $tr = $(this).next();
 
-            
+                        if($tr.css("display") == "none"){
+                            $(this).siblings(".qustion_open").hide();
+                            $tr.show();
+                        }else{
+                            $tr.hide();
+                        }
+                    })
+                })
+            </script>
         </div>
 
         

@@ -23,7 +23,7 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <style>
-    div{ box-sizing:border-box;}
+    div, input{ box-sizing:border-box;}
 
     #outer{
 
@@ -97,6 +97,13 @@
                         <% } %>
                     </tbody>
                 </table>
+                <script>
+			    	$(function(){
+			    		$("#list-area>tbody>tr").click(function(){
+			    			location.href='<%=contextPath%>/detail.no?nno=' + $(this).children().eq(0).text();
+			    		})
+			    	})
+			    </script>
                 <br><br>
                 <div class="paging-area" align="center">
                 	<% if(currentPage != 1) {%>
