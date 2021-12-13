@@ -320,10 +320,10 @@
                     <div id="icon" align="center"><i class="fas fa-headphones-alt fa-7x"></i></div>
                     <div id="call_content">
                         <h3>02-1234-5678</h3> <br>
-                        전화 상담 가능 시간 <br>
-                        평일 AM 10:00 ~ PM 18:00 <br>
-                        점심시간 PM 12:00 ~ PM 13:00 <br>
-                        (토요일, 일요일, 공휴일 휴무)
+                        	전화 상담 가능 시간 <br>
+                        	평일 AM 10:00 ~ PM 18:00 <br>
+                        	점심시간 PM 12:00 ~ PM 13:00 <br>
+                        	(토요일, 일요일, 공휴일 휴무)
                     </div>
                 </div>
             </div>
