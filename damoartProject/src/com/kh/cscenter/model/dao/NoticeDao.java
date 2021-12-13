@@ -122,7 +122,7 @@ public class NoticeDao {
 			
 			if(rset.next()) {
 				n = new Notice(rset.getInt("notice_no"),
-							   rset.getString("notice_writer"),
+							   rset.getString("NICKNAME"),
 							   rset.getString("notice_title"),
 							   rset.getString("notice_content"),
 							   rset.getString("create_date"),

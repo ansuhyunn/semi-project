@@ -25,7 +25,7 @@
     div, input{box-sizing:border-box;}
     #outer{
         width:1000px; 
-        height:1050px; 
+        height:auto; 
         padding:40px;
         margin:auto;
     }
@@ -134,6 +134,8 @@
         </div>
             
     </div>
+    
+    <%@ include file="../../common/footerbar.jsp" %>
 
 </body>
 </html>
