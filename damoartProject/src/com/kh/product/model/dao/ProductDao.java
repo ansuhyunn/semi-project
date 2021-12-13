@@ -290,6 +290,7 @@ public class ProductDao {
 			
 			while(rset.next()) {
 				list.add(new Product(rset.getInt("PNO"),
+									 rset.getString("ENROLL_DATE"),
 									 rset.getString("TITLE"),
 									 rset.getString("REGION"),
 									 rset.getString("AGE"),
@@ -297,9 +298,13 @@ public class ProductDao {
 									 rset.getString("S_DATE"),
 									 rset.getString("E_DATE"),
 									 rset.getString("TIME"),
+									 rset.getInt("A_PRICE"),
+									 rset.getInt("T_PRICE"),
+									 rset.getInt("C_PRICE"),
 									 rset.getString("MAIN_IMG"),
 									 rset.getString("DETAIL_IMG"),
-									 rset.getString("ETC")));
+									 rset.getString("ETC"),
+									 rset.getString("SOLDOUT")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
