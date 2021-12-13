@@ -71,9 +71,10 @@
         /* display:none; */
     }
 
-    .home{
-        font-weight:800;
-        font-size:20px;
+    .home>a{
+        text-decoration:none;
+        font-weight:900;
+        font-size:25px;
         color:rgb(64, 64, 64);
         height:50px;
         line-height:50px;
@@ -102,12 +103,12 @@
         cursor:pointer;
         color:rgb(228, 220, 207);
     }
-
-    .home:hover{
+    */
+    .home>a:hover{
         cursor:pointer;
         color:rgb(228, 220, 207);
     }
-    */
+    
 
     .sub a:hover{
         color:rgb(64, 64, 64);
@@ -134,7 +135,8 @@
         </div>
         <!--좌측 메뉴바-->
         <div id="left_menubar">
-            <div class="home">HOME</div>
+            <br>
+            <div class="home"><a href="">HOME</a></div>
             <div class="menu">회원 관리</div>
             <div class="sub">
                 <ul>
