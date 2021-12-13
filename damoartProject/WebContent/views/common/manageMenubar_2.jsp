@@ -21,6 +21,7 @@
     div{box-sizing:border-box;}
     /*상단header*/
     #header{
+            width:100%;
             height:150px;
             background:rgb(203, 185, 153);
             margin:auto;
@@ -54,8 +55,9 @@
         position:absolute;
         left:0;
         top:150px;
-        height:100%;
+        height:auto;
     }   
+
 
     .sub ul{
         list-style-type:none;
@@ -66,7 +68,16 @@
     
 
     .sub{
-        display:none;
+        /* display:none; */
+    }
+
+    .home{
+        font-weight:800;
+        font-size:20px;
+        color:rgb(64, 64, 64);
+        height:50px;
+        line-height:50px;
+        padding-left:30px;
     }
 
     .menu{
@@ -79,15 +90,25 @@
     }
     .sub ul a{
         text-decoration:none;
+        font-weight:500;
         color:rgb(228, 220, 207);
         height:30px;
         line-height:30px;
         display:block;
     }
+
+    /*
     .menu:hover{
         cursor:pointer;
         color:rgb(228, 220, 207);
     }
+
+    .home:hover{
+        cursor:pointer;
+        color:rgb(228, 220, 207);
+    }
+    */
+
     .sub a:hover{
         color:rgb(64, 64, 64);
     }
@@ -100,7 +121,7 @@
         <!--상단 header부분-->
         <div id="header">
             <div id="home_btn" align="right">
-                <a href="" class="btn btn-sm">damoart home</a>
+                <a href="<%=contextPath%>" class="btn btn-sm">damoart home</a>
             </div>
             <div id="logo_img" align="left">
                 <table>
@@ -113,7 +134,7 @@
         </div>
         <!--좌측 메뉴바-->
         <div id="left_menubar">
-            <div class="menu">HOME</div>
+            <div class="home">HOME</div>
             <div class="menu">회원 관리</div>
             <div class="sub">
                 <ul>
@@ -154,14 +175,15 @@
             <div class="menu">고객센터 관리</div>
             <div class="sub">
                 <ul>
-                    <li><a href="">공지사항 관리</a></li>
+                    <li><a href="<%=contextPath%>/adminList.no?cpage=1">공지사항 관리</a></li>
                     <li><a href="">FAQ 관리</a></li>
                     <li><a href="">Q&A 관리</a></li>
                     <li><a href="">이용안내 관리</a></li>
                 </ul>
             </div>
+            <br><br><br><br>
         </div>
-
+        <!--
         <script>
             $(function(){
                 $(".menu").click(function(){
@@ -178,6 +200,7 @@
             })
 
         </script>
+        -->
 
     </div>
 </body>

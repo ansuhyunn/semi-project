@@ -1,4 +1,4 @@
-package com.kh.cscenter.controller;
+package com.kh.cscenter.controller.client;
 
 import java.io.IOException;
 import java.util.ArrayList;
