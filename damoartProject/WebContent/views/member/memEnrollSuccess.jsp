@@ -29,10 +29,10 @@
         }
         .outer{
             margin:auto;
-            margin-top:50px;
+            margin-top:200px;
             height:1000px;
         }
-        ul{margin-left:550px;}
+        ul{margin-left:36%;}
         ul li{
             list-style:none;
             float:left;
@@ -52,11 +52,10 @@
             font-size:20px;
             font-weight:bold;
         }
-        .btn{
+        .btn-mem{
             width:400px;
             height:45px;
-            background:rgba(78, 67, 44, 0.6);
-            color:white;
+            background:rgb(203, 185, 153);
             border:none;
             font-weight:bold;
             margin:10px;
@@ -77,14 +76,14 @@
         </ul>
         <br><br>
         <hr>
-        <img src="resources/check.png" width="100" class="img">
+        <img src="../../resources/images/check.png" width="100" class="img">
         <br><br>
         <p id="comment1" align="center">DAMOART 회원가입이 완료되었습니다. </p>
         <p id="comment2" align="center">xxx님의 가입을 환영합니다!</p>
 
         <div align="center">
-            <button class="btn">> 로그인 화면으로 이동</button> <br>
-            <button class="btn">> 메인 화면으로 이동</button>
+            <button class="btn-mem">> 로그인 화면으로 이동</button> <br>
+            <button class="btn-mem">> 메인 화면으로 이동</button>
         </div>
     </div>
     

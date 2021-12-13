@@ -29,7 +29,7 @@
         }
         .outer{
             margin:auto;
-            margin-top:50px;
+            margin-top:200px;
             height:1000px;
         }
         ul{margin-left:550px;}
@@ -52,7 +52,7 @@
         textarea{
             background:rgba(255, 255, 255, 0.45);
         }
-        .btn{
+        .btn-mem{
             width:200px;
             height:40px;
             border:none;
@@ -60,8 +60,8 @@
             font-weight:bold;
             margin:30px;
         }
-        .btn.back{background:rgb(245, 236, 220);}
-        .btn.next{
+        .btn-mem.back{background:rgb(245, 236, 220);}
+        .btn-mem.next{
             background:rgba(78, 67, 44, 0.6);
             color:white;
         }
@@ -489,8 +489,8 @@
               <br><br>
 
               <div align="center">
-                <button class="btn back">취소</button>
-                <button class="btn next">다음단계</button>
+                <button class="btn-mem back">취소</button>
+                <button class="btn-mem next">다음단계</button>
               </div>
           
             </form>

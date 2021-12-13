@@ -29,8 +29,8 @@
         }
         .outer{
             margin:auto;
-            margin-top:50px;
-            height:1000px;
+            margin-top:200px;
+            height:1300px;
         }
         ul{margin-left:550px;}
         ul li{
@@ -54,7 +54,7 @@
             padding:10px;
             background:rgba(255, 255, 255, 0.45);
         }
-        .btn{
+        .btn-mem{
             width:200px;
             height:40px;
             border:none;
@@ -62,8 +62,8 @@
             font-weight:bold;
             margin:30px;
         }
-        .btn.back{background:rgb(203, 185, 153);}
-        .btn.enroll{
+        .btn-mem.back{background:rgb(203, 185, 153);}
+        .btn-mem.enroll{
             background:rgba(78, 67, 44, 0.6);
             color:white;
         }
@@ -197,8 +197,8 @@
             <br><br>
 
             <div align="center">
-                <button class="btn back">이전단계</button>
-                <button type="submit" class="btn enroll">회원가입</button>
+                <button class="btn-mem back">이전단계</button>
+                <button type="submit" class="btn-mem enroll">회원가입</button>
             </div>
             
             <br><br>

@@ -29,7 +29,7 @@
         }
         .outer{
             margin:auto;
-            margin-top:50px;
+            margin-top:200px;
             height:700px;
         }
         .findIdForm{
@@ -46,11 +46,12 @@
             background:rgba(255, 255, 255, 0.45);
         }
         #inputEmail{width:295px;}
-        .btn{
+        .btn-mem{
             width:400px;
             height:45px;
             background:rgb(203, 185, 153);
             border:none;
+            border-radius:3px;
             font-weight:bold
         }
         
@@ -60,7 +61,7 @@
 	<%@ include file="../common/menubar.jsp" %>
 	
     <div class="outer">
-        <h2 align="center" style="font-weight:bold">아이디 찾기</h2>
+        <h3 align="center" style="font-weight:bold">아이디 찾기</h3>
         <br><br><br>
         
         <div class="findIdForm" align="center">
@@ -85,7 +86,7 @@
                     </select> 
                     <br>
                     <input type="text" class="input" name="phone" style="display:none;" placeholder="휴대전화번호('-'제외하고 입력)" required> <br><br> 
-                    <button type="submit" class="btn">아이디 찾기</button> <br><br>
+                    <button type="submit" class="btn-mem">아이디 찾기</button> <br><br>
                 </form>
             </div>
         </div>

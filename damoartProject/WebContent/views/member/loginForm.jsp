@@ -30,7 +30,7 @@
         }
         .outer{
             margin:auto;
-            margin-top:50px;
+            margin-top:200px;
             height:700px;
         }
         ul.tabs{
@@ -42,7 +42,7 @@
             width:197px;
             height:45px;
             box-sizing:border-box;
-            background:#e0cdaf;
+            background:#e1d5bf;
             display:inline-block;
             border-radius:3px;
             line-height:45px;
@@ -69,11 +69,13 @@
             border-radius:3px;
             width:400px;
             height:45px;
-            background:rgba(255, 255, 255, 0.45);
+            background:rgb(245, 236, 220);
         }
-        .btn{
+        .btn-mem{
             width:400px;
             height:45px;
+            border:none;
+            border-radius:3px;
             background:rgb(203, 185, 153);
             font-weight:bold;
         }
@@ -98,11 +100,11 @@
                     <input type="text" class="input" name="userId" placeholder="아이디" required> <br>
                     <input type="password" class="input" name="userPwd" placeholder="비밀번호" required> <br><br>
                 </div>
-                <div style="padding-left: 37%;">
+                <div style="padding-left:37%;">
                     <input type="checkbox" id="saveid">아이디저장 <br><br>
                 </div>
                 <div align="center">    
-                    <button type="submit" class="btn">로그인</button> <br><br>
+                    <button type="submit" class="btn-mem">로그인</button> <br><br>
                 </div>    
             </form>
         </div>
@@ -112,7 +114,7 @@
             <form action="" method="post" align="center">
                         <input type="text" class="input" name="phone" placeholder="휴대전화번호" required> <br>
                         <input type="password" class="input" name="orderNum" placeholder="주문번호" required> <br><br>
-                        <button type="submit" class="btn">주문조회</button> <br>
+                        <button type="submit" class="btn-mem">주문조회</button> <br>
             </form>
         </div>
         <hr>
