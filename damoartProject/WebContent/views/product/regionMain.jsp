@@ -21,7 +21,7 @@
 	div{ box-sizing:border-box; }
     .wrapper{
         width: 1000px;
-        height: 1000px;
+        height: 1200px;
         top: 0; left: 0; right: 0; bottom: 0; margin: auto;
         margin-top: 50px;
     }
@@ -51,7 +51,7 @@
     .button *{
         margin-left: 30px;
         width: 120px;
-        background-color: rgb(151, 138, 116);
+        background-color: rgb(7, 7, 7);
         font-weight: bolder;
     }
     .button *:hover{

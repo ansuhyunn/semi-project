@@ -23,7 +23,7 @@
 	}
     .wrapper{
         width: 1000px;
-        height: 2000px;
+        height: auto;
         margin-top: 50px;	
     }
 	.content1{
@@ -41,17 +41,17 @@
 		float: left;
 		margin-top: 20px;
 		margin-left: 50px;
-		margin-right: 50px;
+		margin-right: 40px;
 	}
 	.info{
-		width: 450px;
+		width: 500px;
 		float: left;
 		margin-top: 20px;
 		font-size: 16px;
-		padding: 30px;
+		padding: 20px;
 	}
 	.info th{width: 100px; height: 60px;}
-	.info td{width: 300px; height: 60px;}
+	.info td{width: 500px; height: 60px; padding: 20px}
 	#pay th{width: 400px; height: 40px;}
 	.content3{
 		width: 90%;
@@ -69,7 +69,7 @@
 	}
 	.content4{
 		margin: auto;
-		margin-top: -1200px;
+		margin-top: 100px;
 		width: 80%;
 	}
 </style>
@@ -110,9 +110,7 @@
 						<% if(p.getaPrice() == 0){ %>
 							<td> 무료관람 </td>
 						<% } else{ %>
-						<td>성인 : <%= p.getaPrice() %><br>
-							청소년 : <%= p.gettPrice() %><br>
-							소아 : <%= p.getcPrice() %><br>
+						<td>성인 : <%= p.getaPrice() %> / 청소년 : <%= p.gettPrice() %> / 소아 : <%= p.getcPrice() %><br>
 						</td>
 						<% } %>
 					</tr>
@@ -161,6 +159,8 @@
 		<div class="content4">
 			<div class="detail"><img src="<%=request.getContextPath()%>/<%= p.getDetailImg()%>" width="100%" height="100%"></div>
         </div>
+        
+        <br><br><br><br><br>
 		
 	</div>
 	<% } %>

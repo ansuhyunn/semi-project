@@ -22,7 +22,7 @@
     div{ box-sizing:border-box; }
     .wrapper{
         width: 1000px;
-        height: 1000px;
+        height: auto;
         top: 0; left: 0; right: 0; bottom: 0; margin: auto;
         margin-top: 50px;
     }
