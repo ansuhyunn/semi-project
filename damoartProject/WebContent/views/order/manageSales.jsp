@@ -19,14 +19,16 @@
         width: 1200px;
         height: 100%;
         margin-top: 150px;
+        margin: auto;
     }
 
     .manage_head{
-    width: 100%;
+    width: 1000px;
     height: 50px;
     float: left;
     font-size: 20px;
     margin-top: 70px;
+    margin-left: 80px;
     }
     
     #title{
@@ -34,7 +36,9 @@
     }
     
     .date {
-        width: 1200px;
+        width: 800px;
+        height: auto;
+        margin: auto;
     }
 
     .date01{
@@ -43,6 +47,15 @@
         float: left;
         margin-top: 40px;
         padding: 15px;
+    }
+
+    .date01>.btn{
+        background-color: rgba(149, 133, 99, 0.6);
+        width: 70px;
+        height: 30px;
+        padding: 3px;
+        font-size: 13px;
+        margin-left: 15px;
     }
     .calender{
         width: 50%;
@@ -76,7 +89,7 @@
         background-color: rgba(179, 165, 141, 0.829);
     }
 
-    .btn{
+    #btn{
         margin: 50px;
         width: 150px;
         background-color: rgb(203, 185, 153);
@@ -84,7 +97,7 @@
     }
 </style>
 </head>
-<div>
+<body>
 
     <!-- 헤드 -->
     <div class="wrap">
@@ -96,7 +109,10 @@
             <div class="date">
                 <div class="date01">
                     <b>조회기간</b> 
-                    </div>
+                    <button class="btn">오늘</button>
+                    <button class="btn">일주일</button>
+                    <button class="btn">1개월</button>
+                </div>
                     <div class="calender" align="center">
                         <input type="date" style="height: 25px; width: 150px;" > <b>&nbsp;~&nbsp;</b> <input type="date" style="height: 25px; width: 150px;" >
                   </div>
@@ -197,9 +213,11 @@
                             </td>
                         </tr>
                     </table>
+
+                    
+                <button class="btn" id="btn">더보기</button>
                 </div>
 
-                <button class="btn">더보기</button>
         </div>
 
 
