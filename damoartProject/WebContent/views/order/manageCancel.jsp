@@ -20,7 +20,7 @@
     }
 
     .manage_head{
-    width: 300px;
+    width: 100%;
     height: 50px;
     float: left;
     font-size: 20px;
@@ -81,7 +81,7 @@
         font-size: 13px;
     }
 
-    #cancle{
+    #cancel{
         background-color: rgb(203, 185, 153);
 
     }
@@ -112,6 +112,7 @@
     td{
         border-bottom: 1px solid black;
         height: 100px;
+        background-color: rgba(238, 232, 222, 0.829);
     }
     .table_title{
         height: 40px;
@@ -154,7 +155,7 @@
            
         <!--판매 리스트-->
         <div class="order_box">
-            <button class="btn" id="cancle"><b>취소 승인</b></button>
+            <button class="btn" id="cancel"><b>취소 승인</b></button>
             <button class="btn" id="check"><b>취소 거절</b></button>
             <div class="search">
                 <input type="text" placeholder="구매자 ID, 이름, 주문번호">
