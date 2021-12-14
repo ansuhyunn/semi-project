@@ -213,7 +213,7 @@
                 </div><br>
                 <li><h3>마이정보</h3></li>
                 <div>
-                    <a href="" id="submenu">회원정보 수정</a> <br>
+                    <a href="" id="submenu" style="color:rgb(151, 138, 116)">회원정보 수정</a> <br>
                     <a href="" id="submenu">회원 탈퇴</a> <br>
                 </div>
             </ul>
@@ -229,31 +229,33 @@
             
                         <table >
                             <tr>
-                                <th>이름</th> 
-                                <td><input type="text" name="userName" maxlength="12" value="userName" required></td> 
+                                <th>* 이름</th> 
+                                <td><input type="text" name="userName" minlength="2" value="userName" required></td> 
                             </tr>
                             <tr>
-                                <th>아이디</th>
+                                <th>* 아이디</th>
                                 <td><input type="text" name="userId" maxlength="6" value="userId" readonly></td>
                             </tr>
+                            <!--  
                             <tr>
-                                <th>비밀번호</th> 
-                                <td><input type="password" name="userName" maxlength="12" value="userName" required></td> 
+                                <th>* 비밀번호</th> 
+                                <td><input type="password" name="userPwd" maxlength="12" value="userPwd" required></td> 
                             </tr>
                             <tr>
-                                <th>비밀번호 확인</th> 
-                                <td><input type="password" name="userName" maxlength="12" value="userName" required></td> 
+                                <th>* 비밀번호 확인</th> 
+                                <td><input type="password" name="pwdCheck" maxlength="12" value="pwdCheck" required></td> 
                             </tr>
                             <tr>
-                                <th>닉네임</th> 
-                                <td><input type="text" name="userName" maxlength="12" value="userName" required></td> 
+                            -->
+                                <th>* 닉네임</th> 
+                                <td><input type="text" name="nickName" minlength="2" maxlength="14" value="nickname" required></td> 
                             </tr>
                             <tr>
-                                <th>이메일</th>
+                                <th>* 이메일</th>
                                 <td><input type="email" name="email" value="email" required></td>
                             </tr>
                             <tr>
-                                <th>휴대전화번호</th>
+                                <th>* 휴대전화번호</th>
                                 <td><input type="text" name="phone" placeholder="- 포함해서 입력" value="phone" required></td>
                             </tr>
                             <tr>

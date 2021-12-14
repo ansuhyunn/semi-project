@@ -218,7 +218,7 @@
                 </div><br>
                 <li><h3>마이정보</h3></li>
                 <div>
-                    <a href="" id="submenu">회원정보 수정</a> <br>
+                    <a href="<%=request.getContextPath() %>/views/mypage/pwdVerificationMemUpdate.jsp" id="submenu">회원정보 수정</a> <br>
                     <a href="" id="submenu">회원 탈퇴</a> <br>
                 </div>
             </ul>

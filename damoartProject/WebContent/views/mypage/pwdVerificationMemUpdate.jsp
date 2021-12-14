@@ -137,7 +137,7 @@
     /*회원정보 수정*/
     #pwd_confirm_tit{
         font-size:17px;
-        font-weight:700;
+        font-weight:800;
     }
 
     #pwd_confirm_context{
@@ -207,7 +207,7 @@
                 </div><br>
                 <li><h3>마이정보</h3></li>
                 <div>
-                    <a href="" id="submenu">회원정보 수정</a> <br>
+                    <a href="" id="submenu" style="color:rgb(151, 138, 116)">회원정보 수정</a> <br>
                     <a href="" id="submenu">회원 탈퇴</a> <br>
                 </div>
             </ul>
@@ -218,19 +218,22 @@
                 <h4 class="contents_tit">회원정보 수정</h4>
                 <hr align="left" width="765" color="rgb(64, 64, 64)" size="1">
                 <br><br>
-                <div id="pwd_confirm_tit" align="center">
-                    비밀번호 재확인 
-                </div><br>
-                <div id="pwd_confirm_context" align="center">
-                    회원님의 개인정보 보호를 위한 본인 확인 절차이오니, <br>
-                    로그인 시 사용하시는 비밀번호를 입력해주세요. <br>
-                </div><br>
-                <div id="pwd_input" align="center">
-                    <input type="password" name="pwd" placeholder="비밀번호 입력" required>
-                </div><br>
-                <div id="pwd_confirm_btn" align="center">
-                    <button type="submit" id="check_btn" class="btn btn-sm btn-secondary">확인</button>
-                </div>
+                
+                <form action="<%= contextPath %>/memberUpdate.mp" method="post">
+	                <div id="pwd_confirm_tit" align="center">
+	                    	비밀번호 재확인 
+	                </div><br>
+	                <div id="pwd_confirm_context" align="center">
+	                    	회원님의 개인정보 보호를 위한 본인 확인 절차이오니, <br>
+	                    	로그인 시 사용하시는 비밀번호를 입력해주세요. <br>
+	                </div><br>
+	                <div id="pwd_input" align="center">
+	                    <input type="password" name="pwd" placeholder="비밀번호 입력" required>
+	                </div><br>
+	                <div id="pwd_confirm_btn" align="center">
+	                    <button type="submit" id="check_btn" class="btn btn-sm btn-secondary">확인</button>
+	                </div>
+	            </form>
             </div>
         </div>
     </div>
