@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <%@ 
 	page import="java.util.ArrayList, com.kh.common.model.vo.Attachment, com.kh.cscenter.model.vo.Notice"
 
@@ -78,9 +79,15 @@
         padding-left:10px;
     }
 
-    .button>a{
+    #list, #update{
         background-color:rgb(151, 138, 116);
         color:white;
+    }
+
+    #delete{
+        background-color:rgb(203, 185, 153);
+        color:rgb(64, 64, 64);
+        font-weight:600;
     }
 
     .button{
@@ -88,16 +95,19 @@
         margin:auto;
         margin-top:20px;
     }
+    .button>div{
+        width:50%;
+        float:left;
+    }
     
 
 </style>
 </head>
 <body>
 
-	<%@ include file="../../common/menubar.jsp" %>
+	<%@ include file="../../common/manageMenubar_2.jsp" %>
 	
 	<div id="outer">
-        <a href="">고객센터</a>&gt<a href=""><b>공지사항</b></a>
         <br><br>
 		<h4 style="font-weight:bolder;" align="center">공지사항</h4>
         <br>
@@ -129,13 +139,16 @@
 			    <%= n.getNoticeContent() %>
             </div>
         </div>
-        <div class="button" align="right">
-        	<a href="<%= contextPath %>/list.no?cpage=1" class="btn btn-sm">목록가기</a>			
+        <div class="button">
+            <div>
+                <a id="list" href="<%= contextPath %>/adminList.no?cpage=1" class="btn btn-sm">목록가기</a>			
+            </div>
+            <div align="right">
+                <a id="delete" href="" class="btn btn-sm">삭제하기</a>
+                <a id="update" href="" class="btn btn-sm">수정하기</a>
+            </div>
         </div>
             
     </div>
-    
-    <%@ include file="../../common/footerbar.jsp" %>
-
 </body>
 </html>

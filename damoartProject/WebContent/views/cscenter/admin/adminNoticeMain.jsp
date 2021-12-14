@@ -69,6 +69,11 @@
         background:white;
         font-size:14px;
     }
+    
+    #list-area>tbody>tr:hover{
+    	background:rgb(240, 239, 239);
+    	cursor:pointer;
+    }
 
 
     
@@ -131,6 +136,13 @@
                         <% } %>
                     </tbody>
                 </table>
+                <script>
+                	$(function(){
+                		$("#list-area>tbody>tr").click(function(){
+                			location.href='<%=contextPath%>/adminDatail.no?nno=' + $(this).children().eq(1).text();
+                		})
+                	})
+                </script>
                 <div class="paging-area" align="center">
                 	<% if(currentPage != 1) {%>
                     	<button class="btn" onclick="location.href='<%=contextPath%>/list.no?cpage=<%=currentPage-1%>'">&lt;</button>

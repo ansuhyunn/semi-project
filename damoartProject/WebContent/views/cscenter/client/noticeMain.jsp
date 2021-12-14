@@ -15,6 +15,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -62,7 +63,7 @@
 	<%@ include file="../../common/menubar.jsp" %>
 	
         <div id="outer">
-            <a href="">고객센터</a>&gt<a href=""><b>공지사항</b></a>
+            <a href="">고객센터</a><i class="fas fa-angle-right"></i><a href=""><b>공지사항</b></a>
             <br><br>
 			<h4 style="font-weight: bolder;" align="center">공지사항</h4>
             <br>
