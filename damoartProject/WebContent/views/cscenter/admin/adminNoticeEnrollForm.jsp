@@ -58,7 +58,7 @@
         color:white;
     }
 
-    table{
+    #enroll-tb{
         border:1px solid rgb(173, 157, 128);
     }
 
@@ -76,7 +76,8 @@
         <hr>
         <div id="inner" align="center">
             <form id="enroll-form" action="">
-                <table>
+            	<input type="hidden" name="adminNo"> 
+                <table id="enroll-tb">
                     <tr style="border-bottom:1px solid rgb(173, 157, 128); border-top:1px solid rgb(173, 157, 128)">
                         <th width="120">&nbsp;&nbsp;&nbsp;제목</th>
                         <td width="700"><input type="text" size="80" required></td>
