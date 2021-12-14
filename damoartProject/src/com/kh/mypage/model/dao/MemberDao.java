@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 import static com.kh.common.JDBCTemplate.*;
+
 import com.kh.mypage.model.vo.Member;
 
 public class MemberDao {
@@ -17,11 +18,8 @@ public class MemberDao {
 
 	public MemberDao() {
 		
-		// 실시간으로 동기화되고 있는 파일의 경로를 변수에 담아두기 
-		String filePath = MemberDao.class.getResource("/db/sql/mypage-mapper.xml").getPath();
-		
 		try {
-			prop.loadFromXML(new FileInputStream(filePath));
+			prop.loadFromXML(new FileInputStream(MemberDao.class.getResource("/db/sql/mypage-mapper.xml").getPath()));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -39,6 +37,7 @@ public class MemberDao {
 			pstmt.setString(2, m.getNickname());
 			pstmt.setString(3, m.getEmail());
 			pstmt.setString(4, m.getPhone());
+			pstmt.setString(5, m.getMemId());
 			
 			result = pstmt.executeUpdate();
 			
