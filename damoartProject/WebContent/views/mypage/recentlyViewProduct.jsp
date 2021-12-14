@@ -125,6 +125,7 @@
         padding-top:15px;
         padding-left:30px;
     }
+    .contents p{font-size:13px;}
 
 </style>
 </head>
@@ -161,30 +162,30 @@
             <ul>  	
                 <li><h3>마이쇼핑</h3></li>
                 <div>
-                    <a href="" id="submenu">예매 내역</a> <br>
-                    <a href="" id="submenu">취소/환불 내역</a> <br>
-                    <a href="" id="submenu">적립금 내역</a> <br>
+                    <a href="<%=request.getContextPath() %>/views/mypage/reserveDetail.jsp" id="submenu">예매 내역</a> <br>
+                    <a href="<%=request.getContextPath() %>/views/mypage/refundDetail.jsp" id="submenu">취소/환불 내역</a> <br>
+                    <a href="<%=request.getContextPath() %>/views/mypage/pointCheck.jsp" id="submenu">적립금 내역</a> <br>
                     <hr width="120" align="left">
-                    <a href="" id="submenu">최근 본 상품</a> <br>
-                    <a href="" id="submenu">찜한 상품</a>
+                    <a href="<%=request.getContextPath() %>/views/mypage/recentlyViewProduct.jsp" id="submenu" style="color:rgb(151, 138, 116)">최근 본 상품</a> <br>
+                    <a href="<%=request.getContextPath() %>/views/mypage/likeProduct.jsp" id="submenu">찜한 상품</a>
                 </div><br>
                 <li><h3>마이활동</h3></li>
                 <div>
                     <a href="" id="submenu">리뷰 내역</a> <br>
-                    <a href="" id="submenu">Q&A 내역</a> <br>
+                    <a href="<%=request.getContextPath() %>/views/mypage/memberQnaList.jsp" id="submenu">Q&A 내역</a> <br>
                 </div><br>
                 <li><h3>마이정보</h3></li>
                 <div>
-                    <a href="" id="submenu">회원정보 수정</a> <br>
-                    <a href="" id="submenu">회원 탈퇴</a> <br>
+                    <a href="<%=request.getContextPath() %>/views/mypage/pwdVerificationMemUpdate.jsp" id="submenu">회원정보 수정</a> <br>
+                    <a href="<%=request.getContextPath() %>/views/mypage/pwdVerificationMemDelete.jsp" id="submenu">회원 탈퇴</a> <br>
                 </div>
             </ul>
         </div>
         <div id="content_2">
 
             <div class="contents">
-                <h4 class="contents_tit">최근 본 상품</h4> 
-                최근 본 상품은 최대 <strong style="color:white">14일간</strong> 보관됩니다.
+                <h4 class="contents_tit">최근 본 상품</h4><br>
+                	<p>최근 본 상품은 최대 <strong style="color:white">14일간</strong> 보관됩니다.</p>
                 <hr align="left" width="765" color="rgb(64, 64, 64)" size="1">
 
                 <div class="product">

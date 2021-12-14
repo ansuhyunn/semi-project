@@ -207,8 +207,8 @@
                 </div><br>
                 <li><h3>마이정보</h3></li>
                 <div>
-                    <a href="" id="submenu" style="color:rgb(151, 138, 116)">회원정보 수정</a> <br>
-                    <a href="" id="submenu">회원 탈퇴</a> <br>
+                    <a href="<%=request.getContextPath() %>/views/mypage/pwdVerificationMemUpdate.jsp" id="submenu" style="color:rgb(151, 138, 116)">회원정보 수정</a> <br>
+                    <a href="<%=request.getContextPath() %>/views/mypage/pwdVerificationMemDelete.jsp" id="submenu">회원 탈퇴</a> <br>
                 </div>
             </ul>
         </div>
@@ -231,9 +231,15 @@
 	                    <input type="password" name="pwd" placeholder="비밀번호 입력" required>
 	                </div><br>
 	                <div id="pwd_confirm_btn" align="center">
-	                    <button type="submit" id="check_btn" class="btn btn-sm btn-secondary">확인</button>
+	                    <button type="submit" id="check_btn" class="btn btn-sm btn-secondary" onclick="pwdConfirm()">확인</button>
 	                </div>
 	            </form>
+	            
+	            <script>
+	            	function pwdConfirm(){
+	            		if($("input[name=pwd]").val() != loginUser.pwd())
+	            	}
+	            </script>
             </div>
         </div>
     </div>

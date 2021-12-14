@@ -5,7 +5,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <style>
     /*회원박스 스타일*/
     .mypage_top{
@@ -51,7 +57,7 @@
         height:1000px;
         background:#e1d5bf;
         margin:auto;
-        }
+    }
     #content_1, #content_2{
         box-sizing:border-box;
         height:100%;
@@ -66,12 +72,12 @@
         height:100%;
         float:left;
     }
+
     #content_1 h2{
         padding: 5px 0 20px 1px;
 		letter-spacing:-1px;
         font-size:28px;
         font-weight:700;
-        letter-spacing:-1px;
     }
     .mem-box{
         height:120px;
@@ -119,18 +125,9 @@
 
     /*content_2*/
     .contents{
-        height:30%;
+        height:10%;
         padding-top:15px;
         padding-left:30px;
-    }
-
-    /*예매내역*/
-    .order_box{
-        margin:auto;
-        width:765px; 
-        height:130px;
-        border-radius:10px;
-        position:absolute;
     }
     
     /*찜한상품, qna내역이 없을 경우*/
@@ -139,36 +136,28 @@
         padding-top:35px;
     }
 
-    .order_view{
-        color:#666;
-        text-decoration:none;
+    
+    /*Q&A 테이블*/
+    .container{
+        height:30%;
+        padding-top:70px;
+        font-size:13px;
     }
 
-    #step_li{
-        float:left;
-        position:relative;
-        width:29%;
-        height:100px;
+    #exclamationmark_icon{
+    	padding-left:320px;
+        padding-top:35px;
+    }
+    .container th, #table_category{text-align:center;}
+
+    .qustion_open p{font-size:15px; font-weight:700;}
+
+    .table td{
+        vertical-align:middle;
+        height:120px;
         margin:auto;
-        margin-top:10px;
+        padding-top:10px;
     }
-
-    em{
-        top:25px;
-        color:#888;
-        font-style:normal;
-        font-size:50px;
-        line-height:50px;
-        font-weight:500;
-        padding-left:140px;
-    }
-    span{
-        color: #666;
-        font-size:16px;
-        line-height:40px;
-        margin-left:120px;
-    }
-    .fas fa-angle-right{size:50x;}
 </style>
 </head>
 <body>
@@ -214,7 +203,7 @@
                 <li><h3>마이활동</h3></li>
                 <div>
                     <a href="" id="submenu">리뷰 내역</a> <br>
-                    <a href="<%=request.getContextPath() %>/views/mypage/memberQnaList.jsp" id="submenu">Q&A 내역</a> <br>
+                    <a href="<%=request.getContextPath() %>/views/mypage/memberQnaList.jsp" id="submenu" style="color:rgb(151, 138, 116)">Q&A 내역</a> <br>
                 </div><br>
                 <li><h3>마이정보</h3></li>
                 <div>
@@ -225,52 +214,75 @@
         </div>
         <div id="content_2">
             <div class="contents">
-                <h4 class="contents_tit">예매 내역</h4><br>
-                <div class="order_box" style="background:rgba(255, 255, 255, 0.45)">
-                <a href="" class="order_view">
-                    <ul class="order-step">
-                        <li id="step_li">
-                            <em> 0 </em><br>
-                            <span>입금대기</span>
-                        </li>
-                        <li id="step_li">
-                            <em> 0 </em><br>
-                            <span>결제완료</span>
-                        </li>
-                        <li id="step_li">
-                            <em> 0 </em><br>
-                            <span>예매확정</span>
-                        </li>
-                    </ul>
-                </a>    
-                </div>
-            </div>
-            <div class="contents">
-                <h4 class="contents_tit">찜한 상품</h4>
-                <hr align="left" width="765" color="rgb(64, 64, 64)" size="1">
-                <!--찜한 내역이 없을 경우-->
-                <div id="exclamationmark_icon">
-                    <img src="<%=request.getContextPath() %>/resources/images/exclamationmark.png" width="70px" height="70px"> 
-                </div>
-                <br>
-                <div id="like_product_txt">
-                    <p align="center">찜한 내역이 없습니다.</p>
-                </div>
-
-            </div>
-            <div class="contents">
                 <h4 class="contents_tit">Q&A 내역</h4>
                 <hr align="left" width="765" color="rgb(64, 64, 64)" size="1">
-                <!--Q&A 내역이 없을 경우-->
-                <div id="exclamationmark_icon">
-                    <img src="<%=request.getContextPath() %>/resources/images/exclamationmark.png" width="70px" height="70px"> 
-                </div>
-                <br>
-                <div id="qna_txt">
-                    <p align="center">Q&A 내역이 없습니다.</p>
-                </div>
+            </div>
+
+            <div class="date">
+                
+            <div class="container">
+           
+                <table class="table">
+                  <thead>
+                    <tr style="background:rgb(203, 185, 153)">
+                      <th colspan="2" width="550">상품</th>
+                      <th width="110">작성기간</th>
+                      <th width="110">리뷰 작성</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!--Q&A 내역이 없을 경우-->
+                    <!--
+                    <tr>
+                        <td colspan="4" >
+                            <div id="exclamationmark_icon">
+                                <img src="<%=request.getContextPath() %>/resources/images/exclamationmark.png" width="70px" height="70px"> 
+                            </div>
+                            <br>
+                            <div id="qna_txt">
+                                <p align="center">Q&A 내역이 없습니다.</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>-->
+
+                    <!--Q&A 내역이 있을 경우-->
+                    
+                    <tr class="qustion">
+                        <td width="200">
+                            <img src= "<%=request.getContextPath()%>/resources/images/product/1M.gif" width="80px" height="80px">                
+                        </td>
+                        <td width="350">
+                           예매확정일 : 2021-11-15 <br>
+                           영국 테이트미술관 특별전 <br>
+                           옵션 : 일반
+                        </td>    
+                        <td id="insertDate">~2021-11-14</td>
+                        <td align="center">
+                          <button type="button" id="insertBtn">리뷰 작성</button>
+                        </td>
+                    </tr>             
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>   
+            
             </div>
         </div>
+
+        
+
+    
     </div>
 
     <%@ include file="../common/footerbar.jsp" %>

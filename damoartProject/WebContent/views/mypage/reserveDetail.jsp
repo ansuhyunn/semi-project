@@ -253,9 +253,9 @@
             <ul>  	
                 <li><h3>마이쇼핑</h3></li>
                 <div>
-                    <a href="" id="submenu">예매 내역</a> <br>
-                    <a href="" id="submenu">취소/환불 내역</a> <br>
-                    <a href="" id="submenu">적립금 내역</a> <br>
+                    <a href="" id="submenu" style="color:rgb(151, 138, 116)">예매 내역</a> <br>
+                    <a href="<%=request.getContextPath() %>/views/mypage/refundDetail.jsp" id="submenu">취소/환불 내역</a> <br>
+                    <a href="<%=request.getContextPath() %>/views/mypage/pointCheck.jsp" id="submenu">적립금 내역</a> <br>
                     <hr width="120" align="left">
                     <a href="" id="submenu">최근 본 상품</a> <br>
                     <a href="" id="submenu">찜한 상품</a>

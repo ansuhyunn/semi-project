@@ -5,7 +5,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 <style>
     /*회원박스 스타일*/
     .mypage_top{
@@ -66,6 +73,9 @@
         height:100%;
         float:left;
     }
+    #content_1{width:20%;}
+    #content_2{width:80%;}
+
     #content_1 h2{
         padding: 5px 0 20px 1px;
 		letter-spacing:-1px;
@@ -124,51 +134,30 @@
         padding-left:30px;
     }
 
-    /*예매내역*/
-    .order_box{
-        margin:auto;
-        width:765px; 
-        height:130px;
-        border-radius:10px;
-        position:absolute;
-    }
-    
-    /*찜한상품, qna내역이 없을 경우*/
-    #exclamationmark_icon{
-    	padding-left:345px;
-        padding-top:35px;
+    /*회원정보 수정*/
+    #pwd_confirm_tit{
+        font-size:17px;
+        font-weight:800;
     }
 
-    .order_view{
-        color:#666;
-        text-decoration:none;
+    #pwd_confirm_context{
+        font-size:13px;
     }
-
-    #step_li{
-        float:left;
-        position:relative;
-        width:29%;
-        height:100px;
-        margin:auto;
-        margin-top:10px;
+    #pwd_input>input{
+        width:200px;
+        height:35px;
+        font-size:10px;
+        border-radius: 3px;
+        border:1px solid #ccc;
     }
-
-    em{
-        top:25px;
-        color:#888;
-        font-style:normal;
-        font-size:50px;
-        line-height:50px;
-        font-weight:500;
-        padding-left:140px;
+    #check_btn{
+        width:100px;
+        height:40px;
+        background:rgb(182, 167, 141);
+        border:none;
+        font-size:15px;
+        font-weight:600;
     }
-    span{
-        color: #666;
-        font-size:16px;
-        line-height:40px;
-        margin-left:120px;
-    }
-    .fas fa-angle-right{size:50x;}
 </style>
 </head>
 <body>
@@ -219,56 +208,32 @@
                 <li><h3>마이정보</h3></li>
                 <div>
                     <a href="<%=request.getContextPath() %>/views/mypage/pwdVerificationMemUpdate.jsp" id="submenu">회원정보 수정</a> <br>
-                    <a href="<%=request.getContextPath() %>/views/mypage/pwdVerificationMemDelete.jsp" id="submenu">회원 탈퇴</a> <br>
+                    <a href="<%=request.getContextPath() %>/views/mypage/pwdVerificationMemDelete.jsp" id="submenu" style="color:rgb(151, 138, 116)">회원 탈퇴</a> <br>
                 </div>
             </ul>
         </div>
         <div id="content_2">
-            <div class="contents">
-                <h4 class="contents_tit">예매 내역</h4><br>
-                <div class="order_box" style="background:rgba(255, 255, 255, 0.45)">
-                <a href="" class="order_view">
-                    <ul class="order-step">
-                        <li id="step_li">
-                            <em> 0 </em><br>
-                            <span>입금대기</span>
-                        </li>
-                        <li id="step_li">
-                            <em> 0 </em><br>
-                            <span>결제완료</span>
-                        </li>
-                        <li id="step_li">
-                            <em> 0 </em><br>
-                            <span>예매확정</span>
-                        </li>
-                    </ul>
-                </a>    
-                </div>
-            </div>
-            <div class="contents">
-                <h4 class="contents_tit">찜한 상품</h4>
-                <hr align="left" width="765" color="rgb(64, 64, 64)" size="1">
-                <!--찜한 내역이 없을 경우-->
-                <div id="exclamationmark_icon">
-                    <img src="<%=request.getContextPath() %>/resources/images/exclamationmark.png" width="70px" height="70px"> 
-                </div>
-                <br>
-                <div id="like_product_txt">
-                    <p align="center">찜한 내역이 없습니다.</p>
-                </div>
 
-            </div>
             <div class="contents">
-                <h4 class="contents_tit">Q&A 내역</h4>
+                <h4 class="contents_tit">회원 탈퇴</h4>
                 <hr align="left" width="765" color="rgb(64, 64, 64)" size="1">
-                <!--Q&A 내역이 없을 경우-->
-                <div id="exclamationmark_icon">
-                    <img src="<%=request.getContextPath() %>/resources/images/exclamationmark.png" width="70px" height="70px"> 
-                </div>
-                <br>
-                <div id="qna_txt">
-                    <p align="center">Q&A 내역이 없습니다.</p>
-                </div>
+                <br><br>
+                
+                <form action="<%= contextPath %>/memberUpdate.mp" method="post">
+	                <div id="pwd_confirm_tit" align="center">
+	                    	비밀번호 재확인 
+	                </div><br>
+	                <div id="pwd_confirm_context" align="center">
+	                    	회원님의 개인정보 보호를 위한 본인 확인 절차이오니, <br>
+	                    	로그인 시 사용하시는 비밀번호를 입력해주세요. <br>
+	                </div><br>
+	                <div id="pwd_input" align="center">
+	                    <input type="password" name="pwd" placeholder="비밀번호 입력" required>
+	                </div><br>
+	                <div id="pwd_confirm_btn" align="center">
+	                    <button type="submit" id="check_btn" class="btn btn-sm btn-secondary">확인</button>
+	                </div>
+	            </form>
             </div>
         </div>
     </div>
