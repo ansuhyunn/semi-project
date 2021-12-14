@@ -14,16 +14,16 @@ import com.kh.product.model.service.ProductService;
 import com.kh.product.model.vo.Product;
 
 /**
- * Servlet implementation class DetailViewImgController
+ * Servlet implementation class ArrayOpenList
  */
-@WebServlet("/img.pro")
-public class DetailViewImgController extends HttpServlet {
+@WebServlet("/arrayOpen.pro")
+public class ArrayOpenList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DetailViewImgController() {
+    public ArrayOpenList() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,14 +32,13 @@ public class DetailViewImgController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int pno = ((Product)request.getSession().getAttribute("pno")).getpNo();
-		ArrayList<Product> detailImg = new ProductService().selectDetailImg(pno);
+		
+		ArrayList<Product> list = new ProductService().selectOpenDate();
 		
 		response.setContentType("application/json; charset=utf-8");
 		
-		new Gson().toJson(detailImg, response.getWriter());
+		new Gson().toJson(list, response.getWriter());
 		
-		// 미완성~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	}
 
 	/**

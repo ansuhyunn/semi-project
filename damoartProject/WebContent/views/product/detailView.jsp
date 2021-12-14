@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.product.model.vo.Product" %>
 <% 
+	Product pro = (Product)request.getAttribute("p");
 	ArrayList<Product> detailList = (ArrayList<Product>)request.getAttribute("detailList");
 %>
 <!DOCTYPE html>
@@ -78,8 +79,8 @@
 
 	<%@ include file="../common/menubar.jsp" %>
 	
-	<% for(Product p : detailList){ %>
 	<div class="wrapper">
+		<% for(Product p : detailList){ %>
 		<div class="content1">
 			<div class="title" style="font-size: 30px; font-weight: bolder; margin-bottom: 7px;"><%= p.getTitle() %></div>
 			<div class="date" style="font-size: 13px;"><%= p.getsDate() %> ~ <%= p.geteDate() %> <%= p.getArea() %></div>
@@ -149,21 +150,49 @@
 		</div>	
 
 		<div class="content3">
-			<button id="info1" class="btn btn-secondary" onclick="chooseInfo(1)">상세정보</button>
-			<button id="info2" class="btn btn-secondary" onclick="chooseInfo(2)">예매/취소안내</button>
-			<button id="info3" class="btn btn-secondary" onclick="chooseInfo(3)">REVIEW</button>
-			<button id="info4" class="btn btn-secondary" onclick="chooseInfo(4)">Q&A</button>
+			<button id="info1" class="btn btn-secondary" >상세정보</button>
+			<button id="info2" class="btn btn-secondary" >예매/취소안내</button>
+			<button id="info3" class="btn btn-secondary" >REVIEW</button>
+			<button id="info4" class="btn btn-secondary" >Q&A</button>
 			<hr class="my-2">
 		</div>
 		
 		<div class="content4">
-			<div class="detail"><img src="<%=request.getContextPath()%>/<%= p.getDetailImg()%>" width="100%" height="100%"></div>
+			<div class="detail"><img id="detail" src="<%=request.getContextPath()%>/<%= p.getDetailImg()%>" width="100%" height="100%"></div>
         </div>
-        
         <br><br><br><br><br>
+
+		<script>
+			$(function(){
+				$("#info1").click(function(){		// 아직 못함 아이고 어렵다~~~!!!!!! 
+					$.ajax({
+						url : "<%=request.getContextPath()%>/resources/product/<%=p.getpNo()%>D.jpg",
+						cache: true,
+					    processData : false,
+						success:function(detailImg){
+							$(".content4").html(detailImg);
+						},error:function(){
+							console.log("ㅠㅠㅠ");
+						}
+					})
+				})
+				$("#info2").click(function(){
+					$.ajax({
+						url : "<%=request.getContextPath()%>/views/product/detailCancelInfo.jsp",
+						dataType: "html",
+						success:function(result){
+							$(".content4").html(result);
+						},error:function(){
+							
+						}
+					})
+				})
+			})
+		</script>
+		<% } %>
 		
 	</div>
-	<% } %>
+
 	
 	<%@ include file="../common/footerbar.jsp" %>
 </body>

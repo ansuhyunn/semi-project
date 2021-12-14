@@ -382,7 +382,7 @@ public class ProductDao {
 		ArrayList<Product> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String sql = prop.getProperty("selectOpenDate");
+		String sql = prop.getProperty("FreeOpenDate");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);

@@ -1,6 +1,6 @@
 package com.kh.product.model.dao;
 
-import static com.kh.common.JDBCTemplate.close;
+import static com.kh.common.JDBCTemplate.*;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -220,6 +220,22 @@ public class ManageDao {
 			close(pstmt);
 		}
 		return list;
+	}
+	
+	
+	// 전시 등록
+	public int insertProduct(Connection conn) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertProduct");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return result;
 	}
 	
 }

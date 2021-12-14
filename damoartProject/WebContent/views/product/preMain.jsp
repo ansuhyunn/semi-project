@@ -2,7 +2,7 @@
     pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.product.model.vo.Product" %>
 <% 
 	ArrayList<Product> preList = (ArrayList<Product>)request.getAttribute("preList");
-%>>
+%>
 <!DOCTYPE html>
 <html>
 <head>

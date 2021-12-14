@@ -26,26 +26,30 @@
 <style>
 div{ box-sizing:border-box; }
     .wrapper{
-        width: 800px;
+        width: 1000px;
         height: 1000px;
-        margin-top: 50px
+        margin: auto;
+        margin-left: auto; 
+        margin-right: auto;
+        margin-top: 80px
     }   
     table{
-        margin: 0 auto;
-        width: 600px;
+        width: 1000px;
+        height: 500px;
         text-align: center;
+        background-color: whitesmoke;
     }
-    th{font-size: 13px;}
+    th{height: 50px; font-size: 13px; background-color:rgb(151, 138, 116);}
     td{font-size: 10px;}
     a{margin: 0 auto;}
-    .button button{
+    .btn{
         width: 115px;
-        margin-left: 110px;
-        margin-top: 30px;
+        margin-left: 200px;
+        margin-top: 40px;
         background-color: rgb(151, 138, 116);
         font-weight: bolder;
     }
-    .button *:hover{
+    .btn *:hover{
         background-color: rgb(203, 185, 153);
         color: whitesmoke;
         font-weight: bolder;
@@ -61,6 +65,7 @@ div{ box-sizing:border-box; }
     <div class="wrapper">
         
         <table border="1px" class="list-area">
+
 			<thead>
 	            <tr style="background-color: lightgrey;">
 	                <th>&nbsp;&nbsp;&nbsp;</th>
@@ -94,14 +99,15 @@ div{ box-sizing:border-box; }
 		        <% } %>
 		     </tbody>    
         </table>
-        
+
+        <!--
         <div class="paging-area" align="center">
         
 			<% if(currentPage != 1){ %>
             	<button onclick="location.href='<%=contextPath%>/managelist.man?cpage=<%=currentPage-1%>';">&lt;</button>
             <% } %>
             
-            <!-- 페이지 p가 startPage부터 endPage까지 1씩 증가 --> 
+             페이지 p가 startPage부터 endPage까지 1씩 증가
             <% for(int p=startPage; p <= endPage; p++){ %>
             	<% if(currentPage == p) {%>
             		<button disabled><%= p %></button>		
@@ -115,6 +121,7 @@ div{ box-sizing:border-box; }
 			<% } %>
 			
         </div>
+        -->
         
         <div class="button">
             <a href="<%= contextPath %>/views/product/manageInsertProduct.jsp" class="btn">등록</a>

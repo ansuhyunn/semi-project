@@ -4,7 +4,7 @@
 	ArrayList<Product> freeList = (ArrayList<Product>)request.getAttribute("freeList");
 	ArrayList<Product> monthList = (ArrayList<Product>)request.getAttribute("monthList");
 	ArrayList<Product> regionList = (ArrayList<Product>)request.getAttribute("regionList");
-%>>
+%>
 
 <!DOCTYPE html>
 <html>

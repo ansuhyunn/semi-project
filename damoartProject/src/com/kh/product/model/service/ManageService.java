@@ -1,6 +1,7 @@
 package com.kh.product.model.service;
 
-import static com.kh.common.JDBCTemplate.*;
+import static com.kh.common.JDBCTemplate.close;
+import static com.kh.common.JDBCTemplate.getConnection;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -38,7 +39,7 @@ public class ManageService {
 		
 		int result = new ManageDao().selectPreCount(conn);
 
-		close(conn);	// select문이지만 list의 정보를 다 가져오는게 아니고 몇개의 행인지만 알면 되므로 commit, rollback이 필요없음
+		close(conn);	
 		return result;
 	}
 	
@@ -59,7 +60,7 @@ public class ManageService {
 		
 		int result = new ManageDao().selectIngCount(conn);
 
-		close(conn);	// select문이지만 list의 정보를 다 가져오는게 아니고 몇개의 행인지만 알면 되므로 commit, rollback이 필요없음
+		close(conn);	
 		return result;
 	}
 	
@@ -71,6 +72,14 @@ public class ManageService {
 		
 		close(conn); 
 		return list;
+	}
+	
+	
+	// 전시 등록
+	public int insertProduct() {
+		Connection conn = getConnection();
+		int result = new ManageDao().insertProduct(conn);
+		return result;
 	}
 
 }

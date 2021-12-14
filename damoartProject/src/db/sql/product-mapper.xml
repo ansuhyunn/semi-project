@@ -202,6 +202,7 @@ SELECT
 </entry>
 
 
+
 <!-- 각 화면 상품 정렬 기준 SQL -->
 <!-- 높은가격정렬 -->
 <entry key="selectHighPrice">
@@ -218,7 +219,7 @@ SELECT
 	 , DETAIL_IMG
 	 , ETC
   FROM PRODUCT
- ORDER BY A_PRICE DESC, T_PRICE DESC;
+ ORDER BY A_PRICE DESC, T_PRICE DESC
 </entry>
 
 <!-- 낮은가격정렬 -->
@@ -236,11 +237,11 @@ SELECT
 	 , DETAIL_IMG
 	 , ETC
   FROM PRODUCT
- ORDER BY A_PRICE, T_PRICE;
+ ORDER BY A_PRICE, T_PRICE
 </entry>
 
 <!-- 오픈날짜정렬 -->
-<entry key="selectOpenDate">
+<entry key="FreeOpenDate">
 SELECT 
   	   PNO
 	 , TITLE
@@ -254,7 +255,8 @@ SELECT
 	 , DETAIL_IMG
 	 , ETC
   FROM PRODUCT
- ORDER BY S_DATE;
+ WHERE A_PRICE = 0
+ ORDER BY S_DATE
 </entry>
 
 <!-- 종료날짜정렬 -->
@@ -272,7 +274,7 @@ SELECT
 	 , DETAIL_IMG
 	 , ETC
   FROM PRODUCT
- ORDER BY E_DATE;
+ ORDER BY E_DATE
 </entry>
 
 <!-- 별점순은 데이터 나오면 하기 -->

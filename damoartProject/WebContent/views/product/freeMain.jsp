@@ -2,7 +2,7 @@
     pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.product.model.vo.Product" %>
 <% 
 	ArrayList<Product> freeList = (ArrayList<Product>)request.getAttribute("freeList");
-%>>
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,32 +24,31 @@
         top: 0; left: 0; right: 0; bottom: 0; margin: auto;
         margin-top: 50px;
     }
-     /* 페이지 이름 스타일 */
+     /* 페이지 이름 스타일 */s
     .name{ width: 100%; height: 30px; }
     #name1{
-        width: 82%;
+        width: 78%;
         font-size: 23px;
         font-weight: bolder;
         float: left;
     }
     /* 페이지 정렬 버튼 스타일 */
-    .name>a{
-        width: 6%; 
+    .name>button{
+        border: none;
+        width: 7%; 
         font-size: 10px;
-        padding-top: 20px;
-        float: left;
-        text-decoration: none;
         color: black;
+        margin-top: 20px;
     }
-    .name>a:hover{font-weight: bolder; text-decoration: none; color: black;}
-    .content1{
+    .name>button:hover{font-weight: bolder; text-decoration: none; color: black;}
+    #content1{
         width: 100%;
         height: 300px;
         margin: auto;
         margin-top: 20px;
         margin-bottom: 50px;
     }
-    .content{
+    #content{
         width: 20%;
         height: 100%;
         float: left;
@@ -88,17 +87,17 @@
     <div class="wrapper">
         <div class="name">
             <div id="name1">무료 전시</div>
-            <a href="">오픈날짜순</a>
-            <a href="">마감임박순</a>
-            <a href="">별점순</a>
+            <button id="type1">오픈날짜순</button>
+            <button id="type2">마감임박순</button>
+            <button id="type3">별점순</button>
         </div>
         <hr class="my-2">
-        <div class="content1">
+        <div id="content1">
         <% if(freeList.isEmpty()) { %>
         	<p> 결과가 없습니다 </p>
         <% } else {%> 
 	        <% for(Product p : freeList){ %>
-	            <div class="content" id="">
+	            <div id="content">
 	           		<div class="poster">
 	           			<input type="hidden" name="num" value="<%= p.getpNo() %>">
 	                	<a href="<%=request.getContextPath()%>/detail.pro?num=<%=p.getpNo()%>">
@@ -121,7 +120,41 @@
         </div>
     </div>   <!-- wrapper클래스 -->
     
-	 
+    <script>
+        $(function(){
+            $("#type1").click(function(){
+                $.ajax({
+                    url : "arrayOpen.pro",
+                    success:function(list){
+                    	
+                    	let result = "";
+                    	for(let i=0; i<list.length; i++){
+							result += "<div id=\"content\">"
+									+ "<div class=\"poster\">"
+									+ "<input type=\"hidden\" name=\"num\" value=\"" + list[i].pno + ">"
+									+ "<a href=\"" + "<%=request.getContextPath()%>/detail.pro?num=" + list[i].pno + ">"
+	                			    + "<img src=\"<%=request.getContextPath()%>/" + list[i].mainImg + "\" width=\"100%\" height=\"100%\">"
+		                		    + "</a>"
+		                		    + "</div>"
+		                		    + "<div class=\"info\">"
+		                		    + "<p class=\"title\">" + list[i].title
+		                		    + "</p>"
+		                		    + "<p class=\"summary\">" + list[i].sDate + "~" + list[i].eDate + "<br>" + list[i].area
+		                		    + "</p>"
+		                		    + "</div>"
+		                		    + "</div>"
+                    	}
+                    	
+                    	$("#content1").html(result);
+                    	console.log(result);
+                    },error:function(){
+                        
+                    }
+                });
+            })
+            
+        })
+    </script>
    
 
     

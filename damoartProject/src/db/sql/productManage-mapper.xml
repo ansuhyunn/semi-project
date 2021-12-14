@@ -102,6 +102,50 @@ SELECT *
 </entry>
 
 
+<!-- 전시등록 -->
+<entry key="insertProduct">
+INSERT 
+  INTO PRODUCT
+  (
+    PNO
+  , ENROLL_DATE
+  , TITLE
+  , REGION
+  , AGE
+  , AREA
+  , S_DATE
+  , E_DATE
+  , TIME
+  , A_PRICE
+  , T_PRICE
+  , C_PRICE
+  , MAIN_IMG
+  , DETAIL_IMG
+  , ETC
+  , SOLDOUT
+  )
+VALUES
+  (
+    SEQ_RNO.NEXTVAL
+  , DEFAULT
+  , ?
+  , ?
+  , ?
+  , ?
+  , ?
+  , ?
+  , ?
+  , ?
+  , ?
+  , ?
+  , ?
+  , ?
+  , ?
+  , DEFAULT
+  )
+  </entry>
+
+
 	
 	
 </properties>

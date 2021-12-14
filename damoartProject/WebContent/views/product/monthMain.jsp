@@ -2,7 +2,7 @@
     pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.product.model.vo.Product" %>
 <% 
 	ArrayList<Product> monthList = (ArrayList<Product>)request.getAttribute("monthList");
-%>>
+%>
 <!DOCTYPE html>
 <html>
 <head>

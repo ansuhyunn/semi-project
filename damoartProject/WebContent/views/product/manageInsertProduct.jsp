@@ -16,9 +16,13 @@
 <style>
     div{ box-sizing:border-box; }
     .wrapper{
-        width: 800px;
+        width: 1000px;
         height: 1000px;
-    }
+        margin: auto;
+        margin-left: auto; 
+        margin-right: auto;
+        margin-top: 80px
+    } 
     form>table{
         width: 600px;
         height: 800px;
@@ -37,7 +41,7 @@
         </div>
         <hr class="my-2">
         <br>
-        <form action="<%= contextPath %>/manageInsert.pro" method="post" enctype="multipart/form-data">
+        <form action="<%= request.getContextPath() %>/manageInsert.pro" method="post" enctype="multipart/form-data">
             <table border=1px>
                 <tr>
                     <th>상품코드</th>
@@ -81,30 +85,30 @@
                     <th>관람연령</th>
                     <td colspan="2">
                     	<input type="checkbox" name="age" id="all" value="전체이용가">
-                        <label for="all">전체이용가</label>
+                        <label for="all">전체이용가 </label>
                         
                         <input type="checkbox" name="age" id="24" value="24개월 이상">
-                        <label for="24">24개월</label>
+                        <label for="24">24개월 이상 </label>
                         
                         <input type="checkbox" name="age" id="36" value="36개월 이상">
-                        <label for="36">36개월</label>
+                        <label for="36">36개월 이상 </label>
                         
                         <input type="checkbox" name="age" id="48" value="48개월 이상">
-                        <label for="48">48개월</label>
+                        <label for="48">48개월 이상 </label>
                         
                         <br>
                         
                         <input type="checkbox" name="age" id="child" value="초등학생">
-                        <label for="child">초등학생</label>
+                        <label for="child">초등학생 </label>
                         
-                        <input type="checkbox" name="region" id="teen" value="중학생">
-                        <label for="teen">중학생</label>
+                        <input type="checkbox" name="age" id="teen" value="중학생">
+                        <label for="teen">중학생 </label>
                         
-                        <input type="checkbox" name="region" id="high" value="고등학생">
-                        <label for="high">고등학생</label>
+                        <input type="checkbox" name="age" id="high" value="고등학생">
+                        <label for="high">고등학생 </label>
                         
-                        <input type="checkbox" name="region" id="adult" value="성인">
-                        <label for="adult">성인</label>
+                        <input type="checkbox" name="age" id="adult" value="성인">
+                        <label for="adult">성인 </label>
                    </td>
                 </tr>
                 <tr>
@@ -145,7 +149,7 @@
                 </tr>
                 <tr>
                     <th>품절여부</th>
-                    <td><input type="text" name="soldout" required></td>
+                    <td>N</td>
                 </tr>
             </table>
             <br><br>
