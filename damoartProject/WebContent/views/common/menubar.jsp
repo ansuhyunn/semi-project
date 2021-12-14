@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.kh.member.model.vo.Member"%>
     
 <% 
 	String contextPath = request.getContextPath();
+
+	Member loginUser = (Member)session.getAttribute("loginUser");
 %>
 <!DOCTYPE html>
 <html>
@@ -152,9 +154,15 @@
             </div>
             <div id="header_3">
                 <div id="buttons">
-                    <a href="<%=contextPath%>/views/order/cart.jsp" id="cart_btn" class="btn btn-sm">장바구니</a>
-                    <a href="" id="login_btn" class="btn btn-sm">로그인</a>
-                    <a href="" id="enroll_btn" class="btn btn-sm">회원가입</a>
+                	<% if(loginUser == null) { %> 
+	                    <a href="<%=contextPath%>/views/order/cart.jsp" id="cart_btn" class="btn btn-sm">장바구니</a>
+	                    <a href="<%=contextPath%>/loginPage.me" id="login_btn" class="btn btn-sm">로그인</a>
+	                    <a href="" id="enroll_btn" class="btn btn-sm">회원가입</a>
+                    <% }else { %>
+                    	<a href="<%=contextPath%>/views/order/cart.jsp" id="cart_btn" class="btn btn-sm">장바구니</a>
+                    	<a href="" id="myPage_btn" class="btn btn-sm">마이페이지</a>
+                    	<a href="" id="logout_btn" class="btn btn-sm">로그아웃</a>
+                    <% } %>
                 </div>
                 <div id="search_area">
                     <br>

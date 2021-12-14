@@ -29,25 +29,26 @@
         }
         .outer{
             margin:auto;
-            margin-top:200px;
+            margin-top:70px;
             height:1000px;
         }
-        ul{margin-left:550px;}
-        ul li{
+        .enrollList{margin-left:36%;}
+        .enrollList li{
             list-style:none;
             float:left;  
             padding:15px;
             margin:auto;
+            font-size:20px;
             font-weight:bold;
         }
         .enrollList-2, .enrollList-3{
             color:rgb(104, 102, 102);
         }
         .enrollAgreeForm {
-            width: 700px;
-            margin: 50px auto 0;
-            padding: 70px 40px;
-            border-radius: 4px;
+            width:900px;
+            margin:5px auto 0;
+            padding:70px 40px;
+            border-radius:4px;
         }
         textarea{
             background:rgba(255, 255, 255, 0.45);
@@ -60,7 +61,7 @@
             font-weight:bold;
             margin:30px;
         }
-        .btn-mem.back{background:rgb(245, 236, 220);}
+        .btn-mem.back{background:rgb(203, 185, 153);}
         .btn-mem.next{
             background:rgba(78, 67, 44, 0.6);
             color:white;
@@ -81,7 +82,7 @@
             <li class="enrollList-3">03 가입완료</li>
         </ul>
         <br><br>
-        <hr>
+        <hr style="width:50%;">
 
         
           <div class="enrollAgreeForm">
@@ -101,7 +102,7 @@
                       <label for="agree1">이용약관 동의 <span style="color:red;">(필수)</span></label>
                   </fieldset>
                   
-                  <textarea cols="75" rows="8" style="resize:none;">제1조(목적) 이 약관은 업체 회사(전자상거래 사업자)가 운영하는 업체 사이버 몰(이하 “몰”이라 한다)에서 제공하는 인터넷 관련 서비스(이하 “서비스”라 한다)를 이용함에 있어 사이버 몰과 이용자의 권리․의무 및 책임사항을 규정함을 목적으로 합니다.
+                  <textarea cols="110" rows="8" style="resize:none;">제1조(목적) 이 약관은 업체 회사(전자상거래 사업자)가 운영하는 업체 사이버 몰(이하 “몰”이라 한다)에서 제공하는 인터넷 관련 서비스(이하 “서비스”라 한다)를 이용함에 있어 사이버 몰과 이용자의 권리․의무 및 책임사항을 규정함을 목적으로 합니다.
             
                     ※「PC통신, 무선 등을 이용하는 전자상거래에 대해서도 그 성질에 반하지 않는 한 이 약관을 준용합니다.」
                   
@@ -348,7 +349,7 @@
                       <label for="agree2">개인정보 수집 및 이용 동의 <span style="color:red;">(필수)</span></label>
                   </fieldset>
           
-                <textarea cols="75" rows="8" style="resize:none;">개인정보처리방침
+                <textarea cols="110" rows="8" style="resize:none;">개인정보처리방침
                 
                   [차례]
                   1. 총칙
