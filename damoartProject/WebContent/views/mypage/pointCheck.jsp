@@ -150,7 +150,7 @@
         float:left;
         font-size:14px;
         font-weight:bold;
-        margin-left:20px;
+        margin-left:15px;
         margin-top:20px;
         margin-right:20px;
         letter-spacing: -0.5px;
@@ -166,13 +166,18 @@
 
     .select-range{
         width:700px;
-        padding-left:20px;
+        margin-left:-10px;
     }
 
     .select-btn{
-        width:50px;
+        width:60px;
         float:right;
         margin-top:-30px;
+    }
+    .select-btn button{font-size:13px;}
+
+    #date_btn{
+        font-size:12px;
     }
     #date_btn:focus{
         background:rgb(182, 167, 141);
@@ -183,13 +188,15 @@
     .container{
         height:30%;
         padding-top:70px;
+        font-size:13px;
     }
 
     .container th, #table_date{text-align:center;}
 
     #table_point{
-        color:white;
+        color:black;
         font-weight:600;
+        padding-left:30px;
     }
 </style>
 </head>
@@ -226,22 +233,22 @@
             <ul>  	
                 <li><h3>마이쇼핑</h3></li>
                 <div>
-                    <a href="" id="submenu">예매 내역</a> <br>
-                    <a href="" id="submenu">취소/환불 내역</a> <br>
-                    <a href="" id="submenu">적립금 내역</a> <br>
+                    <a href="<%=request.getContextPath() %>/views/mypage/reserveDetail.jsp" id="submenu">예매 내역</a> <br>
+                    <a href="<%=request.getContextPath() %>/views/mypage/refundDetail.jsp" id="submenu">취소/환불 내역</a> <br>
+                    <a href="<%=request.getContextPath() %>/views/mypage/pointCheck.jsp" id="submenu" style="color:rgb(151, 138, 116)">적립금 내역</a> <br>
                     <hr width="120" align="left">
-                    <a href="" id="submenu">최근 본 상품</a> <br>
-                    <a href="" id="submenu">찜한 상품</a>
+                    <a href="<%=request.getContextPath() %>/views/mypage/recentlyViewProduct.jsp" id="submenu">최근 본 상품</a> <br>
+                    <a href="<%=request.getContextPath() %>/views/mypage/likeProduct.jsp" id="submenu">찜한 상품</a>
                 </div><br>
                 <li><h3>마이활동</h3></li>
                 <div>
                     <a href="" id="submenu">리뷰 내역</a> <br>
-                    <a href="" id="submenu">Q&A 내역</a> <br>
+                    <a href="<%=request.getContextPath() %>/views/mypage/memberQnaList.jsp" id="submenu">Q&A 내역</a> <br>
                 </div><br>
                 <li><h3>마이정보</h3></li>
                 <div>
-                    <a href="" id="submenu">회원정보 수정</a> <br>
-                    <a href="" id="submenu">회원 탈퇴</a> <br>
+                    <a href="<%=request.getContextPath() %>/views/mypage/pwdVerificationMemUpdate.jsp" id="submenu">회원정보 수정</a> <br>
+                    <a href="<%=request.getContextPath() %>/views/mypage/pwdVerificationMemDelete.jsp" id="submenu">회원 탈퇴</a> <br>
                 </div>
             </ul>
         </div>
@@ -255,24 +262,25 @@
                 <p>예매기간</p>
                 <ul class="select_date">
                     <li>
-                        <button type="button" id="date_btn">일주일</button>
+                        <button type="button" id="date_btn" class="btn btn-outline-secondary">일주일</button>
                     </li>
                     <li>
-                        <button type="button" id="date_btn">1개월</button>
+                        <button type="button" id="date_btn" class="btn btn-outline-secondary">1개월</button>
                     </li>
                     <li>
-                        <button type="button" id="date_btn">3개월</button>
+                        <button type="button" id="date_btn" class="btn btn-outline-secondary">3개월</button>
                     </li>
                     <li>
-                        <button type="button" id="date_btn">6개월</button>
+                        <button type="button" id="date_btn" class="btn btn-outline-secondary">6개월</button>
                     </li>
                 </ul>
                 <div class="select-range" align="right">
-                    <input type="date" id="start" name="select-start" value="2021-12-01" min="2020-01-01"> ~
-                    <input type="date" id="end" name="select-end" value="2021-12-31" max="2022-12-31">
+                    <input type="date" id="start" name="select-start" value="2021-12-01" min="2020-01-01"> 
+                     ~
+                    <input type="date" id="end" name="select-end" value="2021-12-01" min="2020-01-01"> 
                 </div>
                 <div class="select-btn" align="left">
-                    <button type="button">조회</button>
+                    <button type="button" class="btn btn-outline-secondary">조회</button>
                 </div>
                 
             <div class="container">
@@ -280,8 +288,8 @@
                 <table class="table">
                   <thead>
                     <tr style="background:rgb(203, 185, 153)">
-                      <th width="160">날짜</th>
-                      <th width="460">내용</th>
+                      <th width="140">날짜</th>
+                      <th width="480">내용</th>
                       <th width="110">적립/사용</th>
                     </tr>
                   </thead>

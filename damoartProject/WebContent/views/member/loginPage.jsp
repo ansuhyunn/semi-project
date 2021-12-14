@@ -30,13 +30,14 @@
         }
         .outer{
             margin:auto;
-            margin-top:200px;
+            margin-top:100px;
             height:700px;
         }
         ul.tabs{
             list-style:none;
             padding:0px;
             margin:0px;
+            font-weight:bold;
         }
         ul.tabs li{
             width:197px;
@@ -95,14 +96,17 @@
 
         <!--회원 로그인-->
         <div id="tab-1" class="tab-loginform current">
-            <form action="" method="post" class="inputlogin">
+            <form action="<%=contextPath%>/memlogin.me" method="post" class="inputlogin">
                 <div align="center">
-                    <input type="text" class="input" name="userId" placeholder="아이디" required> <br>
-                    <input type="password" class="input" name="userPwd" placeholder="비밀번호" required> <br><br>
+                    <input type="text" class="input" name="memId" placeholder="아이디" required> <br>
+                    <input type="password" class="input" name="memPwd" placeholder="비밀번호" required> <br><br>
+                    <div class="form-group form-check">
+                        <label class="form-check-label" id="checkId" style="margin-left:-290px;">
+                          <input class="form-check-input" type="checkbox"> 아이디 저장
+                        </label>
+                    </div>
                 </div>
-                <div style="padding-left:37%;">
-                    <input type="checkbox" id="saveid">아이디저장 <br><br>
-                </div>
+                
                 <div align="center">    
                     <button type="submit" class="btn-mem">로그인</button> <br><br>
                 </div>    
@@ -114,10 +118,10 @@
             <form action="" method="post" align="center">
                         <input type="text" class="input" name="phone" placeholder="휴대전화번호" required> <br>
                         <input type="password" class="input" name="orderNum" placeholder="주문번호" required> <br><br>
-                        <button type="submit" class="btn-mem">주문조회</button> <br>
+                        <button type="submit" class="btn-mem">주문조회</button> <br><br>
             </form>
         </div>
-        <hr>
+        <hr style="width:30%;">
         <!--하단-->
         <div id="tab-1-etc" class="tab-loginform-etc" align="center">
             <a href="">아이디 찾기</a>

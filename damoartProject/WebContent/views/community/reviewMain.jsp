@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.board.model.vo.Board"%>
-<%
-	ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");
-%>
+    pageEncoding="UTF-8" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,7 +46,7 @@
     <%@ include file="../common/menubar.jsp" %>
 
     
-	
+	 
 	<div class="wrap">
         <br>
         
@@ -66,7 +64,7 @@
             <!--썸네일 한개-->
             <div class="thumbnail" align="center"> <!-- center 안하면 치우쳐지는데 글씨가..-->
                 <br>
-                <input type="hidden" value="<%= b.getBoardNo() %>">
+                <input type="hidden" value="">
                 <img src="이미지경로" width="180" height="180">
                 <p align=""> <!--중앙할지 좌측정렬할지..우선은 중앙-->
 
@@ -79,7 +77,7 @@
              <!--썸네일 한개-->
              <div class="thumbnail" align="center"> <!-- center 안하면 치우쳐지는데 글씨가..-->
                 <br>
-                <input type="hidden" value="<%= b.getBoardNo() %>">
+                <input type="hidden" value="">
                 <img src="이미지경로" width="180" height="180">
                 <p align=""> <!--중앙할지 좌측정렬할지..우선은 중앙-->
                    ㅇㅇㅇ전 보고왔어요~ [9]<!--[9] 댓글=> count방식으로?<<<- 찾아볼 것--> <br>
@@ -91,7 +89,7 @@
              <!--썸네일 한개-->
              <div class="thumbnail" align="center"> <!-- center 안하면 치우쳐지는데 글씨가..-->
                 <br>
-                <input type="hidden" value="<%= b.getBoardNo() %>">
+                <input type="hidden" value="">
                 <img src="이미지경로" width="180" height="180">
                 <p align=""> <!--중앙할지 좌측정렬할지..우선은 중앙-->
                    ㅇㅇㅇ전 보고왔어요~ [9]<!--[9] 댓글=> count방식으로?<<<- 찾아볼 것--> <br>
@@ -103,7 +101,7 @@
              <!--썸네일 한개-->
              <div class="thumbnail" align="center"> <!-- center 안하면 치우쳐지는데 글씨가..-->
                 <br>
-                <input type="hidden" value="<%= b.getBoardNo() %>">
+                <input type="hidden" value="">
                 <img src="이미지경로" width="180" height="180">
                 <p align=""> <!--중앙할지 좌측정렬할지..우선은 중앙-->
                    ㅇㅇㅇ전 보고왔어요~ [9]<!--[9] 댓글=> count방식으로?<<<- 찾아볼 것--> <br>
@@ -115,7 +113,7 @@
              <!--썸네일 한개-->
              <div class="thumbnail" align="center"> <!-- center 안하면 치우쳐지는데 글씨가..-->
                 <br>
-                <input type="hidden" value="<%= b.getBoardNo() %>">
+                <input type="hidden" value="">
                 <img src="이미지경로" width="180" height="180">
                 <p align=""> <!--중앙할지 좌측정렬할지..우선은 중앙-->
                    ㅇㅇㅇ전 보고왔어요~ [9]<!--[9] 댓글=> count방식으로?<<<- 찾아볼 것--> <br>
@@ -127,7 +125,7 @@
              <!--썸네일 한개-->
              <div class="thumbnail" align="center"> <!-- center 안하면 치우쳐지는데 글씨가..-->
                 <br>
-                <input type="hidden" value="<%= b.getBoardNo() %>">
+                <input type="hidden" value="">
                 <img src="이미지경로" width="180" height="180">
                 <p align=""> <!--중앙할지 좌측정렬할지..우선은 중앙-->
                    ㅇㅇㅇ전 보고왔어요~ [9]<!--[9] 댓글=> count방식으로?<<<- 찾아볼 것--> <br>
@@ -139,7 +137,7 @@
              <!--썸네일 한개-->
              <div class="thumbnail" align="center"> <!-- center 안하면 치우쳐지는데 글씨가..-->
                 <br>
-                <input type="hidden" value="<%= b.getBoardNo() %>">
+                <input type="hidden" value="">
                 <img src="이미지경로" width="180" height="180">
                 <p align=""> <!--중앙할지 좌측정렬할지..우선은 중앙-->
                    ㅇㅇㅇ전 보고왔어요~ [9]<!--[9] 댓글=> count방식으로?<<<- 찾아볼 것--> <br>
@@ -151,7 +149,7 @@
              <!--썸네일 한개-->
              <div class="thumbnail" align="center"> <!-- center 안하면 치우쳐지는데 글씨가..-->
                 <br>
-                <input type="hidden" value="<%= b.getBoardNo() %>">
+                <input type="hidden" value="">
                 <img src="이미지경로" width="180" height="180">
                 <p align=""> <!--중앙할지 좌측정렬할지..우선은 중앙-->
                    ㅇㅇㅇ전 보고왔어요~ [9]<!--[9] 댓글=> count방식으로?<<<- 찾아볼 것--> <br>

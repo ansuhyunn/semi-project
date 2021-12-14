@@ -29,16 +29,17 @@
         }
         .outer{
             margin:auto;
-            margin-top:200px;
-            height:1000px;
+            margin-top:70px;
+            height:800px;
         }
-        ul{margin-left:36%;}
-        ul li{
+        .enrollList{margin-left:36%;}
+        .enrollList li{
             list-style:none;
             float:left;
             padding:15px;  
             margin:auto;
             font-weight:bold;
+            font-size:20px;
         }
         .enrollList-1, .enrollList-2{
             color:rgb(104, 102, 102);
@@ -49,7 +50,7 @@
             margin-left:47%; 
         }
         #comment1{
-            font-size:20px;
+            font-size:30px;
             font-weight:bold;
         }
         .btn-mem{
@@ -59,6 +60,7 @@
             border:none;
             font-weight:bold;
             margin:10px;
+            border-radius:3px;
         }
         
     </style>
@@ -69,17 +71,19 @@
     <div class="outer">
         <br>
         <h2 align="center" style="font-weight:bold">회원가입</h2><br>
-        <ul class="enrollList">
-            <li class="enrollList-1" >01 약관동의</li>
-            <li class="enrollList-2">02 회원가입</li>
-            <li class="enrollList-3">03 가입완료</li>
-        </ul>
+        <div align="center">
+            <ul class="enrollList">
+                <li class="enrollList-1" >01 약관동의</li>
+                <li class="enrollList-2">02 회원가입</li>
+                <li class="enrollList-3">03 가입완료</li>
+            </ul>
+        </div>
         <br><br>
-        <hr>
+        <hr style="width:50%;">
         <img src="../../resources/images/check.png" width="100" class="img">
         <br><br>
         <p id="comment1" align="center">DAMOART 회원가입이 완료되었습니다. </p>
-        <p id="comment2" align="center">xxx님의 가입을 환영합니다!</p>
+        <p id="comment2" align="center" style="font-size:20px;">xxx님의 가입을 환영합니다!</p>
 
         <div align="center">
             <button class="btn-mem">> 로그인 화면으로 이동</button> <br>

@@ -199,22 +199,22 @@
             <ul>  	
                 <li><h3>마이쇼핑</h3></li>
                 <div>
-                    <a href="" id="submenu">예매 내역</a> <br>
-                    <a href="" id="submenu">취소/환불 내역</a> <br>
-                    <a href="" id="submenu">적립금 내역</a> <br>
+                    <a href="<%=request.getContextPath() %>/views/mypage/reserveDetail.jsp" id="submenu">예매 내역</a> <br>
+                    <a href="<%=request.getContextPath() %>/views/mypage/refundDetail.jsp" id="submenu">취소/환불 내역</a> <br>
+                    <a href="<%=request.getContextPath() %>/views/mypage/pointCheck.jsp" id="submenu">적립금 내역</a> <br>
                     <hr width="120" align="left">
-                    <a href="" id="submenu">최근 본 상품</a> <br>
-                    <a href="" id="submenu">찜한 상품</a>
+                    <a href="<%=request.getContextPath() %>/views/mypage/recentlyViewProduct.jsp" id="submenu">최근 본 상품</a> <br>
+                    <a href="<%=request.getContextPath() %>/views/mypage/likeProduct.jsp" id="submenu">찜한 상품</a>
                 </div><br>
                 <li><h3>마이활동</h3></li>
                 <div>
                     <a href="" id="submenu">리뷰 내역</a> <br>
-                    <a href="" id="submenu">Q&A 내역</a> <br>
+                    <a href="<%=request.getContextPath() %>/views/mypage/memberQnaList.jsp" id="submenu">Q&A 내역</a> <br>
                 </div><br>
                 <li><h3>마이정보</h3></li>
                 <div>
-                    <a href="" id="submenu">회원정보 수정</a> <br>
-                    <a href="" id="submenu">회원 탈퇴</a> <br>
+                    <a href="<%=request.getContextPath() %>/views/mypage/pwdVerificationMemUpdate.jsp" id="submenu">회원정보 수정</a> <br>
+                    <a href="<%=request.getContextPath() %>/views/mypage/pwdVerificationMemDelete.jsp" id="submenu" id="submenu">회원 탈퇴</a> <br>
                 </div>
             </ul>
         </div>
@@ -250,7 +250,7 @@
                         안내 사항을 모두 확인하였으며, 이에 동의합니다.
                     </div>
 
-                    <br><br>
+                    <br><br><br>
                     
                 </div>
                 <div class="update_button" align="center">
@@ -260,7 +260,7 @@
             </div>
         </div>
     </div>
-
+    <br><br><br>
     <%@ include file="../common/footerbar.jsp" %>
 </body>
 </html>

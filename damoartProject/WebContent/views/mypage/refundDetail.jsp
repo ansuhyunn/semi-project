@@ -5,7 +5,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <style>
     /*회원박스 스타일*/
     .mypage_top{
@@ -51,7 +57,7 @@
         height:1000px;
         background:#e1d5bf;
         margin:auto;
-        }
+    }
     #content_1, #content_2{
         box-sizing:border-box;
         height:100%;
@@ -66,12 +72,12 @@
         height:100%;
         float:left;
     }
+
     #content_1 h2{
         padding: 5px 0 20px 1px;
 		letter-spacing:-1px;
         font-size:28px;
         font-weight:700;
-        letter-spacing:-1px;
     }
     .mem-box{
         height:120px;
@@ -119,7 +125,7 @@
 
     /*content_2*/
     .contents{
-        height:30%;
+        height:25%;
         padding-top:15px;
         padding-left:30px;
     }
@@ -128,7 +134,7 @@
     .order_box{
         margin:auto;
         width:765px; 
-        height:130px;
+        height:120px;
         border-radius:10px;
         position:absolute;
     }
@@ -168,7 +174,50 @@
         line-height:40px;
         margin-left:120px;
     }
-    .fas fa-angle-right{size:50x;}
+
+    /*예매날짜*/
+    .order_date{
+        margin:auto;
+        margin-left:30px;
+        width:765px; 
+        height:60px;
+        border-radius:10px;
+        position:absolute;
+    }
+
+    .order_date>p{
+        float:left;
+        font-size:14px;
+        font-weight:bold;
+        margin-left:20px;
+        margin-top:20px;
+        margin-right:20px;
+        letter-spacing: -0.5px;
+    }
+
+    .select_date>li{
+        float:left;
+        width:auto;
+        height:28px;
+        margin-left:5px;
+        margin-top:15px;
+    }
+
+    .select-range{
+        width:700px;
+        padding-left:20px;
+    }
+
+    .select-btn{
+        width:50px;
+        float:right;
+        margin-top:-30px;
+    }
+    #date_btn:focus{
+        background:rgb(182, 167, 141);
+        color:white;
+    }
+
 </style>
 </head>
 <body>
@@ -205,33 +254,36 @@
                 <li><h3>마이쇼핑</h3></li>
                 <div>
                     <a href="<%=request.getContextPath() %>/views/mypage/reserveDetail.jsp" id="submenu">예매 내역</a> <br>
-                    <a href="<%=request.getContextPath() %>/views/mypage/refundDetail.jsp" id="submenu">취소/환불 내역</a> <br>
+                    <a href="<%=request.getContextPath() %>/views/mypage/refundDetail.jsp" id="submenu" style="color:rgb(151, 138, 116)">취소/환불 내역</a> <br>
                     <a href="<%=request.getContextPath() %>/views/mypage/pointCheck.jsp" id="submenu">적립금 내역</a> <br>
                     <hr width="120" align="left">
-                    <a href="<%=request.getContextPath() %>/views/mypage/recentlyViewProduct.jsp" id="submenu">최근 본 상품</a> <br>
-                    <a href="<%=request.getContextPath() %>/views/mypage/likeProduct.jsp" id="submenu">찜한 상품</a>
+                    <a href="" id="submenu">최근 본 상품</a> <br>
+                    <a href="" id="submenu">찜한 상품</a>
                 </div><br>
                 <li><h3>마이활동</h3></li>
                 <div>
                     <a href="" id="submenu">리뷰 내역</a> <br>
-                    <a href="<%=request.getContextPath() %>/views/mypage/memberQnaList.jsp" id="submenu">Q&A 내역</a> <br>
+                    <a href="" id="submenu">Q&A 내역</a> <br>
                 </div><br>
                 <li><h3>마이정보</h3></li>
                 <div>
-                    <a href="<%=request.getContextPath() %>/views/mypage/pwdVerificationMemUpdate.jsp" id="submenu">회원정보 수정</a> <br>
-                    <a href="<%=request.getContextPath() %>/views/mypage/pwdVerificationMemDelete.jsp" id="submenu">회원 탈퇴</a> <br>
+                    <a href="" id="submenu">회원정보 수정</a> <br>
+                    <a href="" id="submenu">회원 탈퇴</a> <br>
                 </div>
             </ul>
         </div>
         <div id="content_2">
             <div class="contents">
-                <h4 class="contents_tit">예매 내역</h4><br>
+                <h4 class="contents_tit">취소/환불 내역</h4><br>
                 <div class="order_box" style="background:rgba(255, 255, 255, 0.45)">
                 <a href="" class="order_view">
                     <ul class="order-step">
                         <li id="step_li">
                             <em> 0 </em><br>
                             <span>입금대기</span>
+                        </li>
+                        <li>
+                        	
                         </li>
                         <li id="step_li">
                             <em> 0 </em><br>
@@ -245,32 +297,42 @@
                 </a>    
                 </div>
             </div>
-            <div class="contents">
-                <h4 class="contents_tit">찜한 상품</h4>
-                <hr align="left" width="765" color="rgb(64, 64, 64)" size="1">
-                <!--찜한 내역이 없을 경우-->
-                <div id="exclamationmark_icon">
-                    <img src="<%=request.getContextPath() %>/resources/images/exclamationmark.png" width="70px" height="70px"> 
-                </div>
-                <br>
-                <div id="like_product_txt">
-                    <p align="center">찜한 내역이 없습니다.</p>
-                </div>
 
-            </div>
-            <div class="contents">
-                <h4 class="contents_tit">Q&A 내역</h4>
-                <hr align="left" width="765" color="rgb(64, 64, 64)" size="1">
-                <!--Q&A 내역이 없을 경우-->
-                <div id="exclamationmark_icon">
-                    <img src="<%=request.getContextPath() %>/resources/images/exclamationmark.png" width="70px" height="70px"> 
+            <div class="order_date" style="background:rgba(255, 255, 255, 0.74)">
+                <p>예매기간</p>
+                <ul class="select_date">
+                    <li>
+                        <button type="button" id="date_btn">일주일</button>
+                    </li>
+                    <li>
+                        <button type="button" id="date_btn">1개월</button>
+                    </li>
+                    <li>
+                        <button type="button" id="date_btn">3개월</button>
+                    </li>
+                    <li>
+                        <button type="button" id="date_btn">6개월</button>
+                    </li>
+                </ul>
+                <div class="select-range" align="right">
+                    <input type="date" id="start" name="select-start" value="2021-12-01" min="2020-01-01"> ~
+                    <input type="date" id="end" name="select-end" value="2021-12-31" max="2022-12-31">
                 </div>
-                <br>
-                <div id="qna_txt">
-                    <p align="center">Q&A 내역이 없습니다.</p>
+                <div class="select-btn" align="left">
+                    <button type="button">조회</button>
                 </div>
+                
+            </div class="">
+            
+    
             </div>
+
+            
         </div>
+
+        
+
+    
     </div>
 
     <%@ include file="../common/footerbar.jsp" %>

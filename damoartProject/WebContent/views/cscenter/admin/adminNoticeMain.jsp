@@ -69,6 +69,11 @@
         background:white;
         font-size:14px;
     }
+    
+    #list-area>tbody>tr:hover{
+    	background:rgb(240, 239, 239);
+    	cursor:pointer;
+    }
 
 
     
@@ -81,7 +86,6 @@
 	<%@ include file="../../common/manageMenubar_2.jsp" %>
 		
 		<div id="outer">
-			<a href="">고객센터</a>&gt<a href=""><b>공지사항</b></a>
             <br><br>
 			<h4 style="font-weight: bolder;">공지사항 관리</h4>
             
@@ -96,7 +100,7 @@
                     </form>
                 </div>
                 <div class="button" width="50%">
-                    <a href="" class="btn btn-sm" id="enroll">공지 등록</a>
+                    <a href="<%= contextPath %>/enrollForm.no" class="btn btn-sm" id="enroll">공지 등록</a>
                     <a href="" class="btn btn-sm" id="delete">선택 삭제</a>
                 </div>
             </div>
@@ -132,6 +136,13 @@
                         <% } %>
                     </tbody>
                 </table>
+                <script>
+                	$(function(){
+                		$("#list-area>tbody>tr").click(function(){
+                			location.href='<%=contextPath%>/adminDatail.no?nno=' + $(this).children().eq(1).text();
+                		})
+                	})
+                </script>
                 <div class="paging-area" align="center">
                 	<% if(currentPage != 1) {%>
                     	<button class="btn" onclick="location.href='<%=contextPath%>/list.no?cpage=<%=currentPage-1%>'">&lt;</button>

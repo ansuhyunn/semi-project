@@ -5,7 +5,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 <style>
     /*회원박스 스타일*/
     .mypage_top{
@@ -66,6 +73,9 @@
         height:100%;
         float:left;
     }
+    #content_1{width:20%;}
+    #content_2{width:80%;}
+
     #content_1 h2{
         padding: 5px 0 20px 1px;
 		letter-spacing:-1px;
@@ -124,51 +134,23 @@
         padding-left:30px;
     }
 
-    /*예매내역*/
-    .order_box{
-        margin:auto;
-        width:765px; 
-        height:130px;
-        border-radius:10px;
-        position:absolute;
-    }
-    
-    /*찜한상품, qna내역이 없을 경우*/
-    #exclamationmark_icon{
-    	padding-left:345px;
-        padding-top:35px;
+    /*회원정보 수정*/
+    #delete_success_tit{
+        font-size:17px;
+        font-weight:700;
     }
 
-    .order_view{
-        color:#666;
-        text-decoration:none;
+    #delete_success_context{
+        font-size:13px;
     }
-
-    #step_li{
-        float:left;
-        position:relative;
-        width:29%;
-        height:100px;
-        margin:auto;
-        margin-top:10px;
+    #check_btn{
+        width:100px;
+        height:40px;
+        background:rgb(182, 167, 141);
+        border:none;
+        font-size:15px;
+        font-weight:600;
     }
-
-    em{
-        top:25px;
-        color:#888;
-        font-style:normal;
-        font-size:50px;
-        line-height:50px;
-        font-weight:500;
-        padding-left:140px;
-    }
-    span{
-        color: #666;
-        font-size:16px;
-        line-height:40px;
-        margin-left:120px;
-    }
-    .fas fa-angle-right{size:50x;}
 </style>
 </head>
 <body>
@@ -204,70 +186,40 @@
             <ul>  	
                 <li><h3>마이쇼핑</h3></li>
                 <div>
-                    <a href="<%=request.getContextPath() %>/views/mypage/reserveDetail.jsp" id="submenu">예매 내역</a> <br>
-                    <a href="<%=request.getContextPath() %>/views/mypage/refundDetail.jsp" id="submenu">취소/환불 내역</a> <br>
-                    <a href="<%=request.getContextPath() %>/views/mypage/pointCheck.jsp" id="submenu">적립금 내역</a> <br>
+                    <a href="" id="submenu">예매 내역</a> <br>
+                    <a href="" id="submenu">취소/환불 내역</a> <br>
+                    <a href="" id="submenu">적립금 내역</a> <br>
                     <hr width="120" align="left">
-                    <a href="<%=request.getContextPath() %>/views/mypage/recentlyViewProduct.jsp" id="submenu">최근 본 상품</a> <br>
-                    <a href="<%=request.getContextPath() %>/views/mypage/likeProduct.jsp" id="submenu">찜한 상품</a>
+                    <a href="" id="submenu">최근 본 상품</a> <br>
+                    <a href="" id="submenu">찜한 상품</a>
                 </div><br>
                 <li><h3>마이활동</h3></li>
                 <div>
                     <a href="" id="submenu">리뷰 내역</a> <br>
-                    <a href="<%=request.getContextPath() %>/views/mypage/memberQnaList.jsp" id="submenu">Q&A 내역</a> <br>
+                    <a href="" id="submenu">Q&A 내역</a> <br>
                 </div><br>
                 <li><h3>마이정보</h3></li>
                 <div>
-                    <a href="<%=request.getContextPath() %>/views/mypage/pwdVerificationMemUpdate.jsp" id="submenu">회원정보 수정</a> <br>
-                    <a href="<%=request.getContextPath() %>/views/mypage/pwdVerificationMemDelete.jsp" id="submenu">회원 탈퇴</a> <br>
+                    <a href="" id="submenu">회원정보 수정</a> <br>
+                    <a href="" id="submenu">회원 탈퇴</a> <br>
                 </div>
             </ul>
         </div>
         <div id="content_2">
-            <div class="contents">
-                <h4 class="contents_tit">예매 내역</h4><br>
-                <div class="order_box" style="background:rgba(255, 255, 255, 0.45)">
-                <a href="" class="order_view">
-                    <ul class="order-step">
-                        <li id="step_li">
-                            <em> 0 </em><br>
-                            <span>입금대기</span>
-                        </li>
-                        <li id="step_li">
-                            <em> 0 </em><br>
-                            <span>결제완료</span>
-                        </li>
-                        <li id="step_li">
-                            <em> 0 </em><br>
-                            <span>예매확정</span>
-                        </li>
-                    </ul>
-                </a>    
-                </div>
-            </div>
-            <div class="contents">
-                <h4 class="contents_tit">찜한 상품</h4>
-                <hr align="left" width="765" color="rgb(64, 64, 64)" size="1">
-                <!--찜한 내역이 없을 경우-->
-                <div id="exclamationmark_icon">
-                    <img src="<%=request.getContextPath() %>/resources/images/exclamationmark.png" width="70px" height="70px"> 
-                </div>
-                <br>
-                <div id="like_product_txt">
-                    <p align="center">찜한 내역이 없습니다.</p>
-                </div>
 
-            </div>
             <div class="contents">
-                <h4 class="contents_tit">Q&A 내역</h4>
+                <h4 class="contents_tit">회원정보 수정</h4>
                 <hr align="left" width="765" color="rgb(64, 64, 64)" size="1">
-                <!--Q&A 내역이 없을 경우-->
-                <div id="exclamationmark_icon">
-                    <img src="<%=request.getContextPath() %>/resources/images/exclamationmark.png" width="70px" height="70px"> 
-                </div>
-                <br>
-                <div id="qna_txt">
-                    <p align="center">Q&A 내역이 없습니다.</p>
+                <br><br>
+                <div id="delete_success_tit" align="center">
+                    회원탈퇴가 완료되었습니다. 
+                </div><br>
+                <div id="delete_success_context" align="center">
+                    그동안 DAMOART를 이용해주셔서 감사합니다. <br>
+                    보다 나은 서비스로 다시 만나뵐 수 있기를 바랍니다. <br>
+                </div><br><br>
+                <div id="delete_success_btn" align="center">
+                    <button type="submit" id="check_btn" class="btn btn-sm btn-secondary">홈 바로가기</button>
                 </div>
             </div>
         </div>

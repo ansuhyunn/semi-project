@@ -137,7 +137,7 @@
     /*회원정보 수정*/
     #pwd_confirm_tit{
         font-size:17px;
-        font-weight:600;
+        font-weight:800;
     }
 
     #pwd_confirm_context{
@@ -193,44 +193,47 @@
             <ul>  	
                 <li><h3>마이쇼핑</h3></li>
                 <div>
-                    <a href="" id="submenu">예매 내역</a> <br>
-                    <a href="" id="submenu">취소/환불 내역</a> <br>
-                    <a href="" id="submenu">적립금 내역</a> <br>
+                    <a href="<%=request.getContextPath() %>/views/mypage/reserveDetail.jsp" id="submenu">예매 내역</a> <br>
+                    <a href="<%=request.getContextPath() %>/views/mypage/refundDetail.jsp" id="submenu">취소/환불 내역</a> <br>
+                    <a href="<%=request.getContextPath() %>/views/mypage/pointCheck.jsp" id="submenu">적립금 내역</a> <br>
                     <hr width="120" align="left">
-                    <a href="" id="submenu">최근 본 상품</a> <br>
-                    <a href="" id="submenu">찜한 상품</a>
+                    <a href="<%=request.getContextPath() %>/views/mypage/recentlyViewProduct.jsp" id="submenu">최근 본 상품</a> <br>
+                    <a href="<%=request.getContextPath() %>/views/mypage/likeProduct.jsp" id="submenu">찜한 상품</a>
                 </div><br>
                 <li><h3>마이활동</h3></li>
                 <div>
                     <a href="" id="submenu">리뷰 내역</a> <br>
-                    <a href="" id="submenu">Q&A 내역</a> <br>
+                    <a href="<%=request.getContextPath() %>/views/mypage/memberQnaList.jsp" id="submenu">Q&A 내역</a> <br>
                 </div><br>
                 <li><h3>마이정보</h3></li>
                 <div>
-                    <a href="" id="submenu">회원정보 수정</a> <br>
-                    <a href="" id="submenu">회원 탈퇴</a> <br>
+                    <a href="<%=request.getContextPath() %>/views/mypage/pwdVerificationMemUpdate.jsp" id="submenu">회원정보 수정</a> <br>
+                    <a href="<%=request.getContextPath() %>/views/mypage/pwdVerificationMemDelete.jsp" id="submenu" style="color:rgb(151, 138, 116)">회원 탈퇴</a> <br>
                 </div>
             </ul>
         </div>
         <div id="content_2">
 
             <div class="contents">
-                <h4 class="contents_tit">회원정보 수정</h4>
+                <h4 class="contents_tit">회원 탈퇴</h4>
                 <hr align="left" width="765" color="rgb(64, 64, 64)" size="1">
                 <br><br>
-                <div id="pwd_confirm_tit" align="center">
-                    비밀번호 재확인 
-                </div><br>
-                <div id="pwd_confirm_context" align="center">
-                    회원님의 개인정보 보호를 위한 본인 확인 절차이오니, <br>
-                    로그인 시 사용하시는 비밀번호를 입력해주세요. <br>
-                </div><br>
-                <div id="pwd_input" align="center">
-                    <input type="password" name="pwd" placeholder="비밀번호 입력" required>
-                </div><br>
-                <div id="pwd_confirm_btn" align="center">
-                    <button type="submit" id="check_btn" class="btn btn-sm btn-secondary">확인</button>
-                </div>
+                
+                <form action="<%= contextPath %>/memberUpdate.mp" method="post">
+	                <div id="pwd_confirm_tit" align="center">
+	                    	비밀번호 재확인 
+	                </div><br>
+	                <div id="pwd_confirm_context" align="center">
+	                    	회원님의 개인정보 보호를 위한 본인 확인 절차이오니, <br>
+	                    	로그인 시 사용하시는 비밀번호를 입력해주세요. <br>
+	                </div><br>
+	                <div id="pwd_input" align="center">
+	                    <input type="password" name="pwd" placeholder="비밀번호 입력" required>
+	                </div><br>
+	                <div id="pwd_confirm_btn" align="center">
+	                    <button type="submit" id="check_btn" class="btn btn-sm btn-secondary">확인</button>
+	                </div>
+	            </form>
             </div>
         </div>
     </div>

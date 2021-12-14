@@ -155,7 +155,9 @@
             <div class="menu">현황 관리</div>
             <div class="sub">
                 <ul>
-                    <li><a href="">주문 내역 관리</a></li>
+                    <li><a href="<%=contextPath%>/views/order/manageOrder.jsp">주문 내역 관리</a></li>
+                    <li><a href="<%=contextPath%>/views/order/manageCancel.jsp">취소 관리</a></li>
+                    <li><a href="<%=contextPath%>/views/order/manageSales.jsp">판매 현황</a></li>
                 </ul>
             </div>
             <div class="menu">홈페이지 관리</div>

@@ -29,15 +29,16 @@
         }
         .outer{
             margin:auto;
-            margin-top:200px;
-            height:1300px;
+            margin-top:70px;
+            height:1400px;
         }
-        ul{margin-left:550px;}
-        ul li{
+        .enrollList{margin-left:36%;}
+        .enrollList li{
             list-style:none;
             float:left;  
             padding:15px;
             margin:auto;
+            font-size:20px;
             font-weight:bold
         }
         .enrollList-1, .enrollList-3{
@@ -48,11 +49,18 @@
             margin:auto;
             border-radius:3px;
         }
+    
+        .enrollForm table tr th{
+            padding-left:60px;
+            padding-bottom:50px;
+        }
+        .enrollForm table tr td{padding-bottom:50px;}
         .enrollForm input{
             border:none;
-            border-bottom:1px solid lightgray;
+            margin:auto;
             padding:10px;
             background:rgba(255, 255, 255, 0.45);
+            width:300px;
         }
         .btn-mem{
             width:200px;
@@ -68,9 +76,9 @@
             color:white;
         }
         .check{
-            width:80px;
-            height:30px;
-            font-size:13px;
+            width:90px;
+            height:40px;
+            font-size:14px;
             border:none;
             background:rgba(78, 67, 44, 0.6);
             color:white;
@@ -84,95 +92,96 @@
     <div class="outer">
 
         <br>
-        <h2 align="center" style="font-weight:bold">회원가입</h2><br>
+        <h2 align="center" style="font-weight:bold">회원가입</h2><br>   
         <ul class="enrollList">
             <li class="enrollList-1" >01 약관동의</li>
             <li class="enrollList-2">02 회원가입</li>
             <li class="enrollList-3">03 가입완료</li>
         </ul>
         <br><br>
-        <hr>
+        <hr style="width:50%;">
         <form action=""  method="post" class="enrollForm">
             <br><br><br>
             <table>
                 <tr>
-                    <td colspan="3" height="50" style="color:red"> &nbsp;&nbsp;&nbsp;* 표시는 필수입력사항입니다. </td>
+                    <td colspan="3" height="50" style="color:red; padding:40px;"> * 표시는 필수입력사항입니다. </td>
                 </tr>
                 <tr>
-                    <td height="50"></td>
+                    <td></td>
                 </tr>
                 <tr>
-                    <td width="200" height="70" align="center"> * 아이디</td>
-                    <td width="450">
+                    <th width="250" height="70">* 아이디</th>
+                    <td width="600">
                         <input type="text" name="userId" placeholder="영문, 숫자 5글자 이상" minlength="5" required>
-                        <button type="button" class="check id" >중복확인</button>
+                        &nbsp;&nbsp;&nbsp;
+                        <button type="button" class="check id">중복확인</button>
                     </td>
                     <td></td>
                 </tr>
                 <tr>
-                    <td height="70" align="center">* 비밀번호</td>
+                    <th height="70">* 비밀번호</th>
                     <td>
                         <input type="password" name="userPwd" placeholder="영문+숫자 8~20자" minlength="8" maxlength="20" required>
                     </td>
                     <td></td>
                 </tr>
                 <tr>
-                    <td height="70" align="center">* 비밀번호확인</td>
+                    <th height="70">* 비밀번호확인</th>
                     <td>
                         <input type="password" minlength="8" maxlength="20" required>
                     </td>
                     <td></td>
                 </tr>
                 <tr>
-                    <td height="70" align="center">* 이름</td>
+                    <th height="70">* 이름</th>
                     <td>
                         <input type="text" name="userName" placeholder="2글자 이상" minlength="2" required>
                     </td>
                     <td></td>
                 </tr>
                 <tr>
-                    <td height="70" align="center">* 닉네임</td>
+                    <th height="70">* 닉네임</th>
                     <td>
                         <input type="text" name="nickName" placeholder="한글, 영문, 특수문자 2~14자" minlength="2" maxlength="14" required>
                     </td>
                     <td></td>
                 </tr>
                 <tr>
-                    <td height="70" align="center">* 이메일</td>
+                    <th height="70">* 이메일</th>
                     <td>
-                        <input type="text" name="email" style="width:105px;"required>
-
+                        <input type="text" name="email" style="width:170px;"required> 
+                        &nbsp;
                         <select id="emailDomain" id="inputEmailDomain" name="emailDomain" class="email_select"> 
 	                        <option value="self">직접입력</option> 
 	                        <option value="@naver.com">@naver.com</option> 
 	                        <option value="@gmail.com">@gmail.com</option> 
 	                        <option value="@daum.net">@daum.net</option> 
 	                        <option value="@nate.com">@nate.com</option> 
-                    	</select> 
-                        <button type="button" class="check email" >이메일 인증</button>
+                    	</select> &nbsp;&nbsp;
+                        <button type="button" class="check email" >이메일인증</button>
                     </td>
                     <td>
                     	
                     </td>
                 </tr>
                 <tr>
-                    <td height="70" align="center">* 전화번호</td>
+                    <th height="70">* 전화번호</th>
                     <td>
                         <input type="text" name="phone" placeholder="'-' 제외하고 입력" required>
                     </td>
                     <td></td>
                 </tr>
                 <tr>
-                    <td height="70" align="center">&nbsp;&nbsp;&nbsp;생년월일</td>
+                    <th height="70">&nbsp;&nbsp;&nbsp;생년월일</th>
                     <td>
                         <script type="text/javascript">
                         var today = new Date();
                         var toyear = parseInt(today.getFullYear ());
                         var start = toyear;
-                        var end = toyear - 15;
+                        var end = toyear -90;
 
                         document.write("<select name=birth1> ");
-                        document.write("<option value='2015' selected>");
+                        document.write("<option value='2021' selected>");
                         for (i=start;i>=end;i--) document.write("<option>"+i);
                         document.write("</select>년  ");
 

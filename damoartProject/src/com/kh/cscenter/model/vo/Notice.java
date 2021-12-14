@@ -27,6 +27,17 @@ public class Notice {
 	
 	
 
+	public Notice(int noticeNo, String noticeWriter, String noticeTitle, String noticeContent, String createDate,
+			int count) {
+		super();
+		this.noticeNo = noticeNo;
+		this.noticeWriter = noticeWriter;
+		this.noticeTitle = noticeTitle;
+		this.noticeContent = noticeContent;
+		this.createDate = createDate;
+		this.count = count;
+	}
+
 	public Notice(int noticeNo, String noticeWriter, String noticeTitle, String createDate, int count) {
 		super();
 		this.noticeNo = noticeNo;

@@ -125,18 +125,9 @@
 
     /*content_2*/
     .contents{
-        height:25%;
+        height:10%;
         padding-top:15px;
         padding-left:30px;
-    }
-
-    /*예매내역*/
-    .order_box{
-        margin:auto;
-        width:765px; 
-        height:120px;
-        border-radius:10px;
-        position:absolute;
     }
     
     /*찜한상품, qna내역이 없을 경우*/
@@ -145,38 +136,8 @@
         padding-top:35px;
     }
 
-    .order_view{
-        color:#666;
-        text-decoration:none;
-    }
-
-    #step_li{
-        float:left;
-        position:relative;
-        width:29%;
-        height:100px;
-        margin:auto;
-        margin-top:10px;
-    }
-
-    em{
-        top:25px;
-        color:#888;
-        font-style:normal;
-        font-size:50px;
-        line-height:50px;
-        font-weight:500;
-        padding-left:140px;
-    }
-    span{
-        color: #666;
-        font-size:16px;
-        line-height:40px;
-        margin-left:120px;
-    }
-
-    /*예매날짜*/
-    .order_date{
+    /*기간설정*/
+    .date{
         margin:auto;
         margin-left:30px;
         width:765px; 
@@ -185,11 +146,11 @@
         position:absolute;
     }
 
-    .order_date>p{
+    .date>p{
         float:left;
         font-size:14px;
         font-weight:bold;
-        margin-left:20px;
+        margin-left:15px;
         margin-top:20px;
         margin-right:20px;
         letter-spacing: -0.5px;
@@ -205,19 +166,42 @@
 
     .select-range{
         width:700px;
-        padding-left:20px;
+        margin-left:-10px;
     }
 
     .select-btn{
-        width:50px;
+        width:60px;
         float:right;
         margin-top:-30px;
+    }
+    .select-btn button{font-size:13px;}
+
+    #date_btn{
+        font-size:12px;
     }
     #date_btn:focus{
         background:rgb(182, 167, 141);
         color:white;
     }
 
+    /*Q&A 테이블*/
+    .container{
+        height:30%;
+        padding-top:70px;
+        font-size:13px;
+    }
+
+    #exclamationmark_icon{
+    	padding-left:320px;
+        padding-top:35px;
+    }
+    .container th, #table_category, #table_answer{text-align:center;}
+
+    .table tbody:hover{
+        cursor:pointer;
+    }
+
+    .qustion_open p{font-size:15px; font-weight:700;}
 </style>
 </head>
 <body>
@@ -253,81 +237,131 @@
             <ul>  	
                 <li><h3>마이쇼핑</h3></li>
                 <div>
-                    <a href="" id="submenu" style="color:rgb(151, 138, 116)">예매 내역</a> <br>
+                    <a href="<%=request.getContextPath() %>/views/mypage/reserveDetail.jsp" id="submenu">예매 내역</a> <br>
                     <a href="<%=request.getContextPath() %>/views/mypage/refundDetail.jsp" id="submenu">취소/환불 내역</a> <br>
                     <a href="<%=request.getContextPath() %>/views/mypage/pointCheck.jsp" id="submenu">적립금 내역</a> <br>
                     <hr width="120" align="left">
-                    <a href="" id="submenu">최근 본 상품</a> <br>
-                    <a href="" id="submenu">찜한 상품</a>
+                    <a href="<%=request.getContextPath() %>/views/mypage/recentlyViewProduct.jsp" id="submenu">최근 본 상품</a> <br>
+                    <a href="<%=request.getContextPath() %>/views/mypage/likeProduct.jsp" id="submenu">찜한 상품</a>
                 </div><br>
                 <li><h3>마이활동</h3></li>
                 <div>
                     <a href="" id="submenu">리뷰 내역</a> <br>
-                    <a href="" id="submenu">Q&A 내역</a> <br>
+                    <a href="<%=request.getContextPath() %>/views/mypage/memberQnaList.jsp" id="submenu" style="color:rgb(151, 138, 116)">Q&A 내역</a> <br>
                 </div><br>
                 <li><h3>마이정보</h3></li>
                 <div>
-                    <a href="" id="submenu">회원정보 수정</a> <br>
-                    <a href="" id="submenu">회원 탈퇴</a> <br>
+                    <a href="<%=request.getContextPath() %>/views/mypage/pwdVerificationMemUpdate.jsp" id="submenu">회원정보 수정</a> <br>
+                    <a href="<%=request.getContextPath() %>/views/mypage/pwdVerificationMemDelete.jsp" id="submenu">회원 탈퇴</a> <br>
                 </div>
             </ul>
         </div>
         <div id="content_2">
             <div class="contents">
-                <h4 class="contents_tit">예매 내역</h4><br>
-                <div class="order_box" style="background:rgba(255, 255, 255, 0.45)">
-                <a href="" class="order_view">
-                    <ul class="order-step">
-                        <li id="step_li">
-                            <em> 0 </em><br>
-                            <span>입금대기</span>
-                        </li>
-                        <li>
-                        	
-                        </li>
-                        <li id="step_li">
-                            <em> 0 </em><br>
-                            <span>결제완료</span>
-                        </li>
-                        <li id="step_li">
-                            <em> 0 </em><br>
-                            <span>예매확정</span>
-                        </li>
-                    </ul>
-                </a>    
-                </div>
+                <h4 class="contents_tit">Q&A 내역</h4>
+                <hr align="left" width="765" color="rgb(64, 64, 64)" size="1">
             </div>
 
-            <div class="order_date" style="background:rgba(255, 255, 255, 0.74)">
-                <p>예매기간</p>
+            <div class="date" style="background:rgba(255, 255, 255, 0.74)">
+                <p>기간</p>
                 <ul class="select_date">
                     <li>
-                        <button type="button" id="date_btn">일주일</button>
+                        <button type="button" id="date_btn" class="btn btn-outline-secondary">일주일</button>
                     </li>
                     <li>
-                        <button type="button" id="date_btn">1개월</button>
+                        <button type="button" id="date_btn" class="btn btn-outline-secondary">1개월</button>
                     </li>
                     <li>
-                        <button type="button" id="date_btn">3개월</button>
+                        <button type="button" id="date_btn" class="btn btn-outline-secondary">3개월</button>
                     </li>
                     <li>
-                        <button type="button" id="date_btn">6개월</button>
+                        <button type="button" id="date_btn" class="btn btn-outline-secondary">6개월</button>
                     </li>
                 </ul>
                 <div class="select-range" align="right">
-                    <input type="date" id="start" name="select-start" value="2021-12-01" min="2020-01-01"> ~
-                    <input type="date" id="end" name="select-end" value="2021-12-31" max="2022-12-31">
+                    <input type="date" id="start" name="select-start" value="2021-12-01" min="2020-01-01"> 
+                     ~
+                    <input type="date" id="end" name="select-end" value="2021-12-01" min="2020-01-01"> 
                 </div>
                 <div class="select-btn" align="left">
-                    <button type="button">조회</button>
+                    <button type="button" class="btn btn-outline-secondary">조회</button>
                 </div>
-                
-            </div class="">
-            
-    
-            </div>
+                <br><br>
+            <div class="container">
+           
+                <table class="table">
+                  <thead>
+                    <tr style="background:rgb(203, 185, 153)">
+                      <th width="140">분류</th>
+                      <th width="430">제목</th>
+                      <th width="110">등록일</th>
+                      <th width="110">답변상태</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!--Q&A 내역이 없을 경우-->
+                    <!--
+                    <tr>
+                        <td colspan="4" >
+                            <div id="exclamationmark_icon">
+                                <img src="<%=request.getContextPath() %>/resources/images/exclamationmark.png" width="70px" height="70px"> 
+                            </div>
+                            <br>
+                            <div id="qna_txt">
+                                <p align="center">Q&A 내역이 없습니다.</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>-->
 
+                    <!--Q&A 내역이 있을 경우-->
+                    
+                    <tr class="qustion">
+                      <td id="table_category">기타</td>
+                      <td>1인당 몇장까지 구매 가능한가요?</td>
+                      <td>2021-11-14</td>
+                      <td id="table_answer">답변대기</td>
+                    </tr>
+                    <tr class="qustion_open">
+                        <td></td>
+                        <td colspan="3">
+                            <div>
+                                <p>Q</p>
+                                문의상품 | 앨리스 달튼 브라운 전시 <br><br>
+                                <strong>1인당 몇장까지 구매 가능한가요?</strong>
+                            </div>
+                        </td> 
+                    </tr>                  
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>   
             
+            </div>
+            <script>
+                $(function(){
+                    $(".qustion").click(function(){
+                        const $tr = $(this).next();
+
+                        if($tr.css("display") == "none"){
+                            $(this).siblings(".qustion_open").hide();
+                            $tr.show();
+                        }else{
+                            $tr.hide();
+                        }
+                    })
+                })
+            </script>
         </div>
 
         
