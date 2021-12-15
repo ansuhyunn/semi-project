@@ -175,26 +175,26 @@
                     <th height="70">&nbsp;&nbsp;&nbsp;생년월일</th>
                     <td>
                         <script type="text/javascript">
-                        var today = new Date();
-                        var toyear = parseInt(today.getFullYear ());
-                        var start = toyear;
-                        var end = toyear -90;
-
-                        document.write("<select name=birth1> ");
-                        document.write("<option value='2021' selected>");
-                        for (i=start;i>=end;i--) document.write("<option>"+i);
-                        document.write("</select>년  ");
-
-                        document.write("<select name=birth2>");
-                        document.write("<option value='' selected>");
-                        for (i=1;i<=12;i++) document.write("<option>"+i);
-                        document.write("</select>월  ");
-
-                        document.write("<select name=birth3>");
-                        document.write("<option value='' selected>");
-                        for (i=1;i<=31;i++) document.write("<option>"+i);
-                        document.write("</select>일  </font>");
-                    </script>
+	                        var today = new Date();
+	                        var toyear = parseInt(today.getFullYear ());
+	                        var start = toyear;
+	                        var end = toyear -90;
+	
+	                        document.write("<select name=birth1> ");
+	                        document.write("<option value='2021' selected>");
+	                        for (i=start;i>=end;i--) document.write("<option>"+i);
+	                        document.write("</select>년  ");
+	
+	                        document.write("<select name=birth2>");
+	                        document.write("<option value='' selected>");
+	                        for (i=1;i<=12;i++) document.write("<option>"+i);
+	                        document.write("</select>월  ");
+	
+	                        document.write("<select name=birth3>");
+	                        document.write("<option value='' selected>");
+	                        for (i=1;i<=31;i++) document.write("<option>"+i);
+	                        document.write("</select>일  </font>");
+                    	</script>
                     </td>
                     <td></td>
                 </tr>

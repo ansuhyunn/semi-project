@@ -21,5 +21,31 @@
 		   AND MEM_PWD = ?
 		   AND STATUS = 'N'
 	</entry>
+	
+	<entry key="insertMember">
+		INSERT
+		  INTO MEMBER
+		  (
+		    MEM_NO
+		  , MEM_ID
+		  , MEM_PWD
+		  , MEM_NAME
+		  , NICKNAME
+		  , EMAIL
+		  , PHONE
+		  , BIRTH
+		  )
+		  VALUES
+		  (
+		    SEQ_MEMNO.NEXTVAL
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		  )
+	</entry>
 
 </properties>

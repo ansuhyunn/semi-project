@@ -157,12 +157,12 @@
                 	<% if(loginUser == null) { %> 
 	                    <a href="<%=contextPath%>/views/order/cart.jsp" id="cart_btn" class="btn btn-sm">장바구니</a>
 	                    <a href="<%=contextPath%>/loginPage.me" id="login_btn" class="btn btn-sm">로그인</a>
-	                    <a href="" id="enroll_btn" class="btn btn-sm">회원가입</a>
+	                    <a href="<%=contextPath%>/agreement.me" id="enroll_btn" class="btn btn-sm">회원가입</a>
                     <% }else { %>
                     	<a href="<%=contextPath%>/views/order/cart.jsp" id="cart_btn" class="btn btn-sm">장바구니</a>
                     	<a href="<%=contextPath%>/views/mypage/mypageMain.jsp" id="myPage_btn" class="btn btn-sm">마이페이지</a>
-                    	<a href="" id="logout_btn" class="btn btn-sm">로그아웃</a>
-                    <% } %>
+                    	<a href="<%=contextPath%>/logout.me" id="logout_btn" class="btn btn-sm">로그아웃</a>
+                    <% } %> 
                 </div>
                 <div id="search_area">
                     <br>

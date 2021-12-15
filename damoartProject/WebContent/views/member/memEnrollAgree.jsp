@@ -490,10 +490,16 @@
               <br><br>
 
               <div align="center">
-                <button class="btn-mem back">취소</button>
-                <button class="btn-mem next">다음단계</button>
+                <button type="button" class="btn-mem back">취소</button>
+                <button type="button" onclick="enrollPage();" class="btn-mem next">다음단계</button>
+              	
+              	<script>
+          			function enrollPage(){
+          				location.href = "<%=contextPath%>/enrollForm.me"
+          			}
+          		</script>
               </div>
-          
+
             </form>
   
           </div>
