@@ -37,7 +37,8 @@ public class MemberDao {
 			pstmt.setString(2, m.getNickname());
 			pstmt.setString(3, m.getEmail());
 			pstmt.setString(4, m.getPhone());
-			pstmt.setString(5, m.getMemId());
+			pstmt.setString(5, m.getBirth());
+			pstmt.setString(6, m.getMemId());
 			
 			result = pstmt.executeUpdate();
 			
@@ -87,5 +88,28 @@ public class MemberDao {
 			
 			return m;
 		}
+	
+	public int deleteMember(Connection conn, String memId) {
+		// update문 => 처리된 행 수 => 트랜잭션 처리
+		int result = 0;
+				
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteMember");
+				
+		try {
+			pstmt = conn.prepareStatement(sql);
+					
+			pstmt.setString(1, memId);
+			
+			result = pstmt.executeUpdate();
+					
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+				
+		return result;
 	}
+}
 

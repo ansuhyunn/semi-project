@@ -32,8 +32,7 @@ public class Member {
 		this.status = status;
 	}
 
-	public Member(int i, String userName, String userId, String nickName2, String email2, String phone2) {
-		// TODO Auto-generated constructor stub
+	public Member(String userName, String userId, String nickName, String email, String phone, String year, String month, String day) {
 	}
 
 	public int getMemNo() {

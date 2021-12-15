@@ -8,7 +8,7 @@ import com.kh.mypage.model.vo.Member;
 import static com.kh.common.JDBCTemplate.*;
 
 public class MemberService {
-
+	// 정보수정
 	public Member updateMember(Member m) {
 		Connection conn = getConnection();
 		
@@ -26,5 +26,20 @@ public class MemberService {
 		
 		close(conn);
 		return updateMem;
+	}
+	
+	// 회원탈퇴
+	public int deleteMember(String memId) {
+		Connection conn = getConnection();
+		int result = new MemberDao().deleteMember(conn, memId);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		return result;
 	}
 }

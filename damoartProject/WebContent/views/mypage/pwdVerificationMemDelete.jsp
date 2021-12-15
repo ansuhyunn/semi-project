@@ -219,7 +219,7 @@
                 <hr align="left" width="765" color="rgb(64, 64, 64)" size="1">
                 <br><br>
                 
-                <form action="<%= contextPath %>/memberUpdate.mp" method="post">
+                <form action="<%= contextPath %>/views/mypage/memberDelete.jsp" method="post">
 	                <div id="pwd_confirm_tit" align="center">
 	                    	비밀번호 재확인 
 	                </div><br>
@@ -231,9 +231,18 @@
 	                    <input type="password" name="pwd" placeholder="비밀번호 입력" required>
 	                </div><br>
 	                <div id="pwd_confirm_btn" align="center">
-	                    <button type="submit" id="check_btn" class="btn btn-sm btn-secondary">확인</button>
+	                    <button type="submit" id="check_btn" class="btn btn-sm btn-secondary" onclick="return pwdConfirm();">확인</button>
 	                </div>
 	            </form>
+	            
+	            <script>
+	            	function pwdConfirm(){ //
+	            		if($("input[name=pwd]").val() != "<%=loginUser.getMemPwd()%>"){
+	            			alert("비밀번호가 일치하지 않습니다.");
+	            			return false;
+	            		}
+	            	}
+	            </script>
             </div>
         </div>
     </div>

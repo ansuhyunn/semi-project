@@ -246,17 +246,27 @@
             
                     <br>
                     <div class="agreebox">
-                        <input type="checkbox"></input> 
+                        <input type="checkbox" required></input> 
                         안내 사항을 모두 확인하였으며, 이에 동의합니다.
                     </div>
 
                     <br><br><br>
                     
                 </div>
+
                 <div class="update_button" align="center">
-                    <button type="button" class="btn btn-sm btn-secondary">취소</button>
-                    <button type="submit" class="btn btn-sm btn-secondary">탈퇴</button>
+                	<input type="hidden" name="memId" value="<%=loginUser.getMemId()%>">
+                    <button type="button" class="btn btn-sm btn-secondary" onclick="location.href='<%= contextPath %>/views/mypage/mypageMain.jsp'">취소</button>
+                    <button type="submit" class="btn btn-sm btn-secondary" onclick="deleteCheck();">탈퇴</button>
                 </div>
+
+                <script>
+	            	function deleteCheck(){
+	            		location.href = "<%= contextPath %>/memberDelete.mp";
+	            		
+	            	}
+	            </script>
+                
             </div>
         </div>
     </div>

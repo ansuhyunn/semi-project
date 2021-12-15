@@ -38,9 +38,12 @@ public class MyPageMemberUpdateController extends HttpServlet {
 		String nickName = request.getParameter("nickName");
 		String email = request.getParameter("email");
 		String phone = request.getParameter("phone");
+		String year = request.getParameter("birth1");
+		String month = request.getParameter("birth2");
+		String day = request.getParameter("birth3");
 		// 생년월일 담아야함 
 		
-		Member m = new Member(0, userName, userId, nickName, email, phone);
+		Member m = new Member(userName, userId, nickName, email, phone, year, month, day);
 		
 		Member updateMem = new MemberService().updateMember(m);
 		
@@ -51,7 +54,7 @@ public class MyPageMemberUpdateController extends HttpServlet {
 			session.setAttribute("loginUser", updateMem);
 			session.setAttribute("alertMsg", "성공적으로 회원정보를 수정했습니다.");
 			
-			response.sendRedirect(request.getContextPath() + "/myPage.mp");	
+			response.sendRedirect(request.getContextPath() + "/views/mypage/memberUpdate.jsp");	
 		}
 		
 		
