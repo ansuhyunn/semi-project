@@ -87,9 +87,9 @@
     <div class="wrapper">
         <div class="name">
             <div id="name1">무료 전시</div>
-            <button id="type1">오픈날짜순</button>
-            <button id="type2">마감임박순</button>
-            <button id="type3">별점순</button>
+            <a href="<%=request.getContextPath()%>/OpenFree.pro">오픈날짜순</a>
+            <a href="<%=request.getContextPath()%>/EndFree.pro">종료날짜순</a>
+            <a href="">별점순</a>
         </div>
         <hr class="my-2">
         <div id="content1">
@@ -120,43 +120,6 @@
         </div>
     </div>   <!-- wrapper클래스 -->
     
-    <script>
-        $(function(){
-            $("#type1").click(function(){
-                $.ajax({
-                    url : "arrayOpen.pro",
-                    success:function(list){
-                    	
-                    	let result = "";
-                    	for(let i=0; i<list.length; i++){
-							result += "<div id=\"content\">"
-									+ "<div class=\"poster\">"
-									+ "<input type=\"hidden\" name=\"num\" value=\"" + list[i].pno + ">"
-									+ "<a href=\"" + "<%=request.getContextPath()%>/detail.pro?num=" + list[i].pno + ">"
-	                			    + "<img src=\"<%=request.getContextPath()%>/" + list[i].mainImg + "\" width=\"100%\" height=\"100%\">"
-		                		    + "</a>"
-		                		    + "</div>"
-		                		    + "<div class=\"info\">"
-		                		    + "<p class=\"title\">" + list[i].title
-		                		    + "</p>"
-		                		    + "<p class=\"summary\">" + list[i].sDate + "~" + list[i].eDate + "<br>" + list[i].area
-		                		    + "</p>"
-		                		    + "</div>"
-		                		    + "</div>"
-                    	}
-                    	
-                    	$("#content1").html(result);
-                    	console.log(result);
-                    },error:function(){
-                        
-                    }
-                });
-            })
-            
-        })
-    </script>
-   
-
     
     <%@ include file="../common/footerbar.jsp" %>
      

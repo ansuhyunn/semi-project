@@ -6,7 +6,6 @@
 <!-- 각 화면 상품 정렬 기준 SQL -->
 
 <!-- 무료전시 상품정렬 -->
-
 <!-- 오픈날짜정렬 -->
 <entry key="FreeOpenDate">
 SELECT 
@@ -23,11 +22,13 @@ SELECT
 	 , ETC
   FROM PRODUCT
  WHERE A_PRICE = 0
+   AND SOLDOUT = 'N'
  ORDER BY S_DATE
 </entry>
 
+
 <!-- 종료날짜정렬 -->
-<entry key="selectEndDate">
+<entry key="FreeEndDate">
 SELECT
 	   PNO
 	 , TITLE
@@ -41,14 +42,19 @@ SELECT
 	 , DETAIL_IMG
 	 , ETC
   FROM PRODUCT
+ WHERE A_PRICE = 0
+   AND SOLDOUT = 'N'
  ORDER BY E_DATE
 </entry>
 
 <!-- 별점순은 데이터 나오면 하기 -->
 
 
-<!-- 높은가격정렬 -->
-<entry key="selectHighPrice">
+
+
+<!-- 진행중 전시 상품정렬 -->
+<!-- 오픈날짜정렬 -->
+<entry key="OpenDate">
 SELECT 
   	   PNO
 	 , TITLE
@@ -62,11 +68,56 @@ SELECT
 	 , DETAIL_IMG
 	 , ETC
   FROM PRODUCT
- ORDER BY A_PRICE DESC, T_PRICE DESC
+<![CDATA[WHERE FLOOR(MONTHS_BETWEEN(SYSDATE, TO_DATE(S_DATE, 'RRRRMMDD'))) >= 0 ]]>
+   AND SOLDOUT = 'N'
+ ORDER BY S_DATE
 </entry>
+
+
+<!-- 종료날짜정렬 -->
+<entry key="EndDate">
+SELECT
+	   PNO
+	 , TITLE
+	 , REGION
+	 , AGE
+	 , AREA
+	 , TO_CHAR(TO_DATE(S_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') S_DATE
+	 , TO_CHAR(TO_DATE(E_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') E_DATE
+	 , TIME
+	 , MAIN_IMG
+	 , DETAIL_IMG
+	 , ETC
+  FROM PRODUCT
+<![CDATA[WHERE FLOOR(MONTHS_BETWEEN(SYSDATE, TO_DATE(S_DATE, 'RRRRMMDD'))) >= 0 ]]>
+   AND SOLDOUT = 'N'
+ ORDER BY E_DATE
+</entry>
+
+
+<!-- 높은가격정렬 -->
+<entry key="HighPrice">
+SELECT 
+  	   PNO
+	 , TITLE
+	 , REGION
+	 , AGE
+	 , AREA
+	 , TO_CHAR(TO_DATE(S_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') S_DATE
+	 , TO_CHAR(TO_DATE(E_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') E_DATE
+	 , TIME
+	 , MAIN_IMG
+	 , DETAIL_IMG
+	 , ETC
+  FROM PRODUCT
+<![CDATA[WHERE FLOOR(MONTHS_BETWEEN(SYSDATE, TO_DATE(S_DATE, 'RRRRMMDD'))) >= 0 ]]>
+   AND SOLDOUT = 'N'
+ ORDER BY A_PRICE DESC
+</entry>
+
 
 <!-- 낮은가격정렬 -->
-<entry key="selectLowPrice">
+<entry key="LowPrice">
 SELECT 
   	   PNO
 	 , TITLE
@@ -80,9 +131,55 @@ SELECT
 	 , DETAIL_IMG
 	 , ETC
   FROM PRODUCT
- ORDER BY A_PRICE, T_PRICE
+<![CDATA[WHERE FLOOR(MONTHS_BETWEEN(SYSDATE, TO_DATE(S_DATE, 'RRRRMMDD'))) >= 0 ]]>
+  AND SOLDOUT = 'N'
+ORDER BY A_PRICE
 </entry>
 
+
+
+
+
+<!-- 이달의 전시 -->
+<entry key="selectMonthList">
+SELECT 
+	   PNO
+	 , TITLE
+	 , REGION
+	 , AGE
+	 , AREA
+	 , TO_CHAR(TO_DATE(S_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') S_DATE
+	 , TO_CHAR(TO_DATE(E_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') E_DATE
+	 , TIME
+	 , MAIN_IMG
+	 , DETAIL_IMG
+	 , ETC
+  FROM PRODUCT
+ WHERE SUBSTR(S_DATE, 5, 2) = TO_CHAR(SYSDATE, 'MM')
+   AND SOLDOUT = 'N'
+ORDER BY TITLE
+</entry>
+
+
+<!-- 오픈예정 -->
+<entry key="selectPreList">
+SELECT 
+	   PNO
+	 , TITLE
+	 , REGION
+	 , AGE
+	 , AREA
+	 , TO_CHAR(TO_DATE(S_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') S_DATE
+	 , TO_CHAR(TO_DATE(E_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') E_DATE  
+	 , TIME
+	 , MAIN_IMG
+	 , DETAIL_IMG
+	 , ETC
+  FROM PRODUCT
+ <![CDATA[WHERE FLOOR(MONTHS_BETWEEN(SYSDATE, TO_DATE(S_DATE, 'RRRRMMDD'))) < 0 ]]>
+   AND SOLDOUT = 'N'
+ORDER BY TITLE
+</entry>
 
 	
 </properties>

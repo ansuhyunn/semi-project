@@ -9,21 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
 import com.kh.product.model.service.ProductService;
 import com.kh.product.model.vo.Product;
 
 /**
- * Servlet implementation class ArrayOpenList
+ * Servlet implementation class ArrayHighList
  */
-@WebServlet("/Open.pro")
-public class ArrayOpenList extends HttpServlet {
+@WebServlet("/high.pro")
+public class ArrayHighList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ArrayOpenList() {
+    public ArrayHighList() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,11 +32,10 @@ public class ArrayOpenList extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		ArrayList<Product> ingList = new ProductService().selectOpenDate();
+		ArrayList<Product> ingList = new ProductService().selectHighPrice();
 		
 		request.setAttribute("ingList", ingList);
 		request.getRequestDispatcher("views/product/ingMain.jsp").forward(request, response);
-		
 	}
 
 	/**

@@ -28,8 +28,7 @@ public class ProductDao {
 	}
 	
 	
-	
-	// 무료전시 추출
+	// 무료전시 
 	public ArrayList<Product> selectFreeList(Connection conn){
 		ArrayList<Product> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
@@ -61,6 +60,7 @@ public class ProductDao {
 		}
 		return list;
 	}
+	
 	
 	// 이달의 전시 추출
 	public ArrayList<Product> selectMonthList(Connection conn){
@@ -347,10 +347,10 @@ public class ProductDao {
 	}
 	
 	
-	// 정렬기준 방식에 따른 결과
-	// 무료전시
-	// 오픈날짜순
-	public ArrayList<Product> selectOpenDate(Connection conn){
+	
+	// 정렬기준 방식에 따른 결과 추출
+	// 무료전시 오픈날짜순
+	public ArrayList<Product> selectOpenFree(Connection conn){
 		ArrayList<Product> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -382,45 +382,81 @@ public class ProductDao {
 		return list;
 	}
 	
-	// 종료날짜순
+	
+	// 무료전시 종료날짜순
+	public ArrayList<Product> selectEndFree(Connection conn){
+		ArrayList<Product> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = ArrayProp.getProperty("FreeEndDate");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Product(rset.getInt("PNO"),
+									 rset.getString("TITLE"),
+									 rset.getString("REGION"),
+									 rset.getString("AGE"),
+									 rset.getString("AREA"),
+									 rset.getString("S_DATE"),
+									 rset.getString("E_DATE"),
+									 rset.getString("TIME"),
+									 rset.getString("MAIN_IMG"),
+									 rset.getString("DETAIL_IMG"),
+									 rset.getString("ETC")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+		
+	
+	// 진행중전시 오픈날짜순
+	public ArrayList<Product> selectOpenDate(Connection conn){
+		ArrayList<Product> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = ArrayProp.getProperty("OpenDate");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Product(rset.getInt("PNO"),
+									 rset.getString("TITLE"),
+									 rset.getString("REGION"),
+									 rset.getString("AGE"),
+									 rset.getString("AREA"),
+									 rset.getString("S_DATE"),
+									 rset.getString("E_DATE"),
+									 rset.getString("TIME"),
+									 rset.getString("MAIN_IMG"),
+									 rset.getString("DETAIL_IMG"),
+									 rset.getString("ETC")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+	
+	
+	// 진행중전시 종료날짜순
 	public ArrayList<Product> selectEndDate(Connection conn){
 		ArrayList<Product> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String sql = prop.getProperty("selectEndDate");
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			rset = pstmt.executeQuery();
-			
-			while(rset.next()) {
-				list.add(new Product(rset.getInt("PNO"),
-									 rset.getString("TITLE"),
-									 rset.getString("REGION"),
-									 rset.getString("AGE"),
-									 rset.getString("AREA"),
-									 rset.getString("S_DATE"),
-									 rset.getString("E_DATE"),
-									 rset.getString("TIME"),
-									 rset.getString("MAIN_IMG"),
-									 rset.getString("DETAIL_IMG"),
-									 rset.getString("ETC")));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(rset);
-			close(pstmt);
-		}
-		return list;
-	}
-		
-	// 낮은가격순
-	public ArrayList<Product> selectLowPrice(Connection conn){
-		ArrayList<Product> list = new ArrayList<>();
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		String sql = prop.getProperty("selectOpenDate");
+		String sql = ArrayProp.getProperty("EndDate");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -448,12 +484,13 @@ public class ProductDao {
 		return list;
 	}
 	
-	// 높은가격순
+	
+	// 진행중전시 높은가격순
 	public ArrayList<Product> selectHighPrice(Connection conn){
 		ArrayList<Product> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String sql = prop.getProperty("selectOpenDate");
+		String sql = ArrayProp.getProperty("HighPrice");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -478,8 +515,41 @@ public class ProductDao {
 			close(rset);
 			close(pstmt);
 		}
-		return list;											
+		return list;
 	}
 	
+	
+	// 진행중전시 낮은가격순
+		public ArrayList<Product> selectLowPrice(Connection conn){
+			ArrayList<Product> list = new ArrayList<>();
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			String sql = ArrayProp.getProperty("LowPrice");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				rset = pstmt.executeQuery();
+				
+				while(rset.next()) {
+					list.add(new Product(rset.getInt("PNO"),
+										 rset.getString("TITLE"),
+										 rset.getString("REGION"),
+										 rset.getString("AGE"),
+										 rset.getString("AREA"),
+										 rset.getString("S_DATE"),
+										 rset.getString("E_DATE"),
+										 rset.getString("TIME"),
+										 rset.getString("MAIN_IMG"),
+										 rset.getString("DETAIL_IMG"),
+										 rset.getString("ETC")));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt);
+			}
+			return list;
+		}
 	
 }

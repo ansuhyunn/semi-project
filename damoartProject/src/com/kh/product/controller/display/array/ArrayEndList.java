@@ -16,14 +16,14 @@ import com.kh.product.model.vo.Product;
 /**
  * Servlet implementation class ArrayOpenList
  */
-@WebServlet("/Open.pro")
-public class ArrayOpenList extends HttpServlet {
+@WebServlet("/End.pro")
+public class ArrayEndList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ArrayOpenList() {
+    public ArrayEndList() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,7 +33,7 @@ public class ArrayOpenList extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		ArrayList<Product> ingList = new ProductService().selectOpenDate();
+		ArrayList<Product> ingList = new ProductService().selectEndDate();
 		
 		request.setAttribute("ingList", ingList);
 		request.getRequestDispatcher("views/product/ingMain.jsp").forward(request, response);

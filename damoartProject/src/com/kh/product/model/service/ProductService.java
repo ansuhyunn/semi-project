@@ -90,6 +90,27 @@ public class ProductService {
 		return list;
 	}
 	
+	
+	public ArrayList<Product> selectOpenFree(){
+		Connection conn = getConnection();
+		
+		ArrayList<Product> list = new ProductDao().selectOpenFree(conn);
+		
+		close(conn);
+		return list;
+	}
+	
+	
+	public ArrayList<Product> selectEndFree(){
+		Connection conn = getConnection();
+		
+		ArrayList<Product> list = new ProductDao().selectEndFree(conn);
+		
+		close(conn);
+		return list;
+	}
+	
+	
 	public ArrayList<Product> selectOpenDate(){
 		Connection conn = getConnection();
 		
@@ -99,5 +120,34 @@ public class ProductService {
 		return list;
 	}
 	
+	
+	public ArrayList<Product> selectEndDate(){
+		Connection conn = getConnection();
+		
+		ArrayList<Product> list = new ProductDao().selectEndDate(conn);
+		
+		close(conn);
+		return list;
+	}
+	
+	
+	public ArrayList<Product> selectHighPrice(){
+		Connection conn = getConnection();
+		
+		ArrayList<Product> list = new ProductDao().selectHighPrice(conn);
+		
+		close(conn);
+		return list;
+	}
+
+	
+	public ArrayList<Product> selectLowPrice(){
+		Connection conn = getConnection();
+		
+		ArrayList<Product> list = new ProductDao().selectLowPrice(conn);
+		
+		close(conn);
+		return list;
+	}
 
 }

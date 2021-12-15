@@ -89,10 +89,10 @@
     <div class="wrapper">
         <div class="name">
             <div id="name1">진행중 전시</div>
-            <a href="">높은가격순</a>
-            <a href="">낮은가격순</a>
-            <a href="">오픈날짜순</a>
-            <a href="">마감임박순</a>
+            <a href="<%=request.getContextPath()%>/high.pro">높은가격순</a>			<!-- 아직못함!!!!! -->
+            <a href="<%=request.getContextPath()%>/low.pro">낮은가격순</a>
+            <a href="<%=request.getContextPath()%>/Open.pro">오픈날짜순</a>
+            <a href="<%=request.getContextPath()%>/End.pro">마감임박순</a>
             <a href="">별점순</a>
         </div>
         <hr class="my-2">

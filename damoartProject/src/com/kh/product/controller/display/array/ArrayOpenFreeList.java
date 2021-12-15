@@ -16,14 +16,14 @@ import com.kh.product.model.vo.Product;
 /**
  * Servlet implementation class ArrayOpenList
  */
-@WebServlet("/Open.pro")
-public class ArrayOpenList extends HttpServlet {
+@WebServlet("/OpenFree.pro")
+public class ArrayOpenFreeList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ArrayOpenList() {
+    public ArrayOpenFreeList() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,10 +33,10 @@ public class ArrayOpenList extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		ArrayList<Product> ingList = new ProductService().selectOpenDate();
+		ArrayList<Product> freeList = new ProductService().selectOpenFree();
 		
-		request.setAttribute("ingList", ingList);
-		request.getRequestDispatcher("views/product/ingMain.jsp").forward(request, response);
+		request.setAttribute("freeList", freeList);
+		request.getRequestDispatcher("views/product/freeMain.jsp").forward(request, response);
 		
 	}
 
