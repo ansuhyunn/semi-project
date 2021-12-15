@@ -39,7 +39,7 @@
         }
         #header_2{
             padding-top:60px;
-            width:40%;
+            width:39%;
         }
         
         #search_form{
@@ -54,7 +54,7 @@
         #search_form input{width:100%; height:100%;}
 
         #header_3{
-            width:30%;
+            width:31%;
         }
         
         #buttons{
@@ -160,7 +160,7 @@
 	                    <a href="" id="enroll_btn" class="btn btn-sm">회원가입</a>
                     <% }else { %>
                     	<a href="<%=contextPath%>/views/order/cart.jsp" id="cart_btn" class="btn btn-sm">장바구니</a>
-                    	<a href="" id="myPage_btn" class="btn btn-sm">마이페이지</a>
+                    	<a href="<%=contextPath%>/views/mypage/mypageMain.jsp" id="myPage_btn" class="btn btn-sm">마이페이지</a>
                     	<a href="" id="logout_btn" class="btn btn-sm">로그아웃</a>
                     <% } %>
                 </div>
