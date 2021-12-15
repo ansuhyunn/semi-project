@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.kh.member.model.vo.Member"%>
     
 <% 
 	String contextPath = request.getContextPath();
+	Member loginUser = (Member)session.getAttribute("loginUser");
 %>
 <!DOCTYPE html>
 <html>
@@ -195,7 +196,7 @@
                 </li>
                 <li><a href="">고객센터 관리</a>
                     <ul>
-                        <li><a href="">공지사항 관리</a></li>
+                        <li><a href="<%=contextPath%>/adminList.no?cpage=1">공지사항 관리</a></li>
                         <li><a href="">FQA 관리</a></li>
                         <li><a href="">Q&A 관리</a></li>
                         <li><a href="">이용안내 관리</a></li>

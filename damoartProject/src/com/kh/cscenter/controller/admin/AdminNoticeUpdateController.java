@@ -42,7 +42,7 @@ public class AdminNoticeUpdateController extends HttpServlet {
 			
 			int maxSize = 10 * 1024 * 1024;
 			
-			String savePath = request.getSession().getServletContext().getRealPath("/resources/board_upfiles/");
+			String savePath = request.getSession().getServletContext().getRealPath("/resources/board_upfiles/notice/");
 			
 			MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "UTF-8", new MyFileRenamePolicy());
 			
@@ -63,7 +63,7 @@ public class AdminNoticeUpdateController extends HttpServlet {
 					Attachment at = new Attachment();
 					at.setOriginName(multiRequest.getOriginalFileName(uf));
 					at.setChangeName(multiRequest.getFilesystemName(uf));
-					at.setFilePath("resources/board_upfiles/");
+					at.setFilePath("resources/board_upfiles/notice/");
 					
 					if(multiRequest.getParameter(ofn) != null) {
 						at.setFileNo(Integer.parseInt(multiRequest.getParameter(ofn)));
