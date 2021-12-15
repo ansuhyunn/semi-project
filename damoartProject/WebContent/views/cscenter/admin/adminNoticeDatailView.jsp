@@ -153,7 +153,7 @@
                 <a id="update" href="<%=contextPath %>/updateForm.no?nno=<%=n.getNoticeNo() %>" class="btn btn-sm">수정하기</a>
             </div>
         </div>
-            
+        <br><br><br><br><br><br>
     </div>
 </body>
 </html>

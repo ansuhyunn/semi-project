@@ -70,15 +70,11 @@ public class AdminNoticeUpdateController extends HttpServlet {
 					}else {
 						at.setRefBoardNo(Integer.parseInt(multiRequest.getParameter("nno")));
 					}
-					System.out.println(at);
-					System.out.println(ofn);
-					System.out.println(uf);
 
 					list.add(at);
 				}
 
 			}
-			System.out.println(list);
 
 			int result = new NoticeService().updateNotice(n, list);
 			
