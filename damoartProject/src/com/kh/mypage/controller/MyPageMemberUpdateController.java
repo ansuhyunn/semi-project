@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import com.kh.mypage.model.service.MemberService;
 import com.kh.mypage.model.vo.Member;
 
+
 /**
  * Servlet implementation class MyPageMemberUpdateController
  */
@@ -35,28 +36,30 @@ public class MyPageMemberUpdateController extends HttpServlet {
 		
 		String userName = request.getParameter("userName");
 		String userId = request.getParameter("userId");
-		String nickName = request.getParameter("nickName");
+		String nickname = request.getParameter("nickname");
 		String email = request.getParameter("email");
 		String phone = request.getParameter("phone");
 		String year = request.getParameter("birth1");
 		String month = request.getParameter("birth2");
 		String day = request.getParameter("birth3");
-		// 생년월일 담아야함 
 		
-		Member m = new Member(userName, userId, nickName, email, phone, year, month, day);
+		String birth = month + "/" + day + "/" + year;
 		
-		Member updateMem = new MemberService().updateMember(m);
+		Member m = new Member(userName, userId, nickname, email, phone, birth);
 		
-		if(updateMem == null) {
+		Member updateMember = new MemberService().updateMember(m);
+		
+		HttpSession session = request.getSession();
+		if(updateMember == null) {
 			request.setAttribute("errorMsg", "회원정보 수정에 실패했습니다.");
 		}else {
-			HttpSession session = request.getSession();
-			session.setAttribute("loginUser", updateMem);
-			session.setAttribute("alertMsg", "성공적으로 회원정보를 수정했습니다.");
+			session.setAttribute("loginUser", updateMember);
+			session.setAttribute("alertMsg", "회원님의 정보가 수정되었습니다.");
 			
-			response.sendRedirect(request.getContextPath() + "/views/mypage/memberUpdate.jsp");	
+			response.sendRedirect(request.getContextPath() + "/memberUpdate.mp");
 		}
 		
+			
 		
 	}
 

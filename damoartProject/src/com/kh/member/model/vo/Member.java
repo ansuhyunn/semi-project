@@ -71,6 +71,7 @@ public class Member {
 		this.birth2 = birth2;
 		this.birth3 = birth3;
 	}
+	
 
 	public int getMemNo() {
 		return memNo;

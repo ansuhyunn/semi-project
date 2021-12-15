@@ -168,6 +168,8 @@
 </head>
 <body>
 	<%@ include file="../common/menubar.jsp" %>
+	
+	
     <br><br>
     <!--회원박스-->
     <div class="mypage_top">
@@ -224,7 +226,7 @@
                 <hr align="left" width="765" color="rgb(64, 64, 64)" size="1">
                 <div class="update_tbl">
             
-                    <form action="" id="mypage-form" method="post">
+                    <form action="<%=contextPath%>/memberUpdate.mp" id="mypage-form" method="post">
             
                         <table >
                             <tr>
@@ -261,18 +263,20 @@
                                 <th>* 휴대전화번호</th>
                                 <td><input type="text" name="phone" placeholder="- 포함해서 입력" value="<%= loginUser.getPhone() %>" required></td>
                             </tr>
+                            <!--  
                             <tr>
                                 <th>생년월일</th>
                                 <td>
                                     <div class="birth_day">
-                                        <input type="text" name="birth_year" id="birth_year" pattern="[0-9]*" value="<%= loginUser.getBirth()%>" label="생년월일" size="4" maxlength="4" placeholder="YYYY">
+                                        <input type="text" name="birth_year" id="birth_year" pattern="[0-9]*" value="" label="생년월일" size="4" maxlength="4" placeholder="YYYY">
                                         <span class="bar"></span>
                                         <input type="text" name="birth[]" id="birth_month" pattern="[0-9]*" value="" label="생년월일" size="2" maxlength="2" placeholder="MM">
                                         <span class="bar"></span>
                                         <input type="text" name="birth[]" id="birth_day" pattern="[0-9]*" value="" label="생년월일" size="2" maxlength="2" placeholder="DD">
-                                        </div>
+                                    </div>
                                 </td>
                             </tr>
+                            -->
                             <tr>
                                 <th>&nbsp;&nbsp;&nbsp;생년월일</th>
                                 <td>
