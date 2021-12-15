@@ -74,7 +74,7 @@
              <!-- 이벤트 배너 1개-->
              <div class="banner-thumbnail" align="center">
                  <br>
-                <img scr="이미지 배너 경로" width="420" height="180">
+                <img src="이미지 배너 경로" width="420" height="180">
                 <p>
                     다모아트 sns 공유 특별 이벤트! <br>
                     이벤트 기간 : mm-dd ~ mm-dd
@@ -85,7 +85,7 @@
              <!-- 이벤트 배너 1개-->
              <div class="banner-thumbnail" align="center">
                 <br>
-               <img scr="이미지 배너 경로" width="420" height="180">
+               <img src="이미지 배너 경로" width="420" height="180">
                <p>
                    다모아트 sns 공유 특별 이벤트! <br>
                    이벤트 기간 : mm-dd ~ mm-dd
@@ -96,7 +96,7 @@
              <!-- 이벤트 배너 1개-->
              <div class="banner-thumbnail" align="center">
                 <br>
-               <img scr="이미지 배너 경로" width="420" height="180">
+               <img src="이미지 배너 경로" width="420" height="180">
                <p>
                    다모아트 sns 공유 특별 이벤트! <br>
                    이벤트 기간 : mm-dd ~ mm-dd
@@ -107,7 +107,7 @@
              <!-- 이벤트 배너 1개-->
              <div class="banner-thumbnail" align="center">
                 <br>
-               <img scr="이미지 배너 경로" width="420" height="180">
+               <img src="이미지 배너 경로" width="420" height="180">
                <p>
                    다모아트 sns 공유 특별 이벤트! <br>
                    이벤트 기간 : mm-dd ~ mm-dd
@@ -116,8 +116,9 @@
 
          </div>
 
-        <!--더보기 버튼 ajax로 해야할 것 같음+중앙정렬-->
-        <button id="more_event">더보기</button>
+        <- 페이징바 ->
+
+         앞으론...깃에 꼭 곡 올리기..........받다가 롤백해버렸네..
             
   </div>
 </body>
