@@ -1,4 +1,4 @@
-package com.kh.product;
+package com.kh.product.controller.display;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,16 +13,16 @@ import com.kh.product.model.service.ProductService;
 import com.kh.product.model.vo.Product;
 
 /**
- * Servlet implementation class ListMonthController
+ * Servlet implementation class ListRegionController
  */
-@WebServlet("/month.pro")
-public class ListMonthController extends HttpServlet {
+@WebServlet("/region.pro")
+public class ListRegionController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ListMonthController() {
+    public ListRegionController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,11 +32,11 @@ public class ListMonthController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		ArrayList<Product> monthList = new ProductService().selectMonthList();
+		ArrayList<Product> regionList = new ProductService().selectRegionList();
 		
-		request.setAttribute("monthList", monthList);
-		request.getRequestDispatcher("views/product/monthMain.jsp").forward(request, response);
-				
+		request.setAttribute("regionList", regionList);
+		request.getRequestDispatcher("views/product/regionMain.jsp").forward(request, response);
+		
 	}
 
 	/**

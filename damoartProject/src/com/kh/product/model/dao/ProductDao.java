@@ -16,14 +16,18 @@ import com.kh.product.model.vo.Product;
 public class ProductDao {
 
 	private Properties prop = new Properties();
+	private Properties ArrayProp = new Properties();
 		
 	public ProductDao() {
 		try {
-			prop.loadFromXML(new FileInputStream(ProductDao.class.getResource("/db/sql/product-mapper.xml").getPath()));
+			prop.loadFromXML(new FileInputStream(ProductDao.class.getResource("/db/sql/product/product-mapper.xml").getPath()));
+			ArrayProp.loadFromXML(new FileInputStream(ProductDao.class.getResource("/db/sql/product/productArray-mapper.xml").getPath()));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
+	
+	
 	
 	// 무료전시 추출
 	public ArrayList<Product> selectFreeList(Connection conn){
@@ -344,12 +348,13 @@ public class ProductDao {
 	
 	
 	// 정렬기준 방식에 따른 결과
-	// 종료날짜순
-	public ArrayList<Product> selectEndDate(Connection conn){
+	// 무료전시
+	// 오픈날짜순
+	public ArrayList<Product> selectOpenDate(Connection conn){
 		ArrayList<Product> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String sql = prop.getProperty("selectEndDate");
+		String sql = ArrayProp.getProperty("FreeOpenDate");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -377,12 +382,12 @@ public class ProductDao {
 		return list;
 	}
 	
-	// 오픈날짜순
-	public ArrayList<Product> selectOpenDate(Connection conn){
+	// 종료날짜순
+	public ArrayList<Product> selectEndDate(Connection conn){
 		ArrayList<Product> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String sql = prop.getProperty("FreeOpenDate");
+		String sql = prop.getProperty("selectEndDate");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);

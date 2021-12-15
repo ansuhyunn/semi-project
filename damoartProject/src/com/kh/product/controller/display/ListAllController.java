@@ -1,4 +1,4 @@
-package com.kh.product;
+package com.kh.product.controller.display;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,16 +13,16 @@ import com.kh.product.model.service.ProductService;
 import com.kh.product.model.vo.Product;
 
 /**
- * Servlet implementation class DetailViewController
+ * Servlet implementation class ListAllController
  */
-@WebServlet("/detail.pro")
-public class DetailViewController extends HttpServlet {
+@WebServlet("/all.pro")
+public class ListAllController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DetailViewController() {
+    public ListAllController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,13 +31,15 @@ public class DetailViewController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int pno = Integer.parseInt(request.getParameter("num"));
 		
-		ArrayList<Product> detailList = new ProductService().selectDetailList(pno);
+		ArrayList<Product> regionList = new ProductService().selectRegionList();
+		ArrayList<Product> monthList = new ProductService().selectMonthList();
+		ArrayList<Product> freeList = new ProductService().selectFreeList();
 		
-		request.setAttribute("detailList", detailList);
-		request.getRequestDispatcher("views/product/detailView.jsp").forward(request, response);
-	
+		request.setAttribute("freeList", freeList);
+		request.setAttribute("monthList", monthList);
+		request.setAttribute("regionList", regionList);
+		request.getRequestDispatcher("views/product/productMain.jsp").forward(request, response);
 	}
 
 	/**
