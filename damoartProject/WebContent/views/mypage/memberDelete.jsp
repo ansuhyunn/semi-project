@@ -133,7 +133,7 @@
         padding-left:30px;
     }
 
-    .update_button button{
+    .delete_button button{
         width:100px;
         height:40px;
         background:rgb(182, 167, 141);
@@ -245,27 +245,34 @@
                     </div>
             
                     <br>
+                    
                     <div class="agreebox">
-                        <input type="checkbox" required></input> 
+                        <input type="checkbox" name="agree" required></input> 
                         안내 사항을 모두 확인하였으며, 이에 동의합니다.
                     </div>
-
+					
                     <br><br><br>
                     
                 </div>
-
-                <div class="update_button" align="center">
-                	<input type="hidden" name="memId" value="<%=loginUser.getMemId()%>">
-                    <button type="button" class="btn btn-sm btn-secondary" onclick="location.href='<%= contextPath %>/views/mypage/mypageMain.jsp'">취소</button>
-                    <button type="submit" class="btn btn-sm btn-secondary" onclick="deleteCheck();">탈퇴</button>
+				
+                <div class="delete_button" align="center">
+                	
+                    <button type="button" class="btn btn-sm btn-secondary" onclick="history.back();">취소</button>
+                    <button type="submit" class="btn btn-sm btn-secondary" onclick="return deleteCheck();">탈퇴</button>
                 </div>
 
-                <script>
-	            	function deleteCheck(){
-	            		location.href = "<%= contextPath %>/memberDelete.mp";
-	            		
-	            	}
-	            </script>
+				<script>
+				
+					function deleteCheck(){
+						if($("input[name=agree]").is(":checked") == false){
+							alert("안내 사항을 확인하고 동의해 주세요.");
+		        			return false;   			
+						}else{
+							location.href = "<%=contextPath%>/memberDelete.mp";
+						}		
+						
+					}
+				</script>
                 
             </div>
         </div>

@@ -208,7 +208,7 @@
         <div id="content_2">
 
             <div class="contents">
-                <h4 class="contents_tit">회원정보 수정</h4>
+                <h4 class="contents_tit">회원 탈퇴</h4>
                 <hr align="left" width="765" color="rgb(64, 64, 64)" size="1">
                 <br><br>
                 <div id="delete_success_tit" align="center">
@@ -219,8 +219,14 @@
                     보다 나은 서비스로 다시 만나뵐 수 있기를 바랍니다. <br>
                 </div><br><br>
                 <div id="delete_success_btn" align="center">
-                    <button type="submit" id="check_btn" class="btn btn-sm btn-secondary">홈 바로가기</button>
+                    <button type="submit" id="check_btn" class="btn btn-sm btn-secondary" onclick="mainHome();">홈 바로가기</button>
                 </div>
+                
+                <script>
+					function mainHome(){
+						location.href = "<%=contextPath%>/views/common/mainPage.jsp";
+					}
+				</script>
             </div>
         </div>
     </div>

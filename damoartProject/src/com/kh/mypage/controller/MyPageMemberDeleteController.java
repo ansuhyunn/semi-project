@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.kh.member.model.vo.Member;
 import com.kh.mypage.model.service.MemberService;
 
 /**
@@ -31,14 +32,14 @@ public class MyPageMemberDeleteController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String memId = request.getParameter("memId");
-		
-		int result = new MemberService().deleteMember(memId);
+		request.setCharacterEncoding("UTF-8");
 		
 		HttpSession session = request.getSession();
+		String memId = ((Member)session.getAttribute("loginUser")).getMemId();
+	
+		int result = new MemberService().deleteMember(memId);
 		
 		if(result > 0) {
-			session.setAttribute("alertMsg", "회원탈퇴가 완료되었습니다.");
 			session.removeAttribute("loginUser");
 			response.sendRedirect(request.getContextPath() + "/views/mypage/memberDeleteSuccess.jsp");
 		}
