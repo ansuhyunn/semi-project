@@ -139,7 +139,7 @@
                 <script>
                 	$(function(){
                 		$("#list-area>tbody>tr").click(function(){
-                			location.href='<%=contextPath%>/adminDatail.no?nno=' + $(this).children().eq(1).text();
+                			location.href='<%=contextPath%>/adminDetail.no?nno=' + $(this).children().eq(1).text();
                 		})
                 	})
                 </script>

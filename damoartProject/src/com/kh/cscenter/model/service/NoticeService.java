@@ -60,5 +60,34 @@ public class NoticeService {
 		close(conn);
 		return atList;
 	}
+	
+	public int updateNotice(Notice n, ArrayList<Attachment> list) {
+		
+		Connection conn = getConnection();
+		
+		int result1 = new NoticeDao().updateNotice(conn, n);
+		
+		int result2 = 1;
+		
+		if(list != null) {
+			for(Attachment a : list) {
+				if(a.getFileNo() != 0) {
+					result2 *= new NoticeDao().updateAttachment(conn, a);
+				}else {
+					result2 *= new NoticeDao().insertAttachment(conn, a);
+				}
+			}
+		}
+		
+		if(result1 > 0 && result2 > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result1 * result2;
+	}
 
 }

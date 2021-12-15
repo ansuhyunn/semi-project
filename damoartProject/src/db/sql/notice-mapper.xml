@@ -51,10 +51,48 @@
 	<entry key="selectAttachment">
 		SELECT
 		       FILE_NO
+		     , ORIGIN_NAME
 		     , CHANGE_NAME
 		     , FILE_PATH
 		  FROM ATTACHMENT
 		 WHERE REF_B = 'NOTICE'
 		   AND REF_BNO = ?
+	</entry>
+	
+	<entry key="updateNotice">
+		UPDATE NOTICE
+		   SET NOTICE_TITLE = ?
+		     , NOTICE_CONTENT = ?
+		 WHERE NOTICE_NO = ?
+	</entry>
+	
+	<entry key="updateAttachment">
+		UPDATE ATTACHMENT
+		   SET ORIGIN_NAME = ?
+		     , CHANGE_NAME = ?
+		     , FILE_PATH = ?
+		 WHERE FILE_NO = ?
+	</entry>
+	
+	<entry key="insertNewAttachment">
+		INSERT 
+		  INTO ATTACHMENT
+		     (  
+		       FILE_NO
+		     , REF_B
+		     , REF_BNO
+		     , ORIGIN_NAME
+		     , CHANGE_NAME
+		     , FILE_PATH
+		     )
+		     VALUES
+		     (
+		       SEQ_ANO.NEXTVAL
+		     , 'NOTICE'
+		     , ?
+		     , ?
+		     , ?
+		     , ?
+		     )
 	</entry>
 </properties>

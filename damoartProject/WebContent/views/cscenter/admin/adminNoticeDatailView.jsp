@@ -25,10 +25,13 @@
 <style>
     div{box-sizing:border-box;}
     #outer{
+		/* border:1px solid black; */
         width:1000px; 
         height:auto; 
-        padding:40px;
+        padding:20px;
         margin:auto;
+        margin-top:150px;
+        margin-left:230px;
     }
     #outer>a{
         color:rgb(64, 64, 64);
@@ -109,7 +112,7 @@
 	
 	<div id="outer">
         <br><br>
-		<h4 style="font-weight:bolder;" align="center">공지사항</h4>
+		<h4 style="font-weight:bolder;">공지사항</h4>
         <br>
         <hr>
         <br><br>
@@ -134,8 +137,10 @@
                 <% }else { %>
                 	<% for(Attachment a : atList) { %>
                 		<img src="<%=contextPath%>/<%=a.getFilePath() + a.getChangeName()%>" width="400" height="300">
+                		<br><br>
                 	<% } %>
                 <% } %>
+
 			    <%= n.getNoticeContent() %>
             </div>
         </div>
@@ -145,7 +150,7 @@
             </div>
             <div align="right">
                 <a id="delete" href="" class="btn btn-sm">삭제하기</a>
-                <a id="update" href="" class="btn btn-sm">수정하기</a>
+                <a id="update" href="<%=contextPath %>/updateForm.no?nno=<%=n.getNoticeNo() %>" class="btn btn-sm">수정하기</a>
             </div>
         </div>
             

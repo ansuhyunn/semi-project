@@ -14,16 +14,16 @@ import com.kh.cscenter.model.service.NoticeService;
 import com.kh.cscenter.model.vo.Notice;
 
 /**
- * Servlet implementation class AdminNoticeDetailController
+ * Servlet implementation class AdminNoticeUpdateForm
  */
-@WebServlet("/adminDetail.no")
-public class AdminNoticeDetailController extends HttpServlet {
+@WebServlet("/updateForm.no")
+public class AdminNoticeUpdateFormController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminNoticeDetailController() {
+    public AdminNoticeUpdateFormController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,7 +32,6 @@ public class AdminNoticeDetailController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		int noticeNo = Integer.parseInt(request.getParameter("nno"));
 		
 		NoticeService nService = new NoticeService();
@@ -43,7 +42,7 @@ public class AdminNoticeDetailController extends HttpServlet {
 		request.setAttribute("n", n);
 		request.setAttribute("atList", atList);
 		
-		request.getRequestDispatcher("views/cscenter/admin/adminNoticeDatailView.jsp").forward(request, response);
+		request.getRequestDispatcher("views/cscenter/admin/adminNoticeUpdateForm.jsp").forward(request, response);
 	}
 
 	/**

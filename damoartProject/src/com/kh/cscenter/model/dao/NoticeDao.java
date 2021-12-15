@@ -141,7 +141,7 @@ public class NoticeDao {
 	}
 	
 	public ArrayList<Attachment> selectAttachment(Connection conn, int noticeNo) {
-		ArrayList<Attachment> atList = null;
+		ArrayList<Attachment> atList = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String sql = prop.getProperty("selectAttachment");
@@ -154,6 +154,7 @@ public class NoticeDao {
 			
 			while(rset.next()){
 				atList.add(new Attachment(rset.getInt("file_no"),
+										  rset.getString("origin_name"),
 										  rset.getString("change_name"),
 										  rset.getString("file_path")
 						                  ));
@@ -167,6 +168,79 @@ public class NoticeDao {
 		}
 		return atList;
 			
+	}
+	
+	public int updateNotice(Connection conn, Notice n) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateNotice");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, n.getNoticeTitle());
+			pstmt.setString(2, n.getNoticeContent());
+			pstmt.setInt(3, n.getNoticeNo());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		System.out.println("un" + result);
+		return result;	
+	}
+	
+	public int updateAttachment(Connection conn, Attachment a) {
+		 
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateAttachment");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, a.getOriginName());
+			pstmt.setString(2, a.getChangeName());
+			pstmt.setString(3, a.getFilePath());
+			pstmt.setInt(4, a.getFileNo());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		System.out.println("ua" + result);
+		return result;
+		
+	}
+	
+	public int insertAttachment(Connection conn, Attachment a) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertNewAttachment");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, a.getRefBoardNo());
+			pstmt.setString(2, a.getOriginName());
+			pstmt.setString(3, a.getChangeName());
+			pstmt.setString(4, a.getFilePath());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		System.out.println("ia" + result);
+		return result;
+		
 	}
 	
 }
