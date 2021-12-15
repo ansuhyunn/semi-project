@@ -18,6 +18,11 @@ public class Member {
 	private String blackContent;
 	private Date blackDate;
 	
+	private String emailDomain;
+	private String birth1;
+	private String birth2;
+	private String birth3;
+	
 	public Member() {}
 	
 	public Member(int memNo, String memId, String memPwd, String memName, String nickName, String email, String phone,
@@ -36,6 +41,35 @@ public class Member {
 		this.status = status;
 		this.blackContent = blackContent;
 		this.blackDate = blackDate;
+	}
+
+	public Member(String memId, String memPwd, String memName, String nickName, String email, String phone,
+			String birth) {
+		super();
+		this.memId = memId;
+		this.memPwd = memPwd;
+		this.memName = memName;
+		this.nickName = nickName;
+		this.email = email;
+		this.phone = phone;
+		this.birth = birth;
+	}
+	
+	
+
+	public Member(String memId, String memPwd, String memName, String nickName, String email, String phone,
+			String emailDomain, String birth1, String birth2, String birth3) {
+		super();
+		this.memId = memId;
+		this.memPwd = memPwd;
+		this.memName = memName;
+		this.nickName = nickName;
+		this.email = email;
+		this.phone = phone;
+		this.emailDomain = emailDomain;
+		this.birth1 = birth1;
+		this.birth2 = birth2;
+		this.birth3 = birth3;
 	}
 
 	public int getMemNo() {

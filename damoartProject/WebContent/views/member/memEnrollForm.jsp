@@ -100,7 +100,7 @@
         </ul>
         <br><br>
         <hr style="width:50%;">
-        <form action=""  method="post" class="enrollForm">
+        <form action="insert.me"  method="post" class="enrollForm">
             <br><br><br>
             <table>
                 <tr>
@@ -112,7 +112,7 @@
                 <tr>
                     <th width="250" height="70">* 아이디</th>
                     <td width="600">
-                        <input type="text" name="userId" placeholder="영문, 숫자 5글자 이상" minlength="5" required>
+                        <input type="text" name="memId" placeholder="영문, 숫자 5글자 이상" minlength="5" required>
                         &nbsp;&nbsp;&nbsp;
                         <button type="button" class="check id">중복확인</button>
                     </td>
@@ -121,7 +121,7 @@
                 <tr>
                     <th height="70">* 비밀번호</th>
                     <td>
-                        <input type="password" name="userPwd" placeholder="영문+숫자 8~20자" minlength="8" maxlength="20" required>
+                        <input type="password" name="memPwd" placeholder="영문+숫자 8~20자" minlength="8" maxlength="20" required>
                     </td>
                     <td></td>
                 </tr>
@@ -135,28 +135,28 @@
                 <tr>
                     <th height="70">* 이름</th>
                     <td>
-                        <input type="text" name="userName" placeholder="2글자 이상" minlength="2" required>
+                        <input type="text" name="memName" placeholder="2글자 이상" minlength="2" required>
                     </td>
                     <td></td>
                 </tr>
                 <tr>
                     <th height="70">* 닉네임</th>
                     <td>
-                        <input type="text" name="nickName" placeholder="한글, 영문, 특수문자 2~14자" minlength="2" maxlength="14" required>
+                        <input type="text" name="nickname" placeholder="한글, 영문, 특수문자 2~14자" minlength="2" maxlength="14" required>
                     </td>
                     <td></td>
                 </tr>
                 <tr>
                     <th height="70">* 이메일</th>
                     <td>
-                        <input type="text" name="email" style="width:170px;"required> 
+                        <input type="text" name="emailId" style="width:170px;"required> 
                         &nbsp;
                         <select id="emailDomain" id="inputEmailDomain" name="emailDomain" class="email_select"> 
 	                        <option value="self">직접입력</option> 
-	                        <option value="@naver.com">@naver.com</option> 
-	                        <option value="@gmail.com">@gmail.com</option> 
-	                        <option value="@daum.net">@daum.net</option> 
-	                        <option value="@nate.com">@nate.com</option> 
+	                        <option value="@naver.com">naver.com</option> 
+	                        <option value="@gmail.com">gmail.com</option> 
+	                        <option value="@daum.net">daum.net</option> 
+	                        <option value="@nate.com">nate.com</option> 
                     	</select> &nbsp;&nbsp;
                         <button type="button" class="check email" >이메일인증</button>
                     </td>
