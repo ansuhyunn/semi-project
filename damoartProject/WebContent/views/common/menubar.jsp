@@ -162,6 +162,8 @@
                     	<a href="<%=contextPath%>/views/order/cart.jsp" id="cart_btn" class="btn btn-sm">장바구니</a>
                     	<a href="<%=contextPath%>/views/mypage/mypageMain.jsp" id="myPage_btn" class="btn btn-sm">마이페이지</a>
                     	<a href="<%=contextPath%>/logout.me" id="logout_btn" class="btn btn-sm">로그아웃</a>
+                    	<br>
+                    	<p style="text-align:right; margin-top:10px;"><b><%= loginUser.getMemName() %>님</b> 환영합니다!<br></p>
                     <% } %> 
                 </div>
                 <div id="search_area">
