@@ -181,7 +181,7 @@
         </div>
         <div class="userbox_2">
         	<p class="txt">
-        		<strong class="userName">xxx</strong>님 반갑습니다.
+        		<strong class="userName"><%= loginUser.getNickName() %></strong>님 반갑습니다.
         	</p>
         </div>
         

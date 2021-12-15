@@ -9,6 +9,7 @@
 		     , NICKNAME = ?
 		     , EMAIL = ?
 		     , PHONE = ?
+		     , BIRTH = ?
 		 WHERE MEM_ID = ? 
 	</entry>
 
@@ -29,6 +30,13 @@
 		  FROM MEMBER
 		 WHERE MEM_ID = ?
 		   AND STATUS = 'Y'
+	</entry>
+	
+	<!-- 회원탈퇴(상태변경) -->
+	<entry key="deleteMember">
+		UPDATE MEMBER
+		   SET STATUS = 'Y'
+	   	 WHERE MEM_ID = ?
 	</entry>
 
 </properties>

@@ -219,7 +219,6 @@
             </ul>
         </div>
         <div id="content_2">
-
             <div class="contents">
                 <h4 class="contents_tit">회원정보 수정</h4>
                 <hr align="left" width="765" color="rgb(64, 64, 64)" size="1">
@@ -229,12 +228,16 @@
             
                         <table >
                             <tr>
+                                <td colspan="3"style="color:red; padding:20px; font-size:12px;"> * 표시는 필수입력사항입니다. </td>
+                            </tr>
+
+                            <tr>
                                 <th>* 이름</th> 
-                                <td><input type="text" name="userName" minlength="2" value="userName" required></td> 
+                                <td><input type="text" name="userName" minlength="2" value="<%= loginUser.getMemName() %>" required></td> 
                             </tr>
                             <tr>
                                 <th>* 아이디</th>
-                                <td><input type="text" name="userId" maxlength="6" value="userId" readonly></td>
+                                <td><input type="text" name="userId" maxlength="6" value="<%= loginUser.getMemId() %>" readonly></td>
                             </tr>
                             <!--  
                             <tr>
@@ -248,27 +251,54 @@
                             <tr>
                             -->
                                 <th>* 닉네임</th> 
-                                <td><input type="text" name="nickName" minlength="2" maxlength="14" value="nickname" required></td> 
+                                <td><input type="text" name="nickName" minlength="2" maxlength="14" value="<%= loginUser.getNickName() %>" required></td> 
                             </tr>
                             <tr>
                                 <th>* 이메일</th>
-                                <td><input type="email" name="email" value="email" required></td>
+                                <td><input type="email" name="email" value="<%= loginUser.getEmail() %>" required></td>
                             </tr>
                             <tr>
                                 <th>* 휴대전화번호</th>
-                                <td><input type="text" name="phone" placeholder="- 포함해서 입력" value="phone" required></td>
+                                <td><input type="text" name="phone" placeholder="- 포함해서 입력" value="<%= loginUser.getPhone() %>" required></td>
                             </tr>
                             <tr>
                                 <th>생년월일</th>
                                 <td>
                                     <div class="birth_day">
-                                        <input type="text" name="birth_year" id="birth_year" pattern="[0-9]*" value="" label="생년월일" size="4" maxlength="4" placeholder="YYYY">
+                                        <input type="text" name="birth_year" id="birth_year" pattern="[0-9]*" value="<%= loginUser.getBirth()%>" label="생년월일" size="4" maxlength="4" placeholder="YYYY">
                                         <span class="bar"></span>
                                         <input type="text" name="birth[]" id="birth_month" pattern="[0-9]*" value="" label="생년월일" size="2" maxlength="2" placeholder="MM">
                                         <span class="bar"></span>
                                         <input type="text" name="birth[]" id="birth_day" pattern="[0-9]*" value="" label="생년월일" size="2" maxlength="2" placeholder="DD">
                                         </div>
                                 </td>
+                            </tr>
+                            <tr>
+                                <th>&nbsp;&nbsp;&nbsp;생년월일</th>
+                                <td>
+                                    <script type="text/javascript">
+                                    var today = new Date();
+                                    var toyear = parseInt(today.getFullYear ());
+                                    var start = toyear;
+                                    var end = toyear -90;
+            
+                                    document.write("<select name=birth1> ");
+                                    document.write("<option value='2021'>");
+                                    for (i=start;i>=end;i--) document.write("<option>"+i);
+                                    document.write("</select>년  ");
+            
+                                    document.write("<select name=birth2>");
+                                    document.write("<option value='' selected>");
+                                    for (i=1;i<=12;i++) document.write("<option>"+i);
+                                    document.write("</select>월  ");
+            
+                                    document.write("<select name=birth3>");
+                                    document.write("<option value='' selected>");
+                                    for (i=1;i<=31;i++) document.write("<option>"+i);
+                                    document.write("</select>일  </font>");
+                                </script>
+                                </td>
+                                <td></td>
                             </tr>
 
                         </table>

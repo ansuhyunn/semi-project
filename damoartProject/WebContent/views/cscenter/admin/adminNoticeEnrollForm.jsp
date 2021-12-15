@@ -75,8 +75,8 @@
         <br>
         <hr>
         <div id="inner" align="center">
-            <form id="enroll-form" action="">
-            	<input type="hidden" name="adminNo"> 
+            <form id="enroll-form" action="<%=contextPath%>/insert.no" method="post" enctype="multipart/form-data">
+            	<input type="hidden" name="adminNo" value="<%=loginUser.getMemNo()%>"> 
                 <table id="enroll-tb">
                     <tr style="border-bottom:1px solid rgb(173, 157, 128); border-top:1px solid rgb(173, 157, 128)">
                         <th width="120">&nbsp;&nbsp;&nbsp;제목</th>
@@ -99,12 +99,12 @@
                         <td><textarea name="" id=""rows="20" required style="resize:none;"></textarea></td>
                     </tr>
                 </table>
+                <br>
+                <div id="button" align="right">
+                    <a href="<%=contextPath%>/adminList.no?cpage=1" class="btn btn-sm" id="cancel">취소하기</a>
+                    <button type="submit" class="btn btn-sm" id="insert">등록하기</button>
+                </div>
             </form>
-            <br>
-            <div id="button" align="right">
-                <a href="" class="btn btn-sm" id="cancel">취소하기</a>
-                <button type="submit" class="btn btn-sm" id="insert">등록하기</button>
-            </div>
         </div>
     </div>
 </body>
