@@ -189,7 +189,6 @@ public class NoticeDao {
 		}finally {
 			close(pstmt);
 		}
-		System.out.println("un" + result);
 		return result;	
 	}
 	
@@ -213,7 +212,6 @@ public class NoticeDao {
 		}finally {
 			close(pstmt);
 		}
-		System.out.println("ua" + result);
 		return result;
 		
 	}
@@ -238,7 +236,6 @@ public class NoticeDao {
 		}finally {
 			close(pstmt);
 		}
-		System.out.println("ia" + result);
 		return result;
 		
 	}
