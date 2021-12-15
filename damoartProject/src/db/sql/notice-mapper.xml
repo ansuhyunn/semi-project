@@ -95,4 +95,42 @@
 		     , ?
 		     )
 	</entry>
+	
+	<entry key="insertNotice">
+		INSERT
+		  INTO NOTICE
+		     ( NOTICE_NO
+		     , NOTICE_WRITER
+		     , NOTICE_TITLE
+		     , NOTICE_CONTENT
+		     )
+		     VALUES
+		     (
+		       SEQ_NNO.NEXTVAL
+		     , ?
+		     , ?
+		     , ?
+		     )
+	</entry>
+	
+	<entry key="insertAttachment">
+		INSERT
+		  INTO ATTACHMENT
+		     ( FILE_NO
+		     , REF_B
+		     , REF_BNO
+		     , ORIGIN_NAME
+		     , CHANGE_NAME
+		     , FILE_PATH
+		     )
+		     VALUES
+		     (
+		       SEQ_ANO.NEXTVAL
+		     , 'NOTICE'
+		     , SEQ_NNO.CURRVAL
+		     , ?
+		     , ?
+		     , ?
+		     )
+	</entry>
 </properties>

@@ -80,23 +80,23 @@
                 <table id="enroll-tb">
                     <tr style="border-bottom:1px solid rgb(173, 157, 128); border-top:1px solid rgb(173, 157, 128)">
                         <th width="120">&nbsp;&nbsp;&nbsp;제목</th>
-                        <td width="700"><input type="text" size="80" required></td>
+                        <td width="700"><input type="text" size="80" required name="title"></td>
                     </tr>
                     <tr>
                         <th rowspan="3">&nbsp;&nbsp;&nbsp;첨부 파일</th>
-                        <td><input type="file"></td>
+                        <td><input type="file" name="upfile1"></td>
                     </tr>
                     <tr>
 
-                        <td><input type="file"></td>
+                        <td><input type="file" name="upfile2"></td>
                     </tr>
                     <tr style="border-bottom:1px solid rgb(173, 157, 128)">
         
-                        <td><input type="file"></td>
+                        <td><input type="file" name="upfile3"></td>
                     </tr>
                     <tr style="border-bottom:1px solid rgb(173, 157, 128)">
                         <th>&nbsp;&nbsp;&nbsp;내용</th>
-                        <td><textarea name="" id=""rows="20" required style="resize:none;"></textarea></td>
+                        <td><textarea name="content" id=""rows="20" required style="resize:none;"></textarea></td>
                     </tr>
                 </table>
                 <br>
