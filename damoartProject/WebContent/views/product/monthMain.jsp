@@ -90,10 +90,10 @@
     <div class="wrapper">
         <div class="name">
             <div id="name1">이달의 전시</div>
-            <a href="">높은가격순</a>
-            <a href="">낮은가격순</a>
-            <a href="">오픈날짜순</a>
-            <a href="">마감임박순</a>
+            <a href="<%=request.getContextPath()%>/monthHigh.pro">높은가격순</a>
+            <a href="<%=request.getContextPath()%>/monthLow.pro">낮은가격순</a>
+            <a href="<%=request.getContextPath()%>/monthOpen.pro">오픈날짜순</a>
+            <a href="<%=request.getContextPath()%>/monthEnd.pro">마감임박순</a>
             <a href="">별점순</a>
         </div>
         <hr class="my-2">

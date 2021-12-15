@@ -89,9 +89,9 @@
     <div class="wrapper">
         <div class="name">
             <div id="name1">오픈 예정 전시</div>
-            <a href="">신규등록순</a>
-            <a href="">높은가격순</a>
-            <a href="">낮은가격순</a>
+            <a href="<%=request.getContextPath()%>/openPre.pro">오픈날짜순</a>
+            <a href="<%=request.getContextPath()%>/highPre.pro">높은가격순</a>
+            <a href="<%=request.getContextPath()%>/lowfree.pro">낮은가격순</a>
         </div>
         <hr class="my-2">
         <div class="content1">

@@ -520,11 +520,188 @@ public class ProductDao {
 	
 	
 	// 진행중전시 낮은가격순
-		public ArrayList<Product> selectLowPrice(Connection conn){
+	public ArrayList<Product> selectLowPrice(Connection conn){
+		ArrayList<Product> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = ArrayProp.getProperty("LowPrice");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Product(rset.getInt("PNO"),
+									 rset.getString("TITLE"),
+									 rset.getString("REGION"),
+									 rset.getString("AGE"),
+									 rset.getString("AREA"),
+									 rset.getString("S_DATE"),
+									 rset.getString("E_DATE"),
+									 rset.getString("TIME"),
+									 rset.getString("MAIN_IMG"),
+									 rset.getString("DETAIL_IMG"),
+									 rset.getString("ETC")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+	
+		
+		
+
+	// 오픈예정 오픈날짜순
+	public ArrayList<Product> selectOpenPre(Connection conn){
+		ArrayList<Product> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = ArrayProp.getProperty("OpenPre");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Product(rset.getInt("PNO"),
+									 rset.getString("TITLE"),
+									 rset.getString("REGION"),
+									 rset.getString("AGE"),
+									 rset.getString("AREA"),
+									 rset.getString("S_DATE"),
+									 rset.getString("E_DATE"),
+									 rset.getString("TIME"),
+									 rset.getString("MAIN_IMG"),
+									 rset.getString("DETAIL_IMG"),
+									 rset.getString("ETC")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+	
+	// 오픈예정 높은가격순
+	public ArrayList<Product> selectHighPre(Connection conn){
+		ArrayList<Product> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = ArrayProp.getProperty("HighPre");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Product(rset.getInt("PNO"),
+									 rset.getString("TITLE"),
+									 rset.getString("REGION"),
+									 rset.getString("AGE"),
+									 rset.getString("AREA"),
+									 rset.getString("S_DATE"),
+									 rset.getString("E_DATE"),
+									 rset.getString("TIME"),
+									 rset.getString("MAIN_IMG"),
+									 rset.getString("DETAIL_IMG"),
+									 rset.getString("ETC")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+		
+		
+	// 오픈예정 낮은가격순
+	public ArrayList<Product> selectLowPre(Connection conn){
+		ArrayList<Product> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = ArrayProp.getProperty("LowPre");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Product(rset.getInt("PNO"),
+									 rset.getString("TITLE"),
+									 rset.getString("REGION"),
+									 rset.getString("AGE"),
+									 rset.getString("AREA"),
+									 rset.getString("S_DATE"),
+									 rset.getString("E_DATE"),
+									 rset.getString("TIME"),
+									 rset.getString("MAIN_IMG"),
+									 rset.getString("DETAIL_IMG"),
+									 rset.getString("ETC")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	// 진행중전시 오픈날짜순
+	public ArrayList<Product> selectMonthOpen(Connection conn){
+		ArrayList<Product> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = ArrayProp.getProperty("MonthOpen");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Product(rset.getInt("PNO"),
+									 rset.getString("TITLE"),
+									 rset.getString("REGION"),
+									 rset.getString("AGE"),
+									 rset.getString("AREA"),
+									 rset.getString("S_DATE"),
+									 rset.getString("E_DATE"),
+									 rset.getString("TIME"),
+									 rset.getString("MAIN_IMG"),
+									 rset.getString("DETAIL_IMG"),
+									 rset.getString("ETC")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+		
+		
+		// 진행중전시 종료날짜순
+		public ArrayList<Product> selectMonthEnd(Connection conn){
 			ArrayList<Product> list = new ArrayList<>();
 			PreparedStatement pstmt = null;
 			ResultSet rset = null;
-			String sql = ArrayProp.getProperty("LowPrice");
+			String sql = ArrayProp.getProperty("MonthEnd");
 			
 			try {
 				pstmt = conn.prepareStatement(sql);
@@ -551,5 +728,73 @@ public class ProductDao {
 			}
 			return list;
 		}
-	
-}
+		
+		
+		// 진행중전시 높은가격순
+		public ArrayList<Product> selectMonthHigh(Connection conn){
+			ArrayList<Product> list = new ArrayList<>();
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			String sql = ArrayProp.getProperty("MonthHigh");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				rset = pstmt.executeQuery();
+				
+				while(rset.next()) {
+					list.add(new Product(rset.getInt("PNO"),
+										 rset.getString("TITLE"),
+										 rset.getString("REGION"),
+										 rset.getString("AGE"),
+										 rset.getString("AREA"),
+										 rset.getString("S_DATE"),
+										 rset.getString("E_DATE"),
+										 rset.getString("TIME"),
+										 rset.getString("MAIN_IMG"),
+										 rset.getString("DETAIL_IMG"),
+										 rset.getString("ETC")));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt);
+			}
+			return list;
+		}
+		
+		
+		// 진행중전시 낮은가격순
+			public ArrayList<Product> selectMonthLow(Connection conn){
+				ArrayList<Product> list = new ArrayList<>();
+				PreparedStatement pstmt = null;
+				ResultSet rset = null;
+				String sql = ArrayProp.getProperty("MonthLow");
+				
+				try {
+					pstmt = conn.prepareStatement(sql);
+					rset = pstmt.executeQuery();
+					
+					while(rset.next()) {
+						list.add(new Product(rset.getInt("PNO"),
+											 rset.getString("TITLE"),
+											 rset.getString("REGION"),
+											 rset.getString("AGE"),
+											 rset.getString("AREA"),
+											 rset.getString("S_DATE"),
+											 rset.getString("E_DATE"),
+											 rset.getString("TIME"),
+											 rset.getString("MAIN_IMG"),
+											 rset.getString("DETAIL_IMG"),
+											 rset.getString("ETC")));
+					}
+				} catch (SQLException e) {
+					e.printStackTrace();
+				} finally {
+					close(rset);
+					close(pstmt);
+				}
+				return list;
+			}
+		
+}//class

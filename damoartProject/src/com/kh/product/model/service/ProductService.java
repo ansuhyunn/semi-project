@@ -149,5 +149,73 @@ public class ProductService {
 		close(conn);
 		return list;
 	}
+	
+	
+	
+	public ArrayList<Product> selectOpenPre(){
+		Connection conn = getConnection();
+		
+		ArrayList<Product> list = new ProductDao().selectOpenPre(conn);
+		
+		close(conn);
+		return list;
+	}
+	
+	public ArrayList<Product> selectHighPre(){
+		Connection conn = getConnection();
+		
+		ArrayList<Product> list = new ProductDao().selectHighPre(conn);
+		
+		close(conn);
+		return list;
+	}
+	
+	public ArrayList<Product> selectLowPre(){
+		Connection conn = getConnection();
+		
+		ArrayList<Product> list = new ProductDao().selectLowPre(conn);
+		
+		close(conn);
+		return list;
+	}
+	
+	
+	
+	public ArrayList<Product> selectMonthEnd(){
+		Connection conn = getConnection();
+		
+		ArrayList<Product> list = new ProductDao().selectMonthEnd(conn);
+		
+		close(conn);
+		return list;
+	}
+	
+	public ArrayList<Product> selectMonthOpen(){
+		Connection conn = getConnection();
+		
+		ArrayList<Product> list = new ProductDao().selectMonthOpen(conn);
+		
+		close(conn);
+		return list;
+	}
+	
+	public ArrayList<Product> selectMonthHigh(){
+		Connection conn = getConnection();
+		
+		ArrayList<Product> list = new ProductDao().selectMonthHigh(conn);
+		
+		close(conn);
+		return list;
+	}
+	
+	public ArrayList<Product> selectMonthLow(){
+		Connection conn = getConnection();
+		
+		ArrayList<Product> list = new ProductDao().selectMonthLow(conn);
+		
+		close(conn);
+		return list;
+	}
+
 
 }

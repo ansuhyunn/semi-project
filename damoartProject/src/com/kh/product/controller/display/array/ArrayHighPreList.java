@@ -13,16 +13,16 @@ import com.kh.product.model.service.ProductService;
 import com.kh.product.model.vo.Product;
 
 /**
- * Servlet implementation class ArrayOpenList
+ * Servlet implementation class ArrayOpenPreList
  */
-@WebServlet("/Open.pro")
-public class ArrayOpenList extends HttpServlet {
+@WebServlet("/highPre.pro")
+public class ArrayHighPreList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ArrayOpenList() {
+    public ArrayHighPreList() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,10 +32,11 @@ public class ArrayOpenList extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		ArrayList<Product> ingList = new ProductService().selectOpenDate();
+		ArrayList<Product> preList = new ProductService().selectHighPre();
 		
-		request.setAttribute("ingList", ingList);
-		request.getRequestDispatcher("views/product/ingMain.jsp").forward(request, response);
+		request.setAttribute("preList", preList);
+		request.getRequestDispatcher("views/product/preMain.jsp").forward(request, response);
+		
 		
 	}
 
