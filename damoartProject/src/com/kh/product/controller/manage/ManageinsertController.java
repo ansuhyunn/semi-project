@@ -1,4 +1,4 @@
-package com.kh.product;
+package com.kh.product.controller.manage;
 
 import java.io.IOException;
 

@@ -1,4 +1,4 @@
-package com.kh.product;
+package com.kh.product.controller.display;
 
 import java.io.IOException;
 import java.util.ArrayList;

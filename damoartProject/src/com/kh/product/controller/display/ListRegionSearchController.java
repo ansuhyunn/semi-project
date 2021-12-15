@@ -1,4 +1,4 @@
-package com.kh.product;
+package com.kh.product.controller.display;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,14 +15,14 @@ import com.kh.product.model.vo.Product;
 /**
  * Servlet implementation class ListRegionController
  */
-@WebServlet("/region.pro")
-public class ListRegionController extends HttpServlet {
+@WebServlet("/regionResult.pro")
+public class ListRegionSearchController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ListRegionController() {
+    public ListRegionSearchController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,12 +31,13 @@ public class ListRegionController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String value = request.getParameter("value");
 		
-		ArrayList<Product> regionList = new ProductService().selectRegionList();
+		ArrayList<Product> regionList = new ProductService().selectRegionResultList(value);
 		
 		request.setAttribute("regionList", regionList);
-		request.getRequestDispatcher("views/product/regionMain.jsp").forward(request, response);
-		
+		request.getRequestDispatcher("views/product/regionResult.jsp").forward(request, response);
+				
 	}
 
 	/**

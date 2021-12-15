@@ -1,4 +1,4 @@
-package com.kh.product;
+package com.kh.product.controller.display;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,16 +13,16 @@ import com.kh.product.model.service.ProductService;
 import com.kh.product.model.vo.Product;
 
 /**
- * Servlet implementation class ListPreController
+ * Servlet implementation class DetailViewController
  */
-@WebServlet("/pre.pro")
-public class ListPreController extends HttpServlet {
+@WebServlet("/detail.pro")
+public class DetailViewController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ListPreController() {
+    public DetailViewController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,10 +31,13 @@ public class ListPreController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<Product> preList = new ProductService().selectPreList();
+		int pno = Integer.parseInt(request.getParameter("num"));
 		
-		request.setAttribute("preList", preList);
-		request.getRequestDispatcher("views/product/preMain.jsp").forward(request, response);
+		ArrayList<Product> detailList = new ProductService().selectDetailList(pno);
+		
+		request.setAttribute("detailList", detailList);
+		request.getRequestDispatcher("views/product/detailView.jsp").forward(request, response);
+	
 	}
 
 	/**

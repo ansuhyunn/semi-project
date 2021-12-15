@@ -1,4 +1,4 @@
-package com.kh.product;
+package com.kh.product.controller.manage;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,14 +16,14 @@ import com.kh.product.model.vo.Product;
 /**
  * Servlet implementation class ManagePreViewController
  */
-@WebServlet("/manageIng.man")
-public class ManageIngViewController extends HttpServlet {
+@WebServlet("/managePre.man")
+public class ManagePreViewController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ManageIngViewController() {
+    public ManagePreViewController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -41,7 +41,7 @@ public class ManageIngViewController extends HttpServlet {
 		int startPage;
 		int endPage;
 		
-		proCount = new ManageService().selectIngCount();
+		proCount = new ManageService().selectPreCount();
 		currentPage = Integer.parseInt(request.getParameter("cpage"));
 		pageLimit = 10; 			
 		boardLimit = 10;
@@ -55,11 +55,11 @@ public class ManageIngViewController extends HttpServlet {
 		
 		PageInfo pi = new PageInfo(proCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
 		
-		ArrayList<Product> IngList = new ManageService().selectIngList(pi);
+		ArrayList<Product> preList = new ManageService().selectPreList(pi);
 		
 		request.setAttribute("pi", pi);	
-		request.setAttribute("IngList", IngList);
-		request.getRequestDispatcher("views/product/manageIngProduct.jsp").forward(request, response);
+		request.setAttribute("preList", preList);
+		request.getRequestDispatcher("views/product/managePreProduct.jsp").forward(request, response);
 		
 	}
 
