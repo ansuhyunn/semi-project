@@ -161,7 +161,7 @@
                     <% }else { %>
                 		<% if(loginUser.getMemNo() == 1 || loginUser.getMemNo() == 2 || loginUser.getMemNo() == 3) {%>
                 			<a href="<%=contextPath%>/views/order/cart.jsp" id="cart_btn" class="btn btn-sm">장바구니</a>
-	                    	<a href="<%=contextPath%>/views/common/manageMenubar_2.jsp" id="login_btn" class="btn btn-sm">관리자페이지</a>
+	                    	<a href="<%=contextPath%>/adminMain.ad" id="login_btn" class="btn btn-sm">관리자페이지</a>
 	                    	<a href="<%=contextPath%>/logout.me" id="logout_btn" class="btn btn-sm">로그아웃</a>
                 		<% }else {%>
 	                    	<a href="<%=contextPath%>/views/order/cart.jsp" id="cart_btn" class="btn btn-sm">장바구니</a>

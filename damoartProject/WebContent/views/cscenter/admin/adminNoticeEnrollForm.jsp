@@ -76,7 +76,7 @@
         <hr>
         <div id="inner" align="center">
             <form id="enroll-form" action="<%=contextPath%>/insert.no" method="post" enctype="multipart/form-data">
-            	<input type="hidden" name="adminNo" value="<%loginUser.getUserNo()%>"> 
+            	<input type="hidden" name="adminNo" value="<%=loginUser.getMemNo()%>"> 
                 <table id="enroll-tb">
                     <tr style="border-bottom:1px solid rgb(173, 157, 128); border-top:1px solid rgb(173, 157, 128)">
                         <th width="120">&nbsp;&nbsp;&nbsp;제목</th>
