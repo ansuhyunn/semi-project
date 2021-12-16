@@ -121,7 +121,7 @@ SELECT
 	 , ETC
   FROM PRODUCT
  <![CDATA[WHERE FLOOR(MONTHS_BETWEEN(SYSDATE, TO_DATE(S_DATE, 'RRRRMMDD'))) >= 0 ]]>
-   AND REGION IN ('경기', '인천')
+   AND REGION = '경기/인천'
 ORDER BY TITLE
 </entry>
 
@@ -142,7 +142,7 @@ SELECT
 	 , ETC
   FROM PRODUCT
  <![CDATA[WHERE FLOOR(MONTHS_BETWEEN(SYSDATE, TO_DATE(S_DATE, 'RRRRMMDD'))) >= 0 ]]>
-   AND REGION IN ('강원도', '충청도')
+   AND REGION = '강원/충청'
 ORDER BY TITLE
 </entry>
 
@@ -232,8 +232,6 @@ ORDER BY TITLE
 
 
 
-
-
 <!-- 디테일 -->
 <entry key="selectDetailList">
 SELECT 
@@ -264,6 +262,75 @@ SELECT
 	   DETAIL_IMG
   FROM PRODUCT
  WHERE PNO = ?	  
+</entry>
+
+
+
+<!-- 전시 검색 -->
+<entry key="SearchListToday">
+SELECT 
+       PNO
+	 , TITLE
+	 , REGION
+	 , AGE
+	 , AREA
+	 , TO_CHAR(TO_DATE(S_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') S_DATE
+	 , TO_CHAR(TO_DATE(E_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') E_DATE
+	 , TIME
+	 , MAIN_IMG
+	 , DETAIL_IMG
+	 , ETC
+  FROM PRODUCT
+<![CDATA[WHERE TO_DATE(S_DATE, 'RRRR/MM/DD') - TRUNC(SYSDATE) <= 0 ]]>
+   AND REGION = ?
+   AND A_PRICE = ?
+   AND AGE = ?
+   AND SOLDOUT = 'N' 
+ORDER BY TITLE
+</entry>
+
+<entry key="SearchListWeek">
+SELECT 
+       PNO
+	 , TITLE
+	 , REGION
+	 , AGE
+	 , AREA
+	 , TO_CHAR(TO_DATE(S_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') S_DATE
+	 , TO_CHAR(TO_DATE(E_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') E_DATE
+	 , TIME
+	 , MAIN_IMG
+	 , DETAIL_IMG
+	 , ETC
+  FROM PRODUCT
+<![CDATA[TO_DATE(E_DATE, 'RRRR/MM/DD') - SYSDATE <= 7 ]]>
+   AND REGION = ?
+   AND A_PRICE = ?
+   AND AGE = ?
+   AND SOLDOUT = 'N' 
+ORDER BY TITLE
+</entry>
+
+<entry key="SearchListMonth">
+SELECT 
+       PNO
+	 , TITLE
+	 , REGION
+	 , AGE
+	 , AREA
+	 , TO_CHAR(TO_DATE(S_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') S_DATE
+	 , TO_CHAR(TO_DATE(E_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') E_DATE
+	 , TIME
+	 , MAIN_IMG
+	 , DETAIL_IMG
+	 , ETC
+  FROM PRODUCT
+<![CDATA[TO_DATE(E_DATE, 'RRRR/MM/DD') - SYSDATE <= 30 ]]>
+   AND REGION = ?
+   AND A_PRICE = ?
+   AND AGE = ?
+   AND SOLDOUT = 'N' 
+ORDER BY TITLE
 </entry>
 
 	

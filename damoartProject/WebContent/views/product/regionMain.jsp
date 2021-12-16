@@ -161,7 +161,7 @@
 
     <script>
         $(".btn").click(function(){
-            let value = $(this).attr('value');
+            let value = $(this).attr("value");
             location.href = '<%=contextPath%>/regionResult.pro?value=' + value;
         })
     </script>

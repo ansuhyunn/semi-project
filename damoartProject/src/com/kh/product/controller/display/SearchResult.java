@@ -2,6 +2,7 @@ package com.kh.product.controller.display;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,18 +12,19 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.product.model.service.ProductService;
 import com.kh.product.model.vo.Product;
+import com.kh.product.model.vo.Search;
 
 /**
- * Servlet implementation class ListRegionController
+ * Servlet implementation class SearchResult
  */
-@WebServlet("/regionResult.pro")
-public class ListRegionSearchController extends HttpServlet {
+@WebServlet("/search.pro")
+public class SearchResult extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ListRegionSearchController() {
+    public SearchResult() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,13 +33,24 @@ public class ListRegionSearchController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String value = request.getParameter("value");
 		
-		ArrayList<Product> regionList = new ProductService().selectRegionResultList(value);
+		request.setCharacterEncoding("UTF-8");
 		
-		request.setAttribute("regionList", regionList);
-		request.getRequestDispatcher("views/product/regionResult.jsp").forward(request, response);
-				
+		String[] value = request.getParameterValues("value");
+		String[] option = Arrays.toString(value).split(",");
+		String op1 = option[0].substring(1);
+		String op2 = option[1];
+		String op3 = option[2];
+		String op4 = option[3].substring(0, option[3].lastIndexOf(']'));
+		
+		ArrayList<Product> searchList = new ProductService().selectSearchList(op1, op2, op3, op4);
+		
+		request.setAttribute("searchList", searchList);
+		request.getRequestDispatcher("views/product/detailView.jsp").forward(request, response);
+		
+		
+//		request.setAttribute("regionList", regionList);
+//		request.getRequestDispatcher("views/product/regionResult.jsp").forward(request, response);
 	}
 
 	/**

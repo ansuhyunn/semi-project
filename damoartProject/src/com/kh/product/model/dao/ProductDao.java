@@ -838,16 +838,53 @@ public class ProductDao {
 		
 		
 		// 진행중전시 낮은가격순
-			public ArrayList<Product> selectMonthLow(Connection conn){
-				ArrayList<Product> list = new ArrayList<>();
-				PreparedStatement pstmt = null;
-				ResultSet rset = null;
-				String sql = ArrayProp.getProperty("MonthLow");
+		public ArrayList<Product> selectMonthLow(Connection conn){
+			ArrayList<Product> list = new ArrayList<>();
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			String sql = ArrayProp.getProperty("MonthLow");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				rset = pstmt.executeQuery();
 				
+				while(rset.next()) {
+					list.add(new Product(rset.getInt("PNO"),
+										 rset.getString("TITLE"),
+										 rset.getString("REGION"),
+										 rset.getString("AGE"),
+										 rset.getString("AREA"),
+										 rset.getString("S_DATE"),
+										 rset.getString("E_DATE"),
+										 rset.getString("TIME"),
+										 rset.getString("MAIN_IMG"),
+										 rset.getString("DETAIL_IMG"),
+										 rset.getString("ETC")));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt);
+			}
+			return list;
+		}
+		
+		
+		
+		// 전시 상세 검색
+		public ArrayList<Product> selectSearchList(Connection conn, String op1, String op2, String op3, String op4){
+			ArrayList<Product> list = new ArrayList<>();
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			if(op1.equals("today")) {
+				String sql = prop.getProperty("SearchListToday");
 				try {
 					pstmt = conn.prepareStatement(sql);
+					pstmt.setString(1, op2);
+					pstmt.setString(2, op3);
+					pstmt.setString(3, op4);
 					rset = pstmt.executeQuery();
-					
 					while(rset.next()) {
 						list.add(new Product(rset.getInt("PNO"),
 											 rset.getString("TITLE"),
@@ -861,13 +898,71 @@ public class ProductDao {
 											 rset.getString("DETAIL_IMG"),
 											 rset.getString("ETC")));
 					}
-				} catch (SQLException e) {
+				}catch (SQLException e) {
 					e.printStackTrace();
 				} finally {
 					close(rset);
 					close(pstmt);
 				}
-				return list;
-			}
+			}else if(op1.equals("week")) {
+				String sql = prop.getProperty("SearchListWeek");
+				try {
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setString(1, op2);
+					pstmt.setString(2, op3);
+					pstmt.setString(3, op4);
+					rset = pstmt.executeQuery();
+					while(rset.next()) {
+						list.add(new Product(rset.getInt("PNO"),
+											 rset.getString("TITLE"),
+											 rset.getString("REGION"),
+											 rset.getString("AGE"),
+											 rset.getString("AREA"),
+											 rset.getString("S_DATE"),
+											 rset.getString("E_DATE"),
+											 rset.getString("TIME"),
+											 rset.getString("MAIN_IMG"),
+											 rset.getString("DETAIL_IMG"),
+											 rset.getString("ETC")));
+					}
+				}catch (SQLException e) {
+					e.printStackTrace();
+				} finally {
+					close(rset);
+					close(pstmt);
+				}	
+			}else if(op1.equals("month")) {
+				String sql = prop.getProperty("SearchListMonth");
+				try {
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setString(1, op2);
+					pstmt.setString(2, op3);
+					pstmt.setString(3, op4);
+					rset = pstmt.executeQuery();
+					while(rset.next()) {
+						list.add(new Product(rset.getInt("PNO"),
+											 rset.getString("TITLE"),
+											 rset.getString("REGION"),
+											 rset.getString("AGE"),
+											 rset.getString("AREA"),
+											 rset.getString("S_DATE"),
+											 rset.getString("E_DATE"),
+											 rset.getString("TIME"),
+											 rset.getString("MAIN_IMG"),
+											 rset.getString("DETAIL_IMG"),
+											 rset.getString("ETC")));
+					}
+				}catch (SQLException e) {
+					e.printStackTrace();
+				} finally {
+					close(rset);
+					close(pstmt);
+				}
+			}else {}	
+				
+			return list;
+		}
+		
+		
 		
 }//class

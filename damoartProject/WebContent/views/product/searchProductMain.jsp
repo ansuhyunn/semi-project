@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.product.model.vo.Search" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -75,7 +75,7 @@
 		margin: 10px;
 		margin-top: 12px;
 	}
-	button:hover{color: whitesmoke;}
+	button:hover{color: whitesmoke; background: white;}
 
 </style>
 </head>
@@ -86,52 +86,92 @@
 	<div class="wrapper">
 		<div class="name">전시 검색</div>
 		<hr class="my-2">
-		<form action="">
 			<div class="option" >
 				<div class="op" >
 					<p id="title">날짜</p>
 					<div class="op_each1">
-						<button class="op1">오늘</button>
-						<button class="op1">1주일 이내</button>
-						<button class="op1">1달 이내</button>
+						<button class="op1" id="today" value="today">오늘 관람 가능</button>
+						<button class="op1" id="week" value="week" >1주일 이내 종료</button>
+						<button class="op1" id="month" value="month">1달 이내 종료</button>
 					</div>
 				</div>
 				<div class="op">
 					<p id="title">지역</p>
 					<div class="op_each2">
-						<button class="op1">서울</button>
-						<button class="op1">경기/인천</button>
-						<button class="op1">강원/충청</button>
-						<button class="op1">전라도</button>
-						<button class="op1">경상도</button>
-						<button class="op1">제주도</button>
+						<button class="op2" id="se" value="서울" >서울</button>
+						<button class="op2" id="ki" value="경기/인천" >경기/인천</button>
+						<button class="op2" id="kc" value="강원/충청" >강원/충청</button>
+			            <button class="op2" id="jr" value="전라도" >전라도</button>
+			            <button class="op2" id="ks" value="경상도" >경상도</button>
+			            <button class="op2" id="jj" value="제주도" >제주도</button>
 					</div>
 				</div>
 				<div class="op">
 					<p id="title">가격</p>
 					<div class="op_each3">
-						<button class="op1" >무료</button>
-						<button class="op1" >10000원 이하</button>
-						<button class="op1" >10000원 ~ 20000원</button>
-						<button class="op1">20000원 이상</button>
+						<button class="op3" id="price1" value="0" >무료</button>
+						<button class="op3" id="price2" value="10000" >10000원 이하</button>
+						<button class="op3" id="price3" value="20000" >20000원 미만</button>
+						<button class="op3" id="price4" value="20000" >20000원 이상</button>
 					</div>
 				</div>
 				<div class="op">
 					<p id="title">연령</p>
 					<div class="op_each4"> 
-						<button class="op1">전체관람</button>
-						<button class="op1">유아동</button>
-						<button class="op1">청소년</button>
-						<button class="op1">성인</button>
+						<button class="op4" id="age1" value="전체관람가" >전체관람가</button>
+						<button class="op4" id="age2" value="유아동" >유아동</button>
+						<button class="op4" id="age3" value="청소년" >청소년</button>
+						<button class="op4" id="age4" value="성인" >성인</button>
 					</div>
 				</div>
 			</div>	
-		</form>
 
-		<button type="submit" class="btn btn-block" style="background-color: rgb(151, 138, 116);"> 검색하기</button>
+			<button class="btn btn-block" id="submit" style="background-color: rgb(151, 138, 116);"> 검색하기</button>
+
 	</div>
 	
 	<%@ include file="../common/footerbar.jsp" %>
+	
+	<script>
+		(function(){
+			
+			var option = [];
+			
+			let op1="";
+			let op2="";
+			let op3="";
+			let op4="";
+		
+			$(".op1").click(function(){
+	            op1 = $(this).attr('value');
+	            option[0] = op1;
+	            //console.log(op1);
+	            //console.log(option);
+	        })
+	        $(".op2").click(function(){
+	            op2 = $(this).attr('value');
+	            option[1] = op2;
+	            //console.log(option);
+	            //console.log(op2);
+	        })
+	        $(".op3").click(function(){
+	            op3 = $(this).attr('value');
+	            option[2] = op3;
+	            //console.log(option);
+	            //console.log(op3);
+	        })
+	        $(".op4").click(function(){
+	            op4 = $(this).attr('value');
+	            option[3] = op4;
+	            //console.log(op4);
+	            //console.log(option);
+	        })
+	        
+	        $("#submit").click(function(){
+	            location.href = '<%=contextPath%>/search.pro?value=' + option;
+	        })
+		})();
+    </script>
 
 </body>
 </html>
