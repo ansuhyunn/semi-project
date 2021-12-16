@@ -169,7 +169,7 @@ public class ProductDao {
 		ArrayList<Product> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		if(value.equals("경기")) {
+		if(value.equals("ki")) {
 			String sql = prop.getProperty("selectKIregionList");
 			try {
 				pstmt = conn.prepareStatement(sql);
@@ -193,7 +193,7 @@ public class ProductDao {
 				close(rset);
 				close(pstmt);
 			}
-		}else if(value.equals("강원")) {
+		}else if(value.equals("kc")) {
 			String sql = prop.getProperty("selectKCregionList");
 			try {
 				pstmt = conn.prepareStatement(sql);
@@ -217,7 +217,7 @@ public class ProductDao {
 				close(rset);
 				close(pstmt);
 			}	
-		}else if(value.equals("전라도")) {
+		}else if(value.equals("jr")) {
 			String sql = prop.getProperty("selectJRregionList");
 			try {
 				pstmt = conn.prepareStatement(sql);
@@ -241,7 +241,7 @@ public class ProductDao {
 				close(rset);
 				close(pstmt);
 			}
-		}else if(value.equals("경상도")) {
+		}else if(value.equals("ks")) {
 			String sql = prop.getProperty("selectKSregionList");
 			try {
 				pstmt = conn.prepareStatement(sql);
@@ -265,7 +265,7 @@ public class ProductDao {
 				close(rset);
 				close(pstmt);
 			}
-		}else if(value.equals("제주도")) {
+		}else if(value.equals("jj")) {
 			String sql = prop.getProperty("selectJJregionList");
 			try {
 				pstmt = conn.prepareStatement(sql);
@@ -289,7 +289,7 @@ public class ProductDao {
 				close(rset);
 				close(pstmt);
 			}
-		}else if(value.equals("seoul")) {
+		}else if(value.equals("se")) {
 			String sql = prop.getProperty("selectSEregionList");
 			try {
 				pstmt = conn.prepareStatement(sql);
