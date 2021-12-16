@@ -12,6 +12,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+   
 <style>
     /*회원박스 스타일*/
     .mypage_top{
@@ -302,19 +303,19 @@
                 <p>예매기간</p>
                 <ul class="select_date">
                     <li>
-                        <button type="button" id="date_btn">일주일</button>
+                        <button type="button" id="date_btn1">일주일</button>
                     </li>
                     <li>
-                        <button type="button" id="date_btn">1개월</button>
+                        <button type="button" id="date_btn2">1개월</button>
                     </li>
                     <li>
-                        <button type="button" id="date_btn">3개월</button>
+                        <button type="button" id="date_btn3">3개월</button>
                     </li>
                     <li>
-                        <button type="button" id="date_btn">6개월</button>
+                        <button type="button" id="date_btn4">6개월</button>
                     </li>
                 </ul>
-                <div class="select-range" align="right">
+                <div class="select-range" align="right" id="test">
                     <input type="date" id="start" name="select-start" value="2021-12-01" min="2020-01-01"> ~
                     <input type="date" id="end" name="select-end" value="2021-12-31" max="2022-12-31">
                 </div>
@@ -338,3 +339,26 @@
     <%@ include file="../common/footerbar.jsp" %>
 </body>
 </html>
+<!-- <script type="text/javascript">
+    
+    $('#date_btn1').click(
+    		function() {
+					console.log("일주일 버튼 클릭");
+			/* 	$('#start').val; */
+				date = $('#start');
+				var dd = date.getDate();
+				var mm = date.getMonth()+1;
+				var yyyy = date.getFullYear();
+				
+				yyyy = yyyy.toString();
+				mm = mm.toString();
+				dd = dd.toString();
+				
+				
+				
+				alert(yyyy+mm);
+				
+					return false;
+				}
+	)
+ </script> -->

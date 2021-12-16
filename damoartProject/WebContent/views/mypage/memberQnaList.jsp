@@ -257,7 +257,7 @@
                 <h4 class="contents_tit">Q&A 내역</h4>
                 <hr align="left" width="765" color="rgb(64, 64, 64)" size="1">
             </div>
-            <form action="">
+            <form action="/qnaList.mp">
             <div class="date" style="background:rgba(255, 255, 255, 0.74)">
                 <p>기간</p>
                 <ul class="select_date">
