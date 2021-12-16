@@ -877,86 +877,198 @@ public class ProductDao {
 			ArrayList<Product> list = new ArrayList<>();
 			PreparedStatement pstmt = null;
 			ResultSet rset = null;
+			
+			if(op2.equals("se")) {
+				op2 = "서울";
+			}else if(op2.equals("ki")) {
+				op2 = "경기/인천";
+			}else if(op2.equals("kc")) {
+				op2 = "강원/충청";
+			}else if(op2.equals("jr")) {
+				op2 = "전라도";
+			}else if(op2.equals("ks")) {
+				op2 = "경상도";
+			}else{
+				op2 = "제주도";
+			}
+			
+			if(op4.equals("all")) {
+				op4 = "전체관람가";
+			}else if(op4.equals("kids")) {
+				op4 = "유아동";
+			}else if(op4.equals("teen")) {
+				op4 = "청소년";
+			}else{
+				op4 = "성인";
+			}
+			
 			if(op1.equals("today")) {
-				String sql = prop.getProperty("SearchListToday");
-				try {
-					pstmt = conn.prepareStatement(sql);
-					pstmt.setString(1, op2);
-					pstmt.setString(2, op3);
-					pstmt.setString(3, op4);
-					rset = pstmt.executeQuery();
-					while(rset.next()) {
-						list.add(new Product(rset.getInt("PNO"),
-											 rset.getString("TITLE"),
-											 rset.getString("REGION"),
-											 rset.getString("AGE"),
-											 rset.getString("AREA"),
-											 rset.getString("S_DATE"),
-											 rset.getString("E_DATE"),
-											 rset.getString("TIME"),
-											 rset.getString("MAIN_IMG"),
-											 rset.getString("DETAIL_IMG"),
-											 rset.getString("ETC")));
+				if(op3.equals("0") || op3.equals("10000") || op3.equals("19999")) {
+					String sql = prop.getProperty("SearchListToday");
+					try {
+						pstmt = conn.prepareStatement(sql);
+						pstmt.setString(1, op2);
+						pstmt.setString(2, op3);
+						pstmt.setString(3, op4);
+						rset = pstmt.executeQuery();
+						while(rset.next()) {
+							list.add(new Product(rset.getInt("PNO"),
+												 rset.getString("TITLE"),
+												 rset.getString("REGION"),
+												 rset.getString("AGE"),
+												 rset.getString("AREA"),
+												 rset.getString("S_DATE"),
+												 rset.getString("E_DATE"),
+												 rset.getString("TIME"),
+												 rset.getString("MAIN_IMG"),
+												 rset.getString("DETAIL_IMG"),
+												 rset.getString("ETC")));
+						}
+					}catch (SQLException e) {
+						e.printStackTrace();
+					} finally {
+						close(rset);
+						close(pstmt);
 					}
-				}catch (SQLException e) {
-					e.printStackTrace();
-				} finally {
-					close(rset);
-					close(pstmt);
+				}else if(op3.equals("20000")) {
+					String sql = prop.getProperty("SearchListToday2");
+					try {
+						pstmt = conn.prepareStatement(sql);
+						pstmt.setString(1, op2);
+						pstmt.setString(2, op3);
+						pstmt.setString(3, op4);
+						rset = pstmt.executeQuery();
+						while(rset.next()) {
+							list.add(new Product(rset.getInt("PNO"),
+												 rset.getString("TITLE"),
+												 rset.getString("REGION"),
+												 rset.getString("AGE"),
+												 rset.getString("AREA"),
+												 rset.getString("S_DATE"),
+												 rset.getString("E_DATE"),
+												 rset.getString("TIME"),
+												 rset.getString("MAIN_IMG"),
+												 rset.getString("DETAIL_IMG"),
+												 rset.getString("ETC")));
+						}
+					}catch (SQLException e) {
+						e.printStackTrace();
+					} finally {
+						close(rset);
+						close(pstmt);
+					}
 				}
 			}else if(op1.equals("week")) {
-				String sql = prop.getProperty("SearchListWeek");
-				try {
-					pstmt = conn.prepareStatement(sql);
-					pstmt.setString(1, op2);
-					pstmt.setString(2, op3);
-					pstmt.setString(3, op4);
-					rset = pstmt.executeQuery();
-					while(rset.next()) {
-						list.add(new Product(rset.getInt("PNO"),
-											 rset.getString("TITLE"),
-											 rset.getString("REGION"),
-											 rset.getString("AGE"),
-											 rset.getString("AREA"),
-											 rset.getString("S_DATE"),
-											 rset.getString("E_DATE"),
-											 rset.getString("TIME"),
-											 rset.getString("MAIN_IMG"),
-											 rset.getString("DETAIL_IMG"),
-											 rset.getString("ETC")));
+				if(op3.equals("0") || op3.equals("10000") || op3.equals("19999")) {
+					String sql = prop.getProperty("SearchListWeek");
+					try {
+						pstmt = conn.prepareStatement(sql);
+						pstmt.setString(1, op2);
+						pstmt.setString(2, op3);
+						pstmt.setString(3, op4);
+						rset = pstmt.executeQuery();
+						while(rset.next()) {
+							list.add(new Product(rset.getInt("PNO"),
+												 rset.getString("TITLE"),
+												 rset.getString("REGION"),
+												 rset.getString("AGE"),
+												 rset.getString("AREA"),
+												 rset.getString("S_DATE"),
+												 rset.getString("E_DATE"),
+												 rset.getString("TIME"),
+												 rset.getString("MAIN_IMG"),
+												 rset.getString("DETAIL_IMG"),
+												 rset.getString("ETC")));
+						}
+					}catch (SQLException e) {
+						e.printStackTrace();
+					} finally {
+						close(rset);
+						close(pstmt);
 					}
-				}catch (SQLException e) {
-					e.printStackTrace();
-				} finally {
-					close(rset);
-					close(pstmt);
-				}	
+				}else if(op3.equals("20000")) {
+					String sql = prop.getProperty("SearchListWeek2");
+					try {
+						pstmt = conn.prepareStatement(sql);
+						pstmt.setString(1, op2);
+						pstmt.setString(2, op3);
+						pstmt.setString(3, op4);
+						rset = pstmt.executeQuery();
+						while(rset.next()) {
+							list.add(new Product(rset.getInt("PNO"),
+												 rset.getString("TITLE"),
+												 rset.getString("REGION"),
+												 rset.getString("AGE"),
+												 rset.getString("AREA"),
+												 rset.getString("S_DATE"),
+												 rset.getString("E_DATE"),
+												 rset.getString("TIME"),
+												 rset.getString("MAIN_IMG"),
+												 rset.getString("DETAIL_IMG"),
+												 rset.getString("ETC")));
+						}
+					}catch (SQLException e) {
+						e.printStackTrace();
+					} finally {
+						close(rset);
+						close(pstmt);
+					}
+				}
 			}else if(op1.equals("month")) {
-				String sql = prop.getProperty("SearchListMonth");
-				try {
-					pstmt = conn.prepareStatement(sql);
-					pstmt.setString(1, op2);
-					pstmt.setString(2, op3);
-					pstmt.setString(3, op4);
-					rset = pstmt.executeQuery();
-					while(rset.next()) {
-						list.add(new Product(rset.getInt("PNO"),
-											 rset.getString("TITLE"),
-											 rset.getString("REGION"),
-											 rset.getString("AGE"),
-											 rset.getString("AREA"),
-											 rset.getString("S_DATE"),
-											 rset.getString("E_DATE"),
-											 rset.getString("TIME"),
-											 rset.getString("MAIN_IMG"),
-											 rset.getString("DETAIL_IMG"),
-											 rset.getString("ETC")));
+				if(op3.equals("0") || op3.equals("10000") || op3.equals("19999")) {
+					String sql = prop.getProperty("SearchListMonth");
+					try {
+						pstmt = conn.prepareStatement(sql);
+						pstmt.setString(1, op2);
+						pstmt.setString(2, op3);
+						pstmt.setString(3, op4);
+						rset = pstmt.executeQuery();
+						while(rset.next()) {
+							list.add(new Product(rset.getInt("PNO"),
+												 rset.getString("TITLE"),
+												 rset.getString("REGION"),
+												 rset.getString("AGE"),
+												 rset.getString("AREA"),
+												 rset.getString("S_DATE"),
+												 rset.getString("E_DATE"),
+												 rset.getString("TIME"),
+												 rset.getString("MAIN_IMG"),
+												 rset.getString("DETAIL_IMG"),
+												 rset.getString("ETC")));
+						}
+					}catch (SQLException e) {
+						e.printStackTrace();
+					} finally {
+						close(rset);
+						close(pstmt);
 					}
-				}catch (SQLException e) {
-					e.printStackTrace();
-				} finally {
-					close(rset);
-					close(pstmt);
+				}else if(op3.equals("20000")) {
+					String sql = prop.getProperty("SearchListMonth2");
+					try {
+						pstmt = conn.prepareStatement(sql);
+						pstmt.setString(1, op2);
+						pstmt.setString(2, op3);
+						pstmt.setString(3, op4);
+						rset = pstmt.executeQuery();
+						while(rset.next()) {
+							list.add(new Product(rset.getInt("PNO"),
+												 rset.getString("TITLE"),
+												 rset.getString("REGION"),
+												 rset.getString("AGE"),
+												 rset.getString("AREA"),
+												 rset.getString("S_DATE"),
+												 rset.getString("E_DATE"),
+												 rset.getString("TIME"),
+												 rset.getString("MAIN_IMG"),
+												 rset.getString("DETAIL_IMG"),
+												 rset.getString("ETC")));
+						}
+					}catch (SQLException e) {
+						e.printStackTrace();
+					} finally {
+						close(rset);
+						close(pstmt);
+					}
 				}
 			}else {}	
 				

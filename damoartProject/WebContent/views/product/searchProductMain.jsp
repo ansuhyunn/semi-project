@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.product.model.vo.Search" %>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.product.model.vo.Product" %>
+    
+<% 
+	ArrayList<Product> searchList = (ArrayList<Product>)request.getAttribute("regionList");
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -98,12 +103,12 @@
 				<div class="op">
 					<p id="title">지역</p>
 					<div class="op_each2">
-						<button class="op2" id="se" value="서울" >서울</button>
-						<button class="op2" id="ki" value="경기/인천" >경기/인천</button>
-						<button class="op2" id="kc" value="강원/충청" >강원/충청</button>
-			            <button class="op2" id="jr" value="전라도" >전라도</button>
-			            <button class="op2" id="ks" value="경상도" >경상도</button>
-			            <button class="op2" id="jj" value="제주도" >제주도</button>
+						<button class="op2" id="se" value="se" >서울</button>
+						<button class="op2" id="ki" value="ki" >경기/인천</button>
+						<button class="op2" id="kc" value="kc" >강원/충청</button>
+			            <button class="op2" id="jr" value="jr" >전라도</button>
+			            <button class="op2" id="ks" value="ks" >경상도</button>
+			            <button class="op2" id="jj" value="jj" >제주도</button>
 					</div>
 				</div>
 				<div class="op">
@@ -111,23 +116,23 @@
 					<div class="op_each3">
 						<button class="op3" id="price1" value="0" >무료</button>
 						<button class="op3" id="price2" value="10000" >10000원 이하</button>
-						<button class="op3" id="price3" value="20000" >20000원 미만</button>
+						<button class="op3" id="price3" value="19999" >20000원 미만</button>
 						<button class="op3" id="price4" value="20000" >20000원 이상</button>
 					</div>
 				</div>
 				<div class="op">
 					<p id="title">연령</p>
 					<div class="op_each4"> 
-						<button class="op4" id="age1" value="전체관람가" >전체관람가</button>
-						<button class="op4" id="age2" value="유아동" >유아동</button>
-						<button class="op4" id="age3" value="청소년" >청소년</button>
-						<button class="op4" id="age4" value="성인" >성인</button>
+						<button class="op4" id="age1" value="all" >전체관람가</button>
+						<button class="op4" id="age2" value="kids" >유아동</button>
+						<button class="op4" id="age3" value="teen" >청소년</button>
+						<button class="op4" id="age4" value="adult" >성인</button>
 					</div>
 				</div>
 			</div>	
 
 			<button class="btn btn-block" id="submit" style="background-color: rgb(151, 138, 116);"> 검색하기</button>
-
+			
 	</div>
 	
 	<%@ include file="../common/footerbar.jsp" %>
