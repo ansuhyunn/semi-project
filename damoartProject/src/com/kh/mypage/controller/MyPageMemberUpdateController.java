@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.kh.mypage.model.service.MemberService;
-import com.kh.mypage.model.vo.Member;
+import com.kh.member.model.vo.Member;
 
 
 /**
@@ -34,32 +34,34 @@ public class MyPageMemberUpdateController extends HttpServlet {
 		
 		request.setCharacterEncoding("UTF-8");
 		
-		String userName = request.getParameter("userName");
-		String userId = request.getParameter("userId");
-		String nickname = request.getParameter("nickname");
-		String email = request.getParameter("email");
+		String memId = request.getParameter("memId");
+		String memPwd = request.getParameter("memPwd");
+		String memName = request.getParameter("memName");
+		String nickName = request.getParameter("nickName");
+		String emailId = request.getParameter("emailId");
+		String emailDomain = request.getParameter("emailDomain");
 		String phone = request.getParameter("phone");
-		String year = request.getParameter("birth1");
-		String month = request.getParameter("birth2");
-		String day = request.getParameter("birth3");
+		String birth1 = request.getParameter("birth1");
+		String birth2 = request.getParameter("birth2");
+		String birth3 = request.getParameter("birth3");
 		
-		String birth = month + "/" + day + "/" + year;
+		String email = emailId + emailDomain;
+		String birth = birth2+ "/" + birth3 + "/" + birth1;
 		
-		Member m = new Member(userName, userId, nickname, email, phone, birth);
+		Member m = new Member(memId, memPwd, memName, nickName, email, phone, birth);
 		
 		Member updateMember = new MemberService().updateMember(m);
+
 		
 		HttpSession session = request.getSession();
-		if(updateMember == null) {
-			request.setAttribute("errorMsg", "회원정보 수정에 실패했습니다.");
+		if(updateMember == null) { // 실패
+			session.setAttribute("errorMsg", "회원정보 수정에 실패했습니다.");
 		}else {
 			session.setAttribute("loginUser", updateMember);
 			session.setAttribute("alertMsg", "회원님의 정보가 수정되었습니다.");
 			
-			response.sendRedirect(request.getContextPath() + "/memberUpdate.mp");
+			response.sendRedirect(request.getContextPath() + "/views/mypage/mypageMain.jsp");
 		}
-		
-			
 		
 	}
 

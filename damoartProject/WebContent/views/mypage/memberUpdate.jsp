@@ -1,17 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+
+	String alertMsg = (String)session.getAttribute("alertMsg");
+	
+	String errorMsg = (String)session.getAttribute("errorMsg");
+ 
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<!-- Popper JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <style>
     /*회원박스 스타일*/
     .mypage_top{
@@ -140,6 +140,9 @@
     }
 
     /*정보 테이블*/
+    #content_2 table{
+        background:rgba(255, 255, 255, 0.45);
+    }
     .update_tbl th{
         width:270px;
         padding-left:120px;
@@ -164,6 +167,8 @@
     .birth_day input{
         width:97px;
     }
+
+
 </style>
 </head>
 <body>
@@ -227,93 +232,138 @@
                 <div class="update_tbl">
             
                     <form action="<%=contextPath%>/memberUpdate.mp" id="mypage-form" method="post">
-            
-                        <table >
-                            <tr>
-                                <td colspan="3"style="color:red; padding:20px; font-size:12px;"> * 표시는 필수입력사항입니다. </td>
-                            </tr>
 
+                        <table>
                             <tr>
-                                <th>* 이름</th> 
-                                <td><input type="text" name="userName" minlength="2" value="<%= loginUser.getMemName() %>" required></td> 
+                                <td colspan="3" style="color:red; font-size:13px;"> * 표시는 필수입력사항입니다. </td>
                             </tr>
                             <tr>
-                                <th>* 아이디</th>
-                                <td><input type="text" name="userId" maxlength="6" value="<%= loginUser.getMemId() %>" readonly></td>
-                            </tr>
-                            <!--  
-                            <tr>
-                                <th>* 비밀번호</th> 
-                                <td><input type="password" name="userPwd" maxlength="12" value="userPwd" required></td> 
+                                <td></td>
                             </tr>
                             <tr>
-                                <th>* 비밀번호 확인</th> 
-                                <td><input type="password" name="pwdCheck" maxlength="12" value="pwdCheck" required></td> 
-                            </tr>
-                            <tr>
-                            -->
-                                <th>* 닉네임</th> 
-                                <td><input type="text" name="nickName" minlength="2" maxlength="14" value="<%= loginUser.getNickName() %>" required></td> 
-                            </tr>
-                            <tr>
-                                <th>* 이메일</th>
-                                <td><input type="email" name="email" value="<%= loginUser.getEmail() %>" required></td>
-                            </tr>
-                            <tr>
-                                <th>* 휴대전화번호</th>
-                                <td><input type="text" name="phone" placeholder="- 포함해서 입력" value="<%= loginUser.getPhone() %>" required></td>
-                            </tr>
-                            <!--  
-                            <tr>
-                                <th>생년월일</th>
-                                <td>
-                                    <div class="birth_day">
-                                        <input type="text" name="birth_year" id="birth_year" pattern="[0-9]*" value="" label="생년월일" size="4" maxlength="4" placeholder="YYYY">
-                                        <span class="bar"></span>
-                                        <input type="text" name="birth[]" id="birth_month" pattern="[0-9]*" value="" label="생년월일" size="2" maxlength="2" placeholder="MM">
-                                        <span class="bar"></span>
-                                        <input type="text" name="birth[]" id="birth_day" pattern="[0-9]*" value="" label="생년월일" size="2" maxlength="2" placeholder="DD">
-                                    </div>
-                                </td>
-                            </tr>
-                            -->
-                            <tr>
-                                <th>&nbsp;&nbsp;&nbsp;생년월일</th>
-                                <td>
-                                    <script type="text/javascript">
-                                    var today = new Date();
-                                    var toyear = parseInt(today.getFullYear ());
-                                    var start = toyear;
-                                    var end = toyear -90;
-            
-                                    document.write("<select name=birth1> ");
-                                    document.write("<option value='2021'>");
-                                    for (i=start;i>=end;i--) document.write("<option>"+i);
-                                    document.write("</select>년  ");
-            
-                                    document.write("<select name=birth2>");
-                                    document.write("<option value='' selected>");
-                                    for (i=1;i<=12;i++) document.write("<option>"+i);
-                                    document.write("</select>월  ");
-            
-                                    document.write("<select name=birth3>");
-                                    document.write("<option value='' selected>");
-                                    for (i=1;i<=31;i++) document.write("<option>"+i);
-                                    document.write("</select>일  </font>");
-                                </script>
+                                <th width="250" height="70">* 아이디</th>
+                                <td width="600">
+                                    <input type="text" name="memId" value="<%= loginUser.getMemId() %>" readonly>
                                 </td>
                                 <td></td>
                             </tr>
+                            <tr>
+                                <th height="70">* 비밀번호</th>
+                                <td>
+                                    <input type="password" name="memPwd" placeholder="영문+숫자 8~20자" minlength="8" maxlength="20" required>
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th height="70">* 비밀번호확인</th>
+                                <td>
+                                    <input type="password" name="pwdCheck" minlength="8" maxlength="20" required>
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th height="70">* 이름</th>
+                                <td>
+                                    <input type="text" name="memName" value="<%= loginUser.getMemName() %>" minlength="2" required>
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th height="70">* 닉네임</th>
+                                <td>
+                                    <input type="text" name="nickName" value="<%= loginUser.getNickName() %>" placeholder="한글, 영문, 특수문자 2~14자" minlength="2" maxlength="14" required>
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th height="70">* 이메일</th>
+                                <td>
+                                    <input type="text" name="emailId" value="<%= loginUser.getEmail().split("@")[0] %>"style="width:170px;"required> 
+                                    &nbsp;
+                                    <select id="emailDomain" name="emailDomain" value="<%= loginUser.getEmail().split("@")[1] %> class="email_select"> 
+                                        <option value="">직접입력</option> 
+                                        <option value="@naver.com">@naver.com</option> 
+                                        <option value="@gmail.com">@gmail.com</option> 
+                                        <option value="@daum.net">@daum.net</option> 
+                                        <option value="@nate.com">@nate.com</option> 
+                                    </select> &nbsp;&nbsp;
 
-                        </table>
-                        
+                                </td>
+                                <td>
+                                    
+                                </td>
+                            </tr>
+                            <tr>
+                                <th height="70">* 전화번호</th>
+                                <td>
+                                    <input type="text" name="phone" placeholder="'-' 제외하고 입력" value="<%=loginUser.getPhone()%>" required>
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th height="70">&nbsp;&nbsp;&nbsp;생년월일</th>
+                                <td>
+                                    <script type="text/javascript">
+                                        var today = new Date();
+                                        var toyear = parseInt(today.getFullYear ());
+                                        var start = toyear;
+                                        var end = toyear -90;
+                
+                                        document.write("<select name=birth1> ");
+                                        document.write("<option value=''>");
+                                        for (i=start;i>=end;i--){
+                                        	if(i == <%=loginUser.getBirth().split("/")[2]%>){
+                                        		document.write("<option selected>"+i);
+                                        	}else{
+                                        		document.write("<option>"+i);
+                                        	}
+                                        }
+                                        document.write("</select>년  ");
+                
+                                        document.write("<select name=birth2>");
+                                        document.write("<option value=''>");
+                                        for (i=1;i<=12;i++){
+                                        	if(i == <%=loginUser.getBirth().split("/")[0]%>){
+                                        		document.write("<option selected>"+i);
+                                        	}else{
+                                        		document.write("<option>"+i);
+                                        	}
+                                        }
+                                        document.write("</select>월  ");
+                
+                                        document.write("<select name=birth3>");
+                                        document.write("<option value=''>");
+                                        for (i=1;i<=31;i++){
+                                        	if(i == <%=loginUser.getBirth().split("/")[1]%>){
+                                        		document.write("<option selected>" +i);
+                                        	}else{
+                                        		document.write("<option>"+i);
+                                        	}
+                                        }
+                                        	
+                                        document.write("</select>일  </font>");
+                                    </script>
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td height="50"></td>
+                            </tr>
+                        </table>        
             
                         <br><br>
             
                         <div class="update_button" align="center">
-                            <button type="submit" class="btn btn-sm btn-secondary">저장하기</button>
+                            <button type="submit" class="btn btn-sm btn-secondary" onclick="return updateCheck();">저장하기</button>
                         </div>
-                        
+                        <script>
+	            			function updateCheck(){
+	            				if($("input[name=memPwd]").val() != $("input[name=pwdCheck]").val()){
+	            					alert("비밀번호가 일치하지 않습니다.");
+	            					return false;
+	            			}
+	            		}
+	            </script>
                         <br><br>
                     </form>
                     

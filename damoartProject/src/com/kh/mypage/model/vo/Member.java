@@ -6,7 +6,7 @@ public class Member {
 	private String memId;
 	private String memPwd;
 	private String memName;
-	private String nickname;
+	private String nickName;
 	private String email;
 	private String phone;
 	private String birth;
@@ -14,16 +14,22 @@ public class Member {
 	private String memType;
 	private String status;
 	
+	private String emailId;
+	private String emailDomain;
+	private String birth1;
+	private String birth2;
+	private String birth3;
+	
 	public Member() {}
 
-	public Member(int memNo, String memId, String memPwd, String memName, String nickname, String email, String phone,
+	public Member(int memNo, String memId, String memPwd, String memName, String nickName, String email, String phone,
 			String birth, String enrollDate, String memType, String status) {
 		super();
 		this.memNo = memNo;
 		this.memId = memId;
 		this.memPwd = memPwd;
 		this.memName = memName;
-		this.nickname = nickname;
+		this.nickName = nickName;
 		this.email = email;
 		this.phone = phone;
 		this.birth = birth;
@@ -32,7 +38,40 @@ public class Member {
 		this.status = status;
 	}
 
-	public Member(String userName, String userId, String nickname, String email, String phone, String birth) {
+	public Member(String memId, String memPwd, String memName, String nickName, String email, String phone,
+			String birth) {
+		super();
+		this.memId = memId;
+		this.memPwd = memPwd;
+		this.memName = memName;
+		this.nickName = nickName;
+		this.email = email;
+		this.phone = phone;
+		this.birth = birth;
+	}
+	
+
+	public Member(String memId, String memPwd, String memName, String nickName, String emailId, String phone,
+			String emailDomain, String birth1, String birth2, String birth3) {
+		super();
+		this.memId = memId;
+		this.memPwd = memPwd;
+		this.memName = memName;
+		this.nickName = nickName;
+		this.phone = phone;
+		this.emailId = emailId;
+		this.emailDomain = emailDomain;
+		this.birth1 = birth1;
+		this.birth2 = birth2;
+		this.birth3 = birth3;
+	}
+
+	public String getEmailId() {
+		return emailId;
+	}
+
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
 	}
 
 	public int getMemNo() {
@@ -68,11 +107,11 @@ public class Member {
 	}
 
 	public String getNickname() {
-		return nickname;
+		return nickName;
 	}
 
 	public void setNickname(String nickname) {
-		this.nickname = nickname;
+		this.nickName = nickname;
 	}
 
 	public String getEmail() {
@@ -126,7 +165,7 @@ public class Member {
 	@Override
 	public String toString() {
 		return "Member [memNo=" + memNo + ", memId=" + memId + ", memPwd=" + memPwd + ", memName=" + memName
-				+ ", nickname=" + nickname + ", email=" + email + ", phone=" + phone + ", birth=" + birth
+				+ ", nickname=" + nickName + ", email=" + email + ", phone=" + phone + ", birth=" + birth
 				+ ", enrollDate=" + enrollDate + ", memType=" + memType + ", status=" + status + "]";
 	}
 	
