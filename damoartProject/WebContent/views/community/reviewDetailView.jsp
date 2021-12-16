@@ -59,7 +59,7 @@
                 <td colspan="4">
                     <!-- 이미지 옆 주석같은것은 div로 따로 처리할 것-->
                     <!--이미지 썸네일 크기 따로 생각해 볼 것-->
-                    <img scr="전시회 이미지" width="120" height="100">
+                    <img src="전시회 이미지" width="120" height="100">
                     <p style="height:200px;">리뷰내용 작성자가 쓴 글이 들어갈 부분</p>
                 </td>
             </tr>
@@ -68,10 +68,18 @@
         <br>
 
         <!--신고버튼-->
+        <button>신고</button>
         <!--글쓴이라면 삭제버튼도-->
+        <button>삭제</button>
         <hr>
-        <p>댓글</p>
-        <p>댓글</p>
+        <p>
+        	test01 | ㅇㄴㅇㄴㅀㅎㄴㄹㅇㅎㄴㄹㅇㅎㄴㅇㅀㄴㅇㄹ  <br>
+        	작성일~~~~~ (신고아이콘) (삭제아이콘)
+        </p>
+        <p>
+        	test01 | ㄹㅇㅎㄹㅇㅎㄴㅇㅀㅇㄹㄶㄹㅇ <br>
+        	작성일~~~~~~ 
+        </p>
         <hr>
         <div align="center">
         <textarea name="" id="" cols="100" rows="6"></textarea>

@@ -3,6 +3,7 @@
 <% 
 	String contextPath = request.getContextPath();
 	Member loginUser = (Member)session.getAttribute("loginUser");
+	String alertMsg = (String)session.getAttribute("alertMsg");
 %>
 <!DOCTYPE html>
 <html>
@@ -119,6 +120,12 @@
 </style>
 </head>
 <body>
+	<% if(alertMsg != null) { %>
+		<script>
+			alert("<%=alertMsg%>");
+		</script>
+		<% session.removeAttribute("alertMsg"); %>
+	<% } %>
     <div class="wrap">
         <!--상단 header부분-->
         <div id="header">

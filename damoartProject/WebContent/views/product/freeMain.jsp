@@ -24,23 +24,25 @@
         top: 0; left: 0; right: 0; bottom: 0; margin: auto;
         margin-top: 50px;
     }
-     /* 페이지 이름 스타일 */s
+     /* 페이지 이름 스타일 */
     .name{ width: 100%; height: 30px; }
     #name1{
-        width: 78%;
+        width: 82%;
         font-size: 23px;
         font-weight: bolder;
         float: left;
     }
     /* 페이지 정렬 버튼 스타일 */
-    .name>button{
-        border: none;
-        width: 7%; 
+    .name>a{
+        width: 6%; 
         font-size: 10px;
+        margin-top: 10px;
+        padding-top: 10px;
+        float: left;
+        text-decoration: none;
         color: black;
-        margin-top: 20px;
     }
-    .name>button:hover{font-weight: bolder; text-decoration: none; color: black;}
+    .name>a:hover{font-weight: bolder; text-decoration: none; color: black;}
     #content1{
         width: 100%;
         height: 300px;
@@ -52,7 +54,8 @@
         width: 20%;
         height: 100%;
         float: left;
-        margin-left: 40px;
+        margin-left: 25px;
+        margin-right: 25px;
         margin-bottom: 50px;
         margin-top: 0px;
         display: block;

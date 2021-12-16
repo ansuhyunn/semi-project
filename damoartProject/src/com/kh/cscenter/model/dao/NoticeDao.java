@@ -72,10 +72,10 @@ public class NoticeDao {
 			
 			while(rset.next()) {
 				list.add(new Notice(rset.getInt("notice_no"),
-								  rset.getString("nickname"),
-								  rset.getString("notice_title"),
-								  rset.getString("create_date"),
-								  rset.getInt("count")));
+								    rset.getString("nickname"),
+								    rset.getString("notice_title"),
+								    rset.getString("create_date"),
+								    rset.getInt("count")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -216,7 +216,7 @@ public class NoticeDao {
 		
 	}
 	
-	public int insertAttachment(Connection conn, Attachment a) {
+	public int insertNewAttachment(Connection conn, Attachment a) {
 		
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -236,6 +236,53 @@ public class NoticeDao {
 		}finally {
 			close(pstmt);
 		}
+		return result;
+		
+	}
+	
+	public int insertNotice(Connection conn, Notice n) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertNotice");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, Integer.parseInt(n.getNoticeWriter()));
+			pstmt.setString(2, n.getNoticeTitle());
+			pstmt.setString(3, n.getNoticeContent());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
+	public int insertAttachment(Connection conn, ArrayList<Attachment> list) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertAttachment");
+		
+		try {
+			for(Attachment at : list) {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, at.getOriginName());
+			pstmt.setString(2, at.getChangeName());
+			pstmt.setString(3, at.getFilePath());
+			
+			result = pstmt.executeUpdate();
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
 		return result;
 		
 	}

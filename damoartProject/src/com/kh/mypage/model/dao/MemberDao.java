@@ -10,7 +10,7 @@ import java.util.Properties;
 
 import static com.kh.common.JDBCTemplate.*;
 
-import com.kh.mypage.model.vo.Member;
+import com.kh.member.model.vo.Member;
 
 public class MemberDao {
 	
@@ -24,6 +24,7 @@ public class MemberDao {
 			e.printStackTrace();
 		}
 	}
+	
 	public int updateMember(Connection conn, Member m) {
 		// update문 => 처리된 행 수 => 트랜잭션 처리
 		int result = 0;
@@ -33,21 +34,25 @@ public class MemberDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, m.getMemName());
-			pstmt.setString(2, m.getNickname());
-			pstmt.setString(3, m.getEmail());
-			pstmt.setString(4, m.getPhone());
-			pstmt.setString(5, m.getBirth());
-			pstmt.setString(6, m.getMemId());
+			pstmt.setString(1, m.getMemPwd());
+			pstmt.setString(2, m.getMemName());
+			pstmt.setString(3, m.getNickName());
+			pstmt.setString(4, m.getEmail());
+			pstmt.setString(5, m.getPhone());
+			pstmt.setString(6, m.getBirth());
+			pstmt.setString(7, m.getMemId());
 			
 			result = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} close(pstmt);
+		} finally {
+			close(pstmt);
+		}
 		
 		return result;
 	}
+	
 	
 	public Member selectMember(Connection conn, String memId) {
 		// select문 => ResultSet (한행) => Member객체
@@ -73,10 +78,11 @@ public class MemberDao {
 							   rset.getString("email"),
 							   rset.getString("phone"),
 							   rset.getString("birth"),
-							   rset.getString("enroll_date"),
+							   rset.getDate("enroll_date"),
 							   rset.getString("mem_type"),
-							   rset.getString("status")
-							   );
+							   rset.getString("status"),
+							   rset.getString("black_content"),
+							   rset.getDate("black_date"));
 				}
 				
 			} catch (SQLException e) {

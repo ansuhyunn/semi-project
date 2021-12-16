@@ -216,6 +216,16 @@ public class ProductService {
 		close(conn);
 		return list;
 	}
+	
+	
+	public ArrayList<Product> selectSearchList(String op1,String op2,String op3,String op4){
+		Connection conn = getConnection();
+		
+		ArrayList<Product> list = new ProductDao().selectSearchList(conn, op1, op2, op3, op4);
+
+		close(conn);
+		return list;
+	}
 
 
 }

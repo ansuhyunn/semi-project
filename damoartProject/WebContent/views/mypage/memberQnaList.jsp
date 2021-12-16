@@ -176,12 +176,8 @@
     }
     .select-btn button{font-size:13px;}
 
-    #date_btn{
+    #btn_1, #btn_2, #btn_3, #btn_4{
         font-size:12px;
-    }
-    #date_btn:focus{
-        background:rgb(182, 167, 141);
-        color:white;
     }
 
     /*Q&A 테이블*/
@@ -201,7 +197,7 @@
         cursor:pointer;
     }
 
-    .qustion_open p{font-size:15px; font-weight:700;}
+    .qustion_open p, .qustion_answer p{font-size:15px; font-weight:700;}
 </style>
 </head>
 <body>
@@ -261,21 +257,21 @@
                 <h4 class="contents_tit">Q&A 내역</h4>
                 <hr align="left" width="765" color="rgb(64, 64, 64)" size="1">
             </div>
-
+            <form action="/qnaList.mp">
             <div class="date" style="background:rgba(255, 255, 255, 0.74)">
                 <p>기간</p>
                 <ul class="select_date">
                     <li>
-                        <button type="button" id="date_btn" class="btn btn-outline-secondary">일주일</button>
+                        <button type="button" id="btn_1" class="btn btn-outline-secondary" selected>일주일</button>
                     </li>
                     <li>
-                        <button type="button" id="date_btn" class="btn btn-outline-secondary">1개월</button>
+                        <button type="button" id="btn_2" class="btn btn-outline-secondary">1개월</button>
                     </li>
                     <li>
-                        <button type="button" id="date_btn" class="btn btn-outline-secondary">3개월</button>
+                        <button type="button" id="btn_3" class="btn btn-outline-secondary">3개월</button>
                     </li>
                     <li>
-                        <button type="button" id="date_btn" class="btn btn-outline-secondary">6개월</button>
+                        <button type="button" id="btn_4" class="btn btn-outline-secondary">6개월</button>
                     </li>
                 </ul>
                 <div class="select-range" align="right">
@@ -288,7 +284,14 @@
                 </div>
                 <br><br>
             <div class="container">
-           
+            </form>
+
+            <script>
+                if()
+                document.getElementById('start').value = 
+                document.getElementById('end').value = new Date().toISOString().substring(0, 10);
+            </script>
+
                 <table class="table">
                   <thead>
                     <tr style="background:rgb(203, 185, 153)">
@@ -331,9 +334,13 @@
                         <td></td>
                         <td colspan="3">
                             <div>
-                                <p>Q</p>
-                                문의상품 | 앨리스 달튼 브라운 전시 <br><br>
+                                <p>Q.</p>
+                                	문의상품 | 앨리스 달튼 브라운 전시 <br><br>
                                 <strong>1인당 몇장까지 구매 가능한가요?</strong>
+                                <hr>
+                                <p>A.</p> 
+                                	반갑습니다. 다모아트입니다. <br>
+                                	현재 ~~~~
                             </div>
                         </td> 
                     </tr>                  

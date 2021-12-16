@@ -127,7 +127,7 @@
 		                        <tr>
                                     <th><input type="checkbox"></th>
 		                            <th><%=n.getNoticeNo() %></th>
-		                            <th><%=n.getNoticeTitle() %></th>
+		                            <th class="clickTitle"><%=n.getNoticeTitle() %></th>
 		                            <th><%=n.getNoticeWriter() %></th>
 		                            <th><%=n.getCreateDate() %></th>
 		                            <th><%=n.getCount() %></th>
@@ -138,8 +138,8 @@
                 </table>
                 <script>
                 	$(function(){
-                		$("#list-area>tbody>tr").click(function(){
-                			location.href='<%=contextPath%>/adminDetail.no?nno=' + $(this).children().eq(1).text();
+                		$(".clickTitle").click(function(){
+                			location.href='<%=contextPath%>/adminDetail.no?nno=' + $(this).prev().text();
                 		})
                 	})
                 </script>

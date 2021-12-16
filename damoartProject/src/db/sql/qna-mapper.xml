@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<entry key="selectListCount">
+		SELECT COUNT(*) COUNT
+		  FROM QNA
+		 WHERE STATUS = 'Y'
+	</entry>
+	
+	<entry key="selectList">
+		SELECT *
+		  FROM (
+		        SELECT ROWNUM RNO, A.*
+		          FROM (
+		                SELECT 
+		                       Q_NO
+		                     , MEM_NO
+		                     , Q_WRITER
+		                     , SECRET
+		                     , Q_TITLE
+		                     , TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') "CREATE_DATE"
+		                     , Q_CATEGORY_CODE
+		                     , A_CONTENT
+		                  FROM QNA
+		                 WHERE STATUS = 'Y'
+		                 ORDER BY Q_NO DESC
+		                 ) A
+		        )
+		  WHERE RNO BETWEEN ? AND ?	
+	</entry>
+</properties>

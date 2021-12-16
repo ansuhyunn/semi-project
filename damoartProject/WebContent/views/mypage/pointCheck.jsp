@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.kh.mypage.model.vo.Point, java.util.ArrayList" %>
+<%
+	ArrayList<Point> list = (ArrayList<Point>)request.getAttribute("list");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -127,7 +130,7 @@
     .contents{
         height:10%;
         padding-top:15px;
-        padding-left:30px;
+        padding-left:15px;
     }
     
     /*찜한상품, qna내역이 없을 경우*/
@@ -136,58 +139,11 @@
         padding-top:35px;
     }
 
-    /*예매날짜*/
-    .order_date{
-        margin:auto;
-        margin-left:30px;
-        width:765px; 
-        height:60px;
-        border-radius:10px;
-        position:absolute;
-    }
-
-    .order_date>p{
-        float:left;
-        font-size:14px;
-        font-weight:bold;
-        margin-left:15px;
-        margin-top:20px;
-        margin-right:20px;
-        letter-spacing: -0.5px;
-    }
-
-    .select_date>li{
-        float:left;
-        width:auto;
-        height:28px;
-        margin-left:5px;
-        margin-top:15px;
-    }
-
-    .select-range{
-        width:700px;
-        margin-left:-10px;
-    }
-
-    .select-btn{
-        width:60px;
-        float:right;
-        margin-top:-30px;
-    }
-    .select-btn button{font-size:13px;}
-
-    #date_btn{
-        font-size:12px;
-    }
-    #date_btn:focus{
-        background:rgb(182, 167, 141);
-        color:white;
-    }
-
     /*적립금 테이블*/
     .container{
         height:30%;
-        padding-top:70px;
+        padding-top:50px;
+        padding-left:-30px;
         font-size:13px;
     }
 
@@ -198,6 +154,8 @@
         font-weight:600;
         padding-left:30px;
     }
+
+    .contents p{font-size:13px;}
 </style>
 </head>
 <body>
@@ -219,7 +177,7 @@
             <div class="userPoint">
                    	적립금 >
             </div>
-            <p class="point">2,000원</p>
+            <p class="point"></p>
             
         </div>
     </div>
@@ -254,61 +212,55 @@
         </div>
         <div id="content_2">
             <div class="contents">
-                <h4 class="contents_tit">적립금 내역</h4>
+                <h4 class="contents_tit">적립금 내역</h4><br>
+                <p>보유하고 계신 적립금의 내역을 한 눈에 확인하실 수 있습니다.</p>
                 <hr align="left" width="765" color="rgb(64, 64, 64)" size="1">
-            </div>
-
-            <div class="order_date" style="background:rgba(255, 255, 255, 0.74)">
-                <p>예매기간</p>
-                <ul class="select_date">
-                    <li>
-                        <button type="button" id="date_btn" class="btn btn-outline-secondary">일주일</button>
-                    </li>
-                    <li>
-                        <button type="button" id="date_btn" class="btn btn-outline-secondary">1개월</button>
-                    </li>
-                    <li>
-                        <button type="button" id="date_btn" class="btn btn-outline-secondary">3개월</button>
-                    </li>
-                    <li>
-                        <button type="button" id="date_btn" class="btn btn-outline-secondary">6개월</button>
-                    </li>
-                </ul>
-                <div class="select-range" align="right">
-                    <input type="date" id="start" name="select-start" value="2021-12-01" min="2020-01-01"> 
-                     ~
-                    <input type="date" id="end" name="select-end" value="2021-12-01" min="2020-01-01"> 
-                </div>
-                <div class="select-btn" align="left">
-                    <button type="button" class="btn btn-outline-secondary">조회</button>
-                </div>
-                
+            </div> 
             <div class="container">
-           
+                <br><br>
                 <table class="table">
                   <thead>
                     <tr style="background:rgb(203, 185, 153)">
                       <th width="140">날짜</th>
-                      <th width="480">내용</th>
+                      <th width="450">내용</th>
                       <th width="110">적립/사용</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td id="table_date">2021-11-14</td>
-                      <td>회원가입 적립</td>
-                      <td id="table_point">+2000</td>
-                    </tr>
-                    <tr>
-                      <td id="table_date">2021-11-16</td>
-                      <td>주문 적립 <br>주문번호 : Y2023942140</td>
-                      <td id="table_point">+162</td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
+                    <!--적립금 내역이 없을 경우-->
+                    <% if(list.isEmpty()){ %>
+	                    <tr>
+	                        <td colspan="4" >
+	                            <div id="exclamationmark_icon">
+	                                <img src="<%=request.getContextPath() %>/resources/images/exclamationmark.png" width="70px" height="70px"> 
+	                            </div>
+	                            <br>
+	                            <div id="qna_txt">
+	                                <p align="center">Q&A 내역이 없습니다.</p>
+	                            </div>
+	                        </td>
+	                    </tr>
+	                    <tr>
+	                        <td></td>
+	                        <td></td>
+	                        <td></td>
+	                        <td></td>
+	                    </tr>
+                    <% }else{ %>
+                    <!-- 적립금이 있을 경우 -->
+                    	<% for(Point p : list) {%>
+		                    <tr>
+		                      <td id="table_date"><%= p.getPointDate() %></td>
+		                      <td><%= p.getPointContent() %></td>
+		                      <td id="table_point"><%= p.getPoint() %></td>
+		                    </tr>
+		                <% } %>
+                    <% } %>
+	                    <tr>
+	                        <td></td>
+	                        <td></td>
+	                        <td></td>
+	                    </tr>
                   </tbody>
                 </table>
               </div>   

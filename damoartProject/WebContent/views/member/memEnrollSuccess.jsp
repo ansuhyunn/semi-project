@@ -86,8 +86,19 @@
         <p id="comment2" align="center" style="font-size:20px;">xxx님의 가입을 환영합니다!</p>
 
         <div align="center">
-            <button class="btn-mem">> 로그인 화면으로 이동</button> <br>
-            <button class="btn-mem">> 메인 화면으로 이동</button>
+            <button onclick="loginPage();" type="button" class="btn-mem">> 로그인 화면으로 이동</button> <br>
+            <button onclick="mainPage();" type="button" class="btn-mem">> 메인 화면으로 이동</button>
+            
+            <script>
+            	function loginPage(){
+            		location.href = "<%= contextPath %>/loginPage.me";
+            	}
+            	
+            	function mainPage(){
+            		location.href = "<%= contextPath %>/views/common/mainPage.jsp";
+            	}
+            </script>
+            
         </div>
     </div>
     

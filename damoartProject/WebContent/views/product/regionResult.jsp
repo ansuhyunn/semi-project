@@ -71,7 +71,8 @@
         width: 20%;
         height: 100%;
         float: left;
-        margin-left: 40px;
+        margin-left: 25px;
+        margin-right: 25px;
         margin-bottom: 50px;
         margin-top: 0px;
         display: block;
@@ -108,24 +109,17 @@
 
         <div class="name">
             <div id="name1">지역별 전시</div>
-            <a href="">높은가격순</a>
-            <a href="">낮은가격순</a>
-            <a href="">신규등록순</a>
-            <a href="">마감임박순</a>
-            <a href="">별점순</a>
         </div>
 
         <hr class="my-2">                       <!-- 구분선-->
 
         <div class="button">
-        	<% for(Product p : regionList){ %>
-            <button class="btn" onclick="location.href='<%=contextPath%>/views/product/regionResult.pro?value=<%=p.getRegion()%>';">서울</button>
-            <button class="btn" value="경기" onclick="location.href='<%=contextPath%>/views/product/regionResult.pro';">경기/인천</button>
-            <button class="btn" value="강원" onclick="location.href='<%=request.getContextPath()%>/views/product/regionResult.pro';">강원/충청</button>
-            <button class="btn" value="전라도" onclick="location.href='<%=request.getContextPath()%>/views/product/regionResult.pro';">전라도</button>
-            <button class="btn" value="경상도" onclick="location.href='<%=request.getContextPath()%>/views/product/regionResult.pro';">경상도</button>
-            <button class="btn" value="제주도" onclick="location.href='<%=request.getContextPath()%>/views/product/regionResult.pro';">제주도</button>
-        	<% } %> 
+            <button class="btn" id="se" value="se" onclick="region();">서울</button>
+            <button class="btn" id="ki" value="ki" onclick="region();">경기/인천</button>
+            <button class="btn" id="kc" value="kc" onclick="region();">강원/충청</button>
+            <button class="btn" id="jr" value="jr" onclick="region();">전라도</button>
+            <button class="btn" id="ks" value="ks" onclick="region();">경상도</button>
+            <button class="btn" id="jj" value="jj" onclick="region();">제주도</button>
         </div>
 
         <div class="content1">
@@ -158,6 +152,13 @@
     </div> 
     
     <%@ include file="../common/footerbar.jsp" %>
+    
+    <script>
+        $(".btn").click(function(){
+            let value = $(this).attr('value');
+            location.href = '<%=contextPath%>/regionResult.pro?value=' + value;
+        })
+    </script>
 
 </body>
 </html>

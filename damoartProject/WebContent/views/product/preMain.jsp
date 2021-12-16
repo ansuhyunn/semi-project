@@ -53,7 +53,8 @@
         width: 20%;
         height: 100%;
         float: left;
-        margin-left: 40px;
+        margin-left: 25px;
+        margin-right: 25px;
         margin-bottom: 50px;
         margin-top: 0px;
         display: block;
@@ -120,6 +121,33 @@
 	        <% } %> 
     	</div>
     </div> <!-- wrapper클래스 -->    
+    
+    <script>
+    	$(function(){
+    		let index=0;
+    		$(window).scroll(function(){
+    			let $window = $(this);
+    			let scrollTop = $window.scrollTop();
+    			let windowHeight = $window.height();			//화면높이
+    			let documentHeight = $(document).height();		//wrapper 높이?
+    			if(scrollTop + windowHeight + 1 >= documentHeight){
+    				index++;
+    				insertImg();
+    			}
+    		})
+    	}
+    	
+    	function insertImg(){
+    		$.ajax({
+    			url:"",
+    			success:function(list){
+    				
+    			},error:function(){
+    				alert.attr("일시적인 오류 발생")
+    			}
+    		})
+    	}
+    </script>
     
     <%@ include file="../common/footerbar.jsp" %>
     

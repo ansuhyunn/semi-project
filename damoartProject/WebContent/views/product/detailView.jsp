@@ -136,11 +136,11 @@
 							<td><input type="number" style="width: 50px;"></td>
 						</tr>
 					</table>
-					<button class="btn btn-secondary">선택</button>
+					<button class="btn btn-secondary" onclick="orderlist();">선택</button>
 				</form>
 				<table id="result">
 					<tr>
-						<td colspan="4" style="background-color: whitesmoke;">몇개샀는지~~</td>
+						<td id="order" colspan="4" style="background-color: whitesmoke;">몇개샀는지~~</td>
 					</tr>
 					<tr>
 						<th colspan="4" style="text-align: right; font-size: 30px;">총 27000원</td>
@@ -163,7 +163,19 @@
         <br><br><br><br><br>
 
 		<script>
-			$(function(){
+
+			function onclick(){		
+				$.ajax({
+					url : "",
+					cache: true,
+					processData : false,
+					success:function(detailImg){
+						$("#order").html(detailImg);
+					},error:function(){
+						console.log("ㅠㅠㅠ");
+					}
+				})
+			}
 				$("#info1").click(function(){		// 아직 못함 아이고 어렵다~~~!!!!!! 
 					$.ajax({
 						url : "<%=request.getContextPath()%>/resources/product/<%=p.getpNo()%>D.jpg",
@@ -187,7 +199,7 @@
 						}
 					})
 				})
-			})
+			
 		</script>
 		<% } %>
 		

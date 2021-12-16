@@ -9,7 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.kh.mypage.model.service.MemberService;
-import com.kh.mypage.model.vo.Member;
+import com.kh.member.model.vo.Member;
+
 
 /**
  * Servlet implementation class MyPageMemberUpdateController
@@ -33,30 +34,34 @@ public class MyPageMemberUpdateController extends HttpServlet {
 		
 		request.setCharacterEncoding("UTF-8");
 		
-		String userName = request.getParameter("userName");
-		String userId = request.getParameter("userId");
+		String memId = request.getParameter("memId");
+		String memPwd = request.getParameter("memPwd");
+		String memName = request.getParameter("memName");
 		String nickName = request.getParameter("nickName");
-		String email = request.getParameter("email");
+		String emailId = request.getParameter("emailId");
+		String emailDomain = request.getParameter("emailDomain");
 		String phone = request.getParameter("phone");
-		String year = request.getParameter("birth1");
-		String month = request.getParameter("birth2");
-		String day = request.getParameter("birth3");
-		// 생년월일 담아야함 
+		String birth1 = request.getParameter("birth1");
+		String birth2 = request.getParameter("birth2");
+		String birth3 = request.getParameter("birth3");
 		
-		Member m = new Member(userName, userId, nickName, email, phone, year, month, day);
+		String email = emailId + emailDomain;
+		String birth = birth2+ "/" + birth3 + "/" + birth1;
 		
-		Member updateMem = new MemberService().updateMember(m);
+		Member m = new Member(memId, memPwd, memName, nickName, email, phone, birth);
 		
-		if(updateMem == null) {
-			request.setAttribute("errorMsg", "회원정보 수정에 실패했습니다.");
+		Member updateMember = new MemberService().updateMember(m);
+
+		
+		HttpSession session = request.getSession();
+		if(updateMember == null) { // 실패
+			session.setAttribute("errorMsg", "회원정보 수정에 실패했습니다.");
 		}else {
-			HttpSession session = request.getSession();
-			session.setAttribute("loginUser", updateMem);
-			session.setAttribute("alertMsg", "성공적으로 회원정보를 수정했습니다.");
+			session.setAttribute("loginUser", updateMember);
+			session.setAttribute("alertMsg", "회원님의 정보가 수정되었습니다.");
 			
-			response.sendRedirect(request.getContextPath() + "/views/mypage/memberUpdate.jsp");	
+			response.sendRedirect(request.getContextPath() + "/views/mypage/mypageMain.jsp");
 		}
-		
 		
 	}
 

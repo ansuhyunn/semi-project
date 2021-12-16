@@ -124,6 +124,16 @@
         padding-left:30px;
     }
 
+    .contents>a{
+        font-size: 10px;
+        text-decoration: none;
+        float: right;
+        color: black;
+        padding-top:20px;
+        padding-right:20px;
+    }
+    .contents>a:hover{font-weight: bolder; text-decoration: none; color: black;}
+
     /*예매내역*/
     .order_box{
         margin:auto;
@@ -206,7 +216,7 @@
                 <div>
                     <a href="<%=request.getContextPath() %>/views/mypage/reserveDetail.jsp" id="submenu">예매 내역</a> <br>
                     <a href="<%=request.getContextPath() %>/views/mypage/refundDetail.jsp" id="submenu">취소/환불 내역</a> <br>
-                    <a href="<%=request.getContextPath() %>/views/mypage/pointCheck.jsp" id="submenu">적립금 내역</a> <br>
+                    <a href="<%=request.getContextPath() %>/pointList.mp" id="submenu">적립금 내역</a> <br>
                     <hr width="120" align="left">
                     <a href="<%=request.getContextPath() %>/views/mypage/recentlyViewProduct.jsp" id="submenu">최근 본 상품</a> <br>
                     <a href="<%=request.getContextPath() %>/views/mypage/likeProduct.jsp" id="submenu">찜한 상품</a>
@@ -247,6 +257,7 @@
             </div>
             <div class="contents">
                 <h4 class="contents_tit">찜한 상품</h4>
+                <a href="">+더보기</a>
                 <hr align="left" width="765" color="rgb(64, 64, 64)" size="1">
                 <!--찜한 내역이 없을 경우-->
                 <div id="exclamationmark_icon">
@@ -260,6 +271,7 @@
             </div>
             <div class="contents">
                 <h4 class="contents_tit">Q&A 내역</h4>
+                <a href="">+더보기</a>
                 <hr align="left" width="765" color="rgb(64, 64, 64)" size="1">
                 <!--Q&A 내역이 없을 경우-->
                 <div id="exclamationmark_icon">
