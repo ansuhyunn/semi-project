@@ -32,7 +32,7 @@ public class Member {
 		this.status = status;
 	}
 
-	public Member(String userName, String userId, String nickName, String email, String phone, String year, String month, String day) {
+	public Member(String userName, String userId, String nickname, String email, String phone, String birth) {
 	}
 
 	public int getMemNo() {

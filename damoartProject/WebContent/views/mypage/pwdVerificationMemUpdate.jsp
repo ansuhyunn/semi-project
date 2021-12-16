@@ -238,7 +238,7 @@
 	            </form>
 	            
 	            <script>
-	            	function pwdConfirm(){ //
+	            	function pwdConfirm(){
 	            		if($("input[name=pwd]").val() != "<%=loginUser.getMemPwd()%>"){
 	            			alert("비밀번호가 일치하지 않습니다.");
 	            			return false;

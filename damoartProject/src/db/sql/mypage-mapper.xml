@@ -29,7 +29,7 @@
 		     , STATUS
 		  FROM MEMBER
 		 WHERE MEM_ID = ?
-		   AND STATUS = 'Y'
+		   AND STATUS = 'N'
 	</entry>
 	
 	<!-- 회원탈퇴(상태변경) -->

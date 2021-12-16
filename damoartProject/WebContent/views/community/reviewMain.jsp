@@ -166,7 +166,7 @@
         
 	        <!--로그인한 회원만 보여지도록-->
 	        <div align="right" style="width:950px;">
-	            <a href="" class="btn btn-sm btn-secondary">글작성</a>
+	            <a href="<%=contextPath%>/views/community/reviewEnrollForm.jsp"" class="btn btn-sm btn-secondary">글작성</a>
 	            <br><br>
 	        </div>
         

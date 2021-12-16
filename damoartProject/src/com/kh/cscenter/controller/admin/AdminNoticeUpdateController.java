@@ -79,7 +79,7 @@ public class AdminNoticeUpdateController extends HttpServlet {
 			int result = new NoticeService().updateNotice(n, list);
 			
 			if(result > 0) { //성공
-				request.getSession().setAttribute("alertMsg", "게시물이 성공적으로 수정되었습니다.");
+				request.getSession().setAttribute("alertMsg", "게시글이 성공적으로 수정되었습니다.");
 				response.sendRedirect(request.getContextPath() + "/adminDetail.no?nno=" + Integer.parseInt(multiRequest.getParameter("nno")));
 			}else { // 에러페이지
 				
