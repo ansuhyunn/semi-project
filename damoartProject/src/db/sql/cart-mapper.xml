@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+<entry key="insertCart">
+INSERT
+INTO CART
+(
+    MEM_NO
+    , PNO
+    , CART_OPT
+    , CART_COUNT
+)
+VALUES
+    ( ?
+    , ?
+    , ?
+    , ?
+    )
+</entry>
+
+
+<entry key="selectCartList">
+SELECT
+	    CART_MEM,
+	    CART_P, 
+	    CART_OPT, 
+	    CART_COUNT, 
+		TITLE, 
+		AREA,
+		S_DATE, 
+		E_DATE, 
+		A_PRICE, 
+		T_PRICE,
+		C_PRICE,
+		MAIN_IMG,
+		SOLDOUT
+    FROM CART 
+    JOIN PRODUCT ON (CART_P = PNO)
+    WHERE CART_MEM = ?
+    
+</entry>
+
+
+</properties>
+
+
+
+
+
+
