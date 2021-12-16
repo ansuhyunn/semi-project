@@ -68,13 +68,21 @@ private Properties prop = new Properties();
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
+				String category = "";
+				switch(rset.getString("Q_CATEGORY_CODE")) {
+				case "Q1" : category = "[티켓]"; break;
+         	    case "Q2" : category = "[취소/환불]"; break;
+         	    case "Q3" : category = "[주문결제]"; break;
+         	    case "Q4" : category = "[상품]"; break;
+         	    default : category = "[기타]"; break;
+				}
 				list.add(new QnA(rset.getInt("Q_NO"),
 						 		 rset.getInt("MEM_NO"),
 						 		 rset.getString("Q_WRITER"),
 						 		 rset.getString("SECRET"),
 						 		 rset.getString("Q_TITLE"),
 						 		 rset.getString("CREATE_DATE"),
-						 		 rset.getString("Q_CATEGORY_CODE"),
+						 		 category,
 						 		 rset.getString("A_CONTENT")));
 			}
 		} catch (SQLException e) {
