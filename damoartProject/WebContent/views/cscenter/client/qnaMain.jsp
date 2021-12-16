@@ -70,7 +70,7 @@
             <hr>
             <br><br>
             <div>
-                <table border=1 align="center" id="list-area" class="table table-hover">
+                <table align="center" id="list-area" class="table table-hover">
                     <thead>
                         <tr>
                             <th width="50">번호</th>
@@ -90,8 +90,13 @@
                         	<%for(QnA q : list) { %>
 		                        <tr>
 		                            <th><%=q.getqNo() %></th>
-                                    <th class="category"><%=q.getqCategoryCode()%></th>
-		                            <th><%=q.getqTitle() %></th>
+                                    <th><%=q.getqCategoryCode()%></th>
+		                            <th>
+		                            	<%=q.getqTitle() %>
+		                            	<% if(q.getSecret().equals("Y")) { %>
+		                            		<i class="fas fa-lock"></i>
+		                            	<% } %>
+		                            </th>
 		                            <th><%=q.getqWriter() %></th>
 		                            <th><%=q.getCreateDate() %></th>
 		                            <th>
@@ -111,16 +116,7 @@
 			    		$("#list-area>tbody>tr").click(function(){
 			    			location.href='<%=contextPath%>/detail.qa?qno=' + $(this).children().eq(0).text();
 			    		})
-			    		
-			    		switch($(".category").text()) {
-			    		case Q1 : [티켓] ; break;
-                 	    case Q2 : [취소/환불] ; break;
-                 	    case Q3 : [주문결제] ; break;
-                 	    case Q4 : [상품] ; break;
-                 	    default : [기타] ; break;
-			    		}
-			    	})
-			    	
+
 			    	
 			    </script>
                 <br><br>
