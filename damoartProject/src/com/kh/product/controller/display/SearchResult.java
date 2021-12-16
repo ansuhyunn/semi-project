@@ -46,7 +46,7 @@ public class SearchResult extends HttpServlet {
 		ArrayList<Product> searchList = new ProductService().selectSearchList(op1, op2, op3, op4);
 		
 		request.setAttribute("searchList", searchList);
-		request.getRequestDispatcher("views/product/detailView.jsp").forward(request, response);
+		request.getRequestDispatcher("views/product/searchResult.jsp").forward(request, response);
 		
 		
 //		request.setAttribute("regionList", regionList);

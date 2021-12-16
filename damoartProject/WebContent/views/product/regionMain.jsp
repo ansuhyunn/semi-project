@@ -110,11 +110,6 @@
 
         <div class="name">
             <div id="name1">지역별 전시</div>
-            <a href="">높은가격순</a>
-            <a href="">낮은가격순</a>
-            <a href="">오픈날짜순</a>
-            <a href="">마감임박순</a>
-            <a href="">별점순</a>
         </div>
 
         <hr class="my-2">                       <!-- 구분선-->

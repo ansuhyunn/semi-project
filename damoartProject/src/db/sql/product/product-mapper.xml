@@ -266,7 +266,9 @@ SELECT
 
 
 
+
 <!-- 전시 검색 -->
+<!-- 오늘 / 20000 미만 가격 -->
 <entry key="SearchListToday">
 SELECT 
        PNO
@@ -281,13 +283,37 @@ SELECT
 	 , DETAIL_IMG
 	 , ETC
   FROM PRODUCT
-<![CDATA[WHERE TO_DATE(S_DATE, 'RRRR/MM/DD') - TRUNC(SYSDATE) <= 0 ]]>
+<![CDATA[WHERE TO_DATE(S_DATE, 'RRRR/MM/DD') - SYSDATE <= 0 ]]>
    AND REGION = ?
-   AND A_PRICE = ?
+<![CDATA[AND A_PRICE <= ?]]>
    AND AGE = ?
    AND SOLDOUT = 'N' 
 ORDER BY TITLE
 </entry>
+
+<!-- 오늘 / 20000 이상 가격 -->
+<entry key="SearchListToday2">
+SELECT 
+       PNO
+	 , TITLE
+	 , REGION
+	 , AGE
+	 , AREA
+	 , TO_CHAR(TO_DATE(S_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') S_DATE
+	 , TO_CHAR(TO_DATE(E_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') E_DATE
+	 , TIME
+	 , MAIN_IMG
+	 , DETAIL_IMG
+	 , ETC
+  FROM PRODUCT
+<![CDATA[WHERE TO_DATE(S_DATE, 'RRRR/MM/DD') - SYSDATE <= 0 ]]>
+   AND REGION = ?
+<![CDATA[AND A_PRICE >= ?]]>
+   AND AGE = ?
+   AND SOLDOUT = 'N' 
+ORDER BY TITLE
+</entry>
+
 
 <entry key="SearchListWeek">
 SELECT 
@@ -303,13 +329,36 @@ SELECT
 	 , DETAIL_IMG
 	 , ETC
   FROM PRODUCT
-<![CDATA[TO_DATE(E_DATE, 'RRRR/MM/DD') - SYSDATE <= 7 ]]>
+<![CDATA[WHERE TO_DATE(E_DATE, 'RRRR/MM/DD') - SYSDATE <= 7 ]]>
    AND REGION = ?
-   AND A_PRICE = ?
+<![CDATA[AND A_PRICE <= ?]]>
    AND AGE = ?
    AND SOLDOUT = 'N' 
 ORDER BY TITLE
 </entry>
+
+<entry key="SearchListWeek2">
+SELECT 
+       PNO
+	 , TITLE
+	 , REGION
+	 , AGE
+	 , AREA
+	 , TO_CHAR(TO_DATE(S_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') S_DATE
+	 , TO_CHAR(TO_DATE(E_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') E_DATE
+	 , TIME
+	 , MAIN_IMG
+	 , DETAIL_IMG
+	 , ETC
+  FROM PRODUCT
+<![CDATA[WHERE TO_DATE(E_DATE, 'RRRR/MM/DD') - SYSDATE <= 7 ]]>
+   AND REGION = ?
+<![CDATA[AND A_PRICE >= ?]]>
+   AND AGE = ?
+   AND SOLDOUT = 'N' 
+ORDER BY TITLE
+</entry>
+
 
 <entry key="SearchListMonth">
 SELECT 
@@ -325,9 +374,31 @@ SELECT
 	 , DETAIL_IMG
 	 , ETC
   FROM PRODUCT
-<![CDATA[TO_DATE(E_DATE, 'RRRR/MM/DD') - SYSDATE <= 30 ]]>
+<![CDATA[WHERE TO_DATE(E_DATE, 'RRRR/MM/DD') - SYSDATE <= 30 ]]>
    AND REGION = ?
-   AND A_PRICE = ?
+<![CDATA[AND A_PRICE <= ?]]>
+   AND AGE = ?
+   AND SOLDOUT = 'N' 
+ORDER BY TITLE
+</entry>
+
+<entry key="SearchListMonth2">
+SELECT 
+       PNO
+	 , TITLE
+	 , REGION
+	 , AGE
+	 , AREA
+	 , TO_CHAR(TO_DATE(S_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') S_DATE
+	 , TO_CHAR(TO_DATE(E_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') E_DATE
+	 , TIME
+	 , MAIN_IMG
+	 , DETAIL_IMG
+	 , ETC
+  FROM PRODUCT
+<![CDATA[WHERE TO_DATE(E_DATE, 'RRRR/MM/DD') - SYSDATE <= 30 ]]>
+   AND REGION = ?
+<![CDATA[AND A_PRICE >= ?]]>
    AND AGE = ?
    AND SOLDOUT = 'N' 
 ORDER BY TITLE
