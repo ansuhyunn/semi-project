@@ -64,6 +64,26 @@ ORDER BY TITLE
 </entry>
 
 
+<!-- 진행중 -->
+<entry key="selectIngList">
+SELECT 
+	   PNO
+	 , TITLE
+	 , REGION
+	 , AGE
+	 , AREA
+	 , TO_CHAR(TO_DATE(S_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') S_DATE
+	 , TO_CHAR(TO_DATE(E_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') E_DATE  
+	 , TIME
+	 , MAIN_IMG
+	 , DETAIL_IMG
+	 , ETC
+  FROM PRODUCT
+ <![CDATA[WHERE FLOOR(MONTHS_BETWEEN(SYSDATE, TO_DATE(S_DATE, 'RRRRMMDD'))) >= 0 ]]>
+   AND SOLDOUT = 'N'
+</entry>
+
+
 <!-- 지역별 전시 = 전시 전체 조회-->
 <entry key="selectRegionList">
 SELECT 
@@ -82,26 +102,6 @@ SELECT
  <![CDATA[WHERE FLOOR(MONTHS_BETWEEN(SYSDATE, TO_DATE(S_DATE, 'RRRRMMDD'))) >= 0 ]]>
    AND SOLDOUT = 'N'
 ORDER BY TITLE
-</entry>
-
-
-<!-- 진행중 -->
-<entry key="selectIngList">
-SELECT 
-	   PNO
-	 , TITLE
-	 , REGION
-	 , AGE
-	 , AREA
-	 , TO_CHAR(TO_DATE(S_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') S_DATE
-	 , TO_CHAR(TO_DATE(E_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') E_DATE  
-	 , TIME
-	 , MAIN_IMG
-	 , DETAIL_IMG
-	 , ETC
-  FROM PRODUCT
- <![CDATA[WHERE FLOOR(MONTHS_BETWEEN(SYSDATE, TO_DATE(S_DATE, 'RRRRMMDD'))) >= 0 ]]>
-   AND SOLDOUT = 'N'
 </entry>
 
 
@@ -147,8 +147,8 @@ ORDER BY TITLE
 </entry>
 
 
-<!-- 지역별 전시 : 그외-->
-<entry key="selectEtcRegionList">
+<!-- 지역별 전시 : 전라도-->
+<entry key="selectJRregionList">
 SELECT 
        PNO
 	 , TITLE
@@ -163,9 +163,75 @@ SELECT
 	 , ETC
   FROM PRODUCT
  <![CDATA[WHERE FLOOR(MONTHS_BETWEEN(SYSDATE, TO_DATE(S_DATE, 'RRRRMMDD'))) >= 0 ]]>
-   AND REGION = ?
+   AND REGION = '전라도'
 ORDER BY TITLE
 </entry>
+
+
+<!-- 지역별 전시 : 경상도-->
+<entry key="selectKSregionList">
+SELECT 
+       PNO
+	 , TITLE
+	 , REGION
+	 , AGE
+	 , AREA
+	 , TO_CHAR(TO_DATE(S_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') S_DATE
+	 , TO_CHAR(TO_DATE(E_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') E_DATE
+	 , TIME
+	 , MAIN_IMG
+	 , DETAIL_IMG
+	 , ETC
+  FROM PRODUCT
+ <![CDATA[WHERE FLOOR(MONTHS_BETWEEN(SYSDATE, TO_DATE(S_DATE, 'RRRRMMDD'))) >= 0 ]]>
+   AND REGION = '경상도'
+ORDER BY TITLE
+</entry>
+
+
+<!-- 지역별 전시 : 제주도-->
+<entry key="selectJJregionList">
+SELECT 
+       PNO
+	 , TITLE
+	 , REGION
+	 , AGE
+	 , AREA
+	 , TO_CHAR(TO_DATE(S_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') S_DATE
+	 , TO_CHAR(TO_DATE(E_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') E_DATE
+	 , TIME
+	 , MAIN_IMG
+	 , DETAIL_IMG
+	 , ETC
+  FROM PRODUCT
+ <![CDATA[WHERE FLOOR(MONTHS_BETWEEN(SYSDATE, TO_DATE(S_DATE, 'RRRRMMDD'))) >= 0 ]]>
+   AND REGION = '제주도'
+ORDER BY TITLE
+</entry>
+
+
+<!-- 지역별 전시 : 서울-->
+<entry key="selectSEregionList">
+SELECT 
+       PNO
+	 , TITLE
+	 , REGION
+	 , AGE
+	 , AREA
+	 , TO_CHAR(TO_DATE(S_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') S_DATE
+	 , TO_CHAR(TO_DATE(E_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') E_DATE
+	 , TIME
+	 , MAIN_IMG
+	 , DETAIL_IMG
+	 , ETC
+  FROM PRODUCT
+ <![CDATA[WHERE FLOOR(MONTHS_BETWEEN(SYSDATE, TO_DATE(S_DATE, 'RRRRMMDD'))) >= 0 ]]>
+   AND REGION = '서울'
+ORDER BY TITLE
+</entry>
+
+
+
 
 
 <!-- 디테일 -->

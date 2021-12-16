@@ -72,7 +72,8 @@
         width: 20%;
         height: 100%;
         float: left;
-        margin-left: 40px;
+        margin-left: 25px;
+        margin-right: 25px;
         margin-bottom: 50px;
         margin-top: 0px;
         display: block;
@@ -119,12 +120,12 @@
         <hr class="my-2">                       <!-- 구분선-->
 
         <div class="button">
-            <button class="btn" value="서울" onclick="location.href='<%=request.getContextPath()%>/views/product/regionResult.pro';">서울</button>
-            <button class="btn" value="경기" onclick="location.href='<%=request.getContextPath()%>/views/product/regionResult.pro';">경기/인천</button>
-            <button class="btn" value="강원" onclick="location.href='<%=request.getContextPath()%>/views/product/regionResult.pro';">강원/충청</button>
-            <button class="btn" value="전라도" onclick="location.href='<%=request.getContextPath()%>/views/product/regionResult.pro';">전라도</button>
-            <button class="btn" value="경상도" onclick="location.href='<%=request.getContextPath()%>/views/product/regionResult.pro';">경상도</button>
-            <button class="btn" value="제주도" onclick="location.href='<%=request.getContextPath()%>/views/product/regionResult.pro';">제주도</button>
+            <button class="btn" name="seoul" value="seoul" onclick="location.href='<%=request.getContextPath()%>/regionResult.pro';">서울</button>
+            <button class="btn" value="경기" onclick="location.href='<%=request.getContextPath()%>/regionResult.pro';">경기/인천</button>
+            <button class="btn" value="강원" onclick="location.href='<%=request.getContextPath()%>/regionResult.pro';">강원/충청</button>
+            <button class="btn" value="전라도" onclick="location.href='<%=request.getContextPath()%>/regionResult.pro';">전라도</button>
+            <button class="btn" value="경상도" onclick="location.href='<%=request.getContextPath()%>/regionResult.pro';">경상도</button>
+            <button class="btn" value="제주도" onclick="location.href='<%=request.getContextPath()%>/regionResult.pro';">제주도</button>
         </div>
 
         <div class="content1">

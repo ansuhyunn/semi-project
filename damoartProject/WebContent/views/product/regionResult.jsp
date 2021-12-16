@@ -71,7 +71,8 @@
         width: 20%;
         height: 100%;
         float: left;
-        margin-left: 40px;
+        margin-left: 25px;
+        margin-right: 25px;
         margin-bottom: 50px;
         margin-top: 0px;
         display: block;

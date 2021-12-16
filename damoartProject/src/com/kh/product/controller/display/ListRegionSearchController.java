@@ -32,6 +32,7 @@ public class ListRegionSearchController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String value = request.getParameter("value");
+		System.out.println(value);
 		
 		ArrayList<Product> regionList = new ProductService().selectRegionResultList(value);
 		
