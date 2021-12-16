@@ -72,10 +72,10 @@ public class NoticeDao {
 			
 			while(rset.next()) {
 				list.add(new Notice(rset.getInt("notice_no"),
-								  rset.getString("nickname"),
-								  rset.getString("notice_title"),
-								  rset.getString("create_date"),
-								  rset.getInt("count")));
+								    rset.getString("nickname"),
+								    rset.getString("notice_title"),
+								    rset.getString("create_date"),
+								    rset.getInt("count")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
