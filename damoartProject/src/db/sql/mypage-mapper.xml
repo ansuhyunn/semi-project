@@ -5,7 +5,8 @@
 	<!-- 회원정보 수정 -->
 	<entry key="updateMember">
 		UPDATE MEMBER
-		   SET MEM_NAME = ?
+		   SET MEM_PWD = ?
+		   	 , MEM_NAME = ?
 		     , NICKNAME = ?
 		     , EMAIL = ?
 		     , PHONE = ?
@@ -27,6 +28,8 @@
 		     , ENROLL_DATE
 		     , MEM_TYPE
 		     , STATUS
+		     , BLACK_CONTENT
+		     , BLACK_DATE
 		  FROM MEMBER
 		 WHERE MEM_ID = ?
 		   AND STATUS = 'N'
