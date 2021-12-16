@@ -72,9 +72,10 @@ private Properties prop = new Properties();
 				switch(rset.getString("Q_CATEGORY_CODE")) {
 				case "Q1" : category = "[티켓]"; break;
          	    case "Q2" : category = "[취소/환불]"; break;
-         	    case "Q3" : category = "[주문결제]"; break;
+         	    case "Q3" : category = "[주문/결제]"; break;
          	    case "Q4" : category = "[상품]"; break;
-         	    default : category = "[기타]"; break;
+         	    case "Q5" : category = "[기타]"; break;
+         	    default :  break;
 				}
 				list.add(new QnA(rset.getInt("Q_NO"),
 						 		 rset.getInt("MEM_NO"),

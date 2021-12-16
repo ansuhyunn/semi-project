@@ -55,6 +55,12 @@
     #outer>a{
         color:rgb(64, 64, 64);
     }
+    
+    .button>a{
+        background-color:rgb(203, 185, 153);
+        color:rgb(64, 64, 64);
+        font-weight:600;
+    }
 
 
 </style>
@@ -68,7 +74,8 @@
 			<h4 style="font-weight: bolder;" align="center">Q&A</h4>
             <br>
             <hr>
-            <br><br>
+            <br>
+            <br>
             <div>
                 <table align="center" id="list-area" class="table table-hover">
                     <thead>
@@ -119,7 +126,11 @@
 
 			    	
 			    </script>
-                <br><br>
+                <br>
+                <div class="button" align="right">
+                    <a href="<%= contextPath %>/enrollForm.qa" class="btn btn-sm" id="enroll">문의 등록</a>
+            	</div>
+                <br>
                 <div class="paging-area" align="center">
                 	<% if(currentPage != 1) {%>
                     	<button class="btn" onclick="location.href='<%=contextPath%>/list.qa?cpage=<%=currentPage-1%>'">&lt;</button>
