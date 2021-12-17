@@ -90,5 +90,19 @@ public class ManageService {
 		close(conn);
 		return result1 * result2;
 	}
+	
+	public Product productDetailView(int pNo) {
+		Connection conn = getConnection();
+		Product p = new ManageDao().productDetailView(conn, pNo);
+		close(conn);
+		return p;
+	}
+	
+	public Attachment selectAttachment(int pNo) {
+		Connection conn = getConnection();
+		Attachment at = new ManageDao().selectAttachment(conn, pNo);
+		close(conn);
+		return at;
+	}
 
 }

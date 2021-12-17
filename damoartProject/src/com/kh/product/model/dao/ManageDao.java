@@ -288,4 +288,73 @@ public class ManageDao {
 	}
 	
 	
+	// 등록 전시 조회
+	public Product productDetailView(Connection conn, int pNo) {
+		Product p = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("productDetailView");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, pNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				p = new Product(rset.getInt("PNO"),
+								rset.getString("ENROLL_DATE"),
+								rset.getString("title"),
+								rset.getString("region"),
+								rset.getString("age"),
+								rset.getString("area"),
+								rset.getString("s_date"),
+								rset.getString("e_date"),
+								rset.getString("time"),
+								rset.getInt("a_price"),
+								rset.getInt("t_price"),
+								rset.getInt("c_price"),
+								rset.getString("main_img"),
+								rset.getString("detail_img"),
+								rset.getString("etc"),
+								rset.getString("soldout"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return p;
+	}
+	
+	
+	public Attachment selectAttachment(Connection conn, int qNo) {
+		Attachment at = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectAttachment");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, qNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				at = new Attachment(rset.getInt("file_no"),
+								    rset.getString("origin_name"),
+								    rset.getString("change_name"),
+								    rset.getString("file_path"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return at;
+	}
+	
 }

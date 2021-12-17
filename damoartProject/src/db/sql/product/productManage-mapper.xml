@@ -181,6 +181,30 @@ VALUES
   , DEFAULT
   )
 </entry>
+
+
+<!-- 등록 전시 조회 -->
+<entry key="productDetailView">
+SELECT 
+       PNO
+     , ENROLL_DATE
+	 , TITLE
+	 , REGION
+	 , AGE
+	 , AREA
+	 , TO_CHAR(TO_DATE(S_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') S_DATE
+	 , TO_CHAR(TO_DATE(E_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') E_DATE
+	 , TIME
+     , A_PRICE
+     , T_PRICE
+     , C_PRICE
+	 , MAIN_IMG
+	 , DETAIL_IMG
+	 , ETC
+     , SOLDOUT
+  FROM PRODUCT
+ WHERE PNO = ?
+</entry>
 	
 	
 </properties>

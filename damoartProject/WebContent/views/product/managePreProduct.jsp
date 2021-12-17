@@ -158,6 +158,15 @@
 			
         </div>
         
+        <script>
+	    	$(function(){
+	    		$("#list-area>tbody>tr").click(function(){
+					console.log($(this).children().eq(0).text())
+	    			location.href='<%=contextPath %>/manageDetail.pro?pno=' + $(this).children().eq(1).text();
+	    		})
+	    	})
+	    </script>
+        
     </div>
     
 
