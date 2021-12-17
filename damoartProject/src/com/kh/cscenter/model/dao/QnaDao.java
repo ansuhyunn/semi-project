@@ -94,5 +94,13 @@ private Properties prop = new Properties();
 		}
 		return list;
 	}
+	
+	public QnA selectQnA(Connection conn, int qNo) {
+		QnA q = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectQnA");
+	
+	}
 
 }

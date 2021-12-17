@@ -112,7 +112,7 @@
             			<input type="hidden" name="memNo" value="<%=loginUser.getMemNo()%>"> 
                     <% }else { %>
 	                    <tr>
-	                        <th>&nbsp;&nbsp;&nbsp;작성자</th>
+	                        <th>&nbsp;&nbsp;&nbsp;작성자</th>  <!-- 비회원 닉네임 입력시 중복 검사하기 -->
 	                        <td><input type="text"></td>
 	                        <td id="pwd">&nbsp;&nbsp;&nbsp;비밀번호</td>
 	                        <td><input type="text"></td>
@@ -130,12 +130,13 @@
                 </table>
                 <br>
                 <div id="button" align="right">
-                    <input id="secret" type="checkbox" sytle="">비밀글 <br><br>
+                    <input id="secret" type="checkbox">비밀글 <br><br>
                     <a href="<%=contextPath%>/list.qa?cpage=1" class="btn btn-sm" id="cancel">취소하기</a>
                     <button type="submit" class="btn btn-sm" id="insert">등록하기</button>
                 </div>
             </form>
         </div>
     </div>
+    <%@ include file="../../common/footerbar.jsp" %>
 </body>
 </html>

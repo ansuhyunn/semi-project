@@ -6,6 +6,7 @@ import static com.kh.common.JDBCTemplate.getConnection;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import com.kh.common.model.vo.Attachment;
 import com.kh.common.model.vo.PageInfo;
 import com.kh.cscenter.model.dao.QnaDao;
 import com.kh.cscenter.model.vo.QnA;
@@ -26,5 +27,20 @@ public class QnaService {
 		close(conn);
 		return list;
 		
+	}
+	
+	public QnA selectQnA(int qNo) {
+		Connection conn = getConnection();
+		QnA q = new QnA().selectQnA(conn, qNo);
+		close(conn);
+		return q;
+		
+	}
+	
+	public Attachment selectAttachment(int qNo) {
+		Connection conn = getConnection();
+		Attachment at = new Attachment().selectAttachment(conn, qNo);
+		close(conn);
+		return at;
 	}
 }

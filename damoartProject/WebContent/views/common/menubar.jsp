@@ -155,16 +155,16 @@
             <div id="header_3">
                 <div id="buttons">
                 	<% if(loginUser == null) { %> 
-	                    <a href="<%=contextPath%>/views/order/cart.jsp" id="cart_btn" class="btn btn-sm">장바구니</a>
+	                    <a href="<%=contextPath%>/list.ca" id="cart_btn" class="btn btn-sm">장바구니</a>
 	                    <a href="<%=contextPath%>/loginPage.me" id="login_btn" class="btn btn-sm">로그인</a>
 	                    <a href="<%=contextPath%>/agreement.me" id="enroll_btn" class="btn btn-sm">회원가입</a>
                     <% }else { %>
                 		<% if(loginUser.getMemNo() == 1 || loginUser.getMemNo() == 2 || loginUser.getMemNo() == 3) {%>
-                			<a href="<%=contextPath%>/views/order/cart.jsp" id="cart_btn" class="btn btn-sm">장바구니</a>
+                			<a href="<%=contextPath%>/list.ca" id="cart_btn" class="btn btn-sm">장바구니</a>
 	                    	<a href="<%=contextPath%>/adminMain.ad" id="login_btn" class="btn btn-sm">관리자페이지</a>
 	                    	<a href="<%=contextPath%>/logout.me" id="logout_btn" class="btn btn-sm">로그아웃</a>
                 		<% }else {%>
-	                    	<a href="<%=contextPath%>/views/order/cart.jsp" id="cart_btn" class="btn btn-sm">장바구니</a>
+	                    	<a href="<%=contextPath%>/list.ca" id="cart_btn" class="btn btn-sm">장바구니</a>
 	                    	<a href="<%=contextPath%>/views/mypage/mypageMain.jsp" id="myPage_btn" class="btn btn-sm">마이페이지</a>
 	                    	<a href="<%=contextPath%>/logout.me" id="logout_btn" class="btn btn-sm">로그아웃</a>
                     	<% } %>

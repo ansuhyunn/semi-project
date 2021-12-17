@@ -2,7 +2,7 @@ package com.kh.cscenter.model.vo;
 
 public class QnA {
 	private int qNo;
-	private int pNo;
+	private String pNo;
 	private int memNo;
 	private String qWriter;
 	private String qPwd;
@@ -16,9 +16,11 @@ public class QnA {
 	private String aWriter;
 	private String status;
 	
+	private String pMainImg;
+	
 	public QnA () {}
 
-	public QnA(int qNo, int pNo, int memNo, String qWriter, String qPwd, String secret, String qTitle, String qContent,
+	public QnA(int qNo, String pNo, int memNo, String qWriter, String qPwd, String secret, String qTitle, String qContent,
 			String createDate, String qCategoryCode, String aContent, String aCreateDate, String aWriter,
 			String status) {
 		super();
@@ -53,6 +55,15 @@ public class QnA {
 		this.aContent = aContent;
 	}
 
+	
+	public String getpMainImg() {
+		return pMainImg;
+	}
+
+	public void setpMainImg(String pMainImg) {
+		this.pMainImg =pMainImg;
+	}
+
 	public int getqNo() {
 		return qNo;
 	}
@@ -61,11 +72,11 @@ public class QnA {
 		this.qNo = qNo;
 	}
 
-	public int getpNo() {
+	public String getpNo() {
 		return pNo;
 	}
 
-	public void setpNo(int pNo) {
+	public void setpNo(String pNo) {
 		this.pNo = pNo;
 	}
 
@@ -170,8 +181,9 @@ public class QnA {
 		return "QnA [qNo=" + qNo + ", pNo=" + pNo + ", memNo=" + memNo + ", qWriter=" + qWriter + ", qPwd=" + qPwd
 				+ ", secret=" + secret + ", qTitle=" + qTitle + ", qContent=" + qContent + ", createDate=" + createDate
 				+ ", qCategoryCode=" + qCategoryCode + ", aContent=" + aContent + ", aCreateDate=" + aCreateDate
-				+ ", aWriter=" + aWriter + ", status=" + status + "]";
+				+ ", aWriter=" + aWriter + ", status=" + status + ", pMainImg=" + pMainImg + "]";
 	}
+
 	
 	
 }
