@@ -4,8 +4,8 @@
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	ArrayList<Product> IngList = (ArrayList<Product>)request.getAttribute("IngList");
 	
-	int currentPage = pi.getCurrentPage();
-	int startPage = pi.getStartPage();
+	int currentPage = pi.getCurrentPage(); 
+	int startPage = pi.getStartPage(); 
 	int endPage = pi.getEndPage();
 	int maxPage = pi.getMaxPage();
 %>
@@ -27,31 +27,37 @@
 div{ box-sizing:border-box; }
     .wrapper{
         width: 1000px;
-        height: 1000px;
+        height: auto; 
         margin: auto;
-        margin-left: auto; 
-        margin-right: auto;
-        margin-top: 80px
+        margin-top: 150px
     }   
-    table{
-        width: 1000px;
-        height: 500px;
-        text-align: center;
-        background-color: whitesmoke;
+    #list-area{
+    	width: 1000px;
+    	margin-left: auto;
+    	margin-right: 150px;
     }
-    th{height: 50px; font-size: 13px; background-color:rgb(151, 138, 116);}
-    td{font-size: 10px;}
-    a{margin: 0 auto;}
+    thead{
+        background:rgb(207, 206, 206);
+        font-size:12px;
+    }
+    #list-area>tbody{
+        background:white;
+        font-size:12px;
+    }
+     #list-area>tbody>tr:hover{
+    	background:rgb(240, 239, 239);
+    	cursor:pointer;
+    }
     .btn{
         width: 115px;
         margin-left: 200px;
         margin-top: 40px;
-        background-color: rgb(151, 138, 116);
+        background-color:rgb(203, 185, 153);
+        color:rgb(64, 64, 64);
         font-weight: bolder;
     }
     .btn *:hover{
-        background-color: rgb(203, 185, 153);
-        color: whitesmoke;
+        background:rgb(240, 239, 239);
         font-weight: bolder;
     }
 
@@ -60,11 +66,11 @@ div{ box-sizing:border-box; }
 </head>
 <body>
 
-	<%@ include file="../common/manageMenubar.jsp" %>
+	<%@ include file="../common/manageMenubar_2.jsp" %>
 	
     <div class="wrapper">
 
-        <table border="1px" class="list-area">
+        <table align="center" id="list-area" class="table table-bordered">
 			<thead>
 	            <tr style="background-color: lightgrey;">
 	                <th>&nbsp;&nbsp;&nbsp;</th>

@@ -21,7 +21,7 @@
         margin: auto;
         margin-left: auto; 
         margin-right: auto;
-        margin-top: 80px
+        margin-top: 180px
     } 
     form>table{
         width: 600px;
@@ -35,6 +35,9 @@
 </style>    
 </head>
 <body>
+
+	<%@ include file="../common/manageMenubar_2.jsp" %>
+	
     <div class="wrapper">
         <div class="name" style="font-size: 30px; font-weight: bolder;">
             	상품등록
@@ -74,7 +77,7 @@
                         <label for="kyong">경상도</label>
                         
                         <input type="checkbox" name="region" id="jaeju" value="제주">
-                        <label for="jaeju">제주</label>
+                        <label for="jaeju">제주도</label>
                     </td>
                 </tr>
                 <tr>
@@ -87,25 +90,11 @@
                     	<input type="checkbox" name="age" id="all" value="전체이용가">
                         <label for="all">전체이용가 </label>
                         
-                        <input type="checkbox" name="age" id="24" value="24개월 이상">
-                        <label for="24">24개월 이상 </label>
-                        
-                        <input type="checkbox" name="age" id="36" value="36개월 이상">
-                        <label for="36">36개월 이상 </label>
-                        
-                        <input type="checkbox" name="age" id="48" value="48개월 이상">
-                        <label for="48">48개월 이상 </label>
-                        
-                        <br>
-                        
-                        <input type="checkbox" name="age" id="child" value="초등학생">
-                        <label for="child">초등학생 </label>
-                        
                         <input type="checkbox" name="age" id="teen" value="중학생">
-                        <label for="teen">중학생 </label>
+                        <label for="teen">유아동 </label>
                         
                         <input type="checkbox" name="age" id="high" value="고등학생">
-                        <label for="high">고등학생 </label>
+                        <label for="high">청소년 </label>
                         
                         <input type="checkbox" name="age" id="adult" value="성인">
                         <label for="adult">성인 </label>

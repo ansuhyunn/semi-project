@@ -2,18 +2,21 @@ package com.kh.product.controller.manage;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
+import com.kh.common.controller.PosterRenamePolicy;
+import com.kh.common.model.vo.Attachment;
 import com.kh.product.model.service.ManageService;
 import com.kh.product.model.vo.Product;
 import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 /**
  * Servlet implementation class ManageinsertController
@@ -43,9 +46,8 @@ public class ManageinsertController extends HttpServlet {
 			
 			String savePath = request.getSession().getServletContext().getRealPath("/resources/product/");
 			
-			MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "utf-8", new DefaultFileRenamePolicy());
-			
-			
+			MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "utf-8", new PosterRenamePolicy());
+	
 			String title = multiRequest.getParameter("title");
 			String region = multiRequest.getParameter("region");
 			String area = multiRequest.getParameter("area");
@@ -75,10 +77,29 @@ public class ManageinsertController extends HttpServlet {
 			p.setDetailImg(detail);
 			p.setEtc(etc);
 			
+			Attachment at = new Attachment();
+			at.setOriginName(multiRequest.getOriginalFileName("upfile"));
+			at.setChangeName(multiRequest.getFilesystemName("upfile"));
+			at.setFilePath("resources/board_upfiles/");
 			
-		int result = new ManageService().insertProduct();
+			
+			
+			int result = new ManageService().insertProduct(p, at);
 		
-
+			if(result > 0) {
+				
+				HttpSession session = request.getSession();
+				session.setAttribute("alertMsg", "상품 등록 완료");
+				
+				// 성공 => 상품 메인 페이지 재요청
+				response.sendRedirect(request.getContextPath() + "/list.bo?cpage=1");
+				
+			} else {
+				// 실패 => 에러페이지 띄우기
+				request.setAttribute("errorMsg", "상품 등록 실패");			//값을 담을 땐 setAttribute
+				RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
+				view.forward(request, response);
+			}	
 		
 		}//큰 if
 	

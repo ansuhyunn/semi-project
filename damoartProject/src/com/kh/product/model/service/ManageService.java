@@ -1,11 +1,11 @@
 package com.kh.product.model.service;
 
-import static com.kh.common.JDBCTemplate.close;
-import static com.kh.common.JDBCTemplate.getConnection;
+import static com.kh.common.JDBCTemplate.*;
 
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import com.kh.common.model.vo.Attachment;
 import com.kh.common.model.vo.PageInfo;
 import com.kh.product.model.dao.ManageDao;
 import com.kh.product.model.vo.Product;
@@ -76,10 +76,19 @@ public class ManageService {
 	
 	
 	// 전시 등록
-	public int insertProduct() {
+	public int insertProduct(Product p, Attachment at) {
 		Connection conn = getConnection();
-		int result = new ManageDao().insertProduct(conn);
-		return result;
+		int result1 = new ManageDao().insertProduct(conn, p);
+		int result2 = new ManageDao().insertAttachment(conn, at);
+		
+		if(result1 > 0 && result2 > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		return result1 * result2;
 	}
 
 }

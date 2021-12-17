@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import com.kh.common.model.vo.Attachment;
 import com.kh.common.model.vo.PageInfo;
 import com.kh.product.model.vo.Product;
 
@@ -224,18 +225,57 @@ public class ManageDao {
 	
 	
 	// 전시 등록
-	public int insertProduct(Connection conn) {
+	public int insertProduct(Connection conn, Product p) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("insertProduct");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, p.getTitle());
+			pstmt.setString(2, p.getRegion());
+			pstmt.setString(3, p.getAge());
+			pstmt.setString(4, p.getArea());
+			pstmt.setString(5, p.getsDate());
+			pstmt.setString(6, p.geteDate());
+			pstmt.setString(7, p.getTime());
+			pstmt.setInt(8, p.getaPrice());
+			pstmt.setInt(9, p.gettPrice());
+			pstmt.setInt(10, p.getcPrice());
+			pstmt.setString(11, p.getMainImg());
+			pstmt.setString(12, p.getDetailImg());
+			pstmt.setString(13, p.getEtc());
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close(pstmt);
 		}
 		
 		return result;
 	}
+	
+	// 첨부파일 업로드
+	public int insertAttachment(Connection conn, Attachment at) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertAttachment");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, at.getOriginName());
+			pstmt.setString(2, at.getChangeName());
+			pstmt.setString(3, at.getFilePath());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
 	
 }

@@ -16,9 +16,10 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <!-- Popper JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <!-- Latest compiled JavaScript -->
@@ -35,19 +36,30 @@ div{ box-sizing:border-box; }
     #list-area{
     	width: 1000px;
     	margin-left: auto;
-    	margin-right: auto;
+    	margin-right: 150px;
     }
-    a{margin: 0 auto;}
+    thead{
+        background:rgb(207, 206, 206);
+        font-size:12px;
+    }
+    #list-area>tbody{
+        background:white;
+        font-size:12px;
+    }
+     #list-area>tbody>tr:hover{
+    	background:rgb(240, 239, 239);
+    	cursor:pointer;
+    }
     .btn{
         width: 115px;
         margin-left: 200px;
         margin-top: 40px;
-        background-color: rgb(151, 138, 116);
+        background-color:rgb(203, 185, 153);
+        color:rgb(64, 64, 64);
         font-weight: bolder;
     }
     .btn *:hover{
-        background-color: rgb(203, 185, 153);
-        color: whitesmoke;
+        background:rgb(240, 239, 239);
         font-weight: bolder;
     }
 
