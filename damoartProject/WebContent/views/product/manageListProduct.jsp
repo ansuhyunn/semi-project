@@ -108,14 +108,13 @@ div{ box-sizing:border-box; }
 		     </tbody>    
         </table>
 
-        <!--
+        
         <div class="paging-area" align="center">
         
 			<% if(currentPage != 1){ %>
             	<button onclick="location.href='<%=contextPath%>/managelist.man?cpage=<%=currentPage-1%>';">&lt;</button>
             <% } %>
             
-             페이지 p가 startPage부터 endPage까지 1씩 증가
             <% for(int p=startPage; p <= endPage; p++){ %>
             	<% if(currentPage == p) {%>
             		<button disabled><%= p %></button>		
@@ -129,12 +128,12 @@ div{ box-sizing:border-box; }
 			<% } %>
 			
         </div>
-        -->
+        
         
         <div class="button">
             <a href="<%= contextPath %>/views/product/manageInsertProduct.jsp" class="btn">등록</a>
             <a href="<%= contextPath %>/update.pro" class="btn">수정</a>
-            <a href="<%= contextPath %>/delete.pro" class="btn">삭제</a>
+            <a href="<%= contextPath %>/delete.pro" class="btn">삭제</a> 
         </div>
     </div>
     

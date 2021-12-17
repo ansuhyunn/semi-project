@@ -48,16 +48,23 @@ div{ box-sizing:border-box; }
     	background:rgb(240, 239, 239);
     	cursor:pointer;
     }
-    .btn{
-        width: 115px;
-        margin-left: 200px;
-        margin-top: 40px;
+    #update{
         background-color:rgb(203, 185, 153);
         color:rgb(64, 64, 64);
-        font-weight: bolder;
+        font-weight:600;
+    }
+    #delete{
+        background-color:rgb(151, 138, 116);
+        color:white;
+    }
+    .btn{
+        width: 115px;
+        position:absolute;
+        right:0;
+        background-color:rgb(203, 185, 153);
+        color:rgb(64, 64, 64);
     }
     .btn *:hover{
-        background:rgb(240, 239, 239);
         font-weight: bolder;
     }
 
@@ -106,27 +113,27 @@ div{ box-sizing:border-box; }
         <div class="paging-area" align="center">
         
 			<% if(currentPage != 1){ %>
-            	<button onclick="location.href='<%=contextPath%>/managePre.man?cpage=<%=currentPage-1%>';">&lt;</button>
+            	<button class="btn" onclick="location.href='<%=contextPath%>/managePre.man?cpage=<%=currentPage-1%>';">&lt;</button>
             <% } %>
             
             <!-- 페이지 p가 startPage부터 endPage까지 1씩 증가 --> 
             <% for(int p=startPage; p <= endPage; p++){ %>
             	<% if(currentPage == p) {%>
-            		<button disabled><%= p %></button>		
+            		<button class="btn" disabled><%= p %></button>		
 	            <% }else { %>
-	            	<button onclick="location.href='<%=contextPath%>/managePre.man?cpage=<%= p %>';"><%= p %></button>
+	            	<button class="btn" onclick="location.href='<%=contextPath%>/managePre.man?cpage=<%= p %>';"><%= p %></button>
 	            <% } %>
             <% } %>
             
             <% if(currentPage != maxPage){%>
-            	<button onclick="location.href='<%=contextPath%>/managePre.man?cpage=<%=currentPage+1%>';">&gt;</button>
+            	<button class="btn" onclick="location.href='<%=contextPath%>/managePre.man?cpage=<%=currentPage+1%>';">&gt;</button>
 			<% } %>
 			
         </div>
         
         <div class="button">
-            <a href="<%= contextPath %>/update.pro" class="btn">수정</a>
-            <a href="<%= contextPath %>/delete.pro" class="btn">삭제</a>
+            <a href="<%= contextPath %>/update.pro" class="btn btn-sm" id="update">수정</a>
+            <a href="<%= contextPath %>/delete.pro" class="btn btn-sm" id="delete">삭제</a>
         </div>
     </div>
     

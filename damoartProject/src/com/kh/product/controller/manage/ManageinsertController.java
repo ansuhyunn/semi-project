@@ -12,11 +12,11 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
-import com.kh.common.controller.PosterRenamePolicy;
 import com.kh.common.model.vo.Attachment;
 import com.kh.product.model.service.ManageService;
 import com.kh.product.model.vo.Product;
 import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 /**
  * Servlet implementation class ManageinsertController

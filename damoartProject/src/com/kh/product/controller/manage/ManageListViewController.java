@@ -54,7 +54,6 @@ public class ManageListViewController extends HttpServlet {
 		}
 		
 		PageInfo pi = new PageInfo(proCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
-		
 		ArrayList<Product> allList = new ManageService().selectAllList(pi);
 
 		System.out.println(pi);
