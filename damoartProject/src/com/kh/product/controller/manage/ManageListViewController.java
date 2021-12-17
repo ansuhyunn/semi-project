@@ -49,15 +49,13 @@ public class ManageListViewController extends HttpServlet {
 		maxPage = (int)Math.ceil((double)proCount / boardLimit);
 		startPage = (currentPage - 1) / pageLimit * pageLimit + 1;
 		endPage = startPage + pageLimit - 1;
+		
 		if(endPage > maxPage) {
 			endPage = maxPage;
 		}
 		
 		PageInfo pi = new PageInfo(proCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
 		ArrayList<Product> allList = new ManageService().selectAllList(pi);
-
-		System.out.println(pi);
-		System.out.println(allList);
 		
 		request.setAttribute("pi", pi);	
 		request.setAttribute("allList", allList);

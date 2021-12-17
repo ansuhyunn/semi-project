@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
+import com.kh.common.controller.MyFileRenamePolicy;
 import com.kh.common.model.vo.Attachment;
 import com.kh.product.model.service.ManageService;
 import com.kh.product.model.vo.Product;
@@ -80,7 +81,6 @@ public class ManageinsertController extends HttpServlet {
 			at.setOriginName(multiRequest.getOriginalFileName("upfile"));
 			at.setChangeName(multiRequest.getFilesystemName("upfile"));
 			at.setFilePath("resources/board_upfiles/");
-			
 			
 			
 			int result = new ManageService().insertProduct(p, at);

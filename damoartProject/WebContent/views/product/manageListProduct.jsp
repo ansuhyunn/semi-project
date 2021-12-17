@@ -129,7 +129,6 @@ div{ box-sizing:border-box; }
 			
         </div>
         
-        
         <div class="button">
             <a href="<%= contextPath %>/views/product/manageInsertProduct.jsp" class="btn">등록</a>
             <a href="<%= contextPath %>/update.pro" class="btn">수정</a>

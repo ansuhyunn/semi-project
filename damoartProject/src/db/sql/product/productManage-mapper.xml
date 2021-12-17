@@ -146,7 +146,15 @@ VALUES
   )
   </entry>
 
-<!-- 2) ATTACHMENT(자식) -->
+
+<!-- 2) CURRVAL값  뽑기 위한 선행 -->
+<entry key="currval"> 
+SELECT SEQ_PNO.NEXTVAL, 
+	   SEQ_PNO.CURRVAL 
+  FROM DUAL
+</entry>
+
+<!-- 3) ATTACHMENT(자식) -->
 <entry key="insertAttachment"> 
 INSERT 
   INTO ATTACHMENT
@@ -162,7 +170,7 @@ INSERT
   )
 VALUES
   (
-    SEQ_FNO.NEXTVAL
+    SEQ_ANO.NEXTVAL
   , '상품등록'
   , SEQ_PNO.CURRVAL   <!-- 마지막 NEXTVAL의 값을 가져옴 --> 
   , ?
