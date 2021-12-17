@@ -16,7 +16,6 @@ import com.kh.common.model.vo.Attachment;
 import com.kh.product.model.service.ManageService;
 import com.kh.product.model.vo.Product;
 import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 /**
  * Servlet implementation class ManageinsertController
@@ -46,7 +45,7 @@ public class ManageinsertController extends HttpServlet {
 			
 			String savePath = request.getSession().getServletContext().getRealPath("/resources/product/");
 			
-			MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "utf-8", new PosterRenamePolicy());
+			MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "utf-8", new MyFileRenamePolicy());
 	
 			String title = multiRequest.getParameter("title");
 			String region = multiRequest.getParameter("region");
