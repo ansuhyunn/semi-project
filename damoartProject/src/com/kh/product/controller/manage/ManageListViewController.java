@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.common.PageInfo;
+import com.kh.common.model.vo.PageInfo;
 import com.kh.product.model.service.ManageService;
 import com.kh.product.model.vo.Product;
 
@@ -56,6 +56,9 @@ public class ManageListViewController extends HttpServlet {
 		PageInfo pi = new PageInfo(proCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
 		
 		ArrayList<Product> allList = new ManageService().selectAllList(pi);
+
+		System.out.println(pi);
+		System.out.println(allList);
 		
 		request.setAttribute("pi", pi);	
 		request.setAttribute("allList", allList);

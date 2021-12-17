@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.product.model.vo.Product, com.kh.common.PageInfo" %>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.product.model.vo.Product, com.kh.common.model.vo.PageInfo" %>
 <% 
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	ArrayList<Product> IngList = (ArrayList<Product>)request.getAttribute("IngList");

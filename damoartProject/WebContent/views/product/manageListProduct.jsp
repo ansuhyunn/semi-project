@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.product.model.vo.Product, com.kh.common.PageInfo" %>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.product.model.vo.Product, com.kh.common.model.vo.PageInfo" %>
 <% 
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	ArrayList<Product> allList = (ArrayList<Product>)request.getAttribute("allList");
@@ -15,32 +15,28 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!-- Popper JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <style>
 div{ box-sizing:border-box; }
     .wrapper{
         width: 1000px;
-        height: 1000px;
+        height: auto; 
         margin: auto;
-        margin-left: auto; 
-        margin-right: auto;
-        margin-top: 80px
+        margin-top: 150px
     }   
-    table{
-        width: 1000px;
-        height: 500px;
-        text-align: center;
-        background-color: whitesmoke;
+    #list-area{
+    	width: 1000px;
+    	margin-left: auto;
+    	margin-right: auto;
     }
-    th{height: 50px; font-size: 13px; background-color:rgb(151, 138, 116);}
-    td{font-size: 10px;}
     a{margin: 0 auto;}
     .btn{
         width: 115px;
@@ -60,14 +56,14 @@ div{ box-sizing:border-box; }
 </head>
 <body>
 
-	<%@ include file="../common/manageMenubar.jsp" %>
+	<%@ include file="../common/manageMenubar_2.jsp" %>
 	
     <div class="wrapper">
         
-        <table border="1px" class="list-area">
+        <table align="center" id="list-area" class="table table-bordered">
 
 			<thead>
-	            <tr style="background-color: lightgrey;">
+	            <tr>
 	                <th>&nbsp;&nbsp;&nbsp;</th>
 	                <th>상품번호</th>
 	                <th>등록날짜</th>
@@ -76,7 +72,7 @@ div{ box-sizing:border-box; }
 	                <th>장소</th>
 	                <th>시간</th>
 	                <th>관람연령</th>
-	                <th>시작일</th>
+	                <th>시작일</th> 
 	                <th>종료일</th>
 	                <th>품절여부</th>
 	            </tr>

@@ -6,7 +6,7 @@ import static com.kh.common.JDBCTemplate.getConnection;
 import java.sql.Connection;
 import java.util.ArrayList;
 
-import com.kh.common.PageInfo;
+import com.kh.common.model.vo.PageInfo;
 import com.kh.product.model.dao.ManageDao;
 import com.kh.product.model.vo.Product;
 

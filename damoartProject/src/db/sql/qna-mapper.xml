@@ -28,4 +28,24 @@
 		        )
 		  WHERE RNO BETWEEN ? AND ?	
 	</entry>
+	
+	<entry key="selectQnA">
+		SELECT
+		       Q_NO
+		     , TITLE
+		     , Q_WRITER
+		     , SECRET
+		     , Q_TITLE
+		     , Q_CONTENT
+		     , CREATE_DATE
+		     , Q_CATEGORY_CODE
+		     , A_CONTENT
+		     , A_CREATE_DATE
+		     , NICKNAME
+		     , MAIN_IMG
+		  FROM QNA
+		  JOIN PRODUCT USING (PNO)
+		  JOIN MEMBER M ON (MEM_NO2 = M.MEM_NO)
+		 WHERE Q_NO = 30
+	</entry>
 </properties>
