@@ -183,7 +183,8 @@
     /*Q&A 테이블*/
     .container{
         height:30%;
-        padding-top:70px;
+        padding-top:50px;
+        padding-left:-30px;
         font-size:13px;
     }
 
@@ -198,6 +199,8 @@
     }
 
     .qustion_open p, .qustion_answer p{font-size:15px; font-weight:700;}
+
+    .contents p{font-size:13px;}
 </style>
 </head>
 <body>
@@ -254,43 +257,11 @@
         </div>
         <div id="content_2">
             <div class="contents">
-                <h4 class="contents_tit">Q&A 내역</h4>
-                <hr align="left" width="765" color="rgb(64, 64, 64)" size="1">
-            </div>
-            <form action="/qnaList.mp">
-            <div class="date" style="background:rgba(255, 255, 255, 0.74)">
-                <p>기간</p>
-                <ul class="select_date">
-                    <li>
-                        <button type="button" id="btn_1" class="btn btn-outline-secondary" selected>일주일</button>
-                    </li>
-                    <li>
-                        <button type="button" id="btn_2" class="btn btn-outline-secondary">1개월</button>
-                    </li>
-                    <li>
-                        <button type="button" id="btn_3" class="btn btn-outline-secondary">3개월</button>
-                    </li>
-                    <li>
-                        <button type="button" id="btn_4" class="btn btn-outline-secondary">6개월</button>
-                    </li>
-                </ul>
-                <div class="select-range" align="right">
-                    <input type="date" id="start" name="select-start" value="2021-12-01" min="2020-01-01"> 
-                     ~
-                    <input type="date" id="end" name="select-end" value="2021-12-01" min="2020-01-01"> 
-                </div>
-                <div class="select-btn" align="left">
-                    <button type="button" class="btn btn-outline-secondary">조회</button>
-                </div>
-                <br><br>
-            <div class="container">
-            </form>
+            <h4 class="contents_tit">Q&A 내역</h4><br>
+            <p>● 상품, 배송관련, 주문 관련 문의 내역을 확인할 수 있는 공간입니다.</p>
+            </div> 
 
-            <script>
-                if()
-                document.getElementById('start').value = 
-                document.getElementById('end').value = new Date().toISOString().substring(0, 10);
-            </script>
+            <div class="container">
 
                 <table class="table">
                   <thead>

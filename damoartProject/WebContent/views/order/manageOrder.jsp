@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.order.model.vo.ManageOrder"%>
+<%
+ArrayList<ManageOrder> list = (ArrayList<ManageOrder>)request.getAttribute("list");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -144,6 +147,8 @@
         </div>
         
         <!--조회기간 날짜 선택-->
+        
+        <% for(ManageOrder m : list) { %>
         <div class="search_date">
             <b>조회기간</b> 
             <button class="btn">오늘</button>
@@ -175,43 +180,19 @@
                     </tr>
                     <tr align="center" class="table_content">
                         <td><input type="checkbox"></td>
-                        <td>user01 김아트<br>201223809342<br>2021-12-10 06:20</td>
+                        <td><%= m.getMemNo() %> <%= m.getOrderName() %><br><%= m.getOrderNo() %><br><%= m.getOrderDate() %></td>
                         <td width="60"><img src="<%=request.getContextPath()%>/resources/images/product/1M.gif" width="40px" height="40px"></td>
-                        <td>A001<br>영국 테이트미술관 특별전</td>
-                        <td>14000￦</td>
-                        <td>2</td>
-                        <td>입금대기</td>
-                        <td>총 결제금액 &nbsp; 28000￦ <br>
+                        <td><%= m.getpNo() %><br>영국 테이트미술관 특별전</td>
+                        <td><%= m.getPrice() %>￦</td>
+                        <td><%= m.getOrderCount() %></td>
+                        <td><%= m.getorderStatus() %></td>
+                        <td>총 결제금액 &nbsp; <%=m.getfinalPrice() %>￦ <br>
                             결제 방법 &nbsp; 무통장입금
                         </td>
-                    </tr>
-                    <tr align="center" class="table_content">
-                        <td><input type="checkbox"></td>
-                        <td>user01 김아트<br>201223809342<br>2021-12-10 06:20</td>
-                        <td width="60"><img src="<%=request.getContextPath()%>/resources/images/product/1M.gif" width="40px" height="40px"></td>
-                        <td>A001<br>영국 테이트미술관 특별전</td>
-                        <td>14000￦</td>
-                        <td>2</td>
-                        <td>취소완료</td>
-                        <td>총 결제금액 &nbsp; 28000￦ <br>
-                            결제 방법 &nbsp; 카드결제
-                        </td>
-                    </tr>
-                    <tr align="center" class="table_content">
-                        <td><input type="checkbox"></td>
-                        <td>user01 김아트<br>201223809342<br>2021-12-10 06:20</td>
-                        <td width="60"><img src="<%=request.getContextPath()%>/resources/images/product/1M.gif" width="40px" height="40px"></td>
-                        <td>A001<br>영국 테이트미술관 특별전</td>
-                        <td>14000￦</td>
-                        <td>2</td>
-                        <td>결제완료</td>
-                        <td>총 결제금액 &nbsp; 28000￦ <br>
-                            결제 방법 &nbsp; 카드결제
-                        </td>
-                    </tr>
                 </table>
             </div>    
         </div>    
+        <% } %>
 
        
 
