@@ -227,9 +227,7 @@
     .test{
         padding-left:100px;
     }
-    .ui-datepicker{ font-size: 12px; width: 160px; }
-    .ui-datepicker select.ui-datepicker-year{width:30%; font-size:15px;}
-    .ui-datepicker select.ui-datepicker-month{width:30%; font-size:11px;}
+
 </style>
 </head>
 <body>

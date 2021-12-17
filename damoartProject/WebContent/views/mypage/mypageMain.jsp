@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.kh.mypage.model.vo.Point, java.util.ArrayList"%>
+<%
+	ArrayList<Point> list = (ArrayList<Point>)request.getAttribute("list");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -224,7 +227,7 @@
                 <li><h3>마이활동</h3></li>
                 <div>
                     <a href="" id="submenu">리뷰 내역</a> <br>
-                    <a href="<%=request.getContextPath() %>/views/mypage/memberQnaList.jsp" id="submenu">Q&A 내역</a> <br>
+                    <a href="<%=request.getContextPath() %>/qnaList.mp" id="submenu">Q&A 내역</a> <br>
                 </div><br>
                 <li><h3>마이정보</h3></li>
                 <div>

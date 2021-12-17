@@ -26,7 +26,7 @@ public class MemberPointDao {
 	}
 	
 	public ArrayList<Point> selectPoint(Connection conn, String memId) {
-		ArrayList<Point> list = new ArrayList<>();;
+		ArrayList<Point> list = new ArrayList<>();
 		
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;

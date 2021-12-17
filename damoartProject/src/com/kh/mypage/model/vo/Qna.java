@@ -19,6 +19,11 @@ public class Qna {
 	private int aMemNo;        // 답변자회원번호
 	private String status;     // 게시상태 
 	
+	private String title;
+	private String nickName;
+	private String aStatus;
+	private String memNoTwo;
+	
 	public Qna() {}
 
 	public Qna(int qnaNo, int productNo, int memNo, String qnaWriter, String qnaPwd, String secret, String qnaTitle,
@@ -39,6 +44,55 @@ public class Qna {
 		this.aCreateDate = aCreateDate;
 		this.aMemNo = aMemNo;
 		this.status = status;
+	}
+
+	
+	public Qna(String title, String nickName, String qnaTitle, String qContent, Date createDate, String categoryCode, String aContent,
+			Date aCreateDate, String memNoTwo) {
+		super();
+		this.title = title;
+		this.nickName = nickName;
+		this.qnaTitle = qnaTitle;
+		this.qContent = qContent;
+		this.createDate = createDate;
+		this.categoryCode = categoryCode;
+		this.aContent = aContent;
+		this.aCreateDate = aCreateDate;
+		this.memNoTwo = memNoTwo;
+	}
+
+	
+	
+	public String getMemNoTwo() {
+		return memNoTwo;
+	}
+
+	public void setMemNoTwo(String memNoTwo) {
+		this.memNoTwo = memNoTwo;
+	}
+
+	public String getaStatus() {
+		return aStatus;
+	}
+
+	public void setaStatus(String aStatus) {
+		this.aStatus = aStatus;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getNickName() {
+		return nickName;
+	}
+
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
 	}
 
 	public int getQnaNo() {
