@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import com.kh.common.PageInfo;
+import com.kh.common.model.vo.PageInfo;
 import com.kh.product.model.vo.Product;
 
 public class ManageDao {
@@ -20,7 +20,7 @@ public class ManageDao {
 	
 	public ManageDao() {
 		try {
-			prop.loadFromXML(new FileInputStream(ProductDao.class.getResource("/db/sql/productManage-mapper.xml").getPath()));
+			prop.loadFromXML(new FileInputStream(ProductDao.class.getResource("/db/sql/product/productManage-mapper.xml").getPath()));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
