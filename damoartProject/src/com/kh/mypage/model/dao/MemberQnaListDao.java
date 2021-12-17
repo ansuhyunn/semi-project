@@ -75,4 +75,52 @@ public class MemberQnaListDao {
 		return list;
 	}
 	
+	public ArrayList<Qna> selectNoQnaList(Connection conn, String memId){
+		ArrayList<Qna> noList = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;	
+		String sql = prop.getProperty("memberNoQnaList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memId);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				String category = "";
+				switch(rset.getString("q_category_code")) {
+				case "Q1" : category = "[티켓]"; break;
+         	    case "Q2" : category = "[취소/환불]"; break;
+         	    case "Q3" : category = "[주문/결제]"; break;
+         	    case "Q4" : category = "[상품]"; break;
+         	    case "Q5" : category = "[기타]"; break;
+         	    default :  break;
+				}
+				
+				String aStatus = "";
+				if(rset.getString("mem_no2") != null) {
+					aStatus = "답변완료";
+				}else {
+					aStatus = "답변대기";
+				}
+				noList.add(new Qna(rset.getInt("pno"),
+						           rset.getString("q_title"),
+						           rset.getString("q_content"),
+						           rset.getDate("create_date"),
+						           category,
+						           rset.getString("a_content"),
+						           rset.getDate("a_create_date"),
+						           aStatus));
+			}  
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return noList;
+	}
 }

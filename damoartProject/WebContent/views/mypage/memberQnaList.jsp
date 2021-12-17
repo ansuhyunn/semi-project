@@ -2,6 +2,7 @@
     pageEncoding="UTF-8" import="com.kh.mypage.model.vo.Qna, java.util.ArrayList"%>
 <%
 	ArrayList<Qna> list = (ArrayList<Qna>)request.getAttribute("list");
+	ArrayList<Qna> noList = (ArrayList<Qna>)request.getAttribute("noList");
 %>
 <!DOCTYPE html>
 <html>

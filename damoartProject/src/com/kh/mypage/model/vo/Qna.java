@@ -63,6 +63,19 @@ public class Qna {
 
 	
 	
+	public Qna(int productNo, String qnaTitle, String qContent, Date createDate, String categoryCode, String aContent,
+			Date aCreateDate, String memNoTwo) {
+		super();
+		this.productNo = productNo;
+		this.qnaTitle = qnaTitle;
+		this.qContent = qContent;
+		this.createDate = createDate;
+		this.categoryCode = categoryCode;
+		this.aContent = aContent;
+		this.aCreateDate = aCreateDate;
+		this.memNoTwo = memNoTwo;
+	}
+
 	public String getMemNoTwo() {
 		return memNoTwo;
 	}

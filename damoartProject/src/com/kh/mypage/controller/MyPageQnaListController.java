@@ -31,6 +31,8 @@ public class MyPageQnaListController extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
+    
+    
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -39,11 +41,13 @@ public class MyPageQnaListController extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		HttpSession session = request.getSession();
-		String memId = ((Member)session.getAttribute("loginUser")).getMemId();
+		//String memId = ((Member)session.getAttribute("loginUser")).getMemId();
 		
-		ArrayList<Qna> list = new MemberQnaListService().selectQnaList(memId);
+		//ArrayList<Qna> list = new MemberQnaListService().selectQnaList(memId);
+		//ArrayList<Qna> noList = new MemberQnaListService().selectNoQnaList(memId);
 		
-		request.setAttribute("list", list);
+		//request.setAttribute("list", list);
+		//request.setAttribute("noList", noList);
 		request.getRequestDispatcher("views/mypage/memberQnaList.jsp").forward(request, response);
 	}
 

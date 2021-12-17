@@ -208,10 +208,10 @@
         margin-top:15px;
     }
 
-    .select-range{
+/*     .select-range{
         width:700px;
         padding-left:20px;
-    }
+    } */
 
     .select-btn{
         width:50px;
@@ -323,18 +323,17 @@
                     <li>
                         <button type="button" id="date_btn4">6개월</button>
                     </li>
+                      <li>
+                     <button onclick="zzz()">select</button>
+                  </li>
                 </ul>
                 <br><br>
+                <form action="up" method="post">
                 <div class="test" style="">
-                  <!--   <input type="date" id="start" name="select-start" value="" min="2020-01-01"> ~
-                    <input type="date" id="end" name="select-end" value="" max="2022-12-31"> -->
-       			<input type="text" id="datepicker1">
-        		<input type="text" id="datepicker2">
-   				 </p>
+                   <input type="date" id="start" name="select-start" value="" min="2020-01-01"> ~
+                   <input type="date" id="end" name="select-end" value="" max="2022-12-31"> 
                 </div>
-                <div class="select-btn" align="left">
-                    <div calss="click"value="조회"></button>
-                </div>
+                  </form>
                 <div>
                 
                 </div>
@@ -359,28 +358,32 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <script type="text/javascript">
+function zzz() {
+    /* alert($("#datepicker1")); */
+	var startDay = String(document.querySelector('input[name="select-start"]'));
+	var endDay = String(document.querySelector('input[name="select-end"]'));
+	const str1 = String(startDay +"/"+endDay);
 
-
-    $(function() {
-        $("#datepicker1,#datepicker2").datepicker({
-            changeMonth: true,
-            changeYear: true,
-            minDate: '-50y',
-            maxDate: '+50y',
-            showMonthAfterYear: true, 
-            dateFormat: 'yy-mm-dd',
-        showAnim : "slide"
-           
-        });
+	/* href="/damoart/up?Day=Day"; */
+ 	$.ajax({
+		type: "GET",
+		url: "/damoart/up?Day="+str1,
+		date: str1,
+		dataType: "text",
+		success: function(data){
+				alert("success");},
+		fail: function(){
+			alert("fail");
+		},
+		error:function(e){	}
+	}); 
+	
+    }
+    
         
-        function click() {
-    alert($("#datepicker1"));
+        
     
     
-    
-        }
-    
-    });
     
     
 </script>

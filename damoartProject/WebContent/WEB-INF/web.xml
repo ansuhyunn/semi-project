@@ -9,4 +9,13 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+<!--    <servlet>
+  	<servlet-name>up</servlet-name>
+  	<servlet-class>com.kh.mypage.controller.DaySelect</servlet-class>
+  </servlet>
+    <servlet-mapping>
+  	<servlet-name>up</servlet-name>
+  	<url-pattern>/update</url-pattern>
+  </servlet-mapping> -->
+   
 </web-app>

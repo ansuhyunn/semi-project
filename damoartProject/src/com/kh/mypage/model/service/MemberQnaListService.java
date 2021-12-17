@@ -16,4 +16,11 @@ public class MemberQnaListService {
 		close(conn);
 		return list;
 	}
+	
+	public ArrayList<Qna> selectNoQnaList(String memId){
+		Connection conn = getConnection();
+		ArrayList<Qna> noList = new MemberQnaListDao().selectNoQnaList(conn, memId);
+		close(conn);
+		return noList;
+	}
 }
