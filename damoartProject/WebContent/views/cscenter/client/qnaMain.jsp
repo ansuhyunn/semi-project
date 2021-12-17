@@ -121,12 +121,10 @@
                 <script>
 			    	$(function(){
 			    		$("#list-area>tbody>tr").click(function(){
-			    			if(<%=loginUser%> != null) {
-			    					location.href='<%=contextPath %>/detail.qa?qno=' + $(this).children().eq(0).text();
-			    			}	
-			    		})
 
-			    	
+			    					location.href='<%=contextPath %>/detail.qa?qno=' + $(this).children().eq(0).text();
+			    		})
+			    	})
 			    </script>
                 <br>
                 <div class="button" align="right">

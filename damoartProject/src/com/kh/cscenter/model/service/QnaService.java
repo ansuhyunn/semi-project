@@ -31,7 +31,7 @@ public class QnaService {
 	
 	public QnA selectQnA(int qNo) {
 		Connection conn = getConnection();
-		QnA q = new QnA().selectQnA(conn, qNo);
+		QnA q = new QnaDao().selectQnA(conn, qNo);
 		close(conn);
 		return q;
 		
@@ -39,7 +39,7 @@ public class QnaService {
 	
 	public Attachment selectAttachment(int qNo) {
 		Connection conn = getConnection();
-		Attachment at = new Attachment().selectAttachment(conn, qNo);
+		Attachment at = new QnaDao().selectAttachment(conn, qNo);
 		close(conn);
 		return at;
 	}

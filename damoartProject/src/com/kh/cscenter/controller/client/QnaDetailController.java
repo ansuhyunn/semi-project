@@ -37,7 +37,10 @@ public class QnaDetailController extends HttpServlet {
 		QnA q = qService.selectQnA(qNo);
 		Attachment at = qService.selectAttachment(qNo);
 		
+		request.setAttribute("q", q);
+		request.setAttribute("at", at);
 		
+		request.getRequestDispatcher("views/cscenter/client/qnaDetailView.jsp").forward(request, response);
 		
 		
 	}

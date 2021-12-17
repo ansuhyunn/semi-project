@@ -224,7 +224,7 @@ public class NoticeDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, a.getRefBoardNo());
+			pstmt.setInt(1, a.getRefBno());
 			pstmt.setString(2, a.getOriginName());
 			pstmt.setString(3, a.getChangeName());
 			pstmt.setString(4, a.getFilePath());

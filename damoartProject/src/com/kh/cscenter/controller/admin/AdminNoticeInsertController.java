@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
-import com.kh.common.MyFileRenamePolicy;
+import com.kh.common.controller.MyFileRenamePolicy;
 import com.kh.common.model.vo.Attachment;
 import com.kh.cscenter.model.service.NoticeService;
 import com.kh.cscenter.model.vo.Notice;
@@ -68,7 +68,7 @@ public class AdminNoticeInsertController extends HttpServlet {
 			
 			
 			if(result > 0) {
-				request.getSession().setAttribute("alertMsg", "게시글이 성공적으로 수정되었습니다.");
+				request.getSession().setAttribute("alertMsg", "게시글이 성공적으로 등록되었습니다.");
 				response.sendRedirect(request.getContextPath() + "/adminList.no?cpage=1");
 			}else { // 에러페이지
 				
