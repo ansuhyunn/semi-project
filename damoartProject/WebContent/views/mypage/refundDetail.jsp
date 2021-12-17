@@ -5,15 +5,19 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Popper JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+   
+ 
+
+   	
    
 <style>
+
     /*회원박스 스타일*/
     .mypage_top{
         width:1000px;
@@ -119,7 +123,7 @@
         font-size:14px;
         letter-spacing:-0.8px;
         
-    }
+    } 
     #content_1 a:hover{
         color:rgb(151, 138, 116);
     }
@@ -181,7 +185,7 @@
         margin:auto;
         margin-left:30px;
         width:765px; 
-        height:60px;
+        height:110px;
         border-radius:10px;
         position:absolute;
     }
@@ -219,6 +223,13 @@
         color:white;
     }
 
+
+    .test{
+        padding-left:100px;
+    }
+    .ui-datepicker{ font-size: 12px; width: 160px; }
+    .ui-datepicker select.ui-datepicker-year{width:30%; font-size:15px;}
+    .ui-datepicker select.ui-datepicker-month{width:30%; font-size:11px;}
 </style>
 </head>
 <body>
@@ -315,14 +326,20 @@
                         <button type="button" id="date_btn4">6개월</button>
                     </li>
                 </ul>
-                <div class="select-range" align="right" id="test">
-                    <input type="date" id="start" name="select-start" value="2021-12-01" min="2020-01-01"> ~
-                    <input type="date" id="end" name="select-end" value="2021-12-31" max="2022-12-31">
+                <br><br>
+                <div class="test" style="">
+                  <!--   <input type="date" id="start" name="select-start" value="" min="2020-01-01"> ~
+                    <input type="date" id="end" name="select-end" value="" max="2022-12-31"> -->
+       			<input type="text" id="datepicker1">
+        		<input type="text" id="datepicker2">
+   				 </p>
                 </div>
                 <div class="select-btn" align="left">
-                    <button type="button">조회</button>
+                    <div calss="click"value="조회"></button>
                 </div>
+                <div>
                 
+                </div>
             </div class="">
             
     
@@ -331,7 +348,7 @@
             
         </div>
 
-        
+
 
     
     </div>
@@ -339,26 +356,34 @@
     <%@ include file="../common/footerbar.jsp" %>
 </body>
 </html>
-<!-- <script type="text/javascript">
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script type="text/javascript">
+
+
+    $(function() {
+        $("#datepicker1,#datepicker2").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            minDate: '-50y',
+            maxDate: '+50y',
+            showMonthAfterYear: true, 
+            dateFormat: 'yy-mm-dd',
+        showAnim : "slide"
+           
+        });
+        
+        function click() {
+    alert($("#datepicker1"));
     
-    $('#date_btn1').click(
-    		function() {
-					console.log("일주일 버튼 클릭");
-			/* 	$('#start').val; */
-				date = $('#start');
-				var dd = date.getDate();
-				var mm = date.getMonth()+1;
-				var yyyy = date.getFullYear();
-				
-				yyyy = yyyy.toString();
-				mm = mm.toString();
-				dd = dd.toString();
-				
-				
-				
-				alert(yyyy+mm);
-				
-					return false;
-				}
-	)
- </script> -->
+    
+    
+        }
+    
+    });
+    
+    
+</script>
+

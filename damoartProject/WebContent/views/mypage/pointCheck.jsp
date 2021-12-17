@@ -213,7 +213,7 @@
         <div id="content_2">
             <div class="contents">
                 <h4 class="contents_tit">적립금 내역</h4><br>
-                <p>보유하고 계신 적립금의 내역을 한 눈에 확인하실 수 있습니다.</p>
+                <p>● 보유하고 계신 적립금의 내역을 한 눈에 확인하실 수 있습니다.</p>
                 <hr align="left" width="765" color="rgb(64, 64, 64)" size="1">
             </div> 
             <div class="container">
