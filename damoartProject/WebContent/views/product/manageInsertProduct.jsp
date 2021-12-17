@@ -21,7 +21,7 @@
         margin: auto;
         margin-left: auto; 
         margin-right: auto;
-        margin-top: 180px
+        margin-top: 200px
     } 
     form>table{
         width: 600px;
@@ -31,14 +31,14 @@
     table th{text-align: center;}
     table td{padding-left: 20px;}
     input{border: none;}
-    button{
-        border: 1px solid rgb(64, 64, 64);
-        width: 115px;
-        margin-left: 20px;
-        margin-top: 10px;
+    #insert{
         background-color:rgb(203, 185, 153);
         color:rgb(64, 64, 64);
-        font-weight: bolder;
+        font-weight:600;
+    }
+    #cancel{
+        background-color:rgb(151, 138, 116);
+        color:white;
     }
 
 </style>    
@@ -51,6 +51,7 @@
         <div class="name" style="font-size: 30px; font-weight: bolder;">
             	상품등록
         </div>
+        <br>
         <hr class="my-2">
         <br>
         <form action="<%= request.getContextPath() %>/manageInsert.pro" method="post" enctype="multipart/form-data">
@@ -153,8 +154,8 @@
             <br><br>
             
             <div align="center">
-                <button type="submit">등록</button>
-                <button type="reset">취소</button>
+                <button id="insert" class="btn btn-sm" type="submit">등록</button>
+                <button id="cancel" class="btn btn-sm" type="reset">취소</button>
             </div>
             
              <br><br>

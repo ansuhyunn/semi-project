@@ -82,8 +82,9 @@ public class ManageinsertController extends HttpServlet {
 			at.setChangeName(multiRequest.getFilesystemName("upfile"));
 			at.setFilePath("resources/board_upfiles/");
 			
+			int currval = new ManageService().selectCurrval();
 			
-			int result = new ManageService().insertProduct(p, at);
+			int result = new ManageService().insertProduct(p, at, currval);
 		
 			if(result > 0) {
 				

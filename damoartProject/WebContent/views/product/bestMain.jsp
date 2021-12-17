@@ -5,59 +5,56 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!-- Popper JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
+</head>
 <style>
 	div{ box-sizing:border-box; }
-	
     .wrapper{
         width: 1000px;
-        height: 1000px;
+        height: 1200px;
         top: 0; left: 0; right: 0; bottom: 0; margin: auto;
         margin-top: 50px;
     }
      /* 페이지 이름 스타일 */
-    .name{ width: 100%; height: 30px; 
+    .name{ width: 100%; height: 30px; }
+    #name1{
         width: 100%;
-        font-size: 23px;
+        font-size: 24px;
         font-weight: bolder;
         text-align: center;
     }
     /* 페이지 정렬 버튼 스타일 */
-    #range{text-align: right; margin-right: 30px;}
-    #range>a{
-        width: 5%; 
-        font-size: 10px;
-        padding-top: 20px;
+    #name2{border:1px solid black; width: 500px; marginl-left: 500px;}
+    #name2>a{
+    	border:1px solid black;
+        width: 50px; 
+        font-size: 15px;
+        margin-top: 10px;
+        padding-top: 10px;
+        margin-left: 100px;
+        float: left;
         text-decoration: none;
         color: black;
+        text-align: center;
     }
-    a:hover{font-weight: bolder;}
-
-    .content1{
+    #name2>a:hover{font-weight: bolder; text-decoration: none; color: black;}
+    #content1{
         width: 100%;
         height: 300px;
         margin: auto;
         margin-top: 20px;
         margin-bottom: 50px;
     }
-    .content{
+    #content{
         width: 20%;
         height: 100%;
         float: left;
-        margin-left: 40px;
-        margin-bottom: 10px;
+        margin-left: 25px;
+        margin-right: 25px;
+        margin-bottom: 50px;
         margin-top: 0px;
         display: block;
     }
     .poster{
-        border: 1px solid black;
         width: 100%;
         height: 75%;
         width: 100%;
@@ -67,7 +64,14 @@
         width: 100%;
         height: 25%;
     }
-    .info>p{text-align: center;}
+    .info>p{
+        width: 100%;
+        text-align: center;
+        display: inline-block;
+        overflow:hidden;
+        text-overflow:ellipsis;
+        white-space:nowrap; 
+    }
     .title{font-weight: bolder; padding-top: 10px;}
     .summary{font-size: 12px; font-weight: bolder; margin-top: -10px;}
 </style>
@@ -78,65 +82,21 @@
     <%@ include file="../common/menubar.jsp" %>
 
     <div class="wrapper">
-        <div class="name">BEST전시</div>
-            <div id="range">
-                <a href="">주간</a>
-                <a href="">월간</a>
-            </div>
-        <hr class="my-2">
-        <div class="content1">
-            <div class="content" id="">
-                <div class="poster"></div>
-                <div class="info">
-                    <p class="title">
-                        	다모아트 특별전 : 무에서 ...
-                    </p>
-                    <p class="summary">
-                        2021.12.01 ~ 2021.12.31<br>
-                        KH강남점
-                    </p>
-                </div>
-            </div>
-            <div class="content" id="">
-                <div class="poster"></div>
-                <div class="info">
-                    <p class="title">
-                        	다모아트 특별전 : 무에서 ...
-                    </p>
-                    <p class="summary">
-                        2021.12.01 ~ 2021.12.31<br>
-                        KH강남점
-                    </p>
-                </div>
-            </div>
-            <div class="content" id="">
-                <div class="poster"></div>
-                <div class="info">
-                    <p class="title">
-                        	다모아트 특별전 : 무에서 ...
-                    </p>
-                    <p class="summary">
-                        2021.12.01 ~ 2021.12.31<br>
-                        KH강남점
-                    </p>
-                </div>
-            </div>
-            <div class="content" id="">
-                <div class="poster"></div>
-                <div class="info">
-                    <p class="title">
-                       	 다모아트 특별전 : 무에서 ...
-                    </p>
-                    <p class="summary">
-                        2021.12.01 ~ 2021.12.31<br>
-                        KH강남점
-                    </p>
-                </div>
+        <div class="name">
+            <div id="name1">BEST 전시</div>
+            <br>
+            <div id="name2">
+	            <a href="<%=request.getContextPath()%>/">주간</a>
+	            <a href="<%=request.getContextPath()%>/">월간</a>
             </div>
         </div>
-    </div> 
+        <br>
+        <hr class="my-2">
+        
+    </div>   <!-- wrapper클래스 -->
+    
     
     <%@ include file="../common/footerbar.jsp" %>
-    
+     
 </body>
 </html>

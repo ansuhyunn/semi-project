@@ -1,6 +1,6 @@
 package com.kh.product.model.dao;
 
-import static com.kh.common.JDBCTemplate.*;
+import static com.kh.common.JDBCTemplate.close;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -255,14 +255,24 @@ public class ManageDao {
 		return result;
 	}
 	
+	
+	
+	
 	// 첨부파일 업로드
 	public int insertAttachment(Connection conn, Attachment at) {
 		int result = 0;
 		PreparedStatement pstmt = null;
-		String sql = prop.getProperty("insertAttachment");
+		String sql1 = prop.getProperty("currval");
+		String sql2 = prop.getProperty("insertAttachment");
+		
+		ArrayList<String> currval = new ArrayList<>();
 		
 		try {
-			pstmt = conn.prepareStatement(sql);
+			pstmt = conn.prepareStatement(sql1);
+			
+			
+			
+			pstmt = conn.prepareStatement(sql2);
 			pstmt.setString(1, at.getOriginName());
 			pstmt.setString(2, at.getChangeName());
 			pstmt.setString(3, at.getFilePath());

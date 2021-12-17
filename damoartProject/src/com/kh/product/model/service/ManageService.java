@@ -76,7 +76,7 @@ public class ManageService {
 	
 	
 	// 전시 등록
-	public int insertProduct(Product p, Attachment at) {
+	public int insertProduct(Product p, Attachment at, int currval) {
 		Connection conn = getConnection();
 		int result1 = new ManageDao().insertProduct(conn, p);
 		int result2 = new ManageDao().insertAttachment(conn, at);
