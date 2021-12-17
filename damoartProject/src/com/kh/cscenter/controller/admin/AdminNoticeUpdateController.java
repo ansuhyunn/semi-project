@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
-import com.kh.common.MyFileRenamePolicy;
+import com.kh.common.controller.MyFileRenamePolicy;
 import com.kh.common.model.vo.Attachment;
 import com.kh.cscenter.model.service.NoticeService;
 import com.kh.cscenter.model.vo.Notice;
@@ -68,7 +68,7 @@ public class AdminNoticeUpdateController extends HttpServlet {
 					if(multiRequest.getParameter(ofn) != null) {
 						at.setFileNo(Integer.parseInt(multiRequest.getParameter(ofn)));
 					}else {
-						at.setRefBoardNo(Integer.parseInt(multiRequest.getParameter("nno")));
+						at.setRefBno(Integer.parseInt(multiRequest.getParameter("nno")));
 					}
 
 					list.add(at);

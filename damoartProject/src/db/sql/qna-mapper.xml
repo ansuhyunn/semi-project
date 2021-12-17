@@ -44,8 +44,19 @@
 		     , NICKNAME
 		     , MAIN_IMG
 		  FROM QNA
-		  JOIN PRODUCT USING (PNO)
-		  JOIN MEMBER M ON (MEM_NO2 = M.MEM_NO)
-		 WHERE Q_NO = 30
+		  LEFT JOIN PRODUCT USING (PNO)
+		  LEFT JOIN MEMBER M ON (MEM_NO2 = M.MEM_NO)
+		 WHERE Q_NO = ?
+	</entry>
+	
+	<entry key="selectAttachment">
+		SELECT
+		       FILE_NO
+		     , ORIGIN_NAME
+		     , CHANGE_NAME
+		     , FILE_PATH
+		  FROM ATTACHMENT
+		 WHERE REF_B = 'QnA'
+		   AND REF_BNO = ?
 	</entry>
 </properties>
