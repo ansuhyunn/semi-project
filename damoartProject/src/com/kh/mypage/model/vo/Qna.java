@@ -1,97 +1,64 @@
 package com.kh.mypage.model.vo;
 
-import java.sql.Date;
-
 public class Qna {
-
-	private int qnaNo;
-	private int productNo;     // 문의상품
+	private int qNo;
+	private String pNo;
 	private int memNo;
-	private String qnaWriter;  // 작성자닉네임
-	private String qnaPwd;
-	private String secret;     // 비밀글여부
-	private String qnaTitle;
-	private String qContent;   // 문의내용
-	private Date createDate;
-	private String categoryCode;
-	private String aContent;   // 답변내용
-	private Date aCreateDate;  // 답변작성일
-	private int aMemNo;        // 답변자회원번호
-	private String status;     // 게시상태 
-	
+	private String qWriter;
+	private String qPwd;
+	private String secret;
+	private String qTitle;
+	private String qContent;
+	private String createDate;
+	private String qCategoryCode;
+	private String aContent;
+	private String aCreateDate;
+	private String aWriter;
+	private String status;
 	private String title;
-	private String nickName;
-	private String aStatus;
-	private String memNoTwo;
 	
-	public Qna() {}
+	private String pMainImg;
+	
+	public Qna () {}
 
-	public Qna(int qnaNo, int productNo, int memNo, String qnaWriter, String qnaPwd, String secret, String qnaTitle,
-			String qContent, Date createDate, String categoryCode, String aContent, Date aCreateDate, int aMemNo,
+	public Qna(int qNo, String pNo, int memNo, String qWriter, String qPwd, String secret, String qTitle, String qContent,
+			String createDate, String qCategoryCode, String aContent, String aCreateDate, String aWriter,
 			String status) {
 		super();
-		this.qnaNo = qnaNo;
-		this.productNo = productNo;
+		this.qNo = qNo;
+		this.pNo = pNo;
 		this.memNo = memNo;
-		this.qnaWriter = qnaWriter;
-		this.qnaPwd = qnaPwd;
+		this.qWriter = qWriter;
+		this.qPwd = qPwd;
 		this.secret = secret;
-		this.qnaTitle = qnaTitle;
+		this.qTitle = qTitle;
 		this.qContent = qContent;
 		this.createDate = createDate;
-		this.categoryCode = categoryCode;
+		this.qCategoryCode = qCategoryCode;
 		this.aContent = aContent;
 		this.aCreateDate = aCreateDate;
-		this.aMemNo = aMemNo;
+		this.aWriter = aWriter;
 		this.status = status;
 	}
-
 	
-	public Qna(String title, String nickName, String qnaTitle, String qContent, Date createDate, String categoryCode, String aContent,
-			Date aCreateDate, String memNoTwo) {
+	
+	public Qna(int qNo, String title, String qWriter, String secret, String qTitle, String qContent, String createDate,
+			String qCategoryCode, String aContent, String aCreateDate, String aWriter) {
 		super();
+		this.qNo = qNo;
 		this.title = title;
-		this.nickName = nickName;
-		this.qnaTitle = qnaTitle;
+		this.qWriter = qWriter;
+		this.secret = secret;
+		this.qTitle = qTitle;
 		this.qContent = qContent;
 		this.createDate = createDate;
-		this.categoryCode = categoryCode;
+		this.qCategoryCode = qCategoryCode;
 		this.aContent = aContent;
 		this.aCreateDate = aCreateDate;
-		this.memNoTwo = memNoTwo;
+		this.aWriter = aWriter;
 	}
 
 	
-	
-	public Qna(int productNo, String qnaTitle, String qContent, Date createDate, String categoryCode, String aContent,
-			Date aCreateDate, String memNoTwo) {
-		super();
-		this.productNo = productNo;
-		this.qnaTitle = qnaTitle;
-		this.qContent = qContent;
-		this.createDate = createDate;
-		this.categoryCode = categoryCode;
-		this.aContent = aContent;
-		this.aCreateDate = aCreateDate;
-		this.memNoTwo = memNoTwo;
-	}
-
-	public String getMemNoTwo() {
-		return memNoTwo;
-	}
-
-	public void setMemNoTwo(String memNoTwo) {
-		this.memNoTwo = memNoTwo;
-	}
-
-	public String getaStatus() {
-		return aStatus;
-	}
-
-	public void setaStatus(String aStatus) {
-		this.aStatus = aStatus;
-	}
-
 	public String getTitle() {
 		return title;
 	}
@@ -100,28 +67,28 @@ public class Qna {
 		this.title = title;
 	}
 
-	public String getNickName() {
-		return nickName;
+	public String getpMainImg() {
+		return pMainImg;
 	}
 
-	public void setNickName(String nickName) {
-		this.nickName = nickName;
+	public void setpMainImg(String pMainImg) {
+		this.pMainImg =pMainImg;
 	}
 
-	public int getQnaNo() {
-		return qnaNo;
+	public int getqNo() {
+		return qNo;
 	}
 
-	public void setQnaNo(int qnaNo) {
-		this.qnaNo = qnaNo;
+	public void setqNo(int qNo) {
+		this.qNo = qNo;
 	}
 
-	public int getProductNo() {
-		return productNo;
+	public String getpNo() {
+		return pNo;
 	}
 
-	public void setProductNo(int productNo) {
-		this.productNo = productNo;
+	public void setpNo(String pNo) {
+		this.pNo = pNo;
 	}
 
 	public int getMemNo() {
@@ -132,20 +99,20 @@ public class Qna {
 		this.memNo = memNo;
 	}
 
-	public String getQnaWriter() {
-		return qnaWriter;
+	public String getqWriter() {
+		return qWriter;
 	}
 
-	public void setQnaWriter(String qnaWriter) {
-		this.qnaWriter = qnaWriter;
+	public void setqWriter(String qWriter) {
+		this.qWriter = qWriter;
 	}
 
-	public String getQnaPwd() {
-		return qnaPwd;
+	public String getqPwd() {
+		return qPwd;
 	}
 
-	public void setQnaPwd(String qnaPwd) {
-		this.qnaPwd = qnaPwd;
+	public void setqPwd(String qPwd) {
+		this.qPwd = qPwd;
 	}
 
 	public String getSecret() {
@@ -156,12 +123,12 @@ public class Qna {
 		this.secret = secret;
 	}
 
-	public String getQnaTitle() {
-		return qnaTitle;
+	public String getqTitle() {
+		return qTitle;
 	}
 
-	public void setQnaTitle(String qnaTitle) {
-		this.qnaTitle = qnaTitle;
+	public void setqTitle(String qTitle) {
+		this.qTitle = qTitle;
 	}
 
 	public String getqContent() {
@@ -172,20 +139,20 @@ public class Qna {
 		this.qContent = qContent;
 	}
 
-	public Date getCreateDate() {
+	public String getCreateDate() {
 		return createDate;
 	}
 
-	public void setCreateDate(Date createDate) {
+	public void setCreateDate(String createDate) {
 		this.createDate = createDate;
 	}
 
-	public String getCategoryCode() {
-		return categoryCode;
+	public String getqCategoryCode() {
+		return qCategoryCode;
 	}
 
-	public void setCategoryCode(String categoryCode) {
-		this.categoryCode = categoryCode;
+	public void setqCategoryCode(String qCategoryCode) {
+		this.qCategoryCode = qCategoryCode;
 	}
 
 	public String getaContent() {
@@ -196,20 +163,20 @@ public class Qna {
 		this.aContent = aContent;
 	}
 
-	public Date getaCreateDate() {
+	public String getaCreateDate() {
 		return aCreateDate;
 	}
 
-	public void setaCreateDate(Date aCreateDate) {
+	public void setaCreateDate(String aCreateDate) {
 		this.aCreateDate = aCreateDate;
 	}
 
-	public int getaMemNo() {
-		return aMemNo;
+	public String getaWriter() {
+		return aWriter;
 	}
 
-	public void setaMemNo(int aMemNo) {
-		this.aMemNo = aMemNo;
+	public void setaWriter(String aWriter) {
+		this.aWriter = aWriter;
 	}
 
 	public String getStatus() {
@@ -222,11 +189,12 @@ public class Qna {
 
 	@Override
 	public String toString() {
-		return "Qna [qnaNo=" + qnaNo + ", productNo=" + productNo + ", memNo=" + memNo + ", qnaWriter=" + qnaWriter
-				+ ", qnaPwd=" + qnaPwd + ", secret=" + secret + ", qnaTitle=" + qnaTitle + ", qContent=" + qContent
-				+ ", createDate=" + createDate + ", categoryCode=" + categoryCode + ", aContent=" + aContent
-				+ ", aCreateDate=" + aCreateDate + ", aMemNo=" + aMemNo + ", status=" + status + "]";
+		return "QnA [qNo=" + qNo + ", pNo=" + pNo + ", memNo=" + memNo + ", qWriter=" + qWriter + ", qPwd=" + qPwd
+				+ ", secret=" + secret + ", qTitle=" + qTitle + ", qContent=" + qContent + ", createDate=" + createDate
+				+ ", qCategoryCode=" + qCategoryCode + ", aContent=" + aContent + ", aCreateDate=" + aCreateDate
+				+ ", aWriter=" + aWriter + ", status=" + status + ", pMainImg=" + pMainImg + "]";
 	}
+
 	
 	
 }

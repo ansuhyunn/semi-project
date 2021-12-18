@@ -10,17 +10,11 @@ import com.kh.mypage.model.vo.Qna;
 
 public class MemberQnaListService {
 
-	public ArrayList<Qna> selectQnaList(String memId){
+	public ArrayList<Qna> selectQnaList(String nickName){
 		Connection conn = getConnection();
-		ArrayList<Qna> list = new MemberQnaListDao().selectQnaList(conn, memId);
+		ArrayList<Qna> list = new MemberQnaListDao().selectQnaList(conn, nickName);
 		close(conn);
 		return list;
 	}
 	
-	public ArrayList<Qna> selectNoQnaList(String memId){
-		Connection conn = getConnection();
-		ArrayList<Qna> noList = new MemberQnaListDao().selectNoQnaList(conn, memId);
-		close(conn);
-		return noList;
-	}
 }

@@ -2,7 +2,6 @@
     pageEncoding="UTF-8" import="com.kh.mypage.model.vo.Qna, java.util.ArrayList"%>
 <%
 	ArrayList<Qna> list = (ArrayList<Qna>)request.getAttribute("list");
-	ArrayList<Qna> noList = (ArrayList<Qna>)request.getAttribute("noList");
 %>
 <!DOCTYPE html>
 <html>
@@ -297,28 +296,46 @@
                     <!--Q&A 내역이 있을 경우 + 답변완료일 경우 -->
 	                    <% for(Qna q : list) {%>
 			                    <tr class="qustion">
-			                      <td id="table_category"><%= q.getCategoryCode() %></td>
-			                      <td><%= q.getQnaTitle() %></td>
-			                      <td><%= q.getCreateDate() %></td>
-			                      <td id="table_answer"><%= q.getMemNoTwo() %>
-			                      </td>
+			                      	<td id="table_category">
+			                      		<%= q.getqCategoryCode() %>
+			                      	</td>
+			                      	<td>
+			                      		<%= q.getqTitle() %>
+			                     	</td>
+			                      	<td>
+			                      		<%= q.getCreateDate() %>
+			                      	</td>
+			                      	<td id="table_answer">
+                    					<% if(q.getaContent() != null) { %>
+                        					답변완료
+                    					<% }else { %>
+                        					미답변
+                   						<% } %>
+			                      	</td>
 			                    </tr>
-			                    <tr class="qustion_open">
+			                    <tr class="open">
 			                        <td></td>
 			                        <td colspan="3">
 			                            <div>
-			                                <p>Q.</p>
-			                                	문의상품 | <%= q.getTitle() %> <br><br>
-			                                <strong><%= q.getqContent() %></strong>
-			                                <hr>
-			                                <p>A. </p> 
+			                                <strong><p>Q.</p></strong>
+			                                	문의상품 | <% if(q.getTitle() != null) { %> 
+			                                				<%=q.getTitle() %>
+                    									<% }else { %>
+                        									선택상품 없음
+                   										<% } %>
+                   							<br><br>
+			                                <strong><%= q.getqContent() %></strong> 
+			                                <% if(q.getaContent() != null){ %>                            
+			                                <hr>		                                
+			                                <strong><p>A.</p></strong> 
 			                                	답변일 | <%= q.getaCreateDate() %> <br><br>
 			                                	<strong><%= q.getaContent() %></strong>
 			                            </div>
+			                            <% } %>
 			                        </td> 
 			                    </tr>
                         <% } %>
-                    <% } %>                  
+                    <% } %>                 
                     <tr>
                         <td></td>
                         <td></td>
@@ -331,7 +348,7 @@
                         const $tr = $(this).next();
 
                         if($tr.css("display") == "none"){
-                            $(this).siblings(".qustion_open").hide();
+                            $(this).siblings(".open").hide();
                             $tr.show();
                         }else{
                             $tr.hide();

@@ -41,13 +41,11 @@ public class MyPageQnaListController extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		HttpSession session = request.getSession();
-		//String memId = ((Member)session.getAttribute("loginUser")).getMemId();
+		String nickName = ((Member)session.getAttribute("loginUser")).getNickName();
 		
-		//ArrayList<Qna> list = new MemberQnaListService().selectQnaList(memId);
-		//ArrayList<Qna> noList = new MemberQnaListService().selectNoQnaList(memId);
+		ArrayList<Qna> list = new MemberQnaListService().selectQnaList(nickName);
 		
-		//request.setAttribute("list", list);
-		//request.setAttribute("noList", noList);
+		request.setAttribute("list", list);
 		request.getRequestDispatcher("views/mypage/memberQnaList.jsp").forward(request, response);
 	}
 

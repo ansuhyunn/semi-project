@@ -5,13 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!-- Popper JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <style>
    /*배너*/
@@ -19,8 +12,11 @@
     margin:auto;
     margin-top:30px;
     width:1000px;
-    height:400px;
+    height:500px;
     }
+    .carousel-control-prev-icon{margin-left:200px;}
+    .carousel-control-next-icon{margin-right:200px;}
+    
     /*new, 오픈예정 전시*/
     .wrapper{
         width: 1000px;
@@ -88,25 +84,19 @@
         </ul>
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src="../resources/images/product/4M.jgp" alt="" width="1000" height="400">
-            <div class="carousel-caption">
-              <h3>Los Angeles</h3>
-              <p>We had such a great time in LA!</p>
-            </div>   
+          	<a href="">
+            	<img src="<%=request.getContextPath() %>/resources/product/11M.gif" alt="banner1">
+            </a>
           </div>
           <div class="carousel-item">
-            <img src="../resources/images/product/44M.gif" alt="" width="1000" height="400">
-            <div class="carousel-caption">
-              <h3>Chicago</h3>
-              <p>Thank you, Chicago!</p>
-            </div>   
+          	<a href="">
+            	<img src="<%=request.getContextPath() %>/resources/product/3M.gif" alt="banner2">
+            </a>
           </div>
           <div class="carousel-item">
-            <img src="../resources/images/product/42M.gif" alt="" width="1000" height="400">
-            <div class="carousel-caption">
-              <h3>New York</h3>
-              <p>We love the Big Apple!</p>
-            </div>   
+          	<a href="">
+            	<img src="<%=request.getContextPath() %>/resources/product/34M.gif" alt="banner3">
+            </a>
           </div>
         </div>
         <a class="carousel-control-prev" href="#demo" data-slide="prev">
