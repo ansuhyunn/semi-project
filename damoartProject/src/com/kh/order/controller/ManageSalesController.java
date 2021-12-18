@@ -1,26 +1,28 @@
 package com.kh.order.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.order.model.service.CartService;
-import com.kh.order.model.vo.Cart;
+import com.kh.order.model.service.ManageSalesService;
+import com.kh.order.model.vo.ManageSales;
 
 /**
- * Servlet implementation class CartInsertController
+ * Servlet implementation class ManageSalesController
  */
-@WebServlet("/in.ca")
-public class CartInsertController extends HttpServlet {
+@WebServlet("/sales.mg")
+public class ManageSalesController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CartInsertController() {
+    public ManageSalesController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,20 +31,10 @@ public class CartInsertController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		int cartMem = Integer.parseInt(request.getParameter("cartMem"));
-		int cartP = Integer.parseInt(request.getParameter("cartP"));
-		String cartOpt = request.getParameter("cartOpt");
-		int count = Integer.parseInt(request.getParameter("count"));
-		
-		Cart c = new Cart();
-		c.setcartMem(cartMem);
-		c.setCartP(cartP);
-		c.setCartOpt(cartOpt);
-		c.setCartCount(count);
-		
-		int result = new CartService().insertCart(c);
-		response.getWriter().print(result);
+	
+		ArrayList<ManageSales> list = new ManageSalesService().selectSalesManage();
+		request.setAttribute("list", list);
+		request.getRequestDispatcher("views/order/manageSales.jsp").forward(request, response);
 		
 	}
 

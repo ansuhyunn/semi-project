@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.order.model.vo.ManageCancel"%>
+<%
+ArrayList<ManageCancel> list = (ArrayList<ManageCancel>)request.getAttribute("list");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -172,42 +175,24 @@
                         <th width="60">상태</th>
                         <th width="200">환불정보</th>
                     </tr>
-                    <tr align="center" class="table_content">
+                    <tbody>   
+       				 <% for(ManageCancel m : list) { %>
+                        <tr align="center" class="table_content">
                         <td><input type="checkbox"></td>
-                        <td>user01 김아트<br>201223809342<br><small>2021-12-10 06:20</small></td>
+                        <td><%=m.getMemId() %> <%=m.getOrderName() %><br><%=m.getOrderNo() %><br><small><%=m.getOrderDate() %></small></td>
                         <td width="60"><img src="<%=request.getContextPath()%>/resources/images/product/1M.gif" width="40px" height="40px"></td>
-                        <td>A001<br>영국 테이트미술관 특별전</td>
+                        <td><%=m.getpNo() %><br><%=m.getTitle() %></td>
                         <td>구매 의사 취소 <br> <small>2021-12-13 11:20</small></td>
-                        <td>취소요청</td>
-                        <td>총 결제금액 &nbsp; 28000￦ <br>
-                            결제 방법 &nbsp; 무통장입금 <br>
-                            총 환불 금액 &nbsp; 28000￦
+                        <td><%=m.getOrderStatus() %></td>
+                        <td>총 결제금액 &nbsp; <%=m.getTotalPrice() %>￦ <br>
+                    	        결제 방법 &nbsp; <%=m.getPayOpt() %><br>
+                     	       총 환불 금액 &nbsp; <%=m.getPayPrice() %>￦
                         </td>
-                    </tr>
-                    <tr align="center" class="table_content">
-                        <td><input type="checkbox"></td>
-                        <td>user01 김아트<br>201223809342<br><small>2021-12-10 06:20</small></td>
-                        <td width="60"><img src="<%=request.getContextPath()%>/resources/images/product/1M.gif" width="40px" height="40px"></td>
-                        <td>A001<br>영국 테이트미술관 특별전</td>
-                        <td>상품 정보 상이 <br> <small>2021-12-13 11:20</small></td>
-                        <td>취소승인</td>
-                        <td>총 결제금액 &nbsp; 28000￦ <br>
-                            결제 방법 &nbsp; 카드결제 <br>
-                            총 환불 금액 &nbsp; 28000￦
-                        </td>
-                    </tr>
-                    <tr align="center" class="table_content">
-                        <td><input type="checkbox"></td>
-                        <td>user01 김아트<br>201223809342<br><small>2021-12-10 06:20</small></td>
-                        <td width="60"><img src="<%=request.getContextPath()%>/resources/images/product/1M.gif" width="40px" height="40px"></td>
-                        <td>A001<br>영국 테이트미술관 특별전</td>
-                        <td>상품 잘못 주문 <br> <small>2021-12-13 11:20</small></td>
-                        <td>취소거절</td>
-                        <td>총 결제금액 &nbsp; 28000￦ <br>
-                            결제 방법 &nbsp; 무통장입금 <br>
-                            총 환불 금액 &nbsp; 28000￦
-                        </td>
-                    </tr>
+                    </tr>   
+                    <% } %>
+                    </tbody>
+
+                  
                 </table>
             </div>    
         </div>    

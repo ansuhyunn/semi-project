@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.order.model.vo.ManageSales"%>
+<%
+ArrayList<ManageSales> list = (ArrayList<ManageSales>) request.getAttribute("list");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -126,8 +129,9 @@
                 <th width="155">주문액</th>
                 <th width="155">매출액</th>
             </tr>
+            
             <tr align="center">
-                <td>2021-11</td>
+                <td>sd</td>
                 <td>52</td>
                 <td>13</td>
                 <td>620.000 ￦</td>
@@ -156,66 +160,42 @@
             </tr>
         </table>
                 <!--주문 상품 표-->
+                <% System.out.println("data_size=>" + list.size()); %>
+
                 <div class="sales_product">
                     <table width="700">
+                        <thead>
                         <tr align="center" style="background-color: rgba(179, 165, 141, 0.829);" >
                             <th colspan="3" width="400" style="padding: 7px;">상품 정보</th>
                             <th width="100">주문수</th>
                             <th width="180">비고</th>
                         </tr>
+                         </thead>
+                         <tbody id="tbody">
+						<% for(ManageSales m : list) {  %>
                         <tr align="center" style="height:90px">
-                            <td width="70">1</td>
+                            <td width="70">i</td>
                             <td width="130">
                                 <img src="" width="50" height="50">
                             </td>
                             <td width="200" align="left">
-                                A0001 <br>
-                                영국 테이트 미술관 특별전
+                                <%=m.getpNo()%> <br>
+                               	<%=m.getTitle() %>
                             </td>
-                            <td>32</td>
+                            <td><%=m.getOrderCount() %></td>
                             <td>
-                                판매중
-                                <br>2021.10.28~2021.11.30
+                                <%=m.getsoldout() %>
+                                <br><%=m.getsDate() %>~<%=m.geteDate() %>
                             </td>
-                        </tr>
-                        <tr align="center" style="height:90px">
-                            <td width="70">1</td>
-                            <td width="130">
-                                <img src="" width="50" height="50">
-                            </td>
-                            <td width="200" align="left">
-                                A0001 <br>
-                                영국 테이트 미술관 특별전
-                            </td>
-                            <td>32</td>
-                            <td>
-                                판매중
-                                <br>2021.10.28~2021.11.30
-                            </td>
-                        </tr>
-                        <tr align="center" style="height:90px">
-                            <td width="70">1</td>
-                            <td width="130">
-                                <img src="" width="50" height="50">
-                            </td>
-                            <td width="200" align="left">
-                                A0001 <br>
-                                영국 테이트 미술관 특별전
-                            </td>
-                            <td>32</td>
-                            <td>
-                                판매중
-                                <br>2021.10.28~2021.11.30
-                            </td>
-                        </tr>
+                        </tbody>
+                        <% } %>
                     </table>
-
+				
                     
                 <button class="btn" id="btn">더보기</button>
                 </div>
 
         </div>
-
 
     <br><br><br><br><br>
 

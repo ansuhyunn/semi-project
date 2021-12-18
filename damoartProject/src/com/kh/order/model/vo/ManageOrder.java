@@ -4,55 +4,35 @@ import java.sql.Date;
 
 public class ManageOrder {
 
-private int orderNo;
-private int totalPrice;
-private int estPoint;
-private int finalPrice;
-private Date orderDate;
-private int memNo;
-private String orderName;
-private int pNo;
-private int orderCount;
-private int price;
-private String orderStatus;
-    
+	   private int orderNo;
+	   private int totalPrice;
+	   private int payPrice;
+	   private Date orderDate;
+	   private int pNo;
+	   private String orderOpt;
+	   private String orderName;
+	   private int orderCount;
+	   private String title;
+	   private String orderStatus;
+	   private String payOpt;
+	   
 public ManageOrder() {}
 
-
-
-public ManageOrder(int orderNo, int finalPrice, Date orderDate, int memNo, String orderName, int pNo, int orderCount,
-		int price, String orderStatus) {
-	super();
-	this.orderNo = orderNo;
-	this.finalPrice = finalPrice;
-	this.orderDate = orderDate;
-	this.memNo = memNo;
-	this.orderName = orderName;
-	this.pNo = pNo;
-	this.orderCount = orderCount;
-	this.price = price;
-	this.orderStatus = orderStatus;
-}
-
-
-
-public ManageOrder(int orderNo, int totalPrice, int estPoint, int finalPrice, Date orderDate, int memNo, String orderName,
-		int pNo, int orderCount, int price, String orderStatus) {
+public ManageOrder(int orderNo, int totalPrice, int payPrice, Date orderDate, int pNo, String orderOpt, String orderName, int orderCount,
+		String title, String orderStatus, String payOpt) {
 	super();
 	this.orderNo = orderNo;
 	this.totalPrice = totalPrice;
-	this.estPoint = estPoint;
-	this.finalPrice = finalPrice;
+	this.payPrice = payPrice;
 	this.orderDate = orderDate;
-	this.memNo = memNo;
-	this.orderName = orderName;
 	this.pNo = pNo;
+	this.orderOpt = orderOpt;
+	this.orderName = orderName;
 	this.orderCount = orderCount;
-	this.price = price;
+	this.title = title;
 	this.orderStatus = orderStatus;
+	this.payOpt = payOpt;
 }
-
-
 
 public int getOrderNo() {
 	return orderNo;
@@ -70,20 +50,12 @@ public void setTotalPrice(int totalPrice) {
 	this.totalPrice = totalPrice;
 }
 
-public int getEstPoint() {
-	return estPoint;
+public int getPayPrice() {
+	return payPrice;
 }
 
-public void setEstPoint(int estPoint) {
-	this.estPoint = estPoint;
-}
-
-public int getfinalPrice() {
-	return finalPrice;
-}
-
-public void setfinalPrice(int finalPrice) {
-	this.finalPrice = finalPrice;
+public void setPayPrice(int payPrice) {
+	this.payPrice = payPrice;
 }
 
 public Date getOrderDate() {
@@ -94,28 +66,28 @@ public void setOrderDate(Date orderDate) {
 	this.orderDate = orderDate;
 }
 
-public int getMemNo() {
-	return memNo;
-}
-
-public void setMemNo(int memNo) {
-	this.memNo = memNo;
-}
-
-public String getOrderName() {
-	return orderName;
-}
-
-public void setOrderName(String orderName) {
-	this.orderName = orderName;
-}
-
 public int getpNo() {
 	return pNo;
 }
 
 public void setpNo(int pNo) {
 	this.pNo = pNo;
+}
+
+public String getOrderOpt() {
+	return orderOpt;
+}
+
+public void setOrderOpt(String orderOpt) {
+	this.orderOpt = orderOpt;
+}
+
+public String getOrderName() {
+	return orderName;
+}
+
+public void setOrderName() {
+	this.orderName = orderName;
 }
 
 public int getOrderCount() {
@@ -126,27 +98,35 @@ public void setOrderCount(int orderCount) {
 	this.orderCount = orderCount;
 }
 
-public int getPrice() {
-	return price;
+public String getTitle() {
+	return title;
 }
 
-public void setPrice(int price) {
-	this.price = price;
+public void setTitle(String title) {
+	this.title = title;
 }
 
-public String getorderStatus() {
+public String getOrderStatus() {
 	return orderStatus;
 }
 
-public void setorderStatus(String orderStatus) {
+public void setOrderStatus(String orderStatus) {
 	this.orderStatus = orderStatus;
+}
+
+public String getPayOpt() {
+	return payOpt;
+}
+
+public void setPayOpt(String payOpt) {
+	this.payOpt = payOpt;
 }
 
 @Override
 public String toString() {
-	return "ManageOrder [orderNo=" + orderNo + ", totalPrice=" + totalPrice + ", estPoint=" + estPoint + ", finalPrice="
-			+ finalPrice + ", orderDate=" + orderDate + ", memNo=" + memNo + ", orderName=" + orderName + ", pNo=" + pNo
-			+ ", orderCount=" + orderCount + ", price=" + price + ", orderStatus=" + orderStatus + "]";
+	return "ManageOrder [orderNo=" + orderNo + ", totalPrice=" + totalPrice + ", payPrice=" + payPrice + ", orderDate="
+			+ orderDate + ", pNo=" + pNo + ", orderOpt=" + orderOpt + ", orderCount=" + orderCount + ", title=" + title
+			+ ", orderStatus=" + orderStatus + ", payOpt=" + payOpt + "]";
 }
 
 

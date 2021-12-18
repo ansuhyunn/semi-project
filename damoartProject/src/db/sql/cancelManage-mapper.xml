@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+<entry key="selectCancelManage">
+SELECT
+		    P.ORDER_NO
+           ,ORDER_NAME
+           ,ORDER_NO
+		   ,ORDER_DATE	
+           ,P.PNO
+           ,TITLE
+           ,ORDER_STATUS
+		   ,TOTAL_PRICE
+		   ,PAY_PRICE
+           ,PAY_OPT
+           ,MEM_ID
+		 FROM "ORDER_P" P
+		 JOIN "ORDER" O ON (O.ORDER_NO = P.ORDER_NO)
+		 JOIN PRODUCT ON (PRODUCT.PNO = P.PNO)
+         JOIN PAY ON (PAY.ORDER_NO = P.ORDER_NO)
+         JOIN MEMBER ON (O.MEM_NO = MEMBER.MEM_NO)
+         WHERE P.ORDER_STATUS = 'C' 
+         OR P.ORDER_STATUS = 'CC'
+         OR P.ORDER_STATUS = 'N'
+		 ORDER BY ORDER_DATE DESC
+</entry>
+
+</properties>

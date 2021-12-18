@@ -27,6 +27,12 @@ public class CartService {
 		return list;
 	}
 	
+	public void insertCart
+
+	public int insertCart(Cart c) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 	/*
 	public int insertCart(Cart c) {

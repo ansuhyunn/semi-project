@@ -40,15 +40,17 @@ public class ManageOrderDao {
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
-				list.add(new ManageOrder(rset.getInt("orderNo"),
-										 rset.getInt("finalPrice"),
-										 rset.getDate("orderDate"),
-										 rset.getInt("memNo"),
-										 rset.getString("orderName"),
+				list.add(new ManageOrder(rset.getInt("order_no"),
+										 rset.getInt("total_price"),
+										 rset.getInt("pay_price"),
+										 rset.getDate("order_date"),
 										 rset.getInt("pNo"),
-										 rset.getInt("orderCount"),
-										 rset.getInt("price"),
-										 rset.getString("orderstatus")));
+										 rset.getString("order_opt"),
+										 rset.getString("order_name"),
+										 rset.getInt("order_count"),
+										 rset.getString("title"),
+										 rset.getString("order_status"),
+										 rset.getString("pay_opt")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

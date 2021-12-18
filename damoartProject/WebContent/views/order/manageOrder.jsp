@@ -148,7 +148,6 @@ ArrayList<ManageOrder> list = (ArrayList<ManageOrder>)request.getAttribute("list
         
         <!--조회기간 날짜 선택-->
         
-        <% for(ManageOrder m : list) { %>
         <div class="search_date">
             <b>조회기간</b> 
             <button class="btn">오늘</button>
@@ -170,7 +169,8 @@ ArrayList<ManageOrder> list = (ArrayList<ManageOrder>)request.getAttribute("list
             <!--판매 표-->
             <div class="chart">
                 <table class="chart_order">
-                    <tr align="center" class="table_title">
+                <thead>
+                        <tr align="center" class="table_title">
                         <th width="150" colspan="2">주문번호 / 시각</th>
                         <th width="220" colspan="2">주문상품</th>
                         <th width="80">상품금액</th>
@@ -178,21 +178,30 @@ ArrayList<ManageOrder> list = (ArrayList<ManageOrder>)request.getAttribute("list
                         <th width="80">상태</th>
                         <th width="170">결제내역</th>
                     </tr>
-                    <tr align="center" class="table_content">
+                </thead>
+
+
+                <% System.out.println("data_size=>" + list.size()); %>
+                
+                <tbody>
+       			 <% for(ManageOrder m : list) { %>
+                  <tr align="center" class="table_content">
                         <td><input type="checkbox"></td>
-                        <td><%= m.getMemNo() %> <%= m.getOrderName() %><br><%= m.getOrderNo() %><br><%= m.getOrderDate() %></td>
+                        <td> <%= m.getOrderName() %><br><%= m.getOrderNo() %><br><%= m.getOrderDate() %></td>
                         <td width="60"><img src="<%=request.getContextPath()%>/resources/images/product/1M.gif" width="40px" height="40px"></td>
-                        <td><%= m.getpNo() %><br>영국 테이트미술관 특별전</td>
-                        <td><%= m.getPrice() %>￦</td>
+                        <td><%= m.getpNo() %><br><%= m.getTitle() %></td>
+                        <td><%= m.getTotalPrice() %>￦</td>
                         <td><%= m.getOrderCount() %></td>
-                        <td><%= m.getorderStatus() %></td>
-                        <td>총 결제금액 &nbsp; <%=m.getfinalPrice() %>￦ <br>
-                            결제 방법 &nbsp; 무통장입금
+                        <td><%= m.getOrderStatus() %></td>
+                        <td>총 결제금액 &nbsp; <%=m.getPayPrice() %>￦ <br>
+                         	   결제 방법 &nbsp; <%=m.getPayOpt() %>
                         </td>
+                </tbody>
+                          <% } %>
                 </table>
             </div>    
         </div>    
-        <% } %>
+
 
        
 
