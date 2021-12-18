@@ -150,9 +150,9 @@ ArrayList<ManageOrder> list = (ArrayList<ManageOrder>)request.getAttribute("list
         
         <div class="search_date">
             <b>조회기간</b> 
-            <button class="btn">오늘</button>
+            <button class="btn" id="today" >오늘</button>
             <button class="btn">일주일</button>
-            <button class="btn">1개월</button>
+            <button class="btn" id="month">1개월</button>
             <div class="select_date">
                 <input type="date"> <b>&nbsp;~&nbsp;</b> <input type="date">
             </div>
@@ -182,9 +182,10 @@ ArrayList<ManageOrder> list = (ArrayList<ManageOrder>)request.getAttribute("list
 
 
                 <% System.out.println("data_size=>" + list.size()); %>
-                
+                <% %>
                 <tbody>
        			 <% for(ManageOrder m : list) { %>
+       			 <% System.out.println(m.toString()); %>
                   <tr align="center" class="table_content">
                         <td><input type="checkbox"></td>
                         <td> <%= m.getOrderName() %><br><%= m.getOrderNo() %><br><%= m.getOrderDate() %></td>
@@ -196,16 +197,122 @@ ArrayList<ManageOrder> list = (ArrayList<ManageOrder>)request.getAttribute("list
                         <td>총 결제금액 &nbsp; <%=m.getPayPrice() %>￦ <br>
                          	   결제 방법 &nbsp; <%=m.getPayOpt() %>
                         </td>
+                        </tr>
+                        <% } %>
                 </tbody>
-                          <% } %>
+                          
                 </table>
             </div>    
-        </div>    
+            <script>
+				(function(){
+					
+					$("#today").click(function(){
+						 $(".table_content").remove();
+						console.log("11111");
+ 		 				var startDt = new Date();
+						var year = new String(startDt.getFullYear()); 
+						var month = new String(startDt.getMonth()+1); 
+						var day = new String(startDt.getDate());
 
+						// 한자리수일 경우 0을 채워준다. 
+						if(month.length == 1){ 
+						  month = "0" + month; 
+						} 
+						if(day.length == 1){ 
+						  day = "0" + day; 
+						}
+						var g_todayDate = year.substring(2,4) + month + day;
 
-       
+						console.log("startDt" + g_todayDate)
+								
+								$.ajax({
+				    				url:"order.mg",
+				    				data:{
+					    				content:"today",
+					    				startDt:g_todayDate,
+					    				endDt: g_todayDate,
+				    				},
+				    				type:"get",
+				    				success:function(result){
+				    					console.log("ajax통신 성공");
+				    					list = result
+				    					return result;
+				    				}, error:function(){
+				    					console.log("ajax통신 실패");
+				    				}
+				    			})
+					        })
+			        
+			        $("#month").click(function(){
+			        	$(".table_content").remove();
+						console.log("11111");
+						var startDt = new Date();
+						var year = new String(startDt.getFullYear()); 
+						var month = new String(startDt.getMonth()+1); 
+						var day = new String(startDt.getDate());
 
+						// 한자리수일 경우 0을 채워준다. 
+						if(month.length == 1){ 
+						  month = "0" + month; 
+						} 
+						if(day.length == 1){ 
+						  day = "0" + day; 
+						}
+						startDt = year.substring(2,4) + month + day;
+						
 
+						var onemonth = new Date();
+						onemonth.setDate(onemonth.getDate()-30);
+						var weekyear = String(onemonth.getFullYear()); 
+						var weekmonth = new String(onemonth.getMonth()+1); 
+						var weekday = new String(onemonth.getDate());
+
+						// 한자리수일 경우 0을 채워준다. 
+						if(weekmonth.length == 1){ 
+						  weekmonth = "0" + weekmonth; 
+						} 
+						if(weekday.length == 1){ 
+						  weekday = "0" + weekday; 
+						}
+						
+
+						startDt = weekyear.substring(2,4) + weekmonth + weekday;
+						
+						var today = new Date();
+						var year = new String(today.getFullYear()); 
+						var month = new String(today.getMonth()+1); 
+						var day = new String(today.getDate());
+
+						// 한자리수일 경우 0을 채워준다. 
+						if(month.length == 1){ 
+						  month = "0" + month; 
+						} 
+						if(day.length == 1){ 
+						  day = "0" + day; 
+						}
+						var endDt = year.substring(2,4) + month + day;
+						console.log("startDt" + startDt + "endDt" + endDt)
+						$.ajax({
+		    				url:"order.mg",
+		    				data:{
+			    				content:"month",
+			    				startDt:startDt,
+			    				endDt: endDt,
+		    				},
+		    				type:"get",
+		    				success:function(result){
+		    					console.log("ajax통신 성공");
+		    					list = result
+		    					return result;
+		    				}, error:function(){
+		    					console.log("ajax통신 실패");
+		    				}
+		    			})
+			        })
+			        
+				})();
+		    </script>
+            </div>    
 
 
         </div>

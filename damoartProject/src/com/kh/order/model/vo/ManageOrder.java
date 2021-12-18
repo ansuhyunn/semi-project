@@ -18,6 +18,20 @@ public class ManageOrder {
 	   
 public ManageOrder() {}
 
+
+
+public ManageOrder(int totalPrice, int payPrice, Date orderDate, int orderCount, String orderStatus) {
+	super();
+	
+	this.totalPrice = totalPrice;
+	this.payPrice = payPrice;
+	this.orderDate = orderDate;
+	this.orderCount = orderCount;
+	this.orderStatus = orderStatus;
+}
+
+
+
 public ManageOrder(int orderNo, int totalPrice, int payPrice, Date orderDate, int pNo, String orderOpt, String orderName, int orderCount,
 		String title, String orderStatus, String payOpt) {
 	super();

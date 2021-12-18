@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.sql.Date;
 import java.util.Properties;
 
 import static com.kh.common.JDBCTemplate.*;
@@ -48,7 +49,8 @@ public class ManageSalesDao {
 											 rset.getString("soldout"),
 											 rset.getString("title"),
 											 rset.getString("s_date"),
-											 rset.getString("e_date")));
+											 rset.getString("e_date"),
+											 rset.getString("order_status")));
 
 				}
 		} catch (SQLException e) {
@@ -61,5 +63,36 @@ public class ManageSalesDao {
 		return list;
 		
 	}
-
+	
+	public ArrayList<ManageSales> selectSalesDay(Connection conn,Date startDt, Date endDt) {
+		ArrayList<ManageSales> list = new ArrayList<>(); // 비어있음
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectSalesDay");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setDate(1, startDt);
+			pstmt.setDate(2, endDt);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new ManageSales(rset.getInt("total_price"),
+										 rset.getInt("final_price"),
+										 rset.getDate("order_date"),
+										 rset.getInt("order_count"),
+										 rset.getString("order_status")));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	
+	}
 }

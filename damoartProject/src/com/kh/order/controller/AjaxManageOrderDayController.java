@@ -13,17 +13,18 @@ import com.kh.order.model.service.ManageOrderService;
 import com.kh.order.model.vo.ManageOrder;
 
 /**
- * Servlet implementation class ManageOrderController
+ * Servlet implementation class AjaxManageOrderDayController
  */
-@WebServlet("/order.mg")
-public class ManageOrderController extends HttpServlet {
+@WebServlet("/orderd.mg")
+public class AjaxManageOrderDayController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+
 	ManageOrderService service = new ManageOrderService();
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ManageOrderController() {
+    public AjaxManageOrderDayController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,9 +35,7 @@ public class ManageOrderController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String replyContent = (String) request.getParameter("content");
 
-		System.out.println(replyContent);
 		if(replyContent == null) {
-
 			ArrayList<ManageOrder> list = service.selectOrderManage();
 			request.setAttribute("list", list);
 			request.getRequestDispatcher("views/order/manageOrder.jsp").forward(request, response);
@@ -53,16 +52,13 @@ public class ManageOrderController extends HttpServlet {
 			request.getRequestDispatcher("views/order/manageOrder.jsp").forward(request, response);
 
 		}
-		else if(replyContent.equals("week")) {
+		else if(replyContent == "week") {
 					
 		}
-		else if(replyContent.equals("month")) {
-			System.out.println("되나222222222");
-
+		else if(replyContent == "month") {
 			String startDt = request.getParameter("startDt");
 			String endDt = request.getParameter("endDt");
-			System.out.println("되나?"+ "start: " + startDt + ", end: " + endDt);
-
+			
 			ArrayList<ManageOrder> list = service.selectOrderManage(startDt,endDt);
 
 			request.setAttribute("list", list);
@@ -73,5 +69,7 @@ public class ManageOrderController extends HttpServlet {
 			
 		}
 		
+
 	}
-	}
+
+}
