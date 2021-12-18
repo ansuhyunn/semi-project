@@ -21,7 +21,6 @@ public ManageSales() {}
 
 
 
-
 public ManageSales(int totalPrice, int finalPrice, Date orderDate, int orderCount, String orderStatus) {
 	super();
 	this.totalPrice = totalPrice;
@@ -30,7 +29,6 @@ public ManageSales(int totalPrice, int finalPrice, Date orderDate, int orderCoun
 	this.orderCount = orderCount;
 	this.orderStatus = orderStatus;
 }
-
 
 
 

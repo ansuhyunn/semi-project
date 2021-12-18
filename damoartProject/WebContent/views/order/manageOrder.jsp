@@ -207,8 +207,9 @@ ArrayList<ManageOrder> list = (ArrayList<ManageOrder>)request.getAttribute("list
 				(function(){
 					
 					$("#today").click(function(){
-						 $(".table_content").remove();
 						console.log("11111");
+						 $(".table_content").remove();
+						 $(".table_content").
  		 				var startDt = new Date();
 						var year = new String(startDt.getFullYear()); 
 						var month = new String(startDt.getMonth()+1); 
@@ -244,7 +245,6 @@ ArrayList<ManageOrder> list = (ArrayList<ManageOrder>)request.getAttribute("list
 					        })
 			        
 			        $("#month").click(function(){
-			        	$(".table_content").remove();
 						console.log("11111");
 						var startDt = new Date();
 						var year = new String(startDt.getFullYear()); 

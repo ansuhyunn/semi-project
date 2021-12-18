@@ -21,7 +21,6 @@ public class ManageSalesService {
 	}
 	
 
-	
 	public ArrayList<ManageSales> selectSalesManage(Date startDt, Date endDt){
 			if(startDt != null &&  endDt != null) {
 			
@@ -35,13 +34,12 @@ public class ManageSalesService {
 		}
 			return null;
 	}
-	/*
+	
 	public ArrayList<ManageSales> selectSalesDay(){
 		Connection conn = getConnection();
 		
-		ArrayList<ManageSales> list = new ManageSalesDao().selectSalesDay(conn, day);
+		ArrayList<ManageSales> list = new ManageSalesDao().selectSalesDay(conn, null, null);
 		close(conn);
 		return list;
 	}
-	*/
 }

@@ -13,7 +13,6 @@ import java.util.Date;
 import java.util.Properties;
 
 import com.kh.order.model.vo.ManageOrder;
-import com.kh.order.model.vo.ManageSales;
 
 public class ManageOrderDao {
 	

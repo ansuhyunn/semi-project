@@ -129,21 +129,32 @@ ArrayList<ManageSales> list = (ArrayList<ManageSales>) request.getAttribute("lis
                 <th width="155">주문액</th>
                 <th width="155">매출액</th>
             </tr>
-            
+            <% for(ManageSales m : list) {  %>
+               <tr align="center">
+                <td>2021-10</td>
+                <td><%= m.getOrderCount() %></td>
+                <td><%= m.getsoldout() %></td>
+                <td><%= m.getTotalPrice() %> ￦</td>
+                <td><%= m.getFinalPrice() %> ￦</td>
+            </tr>
+            <% } %>
             <tr align="center">
-                <td>sd</td>
+                <td>687</td>
                 <td>52</td>
                 <td>13</td>
                 <td>620.000 ￦</td>
                 <td>580.000 ￦</td>
-            </tr>
-            <tr align="center">
+            </tr>  
+            
+                 <tr align="center">
                 <td>2021-10</td>
                 <td>75</td>
                 <td>21</td>
                 <td>1.230.000 ￦</td>
                 <td>1.230.000 ￦</td>
             </tr>
+            
+       
             <tr align="center">
                 <td>2021-09</td>
                 <td>47</td>

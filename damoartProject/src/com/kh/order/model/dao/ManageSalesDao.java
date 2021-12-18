@@ -64,6 +64,7 @@ public class ManageSalesDao {
 		
 	}
 	
+	
 	public ArrayList<ManageSales> selectSalesDay(Connection conn,Date startDt, Date endDt) {
 		ArrayList<ManageSales> list = new ArrayList<>(); // 비어있음
 		

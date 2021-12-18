@@ -15,10 +15,12 @@ SELECT
    ,TITLE
    ,S_DATE
    ,E_DATE
+   ,ORDER_STATUS
  FROM "ORDER_P" P
  JOIN "ORDER" O ON (O.ORDER_NO = P.ORDER_NO)
  JOIN PRODUCT ON (PRODUCT.PNO = P.PNO)
  ORDER BY P.ORDER_COUNT DESC
+ 
 </entry>
 
 <entry key="selectSalesDay">
