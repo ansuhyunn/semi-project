@@ -21,7 +21,7 @@
         margin: auto;
         margin-left: auto; 
         margin-right: auto;
-        margin-top: 80px
+        margin-top: 200px
     } 
     form>table{
         width: 600px;
@@ -31,14 +31,27 @@
     table th{text-align: center;}
     table td{padding-left: 20px;}
     input{border: none;}
+    #insert{
+        background-color:rgb(203, 185, 153);
+        color:rgb(64, 64, 64);
+        font-weight:600;
+    }
+    #cancel{
+        background-color:rgb(151, 138, 116);
+        color:white;
+    }
 
 </style>    
 </head>
 <body>
+
+	<%@ include file="../common/manageMenubar_2.jsp" %>
+	
     <div class="wrapper">
         <div class="name" style="font-size: 30px; font-weight: bolder;">
             	상품등록
         </div>
+        <br>
         <hr class="my-2">
         <br>
         <form action="<%= request.getContextPath() %>/manageInsert.pro" method="post" enctype="multipart/form-data">
@@ -74,7 +87,7 @@
                         <label for="kyong">경상도</label>
                         
                         <input type="checkbox" name="region" id="jaeju" value="제주">
-                        <label for="jaeju">제주</label>
+                        <label for="jaeju">제주도</label>
                     </td>
                 </tr>
                 <tr>
@@ -87,25 +100,11 @@
                     	<input type="checkbox" name="age" id="all" value="전체이용가">
                         <label for="all">전체이용가 </label>
                         
-                        <input type="checkbox" name="age" id="24" value="24개월 이상">
-                        <label for="24">24개월 이상 </label>
-                        
-                        <input type="checkbox" name="age" id="36" value="36개월 이상">
-                        <label for="36">36개월 이상 </label>
-                        
-                        <input type="checkbox" name="age" id="48" value="48개월 이상">
-                        <label for="48">48개월 이상 </label>
-                        
-                        <br>
-                        
-                        <input type="checkbox" name="age" id="child" value="초등학생">
-                        <label for="child">초등학생 </label>
-                        
                         <input type="checkbox" name="age" id="teen" value="중학생">
-                        <label for="teen">중학생 </label>
+                        <label for="teen">유아동 </label>
                         
                         <input type="checkbox" name="age" id="high" value="고등학생">
-                        <label for="high">고등학생 </label>
+                        <label for="high">청소년 </label>
                         
                         <input type="checkbox" name="age" id="adult" value="성인">
                         <label for="adult">성인 </label>
@@ -113,27 +112,27 @@
                 </tr>
                 <tr>
                     <th>시작일</th>
-                    <td><input type="text" name="sDate" style="width:450px" placeholder="2021.07.20 형식으로 입력" required></td>
+                    <td><input type="text" name="sDate" style="width:450px" placeholder="20210720 형식으로 입력" required></td>
                 </tr>
                 <tr>
                     <th>종료일</th>
-                    <td><input type="text" name="eDate" style="width:450px" placeholder="2021.07.20 형식으로 입력" required></td>
+                    <td><input type="text" name="eDate" style="width:450px" placeholder="20210720 형식으로 입력" required></td>
                 </tr>
                 <tr>
                     <th>관람시간</th>
-                    <td><input type="text" name="time" style="width:450px" required></td>
+                    <td><input type="text" name="time" style="width:450px" placeholder="오전xx시 ~ 오후xx시 형식으로 입력" required></td>
                 </tr>
                 <tr>
                     <th>성인가격</th>
-                    <td><input type="text" name="aPrice" required></td>
+                    <td><input type="text" name="aPrice" placeholder="숫자만 입력" required></td>
                 </tr>
                 <tr>
                     <th>청소년가격</th>
-                    <td><input type="text" name="tPrice" required></td>
+                    <td><input type="text" name="tPrice" placeholder="숫자만 입력" required></td>
                 </tr>
                 <tr>
                     <th>소아가격</th>
-                    <td><input type="text" name="cPrice" required></td>
+                    <td><input type="text" name="cPrice" placeholder="숫자만 입력" required></td>
                 </tr>
                 <tr>
                     <th>메인포스터</th>
@@ -145,7 +144,7 @@
                 </tr>
                 <tr>
                     <th>기타등록사항</th>
-                    <td><input type="text" name="etc"></td>
+                    <td><input type="text" name="etc" placeholder="없으면 - 입력" ></td>
                 </tr>
                 <tr>
                     <th>품절여부</th>
@@ -155,8 +154,8 @@
             <br><br>
             
             <div align="center">
-                <button type="submit">등록</button>
-                <button type="reset">취소</button>
+                <button id="insert" class="btn btn-sm" type="submit">등록</button>
+                <button id="cancel" class="btn btn-sm" type="reset">취소</button>
             </div>
             
              <br><br>

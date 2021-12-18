@@ -155,9 +155,10 @@
             <div class="menu">상품 관리</div>
             <div class="sub">
                 <ul>
-                    <li><a href="">진행중 상품 관리</a></li>
-                    <li><a href="">오픈예정 상품 관리</a></li>
-                    <li><a href="">BEST 상품 관리</a></li>
+                	<li><a href="<%=contextPath%>/managelist.man?cpage=1">전체 상품 관리</a></li>
+                    <li><a href="<%=contextPath%>/manageIng.man?cpage=1">진행중 상품 관리</a></li>
+                    <li><a href="<%=contextPath%>/managePre.man?cpage=1">오픈예정 상품 관리</a></li>
+                    <li><a href="<%=contextPath%>/views/product/manageBestMain.jsp">BEST 상품 관리</a></li>
                 </ul>
             </div>
             <div class="menu">현황 관리</div>

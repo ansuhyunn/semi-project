@@ -188,7 +188,7 @@
                 	<p>찜한 상품은 최대 <strong style="color:white">60일간</strong> 보관됩니다.</p>
                 <hr align="left" width="765" color="rgb(64, 64, 64)" size="1">
 
-                <div class="product">
+                <div class="likeProduct">
                     
                 </div>
             </div>

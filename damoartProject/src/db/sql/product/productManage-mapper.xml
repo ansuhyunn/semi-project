@@ -103,6 +103,7 @@ SELECT *
 
 
 <!-- 전시등록 -->
+<!-- 1) Product(부모)에 INSERT -->
 <entry key="insertProduct">
 INSERT 
   INTO PRODUCT
@@ -146,6 +147,64 @@ VALUES
   </entry>
 
 
+<!-- 2) CURRVAL값  뽑기 위한 선행 -->
+<entry key="currval"> 
+SELECT SEQ_PNO.NEXTVAL, 
+	   SEQ_PNO.CURRVAL 
+  FROM DUAL
+</entry>
+
+
+<!-- 3) ATTACHMENT(자식) -->
+<entry key="insertAttachment"> 
+INSERT 
+  INTO ATTACHMENT
+  (
+    FILE_NO
+  , REF_B
+  , REF_BNO
+  , ORIGIN_NAME
+  , CHANGE_NAME
+  , FILE_PATH
+  , UPLOAD_DATE
+  , STATUS
+  )
+VALUES
+  (
+    SEQ_ANO.NEXTVAL
+  , '상품등록'
+  , SEQ_PNO.CURRVAL   <!-- 마지막 NEXTVAL의 값을 가져옴 --> 
+  , ?
+  , ?
+  , ?
+  , DEFAULT
+  , DEFAULT
+  )
+</entry>
+
+
+<!-- 등록 전시 조회 -->
+<entry key="productDetailView">
+SELECT 
+       PNO
+     , ENROLL_DATE
+	 , TITLE
+	 , REGION
+	 , AGE
+	 , AREA
+	 , TO_CHAR(TO_DATE(S_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') S_DATE
+	 , TO_CHAR(TO_DATE(E_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') E_DATE
+	 , TIME
+     , A_PRICE
+     , T_PRICE
+     , C_PRICE
+	 , MAIN_IMG
+	 , DETAIL_IMG
+	 , ETC
+     , SOLDOUT
+  FROM PRODUCT
+ WHERE PNO = ?
+</entry>
 	
 	
 </properties>

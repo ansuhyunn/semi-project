@@ -1,6 +1,6 @@
 package com.kh.product.model.dao;
 
-import static com.kh.common.JDBCTemplate.*;
+import static com.kh.common.JDBCTemplate.close;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import com.kh.common.model.vo.Attachment;
 import com.kh.common.model.vo.PageInfo;
 import com.kh.product.model.vo.Product;
 
@@ -224,18 +225,136 @@ public class ManageDao {
 	
 	
 	// 전시 등록
-	public int insertProduct(Connection conn) {
+	public int insertProduct(Connection conn, Product p) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("insertProduct");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, p.getTitle());
+			pstmt.setString(2, p.getRegion());
+			pstmt.setString(3, p.getAge());
+			pstmt.setString(4, p.getArea());
+			pstmt.setString(5, p.getsDate());
+			pstmt.setString(6, p.geteDate());
+			pstmt.setString(7, p.getTime());
+			pstmt.setInt(8, p.getaPrice());
+			pstmt.setInt(9, p.gettPrice());
+			pstmt.setInt(10, p.getcPrice());
+			pstmt.setString(11, p.getMainImg());
+			pstmt.setString(12, p.getDetailImg());
+			pstmt.setString(13, p.getEtc());
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close(pstmt);
 		}
 		
 		return result;
+	}
+	
+	
+	
+	
+	// 첨부파일 업로드
+	public int insertAttachment(Connection conn, Attachment at) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql1 = prop.getProperty("currval");
+		String sql2 = prop.getProperty("insertAttachment");
+		
+		ArrayList<String> currval = new ArrayList<>();
+		
+		try {
+			pstmt = conn.prepareStatement(sql1);
+			
+			
+			
+			pstmt = conn.prepareStatement(sql2);
+			pstmt.setString(1, at.getOriginName());
+			pstmt.setString(2, at.getChangeName());
+			pstmt.setString(3, at.getFilePath());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
+	
+	// 등록 전시 조회
+	public Product productDetailView(Connection conn, int pNo) {
+		Product p = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("productDetailView");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, pNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				p = new Product(rset.getInt("PNO"),
+								rset.getString("ENROLL_DATE"),
+								rset.getString("title"),
+								rset.getString("region"),
+								rset.getString("age"),
+								rset.getString("area"),
+								rset.getString("s_date"),
+								rset.getString("e_date"),
+								rset.getString("time"),
+								rset.getInt("a_price"),
+								rset.getInt("t_price"),
+								rset.getInt("c_price"),
+								rset.getString("main_img"),
+								rset.getString("detail_img"),
+								rset.getString("etc"),
+								rset.getString("soldout"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return p;
+	}
+	
+	
+	public Attachment selectAttachment(Connection conn, int qNo) {
+		Attachment at = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectAttachment");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, qNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				at = new Attachment(rset.getInt("file_no"),
+								    rset.getString("origin_name"),
+								    rset.getString("change_name"),
+								    rset.getString("file_path"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return at;
 	}
 	
 }

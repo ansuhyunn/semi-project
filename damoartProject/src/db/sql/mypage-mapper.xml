@@ -14,7 +14,40 @@
 		  JOIN MEMBER USING(MEM_NO) 
 		 WHERE MEM_ID = ?
 	</entry>
-
+	
+	<!-- qna 내역 (상품o) -->
+	<entry key="memberQnaList">
+		SELECT
+		       TITLE
+		     , NICKNAME
+		     , Q_TITLE
+		     , Q_CONTENT
+		     , CREATE_DATE
+		     , Q_CATEGORY_CODE
+		     , A_CONTENT
+		     , A_CREATE_DATE
+		     , MEM_NO2
+		  FROM QNA Q
+		  JOIN PRODUCT USING(PNO)
+		  JOIN MEMBER USING(MEM_NO)
+		 WHERE MEM_ID = ?
+		   AND Q.STATUS = 'Y'
+	</entry>
+	
+	<!-- qna 내역 (상품x) -->
+	<entry key="memberNoQnaList">
+		SELECT
+		       PNO  
+		     , Q_TITLE
+		     , Q_CONTENT
+		     , CREATE_DATE
+		     , Q_CATEGORY_CODE
+		     , MEM_NO2
+		  FROM QNA Q
+		  JOIN MEMBER USING(MEM_NO)
+		 WHERE MEM_ID = ?
+		   AND Q.STATUS = 'Y'
+	</entry>
 	<!-- 회원정보 수정 -->
 	<entry key="updateMember">
 		UPDATE MEMBER

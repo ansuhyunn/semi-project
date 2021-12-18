@@ -1,4 +1,4 @@
-package com.kh.cscenter.controller.client;
+package com.kh.product.controller.manage;
 
 import java.io.IOException;
 
@@ -9,20 +9,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.common.model.vo.Attachment;
-import com.kh.cscenter.model.service.QnaService;
-import com.kh.cscenter.model.vo.QnA;
+import com.kh.product.model.service.ManageService;
+import com.kh.product.model.vo.Product;
 
 /**
- * Servlet implementation class QnaDetailController
+ * Servlet implementation class ProductDetailViewController
  */
-@WebServlet("/detail.qa")
-public class QnaDetailController extends HttpServlet {
+@WebServlet("/manageDetail.pro")
+public class ProductDetailViewController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public QnaDetailController() {
+    public ProductDetailViewController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,18 +31,15 @@ public class QnaDetailController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int qNo = Integer.parseInt(request.getParameter("qno"));
-		QnaService qService = new QnaService();
 		
-		QnA q = qService.selectQnA(qNo);
-		Attachment at = qService.selectAttachment(qNo);
+		int pNo = Integer.parseInt(request.getParameter("pno"));
+		Product p = new ManageService().productDetailView(pNo);
+//		Attachment at = new ManageService().selectAttachment(pNo);
 		
-		request.setAttribute("q", q);
-		request.setAttribute("at", at);
+		request.setAttribute("p", p);
+//		request.setAttribute("at", at);
 		
-		request.getRequestDispatcher("views/cscenter/client/qnaDetailView.jsp").forward(request, response);
-		
-		
+		request.getRequestDispatcher("views/product/manageProductDetailView.jsp").forward(request, response);
 	}
 
 	/**

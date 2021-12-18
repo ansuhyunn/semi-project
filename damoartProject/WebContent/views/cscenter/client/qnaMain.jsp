@@ -119,14 +119,18 @@
                     </tbody>
                 </table>
                 <script>
-			    	$(function(){
-			    		$("#list-area>tbody>tr").click(function(){
-			    			if(<%=loginUser%> != null) {
-			    					location.href='<%=contextPath %>/detail.qa?qno=' + $(this).children().eq(0).text();
-			    			}	
-			    		})
+			    	<% if(loginUser == null) { %>				    	
+				    		$("#list-area>tbody>tr").click(function(){
+				    				$("#myModal").modal();
+				    		})			    		
+			    	<% }else { %>
 
-			    	
+				    		$("#list-area>tbody>tr").click(function(){
+	
+				    				location.href='<%=contextPath %>/detail.qa?qno=' + $(this).children().eq(0).text();			
+				    		})	
+
+			    	<% } %>
 			    </script>
                 <br>
                 <div class="button" align="right">

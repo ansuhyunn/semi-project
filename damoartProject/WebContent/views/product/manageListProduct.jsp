@@ -16,9 +16,10 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <!-- Popper JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <!-- Latest compiled JavaScript -->
@@ -27,28 +28,56 @@
 <style>
 div{ box-sizing:border-box; }
     .wrapper{
-        width: 1000px;
-        height: auto; 
-        margin: auto;
-        margin-top: 150px
-    }   
+        width:1300px; 
+        height:auto; 
+        padding:20px;
+        margin:auto;
+        margin-top:200px;
+        margin-left:230px;
+    }  
+	.wrapper>a{
+        color:rgb(64, 64, 64);
+    }
+	.name>h4{
+		font-weight: bolder;
+	}
     #list-area{
-    	width: 1000px;
+    	width: 1200px;
     	margin-left: auto;
-    	margin-right: auto;
+    	margin-right: 150px;
     }
-    a{margin: 0 auto;}
-    .btn{
-        width: 115px;
-        margin-left: 200px;
-        margin-top: 40px;
-        background-color: rgb(151, 138, 116);
-        font-weight: bolder;
+	.header{width:100%; height:40px; position:relative;}
+    .header>div{float:left;}
+    .header a{
+        background-color:rgb(151, 138, 116);
+        color:white;
     }
-    .btn *:hover{
-        background-color: rgb(203, 185, 153);
-        color: whitesmoke;
-        font-weight: bolder;
+	.button{
+		margin-left: 800px;
+	}
+	#enroll{
+        background-color:rgb(203, 185, 153);
+        color:rgb(64, 64, 64);
+        font-weight:600;
+    }
+    #insert, #delete{
+        background-color:rgb(151, 138, 116);
+        color:white;
+    }
+    thead{
+        background:rgb(207, 206, 206);
+        font-size:12px;
+    }
+	#list-area *{
+		text-align: center;
+	}
+    #list-area>tbody{
+        background:white;
+        font-size:12px;
+    }
+     #list-area>tbody>tr:hover{
+    	background:rgb(240, 239, 239);
+    	cursor:pointer;
     }
 
 </style>
@@ -59,6 +88,25 @@ div{ box-sizing:border-box; }
 	<%@ include file="../common/manageMenubar_2.jsp" %>
 	
     <div class="wrapper">
+
+		<div class="name">
+			<h4>전체 상품</h4>
+			<br>
+		</div>
+		<hr class="my-2">
+		<div class="header">
+			<div class="search" width="50%">
+				<form action="">
+					<input type="text">
+					<a href="" class="btn btn-sm">검색</a>
+				</form>
+			</div>
+			<div class="button">
+				<a href="<%= contextPath %>/views/product/manageInsertProduct.jsp" class="btn btn-sm" id="insert">등록</a>
+				<a href="<%= contextPath %>/update.pro" class="btn btn-sm" id="enroll">수정</a>
+				<a href="<%= contextPath %>/delete.pro" class="btn btn-sm" id="delete">삭제</a>
+			</div>
+		</div>
         
         <table align="center" id="list-area" class="table table-bordered">
 
@@ -96,34 +144,36 @@ div{ box-sizing:border-box; }
 		     </tbody>    
         </table>
 
-        <!--
+        
         <div class="paging-area" align="center">
         
 			<% if(currentPage != 1){ %>
-            	<button onclick="location.href='<%=contextPath%>/managelist.man?cpage=<%=currentPage-1%>';">&lt;</button>
+            	<button class="btn" onclick="location.href='<%=contextPath%>/managelist.man?cpage=<%=currentPage-1%>';">&lt;</button>
             <% } %>
             
-             페이지 p가 startPage부터 endPage까지 1씩 증가
             <% for(int p=startPage; p <= endPage; p++){ %>
             	<% if(currentPage == p) {%>
-            		<button disabled><%= p %></button>		
+            		<button class="btn" disabled><%= p %></button>		
 	            <% }else { %>
-	            	<button onclick="location.href='<%=contextPath%>/managelist.man?cpage=<%= p %>';"><%= p %></button>
+	            	<button class="btn" onclick="location.href='<%=contextPath%>/managelist.man?cpage=<%= p %>';"><%= p %></button>
 	            <% } %>
             <% } %>
             
             <% if(currentPage != maxPage){%>
-            	<button onclick="location.href='<%=contextPath%>/managelist.man?cpage=<%=currentPage+1%>';">&gt;</button>
+            	<button class="btn" onclick="location.href='<%=contextPath%>/managelist.man?cpage=<%=currentPage+1%>';">&gt;</button>
 			<% } %>
 			
         </div>
-        -->
         
-        <div class="button">
-            <a href="<%= contextPath %>/views/product/manageInsertProduct.jsp" class="btn">등록</a>
-            <a href="<%= contextPath %>/update.pro" class="btn">수정</a>
-            <a href="<%= contextPath %>/delete.pro" class="btn">삭제</a>
-        </div>
+        <script>
+	    	$(function(){
+	    		$("#list-area>tbody>tr").click(function(){
+					console.log($(this).children().eq(0).text())
+	    			location.href='<%=contextPath %>/manageDetail.pro?pno=' + $(this).children().eq(1).text();
+	    		})
+	    	})
+	    </script>
+        
     </div>
     
 

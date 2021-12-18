@@ -6,7 +6,7 @@ public class Attachment {
 	
 	private int fileNo;
 	private String refBaord;
-	private int refBoardNo;
+	private int refBno;
 	private String originName;
 	private String changeName;
 	private String filePath;
@@ -15,12 +15,12 @@ public class Attachment {
 	
 	public Attachment() {}
 
-	public Attachment(int fileNo, String refBaord, int refBoardNo, String originName, String changeName,
-			String filePath, Date uploadDate, String status) {
+	public Attachment(int fileNo, String refBaord, int refBno, String originName, String changeName, String filePath,
+			Date uploadDate, String status) {
 		super();
 		this.fileNo = fileNo;
 		this.refBaord = refBaord;
-		this.refBoardNo = refBoardNo;
+		this.refBno = refBno;
 		this.originName = originName;
 		this.changeName = changeName;
 		this.filePath = filePath;
@@ -54,12 +54,12 @@ public class Attachment {
 		this.refBaord = refBaord;
 	}
 
-	public int getRefBoardNo() {
-		return refBoardNo;
+	public int getRefBno() {
+		return refBno;
 	}
 
-	public void setRefBoardNo(int refBoardNo) {
-		this.refBoardNo = refBoardNo;
+	public void setRefBno(int refBno) {
+		this.refBno = refBno;
 	}
 
 	public String getOriginName() {
@@ -104,10 +104,12 @@ public class Attachment {
 
 	@Override
 	public String toString() {
-		return "Attachment [fileNo=" + fileNo + ", refBaord=" + refBaord + ", refBoardNo=" + refBoardNo
-				+ ", originName=" + originName + ", changeName=" + changeName + ", filePath=" + filePath
-				+ ", uploadDate=" + uploadDate + ", status=" + status + "]";
+		return "Attachment [fileNo=" + fileNo + ", refBaord=" + refBaord + ", refBno=" + refBno + ", originName="
+				+ originName + ", changeName=" + changeName + ", filePath=" + filePath + ", uploadDate=" + uploadDate
+				+ ", status=" + status + "]";
 	}
+
+	
 	
 	
 }

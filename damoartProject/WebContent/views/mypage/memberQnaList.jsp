@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.kh.mypage.model.vo.Qna, java.util.ArrayList"%>
+<%
+	ArrayList<Qna> list = (ArrayList<Qna>)request.getAttribute("list");
+	ArrayList<Qna> noList = (ArrayList<Qna>)request.getAttribute("noList");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -273,60 +277,55 @@
                     </tr>
                   </thead>
                   <tbody>
+                  
                     <!--Q&A 내역이 없을 경우-->
-                    <!--
+                	<% if(list.isEmpty()){ %>
+	                    <tr>
+	                        <td colspan="4" >
+	                            <div id="exclamationmark_icon">
+	                                <img src="<%=request.getContextPath() %>/resources/images/exclamationmark.png" width="70px" height="70px"> 
+	                            </div>
+	                            <br>
+	                            <div id="qna_txt">
+	                                <p align="center">Q&A 내역이 없습니다.</p>
+	                            </div>
+	                        </td>
+	                    </tr>
+	                    <tr>
+	                    </tr>
+					<% }else{ %>
+                    <!--Q&A 내역이 있을 경우 + 답변완료일 경우 -->
+	                    <% for(Qna q : list) {%>
+			                    <tr class="qustion">
+			                      <td id="table_category"><%= q.getCategoryCode() %></td>
+			                      <td><%= q.getQnaTitle() %></td>
+			                      <td><%= q.getCreateDate() %></td>
+			                      <td id="table_answer"><%= q.getMemNoTwo() %>
+			                      </td>
+			                    </tr>
+			                    <tr class="qustion_open">
+			                        <td></td>
+			                        <td colspan="3">
+			                            <div>
+			                                <p>Q.</p>
+			                                	문의상품 | <%= q.getTitle() %> <br><br>
+			                                <strong><%= q.getqContent() %></strong>
+			                                <hr>
+			                                <p>A. </p> 
+			                                	답변일 | <%= q.getaCreateDate() %> <br><br>
+			                                	<strong><%= q.getaContent() %></strong>
+			                            </div>
+			                        </td> 
+			                    </tr>
+                        <% } %>
+                    <% } %>                  
                     <tr>
-                        <td colspan="4" >
-                            <div id="exclamationmark_icon">
-                                <img src="<%=request.getContextPath() %>/resources/images/exclamationmark.png" width="70px" height="70px"> 
-                            </div>
-                            <br>
-                            <div id="qna_txt">
-                                <p align="center">Q&A 내역이 없습니다.</p>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>-->
-
-                    <!--Q&A 내역이 있을 경우-->
-                    
-                    <tr class="qustion">
-                      <td id="table_category">기타</td>
-                      <td>1인당 몇장까지 구매 가능한가요?</td>
-                      <td>2021-11-14</td>
-                      <td id="table_answer">답변대기</td>
-                    </tr>
-                    <tr class="qustion_open">
-                        <td></td>
-                        <td colspan="3">
-                            <div>
-                                <p>Q.</p>
-                                	문의상품 | 앨리스 달튼 브라운 전시 <br><br>
-                                <strong>1인당 몇장까지 구매 가능한가요?</strong>
-                                <hr>
-                                <p>A.</p> 
-                                	반갑습니다. 다모아트입니다. <br>
-                                	현재 ~~~~
-                            </div>
-                        </td> 
-                    </tr>                  
-                    <tr>
                         <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
                     </tr>
-                  </tbody>
-                </table>
-              </div>   
-            
-            </div>
-            <script>
+             <script>
                 $(function(){
                     $(".qustion").click(function(){
                         const $tr = $(this).next();
@@ -338,8 +337,14 @@
                             $tr.hide();
                         }
                     })
+                    
                 })
             </script>
+                  </tbody>
+                </table>
+              </div>   
+            
+            </div>
         </div>
 
         
