@@ -137,77 +137,81 @@
         <br>
         <hr>
         <br><br>
-        <div class="detail-area">
-            <div class="title">
-                <%= q.getqCategoryCode() %>&nbsp;&nbsp;&nbsp;<%= q.getqTitle() %>
+        <form action="<%=contextPath %>/adminInsert.qa" method="post">
+            <div class="detail-area">
+                
+                <div class="title">
+                    <%= q.getqCategoryCode() %>&nbsp;&nbsp;&nbsp;<%= q.getqTitle() %>
+                </div>
+                <div class="detail-data">
+                    <div class="writer">
+                        <%= q.getqWriter() %>
+                    </div>
+                    <div class="date">
+                        <%= q.getCreateDate() %>
+                    </div>
+                    <div class="answer" align="right">
+                        <% if(q.getaContent() != null) { %>
+                                	답변완료
+                        <% }else { %>
+                                	미답변
+                        <% } %>
+                    </div>
+                </div>
+                <% if(q.getpNo() != null) { %>
+                    <div class="product">
+                        <img src="<%=contextPath%>/<%= q.getpMainImg() %>" width="100" height="130">
+                        <%= q.getpNo() %>
+                    </div>
+                <% } %>
+                <div class="qcontent">
+                    <span>Q</span> <br>
+                    <% if(at != null) {%>
+                        <img src="<%=contextPath%>/<%=at.getFilePath() + at.getChangeName()%>" width="400" height="300"> <br>
+                    <% } %>
+                    <%= q.getqContent() %>
+                </div>
+                <% if(q.getaContent() != null) { %>
+                
+                    <div class="detail-data">
+                        <div class="writer">
+                            <%= q.getaWriter() %>
+                        </div>
+                        <div class="date">
+                            <%= q.getaCreateDate() %>
+                        </div>
+                    </div>    
+                    
+                    <div class="acontent">
+                        <span>A</span> <br>
+                        <%= q.getaContent() %>
+                    </div>
+                <% }else { %>
+                    <div class="detail-data">
+                                            답변 내용
+                    </div>    
+                    
+                    <div class="acontent">
+                        <input type="hidden" name="qno" vale="<%= q.getqNo() %>">
+                        <textarea name="answer" rows="15" required style="resize:none;"></textarea>
+                    </div>
+                <% } %>
+                
             </div>
-            <div class="detail-data">
-                <div class="writer">
-                    <%= q.getqWriter() %>
+            <div class="button">
+                <div>
+                    <a id="list" href="<%= contextPath %>/adminList.qa?cpage=1" class="btn btn-sm">목록가기</a>			
                 </div>
-                <div class="date">
-                    <%= q.getCreateDate() %>
-                </div>
-                <div class="answer" align="right">
+                <div align="right">
+                    <a id="delete" href="" class="btn btn-sm">삭제하기</a>
                     <% if(q.getaContent() != null) { %>
-                        	답변완료
+                        <a id="update" href="<%=contextPath %>/adminUpdateForm.qa?qno=<%=q.getqNo() %>" class="btn btn-sm">수정하기</a>
                     <% }else { %>
-                        	미답변
+                        <button id="update" type="submit" class="btn btn-sm">등록하기</button>
                     <% } %>
                 </div>
             </div>
-            <% if(q.getpNo() != null) { %>
-                <div class="product">
-                    <img src="<%=contextPath%>/<%= q.getpMainImg() %>" width="100" height="130">
-                    <%= q.getpNo() %>
-                </div>
-            <% } %>
-            <div class="qcontent">
-                <span>Q</span> <br>
-                <% if(at != null) {%>
-                	<img src="<%=contextPath%>/<%=at.getFilePath() + at.getChangeName()%>" width="400" height="300"> <br>
-                <% } %>
-			    <%= q.getqContent() %>
-            </div>
-            <% if(q.getaContent() != null) { %>
-            
-	            <div class="detail-data">
-	                <div class="writer">
-	                    <%= q.getaWriter() %>
-	                </div>
-	                <div class="date">
-	                    <%= q.getaCreateDate() %>
-	                </div>
-	            </div>    
-	            
-	            <div class="acontent">
-	            	<span>A</span> <br>
-	            	<%= q.getaContent() %>
-	            </div>
-            <% }else { %>
-            	<div class="detail-data">
-	                                     답변 내용
-	            </div>    
-	            
-	            <div class="acontent">
-	            	<textarea name="content" id="" rows="15" required style="resize:none;"></textarea>
-	            </div>
-            <% } %>
-            
-        </div>
-        <div class="button">
-            <div>
-                <a id="list" href="<%= contextPath %>/adminList.qa?cpage=1" class="btn btn-sm">목록가기</a>			
-            </div>
-            <div align="right">
-                <a id="delete" href="" class="btn btn-sm">삭제하기</a>
-                <% if(q.getaContent() != null) { %>
-                    <a id="update" href="<%=contextPath %>/adminUpdateForm.qa?qno=<%=q.getqNo() %>" class="btn btn-sm">수정하기</a>
-                <% }else { %>
-                	<a id="update" href="<%=contextPath %>/adminInsert.qa" class="btn btn-sm">등록하기</a>
-                <% } %>
-            </div>
-        </div>
+        </form>
             
     </div>
     
