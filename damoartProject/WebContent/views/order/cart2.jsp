@@ -126,7 +126,7 @@
             </tr>
 
 	<!-- 로그인 조건 -->
-	<% if (loginUser != null && loginUser.getMemNo().equals()) { %>
+	<% if (loginUser != null ) { %>
             <!--상품 없을 때-->
             <% if(list.isEmpty()) { %>            
             <tr>
@@ -140,7 +140,23 @@
             <% } else { %>
             
             <% for(Cart c : list) { %>
+            <% if( c.getSoldOut().equals("N")) { %>(
             <div>
+            
+            <!--상품 품절일 때-->
+            <tr id="cart_content">
+                <td width="50"><input type="checkbox"></td>
+                <td width="200"><img src= "<%=request.getContextPath()%>/resources/images/product/1M.gif" width="80px" height="80px"></td>
+                <td width="200" id="soldout">
+						   <%= c.getTitle() %>
+                      <br> <%= c.getArea() %>
+                      <br><%= c.getsDate() %> ~ <%= c.geteDate() %>
+                </td>                           
+                <td id="soldout_item" colspan="4" width="200"><b>구매 할 수 없는 상품입니다</b></td>
+           
+                  <%} else { %>
+            </div>
+ 			</tr> 
                 <tr id="cart_content">
                     <td width="50"><input type="checkbox"></td>
                     <td width="200"><img src= "<%=request.getContextPath()%> 이미지 " width="80px" height="80px"></td>
@@ -149,28 +165,37 @@
                       <br> <%= c.getArea() %>
                       <br><%= c.getsDate() %> ~ <%= c.geteDate() %>
                     </td>                           
-                    <td width="50"><select name="option">
-                        	<%= c.getCartOpt() %>
+                    <td width="50">
+                     <% if (c.getCartOpt().equals("C")) { %>
+                 	   어린이
+                    <% } else if (c.getCartOpt().equals("T")) { %>
+                                           청소년
+                    <% } else { %>
+                                           성인
+                    <% } %>
                     </td>
                     <td width="50"><%= c.getCartCount() %></td>
-                    <td width="50">가격</td>
-                    <td width="50">적립금</td>
+                    <td width="50">
+ 				    <% if (c.getCartOpt().equals("C")) { %>
+                    <%= c.getcPrice() %>
+                    <% } else if (c.getCartOpt().equals("T")) { %>
+                    <%=c.gettPrice() %>
+                    <% } else { %>
+                    <%=c.getaPrice() %>
+                    <% } %>
+                    </td>
+                    <td width="50">
+					<% if (c.getCartOpt().equals("C")) { %>
+                    <%= c.getcPrice()/100 %>
+                    <% } else if (c.getCartOpt().equals("T")) { %>
+                    <%=c.gettPrice()/100 %>
+                    <% } else { %>
+                    <%=c.getaPrice()/100 %>
+                    <% } %>
+					</td>
                 </tr>
-                  
-            </div>
-
-            <!--상품 품절일 때-->
-            
-            <tr id="cart_content">
-                <td width="50"><input type="checkbox"></td>
-                <td width="200"><img src= "<%=request.getContextPath()%>/resources/images/product/1M.gif" width="80px" height="80px"></td>
-                <td width="200" id="soldout">
-                    영국 테이트미술관 특별전
-                    <br>북서울미술관
-                    <br>2021.12.21 ~ 22.05.08 
-                </td>                           
-                <td id="soldout_item" colspan="4" width="200"><b>구매 할 수 없는 상품입니다</b></td>
-            </tr>   
+  
+            <% } %>
 		<%} %>
 	<%} %>
 	<%} %>

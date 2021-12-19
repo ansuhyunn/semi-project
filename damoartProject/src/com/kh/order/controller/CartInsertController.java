@@ -30,20 +30,21 @@ public class CartInsertController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int cartMem = Integer.parseInt(request.getParameter("cartMem"));
-		int cartP = Integer.parseInt(request.getParameter("cartP"));
+		int memNo = Integer.parseInt(request.getParameter("memNo"));
+		int pNo = Integer.parseInt(request.getParameter("pNo"));
 		String cartOpt = request.getParameter("cartOpt");
 		int count = Integer.parseInt(request.getParameter("count"));
 		
 		Cart c = new Cart();
-		c.setcartMem(cartMem);
-		c.setCartP(cartP);
+		c.setmemNo(memNo);
+		c.setpNo(pNo);
 		c.setCartOpt(cartOpt);
 		c.setCartCount(count);
 		
+		/*
 		int result = new CartService().insertCart(c);
 		response.getWriter().print(result);
-		
+		*/
 	}
 
 	/**

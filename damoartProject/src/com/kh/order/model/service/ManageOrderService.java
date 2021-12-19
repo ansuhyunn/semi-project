@@ -1,7 +1,6 @@
 package com.kh.order.model.service;
 
-import static com.kh.common.JDBCTemplate.close;
-import static com.kh.common.JDBCTemplate.getConnection;
+import static com.kh.common.JDBCTemplate.*;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -29,6 +28,22 @@ public class ManageOrderService {
 		close (conn);		
 		return list;
 
+	}
+	
+	public int updateOrderCancel(ManageOrder m) {
+		
+		Connection conn = getConnection();
+		int result = new ManageOrderDao().updateOrderCancel(conn, m);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		
+		return result;
+		
 	}
 	
 }

@@ -11,11 +11,16 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import javax.servlet.http.HttpSession;
+
+import com.kh.member.model.vo.Member;
 import com.kh.order.model.vo.Cart;
 
 public class CartDao {
 
 	private Properties prop = new Properties();
+	
+	
 	
 	public CartDao() {
 
@@ -35,25 +40,31 @@ public class CartDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, memNo);
-			
+			pstmt.setInt(1, 5); // memNo으로 바꿔야됨
 			rset = pstmt.executeQuery();
 			
+			System.out.println("start " + pstmt.toString());
+			
 			while(rset.next()) {
+
+				System.out.println("add");
+				
 				list.add(new Cart(rset.getString("title"),
 								  rset.getString("area"),
-								  rset.getString("sDate"),
-								  rset.getString("eDate"),
-								  rset.getInt("aPrice"),
-								  rset.getInt("tPrice"),
-								  rset.getInt("cPrice"),
-								  rset.getString("mainImage"),
-								  rset.getString("soldOut"),
-								  rset.getString("cartOpt"),
-								  rset.getInt("cartCount"),
-								  rset.getInt("cartMem")
+								  rset.getString("s_date"),
+								  rset.getString("e_date"),
+								  rset.getInt("a_price"),
+								  rset.getInt("t_price"),
+								  rset.getInt("c_price"),
+								  rset.getString("main_img"),
+								  rset.getString("soldout"),
+								  rset.getString("cart_opt"),
+								  rset.getInt("cart_count"),
+								  rset.getInt("mem_no")
 								  ));
 			}
+
+			System.out.println("end");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
