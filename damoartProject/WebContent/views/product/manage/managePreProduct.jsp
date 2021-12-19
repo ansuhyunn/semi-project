@@ -2,11 +2,11 @@
     pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.product.model.vo.Product, com.kh.common.model.vo.PageInfo" %>
 <% 
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
-	ArrayList<Product> IngList = (ArrayList<Product>)request.getAttribute("IngList");
+	ArrayList<Product> preList = (ArrayList<Product>)request.getAttribute("preList");
 	
 	int currentPage = pi.getCurrentPage(); 
-	int startPage = pi.getStartPage(); 
-	int endPage = pi.getEndPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage(); 
 	int maxPage = pi.getMaxPage();
 %>
     
@@ -24,8 +24,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <style>
-div{ box-sizing:border-box; }
-    .wrapper{
+	div{ box-sizing:border-box; }
+	.wrapper{
         width:1300px; 
         height:auto; 
         padding:20px;
@@ -77,18 +77,17 @@ div{ box-sizing:border-box; }
     	background:rgb(240, 239, 239);
     	cursor:pointer;
     }
-
 </style>
 
 </head>
 <body>
 
-	<%@ include file="../common/manageMenubar_2.jsp" %>
+	<%@ include file="../../common/manageMenubar_2.jsp" %>
 	
     <div class="wrapper">
 
-		<div class="name">
-			<h4>진행중 상품</h4>
+        <div class="name">
+			<h4>오픈예정 상품</h4>
 			<br>
 		</div>
 		<hr class="my-2">
@@ -118,11 +117,10 @@ div{ box-sizing:border-box; }
 	                <th>관람연령</th>
 	                <th>시작일</th>
 	                <th>종료일</th>
-	                <th>품절여부</th>
 	            </tr>
 	        </thead>
 	        <tbody>
-	            <% for(Product p : IngList){ %>
+	            <% for(Product p : preList){ %>
 		            <tr>
 		                <td><input type="checkbox"></td>
 		                <td><%= p.getpNo() %></td>
@@ -134,7 +132,6 @@ div{ box-sizing:border-box; }
 		                <td><%= p.getAge() %></td>
 		                <td><%= p.getsDate() %></td>
 		                <td><%= p.geteDate() %></td>
-		                <td><%= p.getSoldOut() %></td>
 		            </tr>
 		        <% } %>
 		     </tbody>    
@@ -143,7 +140,7 @@ div{ box-sizing:border-box; }
         <div class="paging-area" align="center">
         
 			<% if(currentPage != 1){ %>
-            	<button class="btn" onclick="location.href='<%=contextPath%>/manageIng.man?cpage=<%=currentPage-1%>';">&lt;</button>
+            	<button class="btn" onclick="location.href='<%=contextPath%>/managePre.man?cpage=<%=currentPage-1%>';">&lt;</button>
             <% } %>
             
             <!-- 페이지 p가 startPage부터 endPage까지 1씩 증가 --> 
@@ -151,12 +148,12 @@ div{ box-sizing:border-box; }
             	<% if(currentPage == p) {%>
             		<button class="btn" disabled><%= p %></button>		
 	            <% }else { %>
-	            	<button class="btn" onclick="location.href='<%=contextPath%>/manageIng.man?cpage=<%= p %>';"><%= p %></button>
+	            	<button class="btn" onclick="location.href='<%=contextPath%>/managePre.man?cpage=<%= p %>';"><%= p %></button>
 	            <% } %>
             <% } %>
             
             <% if(currentPage != maxPage){%>
-            	<button class="btn" onclick="location.href='<%=contextPath%>/manageIng.man?cpage=<%=currentPage+1%>';">&gt;</button>
+            	<button class="btn" onclick="location.href='<%=contextPath%>/managePre.man?cpage=<%=currentPage+1%>';">&gt;</button>
 			<% } %>
 			
         </div>
@@ -169,7 +166,7 @@ div{ box-sizing:border-box; }
 	    		})
 	    	})
 	    </script>
-    
+        
     </div>
     
 

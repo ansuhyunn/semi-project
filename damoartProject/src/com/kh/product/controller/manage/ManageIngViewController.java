@@ -59,7 +59,7 @@ public class ManageIngViewController extends HttpServlet {
 		
 		request.setAttribute("pi", pi);	
 		request.setAttribute("IngList", IngList);
-		request.getRequestDispatcher("views/product/manageIngProduct.jsp").forward(request, response);
+		request.getRequestDispatcher("views/product/manage/manageIngProduct.jsp").forward(request, response);
 		
 	}
 

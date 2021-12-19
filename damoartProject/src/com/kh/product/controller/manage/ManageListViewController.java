@@ -59,7 +59,7 @@ public class ManageListViewController extends HttpServlet {
 		
 		request.setAttribute("pi", pi);	
 		request.setAttribute("allList", allList);
-		request.getRequestDispatcher("views/product/manageListProduct.jsp").forward(request, response);
+		request.getRequestDispatcher("views/product/manage/manageListProduct.jsp").forward(request, response);
 		
 	}
 

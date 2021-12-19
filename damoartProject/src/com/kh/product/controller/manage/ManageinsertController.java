@@ -1,8 +1,8 @@
 package com.kh.product.controller.manage;
 
+import java.io.File;
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -46,7 +46,7 @@ public class ManageinsertController extends HttpServlet {
 			
 			String savePath = request.getSession().getServletContext().getRealPath("/resources/product/");
 			
-			MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "utf-8", new MyFileRenamePolicy());
+			MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "UTF-8", new MyFileRenamePolicy());
 	
 			String title = multiRequest.getParameter("title");
 			String region = multiRequest.getParameter("region");
@@ -58,9 +58,23 @@ public class ManageinsertController extends HttpServlet {
 			int aPrice = Integer.parseInt(multiRequest.getParameter("aPrice"));
 			int tPrice = Integer.parseInt(multiRequest.getParameter("tPrice"));
 			int cPrice = Integer.parseInt(multiRequest.getParameter("cPrice"));
-			String main = multiRequest.getParameter("main");
-			String detail = multiRequest.getParameter("detail");
+			String mainImg = multiRequest.getParameter("main");
+			String detailImg = multiRequest.getParameter("detail");
 			String etc = multiRequest.getParameter("etc");
+			
+			Attachment at1 = null;
+			Attachment at2 = null;
+			if(multiRequest.getOriginalFileName("main") != null && multiRequest.getOriginalFileName("detail") != null) {
+				at1 = new Attachment();
+				at1.setOriginName(multiRequest.getOriginalFileName("main"));
+				at1.setChangeName(multiRequest.getFilesystemName("main"));
+				at1.setFilePath("resources/product/");
+				
+				at2 = new Attachment();
+				at2.setOriginName(multiRequest.getOriginalFileName("detail"));
+				at2.setChangeName(multiRequest.getFilesystemName("detail"));
+				at2.setFilePath("resources/product/");
+			}
 			
 			Product p = new Product();
 			p.setTitle(title);
@@ -73,32 +87,28 @@ public class ManageinsertController extends HttpServlet {
 			p.setaPrice(aPrice);
 			p.settPrice(tPrice);
 			p.setcPrice(cPrice);
-			p.setMainImg(main);
-			p.setDetailImg(detail);
+			p.setMainImg(at1.getFilePath() + at1.getChangeName());
+			p.setDetailImg(at2.getFilePath() + at2.getChangeName());
 			p.setEtc(etc);
 			
-			Attachment at = new Attachment();
-			at.setOriginName(multiRequest.getOriginalFileName("upfile"));
-			at.setChangeName(multiRequest.getFilesystemName("upfile"));
-			at.setFilePath("resources/board_upfiles/");
-			
-			int currval = new ManageService().selectCurrval();
-			
-			int result = new ManageService().insertProduct(p, at, currval);
+			int result = new ManageService().insertProduct(p, at1, at2);
 		
+			HttpSession session = request.getSession();
 			if(result > 0) {
 				
-				HttpSession session = request.getSession();
-				session.setAttribute("alertMsg", "상품 등록 완료");
+				request.getSession().setAttribute("alertMsg", "상품 등록 완료");
 				
 				// 성공 => 상품 메인 페이지 재요청
-				response.sendRedirect(request.getContextPath() + "/list.bo?cpage=1");
+				response.sendRedirect(request.getContextPath() + "/managelist.man?cpage=1");
 				
 			} else {
 				// 실패 => 에러페이지 띄우기
+				if(at1 != null || at2 != null) {
+					new File(savePath + at1.getChangeName()).delete();		// 첨부파일 삭제
+					new File(savePath + at2.getChangeName()).delete();	
+				}
 				request.setAttribute("errorMsg", "상품 등록 실패");			//값을 담을 땐 setAttribute
-				RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
-				view.forward(request, response);
+				request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 			}	
 		
 		}//큰 if

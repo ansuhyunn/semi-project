@@ -39,7 +39,7 @@ public class ProductDetailViewController extends HttpServlet {
 		request.setAttribute("p", p);
 //		request.setAttribute("at", at);
 		
-		request.getRequestDispatcher("views/product/manageProductDetailView.jsp").forward(request, response);
+		request.getRequestDispatcher("views/product/manage/manageProductDetailView.jsp").forward(request, response);
 	}
 
 	/**

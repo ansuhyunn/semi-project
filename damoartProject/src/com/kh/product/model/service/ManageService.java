@@ -76,19 +76,20 @@ public class ManageService {
 	
 	
 	// 전시 등록
-	public int insertProduct(Product p, Attachment at, int currval) {
+	public int insertProduct(Product p, Attachment at1, Attachment at2) {
 		Connection conn = getConnection();
 		int result1 = new ManageDao().insertProduct(conn, p);
-		int result2 = new ManageDao().insertAttachment(conn, at);
+		int result2 = new ManageDao().insertMainAttachment(conn, at1);
+		int result3 = new ManageDao().insertDetailAttachment(conn, at2);
 		
-		if(result1 > 0 && result2 > 0) {
+		if(result1 > 0 && result2 > 0 && result3 > 0) {
 			commit(conn);
 		}else {
 			rollback(conn);
 		}
 		
 		close(conn);
-		return result1 * result2;
+		return result1 * result2 * result3;
 	}
 	
 	public Product productDetailView(int pNo) {

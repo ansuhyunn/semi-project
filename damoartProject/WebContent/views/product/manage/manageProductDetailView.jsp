@@ -7,7 +7,8 @@
     
 <% 
 	Product p = (Product)request.getAttribute("p");
-	//Attachment at = (Attachment)request.getAttribute("at");
+	Attachment at1 = (Attachment)request.getAttribute("at1");
+	Attachment at2 = (Attachment)request.getAttribute("at2");
 %>
 <!DOCTYPE html>
 <html>
@@ -50,7 +51,7 @@
 </head>
 <body>
 
-	<%@ include file="../common/manageMenubar_2.jsp" %>
+	<%@ include file="../../common/manageMenubar_2.jsp" %>
 	
     <div class="wrapper">
         <div class="name">
@@ -111,13 +112,21 @@
                 <tr>
                     <th>메인포스터</th>
                     <td>
-                    	<img src="<%=contextPath%>/<%= p.getMainImg() %>" width="500" height="350">
+	                    <% if(p.getMainImg().length() > 5){ %>
+	                    	<img src="<%=contextPath%>/<%= p.getMainImg() %>" width="500" height="350">
+	                    <%} else{ %>
+	                    	<img src="<%=request.getContextPath()%>/resources/product/<%= p.getMainImg() %>" width="500" height="350">
+	                    <%} %>
                     </td>
                 </tr>
                 <tr>
                     <th>상세포스터</th>
                     <td>
-                    	<img src="<%=contextPath%>/<%= p.getDetailImg() %>" width="500" height="350">
+                    	<% if(p.getMainImg().length() > 5){ %>
+                    		<img src="<%=contextPath%>/<%= p.getDetailImg() %>" width="500" height="350">
+	                    <%} else{ %>
+	                    	<img src="<%=request.getContextPath()%>/resources/product/<%= p.getDetailImg() %>" width="500" height="350">
+	                    <%} %>
                     </td>
                 </tr>
                 <tr>

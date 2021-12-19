@@ -246,6 +246,8 @@ public class ManageDao {
 			pstmt.setString(12, p.getDetailImg());
 			pstmt.setString(13, p.getEtc());
 			
+			result = pstmt.executeUpdate();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -256,28 +258,20 @@ public class ManageDao {
 	}
 	
 	
-	
-	
-	// 첨부파일 업로드
-	public int insertAttachment(Connection conn, Attachment at) {
+	// 메인이미지 업로드 : 
+	public int insertMainAttachment(Connection conn, Attachment at1) {
 		int result = 0;
 		PreparedStatement pstmt = null;
-		String sql1 = prop.getProperty("currval");
-		String sql2 = prop.getProperty("insertAttachment");
-		
-		ArrayList<String> currval = new ArrayList<>();
+		String sql = prop.getProperty("insertAttachment");
 		
 		try {
-			pstmt = conn.prepareStatement(sql1);
-			
-			
-			
-			pstmt = conn.prepareStatement(sql2);
-			pstmt.setString(1, at.getOriginName());
-			pstmt.setString(2, at.getChangeName());
-			pstmt.setString(3, at.getFilePath());
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, at1.getOriginName());
+			pstmt.setString(2, at1.getChangeName());
+			pstmt.setString(3, at1.getFilePath());
 			
 			result = pstmt.executeUpdate();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -287,6 +281,28 @@ public class ManageDao {
 		return result;
 	}
 	
+	// 디테일이미지 업로드
+	public int insertDetailAttachment(Connection conn, Attachment at2) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertAttachment");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, at2.getOriginName());
+			pstmt.setString(2, at2.getChangeName());
+			pstmt.setString(3, at2.getFilePath());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 	
 	// 등록 전시 조회
 	public Product productDetailView(Connection conn, int pNo) {

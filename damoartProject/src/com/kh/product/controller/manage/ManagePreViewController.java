@@ -59,7 +59,7 @@ public class ManagePreViewController extends HttpServlet {
 		
 		request.setAttribute("pi", pi);	
 		request.setAttribute("preList", preList);
-		request.getRequestDispatcher("views/product/managePreProduct.jsp").forward(request, response);
+		request.getRequestDispatcher("views/product/manage/managePreProduct.jsp").forward(request, response);
 		
 	}
 

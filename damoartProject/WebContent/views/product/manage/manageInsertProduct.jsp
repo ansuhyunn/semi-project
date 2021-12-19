@@ -45,7 +45,7 @@
 </head>
 <body>
 
-	<%@ include file="../common/manageMenubar_2.jsp" %>
+	<%@ include file="../../common/manageMenubar_2.jsp" %>
 	
     <div class="wrapper">
         <div class="name" style="font-size: 30px; font-weight: bolder;">
