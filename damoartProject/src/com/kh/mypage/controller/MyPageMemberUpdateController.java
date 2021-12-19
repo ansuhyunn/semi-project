@@ -53,10 +53,11 @@ public class MyPageMemberUpdateController extends HttpServlet {
 		Member updateMember = new MemberService().updateMember(m);
 
 		
-		HttpSession session = request.getSession();
+		
 		if(updateMember == null) { // 실패
-			session.setAttribute("errorMsg", "회원정보 수정에 실패했습니다.");
+			request.setAttribute("errorMsg", "회원정보 수정에 실패했습니다.");
 		}else {
+			HttpSession session = request.getSession();
 			session.setAttribute("loginUser", updateMember);
 			session.setAttribute("alertMsg", "회원님의 정보가 수정되었습니다.");
 			

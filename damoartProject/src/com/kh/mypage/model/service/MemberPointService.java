@@ -16,4 +16,11 @@ public class MemberPointService {
 		close(conn);
 		return list;
 	}
+	
+	public Point memberPoint(String memId) {
+		Connection conn = getConnection();
+		Point poi = new MemberPointDao().memberPoint(conn, memId);
+		close(conn);
+		return poi;
+	}
 }

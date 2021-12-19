@@ -155,7 +155,11 @@
         padding-left:30px;
     }
 
-    .contents p{font-size:13px;}
+    .contents p{
+        font-size:13px;
+        color:rgb(64, 64, 64);
+        letter-spacing: -.3px;
+    }
 </style>
 </head>
 <body>

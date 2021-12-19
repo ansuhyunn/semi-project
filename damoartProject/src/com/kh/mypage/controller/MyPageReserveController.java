@@ -11,20 +11,20 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.kh.member.model.vo.Member;
-import com.kh.mypage.model.service.MemberPointService;
-import com.kh.mypage.model.vo.Point;
+import com.kh.mypage.model.service.MemberReserveService;
+import com.kh.mypage.model.vo.Order;
 
 /**
- * Servlet implementation class MyPagePointListController
+ * Servlet implementation class MyPageReserveController
  */
-@WebServlet("/pointList.mp")
-public class MyPagePointListController extends HttpServlet {
+@WebServlet("/reserve.mp")
+public class MyPageReserveController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyPagePointListController() {
+    public MyPageReserveController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,14 +37,9 @@ public class MyPagePointListController extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		HttpSession session = request.getSession();
-		String memId = ((Member)session.getAttribute("loginUser")).getMemId();
+		int memNo = ((Member)session.getAttribute("loginUser")).getMemNo();
 		
-		ArrayList<Point> list = new MemberPointService().selectPoint(memId);
-		Point poi = new MemberPointService().memberPoint(memId);
-		
-		request.setAttribute("list", list);
-		request.setAttribute("poi", poi);
-		request.getRequestDispatcher("views/mypage/pointCheck.jsp").forward(request, response);
+		ArrayList<Order> list = new MemberReserveService().selectReserve(memNo);
 	}
 
 	/**

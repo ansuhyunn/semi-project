@@ -55,7 +55,33 @@ public class MemberPointDao {
 		return list;
 	}
 	
-	
+	public Point memberPoint(Connection conn, String memId) {
+		Point poi = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("memberPoint");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memId);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				poi = new Point(rset.getInt("point"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return poi;
+	}
 	
 	
 }

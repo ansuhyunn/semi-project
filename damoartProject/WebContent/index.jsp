@@ -11,7 +11,7 @@
 	
 	<!-- 올라가라가라가라!!!! -->
 	
-	<%@ include file="views/common/mainPage.jsp" %>
+	<%@ include file="views/common/menubar.jsp" %>
 	
 </body>
 </html>
