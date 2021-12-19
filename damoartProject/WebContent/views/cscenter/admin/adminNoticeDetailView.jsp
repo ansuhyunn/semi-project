@@ -132,15 +132,13 @@
                 </div>
             </div>
             <div class="content">
-                <% if(atList == null) {%>
-                		
-                <% }else { %>
+                <% if(atList != null) {%>
                 	<% for(Attachment a : atList) { %>
                 		<img src="<%=contextPath%>/<%=a.getFilePath() + a.getChangeName()%>" width="400" height="300">
                 		<br><br>
                 	<% } %>
+                		
                 <% } %>
-
 			    <%= n.getNoticeContent() %>
             </div>
         </div>

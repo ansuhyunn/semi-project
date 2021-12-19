@@ -124,6 +124,7 @@
                 <% }else { %>
                 	<% for(Attachment a : atList) { %>
                 		<img src="<%=contextPath%>/<%=a.getFilePath() + a.getChangeName()%>" width="400" height="300">
+                        <br><br>
                 	<% } %>
                 <% } %>
 			    <%= n.getNoticeContent() %>

@@ -124,7 +124,7 @@ private Properties prop = new Properties();
 						    rset.getString("q_title"),
 						    rset.getString("q_content"),
 						    rset.getString("create_date"),
-						    rset.getString("q_category_code"),
+						    category,
 						    rset.getString("a_content"),
 						    rset.getString("a_create_date"),
 						    rset.getString("nickname"),

@@ -1,7 +1,6 @@
 package com.kh.cscenter.controller.admin;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,20 +9,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.common.model.vo.Attachment;
-import com.kh.cscenter.model.service.NoticeService;
-import com.kh.cscenter.model.vo.Notice;
+import com.kh.cscenter.model.service.QnaService;
+import com.kh.cscenter.model.vo.QnA;
 
 /**
- * Servlet implementation class AdminNoticeDetailController
+ * Servlet implementation class AdminQnaDetailController
  */
-@WebServlet("/adminDetail.no")
-public class AdminNoticeDetailController extends HttpServlet {
+@WebServlet("/adminDetail.qa")
+public class AdminQnaDetailController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminNoticeDetailController() {
+    public AdminQnaDetailController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,18 +31,17 @@ public class AdminNoticeDetailController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int qNo = Integer.parseInt(request.getParameter("qno"));
 		
-		int noticeNo = Integer.parseInt(request.getParameter("nno"));
+		QnaService qService = new QnaService();
 		
-		NoticeService nService = new NoticeService();
+		QnA q = qService.selectQnA(qNo);
+		Attachment at = qService.selectAttachment(qNo);
 		
-		Notice n = nService.selectNotice(noticeNo);
-		ArrayList<Attachment> atList = nService.selectAttachment(noticeNo);
+		request.setAttribute("q", q);
+		request.setAttribute("at", at);
 		
-		request.setAttribute("n", n);
-		request.setAttribute("atList", atList);
-		
-		request.getRequestDispatcher("views/cscenter/admin/adminNoticeDetailView.jsp").forward(request, response);
+		request.getRequestDispatcher("views/cscenter/admin/adminQnaDetailView.jsp").forward(request, response);
 	}
 
 	/**

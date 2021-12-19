@@ -47,7 +47,7 @@
         background:rgb(203, 185, 153);
     }
     
-    tbody th{
+    tbody td{
         font-weight:500;
         font-size:14px;
     }
@@ -83,16 +83,16 @@
                     <tbody>
                     	<% if(list.isEmpty()) { %>
 	                        <tr>
-	                            <th colspan="5">게시글이 없습니다.</th>
+	                            <td colspan="5">게시글이 없습니다.</td>
 	                        </tr>
                         <% }else { %>
                         	<%for(Notice n : list) { %>
 		                        <tr>
-		                            <th><%=n.getNoticeNo() %></th>
-		                            <th><%=n.getNoticeTitle() %></th>
-		                            <th><%=n.getNoticeWriter() %></th>
-		                            <th><%=n.getCreateDate() %></th>
-		                            <th><%=n.getCount() %></th>
+		                            <td><%=n.getNoticeNo() %></td>
+		                            <td><%=n.getNoticeTitle() %></td>
+		                            <td><%=n.getNoticeWriter() %></td>
+		                            <td><%=n.getCreateDate() %></td>
+		                            <td><%=n.getCount() %></td>
 		                        </tr>
                         	<% } %>
                         <% } %>

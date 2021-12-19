@@ -47,7 +47,7 @@
         background:rgb(203, 185, 153);
     }
     
-    tbody th{
+    tbody td{
         font-weight:500;
         font-size:14px;
     }
@@ -91,28 +91,28 @@
                     <tbody>
                     	<% if(list.isEmpty()) { %>
 	                        <tr>
-	                            <th colspan="6">게시글이 없습니다.</th>
+	                            <td colspan="6">게시글이 없습니다.</td>
 	                        </tr>
                         <% }else { %>
                         	<%for(QnA q : list) { %>
 		                        <tr>
-		                            <th><%=q.getqNo() %></th>
-                                    <th><%=q.getqCategoryCode()%></th>
-		                            <th>
+		                            <td><%=q.getqNo() %></td>
+                                    <td><%=q.getqCategoryCode()%></td>
+		                            <td>
 		                            	<%=q.getqTitle() %>
 		                            	<% if(q.getSecret().equals("Y")) { %>
 		                            		<i class="fas fa-lock"></i>
 		                            	<% } %>
-		                            </th>
-		                            <th><%=q.getqWriter() %></th>
-		                            <th><%=q.getCreateDate() %></th>
-		                            <th>
+		                            </td>
+		                            <td><%=q.getqWriter() %></td>
+		                            <td><%=q.getCreateDate() %></td>
+		                            <td>
 			                            <% if(q.getaContent() != null) { %>
 											답변 완료
 		                            	<% }else { %>
 		                            		미답변
 		                            	<% } %>
-		                            </th>
+		                            </td>
 		                        </tr>
                         	<% } %>
                         <% } %>

@@ -51,14 +51,14 @@
         right:0;
     }
 
-    #enroll{
+
+    #delete{
         background-color:rgb(203, 185, 153);
         color:rgb(64, 64, 64);
-        font-weight:600;
     }
-    #delete{
-        background-color:rgb(151, 138, 116);
-        color:white;
+
+    #list-area{
+        text-align:center;
     }
 
     thead{
@@ -100,7 +100,6 @@
                     </form>
                 </div>
                 <div class="button" width="50%">
-                    <a href="<%= contextPath %>/enrollForm.qa" class="btn btn-sm" id="enroll">공지 등록</a>
                     <a href="" class="btn btn-sm" id="delete">선택 삭제</a>
                 </div>
             </div>
@@ -121,29 +120,29 @@
                     <tbody class="qna-tb">
                     	<% if(list.isEmpty()) { %>
 	                        <tr>
-	                            <th colspan="7">게시글이 없습니다.</th>
+	                            <td colspan="7">게시글이 없습니다.</td>
 	                        </tr>
                         <% }else { %>
                         	<%for(QnA q : list) { %>
 		                        <tr>
-                                    <th width="10"><input type="checkbox"></th>
-		                            <th><%=q.getqNo() %></th>
-                                    <th><%=q.getqCategoryCode()%></th>
-		                            <th class="clickTitle">
+                                    <td width="10"><input type="checkbox"></td>
+		                            <td><%=q.getqNo() %></td>
+                                    <td><%=q.getqCategoryCode()%></td>
+		                            <td class="clickTitle">
 		                            	<%=q.getqTitle() %>
 		                            	<% if(q.getSecret().equals("Y")) { %>
 		                            		<i class="fas fa-lock"></i>
 		                            	<% } %>
-		                            </th>
-		                            <th><%=q.getqWriter() %></th>
-		                            <th><%=q.getCreateDate() %></th>
-		                            <th>
+		                            </td>
+		                            <td><%=q.getqWriter() %></td>
+		                            <td><%=q.getCreateDate() %></td>
+		                            <td>
 			                            <% if(q.getaContent() != null) { %>
 											답변 완료
 		                            	<% }else { %>
 		                            		미답변
 		                            	<% } %>
-		                            </th>
+		                            </td>
 		                        </tr>
                         	<% } %>
                         <% } %>

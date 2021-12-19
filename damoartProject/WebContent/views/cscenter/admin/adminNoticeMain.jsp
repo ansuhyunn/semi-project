@@ -60,6 +60,10 @@
         background-color:rgb(151, 138, 116);
         color:white;
     }
+    
+    #list-area{
+        text-align:center;
+    }
 
     thead{
         background:rgb(207, 206, 206);
@@ -120,17 +124,17 @@
                     <tbody class="no-tb">
                     	<% if(list.isEmpty()) { %>
 	                        <tr>
-	                            <th colspan="5">게시글이 없습니다.</th>
+	                            <td colspan="5">게시글이 없습니다.</td>
 	                        </tr>
                         <% }else { %>
                         	<%for(Notice n : list) { %>
 		                        <tr>
-                                    <th><input type="checkbox"></th>
-		                            <th><%=n.getNoticeNo() %></th>
-		                            <th class="clickTitle"><%=n.getNoticeTitle() %></th>
-		                            <th><%=n.getNoticeWriter() %></th>
-		                            <th><%=n.getCreateDate() %></th>
-		                            <th><%=n.getCount() %></th>
+                                    <td><input type="checkbox"></td>
+		                            <td><%=n.getNoticeNo() %></td>
+		                            <td class="clickTitle"><%=n.getNoticeTitle() %></td>
+		                            <td><%=n.getNoticeWriter() %></td>
+		                            <td><%=n.getCreateDate() %></td>
+		                            <td><%=n.getCount() %></td>
 		                        </tr>
                         	<% } %>
                         <% } %>
