@@ -168,16 +168,23 @@ private Properties prop = new Properties();
 		
 	}
 	
-	public int insertAnswer(Connection conn, int qNo, String answer) {
+	public int insertAnswer(Connection conn, int qNo, String answer, int adminNo) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("insertAnswer");
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.set
+			pstmt.setString(1, answer);
+			pstmt.setInt(2, adminNo);
+			pstmt.setInt(3, qNo);
+			
+			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			close(pstmt);
 		}
+		return result;
 	}
 
 }

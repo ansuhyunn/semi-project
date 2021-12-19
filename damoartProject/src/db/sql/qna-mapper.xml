@@ -59,4 +59,12 @@
 		 WHERE REF_B = 'QnA'
 		   AND REF_BNO = ?
 	</entry>
+	
+	<entry key="insertAnswer">
+		UPDATE QNA
+		   SET A_CONTENT = ?
+		     , A_CREATE_DATE = SYSDATE
+		     , MEM_NO2 = ?
+		 WHERE Q_NO = ?
+	</entry>
 </properties>

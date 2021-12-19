@@ -31,13 +31,14 @@ public class AdminQnaInsertControlloer extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		int qNo = Integer.parseInt(request.getParameter("qno"));
+		int adminNo = Integer.parseInt(request.getParameter("adminNo"));
 		String answer = request.getParameter("answer");
 		
-		int result = new QnaService().insertQnA(qNo, answer);
+		int result = new QnaService().insertQnA(qNo, answer, adminNo);
 		
 		if(result > 0) {
 			request.getSession().setAttribute("alertMsg", "답변이 성공적으로 등록되었습니다.");
-			response.sendRedirect(request.getContextPath() + "adminList.qa?cpage=1");
+			response.sendRedirect(request.getContextPath() + "/adminList.qa?cpage=1");
 		}else { //에러페이지
 			
 		}
