@@ -167,5 +167,17 @@ private Properties prop = new Properties();
 		return at;
 		
 	}
+	
+	public int insertAnswer(Connection conn, int qNo, String answer) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertAnswer");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.set
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 }
