@@ -35,7 +35,7 @@ public class CartService {
 		return 0;
 	}
 	*/
-	/*
+	
 	public int insertCart(Cart c) {
 		Connection conn = getConnection();
 		int result = new CartDao().insertCart(conn, c);
@@ -48,5 +48,4 @@ public class CartService {
 		return result;
 	}
 	
-	*/
 }	

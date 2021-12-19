@@ -74,7 +74,6 @@ public class CartDao {
 		return list;
 	} 
 	
-	/*
 	public int insertCart(Connection conn, Cart c) {
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -82,7 +81,7 @@ public class CartDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, c.getMemNo());
+			pstmt.setInt(1, c.getmemNo());
 			pstmt.setInt(2, c.getpNo());
 			pstmt.setString(3, c.getCartOpt());
 			pstmt.setInt(4, c.getCartCount());
@@ -97,5 +96,4 @@ public class CartDao {
 		}
 		return result;
 	}
-	 */
 }

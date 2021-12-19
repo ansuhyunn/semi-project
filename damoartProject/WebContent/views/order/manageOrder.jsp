@@ -241,6 +241,10 @@ ArrayList<ManageOrder> list = (ArrayList<ManageOrder>)request.getAttribute("list
 			    				}
 			    			})
 				        })
+				        
+				        
+				        
+				        
 		         $("#week").click(function(){
 					console.log("11111");
 					var startDt = new Date();
@@ -259,7 +263,7 @@ ArrayList<ManageOrder> list = (ArrayList<ManageOrder>)request.getAttribute("list
 					
 
 					var onemonth = new Date();
-					onemonth.setDate(onemonth.getDate()-30);
+					onemonth.setDate(onemonth.getDate()-7);
 					var weekyear = String(onemonth.getFullYear()); 
 					var weekmonth = new String(onemonth.getMonth()+1); 
 					var weekday = new String(onemonth.getDate());
@@ -319,7 +323,7 @@ ArrayList<ManageOrder> list = (ArrayList<ManageOrder>)request.getAttribute("list
 					if(day.length == 1){ 
 					  day = "0" + day; 
 					}
-					startDt = year.substring(2,4) + month + day;
+					endDt = year.substring(2,4) + month + day;
 					
 
 					var onemonth = new Date();

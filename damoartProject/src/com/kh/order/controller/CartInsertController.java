@@ -6,7 +6,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.kh.member.model.vo.Member;
 import com.kh.order.model.service.CartService;
 import com.kh.order.model.vo.Cart;
 
@@ -30,17 +32,26 @@ public class CartInsertController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int memNo = Integer.parseInt(request.getParameter("memNo"));
+		System.out.println("여기 되나?");
+
+		HttpSession session = request.getSession();
+		int memNo = ((Member)session.getAttribute("loginUser")).getMemNo();
+
+		System.out.println("memNo :" + memNo);
 		int pNo = Integer.parseInt(request.getParameter("pNo"));
+
+		System.out.println("pNo :" + pNo);
 		String cartOpt = request.getParameter("cartOpt");
+
+		System.out.println("cartOpt :" + cartOpt);
 		int count = Integer.parseInt(request.getParameter("count"));
 		
+		System.out.println("count : ");
 		Cart c = new Cart();
 		c.setmemNo(memNo);
 		c.setpNo(pNo);
 		c.setCartOpt(cartOpt);
 		c.setCartCount(count);
-		
 		/*
 		int result = new CartService().insertCart(c);
 		response.getWriter().print(result);
@@ -56,3 +67,20 @@ public class CartInsertController extends HttpServlet {
 	}
 
 }
+
+
+// 디테일 뷰 
+$("A").click(function(){
+	$.ajax({
+		url : "in.ca",
+	   data : {
+	   content:"insertCart",
+	   },
+	   typt : "post",
+	   success:function(result){
+		   console.log("장바구니 담기 성공");
+	   }, eroor:function(){
+		   console.log("장바구니 담기 실패");
+	   })
+	
+	})
