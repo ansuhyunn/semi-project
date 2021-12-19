@@ -2,8 +2,8 @@ package com.kh.order.model.vo;
 
 public class Cart {
 	
-	 private int cartMem;
-	   private int CartP;
+	 private int memNo;
+	   private int pNo;
 	   private String cartOpt; 
 	   private int cartCount;
 	   private String title;
@@ -19,7 +19,7 @@ public class Cart {
 	   public Cart() {}
 
 	   
-	   public Cart(String title, String area, String sDate, String eDate, int aPrice, int tPrice, int cPrice, String mainImage, String soldOut, String cartOpt, int cartCount, int cartMem) {
+	   public Cart(String title, String area, String sDate, String eDate, int aPrice, int tPrice, int cPrice, String mainImage, String soldOut, String cartOpt, int cartCount, int memNo) {
 	      super();
 	      this.title = title;
 	      this.area = area;
@@ -32,16 +32,16 @@ public class Cart {
 	      this.soldOut = soldOut;
 	      this.cartOpt = cartOpt;
 	      this.cartCount = cartCount;
-	      this.cartMem = cartMem;
+	      this.memNo = memNo;
 	      
 	   }
 
 	   
-	   public Cart(int cartMem, int CartP, String cartOpt, int cartCount, String title, String area, String sDate, String eDate,
+	   public Cart(int memNo, int pNo, String cartOpt, int cartCount, String title, String area, String sDate, String eDate,
 	         int aPrice, int tPrice, int cPrice, String mainImage, String soldOut) {
 	      super();
-	      this.cartMem = cartMem;
-	      this.CartP = CartP;
+	      this.memNo = memNo;
+	      this.pNo = pNo;
 	      this.cartOpt = cartOpt;
 	      this.cartCount = cartCount;
 	      this.title = title;
@@ -57,26 +57,26 @@ public class Cart {
 
 
 
-	   public int getcartMem() {
-	      return cartMem;
+	   public int getmemNo() {
+	      return memNo;
 	   }
 
 
 
-	   public void setcartMem(int cartMem) {
-	      this.cartMem = cartMem;
+	   public void setmemNo(int memNo) {
+	      this.memNo = memNo;
 	   }
 
 
 
-	   public int getCartP() {
-	      return CartP;
+	   public int getpNo() {
+	      return pNo;
 	   }
 
 
 
-	   public void setCartP(int CartP) {
-	      this.CartP = CartP;
+	   public void setpNo(int pNo) {
+	      this.pNo = pNo;
 	   }
 
 
@@ -215,7 +215,7 @@ public class Cart {
 
 	   @Override
 	   public String toString() {
-	      return "Cart [cartMem=" + cartMem + ", CartP=" + CartP + ", cartOpt=" + cartOpt + ", cartCount=" + cartCount
+	      return "Cart [memNo=" + memNo + ", pNo=" + pNo + ", cartOpt=" + cartOpt + ", cartCount=" + cartCount
 	            + ", title=" + title + ", area=" + area + ", sDate=" + sDate + ", eDate=" + eDate + ", aPrice=" + aPrice
 	            + ", tPrice=" + tPrice + ", cPrice=" + cPrice + ", mainImage=" + mainImage + ", soldOut=" + soldOut
 	            + "]";

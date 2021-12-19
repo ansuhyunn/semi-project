@@ -130,94 +130,33 @@
         padding-left:30px;
     }
 
-    /*예매내역*/
-    .order_box{
-        margin:auto;
-        width:765px; 
-        height:120px;
-        border-radius:10px;
-        position:absolute;
-    }
-    
-    /*찜한상품, qna내역이 없을 경우*/
     #exclamationmark_icon{
     	padding-left:345px;
         padding-top:35px;
     }
 
-    .order_view{
-        color:#666;
-        text-decoration:none;
+    /*content_2_tit : 예매내역 */
+    .contents p{
+        font-size:13px;
+        color:rgb(64, 64, 64);
+        letter-spacing: -.3px;
     }
 
-    #step_li{
-        float:left;
-        position:relative;
-        width:29%;
-        height:100px;
-        margin:auto;
-        margin-top:10px;
+    /*테이블*/
+    .container{
+        height:30%;
+        padding-top:50px;
+        padding-left:-30px;
+        font-size:13px;
     }
 
-    em{
-        top:25px;
-        color:#888;
-        font-style:normal;
-        font-size:50px;
-        line-height:50px;
-        font-weight:500;
-        padding-left:140px;
-    }
-    span{
-        color: #666;
-        font-size:16px;
-        line-height:40px;
-        margin-left:120px;
-    }
+    .container th, #table_date{text-align:center;}
 
-    /*예매날짜*/
-    .order_date{
-        margin:auto;
-        margin-left:30px;
-        width:765px; 
-        height:60px;
-        border-radius:10px;
-        position:absolute;
+    #table_point{
+        color:black;
+        font-weight:600;
+        padding-left:30px;
     }
-
-    .order_date>p{
-        float:left;
-        font-size:14px;
-        font-weight:bold;
-        margin-left:20px;
-        margin-top:20px;
-        margin-right:20px;
-        letter-spacing: -0.5px;
-    }
-
-    .select_date>li{
-        float:left;
-        width:auto;
-        height:28px;
-        margin-left:5px;
-        margin-top:15px;
-    }
-
-    .select-range{
-        width:700px;
-        padding-left:20px;
-    }
-
-    .select-btn{
-        width:50px;
-        float:right;
-        margin-top:-30px;
-    }
-    #date_btn:focus{
-        background:rgb(182, 167, 141);
-        color:white;
-    }
-
 </style>
 </head>
 <body>
@@ -275,59 +214,67 @@
         <div id="content_2">
             <div class="contents">
                 <h4 class="contents_tit">예매 내역</h4><br>
-                <div class="order_box" style="background:rgba(255, 255, 255, 0.45)">
-                <a href="" class="order_view">
-                    <ul class="order-step">
-                        <li id="step_li">
-                            <em> 0 </em><br>
-                            <span>입금대기</span>
-                        </li>
-                        <li>
-                        	
-                        </li>
-                        <li id="step_li">
-                            <em> 0 </em><br>
-                            <span>결제완료</span>
-                        </li>
-                        <li id="step_li">
-                            <em> 0 </em><br>
-                            <span>예매확정</span>
-                        </li>
-                    </ul>
-                </a>    
-                </div>
+                <p>● 최신순으로 예매 내역 조회가 가능합니다.</p>
+                <hr align="left" width="765" color="rgb(64, 64, 64)" size="1">
             </div>
-
-            <div class="order_date" style="background:rgba(255, 255, 255, 0.74)">
-                <p>예매기간</p>
-                <ul class="select_date">
-                    <li>
-                        <button type="button" id="date_btn">일주일</button>
-                    </li>
-                    <li>
-                        <button type="button" id="date_btn">1개월</button>
-                    </li>
-                    <li>
-                        <button type="button" id="date_btn">3개월</button>
-                    </li>
-                    <li>
-                        <button type="button" id="date_btn">6개월</button>
-                    </li>
-                </ul>
-                <div class="select-range" align="right">
-                    <input type="date" id="start" name="select-start" value="2021-12-01" min="2020-01-01"> ~
-                    <input type="date" id="end" name="select-end" value="2021-12-31" max="2022-12-31">
-                </div>
-                <div class="select-btn" align="left">
-                    <button type="button">조회</button>
-                </div>
-                
-            </div class="">
             
-    
+            <div class="container">
+                <br><br>
+                <table class="table">
+                  <thead>
+                    <tr style="background:rgb(203, 185, 153)">
+                      <th width="180">날짜/예매번호</th>
+                      <th width="430">상품</th>
+                      <th width="70">수량</th>
+                      <th width="110">결제금액</th>
+                      <th width="110">상태</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!--예매 내역이 없을 경우-->
+                    <% if(list.isEmpty()){ %>
+	                    <tr>
+	                        <td colspan="4" >
+	                            <div id="exclamationmark_icon">
+	                                <img src="<%=request.getContextPath() %>/resources/images/exclamationmark.png" width="70px" height="70px"> 
+	                            </div>
+	                            <br>
+	                            <div>
+	                                <p align="center">예매 내역이 없습니다.</p>
+	                            </div>
+	                        </td>
+	                    </tr>
+	                    <tr>
+	                        <td></td>
+	                        <td></td>
+	                        <td></td>
+	                        <td></td>
+                            <td></td>
+	                    </tr>
+                    <% }else{ %>
+                    <!-- 예매내역 있을 경우 -->
+                    	<% for(Point p : list) {%>
+		                    <tr>
+		                      <td></td>
+		                      <td></td>
+		                      <td></td>
+                              <td></td>
+                              <td></td>
+		                    </tr>
+		                <% } %>
+                    <% } %>
+	                    <tr>
+	                        <td></td>
+	                        <td></td>
+	                        <td></td>
+                            <td></td>
+                            <td></td>
+	                    </tr>
+                  </tbody>
+                </table>
+              </div>   
+            
             </div>
-
-            
         </div>
 
         

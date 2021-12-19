@@ -23,18 +23,12 @@ WHERE O.ORDER_DATE BETWEEN ? AND ?
 ORDER BY ORDER_DATE DESC
 </entry>
 
-<entry key="selectOrderDayManage">
-SELECT
-	    ORDER_DATE    
-	   ,ORDER_COUNT
-	   ,P.ORDER_STATUS
-	   ,TOTAL_PRICE
-	   ,FINAL_PRICE
-	 FROM "ORDER_P" P
-	 JOIN "ORDER" O ON (O.ORDER_NO = P.ORDER_NO)
-	 JOIN PRODUCT ON (PRODUCT.PNO = P.PNO)
 
-	 ORDER BY P.ORDER_COUNT DESC
+<entry key="updateOrderCancelManage">
+UPDATE
+    ORDER_P
+SET ORDER_STATUS = 'CC'
+WHERE ORDER_NO = ?
 </entry>
 
 </properties>

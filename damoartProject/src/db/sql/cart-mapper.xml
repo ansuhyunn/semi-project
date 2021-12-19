@@ -22,8 +22,8 @@ VALUES
 
 <entry key="selectCartList">
 SELECT
-	    CART_MEM,
-	    CART_P, 
+	    MEM_NO,
+	    C.PNO, 
 	    CART_OPT, 
 	    CART_COUNT, 
 		TITLE, 
@@ -35,10 +35,9 @@ SELECT
 		C_PRICE,
 		MAIN_IMG,
 		SOLDOUT
-    FROM CART 
-    JOIN PRODUCT ON (CART_P = PNO)
-    WHERE CART_MEM = ?
-    
+    FROM CART C
+    JOIN PRODUCT P ON (C.PNO = P.PNO)
+    WHERE MEM_NO = ?
 </entry>
 
 

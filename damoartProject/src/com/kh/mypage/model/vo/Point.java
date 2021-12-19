@@ -34,6 +34,13 @@ public class Point {
 		this.orderNo = orderNo;
 		this.memId = memId;
 	}
+	
+	
+
+	public Point(int point) {
+		super();
+		this.point = point;
+	}
 
 	public String getMemId() {
 		return memId;

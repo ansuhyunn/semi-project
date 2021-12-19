@@ -2,6 +2,9 @@
     pageEncoding="UTF-8" import="com.kh.mypage.model.vo.Point, java.util.ArrayList"%>
 <%
 	ArrayList<Point> list = (ArrayList<Point>)request.getAttribute("list");
+	
+	Point poi = (Point)request.getAttribute("poi");
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -198,12 +201,12 @@
         	</p>
         </div>
         
-        <div class="userbox_3">
+        <div class="userbox_3" onclick="location.href='<%=request.getContextPath()%>/pointList.mp'">
         
             <div class="userPoint">
                    	적립금 >
             </div>
-            <p class="point">2,000원</p>
+            <p class="point">2000원</p>
             
         </div>
     </div>

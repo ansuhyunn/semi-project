@@ -2,6 +2,11 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 
+	<!-- 예매 내역 -->
+	<entry key="selectReserve">
+	
+	</entry>
+
 	<!-- 적립금 내역 -->
 	<entry key="pointList">
 		SELECT
@@ -12,6 +17,15 @@
 		     , MEM_ID
 		  FROM POINT
 		  JOIN MEMBER USING(MEM_NO) 
+		 WHERE MEM_ID = ?
+	</entry>
+	
+	<!-- 회원 적립금 -->
+	<entry key="memberPoint">
+		SELECT 
+		       SUM(POI_POINT) POINT
+		  FROM POINT 
+		  JOIN MEMBER USING(MEM_NO)
 		 WHERE MEM_ID = ?
 	</entry>
 	

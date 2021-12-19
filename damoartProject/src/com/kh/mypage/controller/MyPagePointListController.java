@@ -40,8 +40,10 @@ public class MyPagePointListController extends HttpServlet {
 		String memId = ((Member)session.getAttribute("loginUser")).getMemId();
 		
 		ArrayList<Point> list = new MemberPointService().selectPoint(memId);
+		Point poi = new MemberPointService().memberPoint(memId);
 		
 		request.setAttribute("list", list);
+		request.setAttribute("poi", poi);
 		request.getRequestDispatcher("views/mypage/pointCheck.jsp").forward(request, response);
 	}
 

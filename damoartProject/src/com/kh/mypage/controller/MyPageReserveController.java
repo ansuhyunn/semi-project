@@ -1,4 +1,4 @@
-package com.kh.order.controller;
+package com.kh.mypage.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,22 +10,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.google.gson.Gson;
-import com.kh.order.model.service.CartService;
-import com.kh.order.model.vo.Cart;
 import com.kh.member.model.vo.Member;
+import com.kh.mypage.model.service.MemberReserveService;
+import com.kh.mypage.model.vo.Order;
 
 /**
- * Servlet implementation class CartListController
+ * Servlet implementation class MyPageReserveController
  */
-@WebServlet("/list.ca")
-public class CartListController extends HttpServlet {
+@WebServlet("/reserve.mp")
+public class MyPageReserveController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CartListController() {
+    public MyPageReserveController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,12 +34,12 @@ public class CartListController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		request.setCharacterEncoding("UTF-8");
+		
 		HttpSession session = request.getSession();
 		int memNo = ((Member)session.getAttribute("loginUser")).getMemNo();
 		
-		ArrayList<Cart> list = new CartService().selectCartList();
-		request.setAttribute("list", list);
-		request.getRequestDispatcher("views/order/cart.jsp").forward(request, response);
+		ArrayList<Order> list = new MemberReserveService().selectReserve(memNo);
 	}
 
 	/**

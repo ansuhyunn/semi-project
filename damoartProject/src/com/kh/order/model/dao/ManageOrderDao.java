@@ -138,4 +138,24 @@ public class ManageOrderDao {
 		}
 	}
 	*/
+	
+	// 취소로 상태 업데이트
+	public int updateOrderCancel(Connection conn, ManageOrder m) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateOrderCancelManage");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(2,(m.getOrderNo()));
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close (pstmt);
+		}
+		return result;
+	}
 }

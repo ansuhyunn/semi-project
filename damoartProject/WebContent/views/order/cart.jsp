@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.order.model.vo.Cart"%>
+<% 
+	ArrayList<Cart> list = (ArrayList<Cart>)request.getAttribute("list");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -103,7 +105,8 @@
 <body>
 
     <%@ include file="../common/menubar.jsp" %>
-
+	
+	
     <!-- 장바구니 윗 부분 -->
     <div class="cart_head" align="center">
         <br>
@@ -122,63 +125,80 @@
                 <th width=90>적립예상금액</th>
             </tr>
 
-            <!--상품 있을 때-->
-            <div>
-                <tr id="cart_content">
-                    <td width="50"><input type="checkbox"></td>
-                    <td width="200"><img src= "<%=request.getContextPath()%>/resources/images/product/1M.gif" width="80px" height="80px"></td>
-                    <td width="200">
-                        영국 테이트미술관 특별전
-                      <br>북서울미술관
-                      <br>2021.12.21 ~ 22.05.08  
-                    </td>                           
-                    <td width="50"><select name="option">
-                        <option>어린이</option>
-                        <option>청소년</option>
-                        <option>성인</option>
-                    </td>
-                    <td width="50">1</td>
-                    <td width="50">14000￦</td>
-                    <td width="50">140￦</td>
-                </tr>
-                <tr id="cart_content">
-                    <td width="50"><input type="checkbox"></td>
-                    <td width="200"><img src= "<%=request.getContextPath()%>/resources/images/product/1M.gif" width="80px" height="80px"></td>
-                    <td width="200">
-                        영국 테이트미술관 특별전
-                        <br>북서울미술관
-                        <br>2021.12.21 ~ 22.05.08 
-                    </td>                           
-                    <td width="50"><select name="option">
-                        <option>어린이</option>
-                        <option>청소년</option>
-                        <option>성인</option>
-                    </td>
-                    <td width="50">1</td>
-                    <td width="50">14000￦</td>
-                    <td width="50">140￦</td>
-                </tr>         
-            </div>
-
+	<!-- 로그인 조건 -->
+	<% if (loginUser != null ) { %>
             <!--상품 없을 때-->
+            <% if(list.isEmpty()) { %>            
             <tr>
                 <td colspan="7" width="800" height="300">
                     <b>장바구니에 담긴 상품이 없습니다</b>
+                   <% System.out.println("되나"); %>
                 </td>
             </tr>
-
+            
+            <!-- 상품 있을 때 -->
+            <% } else { %>
+            
+            <% for(Cart c : list) { %>
+            <% if( c.getSoldOut().equals("N")) { %>(
+            <div>
+            
             <!--상품 품절일 때-->
             <tr id="cart_content">
                 <td width="50"><input type="checkbox"></td>
                 <td width="200"><img src= "<%=request.getContextPath()%>/resources/images/product/1M.gif" width="80px" height="80px"></td>
                 <td width="200" id="soldout">
-                    영국 테이트미술관 특별전
-                    <br>북서울미술관
-                    <br>2021.12.21 ~ 22.05.08 
+						   <%= c.getTitle() %>
+                      <br> <%= c.getArea() %>
+                      <br><%= c.getsDate() %> ~ <%= c.geteDate() %>
                 </td>                           
                 <td id="soldout_item" colspan="4" width="200"><b>구매 할 수 없는 상품입니다</b></td>
-            </tr>   
-
+           
+                  <%} else { %>
+            </div>
+ 			</tr> 
+                <tr id="cart_content">
+                    <td width="50"><input type="checkbox"></td>
+                    <td width="200"><img src= "<%=request.getContextPath()%> 이미지 " width="80px" height="80px"></td>
+                    <td width="200">
+                      	   <%= c.getTitle() %>
+                      <br> <%= c.getArea() %>
+                      <br><%= c.getsDate() %> ~ <%= c.geteDate() %>
+                    </td>                           
+                    <td width="50">
+                    <% if (c.getCartOpt().equals("C")) { %>
+                 	   어린이
+                    <% } else if (c.getCartOpt().equals("T")) { %>
+                                           청소년
+                    <% } else { %>
+                                           성인
+                    <% } %>
+                    </td>
+                    <td width="50"><%= c.getCartCount() %></td>
+                    <td width="50">
+ 				    <% if (c.getCartOpt().equals("C")) { %>
+                    <%= c.getcPrice() %>
+                    <% } else if (c.getCartOpt().equals("T")) { %>
+                    <%=c.gettPrice() %>
+                    <% } else { %>
+                    <%=c.getaPrice() %>
+                    <% } %>
+                    </td>
+                    <td width="50">
+					<% if (c.getCartOpt().equals("C")) { %>
+                    <%= c.getcPrice()/100 %>
+                    <% } else if (c.getCartOpt().equals("T")) { %>
+                    <%=c.gettPrice()/100 %>
+                    <% } else { %>
+                    <%=c.getaPrice()/100 %>
+                    <% } %>
+					</td>
+                </tr>
+  
+            <% } %>
+		<%} %>
+	<%} %>
+	<%} %>
     </table>
     </div>
     
