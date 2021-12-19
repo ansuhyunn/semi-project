@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+	<entry key="selectNewPorduct">		
+		SELECT ROWNUM, P.*
+		  FROM	(SELECT 
+					   PNO
+					 , TITLE
+					 , REGION
+					 , AREA
+					 , TO_CHAR(TO_DATE(S_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') S_DATE
+					 , TO_CHAR(TO_DATE(E_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') E_DATE  
+					 , MAIN_IMG
+				  FROM PRODUCT
+				 WHERE SOLDOUT = 'N'
+				 ORDER
+				    BY ENROLL_DATE DESC) P
+		 <![CDATA[WHERE ROWNUM <= 4]]> 
+	</entry>
+	
+	
+	
+	
+</properties>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -328,12 +329,19 @@
                   </li>
                 </ul>
                 <br><br>
-                <form action="up" method="post">
+              
+               <!--  <form action="up" method="post"> -->
                 <div class="test" style="">
-                   <input type="date" id="start" name="select-start" value="" min="2020-01-01"> ~
-                   <input type="date" id="end" name="select-end" value="" max="2022-12-31"> 
+            
+		<!-- 	<form action="datejsp" method="post"> -->
+                   <input type="date" id="start" name="startday" value="" min="2020-01-01">
+               <%-- <jsp:setProperty name="select-start" property="startDay" value=""/> --%>
+                    ~
+                    <%--  <jsp:getProperty property="startDay" name="select-start"/> --%>
+                   <input type="date" id="end" name="endday" value="" max="2022-12-31"> 
+            </form> 
                 </div>
-                  </form>
+               
                 <div>
                 
                 </div>
@@ -356,35 +364,17 @@
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  
+ <script type="text/javascript">
+ function zzz() {
+ 	
+ 	var startDay = document.querySelector('input[name="startday"]').value;
+	var endDay = document.querySelector('input[name="endday"]').value;
+	/* alert(startDay+endDay); */
+ 	 var a = "/damoart/up?startDay="+startDay+"&endDay="+endDay;
+	  location.href=a;	  
 
-<script type="text/javascript">
-function zzz() {
-    /* alert($("#datepicker1")); */
-	var startDay = String(document.querySelector('input[name="select-start"]'));
-	var endDay = String(document.querySelector('input[name="select-end"]'));
-	const str1 = String(startDay +"/"+endDay);
+ } 
+</script> 
 
-	/* href="/damoart/up?Day=Day"; */
- 	$.ajax({
-		type: "GET",
-		url: "/damoart/up?Day="+str1,
-		date: str1,
-		dataType: "text",
-		success: function(data){
-				alert("success");},
-		fail: function(){
-			alert("fail");
-		},
-		error:function(e){	}
-	}); 
-	
-    }
-    
-        
-        
-    
-    
-    
-    
-</script>
-
+<%--  --%>

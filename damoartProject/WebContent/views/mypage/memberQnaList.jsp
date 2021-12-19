@@ -204,6 +204,7 @@
     .qustion_open p, .qustion_answer p{font-size:15px; font-weight:700;}
 
     .contents p{font-size:13px;}
+    
 </style>
 </head>
 <body>
@@ -216,7 +217,7 @@
         </div>
         <div class="userbox_2">
         	<p class="txt">
-        		<strong class="userName">xxx</strong>님 반갑습니다.
+        		<strong class="userName"><%= loginUser.getNickName() %></strong>님 반갑습니다.
         	</p>
         </div>
         
@@ -313,7 +314,7 @@
                    						<% } %>
 			                      	</td>
 			                    </tr>
-			                    <tr class="open">
+			                    <tr class="open" style="display: none">
 			                        <td></td>
 			                        <td colspan="3">
 			                            <div>
@@ -348,7 +349,7 @@
                         const $tr = $(this).next();
 
                         if($tr.css("display") == "none"){
-                            $(this).siblings(".open").hide();
+                        	$(this).siblings(".open").hide();
                             $tr.show();
                         }else{
                             $tr.hide();

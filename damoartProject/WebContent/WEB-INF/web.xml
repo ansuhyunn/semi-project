@@ -9,6 +9,13 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <context-param>
+  <param-name>spl</param-name>
+  <param-value>
+    /WEB-INF/webspl.xml
+  </param-value>
+</context-param>
+  
 <!--    <servlet>
   	<servlet-name>up</servlet-name>
   	<servlet-class>com.kh.mypage.controller.DaySelect</servlet-class>
