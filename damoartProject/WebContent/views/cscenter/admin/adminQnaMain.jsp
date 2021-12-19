@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<%@ page import="java.util.ArrayList, com.kh.common.model.vo.PageInfo, com.kh.cscenter.model.vo.Notice" %>
+<%@ page import="java.util.ArrayList, com.kh.common.model.vo.PageInfo, com.kh.cscenter.model.vo.QnA" %>
     
 <% PageInfo pi = (PageInfo)request.getAttribute("pi");
-    ArrayList<Notice> list = (ArrayList<Notice>)request.getAttribute("list");
+    ArrayList<QnA> list = (ArrayList<QnA>)request.getAttribute("list");
     
     int currentPage = pi.getCurrentPage();
     int startPage = pi.getStartPage();
@@ -65,7 +65,7 @@
         background:rgb(207, 206, 206);
     }
 
-    .no-tb{
+    .qna-tb{
         background:white;
         font-size:14px;
     }
@@ -87,7 +87,7 @@
 		
 		<div id="outer">
             <br><br>
-			<h4 style="font-weight: bolder;">공지사항 관리</h4>
+			<h4 style="font-weight: bolder;">Q&A 관리</h4>
             
             <br>
             <hr>
@@ -100,7 +100,7 @@
                     </form>
                 </div>
                 <div class="button" width="50%">
-                    <a href="<%= contextPath %>/enrollForm.no" class="btn btn-sm" id="enroll">공지 등록</a>
+                    <a href="<%= contextPath %>/enrollForm.qa" class="btn btn-sm" id="enroll">공지 등록</a>
                     <a href="" class="btn btn-sm" id="delete">선택 삭제</a>
                 </div>
             </div>
@@ -110,27 +110,40 @@
                     <thead>
                         <tr>
                             <th width="10"><input type="checkbox"></th>
-                            <th width="40">번호</th>
+                            <th width="50">번호</th>
+                            <th width="80">분류</th>
                             <th width="280">제목</th>
-                            <th width="60">작성자</th>
+                            <th width="80">작성자</th>
                             <th width="100">등록일</th>
-                            <th width="50">조회수</th>
+                            <th width="80">답변상태</th>
                         </tr>
                     </thead>
-                    <tbody class="no-tb">
+                    <tbody class="qna-tb">
                     	<% if(list.isEmpty()) { %>
 	                        <tr>
-	                            <th colspan="5">게시글이 없습니다.</th>
+	                            <th colspan="7">게시글이 없습니다.</th>
 	                        </tr>
                         <% }else { %>
-                        	<%for(Notice n : list) { %>
+                        	<%for(QnA q : list) { %>
 		                        <tr>
-                                    <th><input type="checkbox"></th>
-		                            <th><%=n.getNoticeNo() %></th>
-		                            <th class="clickTitle"><%=n.getNoticeTitle() %></th>
-		                            <th><%=n.getNoticeWriter() %></th>
-		                            <th><%=n.getCreateDate() %></th>
-		                            <th><%=n.getCount() %></th>
+                                    <th width="10"><input type="checkbox"></th>
+		                            <th><%=q.getqNo() %></th>
+                                    <th><%=q.getqCategoryCode()%></th>
+		                            <th class="clickTitle">
+		                            	<%=q.getqTitle() %>
+		                            	<% if(q.getSecret().equals("Y")) { %>
+		                            		<i class="fas fa-lock"></i>
+		                            	<% } %>
+		                            </th>
+		                            <th><%=q.getqWriter() %></th>
+		                            <th><%=q.getCreateDate() %></th>
+		                            <th>
+			                            <% if(q.getaContent() != null) { %>
+											답변 완료
+		                            	<% }else { %>
+		                            		미답변
+		                            	<% } %>
+		                            </th>
 		                        </tr>
                         	<% } %>
                         <% } %>
@@ -139,13 +152,13 @@
                 <script>
                 	$(function(){
                 		$(".clickTitle").click(function(){
-                			location.href='<%=contextPath%>/adminDetail.no?nno=' + $(this).prev().text();
+                			location.href='<%=contextPath%>/adminDetail.qa?qno=' + $(this).prev().prev().text();
                 		})
                 	})
                 </script>
                 <div class="paging-area" align="center">
                 	<% if(currentPage != 1) {%>
-                    	<button class="btn" onclick="location.href='<%=contextPath%>/adminList.no?cpage=<%=currentPage-1%>'">&lt;</button>
+                    	<button class="btn" onclick="location.href='<%=contextPath%>/adminList.qa?cpage=<%=currentPage-1%>'">&lt;</button>
                     <% }else { %>
                     	<button class="btn" disabled>&lt;</button>
                     <% } %>
@@ -154,11 +167,11 @@
                     	<% if(p == currentPage) { %>
                     		<button class="btn" disabled><%=p %></button>
                     	<% }else { %>
-                    		<button class="btn" onclick="location.href='<%=contextPath %>/adminList.no?cpage=<%=p%>'"><%=p %></button>
+                    		<button class="btn" onclick="location.href='<%=contextPath %>/adminList.qa?cpage=<%=p%>'"><%=p %></button>
                     	<% } %>
                     <% } %>
                     <% if(currentPage != maxPage) {%>
-                    <button class="btn" onclick="location.href='<%=contextPath%>/adminList.no?cpage=<%=currentPage+1%>'">&gt;</button>
+                    <button class="btn" onclick="location.href='<%=contextPath%>/adminList.qa?cpage=<%=currentPage+1%>'">&gt;</button>
                     <% }else { %>
                     	<button class="btn" disabled>&gt;</button>
                     <% } %>

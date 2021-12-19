@@ -117,7 +117,7 @@
                         	<% } %>
                         <% } %>
                     </tbody>
-                </table>
+                </table> <!-- 비밀글 구현해야함 -->
                 <script>
 			    	<% if(loginUser == null) { %>				    	
 				    		$("#list-area>tbody>tr").click(function(){

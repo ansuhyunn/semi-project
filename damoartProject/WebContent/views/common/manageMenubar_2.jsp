@@ -190,7 +190,7 @@
                 <ul>
                     <li><a href="<%=contextPath%>/adminList.no?cpage=1">공지사항 관리</a></li>
                     <li><a href="">FAQ 관리</a></li>
-                    <li><a href="">Q&A 관리</a></li>
+                    <li><a href="<%=contextPath%>/adminList.qa?cpage=1">Q&A 관리</a></li>
                     <li><a href="">이용안내 관리</a></li>
                 </ul>
             </div>
