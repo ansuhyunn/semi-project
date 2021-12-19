@@ -43,9 +43,9 @@ public class QnaService {
 		return at;
 	}
 	
-	public int insertQnA(int qNo, String answer) {
+	public int insertQnA(int qNo, String answer, int adminNo) {
 		Connection conn = getConnection();
-		int result = new QnaDao().insertAnswer(conn, qNo, answer);
+		int result = new QnaDao().insertAnswer(conn, qNo, answer, adminNo);
 		if(result > 0) {
 			commit(conn);
 		}else {
