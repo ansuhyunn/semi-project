@@ -1,12 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
 
-	String alertMsg = (String)session.getAttribute("alertMsg");
-	
-	String errorMsg = (String)session.getAttribute("errorMsg");
- 
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -280,7 +274,7 @@
                                 <td>
                                     <input type="text" name="emailId" value="<%= loginUser.getEmail().split("@")[0] %>"style="width:170px;"required> 
                                     &nbsp;
-                                    <select id="emailDomain" name="emailDomain" value="<%= loginUser.getEmail().split("@")[1] %> class="email_select"> 
+                                    <select id="emailDomain" name="emailDomain" value="<%= loginUser.getEmail().split("@")[1] %>" class="email_select"> 
                                         <option value="">직접입력</option> 
                                         <option value="@naver.com">@naver.com</option> 
                                         <option value="@gmail.com">@gmail.com</option> 

@@ -4,7 +4,21 @@
 
 	<!-- 예매 내역 -->
 	<entry key="selectReserve">
-	
+		SELECT 
+		       MEM_NO
+		     , ORDER_NO
+		     , FINAL_PRICE
+		     , ORDER_DATE
+		     , PNO
+		     , TITLE
+		     , MAIN_IMG
+		     , ORDER_OPT
+		     , ORDER_COUNT
+		     , ORDER_STATUS
+		  FROM "ORDER" 
+		  JOIN ORDER_P USING(ORDER_NO)
+		  JOIN PRODUCT USING(PNO)
+		 WHERE MEM_NO = ?
 	</entry>
 
 	<!-- 적립금 내역 -->

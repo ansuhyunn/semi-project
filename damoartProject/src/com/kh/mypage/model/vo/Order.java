@@ -13,21 +13,43 @@ public class Order {
 	   private String orderName;
 	   private String orderStatus;
 	   private String pTitle;
+	   private int orderCount;
+	   private String mainImg;
 
 public Order() {}
 
-public Order(int orderNo, int finalPrice, Date orderDate, int memNo, int pNo, String orderOpt, String orderName,
-		String orderStatus, String pTitle) {
+public Order(int memNo, int orderNo, int finalPrice, Date orderDate, int pNo, String pTitle, String mainImg, String orderOpt, int orderCount,
+		String orderStatus) {
 	super();
+	this.memNo = memNo;
 	this.orderNo = orderNo;
 	this.finalPrice = finalPrice;
 	this.orderDate = orderDate;
-	this.memNo = memNo;
 	this.pNo = pNo;
-	this.orderOpt = orderOpt;
-	this.orderName = orderName;
-	this.orderStatus = orderStatus;
 	this.pTitle = pTitle;
+	this.mainImg = mainImg;
+	this.orderOpt = orderOpt;
+	this.orderCount = orderCount;
+	this.orderStatus = orderStatus;
+	
+}
+
+
+
+public int getOrderCount() {
+	return orderCount;
+}
+
+public void setOrderCount(int orderCount) {
+	this.orderCount = orderCount;
+}
+
+public String getMainImg() {
+	return mainImg;
+}
+
+public void setMainImg(String mainImg) {
+	this.mainImg = mainImg;
 }
 
 public int getOrderNo() {

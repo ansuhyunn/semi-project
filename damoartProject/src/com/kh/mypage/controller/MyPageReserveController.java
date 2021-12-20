@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.kh.member.model.vo.Member;
+import com.kh.mypage.model.service.MemberPointService;
 import com.kh.mypage.model.service.MemberReserveService;
 import com.kh.mypage.model.vo.Order;
+import com.kh.mypage.model.vo.Point;
 
 /**
  * Servlet implementation class MyPageReserveController
@@ -38,8 +40,15 @@ public class MyPageReserveController extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		int memNo = ((Member)session.getAttribute("loginUser")).getMemNo();
+		String memId = ((Member)session.getAttribute("loginUser")).getMemId();
 		
 		ArrayList<Order> list = new MemberReserveService().selectReserve(memNo);
+		Point poi = new MemberPointService().memberPoint(memId);
+		
+		request.setAttribute("list", list);
+		request.setAttribute("poi", poi);
+		request.getRequestDispatcher("views/mypage/reserveDetail.jsp").forward(request, response);
+		//response.sendRedirect(request.getContextPath() + "/reserve.mp");	
 	}
 
 	/**

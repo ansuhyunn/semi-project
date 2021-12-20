@@ -125,7 +125,6 @@
 
     /*content_2*/
     .contents{
-        height:10%;
         padding-top:15px;
         padding-left:30px;
     }
@@ -202,8 +201,8 @@
                 </div><br>
                 <li><h3>마이활동</h3></li>
                 <div>
-                    <a href="" id="submenu">리뷰 내역</a> <br>
-                    <a href="<%=request.getContextPath() %>/views/mypage/memberQnaList.jsp" id="submenu" style="color:rgb(151, 138, 116)">Q&A 내역</a> <br>
+                    <a href="" id="submenu" style="color:rgb(151, 138, 116)">리뷰 내역</a> <br>
+                    <a href="<%=request.getContextPath() %>/views/mypage/memberQnaList.jsp" id="submenu">Q&A 내역</a> <br>
                 </div><br>
                 <li><h3>마이정보</h3></li>
                 <div>
@@ -214,7 +213,7 @@
         </div>
         <div id="content_2">
             <div class="contents">
-                <h4 class="contents_tit">Q&A 내역</h4>
+                <h4 class="contents_tit">리뷰 내역</h4>
                 <hr align="left" width="765" color="rgb(64, 64, 64)" size="1">
             </div>
 
@@ -231,7 +230,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <!--Q&A 내역이 없을 경우-->
+                    <!--리뷰 내역이 없을 경우-->
                     <!--
                     <tr>
                         <td colspan="4" >
@@ -240,7 +239,7 @@
                             </div>
                             <br>
                             <div id="qna_txt">
-                                <p align="center">Q&A 내역이 없습니다.</p>
+                                <p align="center">리뷰 내역이 없습니다.</p>
                             </div>
                         </td>
                     </tr>
@@ -251,7 +250,7 @@
                         <td></td>
                     </tr>-->
 
-                    <!--Q&A 내역이 있을 경우-->
+                    <!--리뷰 내역이 있을 경우-->
                     
                     <tr class="qustion">
                         <td width="200">

@@ -2,6 +2,7 @@
     pageEncoding="UTF-8" import="com.kh.mypage.model.vo.Qna, java.util.ArrayList"%>
 <%
 	ArrayList<Qna> list = (ArrayList<Qna>)request.getAttribute("list");
+
 %>
 <!DOCTYPE html>
 <html>
@@ -226,7 +227,7 @@
             <div class="userPoint">
                    	적립금 >
             </div>
-            <p class="point">2,000원</p>
+            <p class="point">2000원</p>
             
         </div>
     </div>
@@ -240,9 +241,9 @@
             <ul>  	
                 <li><h3>마이쇼핑</h3></li>
                 <div>
-                    <a href="<%=request.getContextPath() %>/views/mypage/reserveDetail.jsp" id="submenu">예매 내역</a> <br>
+                    <a href="<%= contextPath %>/reserve.mp" id="submenu">예매 내역</a> <br>
                     <a href="<%=request.getContextPath() %>/views/mypage/refundDetail.jsp" id="submenu">취소/환불 내역</a> <br>
-                    <a href="<%=request.getContextPath() %>/views/mypage/pointCheck.jsp" id="submenu">적립금 내역</a> <br>
+                    <a href="<%=contextPath%>/pointList.mp" id="submenu">적립금 내역</a> <br>
                     <hr width="120" align="left">
                     <a href="<%=request.getContextPath() %>/views/mypage/recentlyViewProduct.jsp" id="submenu">최근 본 상품</a> <br>
                     <a href="<%=request.getContextPath() %>/views/mypage/likeProduct.jsp" id="submenu">찜한 상품</a>
@@ -250,7 +251,7 @@
                 <li><h3>마이활동</h3></li>
                 <div>
                     <a href="" id="submenu">리뷰 내역</a> <br>
-                    <a href="<%=request.getContextPath() %>/views/mypage/memberQnaList.jsp" id="submenu" style="color:rgb(151, 138, 116)">Q&A 내역</a> <br>
+                    <a href="<%= contextPath %>/qnaList.mp" id="submenu" style="color:rgb(151, 138, 116)">Q&A 내역</a> <br>
                 </div><br>
                 <li><h3>마이정보</h3></li>
                 <div>

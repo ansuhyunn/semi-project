@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.kh.mypage.model.vo.Point, java.util.ArrayList, com.kh.mypage.model.vo.Order" %>
+<%
+	ArrayList<Order> list = (ArrayList<Order>)request.getAttribute("list");
+
+	Point poi = (Point)request.getAttribute("poi");
+
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -125,7 +131,7 @@
 
     /*content_2*/
     .contents{
-        height:25%;
+
         padding-top:15px;
         padding-left:30px;
     }
@@ -144,19 +150,20 @@
 
     /*테이블*/
     .container{
-        height:30%;
-        padding-top:50px;
-        padding-left:-30px;
+		marign-left:30px;
+        padding-left:30px;
         font-size:13px;
+    }
+    
+    .container strong{color:white;}
+    .container strong:hover{cursor:pointer;}
+    
+    .container td{      
+        height:100px;        
     }
 
     .container th, #table_date{text-align:center;}
 
-    #table_point{
-        color:black;
-        font-weight:600;
-        padding-left:30px;
-    }
 </style>
 </head>
 <body>
@@ -169,16 +176,16 @@
         </div>
         <div class="userbox_2">
         	<p class="txt">
-        		<strong class="userName">xxx</strong>님 반갑습니다.
+        		<strong class="userName"><%= loginUser.getNickName() %></strong>님 반갑습니다.
         	</p>
         </div>
         
         <div class="userbox_3">
         
-            <div class="userPoint">
+            <div class="userPoint" onclick="location.href='<%=request.getContextPath()%>/pointList.mp'">
                    	적립금 >
             </div>
-            <p class="point">2,000원</p>
+            <p class="point"><%= poi.getPoint() %>원</p>
             
         </div>
     </div>
@@ -192,9 +199,9 @@
             <ul>  	
                 <li><h3>마이쇼핑</h3></li>
                 <div>
-                    <a href="" id="submenu" style="color:rgb(151, 138, 116)">예매 내역</a> <br>
+                    <a href="<%= contextPath %>/reserve.mp" id="submenu" style="color:rgb(151, 138, 116)">예매 내역</a> <br>
                     <a href="<%=request.getContextPath() %>/views/mypage/refundDetail.jsp" id="submenu">취소/환불 내역</a> <br>
-                    <a href="<%=request.getContextPath() %>/views/mypage/pointCheck.jsp" id="submenu">적립금 내역</a> <br>
+                    <a href="<%=contextPath%>/pointList.mp" id="submenu">적립금 내역</a> <br>
                     <hr width="120" align="left">
                     <a href="" id="submenu">최근 본 상품</a> <br>
                     <a href="" id="submenu">찜한 상품</a>
@@ -202,11 +209,11 @@
                 <li><h3>마이활동</h3></li>
                 <div>
                     <a href="" id="submenu">리뷰 내역</a> <br>
-                    <a href="" id="submenu">Q&A 내역</a> <br>
+                    <a href="<%=request.getContextPath() %>/qnaList.mp" id="submenu">Q&A 내역</a> <br>
                 </div><br>
                 <li><h3>마이정보</h3></li>
                 <div>
-                    <a href="" id="submenu">회원정보 수정</a> <br>
+                    <a href="<%=request.getContextPath() %>/views/mypage/pwdVerificationMemUpdate.jsp" id="submenu">회원정보 수정</a> <br>
                     <a href="" id="submenu">회원 탈퇴</a> <br>
                 </div>
             </ul>
@@ -223,8 +230,8 @@
                 <table class="table">
                   <thead>
                     <tr style="background:rgb(203, 185, 153)">
-                      <th width="180">날짜/예매번호</th>
-                      <th width="430">상품</th>
+                      <th width="140">날짜/예매번호</th>
+                      <th colspan="2" width="470">상품</th>
                       <th width="70">수량</th>
                       <th width="110">결제금액</th>
                       <th width="110">상태</th>
@@ -234,7 +241,7 @@
                     <!--예매 내역이 없을 경우-->
                     <% if(list.isEmpty()){ %>
 	                    <tr>
-	                        <td colspan="4" >
+	                        <td colspan="6" >
 	                            <div id="exclamationmark_icon">
 	                                <img src="<%=request.getContextPath() %>/resources/images/exclamationmark.png" width="70px" height="70px"> 
 	                            </div>
@@ -249,19 +256,29 @@
 	                        <td></td>
 	                        <td></td>
 	                        <td></td>
+	                        <td></td>
                             <td></td>
 	                    </tr>
                     <% }else{ %>
                     <!-- 예매내역 있을 경우 -->
-                    	<% for(Point p : list) {%>
+                    	<% for(Order o : list) {%>
 		                    <tr>
-		                      <td></td>
-		                      <td></td>
-		                      <td></td>
-                              <td></td>
-                              <td></td>
+		                      <td align="center">
+		                      	<%= o.getOrderDate() %><br>
+		                      	<strong><%= o.getOrderNo() %></strong>
+		                      </td>
+		                      <td width="130">
+		                      	<img src="<%=request.getContextPath()%>/<%= o.getMainImg() %>" width="80px" height="80px">
+		                      </td>
+		                      <td width="340">
+		                      	<b><%= o.getpTitle() %></b> <br>
+		                      	옵션 : <%= o.getOrderOpt() %>
+		                      </td>
+		                      <td align="center"><%= o.getOrderCount() %></td>
+                              <td align="center"><%= o.getFinalPrice() %></td>
+                              <td align="center"><%= o.getOrderStatus() %></td>
 		                    </tr>
-		                <% } %>
+    					 <% } %>
                     <% } %>
 	                    <tr>
 	                        <td></td>
@@ -269,7 +286,9 @@
 	                        <td></td>
                             <td></td>
                             <td></td>
+                            <td></td>
 	                    </tr>
+	                    
                   </tbody>
                 </table>
               </div>   

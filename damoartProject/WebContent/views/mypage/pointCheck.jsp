@@ -181,7 +181,7 @@
             <div class="userPoint">
                    	적립금 >
             </div>
-            <p class="point"></p>
+            <p class="point">2000원</p>
             
         </div>
     </div>
@@ -195,9 +195,9 @@
             <ul>  	
                 <li><h3>마이쇼핑</h3></li>
                 <div>
-                    <a href="<%=request.getContextPath() %>/views/mypage/reserveDetail.jsp" id="submenu">예매 내역</a> <br>
+                    <a href="<%=contextPath%>/reserve.mp" id="submenu">예매 내역</a> <br>
                     <a href="<%=request.getContextPath() %>/views/mypage/refundDetail.jsp" id="submenu">취소/환불 내역</a> <br>
-                    <a href="<%=request.getContextPath() %>/views/mypage/pointCheck.jsp" id="submenu" style="color:rgb(151, 138, 116)">적립금 내역</a> <br>
+                    <a href="<%=contextPath%>/pointList.mp" id="submenu" style="color:rgb(151, 138, 116)">적립금 내역</a> <br>
                     <hr width="120" align="left">
                     <a href="<%=request.getContextPath() %>/views/mypage/recentlyViewProduct.jsp" id="submenu">최근 본 상품</a> <br>
                     <a href="<%=request.getContextPath() %>/views/mypage/likeProduct.jsp" id="submenu">찜한 상품</a>
@@ -205,7 +205,7 @@
                 <li><h3>마이활동</h3></li>
                 <div>
                     <a href="" id="submenu">리뷰 내역</a> <br>
-                    <a href="<%=request.getContextPath() %>/views/mypage/memberQnaList.jsp" id="submenu">Q&A 내역</a> <br>
+                    <a href="<%= contextPath %>/qnaList.mp" id="submenu">Q&A 내역</a> <br>
                 </div><br>
                 <li><h3>마이정보</h3></li>
                 <div>
@@ -240,7 +240,7 @@
 	                            </div>
 	                            <br>
 	                            <div id="qna_txt">
-	                                <p align="center">Q&A 내역이 없습니다.</p>
+	                                <p align="center">적립금 내역이 없습니다.</p>
 	                            </div>
 	                        </td>
 	                    </tr>
@@ -256,7 +256,7 @@
 		                    <tr>
 		                      <td id="table_date"><%= p.getPointDate() %></td>
 		                      <td><%= p.getPointContent() %></td>
-		                      <td id="table_point"><%= p.getPoint() %></td>
+		                      <td id="table_point">+<%= p.getPoint() %></td>
 		                    </tr>
 		                <% } %>
                     <% } %>

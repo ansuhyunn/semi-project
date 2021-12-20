@@ -61,7 +61,7 @@ public class MyPageMemberUpdateController extends HttpServlet {
 			session.setAttribute("loginUser", updateMember);
 			session.setAttribute("alertMsg", "회원님의 정보가 수정되었습니다.");
 			
-			response.sendRedirect(request.getContextPath() + "/views/mypage/mypageMain.jsp");
+			response.sendRedirect(request.getContextPath() + "/views/mypage/memberUpdate.jsp");
 		}
 		
 	}
