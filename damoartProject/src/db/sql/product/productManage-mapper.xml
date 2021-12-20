@@ -23,11 +23,11 @@ SELECT *
                      , AREA
                      , AGE
                      , TIME
-                     , TO_CHAR(TO_DATE(S_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') S_DATE
-                     , TO_CHAR(TO_DATE(E_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') E_DATE
+                     , TO_CHAR(TO_DATE(S_DATE), 'RRRR.MM.DD') S_DATE
+                     , TO_CHAR(TO_DATE(E_DATE), 'RRRR.MM.DD') E_DATE
                      , SOLDOUT
                   FROM PRODUCT
-                 ORDER BY 1 
+                 ORDER BY 1 DESC
 			 ) A
 		 )
  WHERE RNUM BETWEEN ? AND ?
@@ -56,12 +56,12 @@ SELECT *
                       , AREA
                       , AGE
                       , TIME
-                      , TO_CHAR(TO_DATE(S_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') S_DATE
-                      , TO_CHAR(TO_DATE(E_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') E_DATE
+                      , TO_CHAR(TO_DATE(S_DATE), 'RRRR.MM.DD') S_DATE
+                      , TO_CHAR(TO_DATE(E_DATE), 'RRRR.MM.DD') E_DATE
                       , SOLDOUT
                    FROM PRODUCT
-		           <![CDATA[WHERE FLOOR(MONTHS_BETWEEN(SYSDATE, TO_DATE(S_DATE, 'RRRRMMDD'))) < 0 ]]>
-				  ORDER BY 1 
+		           <![CDATA[WHERE FLOOR(MONTHS_BETWEEN(SYSDATE, TO_DATE(S_DATE))) < 0 ]]>
+				  ORDER BY 1 DESC
 			 ) A
 		)
  WHERE RNUM BETWEEN ? AND ?
@@ -90,12 +90,12 @@ SELECT *
                       , AREA
                       , AGE
                       , TIME
-                      , TO_CHAR(TO_DATE(S_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') S_DATE
-                      , TO_CHAR(TO_DATE(E_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') E_DATE
+                      , TO_CHAR(TO_DATE(S_DATE), 'RRRR.MM.DD') S_DATE
+                      , TO_CHAR(TO_DATE(E_DATE), 'RRRR.MM.DD') E_DATE
                       , SOLDOUT
                    FROM PRODUCT
-		           <![CDATA[WHERE FLOOR(MONTHS_BETWEEN(SYSDATE, TO_DATE(S_DATE, 'RRRRMMDD'))) >= 0 ]]>
-				  ORDER BY 1 
+		           <![CDATA[WHERE FLOOR(MONTHS_BETWEEN(SYSDATE, TO_DATE(S_DATE))) >= 0 ]]>
+				  ORDER BY 1 DESC
 			 ) A
 		)
  WHERE RNUM BETWEEN ? AND ?
@@ -180,8 +180,8 @@ SELECT
 	 , REGION
 	 , AGE
 	 , AREA
-	 , TO_CHAR(TO_DATE(S_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') S_DATE
-	 , TO_CHAR(TO_DATE(E_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') E_DATE
+	 , TO_CHAR(TO_DATE(S_DATE), 'RRRR.MM.DD') S_DATE
+	 , TO_CHAR(TO_DATE(E_DATE), 'RRRR.MM.DD') E_DATE
 	 , TIME
      , A_PRICE
      , T_PRICE
@@ -192,6 +192,53 @@ SELECT
      , SOLDOUT
   FROM PRODUCT
  WHERE PNO = ?
+</entry>
+
+<!-- 등록 첨부파일 조회 -->
+<entry key="selectAttachment">
+SELECT 
+	   FILE_NO
+	 , ORIGIN_NAME
+	 , CHANGE_NAME
+	 , FILE_PATH
+  FROM ATTACHMENT
+  JOIN PRODUCT ON (PNO=REF_BNO)
+ WHERE PNO = ?
+</entry>
+
+
+<!-- 전시수정 -->
+<!-- 1) Product(부모)에 INSERT -->
+<entry key="updateProduct">
+UPDATE PRODUCT
+   SET 
+   	   ENROLL_DATE = DEFAULT,
+       TITLE = ?,
+       REGION = ?,
+       AGE = ?,
+       AREA = ?,
+       S_DATE = SUBSTR(?, 1, 4) || SUBSTR(?, 6, 2) || SUBSTR(?, 9, 2),
+       E_DATE = SUBSTR(?, 1, 4) || SUBSTR(?, 6, 2) || SUBSTR(?, 9, 2),
+       TIME = ?,
+       A_PRICE = ?,
+       T_PRICE = ?,
+       C_PRICE = ?,
+       MAIN_IMG = ?,
+       DETAIL_IMG = ?,
+       ETC = ?,
+       SOLDOUT = ?
+ WHERE PNO = ?
+  </entry>
+
+
+<!-- 2) ATTACHMENT(자식) -->
+<entry key="updateAttachment"> 
+UPDATE
+	       ATTACHMENT
+	   SET ORIGIN_NAME = ?
+	     , CHANGE_NAME = ?
+	     , FILE_PATH = ?
+	 WHERE FILE_NO = ?
 </entry>
 	
 	

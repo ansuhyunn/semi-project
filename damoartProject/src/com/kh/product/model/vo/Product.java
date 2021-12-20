@@ -70,10 +70,6 @@ public class Product {
 		super();
 		this.detailImg = detailImg;
 	}
-
-	public int getpNo() {
-		return pNo;
-	}
 	
 	
 	// 관리자 전체조회용
@@ -92,6 +88,10 @@ public class Product {
 		this.soldOut = soldOut;
 	}
 
+	
+	public int getpNo() {
+		return pNo;
+	}
 
 	public void setpNo(int pNo) {
 		this.pNo = pNo;

@@ -75,6 +75,13 @@ public class ManageService {
 	}
 	
 	
+	public Product productDetailView(int pNo) {
+		Connection conn = getConnection();
+		Product p = new ManageDao().productDetailView(conn, pNo);
+		close(conn);
+		return p;
+	}
+	
 	// 전시 등록
 	public int insertProduct(Product p, Attachment at1, Attachment at2) {
 		Connection conn = getConnection();
@@ -92,18 +99,30 @@ public class ManageService {
 		return result1 * result2 * result3;
 	}
 	
-	public Product productDetailView(int pNo) {
-		Connection conn = getConnection();
-		Product p = new ManageDao().productDetailView(conn, pNo);
-		close(conn);
-		return p;
-	}
-	
+	// 전시 수정
 	public Attachment selectAttachment(int pNo) {
 		Connection conn = getConnection();
 		Attachment at = new ManageDao().selectAttachment(conn, pNo);
 		close(conn);
 		return at;
 	}
-
+	
+	
+	// 전시 수정
+	public int updateProduct(Product p, Attachment at1, Attachment at2) {
+		Connection conn = getConnection();
+		int result1 = new ManageDao().updateProduct(conn, p);
+		int result2 = new ManageDao().updateMainAttachment(conn, at1);
+		int result3 = new ManageDao().updateDetailAttachment(conn, at2);
+		
+		if(result1 > 0 && result2 > 0 && result3 > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		return result1 * result2 * result3;
+	}
+	
 }

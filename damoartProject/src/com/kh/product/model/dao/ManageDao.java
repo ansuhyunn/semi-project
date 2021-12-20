@@ -373,4 +373,93 @@ public class ManageDao {
 		return at;
 	}
 	
+	
+	// 전시 수정
+	public int updateProduct(Connection conn, Product p) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateProduct");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, p.getTitle());
+			pstmt.setString(2, p.getRegion());
+			pstmt.setString(3, p.getAge());
+			pstmt.setString(4, p.getArea());
+			pstmt.setString(5, p.getsDate());
+			pstmt.setString(6, p.getsDate());
+			pstmt.setString(7, p.getsDate());
+			pstmt.setString(8, p.geteDate());
+			pstmt.setString(9, p.geteDate());
+			pstmt.setString(10, p.geteDate());
+			pstmt.setString(11, p.getTime());
+			pstmt.setInt(12, p.getaPrice());
+			pstmt.setInt(13, p.gettPrice());
+			pstmt.setInt(14, p.getcPrice());
+			pstmt.setString(15, p.getMainImg());
+			pstmt.setString(16, p.getDetailImg());
+			pstmt.setString(17, p.getEtc());
+			pstmt.setString(18, p.getSoldOut());
+			pstmt.setInt(19, p.getpNo());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
+	
+	// 메인이미지 수정
+	public int updateMainAttachment(Connection conn, Attachment at1) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateAttachment");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, at1.getOriginName());
+			pstmt.setString(2, at1.getChangeName());
+			pstmt.setString(3, at1.getFilePath());
+			pstmt.setInt(4, at1.getFileNo());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
+	// 디테일이미지 수정
+	public int updateDetailAttachment(Connection conn, Attachment at2) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateAttachment");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, at2.getOriginName());
+			pstmt.setString(2, at2.getChangeName());
+			pstmt.setString(3, at2.getFilePath());
+			pstmt.setInt(4, at2.getFileNo());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
 }

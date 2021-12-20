@@ -27,22 +27,22 @@
     } 
     .name{
     	font-size: 16px;
-    	font-weight:600;
+    	font-weight: border;
     }
     form>table{
-        width: 600px;
+        width: 800px;
         height: 800px;
         margin: 0 auto;
     }
-    table th{text-align: center;}
-    table td{padding-left: 20px;}
+    #table th{text-align: center;}
+    #table td{padding-left: 20px;}
     input{border: none;}
     #insert, #back{
         background-color:rgb(203, 185, 153);
         color:rgb(64, 64, 64);
         font-weight:600;
     }
-    #cancel{
+    #delete{
         background-color:rgb(151, 138, 116);
         color:white;
     }
@@ -54,13 +54,14 @@
 	<%@ include file="../../common/manageMenubar_2.jsp" %>
 	
     <div class="wrapper">
-        <div class="name">
-            <h4>상품 상세 조회</h4>			
+        <div class="name" >
+            <h4>상품 상세 조회</h4>	
 		</div>
 		<hr class="my-2">
+		<br>
         </div>
         <form action="<%= request.getContextPath() %>/manageInsert.pro" method="post" enctype="multipart/form-data">
-            <table border=1px>
+            <table id="table" border=1px;>
                 <tr>
                     <th>상품코드</th>
                     <td><%= p.getpNo() %></td>
@@ -112,21 +113,13 @@
                 <tr>
                     <th>메인포스터</th>
                     <td>
-	                    <% if(p.getMainImg().length() > 5){ %>
-	                    	<img src="<%=contextPath%>/<%= p.getMainImg() %>" width="500" height="350">
-	                    <%} else{ %>
-	                    	<img src="<%=request.getContextPath()%>/resources/product/<%= p.getMainImg() %>" width="500" height="350">
-	                    <%} %>
+	                    <img src="<%=contextPath%>/<%= p.getMainImg() %>" width="500" height="350">
                     </td>
                 </tr>
                 <tr>
                     <th>상세포스터</th>
                     <td>
-                    	<% if(p.getMainImg().length() > 5){ %>
-                    		<img src="<%=contextPath%>/<%= p.getDetailImg() %>" width="500" height="350">
-	                    <%} else{ %>
-	                    	<img src="<%=request.getContextPath()%>/resources/product/<%= p.getDetailImg() %>" width="500" height="350">
-	                    <%} %>
+                    	<img src="<%=contextPath%>/<%= p.getDetailImg() %>" width="500" height="350">
                     </td>
                 </tr>
                 <tr>
@@ -139,13 +132,13 @@
                 </tr>
             </table>
             <br><br>
-            
+
             <div align="center">
-                <button id="insert" class="btn btn-sm" type="submit">수정</button>
-                <button id="cancel" class="btn btn-sm" type="reset">삭제</button>
+                <a href="<%= contextPath %>/manageUpdateForm.pro?pno=<%= p.getpNo() %>" class="btn" id="insert">수정</a>
+                <a href="<%= contextPath %>/updateForm.pro?pno=<%= p.getpNo() %>" class="btn" id="delete">삭제</a>
                 <button id="back" class="btn btn-sm" type="button" onclick="history.back()">목록으로</button>
             </div>
-            
+
              <br><br>
         </form>
     </div>
