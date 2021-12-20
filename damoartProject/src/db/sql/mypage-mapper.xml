@@ -19,6 +19,32 @@
 		  JOIN ORDER_P USING(ORDER_NO)
 		  JOIN PRODUCT USING(PNO)
 		 WHERE MEM_NO = ?
+		 ORDER
+    		BY ORDER_DATE DESC
+	</entry>
+	
+	<entry key="selectReserveDetail">
+		SELECT 
+		       ORDER_NO 
+		     , ORDER_DATE 
+		     , ORDER_NAME
+		     , PNO
+		     , TITLE
+		     , MAIN_IMG
+		     , ORDER_OPT
+		     , ORDER_COUNT
+		     , AREA
+		     , PAY_DATE
+		     , PAY_OPT
+		     , PAY_PRICE
+		     , ORDER_PHONE
+		  FROM "ORDER" 
+		  JOIN ORDER_P USING(ORDER_NO)
+		  JOIN PRODUCT USING(PNO)
+		  JOIN PAY USING(ORDER_NO)
+		 WHERE MEM_NO = ?
+		 ORDER
+		    BY ORDER_DATE DESC
 	</entry>
 
 	<!-- 적립금 내역 -->

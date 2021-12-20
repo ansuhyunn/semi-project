@@ -26,7 +26,7 @@ public class MemberReserveDao {
 		}
 	}
 	
-	
+	// 예매내역조회
 	public ArrayList<Order> selectReserve(Connection conn, int memNo){
 		ArrayList<Order> list = new ArrayList<>();
 		
@@ -81,5 +81,58 @@ public class MemberReserveDao {
 		return list;
 	}
 	
+	// 예매내역 상세조회
+	public Order selectReserveDetail(Connection conn, int memNo) {
+		Order detailView = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;	
+		String sql = prop.getProperty("selectReserveDetail");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, memNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				String opt = "";
+				switch(rset.getString("order_opt")) {
+				case "C" : opt = "어린이"; break;
+				case "T" : opt = "청소년"; break;
+				case "A" : opt = "성인"; break;
+				default : break;
+				}
+				
+				String payOpt = "";
+				switch(rset.getString("pay_opt")) {
+				case "C" : payOpt = "신용카드"; break;
+				case "D" : payOpt = "무통장입금"; break;
+				default : break;
+				}
+				
+				detailView = new Order(rset.getInt("order_no"),
+									   rset.getDate("order_date"),
+									   rset.getString("order_name"),
+									   rset.getInt("pno"),
+									   rset.getString("title"),
+									   rset.getString("main_img"),
+									   opt,
+									   rset.getInt("order_count"),
+									   rset.getString("area"),
+									   rset.getDate("pay_date"),
+									   payOpt,
+									   rset.getInt("pay_price"),
+									   rset.getString("order_phone"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return detailView;
+	}
 
 }

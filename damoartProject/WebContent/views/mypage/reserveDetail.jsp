@@ -131,7 +131,6 @@
 
     /*content_2*/
     .contents{
-
         padding-top:15px;
         padding-left:30px;
     }
@@ -150,7 +149,6 @@
 
     /*테이블*/
     .container{
-		marign-left:30px;
         padding-left:30px;
         font-size:13px;
     }
@@ -222,7 +220,7 @@
             <div class="contents">
                 <h4 class="contents_tit">예매 내역</h4><br>
                 <p>● 최신순으로 예매 내역 조회가 가능합니다.</p>
-                <hr align="left" width="765" color="rgb(64, 64, 64)" size="1">
+                
             </div>
             
             <div class="container">
@@ -265,7 +263,8 @@
 		                    <tr>
 		                      <td align="center">
 		                      	<%= o.getOrderDate() %><br>
-		                      	<strong><%= o.getOrderNo() %></strong>
+		                      	<strong><%= o.getOrderNo() %></strong> <br>
+		                      	<button type="button" onclick="detailView();">상세조회</button>
 		                      </td>
 		                      <td width="130">
 		                      	<img src="<%=request.getContextPath()%>/<%= o.getMainImg() %>" width="80px" height="80px">
@@ -275,7 +274,7 @@
 		                      	옵션 : <%= o.getOrderOpt() %>
 		                      </td>
 		                      <td align="center"><%= o.getOrderCount() %></td>
-                              <td align="center"><%= o.getFinalPrice() %></td>
+                              <td align="center"><%= o.getFinalPrice() %>원</td>
                               <td align="center"><%= o.getOrderStatus() %></td>
 		                    </tr>
     					 <% } %>
@@ -288,6 +287,12 @@
                             <td></td>
                             <td></td>
 	                    </tr>
+
+                        <script>
+                            function detailView(){
+                                location.href = "<%=contextPath%>/rdetail.mp";
+                            }
+                        </script>
 	                    
                   </tbody>
                 </table>

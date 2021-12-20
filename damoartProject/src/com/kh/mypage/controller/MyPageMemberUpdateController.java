@@ -50,9 +50,7 @@ public class MyPageMemberUpdateController extends HttpServlet {
 		
 		Member m = new Member(memId, memPwd, memName, nickName, email, phone, birth);
 		
-		Member updateMember = new MemberService().updateMember(m);
-
-		
+		Member updateMember = new MemberService().updateMember(m);	
 		
 		if(updateMember == null) { // 실패
 			request.setAttribute("errorMsg", "회원정보 수정에 실패했습니다.");

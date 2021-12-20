@@ -15,6 +15,12 @@ public class Order {
 	   private String pTitle;
 	   private int orderCount;
 	   private String mainImg;
+	   
+	   private String area;
+	   private String payOpt;
+	   private int payPrice;
+	   private String orderPhone;
+	   private Date payDate;
 
 public Order() {}
 
@@ -35,6 +41,70 @@ public Order(int memNo, int orderNo, int finalPrice, Date orderDate, int pNo, St
 }
 
 
+
+public Order(int orderNo, Date orderDate, String orderName, int pNo, String pTitle, String mainImg, String orderOpt, int orderCount,
+		String area, Date payDate, String payOpt, int payPrice, String orderPhone) {
+	super();
+	this.orderNo = orderNo;
+	this.orderDate = orderDate;
+	this.orderName = orderName;
+	this.pNo = pNo;
+	this.pTitle = pTitle;
+	this.mainImg = mainImg;
+	this.orderOpt = orderOpt;
+	this.orderCount = orderCount;
+	this.area = area;
+	this.payDate = payDate;
+	this.payOpt = payOpt;
+	this.payPrice = payPrice;
+	this.orderPhone = orderPhone;
+	
+}
+
+public Order(int int1, Date date, String string, int int2, String string2, String string3, String opt, int int3,
+		String string4, Date date2, String payOpt2, int int4, int int5) {
+	// TODO Auto-generated constructor stub
+}
+
+public Date getPayDate() {
+	return payDate;
+}
+
+public void setPayDate(Date payDate) {
+	this.payDate = payDate;
+}
+
+public String getOrderPhone() {
+	return orderPhone;
+}
+
+public void setOrderPhone(String orderPhone) {
+	this.orderPhone = orderPhone;
+}
+
+public String getArea() {
+	return area;
+}
+
+public void setArea(String area) {
+	this.area = area;
+}
+
+public String getPayOpt() {
+	return payOpt;
+}
+
+public void setPayOpt(String payOpt) {
+	this.payOpt = payOpt;
+}
+
+public int getPayPrice() {
+	return payPrice;
+}
+
+public void setPayPrice(int payPrice) {
+	this.payPrice = payPrice;
+}
 
 public int getOrderCount() {
 	return orderCount;
