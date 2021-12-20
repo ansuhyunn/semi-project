@@ -1,8 +1,6 @@
 package com.kh.cscenter.controller.admin;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,20 +8,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.common.model.vo.Attachment;
-import com.kh.cscenter.model.service.NoticeService;
-import com.kh.cscenter.model.vo.Notice;
+import com.kh.cscenter.model.service.QnaService;
+import com.kh.cscenter.model.vo.QnA;
 
 /**
- * Servlet implementation class AdminNoticeUpdateForm
+ * Servlet implementation class AdminQnaUpdateFormController
  */
-@WebServlet("/updateForm.no")
-public class AdminNoticeUpdateFormController extends HttpServlet {
+@WebServlet("/adminUpdateForm.qa")
+public class AdminQnaUpdateFormController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminNoticeUpdateFormController() {
+    public AdminQnaUpdateFormController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,18 +30,18 @@ public class AdminNoticeUpdateFormController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		int noticeNo = Integer.parseInt(request.getParameter("nno"));
+
+		int qNo = Integer.parseInt(request.getParameter("qno"));
 		
-		NoticeService nService = new NoticeService();
+		QnaService qService = new QnaService();
 		
-		Notice n = nService.selectNotice(noticeNo);
-		ArrayList<Attachment> atList = nService.selectAttachment(noticeNo);
+		QnA q = qService.selectQnA(qNo);
+		Attachment at = qService.selectAttachment(qNo);
 		
-		request.setAttribute("n", n);
-		request.setAttribute("atList", atList);
+		request.setAttribute("q", q);
+		request.setAttribute("at", at);
 		
-		request.getRequestDispatcher("views/cscenter/admin/adminNoticeUpdateForm.jsp").forward(request, response);
+		request.getRequestDispatcher("views/cscenter/admin/adminQnaUpdateForm.jsp").forward(request, response);
 	}
 
 	/**

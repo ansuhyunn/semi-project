@@ -31,6 +31,7 @@ public class AdminQnaDetailController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		int qNo = Integer.parseInt(request.getParameter("qno"));
 		
 		QnaService qService = new QnaService();

@@ -100,12 +100,12 @@
         box-sizing:border-box;
     }
 
-    #list, #update{
+    #update{
         background-color:rgb(151, 138, 116);
         color:white;
     }
 
-    #delete{
+    #cancel{
         background-color:rgb(203, 185, 153);
         color:rgb(64, 64, 64);
         font-weight:600;
@@ -116,10 +116,7 @@
         margin:auto;
         margin-top:20px;
     }
-    .button>div{
-        width:50%;
-        float:left;
-    }
+
     span{
         font-size:30px;
         font-weight:750;
@@ -138,7 +135,7 @@
         <br>
         <hr>
         <br><br>
-        <form action="<%=contextPath %>/adminInsert.qa" method="post">
+        <form action="<%=contextPath %>/adminUpdate.qa" method="post">
             <div class="detail-area">
                 
                 <div class="title">
@@ -175,46 +172,22 @@
                     <% } %>
                     <%= q.getqContent() %>
                 </div>
-                <% if(q.getaContent() != null) { %>
+
+                <div class="detail-data">
+                                        답변 내용
+                </div>    
                 
-                    <div class="detail-data">
-                        <div class="writer">
-                            <%= q.getaWriter() %>
-                        </div>
-                        <div class="date">
-                            <%= q.getaCreateDate() %>
-                        </div>
-                    </div>    
-                    
-                    <div class="acontent">
-                        <span>A</span> <br>
-                        <%= q.getaContent() %>
-                    </div>
-                <% }else { %>
-                    <div class="detail-data">
-                                            답변 내용
-                    </div>    
-                    
-                    <div class="acontent">
-                    	<input type="hidden" name="adminNo" value="<%=loginUser.getMemNo() %>">
-                        <input type="hidden" name="qno" value="<%= q.getqNo() %>">
-                        <textarea name="answer" rows="15" required style="resize:none;"></textarea>
-                    </div>
-                <% } %>
+                <div class="acontent">
+                	<input type="hidden" name="adminNo" value="<%=loginUser.getMemNo() %>">
+                    <input type="hidden" name="qno" value="<%= q.getqNo() %>">
+                    <textarea name="answer" rows="15" required style="resize:none;"><%=q.getaContent()%></textarea>
+                </div>
+
                 
             </div>
-            <div class="button">
-                <div>
-                    <a id="list" href="<%= contextPath %>/adminList.qa?cpage=1" class="btn btn-sm">목록가기</a>			
-                </div>
-                <div align="right">
-                    <a id="delete" href="" class="btn btn-sm">삭제하기</a>
-                    <% if(q.getaContent() != null) { %>
-                        <a id="update" href="<%=contextPath %>/adminUpdateForm.qa?qno=<%=q.getqNo() %>" class="btn btn-sm">수정하기</a>
-                    <% }else { %>
-                        <button id="update" type="submit" class="btn btn-sm">등록하기</button>
-                    <% } %>
-                </div>
+            <div class="button" align="right">
+                    <a id="cancel" href="<%=contextPath%>/adminDetail.qa?qno=<%= q.getqNo() %>" class="btn btn-sm">취소하기</a>
+                    <button id="update" type="submit" class="btn btn-sm">등록하기</button>
             </div>
         </form>
             

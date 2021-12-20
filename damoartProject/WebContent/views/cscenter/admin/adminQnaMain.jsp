@@ -112,9 +112,9 @@
                             <th width="50">번호</th>
                             <th width="80">분류</th>
                             <th width="280">제목</th>
-                            <th width="80">작성자</th>
-                            <th width="100">등록일</th>
-                            <th width="80">답변상태</th>
+                            <th width="100">작성자</th>
+                            <th width="90">등록일</th>
+                            <th width="70">답변상태</th>
                         </tr>
                     </thead>
                     <tbody class="qna-tb">
@@ -134,7 +134,12 @@
 		                            		<i class="fas fa-lock"></i>
 		                            	<% } %>
 		                            </td>
-		                            <td><%=q.getqWriter() %></td>
+		                            <td>
+			                            <% if(q.getMemNo() == 0) {%>
+	                    					(비회원)
+	                    				<% } %>
+			                            <%=q.getqWriter() %>
+		                            </td>
 		                            <td><%=q.getCreateDate() %></td>
 		                            <td>
 			                            <% if(q.getaContent() != null) { %>

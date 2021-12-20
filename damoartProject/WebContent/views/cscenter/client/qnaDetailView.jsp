@@ -56,13 +56,13 @@
         font-weight:600;
     }
     .writer{
-        width:13%;
+        width:20%;
         height:40px;
         line-height:40px;
         padding-left:10px;
     }
     .date{
-        width:67%;
+        width:60%;
         height:40px;
         line-height:40px;
     }
@@ -138,6 +138,9 @@
             </div>
             <div class="detail-data">
                 <div class="writer">
+                	<% if(q.getMemNo() == 0) {%>
+                    	(비회원)
+                    <% } %>
                     <%= q.getqWriter() %>
                 </div>
                 <div class="date">
