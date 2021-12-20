@@ -78,7 +78,7 @@
             </div>
             
             <div class="button2">
-                <a href="" class="btn btn-sm" id="update">수정</a>
+                <a href="" class="btn btn-sm" id="update">추가</a>
                 <a href="" class="btn btn-sm" id="delete">삭제</a>
             </div>
         </div>

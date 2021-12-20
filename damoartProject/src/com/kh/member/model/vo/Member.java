@@ -72,6 +72,20 @@ public class Member {
 		this.birth3 = birth3;
 	}
 	
+	
+	public Member(int memNo, String memId, String memName, String nickName, String email, String phone, String birth,
+			Date enrollDate, String status) {
+		super();
+		this.memNo = memNo;
+		this.memId = memId;
+		this.memName = memName;
+		this.nickName = nickName;
+		this.email = email;
+		this.phone = phone;
+		this.birth = birth;
+		this.enrollDate = enrollDate;
+		this.status = status;
+	}
 
 	public int getMemNo() {
 		return memNo;

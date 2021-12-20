@@ -100,7 +100,7 @@
         </ul>
         <br><br>
         <hr style="width:50%;">
-        <form action="insert.me"  method="post" class="enrollForm">
+        <form action="insert.me"  method="post" id="enrollForm" class="enrollForm">
             <br><br><br>
             <table>
                 <tr>
@@ -114,7 +114,7 @@
                     <td width="600">
                         <input type="text" name="memId" id="memId" placeholder="영문, 숫자  5~20자 " minlength="5" required>
                         &nbsp;&nbsp;&nbsp;
-                        <button type="button" class="check id">중복확인</button>
+                        <button type="button" class="check id" onclick="idCheck();">중복확인</button>
                     </td>
                     <td></td>
                 </tr>
@@ -211,7 +211,7 @@
 	                        var end = toyear -90;
 	
 	                        document.write("<select name=birth1> ");
-	                        document.write("<option value='2021' selected>");
+	                        document.write("<option value='' selected>");
 	                        for (i=start; i>=end; i--) document.write("<option>"+i);
 	                        document.write("</select>년  ");
 	
@@ -224,6 +224,7 @@
 	                        document.write("<option value='' selected>");
 	                        for (i=1; i<=31; i++) document.write("<option>"+i);
 	                        document.write("</select>일  </font>");
+	                        
                     	</script>
                     </td>
                     <td></td>
@@ -236,8 +237,8 @@
             <br><br>
 
             <div align="center">
-                <button class="btn-mem back">이전단계</button>
-                <button type="submit" class="btn-mem enroll" onclick="return validate();">회원가입</button>
+                <button class="btn-mem back" onclick="mainPage();">취소</button>
+                <button type="submit" class="btn-mem enroll" onclick="return validate();" disabled>회원가입</button>
             </div>
             
             <br><br>
@@ -245,23 +246,58 @@
         </form>
         
         <script>
-        	// 유효성 검사
-        	function validate() {
-	        	const idInput = document.getElementById("memId");
-	            const pwdInput1 = document.getElementById("memPwd");
-	            const pwdInput2 = document.getElementById("checkPwd");
-	            const nameInput = document.getElementById("memName");
-	            const nickInput = document.getElementById("nickname");
-	            const phoneInput = document.getElementById("phone");
-	            
-	            // 아이디 "영문, 숫자  5~20자"
-	            let regExp = /^[a-z][a-z\d]{5,20}$/;
+        	// 취소버튼 클릭시
+        	function mainPage(){
+        		location.href = "<%=contextPath%>/views/common/mainPage.jsp";
+        	}
+        	
+        	// 아이디 중복체크
+	    	function idCheck(){
+	    		
+        		// 유효성검사
+	    		const idInput = document.getElementById("memId");
+	    		const $idInput = $("#enrollForm input[name=memId]");
+	    		// 아이디 "영문, 숫자  5~20자"
+	            let regExp = /^[a-z][a-z\d]{4,19}$/;
 	            if(!regExp.test(idInput.value)){
 	                alert("유효한 아이디 형식으로 입력해주세요.");
 	                idInput.select();
 	                return false;
 	            }
-	            
+	    		
+	            // 중복체크
+	    		$.ajax({
+	    			url:"idCheck.me",
+	    			data:{checkId:$idInput.val()},
+	    			success:function(result){
+	    				//console.log(result);
+	    				if(result == 'NNNNN'){ // 사용불가능
+	    					alert("이미 존재하거나 탈퇴한 회원의 아이디입니다.");
+	    					$idInput.focus();
+	    				}else{ // 사용가능
+	    					if(confirm("사용가능한 아이디입니다. 사용하시겠습니까?")){
+	    						$("#enrollForm :submit").removeAttr("disabled");
+	    						$idInput.attr("readonly", true);
+	    					}else{
+	    						$idInput.focus();
+	    					}
+	    				}
+	    			},
+	    			error:function(){
+	    				console.log("아이디 중복체크용 ajax 통신실패");
+	    			}
+	    		})
+	    		
+	    	}
+        	
+        	// 유효성 검사
+        	function validate() {
+	            const pwdInput1 = document.getElementById("memPwd");
+	            const pwdInput2 = document.getElementById("checkPwd");
+	            const nameInput = document.getElementById("memName");
+	            const nickInput = document.getElementById("nickname");
+	            const phoneInput = document.getElementById("phone");
+	    
 	            // 비밀번호 "영문+숫자  8~20자  ('~!@'사용가능)"
 	            regExp = /^[a-z\d~!@]{8,20}$/i;
 	            if(!regExp.test(pwdInput1.value)){
@@ -295,8 +331,9 @@
 	                return false;
 	            }
         	}
+        	
         </script>
-
+        
     </div>
 
     <%@ include file="../common/footerbar.jsp" %>

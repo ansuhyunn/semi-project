@@ -494,8 +494,13 @@
                 <button type="button" onclick="enrollPage();" class="btn-mem next">다음단계</button>
               	
               	<script>
+	             	// 취소버튼 클릭시 메인
+	            	function mainPage(){
+	            		location.href = "<%=contextPath%>/views/common/mainPage.jsp";
+	            	}
+	             	// 다음단계 버튼 클릭시 회원가입폼
           			function enrollPage(){
-          				location.href = "<%=contextPath%>/enrollForm.me"
+          				location.href = "<%=contextPath%>/enrollForm.me";
           			}
           		</script>
               </div>

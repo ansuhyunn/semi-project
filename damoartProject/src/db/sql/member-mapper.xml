@@ -47,5 +47,42 @@
 		  , ?
 		  )
 	</entry>
+	
+	<entry key="idCheck">
+		SELECT
+		       COUNT(*) "COUNT"
+		  FROM MEMBER
+		 WHERE MEM_ID = ?
+	</entry>
+	
+	<entry key="selectListCount">
+		SELECT
+		       COUNT(*) COUNT
+		  FROM MEMBER
+	</entry>
+	
+	<entry key="selectList">
+		SELECT *
+		  FROM (
+		        SELECT ROWNUM RNUM, A.*
+		          FROM (
+		                SELECT 
+		                       MEM_NO
+						     , MEM_ID
+						     , MEM_NAME
+						     , NICKNAME
+						     , EMAIL
+						     , PHONE
+						     , TO_CHAR(BIRTH,'YYYY-MM-DD') "BIRTH"
+						     , TO_CHAR(ENROLL_DATE, 'YYYY-MM-DD') "ENROLL_DATE"
+						     , STATUS
+						  FROM MEMBER
+						  ORDER
+				          BY MEM_NO DESC
+		               ) A 
+		        )
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	
 
 </properties>

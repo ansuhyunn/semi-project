@@ -1,5 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.kh.common.model.vo.PageInfo, java.util.ArrayList, com.kh.member.model.vo.Member" %>
+<%
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	ArrayList<Member> list = (ArrayList<Member>)request.getAttribute("list");
+	
+	int currentPage = pi.getCurrentPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+	int maxPage = pi.getMaxPage();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +38,7 @@
 	        font-family: 'IBMPlexSansKR-Regular'; 
 	    }
 	    .outer{
-	        width:1300px; 
+	        width:1500px; 
 	        margin:auto;
 	        margin-top:150px;
 	        margin-left:250px;
@@ -84,73 +94,74 @@
         </div>
         <br>
         <div>
-            <table align="center" class="table table-bordered" style="text-align:center;">
+            <table align="center" class="table table-bordered list-area" style="text-align:center;">
                 <thead>
                     <tr>
                         <th width="10"><input type="checkbox"></th>
                         <th width="70">회원번호</th>
-                        <th width="90">아이디</th>
+                        <th width="80">아이디</th>
                         <th width="70">이름</th>
                         <th width="90">닉네임</th>
-                        <th width="100">이메일</th>
+                        <th width="110">이메일</th>
                         <th width="110">전화번호</th>
                         <th width="110">생년월일</th>
                         <th width="110">가입일</th>
-                        <th width="130">적립금</th>
+                        <th width="70">회원중지</th>
+                        <th width="120">적립금</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>1</td>
-                        <td>id1212</td>
-                        <td>홍길동</td>
-                        <td>길동</td>
-                        <td>email12@naver.com</td>
-                        <td>010-2324-3556</td>
-                        <td>2000-01-02</td>
-                        <td>2021-12-01</td>
-                        <td>
-                            5000 
-                            <input type="button" class="btn btn-sm btn-warning point" value="상세">
-                            <input type="button" class="btn btn-sm btn-warning point" value="변경">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>1</td>
-                        <td>id1212</td>
-                        <td>홍길동</td>
-                        <td>길동</td>
-                        <td>email12@naver.com</td>
-                        <td>010-2324-3556</td>
-                        <td>2000-01-02</td>
-                        <td>2021-12-01</td>
-                        <td>
-                            5000 
-                            <input type="button" class="btn btn-sm btn-warning point" value="상세">
-                            <input type="button" class="btn btn-sm btn-warning point" value="변경">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>1</td>
-                        <td>id1212</td>
-                        <td>홍길동</td>
-                        <td>길동</td>
-                        <td>email12@naver.com</td>
-                        <td>010-2324-3556</td>
-                        <td>2000-01-02</td>
-                        <td>2021-12-01</td>
-                        <td>
-                            5000 
-                            <input type="button" class="btn btn-sm btn-warning point" value="상세">
-                            <input type="button" class="btn btn-sm btn-warning point" value="변경">
-                        </td>
-                    </tr>
+                	<% if(list.isEmpty()) { %>
+		                <!--case1. 회원 없을 경우-->
+		                <tr>
+		                    <td colspan="10">조회된 회원이 없습니다.</td>
+		                </tr>
+		            <% }else { %>    
+		                <!--case2. 회원 있을 경우-->
+		                <% for(Member m : list) { %>
+		                    <tr>
+		                        <td><input type="checkbox"></td>
+		                        <td><%= m.getMemNo() %></td>
+		                        <td><%= m.getMemId() %></td>
+		                        <td><%= m.getMemName() %></td>
+		                        <td><%= m.getNickName() %></td>
+		                        <td><%= m.getEmail() %></td>
+		                        <td><%= m.getPhone() %></td>
+		                        <td><%= m.getBirth() %></td>
+		                        <td><%= m.getEnrollDate() %></td>
+		                        <td><%= m.getStatus() %></td>
+		                        <td>
+		                            5000 
+		                            <input type="button" class="btn btn-sm btn-warning point" value="상세">
+		                            <input type="button" class="btn btn-sm btn-warning point" value="변경">
+		                        </td>
+		                    </tr>
+		            	<% } %>    
+	        		<% } %>    
                 </tbody>
             </table>
-            
+  			<br><br>
+  			
+            <div class="paging-area" align="center">
+			
+				<% if(currentPage!=1) { %>
+	            	<button onclick="location.href='<%=contextPath%>/mngmem.me?cpage=<%=currentPage-1%>';"> &lt; </button>
+	            <% } %>
+	            
+	            <% for(int p=startPage; p<=endPage; p++){ %>
+	            	
+	            	<% if(p == currentPage) { %>
+	            		
+	            		<button disabled><%= p %></button> 
+	            	<% }else { %>
+	            		<button onclick="location.href='<%=contextPath%>/mngmem.me?cpage=<%= p %>'; "><%= p %></button>
+	            	<% } %>
+	            <% } %>
+	            
+	            <% if(currentPage!=maxPage) { %>
+	            <button onclick="location.href='<%=contextPath%>/mngmem.me?cpage=<%=currentPage+1%>';"> &gt;</button>
+				<% } %>
+        	</div>
         </div>
     </div>
 </body>

@@ -8,10 +8,7 @@
 </head>
 <body>
 	
-	<%
-		MailSend ms = new MailSend();
-		ms.MailSend();
-	%>
+	
 	
 
 </body>
