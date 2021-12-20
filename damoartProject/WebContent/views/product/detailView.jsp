@@ -127,16 +127,16 @@
 							<th >옵션선택</th>
 							<td>
 								<select name="option" >
-									<option value="<%= p.getaPrice() %>">성인</option>
-									<option value="<%= p.gettPrice() %>">청소년</option>
-									<option value="<%= p.getcPrice() %>">소아</option>
+									<option value="<%= p.getaPrice() %>" id="A">성인</option>
+									<option value="<%= p.gettPrice() %>" id="T">청소년</option>
+									<option value="<%= p.getcPrice() %>" id="C">소아</option>
 								</select>
 							</td>
 							<th>수량</th>
 							<td><input type="number" style="width: 50px;"></td>
 						</tr>
 					</table>
-					<button class="btn btn-secondary" onclick="orderlist();">선택</button>
+					<button class="btn btn-secondary" id="select">선택</button>
 				</form>
 				<table id="result">
 					<tr>
@@ -164,6 +164,7 @@
 
 		<script>
 
+		
 			function onclick(){		
 				$.ajax({
 					url : "",
@@ -199,7 +200,28 @@
 						}
 					})
 				})
+		
+			(function(){
+				
+				// 장바구니 넣기
+				$("#A").click(function(){
+				$.ajax({
+				url : "in.ca",
+	  		    data : {
+	  		    content:<%= p.getaPrice() %>,
+	  		    
+			    },
+	 		    typt : "post",
+			    success:function(result){
+			    console.log("장바구니 담기 성공");
+	   			}, erorr:function(){
+			    console.log("장바구니 담기 실패");
+	   			})
+			})
+	
+		})
 			
+				
 		</script>
 		<% } %>
 		

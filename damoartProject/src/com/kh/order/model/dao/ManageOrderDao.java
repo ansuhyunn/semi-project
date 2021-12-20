@@ -30,8 +30,8 @@ public class ManageOrderDao {
 			String year =  String.valueOf(date.getYear() + 1900);
 			String month =  String.valueOf(date.getMonth() + 1);
 			String day =  String.valueOf(date.getDate());
-			System.out.println("year :" + year  );
-			System.out.println("month :" + month  );
+			System.out.println("year :" + year);
+			System.out.println("month :" + month);
 			System.out.println("day :" + day);
 			// 한자리수일 경우 0을 채워준다. 
 			if(month.length() == 1){ 

@@ -105,8 +105,7 @@
 <body>
 
     <%@ include file="../common/menubar.jsp" %>
-	
-	
+    
     <!-- 장바구니 윗 부분 -->
     <div class="cart_head" align="center">
         <br>
@@ -126,7 +125,7 @@
             </tr>
 
 	<!-- 로그인 조건 -->
-	<% if (loginUser != null ) { %>
+	<% if ( loginUser != null ) { %>
             <!--상품 없을 때-->
             <% if(list.isEmpty()) { %>            
             <tr>
@@ -140,12 +139,12 @@
             <% } else { %>
             
             <% for(Cart c : list) { %>
-            <% if( c.getSoldOut().equals("N")) { %>(
+            <% if( c.getSoldOut().equals("N")) { %>
             <div>
             
             <!--상품 품절일 때-->
             <tr id="cart_content">
-                <td width="50"><input type="checkbox"></td>
+                <td width="50"><input type="checkbox" ></td>
                 <td width="200"><img src= "<%=request.getContextPath()%>/resources/images/product/1M.gif" width="80px" height="80px"></td>
                 <td width="200" id="soldout">
 						   <%= c.getTitle() %>
@@ -157,8 +156,8 @@
                   <%} else { %>
             </div>
  			</tr> 
-                <tr id="cart_content">
-                    <td width="50"><input type="checkbox"></td>
+                <tr id="cart_content>">
+                    <td class="" width="50"><input class="chkState" type="checkbox"></td>
                     <td width="200"><img src= "<%=request.getContextPath()%> 이미지 " width="80px" height="80px"></td>
                     <td width="200">
                       	   <%= c.getTitle() %>
@@ -199,7 +198,90 @@
 		<%} %>
 	<%} %>
 	<%} %>
-    </table>
+    </table>    	
+    <script>    	
+	function rqOrder(){
+		debugger
+		let chekObj = document.getElementsByClassName("chkState");
+   		  let lenth = chekObj.length;
+   		  let checked = 0;
+   		  let checkboxTest;
+   		  let requestList = [];
+
+   		  for (var i = 0; i < lenth; i++) {
+   		    if (chekObj[i].checked === true) {
+   		      checked += 1;
+   		      checkboxTest = chekObj[i].getAttribute("id");
+   		   	  requestList.push(i)
+   		    }
+   		  }
+   		  /* 주문하기 화면으로 이동하기 */
+   		  
+   		$.ajax({
+   			url : "/list.ca",
+			data : {
+				content : "order",
+				select : requestList,
+			},
+			success:function(result){
+				console.log("result: " + result);
+				// TODO
+				/*
+				$.ajax({
+		   			url : "/list.ca",
+					data : {
+						content : "order",
+						select : requestList,
+					}
+					success:function(result){
+						// TODO
+					},error:function(){
+						console.log("ㅠㅠㅠ");
+					}
+				})
+				*/
+			},error:function(){
+				console.log("ㅠㅠㅠ");
+			}
+		})
+		
+	}
+	/* $('.btn_order').on('click',function(){
+		debugger
+		let chekObj = document.getElementsByClassName("chkState");
+   		  let lenth = chekObj.length;
+   		  let checked = 0;
+   		  let checkboxTest;
+
+   		  for (i = 0; i < lenth; i++) {
+   		    if (chekObj[i].checked === true) {
+   		      checked += 1;
+   		      checkboxTest = chekObj[i].getAttribute("id");
+   		   	  requestList.push[]
+   		      console.log(JSON.stringify(data));
+   		    }
+   		  }
+	})
+	*/
+</script>
+    	/* $('.btn_order').on('click',function(){
+    		debugger
+    		let chekObj = document.getElementsByClassName("chkState");
+	   		  let lenth = chekObj.length;
+	   		  let checked = 0;
+	   		  let checkboxTest;
+	
+	   		  for (i = 0; i < lenth; i++) {
+	   		    if (chekObj[i].checked === true) {
+	   		      checked += 1;
+	   		      checkboxTest = chekObj[i].getAttribute("id");
+	   		   	  requestList.push[]
+	   		      console.log(JSON.stringify(data));
+	   		    }
+	   		  }
+    	})
+    	*/
+    </script>
     </div>
     
     <!-- 장바구니 하단 -->
@@ -209,8 +291,8 @@
         <b>결제금액 28000￦</b>
     </div>
     <br>
-    <div class="button">
-     <a href="../order/orderPage.jsp" button type="submit" class="btn"><b>주문하기</b></a>
+    <div class="" style="display:block;width:80px;height:30px;">
+      <button type="submit" class="btn_order" onclick="rqOrder()"><b>주문하기</b></button>
     </div>
 
 

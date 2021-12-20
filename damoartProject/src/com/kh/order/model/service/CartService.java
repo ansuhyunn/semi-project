@@ -18,23 +18,25 @@ import com.kh.order.model.vo.Cart;
 
 public class CartService {
 	
+	CartDao dao = new CartDao();
 	
-	public ArrayList<Cart> selectCartList() {
+		public ArrayList<Cart> selectCartList() {
 		Connection conn = getConnection();
-		ArrayList<Cart> list = new CartDao().selectCartList(conn, 0);
+		ArrayList<Cart> list = dao.selectCartList(conn);
 		close(conn);
 		
 		return list;
 	}
-	
-	/*
-	public void insertCart
 
-	public int insertCart(Cart c) {
-		// TODO Auto-generated method stub
-		return 0;
+	public void SetMemNo(int no) {
+		this.dao.setMemNo(no);
 	}
-	*/
+	
+	public int GetMemNo() {
+		return this.dao.getMemNo();
+	}
+	
+		
 	
 	public int insertCart(Cart c) {
 		Connection conn = getConnection();

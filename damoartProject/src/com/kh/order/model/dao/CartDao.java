@@ -20,10 +20,11 @@ public class CartDao {
 
 	private Properties prop = new Properties();
 	
+	int memNo = -1;
 	
 	
 	public CartDao() {
-
+		
 		try {
 			prop.loadFromXML(new FileInputStream(CartDao.class.getResource("/db/sql/cart-mapper.xml").getPath()));
 		} catch (IOException e) {
@@ -32,7 +33,17 @@ public class CartDao {
 		}
 	}
 	
-	public ArrayList<Cart> selectCartList(Connection conn, int memNo) {
+	public void setMemNo(int num) {
+		this.memNo = num;
+	}
+	
+	public int getMemNo() {
+		return this.memNo;
+	}
+	
+	
+	
+	public ArrayList<Cart> selectCartList(Connection conn) {
 		ArrayList<Cart> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -40,10 +51,10 @@ public class CartDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, 5); // memNo으로 바꿔야됨
+			pstmt.setInt(1, this.memNo); // memNo으로 바꿔야됨
 			rset = pstmt.executeQuery();
 			
-			System.out.println("start " + pstmt.toString());
+			System.out.println("memNo: " + this.memNo);
 			
 			while(rset.next()) {
 

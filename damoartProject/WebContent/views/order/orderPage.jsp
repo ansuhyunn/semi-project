@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.order.model.vo.Order"%>
+<% 
+	ArrayList<Order> list = (ArrayList<Order>)request.getAttribute("list");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -127,30 +130,21 @@
                <th width=90>적립예상금액</th>
            </tr>
            <div>
+           <% for(Order o : list) { %>
                <tr id="cart_content">
                    <td width="200"><img src= "<%=request.getContextPath()%>/resources/images/product/1M.gif" width="80px" height="80px"></td>
                    <td width="200">
-                       영국 테이트미술관 특별전
-                     <br>북서울미술관
-                     <br>2021.12.21 ~ 22.05.08  
+                      <%= o.getTitle() %>
+                     <br> <%= o.getArea() %>
+                     <br><%= o.getsDate() %> ~ <%= o.geteDate() %> 
                    </td>                           
-                   <td width="50">어린이</td>
-                   <td width="50">1</td>
-                   <td width="50">14000￦</td>
+                   <td width="50"><%= o.getCartOpt() %></td>
+                   <td width="50"><%= o.getCartCount() %></td>
+                   <td width="50">가격￦</td>
                    <td width="50">140￦</td>
                </tr>
-               <tr id="cart_content">
-                   <td width="200"><img src= "<%=request.getContextPath()%>/resources/images/product/1M.gif" width="80px" height="80px"></td>
-                   <td width="200">
-                       영국 테이트미술관 특별전
-                     <br>북서울미술관
-                     <br>2021.12.21 ~ 22.05.08  
-                   </td>                           
-                   <td width="50">어린이</td>
-                   <td width="50">1</td>
-                   <td width="50">14000￦</td>
-                   <td width="50">140￦</td>
-               </tr>
+               
+               	<% } %>
            </table>
            </div>
            <div class="order_bottom" width="800">
@@ -231,11 +225,11 @@
         <table id="option" width="460px">
             <tr>
                 <td width="5px"><input type="radio"></td>
-                <td width="100%" colspan="2">무통장 입금</td>
+                <td width="100%" colspan="2" input type="radio">무통장 입금</td>
             </tr>
             <tr>
                 <td></td>
-                <td width="155px">입금자명</td>
+                <td width="155px" input type="radio">입금자명</td>
                 <td><input width="150px"></td>
             </tr>
             <tr>
