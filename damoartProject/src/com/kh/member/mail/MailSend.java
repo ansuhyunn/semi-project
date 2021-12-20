@@ -35,7 +35,7 @@ public class MailSend {
             InternetAddress to = new InternetAddress("atti5701@gmail.com");         
             msg.setRecipient(Message.RecipientType.TO, to);            
             msg.setSubject("DAMOART 회원가입 인증 메일입니다.", "UTF-8");            
-            msg.setText("인증번호는 [xxxxxx]입니다. 회원가입 페이지에 인증번호를 입력해주세요.", "UTF-8");            "
+            msg.setText("인증번호는 [xxxxxx]입니다. 회원가입 페이지에 인증번호를 입력해주세요.", "UTF-8");            
             		
             
             Transport.send(msg);

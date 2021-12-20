@@ -148,8 +148,8 @@
             <div class="menu">회원 관리</div>
             <div class="sub">
                 <ul>
-                    <li><a href="">회원 목록</a></li>
-                    <li><a href="">블랙리스트 관리</a></li>
+                    <li><a href="<%=contextPath%>/views/member/manageMember.jsp">회원 목록</a></li>
+                    <li><a href="<%=contextPath%>/views/member/manageBlack.jsp">블랙리스트 관리</a></li>
                 </ul>
             </div>
             <div class="menu">상품 관리</div>
