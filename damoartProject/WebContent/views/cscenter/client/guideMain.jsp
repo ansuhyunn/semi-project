@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -26,6 +27,22 @@
         margin:auto;
     }
 
+    #outer>a{
+        color:rgb(64, 64, 64);
+    }
+
+    .inner{
+        width:750px;
+        height:auto;
+        margin:auto;
+    }
+
+    .title{
+        height:50px;
+        font-size:20px;
+        font-weight:700;
+        line-height:50px;
+    }
 
 
 </style>
@@ -34,9 +51,24 @@
 	<%@ include file="../../common/menubar.jsp" %>
 	
         <div id="outer">
-			<h4>이용안내</h4>
+			<a href="">고객센터</a><i class="fas fa-angle-right"></i><a href=""><b>이용안내</b></a>
+            <br><br>
+			<h4 style="font-weight: bolder;" align="center">이용안내</h4>
             <br>
             <hr>
+            <br>
+            <div class="inner">
+
+                <div class="title">
+                    제목
+                </div>
+                <div class="img">
+                    첨부파일
+                </div>
+                <div class="content">
+                    내용
+                </div>
+            </div>
            
         </div>
 
