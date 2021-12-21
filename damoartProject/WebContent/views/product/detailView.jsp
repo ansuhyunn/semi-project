@@ -73,6 +73,12 @@
 		margin-top: 100px;
 		width: 80%;
 	}
+	.content5{
+		margin: auto;
+		margin-left: 100px;
+		margin-top: 10px;
+		width: 80%;
+	}
 </style>
 </head>
 <body>
@@ -161,6 +167,9 @@
 		<div class="content4">
 			<div class="detail"><img id="detail" src="<%=contextPath%>/<%= p.getDetailImg()%>" width="100%" height="100%"></div>
         </div>
+       <div class="content5">
+			
+        </div>
         <br><br><br><br><br>
 
 		<script>
@@ -197,18 +206,21 @@
 					data:{pno:$("#pNo").val()},
 					success:function(result){
 						let value = "";
+						let button = ""
 						if(result != null){
 							for(let i=0; i<result.length; i++){
-									value += "<table border=\"1px solid black\" width=\"800px\">"
-											   + "<tr>"
-													+ "<td>" + result[i].qCategoryCode + "</td>"
-													+ "<td>" + result[i].qTitle + "</td>"
-													+ "<td>" + result[i].qWriter + "</td>"
-													+ "<td width=\"150px\">" + result[i].createDate + "</td>"
-											   +"</tr>"
-										   +"</table>";
-									
-									$(".content4").html(value);
+								value += "<table border=\"1px solid black\" width=\"800px\">"
+										   + "<tr>"
+												+ "<th width=\"80px\">" + result[i].qCategoryCode + "</td>"
+												+ "<td>" + result[i].qTitle + "</td>"
+												+ "<td width=\"80px\">" + result[i].qWriter + "</td>"
+												+ "<td width=\"150px\">" + result[i].createDate + "</td>"
+										   +"</tr>"
+									   +"</table>";
+								
+								$(".content4").html(value);
+								var btn = '<a class="btn" href=' + '\"<%=contextPath%>/enrollForm.qa\">문의 등록</a>'
+								$(".content5").html(btn);
 							}
 						}else{
 							$(".content4").html("문의사항이 없습니다");
@@ -219,6 +231,7 @@
 						console.log("에러");
 					}
 				})
+				
 			})
 			
 			
