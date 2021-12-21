@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+<!-- 페이징바 -->
+	<entry key="selectListCount">
+		  SELECT
+				 COUNT(*) count
+			FROM EVENT
+		   WHERE EVENT_NOW = 'Y'
+	</entry>
+
+	<entry key="selectList">
+	  SELECT *
+		FROM (
+			  SELECT ROWNUM RNUM, EV.*
+ 			    FROM (
+				SELECT
+				       EVENT_NO
+				     , MEM_NO
+				     , EVENT_NAME
+				     , TO_CHAR(EVENT_START, 'YYYY-MM-DD') "EVENT_START"
+				     , TO_CHAR(EVENT_END, 'YYYY-MM-DD') "EVENT_END"
+				     , EVENT_MOW
+				     , EVENT_IMAGE
+				  FROM EVENT EVN
+				  JOIN ORDER USING(ORDER_NO)
+				  JOIN MEMBER ON (MEM_NO = MEM_NAME)
+				   AND EVN.DELETE_STATUS = 'N'
+				   AND ROWNUM BETWEEN 1 AND 10
+				 ORDER
+				    BY ENENT_NO DESC
+				) EV
+			)
+	WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	
+</properties>

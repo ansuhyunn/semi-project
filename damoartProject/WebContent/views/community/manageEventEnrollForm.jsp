@@ -5,44 +5,68 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<!-- Popper JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	
 <style>
     .wrap{
         background:#e1d5bf;
         color:black;
-        width:1000px;
-        height:1000px;
+        width:900px;
+        height:auto;
         margin:auto;
-        margin-top:50px;
+        margin-top: 150px;
+        
     }
     #enroll-form table{
-        border:1px solid white;
+        
         width: 800px;
         
     }
+    .buttons>div{float:left;}
+	.buttons{width:80px; height:40px; position:relative;}
     #enroll-form input, #enroll-form textarea{
         width:100%;
         box-sizing:border-box;
+    }
+    #reset{
+	    background-color:rgb(203, 185, 153);
+	    color:rgb(64, 64, 64);
+	    font-weight:bold;
+	}
+	#enroll{
+	    background-color:rgb(151, 138, 116);
+	    color:white;
+	}
+    th{
+        text-align: left;
+        padding-left: auto;
     }
 </style>
 </head>
 <body>
 
 
-	 <%@ include file="../common/menubar.jsp" %>
+    <%@ include file="../common/manageMenubar_2.jsp" %>
 
 
      <div class="wrap">
 
         <br>
-        <h2 align="center"><다쓰면지움!! 이벤트등록페이지></h2> <br>
+        <h2 align="center"><이벤트등록페이지></h2> <br>
 
         <form action="" id="enroll-form" method="post" enctype="multipart/form-data">
 			
-            <!--admin만 식별하게끔-->
+           
 			<input type="hidden" name="userNo" value="">
             <table align="center">
                 <tr>
-                    <th width="100">제목</th>
+                    <th width="100" >제목</th>
                     <td colspan="3"><input type="text" name="title" required></td>
                 </tr>
                 <tr>
@@ -57,20 +81,19 @@
                     </td>
                 </tr>
                <tr>
-                   <th>첨부파일 선택</th>
+                   <th>배너 이미지 등록</th>
                     <td><input type="file"></td>
-                    <!-- 이거 나중에 바꾸기 (찾아보기..뜨는거로)-->
                </tr>
             </table>
 
-
+			<hr>
            
 
             <br>
 
-            <div align="right" style="margin-right: 150px;">
-                <button type="submit">취소</button>
-                <button type="submit">등록</button>
+            <div align="right" style="margin-right: 100px;">
+                <button type="reset"  class="buttons" id="reset">취소</button>
+                <button type="submit" class="buttons" id="enroll">등록</button>
             </div>
 
 

@@ -179,9 +179,9 @@
             <div class="menu">커뮤니티 관리</div>
             <div class="sub">
                 <ul>
-                    <li><a href="">REVIEW 관리</a></li>
-                    <li><a href="">REVIEW 신고 관리</a></li>
-                    <li><a href="">EVENT 관리</a></li>
+                    <li><a href="<%=contextPath%>/views/community/manageReviewMain.jsp">REVIEW 관리</a></li>
+                    <li><a href="<%=contextPath%>/views/community/manageReportMain.jsp">REVIEW 신고 관리</a></li>
+                    <li><a href="<%=contextPath%>/views/community/manageEventMain.jsp">EVENT 관리</a></li>
                 </ul>
             </div>
             <div class="menu">고객센터 관리</div>

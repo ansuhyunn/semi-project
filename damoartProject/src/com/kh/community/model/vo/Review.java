@@ -9,7 +9,7 @@ public class Review {
 	private String reviewName;
 	private String reviewContent;
 	private String reviewDate;
-	private int reviewStar;	// 별점 점수로 세니까 int 같음
+	private String reviewStar;	// 별점 점수
 	private int reviewView; // == count
 	private String reviewSecret;
 	private String reviewFile;
@@ -19,7 +19,7 @@ public class Review {
 	public Review() {}
 
 	public Review(int rvNo, int orderNo, String reviewId, String reviewPwd, String reviewName, String reviewContent,
-			String reviewDate, int reviewStar, int reviewView, String reviewSecret, String reviewFile,
+			String reviewDate, String reviewStar, int reviewView, String reviewSecret, String reviewFile,
 			String deleteStatus, String blindStatus) {
 		super();
 		this.rvNo = rvNo;
@@ -36,11 +36,26 @@ public class Review {
 		this.deleteStatus = deleteStatus;
 		this.blindStatus = blindStatus;
 	}
+	
+	// 페이징바 관련
+	
+	public Review(int rvNo, String reviewName, String reviewDate, String reviewSecret, String deleteStatus,
+			String blindStatus) {
+		super();
+		this.rvNo = rvNo;
+		this.reviewName = reviewName;
+		this.reviewDate = reviewDate;
+		this.reviewSecret = reviewSecret;
+		this.deleteStatus = deleteStatus;
+		this.blindStatus = blindStatus;
+	}
+
+	
+	
 
 	public int getRvNo() {
 		return rvNo;
 	}
-
 	public void setRvNo(int rvNo) {
 		this.rvNo = rvNo;
 	}
@@ -93,11 +108,11 @@ public class Review {
 		this.reviewDate = reviewDate;
 	}
 
-	public int getReviewStar() {
+	public String getReviewStar() {
 		return reviewStar;
 	}
 
-	public void setReviewStar(int reviewStar) {
+	public void setReviewStar(String reviewStar) {
 		this.reviewStar = reviewStar;
 	}
 
@@ -149,7 +164,6 @@ public class Review {
 				+ ", reviewFile=" + reviewFile + ", deleteStatus=" + deleteStatus + ", blindStatus=" + blindStatus
 				+ "]";
 	}
-	
-	
+
 	
 }

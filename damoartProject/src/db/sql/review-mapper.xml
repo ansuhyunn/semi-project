@@ -2,12 +2,64 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 
-	<entry key="">
-	
+<!-- 페이징바 -->
+	<entry key="selectListCount">
+		  SELECT
+			     COUNT(*) count
+		    FROM REVIEW
+		   WHERE DELETE_STATUS = 'N'
 	</entry>
 
-	<entry key="">
+	<entry key="selectList">
+	  SELECT *
+		FROM (
+			  SELECT ROWNUM RNUM, RR.*
+ 			    FROM (
+				SELECT
+				       RV_NO
+				     , ORDER_NO
+				     , REVIEW_NAME
+				     , TO_CHAR(REVIEW_DATE, 'YYYY-MM-DD') "REVIEW_DATE"
+				     , REVIEW_VIEW
+				     , REVIEW_SECRET
+				     , DELETE_STATUS
+				     , BLIND_STATUS
+				  FROM REVIEW RV
+				  JOIN ORDER USING(ORDER_NO)
+				  JOIN MEMBER ON (REVIEW_NAME = MEM_NAME)
+				   AND RV.DELETE_STATUS = 'N'
+				   AND ROWNUM BETWEEN 1 AND 10
+				 ORDER
+				    BY RV_NO DESC
+				) RR
+			)
+	WHERE RNUM BETWEEN ? AND ?
+	</entry>
 	
+		<entry key="insertReview">
+		INSERT 
+		  INTO REVIEW
+		  (
+		    RV_NO
+		  , REVIEW_ID
+		  , REVIEW_PWD
+		  , REVIEW_NAME
+		  , REVIEW_CONTENT
+		  , REVIEW_STAR
+		  , REVIEW_SECRET
+		  , REVIEW_FILE
+		  )
+		  VALUES
+		  (
+		    SEQ_BNO.NEXTVAL
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		  , ? 
+		  , ?
+		  , ?
+		  )
 	</entry>
 	
 </properties>

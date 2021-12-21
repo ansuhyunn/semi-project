@@ -1,10 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<%@ page import="java.util.ArrayList, com.kh.common.model.vo.PageInfo, com.kh.community.model.vo.Event" %>
+    
+<% PageInfo pi = (PageInfo)request.getAttribute("pi");
+    ArrayList<Event> list = (ArrayList<Event>)request.getAttribute("list");
+    
+    int currentPage = pi.getCurrentPage();
+    int startPage = pi.getStartPage();
+    int endPage = pi.getEndPage();
+    int maxPage = pi.getMaxPage();
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 <style>
     div{ box-sizing:border-box;}
     
@@ -36,11 +55,35 @@
         font-size: 30px;
         padding: 60px;
     }
+	.evnlink{
+         
+        font-size: 20px;
+        padding-top: 20px;
+        float: center;
+        text-decoration: none;
+        color: black;
+	}
+	.evnlink>a:hover{
+	font-weight: bolder;
+	text-decoration: none;
+	color: gray;
+	}
 
-    /*더보기*/
-    more_event{
+    
+    .more_event{
     margin: auto;    /*더보기 길쭉하게 중앙으로 오도록..div로 감싸서?*/
     }
+
+    div>a{
+			color:rgb(82, 82, 82);
+			font-size: 20px;
+			font-weight: bold;
+		}
+		div>a:hover{
+			color: rgb(0, 0, 0);
+			text-decoration-line:none;
+			font-weight: bold;
+		}
    
 
 </style>
@@ -61,7 +104,7 @@
         <br>
 
         <!-- 누르면 해당하는 목록으로 보여지는 형태로..아님 ajax로 바꾸기-->
-        <div align="center" style="">
+        <div align="center" class="evnlink">
             <a href="">진행중인 이벤트</a>
             <a href="">종료된 이벤트</a>
         </div>
@@ -116,10 +159,46 @@
 
          </div>
 
-        <- 페이징바 ->
-
-         앞으론...깃에 꼭 곡 올리기..........받다가 롤백해버렸네..
+	        <!-- 
+         <div class="paging-area" align="center">
+		        <button> &lt; </button>
+		        <button>1</button>
+		        <button>2</button>
+		        <button>3</button>
+		        <button>4</button>
+		        <button>5</button>
+		        <button>6</button>
+		        <button>7</button>
+		        <button>8</button>
+		        <button>9</button>
+		        <button>10</button>
+		        <button>&gt;/button>
+	        
+        </div>
+        	 -->
+        
+        
+        <div class="paging-area" align="center">
+			
+			<% if(currentPage != 1) { %>
+            	<button onclick="location.href='<%=contextPath%>/list.evn?cpage=<%=currentPage-1%>';"> &lt; </button>
+            <% } %>
             
+            <% for(int p=startPage; p<=endPage; p++){ %>
+            	<% if(p == currentPage) { %>
+            		<button disabled><%= p %></button>
+            	<% }else { %>
+            		<button onclick="location.href='<%=contextPath%>/list.evn?cpage=<%= p %>';"><%= p %></button>
+            	<% } %>
+            <% } %>
+            
+            <% if(currentPage != maxPage){ %>
+            	<button onclick="location.href='<%=contextPath%>/list.evn?cpage=<%=currentPage+1%>';"> &gt; </button>
+			<% } %>
+			
+        </div>
+            
+           
   </div>
 </body>
 

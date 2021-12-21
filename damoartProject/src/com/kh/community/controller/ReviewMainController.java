@@ -33,13 +33,12 @@ public class ReviewMainController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+			// 페이징바
 				int listCount;		
 				int currentPage; 	
 				int pageLimit; 		
 				int boardLimit;		
 
-				
-				
 				int maxPage;		
 				int startPage;		
 				int endPage;		
@@ -49,33 +48,24 @@ public class ReviewMainController extends HttpServlet {
 				currentPage = Integer.parseInt(request.getParameter("cpage"));
 				
 				pageLimit = 10;
-				
 				boardLimit = 10;
 				
-				
 				maxPage = (int)Math.ceil((double)listCount / boardLimit);
-				
-				
 				startPage = (currentPage - 1) / pageLimit * pageLimit + 1;
-				
-				
 				endPage = startPage + pageLimit - 1;
-				
 				
 				if(endPage > maxPage) {
 					endPage = maxPage;
 				}
 				
-				
 				PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
-				
 				
 				ArrayList<Review> list = new ReviewService().selectList(pi);
 				
 				request.setAttribute("pi", pi);
 				request.setAttribute("list", list);
 				
-				request.getRequestDispatcher("views/board/boardListView.jsp").forward(request, response);
+				request.getRequestDispatcher("views/community/reviewMain.jsp").forward(request, response);
 			
 			}
 	

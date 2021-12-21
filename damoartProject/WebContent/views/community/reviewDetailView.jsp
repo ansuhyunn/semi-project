@@ -73,12 +73,12 @@
         <button>삭제</button>
         <hr>
         <p>
-        	test01 | ㅇㄴㅇㄴㅀㅎㄴㄹㅇㅎㄴㄹㅇㅎㄴㅇㅀㄴㅇㄹ  <br>
-        	작성일~~~~~ (신고아이콘) (삭제아이콘)
+        	test01 | 심한욕설비방및모욕  <br>
+        	2021-01-01 (신고아이콘) (삭제아이콘)
         </p>
         <p>
-        	test01 | ㄹㅇㅎㄹㅇㅎㄴㅇㅀㅇㄹㄶㄹㅇ <br>
-        	작성일~~~~~~ 
+        	test01 | 광고홍보댓글 <br>
+        	2021-01-01 (신고아이콘) (삭제아이콘)
         </p>
         <hr>
         <div align="center">
@@ -86,6 +86,94 @@
         <button>작성하기</button>
         </div>
         <!-- 댓글 ajax-->
+        
+        <div id="reply-area">
+			
+			<table border="1" align="center">
+				<thead>
+					<tr>
+						<th>댓글작성</th>
+						<% if(loginUser != null) {  // 로그인이 되어있을 경우 %>					
+							<!--  로그인만보이도록 -->
+							<td>
+								<textarea id="replyContent" rows="3" cols="50" style="resize:none"></textarea>
+							</td>
+							<td><button onclick="insertReply();">댓글등록</button></td>
+						<% }else { //로그인이 되어있지 않을 경우 %>
+							<td>
+								<textarea rows="3" cols="50" style="resize:none" readonly>로그인 후 이용가능한 서비스입니다.</textarea>
+							</td>
+							<td><button>댓글등록</button></td>
+						<% } %>
+					</tr>
+					
+				</thead>
+				<tbody>
+					
+					
+					
+				</tbody>
+			</table>
+			
+			<br><br>
+<!--			
+			<script>
+				$(function(){
+					
+					selectReplyList();	
+					
+					setInterval(selectReplyList, 1000);
+				});
+				
+				// ajax로 댓글작성용
+				function insertReply(){
+					
+					$.ajax({
+						url:"rinsert.rv",
+						data:{
+							content:$("#replyContent").val(),
+							rvno: <%=r.getRvNo()%>
+							 },
+						type:"post",
+						success:function(result){
+							if(result > 0){ // 댓글작성 성공 => 갱신된 댓글 리스트 조회
+								selectReplyList();
+								$("#replyContent").val(""); // textarea초기화
+							}
+						},error:function(){
+							console.log("댓글작성용 ajax 통신 실패");
+						}
+					})
+				}
+				
+			// ajax로 해당 게시글에 딸린 댓글 목록 조회용
+			function selectReplyList(){
+				$.ajax({
+					url:"rlist.rv",
+					data:{bno:<%=r.getBoardNo()%>},
+					success:function(list){
+					
+						//console.log(list);
+						
+						let result = "";
+						for(let i=0; i<list.length; i++){
+							result += "<tr>"
+									+	"<td>" + list[i].replyWriter + "</td>"
+									+	"<td>" + list[i].replyContent + "</td>"
+									+	"<td>" + list[i].createDate + "</td>"
+									+   "</tr>";
+						}
+						
+						$("#reply-area tbody").html(result);
+						
+					},error:function(){
+						console.log("댓글목록 조회용 ajax 통신 실패...");
+					}
+				})
+			} 
+			</script>
+-->		
+		</div>
         <!--목록버튼-->
         
         <div align="right">
