@@ -425,8 +425,8 @@ public class ProductDao {
 	
 	
 	// detail 이미지 추출
-	public ArrayList<Product> selectDetailImg(Connection conn, int pno) {
-		ArrayList<Product> list = new ArrayList<>();
+	public Product selectDetailImg(Connection conn, int pno) {
+		Product p = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String sql = prop.getProperty("selectDetailImg");
@@ -437,7 +437,7 @@ public class ProductDao {
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
-				list.add(new Product(rset.getString("DETAIL_IMG")));
+				p = new Product(rset.getString("DETAIL_IMG"));
 			}
 			
 		} catch (SQLException e) {
@@ -447,7 +447,7 @@ public class ProductDao {
 			close(pstmt);
 		}
 		
-		return list;
+		return p;
 	}
 	
 	
@@ -476,7 +476,7 @@ public class ProductDao {
          	    default :  break;
 				}
 				list.add(new Qna(rset.getInt("PNO"),
-								 rset.getString("Q_CATEGORY_CODE"),
+								 category,
 								 rset.getString("Q_TITLE"),
 								 rset.getString("Q_WRITER"),
 								 rset.getString("CREATE_DATE")));

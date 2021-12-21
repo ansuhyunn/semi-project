@@ -12,19 +12,18 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.kh.product.model.service.ProductService;
 import com.kh.product.model.vo.Product;
-import com.kh.product.model.vo.Qna;
 
 /**
- * Servlet implementation class AjaxQnaListController
+ * Servlet implementation class AjaxDetailViewController
  */
-@WebServlet("/qna.pro")
-public class AjaxQnaListController extends HttpServlet {
+@WebServlet("/ajaxImg.pro")
+public class AjaxDetailViewController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AjaxQnaListController() {
+    public AjaxDetailViewController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,12 +34,11 @@ public class AjaxQnaListController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int pno = Integer.parseInt(request.getParameter("pno"));
+		Product p = new ProductService().selectDetailImg(pno);
 		
-		ArrayList<Qna> qnaList = new ProductService().selectQnaList(pno);
-		
-		response.setContentType("application/json; charset=UTF-8");
-		new Gson().toJson(qnaList, response.getWriter());
-	}
+		response.setContentType("application/json; charset=utf-8");
+		new Gson().toJson(p, response.getWriter());}
+
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

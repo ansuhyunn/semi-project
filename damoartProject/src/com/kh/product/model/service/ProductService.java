@@ -92,13 +92,13 @@ public class ProductService {
 	}
 	
 	
-	public ArrayList<Product> selectDetailImg(int pno) {
+	public Product selectDetailImg(int pno) {
 		Connection conn = getConnection();
 		
-		ArrayList<Product> list = new ProductDao().selectDetailImg(conn, pno);
+		Product p = new ProductDao().selectDetailImg(conn, pno);
 		
 		close(conn);
-		return list;
+		return p;
 	}
 	
 	

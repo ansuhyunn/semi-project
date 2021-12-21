@@ -90,8 +90,8 @@
     <div class="wrapper">
         <div class="name">
             <div id="name1">무료 전시</div>
-            <a href="<%=request.getContextPath()%>/OpenFree.pro">오픈날짜순</a>
-            <a href="<%=request.getContextPath()%>/EndFree.pro">종료날짜순</a>
+            <a href="<%=contextPath%>/OpenFree.pro">오픈날짜순</a>
+            <a href="<%=contextPath%>/EndFree.pro">종료날짜순</a>
             <a href="">별점순</a>
         </div>
         <hr class="my-2">
