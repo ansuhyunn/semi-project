@@ -45,9 +45,9 @@ public class GuideService {
 		
 	}
 	
-	public int updateGuideStatus() {
+	public int insertChangeStatus() {
 		Connection conn = getConnection();
-		int result = new GuideDao().updateGuideStatus(conn);
+		int result = new GuideDao().insertChangeStatus(conn);
 		if(result > 0) {
 			commit(conn);
 		}else {
@@ -70,6 +70,54 @@ public class GuideService {
 		Attachment at = new GuideDao().selectAttachment(conn);
 		close(conn);
 		return at;
+	}
+	
+	public Guide adminSelectGuide(int guideNo) {
+		Connection conn = getConnection();
+		Guide g = new GuideDao().adminSelectGuide(conn, guideNo);
+		close(conn);
+		return g;
+	}
+	
+	public Attachment adminSelectAttachment(int guideNo) {
+		Connection conn = getConnection();
+		Attachment at = new GuideDao().adminSelectAttachment(conn, guideNo);
+		close(conn);
+		return at;
+	}
+	
+	public int updateGuide(Guide g, Attachment at) {
+		Connection conn = getConnection();
+		int result1 = new GuideDao().updateGuide(conn, g);
+		
+		int result2 = 1;
+		if(at != null) {
+			if(at.getFileNo() != 0) {
+				result2 = new GuideDao().updateAttachment(conn, at);
+			}else {
+				result2 = new GuideDao().insertNewAttachment(conn, at);
+			}
+		}
+		
+		if(result1 > 0 && result2 > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result1*result2;
+	}
+	
+	public int updateChangeStatus(int guideNo) {
+		Connection conn = getConnection();
+		int result = new GuideDao().updateChangeStatus(conn, guideNo);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
 	}
 	
 }

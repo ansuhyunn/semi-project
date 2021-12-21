@@ -127,7 +127,7 @@
 	            <br>
 	            <div id="button" align="right">
 	                <a href="<%=contextPath%>/adminDetail.no?nno=<%= n.getNoticeNo() %>" class="btn btn-sm" id="cancel">취소하기</a>
-	                <button type="submit" class="btn btn-sm" id="insert">등록하기</button>
+	                <button type="submit" class="btn btn-sm" id="insert">수정하기</button>
 	            </div>
                 <br><br><br><br><br><br>
             </form>

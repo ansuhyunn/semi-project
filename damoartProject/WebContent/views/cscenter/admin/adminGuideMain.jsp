@@ -150,7 +150,7 @@
                 <script>
                 	$(function(){
                 		$(".clickTitle").click(function(){
-                			location.href='<%=contextPath%>/adminDetail.gu?gno=' + $(this).prev().text();
+                			location.href='<%=contextPath%>/detailAndUpdate.gu?gno=' + $(this).prev().text();
                 		})
                 	})
                 </script>

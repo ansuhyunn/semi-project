@@ -187,7 +187,7 @@
             </div>
             <div class="button" align="right">
                     <a id="cancel" href="<%=contextPath%>/adminDetail.qa?qno=<%= q.getqNo() %>" class="btn btn-sm">취소하기</a>
-                    <button id="update" type="submit" class="btn btn-sm">등록하기</button>
+                    <button id="update" type="submit" class="btn btn-sm">수정하기</button>
             </div>
         </form>
             

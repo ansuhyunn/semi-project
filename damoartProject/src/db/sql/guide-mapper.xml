@@ -68,7 +68,7 @@
 			     )
 	</entry>
 	
-	<entry key="updateGuideStatus">
+	<entry key="insertChangeStatus">
 		UPDATE GUIDE
 		   SET STATUS = 'N'
 		 WHERE GUIDE_NO != (SELECT LAST_NUMBER
@@ -98,6 +98,71 @@
 		        ) A
 		  JOIN GUIDE G ON(REF_BNO = GUIDE_NO)
 		 WHERE G.STATUS = 'Y'
+	</entry>
+	
+	<entry key="adminSelectGuide">
+		SELECT 
+		       GUIDE_NO
+		     , GUIDE_TITLE
+		     , GUIDE_CONTENT
+		     , STATUS
+		  FROM GUIDE
+		 WHERE GUIDE_NO = ?
+	</entry>
+	
+	<entry key="adminSelectAttachment">
+		SELECT
+		       FILE_NO
+		     , ORIGIN_NAME
+		     , CHANGE_NAME
+		     , FILE_PATH
+		  FROM ATTACHMENT
+		 WHERE REF_B = 'GUIDE'
+		   AND REF_BNO = ?
+	</entry>
+	
+	<entry key="updateGuide">
+		UPDATE GUIDE
+		   SET GUIDE_TITLE = ?
+		     , GUIDE_CONTENT = ?
+		     , STATUS = ?
+		 WHERE GUIDE_NO = ?
+	</entry>
+	
+	<entry key="updateAttachment">
+		UPDATE ATTACHMENT
+		   SET ORIGIN_NAME = ?
+		     , CHANGE_NAME = ?
+		     , FILE_PATH = ?
+		 WHERE FILE_NO = ?
+	</entry>
+	
+	<entry key="insertNewAttachment">
+		INSERT 
+		  INTO ATTACHMENT
+		     (  
+		       FILE_NO
+		     , REF_B
+		     , REF_BNO
+		     , ORIGIN_NAME
+		     , CHANGE_NAME
+		     , FILE_PATH
+		     )
+		     VALUES
+		     (
+		       SEQ_ANO.NEXTVAL
+		     , 'GUIDE'
+		     , ?
+		     , ?
+		     , ?
+		     , ?
+		     )
+	</entry>
+	
+	<entry key="updateChangeStatus">
+		UPDATE GUIDE
+		   SET STATUS = 'N'
+		 WHERE GUIDE_NO != ?
 	</entry>
 	
 </properties>

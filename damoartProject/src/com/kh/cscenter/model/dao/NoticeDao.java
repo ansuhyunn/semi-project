@@ -269,12 +269,12 @@ public class NoticeDao {
 		
 		try {
 			for(Attachment at : list) {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, at.getOriginName());
-			pstmt.setString(2, at.getChangeName());
-			pstmt.setString(3, at.getFilePath());
-			
-			result = pstmt.executeUpdate();
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, at.getOriginName());
+				pstmt.setString(2, at.getChangeName());
+				pstmt.setString(3, at.getFilePath());
+				
+				result = pstmt.executeUpdate();
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
