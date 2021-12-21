@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import com.kh.product.model.vo.Best;
 import com.kh.product.model.vo.Product;
 
 public class ProductDao {
@@ -25,6 +26,35 @@ public class ProductDao {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	// best
+	public ArrayList<Best> selectBestList(Connection conn){
+		ArrayList<Best> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = ArrayProp.getProperty("bestMonth");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Best(rset.getInt("PNO"),
+								  rset.getString("TITLE"),
+								  rset.getString("AREA"),
+								  rset.getString("S_DATE"),
+								  rset.getString("E_DATE"),
+								  rset.getInt("COUNT"),
+								  rset.getString("MAIN_IMG")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
 	}
 	
 	

@@ -164,33 +164,10 @@
 
 		<script>
 
-			function onclick(){		
-				$.ajax({
-					url : "",
-					cache: true,
-					processData : false,
-					success:function(detailImg){
-						$("#order").html(detailImg);
-					},error:function(){
-						console.log("ㅠㅠㅠ");
-					}
-				})
-			}
-				$("#info1").click(function(){		// 아직 못함 아이고 어렵다~~~!!!!!! 
-					$.ajax({
-						url : "<%=request.getContextPath()%>/resources/product/<%=p.getpNo()%>D.jpg",
-						cache: true,
-					    processData : false,
-						success:function(detailImg){
-							$(".content4").html(detailImg);
-						},error:function(){
-							console.log("ㅠㅠㅠ");
-						}
-					})
-				})
+		
 				$("#info2").click(function(){
 					$.ajax({
-						url : "<%=request.getContextPath()%>/views/product/detailCancelInfo.jsp",
+						url : "<%=contextPath%>/views/product/detailCancelInfo.jsp",
 						dataType: "html",
 						success:function(result){
 							$(".content4").html(result);

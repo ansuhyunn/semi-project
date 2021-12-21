@@ -8,10 +8,20 @@ import java.util.ArrayList;
 
 import com.kh.product.model.dao.ManageDao;
 import com.kh.product.model.dao.ProductDao;
+import com.kh.product.model.vo.Best;
 import com.kh.product.model.vo.Product;
 
 public class ProductService {
 	
+	
+	public ArrayList<Best> selectBestList() {
+		Connection conn = getConnection();
+		
+		ArrayList<Best> list = new ProductDao().selectBestList(conn);
+		
+		close(conn); 
+		return list;
+	}
 	
 	public ArrayList<Product> selectFreeList() {
 		Connection conn = getConnection();
