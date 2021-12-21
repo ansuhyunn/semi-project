@@ -159,7 +159,7 @@ ArrayList<ManageOrder> list = (ArrayList<ManageOrder>)request.getAttribute("list
            
         <!--판매 리스트-->
         <div class="order_box">
-            <button class="btn" id="cancel" onclick="cancel"><b>판매취소</b></button>
+            <button class="btn" id="cancel"><b>판매취소</b></button>
             <button class="btn" id="check"><b>입금확인처리</b></button>
             <div class="search">
                 <input type="text" placeholder="구매자 ID, 이름, 주문번호">
@@ -187,15 +187,29 @@ ArrayList<ManageOrder> list = (ArrayList<ManageOrder>)request.getAttribute("list
        			 <% for(ManageOrder m : list) { %>
        			 <% System.out.println(m.toString()); %>
                   <tr align="center">
-                        <td ><input type="checkbox"></td>
+                        <td ><input type="checkbox" id="checkbox"></td>
                         <td> <%= m.getOrderName() %><br><%= m.getOrderNo() %><br><%= m.getOrderDate() %></td>
                         <td width="60"><img src="<%=request.getContextPath()%>/resources/images/product/1M.gif" width="40px" height="40px"></td>
                         <td><%= m.getpNo() %><br><%= m.getTitle() %></td>
                         <td><%= m.getTotalPrice() %>￦</td>
                         <td><%= m.getOrderCount() %></td>
-                        <td><%= m.getOrderStatus() %></td>
-                        <td>총 결제금액 &nbsp; <%=m.getPayPrice() %>￦ <br>
-                         	   결제 방법 &nbsp; <%=m.getPayOpt() %>
+                        <td><% if (m.getOrderStatus().equals("W")) { %>
+                         	  입금대기
+                         	  <% } else if (m.getOrderStatus().equals("P")) { %>
+                         	  결제완료
+                         	  <% } else if (m.getOrderStatus().equals("C")) { %>
+                         	  예매취소
+                         	  <% } else if (m.getOrderStatus().equals("CC")) { %>
+                         	  취소완료
+                         	  <% } else if (m.getOrderStatus().equals("N")) { %>
+                         	  취소거절
+                         	  <% } else { %>
+                         	  예매확정 <%} %></td>
+                        <td>총 결제금액 &nbsp; <%=m.getPayPrice()%>￦ <br>
+                         	   결제 방법 &nbsp; <% if (m.getPayOpt().equals("C")) {%>
+                         	   				카드 <% } else { %>
+                         	   				무통장입금 <% } %>
+                         	  
                         </td>
                         </tr>
                         <% } %>
@@ -208,7 +222,7 @@ ArrayList<ManageOrder> list = (ArrayList<ManageOrder>)request.getAttribute("list
 				
 				$("#today").click(function(){
 					console.log("11111");
-		 				var startDt = new Date();
+		 			var startDt = new Date();
 					var year = new String(startDt.getFullYear()); 
 					var month = new String(startDt.getMonth()+1); 
 					var day = new String(startDt.getDate());
@@ -371,6 +385,14 @@ ArrayList<ManageOrder> list = (ArrayList<ManageOrder>)request.getAttribute("list
 	    				}
 	    			})
 		        })
+		        
+		        $("#cancel").click(function(){
+			        $("[id=checkbox]:checked").each(function(){
+			        	$(this).val();
+			        	console.log("되고있나?");
+			        	});	        	
+		        })
+		        	 
 		        
 			})();
 			

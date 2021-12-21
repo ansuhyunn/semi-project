@@ -21,26 +21,46 @@ import com.kh.member.model.vo.Member;
 @WebServlet("/list.ca")
 public class CartListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    public CartService service = new CartService();
+    private ArrayList<Cart> list = new ArrayList<Cart>();
     /**
      * @see HttpServlet#HttpServlet()
      */
     public CartListController() {
         super();
+        
         // TODO Auto-generated constructor stub
     }
+    
+    public int getMemNo() {
+    	return service.GetMemNo();
+    }
 
+    
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		HttpSession session = request.getSession();
-		int memNo = ((Member)session.getAttribute("loginUser")).getMemNo();
+		Member mem = (Member) session.getAttribute("loginUser");
+		String content = (String) request.getParameter("content");
+		if(mem != null) {
+			if(content == null) {
+				this.service.SetMemNo(mem.getMemNo());
+				this.list = service.selectCartList();
+				request.setAttribute("list", list);
+				request.getRequestDispatcher("views/order/cart.jsp").forward(request, response);
+			}
+			else if(content == "order") {
+				String arrIdx = request.getParameter("select");
+//				this.list
+				System.out.println(arrIdx);
+			}
+			
+		}
 		
-		ArrayList<Cart> list = new CartService().selectCartList();
-		request.setAttribute("list", list);
-		request.getRequestDispatcher("views/order/cart.jsp").forward(request, response);
+		
+		// 비회원일경우 메인으로보내거나 로그인페이지 띄우기
 	}
 
 	/**

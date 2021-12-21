@@ -23,6 +23,7 @@ SELECT
          WHERE P.ORDER_STATUS = 'C' 
          OR P.ORDER_STATUS = 'CC'
          OR P.ORDER_STATUS = 'N'
+         AND O.ORDER_DATE BETWEEN ? AND ?
 		 ORDER BY ORDER_DATE DESC
 </entry>
 

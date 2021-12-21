@@ -124,7 +124,7 @@
                     <tbody class="no-tb">
                     	<% if(list.isEmpty()) { %>
 	                        <tr>
-	                            <td colspan="5">게시글이 없습니다.</td>
+	                            <td colspan="6">게시글이 없습니다.</td>
 	                        </tr>
                         <% }else { %>
                         	<%for(Notice n : list) { %>
@@ -149,22 +149,18 @@
                 </script>
                 <div class="paging-area" align="center">
                 	<% if(currentPage != 1) {%>
-                    	<button class="btn" onclick="location.href='<%=contextPath%>/adminList.no?cpage=<%=currentPage-1%>'">&lt;</button>
-                    <% }else { %>
-                    	<button class="btn" disabled>&lt;</button>
+                    	<button class="btn" onclick="location.href='<%=contextPath%>/adminList.no?cpage=<%=currentPage-1%>';">&lt;</button>
                     <% } %>
                     
                     <% for(int p=startPage; p<=endPage; p++) { %>
                     	<% if(p == currentPage) { %>
                     		<button class="btn" disabled><%=p %></button>
                     	<% }else { %>
-                    		<button class="btn" onclick="location.href='<%=contextPath %>/adminList.no?cpage=<%=p%>'"><%=p %></button>
+                    		<button class="btn" onclick="location.href='<%=contextPath %>/adminList.no?cpage=<%=p%>';"><%=p %></button>
                     	<% } %>
                     <% } %>
                     <% if(currentPage != maxPage) {%>
-                    <button class="btn" onclick="location.href='<%=contextPath%>/adminList.no?cpage=<%=currentPage+1%>'">&gt;</button>
-                    <% }else { %>
-                    	<button class="btn" disabled>&gt;</button>
+                    <button class="btn" onclick="location.href='<%=contextPath%>/adminList.no?cpage=<%=currentPage+1%>';">&gt;</button>
                     <% } %>
                 </div>
             </div>

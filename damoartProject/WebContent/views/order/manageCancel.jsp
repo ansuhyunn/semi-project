@@ -149,9 +149,9 @@ ArrayList<ManageCancel> list = (ArrayList<ManageCancel>)request.getAttribute("li
         <!--조회기간 날짜 선택-->
         <div class="search_date">
             <b>조회기간</b> 
-            <button class="btn">오늘</button>
-            <button class="btn">일주일</button>
-            <button class="btn">1개월</button>
+            <button class="btn" id="today">오늘</button>
+            <button class="btn" id="week">일주일</button>
+            <button class="btn" id="month">1개월</button>
             <div class="select_date">
                 <input type="date"> <b>&nbsp;~&nbsp;</b> <input type="date">
             </div>
@@ -171,21 +171,29 @@ ArrayList<ManageCancel> list = (ArrayList<ManageCancel>)request.getAttribute("li
                     <tr align="center" class="table_title">
                         <th width="180" colspan="2">주문번호 / 시각</th>
                         <th width="220" colspan="2">주문상품</th>
-                        <th width="180">취소사유 / 시각</th>
+                        <th width="180">취소사유</th>
                         <th width="60">상태</th>
                         <th width="200">환불정보</th>
                     </tr>
-                    <tbody>   
+                    <tbody id="table_content">   
        				 <% for(ManageCancel m : list) { %>
                         <tr align="center" class="table_content">
                         <td><input type="checkbox"></td>
                         <td><%=m.getMemId() %> <%=m.getOrderName() %><br><%=m.getOrderNo() %><br><small><%=m.getOrderDate() %></small></td>
                         <td width="60"><img src="<%=request.getContextPath()%>/resources/images/product/1M.gif" width="40px" height="40px"></td>
                         <td><%=m.getpNo() %><br><%=m.getTitle() %></td>
-                        <td>구매 의사 취소 <br> <small>2021-12-13 11:20</small></td>
-                        <td><%=m.getOrderStatus() %></td>
+                        <td>구매 의사 취소</td>
+                        <td> <% if (m.getOrderStatus().equals("C")) { %>
+                         	  예매취소
+                         	  <% } else if (m.getOrderStatus().equals("CC")) { %>
+                         	  취소완료
+                         	  <% } else { %>
+                         	  취소거절 <% } %>
+                        </td>
                         <td>총 결제금액 &nbsp; <%=m.getTotalPrice() %>￦ <br>
-                    	        결제 방법 &nbsp; <%=m.getPayOpt() %><br>
+                    	        결제 방법 &nbsp; <% if (m.getPayOpt().equals("C")) {%>
+                         	   			           카드 <% } else { %>
+                         	   				   무통장입금 <% } %> <br>
                      	       총 환불 금액 &nbsp; <%=m.getPayPrice() %>￦
                         </td>
                     </tr>   
@@ -196,7 +204,181 @@ ArrayList<ManageCancel> list = (ArrayList<ManageCancel>)request.getAttribute("li
                 </table>
             </div>    
         </div>    
+            <script>
+(function(){
+				
+				$("#today").click(function(){
+					console.log("11111");
+		 			var startDt = new Date();
+					var year = new String(startDt.getFullYear()); 
+					var month = new String(startDt.getMonth()+1); 
+					var day = new String(startDt.getDate());
 
+					// 한자리수일 경우 0을 채워준다. 
+					if(month.length == 1){ 
+					  month = "0" + month; 
+					} 
+					if(day.length == 1){ 
+					  day = "0" + day; 
+					}
+					var g_todayDate = year.substring(2,4) + month + day;
+
+					console.log("startDt" + g_todayDate)
+							
+							$.ajax({
+			    				url:"cancel.mg",
+			    				data:{
+				    				content:"today",
+				    				startDt:g_todayDate,
+				    				endDt: g_todayDate,
+			    				},
+			    				type:"get",
+			    				success:function(result){
+			    					console.log("ajax통신 성공");
+			    					location.reload()
+			    					return result;
+			    				}, error:function(){
+			    					console.log("ajax통신 실패");
+			    				}
+			    			})
+				        })
+				        
+				        
+				        
+				        
+		         $("#week").click(function(){
+					console.log("11111");
+					var startDt = new Date();
+					var year = new String(startDt.getFullYear()); 
+					var month = new String(startDt.getMonth()+1); 
+					var day = new String(startDt.getDate());
+
+					// 한자리수일 경우 0을 채워준다. 
+					if(month.length == 1){ 
+					  month = "0" + month; 
+					} 
+					if(day.length == 1){ 
+					  day = "0" + day; 
+					}
+					startDt = year.substring(2,4) + month + day;
+					
+
+					var onemonth = new Date();
+					onemonth.setDate(onemonth.getDate()-7);
+					var weekyear = String(onemonth.getFullYear()); 
+					var weekmonth = new String(onemonth.getMonth()+1); 
+					var weekday = new String(onemonth.getDate());
+
+					// 한자리수일 경우 0을 채워준다. 
+					if(weekmonth.length == 1){ 
+					  weekmonth = "0" + weekmonth; 
+					} 
+					if(weekday.length == 1){ 
+					  weekday = "0" + weekday; 
+					}
+					startDt = weekyear.substring(2,4) + weekmonth + weekday;
+					
+					var today = new Date();
+					var year = new String(today.getFullYear()); 
+					var month = new String(today.getMonth()+1); 
+					var day = new String(today.getDate());
+
+					// 한자리수일 경우 0을 채워준다. 
+					if(month.length == 1){ 
+					  month = "0" + month; 
+					} 
+					if(day.length == 1){ 
+					  day = "0" + day; 
+					}
+					var endDt = year.substring(2,4) + month + day;
+					console.log("startDt" + startDt + "endDt" + endDt)
+					$.ajax({
+	    				url:"cancel.mg",
+	    				data:{
+		    				content:"week",
+		    				startDt:startDt,
+		    				endDt: endDt,
+	    				},
+	    				type:"get",
+	    				success:function(result){
+	    					console.log("ajax통신 성공" + result);
+	    					location.reload()
+	    				}, error:function(){
+	    					console.log("ajax통신 실패");
+	    				}
+	    			})
+		        })
+		        
+		        $("#month").click(function(){
+					console.log("11111");
+					$("#table_content").remove();
+					var startDt = new Date();
+					var year = new String(startDt.getFullYear()); 
+					var month = new String(startDt.getMonth()+1); 
+					var day = new String(startDt.getDate());
+
+					// 한자리수일 경우 0을 채워준다. 
+					if(month.length == 1){ 
+					  month = "0" + month; 
+					} 
+					if(day.length == 1){ 
+					  day = "0" + day; 
+					}
+					endDt = year.substring(2,4) + month + day;
+					
+
+					var onemonth = new Date();
+					onemonth.setDate(onemonth.getDate()-30);
+					var weekyear = String(onemonth.getFullYear()); 
+					var weekmonth = new String(onemonth.getMonth()+1); 
+					var weekday = new String(onemonth.getDate());
+
+					// 한자리수일 경우 0을 채워준다. 
+					if(weekmonth.length == 1){ 
+					  weekmonth = "0" + weekmonth; 
+					} 
+					if(weekday.length == 1){ 
+					  weekday = "0" + weekday; 
+					}
+					startDt = weekyear.substring(2,4) + weekmonth + weekday;
+					
+					var today = new Date();
+					var year = new String(today.getFullYear()); 
+					var month = new String(today.getMonth()+1); 
+					var day = new String(today.getDate());
+
+					// 한자리수일 경우 0을 채워준다. 
+					if(month.length == 1){ 
+					  month = "0" + month; 
+					} 
+					if(day.length == 1){ 
+					  day = "0" + day; 
+					}
+					var endDt = year.substring(2,4) + month + day;
+					console.log("startDt" + startDt + "endDt" + endDt)
+					$.ajax({
+	    				url:"cancel.mg",
+	    				data:{
+		    				content:"month",
+		    				startDt:startDt,
+		    				endDt: endDt,
+	    				},
+	    				type:"get",
+	    				success:function(result){
+	    					console.log("ajax통신 성공" + result);
+	    					location.reload()
+	    				}, error:function(){
+	    					console.log("ajax통신 실패");
+	    				}
+	    			})
+		        })
+		        
+		        })
+		        	 
+		        
+			)();
+			
+	    </script>
        
 
 

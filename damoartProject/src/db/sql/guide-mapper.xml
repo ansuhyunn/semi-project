@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+	<entry key="selectListCount">
+		SELECT COUNT(*) COUNT
+		  FROM GUIDE
+	</entry>
+	
+	<entry key="selectList">
+		SELECT *
+		  FROM (
+		        SELECT ROWNUM RNO, A.*
+		          FROM (
+		                SELECT
+		                       GUIDE_NO
+		                     , NICKNAME
+		                     , GUIDE_TITLE
+		                     , TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') "CREATE_DATE"
+		                     , G.STATUS
+		                  FROM GUIDE G
+		                  JOIN MEMBER ON(GUIDE_WRITER = MEM_NO)
+		                 ORDER
+		                    BY GUIDE_NO DESC
+		                ) A
+		        )
+		  WHERE RNO BETWEEN ? AND ?
+	</entry>
+	
+	<entry key="selectGuide">
+		SELECT 
+		       GUIDE_NO
+		     , GUIDE_TITLE
+		     , GUIDE_CONTENT
+		  FROM GUIDE
+		 WHERE STATUS = 'Y'
+	</entry>
+	
+	<entry key="selectAttachment">
+		SELECT
+		       CHANGE_NAME
+		     , FILE_PATH
+		  FROM ATTACHMENT
+		 WHERE REF_B = 'GUIDE'
+	</entry>
+	
+	<entry key="insertGuide">
+		INSERT
+		  INTO GUIDE
+		     ( 
+		       GUIDE_NO
+		     , GUIDE_WRITER
+		     , GUIDE_TITLE
+		     , GUIDE_CONTENT
+		     , STATUS
+		     )
+		     VALUES
+		     (
+		       SEQ_GNO.NEXTVAL
+		     , ?
+		     , ?
+		     , ?
+		     , ?
+		     )
+	</entry>
+</properties>
