@@ -17,4 +17,18 @@ public class MemberQnaListService {
 		return list;
 	}
 	
+	// qna 삭제(update)
+	public int updateQna(int qNo) {
+		Connection conn = getConnection();
+		int result = new MemberQnaListDao().updateQna(conn, qNo);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		return result;
+	}
 }

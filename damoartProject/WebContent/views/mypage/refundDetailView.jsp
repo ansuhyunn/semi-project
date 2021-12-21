@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.kh.mypage.model.vo.Order"%>
 <%
-	Order detailView = (Order)request.getAttribute("detailView");
+	Order cdetailView = (Order)request.getAttribute("cdetailView");
 %>
 <!DOCTYPE html>
 <html>
@@ -221,23 +221,23 @@
                 <ul class="order-inf">
                     <li>
                         <span>주문일자 :&nbsp;&nbsp;</span>
-                        <strong><%= detailView.getOrderDate() %></strong>
+                        <strong><%= cdetailView.getOrderDate() %></strong>
                     </li>
                     <br>
                     <li>
                         <span>주문번호 :&nbsp;&nbsp;</span>
-                        <strong style="color:white"><%= detailView.getOrderNo() %></strong>
+                        <strong style="color:white"><%= cdetailView.getOrderNo() %></strong>
                     </li>
                 </ul>
                 <table class="order-det1" border="1">
                     <tr>
                         <td width="130">
-                            <img src="<%=request.getContextPath()%>/<%= detailView.getMainImg() %>" width="80px" height="80px">
+                            <img src="<%=request.getContextPath()%>/<%= cdetailView.getMainImg() %>" width="80px" height="80px">
                         </td>
                         <td colspan="3" width="400">
-                            	<strong><%= detailView.getpTitle() %></strong><br>
-                            	옵션 : <%= detailView.getOrderOpt() %> <br>
-                            	수량 : <%= detailView.getOrderCount() %>
+                            	<strong><%= cdetailView.getpTitle() %></strong><br>
+                            	옵션 : <%= cdetailView.getOrderOpt() %> <br>
+                            	수량 : <%= cdetailView.getOrderCount() %>
                         </td>
                     </tr>
                 </table>
@@ -247,19 +247,19 @@
                 <table class="order-det2">
                     <tr>
                         <th>예매번호</td>
-                        <td colspan="3"><%= detailView.getOrderNo() %></td>
+                        <td colspan="3"><%= cdetailView.getOrderNo() %></td>
                     </tr>
                     <tr>
                         <th>예매자명</th>
-                        <td colspan="3"><%= detailView.getOrderName() %></td>
+                        <td colspan="3"><%= cdetailView.getOrderName() %></td>
                     </tr>
                     <tr>
                         <th>예매자 연락처</th>
-                        <td colspan="3"><%= detailView.getOrderPhone() %></td>
+                        <td colspan="3"><%= cdetailView.getOrderPhone() %></td>
                     </tr>
                     <tr>
                         <th>장소</th>
-                        <td colspan="3"><%= detailView.getArea() %></td>
+                        <td colspan="3"><%= cdetailView.getArea() %></td>
                     </tr>
                 </table>
                 <br><br>
@@ -268,15 +268,32 @@
                 <table class="order-det3">
                     <tr>
                         <th>결제일자</td>
-                        <td colspan="3"><%= detailView.getPayDate() %></td>
+                        <td colspan="3"><%= cdetailView.getPayDate() %></td>
                     </tr>
                     <tr>
                         <th>결제수단</th>
-                        <td colspan="3"><%= detailView.getPayOpt() %></td>
+                        <td colspan="3"><%= cdetailView.getPayOpt() %></td>
                     </tr>
                     <tr>
                         <th>결제금액</th>
-                        <td colspan="3"><%= detailView.getPayPrice() %>원</td>
+                        <td colspan="3"><%= cdetailView.getPayPrice() %>원</td>
+                    </tr>
+                </table>
+                <br><br>
+
+                <p>● 환불정보</p>  
+                <table class="order-det3">
+                    <tr>
+                        <th>예금주명</td>
+                        <td colspan="3"><%= cdetailView.getRefundName() %></td>
+                    </tr>
+                    <tr>
+                        <th>계좌번호</th>
+                        <td colspan="3"><%= cdetailView.getBankName()%>&nbsp;<%= cdetailView.getRefundAccount() %></td>
+                    </tr>
+                    <tr>
+                        <th>환불금액</th>
+                        <td colspan="3"><%= cdetailView.getPayPrice() %>원</td>
                     </tr>
                 </table>
                 <br><br>
@@ -287,7 +304,7 @@
 
             <script>
                 function reserveList(){
-                    location.href = "<%=contextPath%>/reserve.mp";
+                    location.href = "<%=contextPath%>/refund.mp";
                 }
             </script>
         </div>
