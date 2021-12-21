@@ -93,7 +93,8 @@
                     <tr>
                         <th>&nbsp;&nbsp;&nbsp;분류</th>
                         <td colspan="3">
-                            <select name="category" id="">
+                            <select name="category" required>
+                            	<option value="">--선택--</option>
                                 <option value="Q1">티켓</option>
                                 <option value="Q2">취소/환불</option>
                                 <option value="Q3">주문/결제</option>
@@ -105,7 +106,7 @@
                     <tr style="border-bottom:1px solid rgb(173, 157, 128); border-top:1px solid rgb(173, 157, 128)">
                         <th >&nbsp;&nbsp;&nbsp;상품선택</th>
                         <td colspan="3">
-                            <button>상품 선택</button>
+                            <button type="button" data-toggle="modal" data-target="#myModal">상품 선택</button>
                         </td>
                     </tr>
                     <% if(loginUser != null) {%>  
@@ -137,6 +138,57 @@
             </form>
         </div>
     </div>
+    
+    <!-- The Modal -->
+	<div class="modal" id="myModal">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	
+	      <!-- Modal Header -->
+	      <div class="modal-header">
+	        <h4 class="modal-title">상품 선택</h4>
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	      </div>
+	
+	      <!-- Modal body -->
+	      <div class="modal-body">
+	        	전시 이름으로 검색 : <input type="text" id="proSearch" name="keyword" placeholder="djd" required value="살바">
+            <button type="button" onclick="searchbtn();">검색</button>
+            <div id="result"></div>
+	      </div>
+	
+	      <!-- Modal footer -->
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+	      </div>
+	
+	    </div>
+	  </div>
+	</div>
+
+    <script>
+		console.log($("#proSearch").val()); //input value값이 안받아짐..
+        function searchbtn() {
+            $.ajax({
+                url:"qnaSearchPro.qa",
+                data:{Keyword:$("#proSearch").val()},
+                success:function(result){
+					console.log("성공");
+                    let value = "";
+                    for(let i=0; i<result.length; i++){
+                        value += "<div>"
+                        			+ "<input type='radio' name='selectpro'>"
+                                    + "<img src=" + result[i].mainImg + " width='70' height='auto'>" 
+                                    + result[i].title
+                                + "</div>"
+                    }
+                    $("#result").html(value);
+                },error:function(result) {
+                    console.log("ajax 통신 실패");
+                }
+            })
+        }
+    </script>
     <%@ include file="../../common/footerbar.jsp" %>
 </body>
 </html>

@@ -63,9 +63,7 @@ public class AdminGuideUpdateController extends HttpServlet {
 					at.setRefBno(Integer.parseInt(multiRequest.getParameter("gno")));
 				}
 			}
-			
-			System.out.println(g);
-			System.out.println(at);
+
 			int result = new GuideService().updateGuide(g, at);
 			int result2 = 1;
 			if(multiRequest.getParameter("status").equals("Y")) {

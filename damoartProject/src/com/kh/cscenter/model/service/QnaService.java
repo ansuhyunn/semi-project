@@ -1,6 +1,9 @@
 package com.kh.cscenter.model.service;
 
-import static com.kh.common.JDBCTemplate.*;
+import static com.kh.common.JDBCTemplate.close;
+import static com.kh.common.JDBCTemplate.commit;
+import static com.kh.common.JDBCTemplate.getConnection;
+import static com.kh.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -9,6 +12,7 @@ import com.kh.common.model.vo.Attachment;
 import com.kh.common.model.vo.PageInfo;
 import com.kh.cscenter.model.dao.QnaDao;
 import com.kh.cscenter.model.vo.QnA;
+import com.kh.product.model.vo.Product;
 
 public class QnaService {
 	
@@ -53,5 +57,12 @@ public class QnaService {
 		}
 		close(conn);
 		return result;
+	}
+	
+	public ArrayList<Product> enrollFormProductSearch(String keyword) {
+		Connection conn = getConnection();
+		ArrayList<Product> list = new QnaDao().enrollFormProductSearch(conn, keyword);
+		close(conn);
+		return list;
 	}
 }

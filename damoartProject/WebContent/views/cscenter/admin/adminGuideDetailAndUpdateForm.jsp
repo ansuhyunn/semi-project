@@ -50,7 +50,14 @@
         }
     
         #button{
-            width:83%;
+        width:820px;
+        margin:auto;
+        margin-top:10px;
+        }
+
+        #button>div{
+            width:50%;
+            float:left;
         }
     
         #cancel{
@@ -59,7 +66,7 @@
             font-weight:600;
         }
     
-        #insert{
+        #insert, #list{
             background-color:rgb(151, 138, 116);
             color:white;
         }
@@ -128,9 +135,14 @@
                         </tr>
                     </table>
                     <br>
-                    <div id="button" align="right">
-                        <a href="<%=contextPath%>/adminList.gu?cpage=1" class="btn btn-sm" id="cancel">취소하기</a>
-                        <button type="submit" class="btn btn-sm" id="insert">등록하기</button>
+                    <div id="button" align="left">
+                        <div>
+                            <a id="list" href="<%= contextPath %>/adminList.gu?cpage=1" class="btn btn-sm">목록가기</a>			
+                        </div>
+                        <div align="right">
+                            <a href="" class="btn btn-sm" id="cancel">삭제하기</a>
+                            <button type="submit" class="btn btn-sm" id="insert">등록하기</button>
+                        </div>
                     </div>
                 </form>
             </div>

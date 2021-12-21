@@ -14,6 +14,7 @@ import java.util.Properties;
 import com.kh.common.model.vo.Attachment;
 import com.kh.common.model.vo.PageInfo;
 import com.kh.cscenter.model.vo.QnA;
+import com.kh.product.model.vo.Product;
 
 public class QnaDao {
 	
@@ -185,6 +186,34 @@ private Properties prop = new Properties();
 			close(pstmt);
 		}
 		return result;
+	}
+	
+	public ArrayList<Product> enrollFormProductSearch(Connection conn, String keyword){
+		ArrayList<Product> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("enrollFormProductSearch");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, keyword);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Product p = new Product();
+				p.setTitle("title");
+				p.setMainImg("main_img");
+				
+				list.add(p);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
 	}
 
 }

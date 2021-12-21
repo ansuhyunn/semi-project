@@ -67,4 +67,12 @@
 		     , MEM_NO2 = ?
 		 WHERE Q_NO = ?
 	</entry>
+	
+	<entry key="enrollFormProductSearch">
+		SELECT
+		       TITLE
+		     , MAIN_IMG
+		  FROM PRODUCT
+		 WHERE TITLE LIKE '%'||?||'%'
+	</entry>
 </properties>
