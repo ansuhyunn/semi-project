@@ -1,4 +1,4 @@
-package com.kh.mypage.controller;
+package com.kh.product.controller.display;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -8,41 +8,37 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import com.kh.member.model.vo.Member;
-import com.kh.mypage.model.service.MemberReserveService;
-import com.kh.mypage.model.vo.Order;
+import com.google.gson.Gson;
+import com.kh.product.model.service.ProductService;
+import com.kh.product.model.vo.Product;
 
 /**
- * Servlet implementation class MyPageRefundController
+ * Servlet implementation class AjaxDetailViewController
  */
-
-@WebServlet("/refund.mp")
-public class MyPageRefundController extends HttpServlet {
+@WebServlet("/ajaxImg.pro")
+public class AjaxDetailViewController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-
+    public AjaxDetailViewController() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		request.setCharacterEncoding("UTF-8");
 		
-		HttpSession session = request.getSession();
-		int memNo = ((Member)session.getAttribute("loginUser")).getMemNo();
+		int pno = Integer.parseInt(request.getParameter("pno"));
+		Product p = new ProductService().selectDetailImg(pno);
 		
-		ArrayList<Order> clist = new MemberReserveService().selectRefund(memNo);
-		
-		request.setAttribute("clist", clist);
-		request.getRequestDispatcher("views/mypage/refundDetail.jsp").forward(request, response);
-	}
+		response.setContentType("application/json; charset=utf-8");
+		new Gson().toJson(p, response.getWriter());}
+
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

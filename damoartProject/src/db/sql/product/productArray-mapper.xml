@@ -286,6 +286,26 @@ ORDER BY E_DATE
 </entry>
 
 
-
+<!-- 베스트 전시 -->
+<!-- 월간 -->
+<entry key="bestMonth">
+SELECT *
+  FROM (
+  		SELECT ROWNUM RNUM, A.*
+  		  FROM ( 
+                SELECT PNO, TITLE, AREA, S_DATE, E_DATE, COUNT, MAIN_IMG
+                  FROM (SELECT 
+                               PNO
+                             , SUM(ORDER_COUNT) COUNT
+                          FROM ORDER_P
+                          JOIN "ORDER" USING (ORDER_NO)
+                        <![CDATA[ WHERE FLOOR(SYSDATE - TO_DATE(ORDER_DATE)) <= 31
+                           AND FLOOR(SYSDATE - TO_DATE(ORDER_DATE)) >= 0]]>
+                          GROUP BY PNO
+                          ORDER BY COUNT DESC)
+                  JOIN PRODUCT USING (PNO)
+			 ) A
+		 )
+</entry>
 	
 </properties>

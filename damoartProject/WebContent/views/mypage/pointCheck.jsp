@@ -128,9 +128,8 @@
 
     /*content_2*/
     .contents{
-        height:10%;
         padding-top:15px;
-        padding-left:15px;
+        padding-left:30px;
     }
     
     /*찜한상품, qna내역이 없을 경우*/
@@ -141,9 +140,7 @@
 
     /*적립금 테이블*/
     .container{
-        height:30%;
-        padding-top:50px;
-        padding-left:-30px;
+        padding-left:30px;
         font-size:13px;
     }
 
@@ -218,7 +215,6 @@
             <div class="contents">
                 <h4 class="contents_tit">적립금 내역</h4><br>
                 <p>● 보유하고 계신 적립금의 내역을 한 눈에 확인하실 수 있습니다.</p>
-                <hr align="left" width="765" color="rgb(64, 64, 64)" size="1">
             </div> 
             <div class="container">
                 <br><br>

@@ -1,4 +1,4 @@
-package com.kh.mypage.controller;
+package com.kh.product.controller.display;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -8,40 +8,34 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import com.kh.member.model.vo.Member;
-import com.kh.mypage.model.service.MemberReserveService;
-import com.kh.mypage.model.vo.Order;
+import com.kh.product.model.service.ProductService;
+import com.kh.product.model.vo.Best;
+import com.kh.product.model.vo.Product;
 
 /**
- * Servlet implementation class MyPageRefundController
+ * Servlet implementation class ListBestController
  */
-
-@WebServlet("/refund.mp")
-public class MyPageRefundController extends HttpServlet {
+@WebServlet("/best.pro")
+public class ListBestController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-
+    public ListBestController() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		request.setCharacterEncoding("UTF-8");
+		ArrayList<Best> bestList = new ProductService().selectBestList();
 		
-		HttpSession session = request.getSession();
-		int memNo = ((Member)session.getAttribute("loginUser")).getMemNo();
-		
-		ArrayList<Order> clist = new MemberReserveService().selectRefund(memNo);
-		
-		request.setAttribute("clist", clist);
-		request.getRequestDispatcher("views/mypage/refundDetail.jsp").forward(request, response);
+		request.setAttribute("bestList", bestList);
+		request.getRequestDispatcher("views/product/bestMain.jsp").forward(request, response);
 	}
 
 	/**

@@ -113,7 +113,7 @@
     <div class="wrapper">
       <div class="name">New 전시</div>
           <div id="range">
-              <a href="">더보기+</a>
+              <a href="<%=request.getContextPath()%>/ing.pro">더보기+</a>
           </div>
       <hr class="my-2">
       <div class="content1">
@@ -179,7 +179,7 @@
       <br><br><br>
       <div class="name">오픈예정 전시</div>
           <div id="range">
-              <a href="">더보기+</a>
+              <a href="<%=request.getContextPath()%>/pre.pro">더보기+</a>
           </div>
       <hr class="my-2">
       <div class="content1">

@@ -9,7 +9,7 @@ import com.kh.mypage.model.dao.MemberReserveDao;
 import com.kh.mypage.model.vo.Order;
 
 public class MemberReserveService {
-	// 예매내역조회
+	// 예매내역 조회
 	public ArrayList<Order> selectReserve(int memNo) {
 		
 		Connection conn = getConnection();
@@ -18,6 +18,7 @@ public class MemberReserveService {
 		return list;
 	}
 	
+	// 예매상세 
 	public Order selectReserveDetail(int memNo) {
 		Connection conn = getConnection();
 		Order detailView = new MemberReserveDao().selectReserveDetail(conn, memNo);
@@ -25,4 +26,20 @@ public class MemberReserveService {
 		return detailView;
 	}
 
+	// 취소/환불내역 조회
+	public ArrayList<Order> selectRefund(int memNo) {
+		Connection conn = getConnection();
+		ArrayList<Order> clist = new MemberReserveDao().selectRefund(conn, memNo);
+		close(conn);
+		return clist;
+	}
+	
+	// 취소/환불 상세
+	public Order selectRefundDetail(int memNo) {
+		Connection conn = getConnection();
+		Order cdetailView = new MemberReserveDao().selectRefundDetail(conn, memNo);
+		close(conn);
+		return cdetailView;
+	}
+	
 }

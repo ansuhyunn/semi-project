@@ -27,20 +27,77 @@
 		  WHERE RNO BETWEEN ? AND ?
 	</entry>
 	
+	<entry key="insertGuide">
+		INSERT
+		  INTO GUIDE
+		     ( 
+		       GUIDE_NO
+		     , GUIDE_WRITER
+		     , GUIDE_TITLE
+		     , GUIDE_CONTENT
+		     , STATUS
+		     )
+		     VALUES
+		     (
+		       SEQ_GNO.NEXTVAL
+		     , ?
+		     , ?
+		     , ?
+		     , ?
+		     )
+	</entry>
+	
+	<entry key="insertAttachment">
+		INSERT
+			  INTO ATTACHMENT
+			     ( FILE_NO
+			     , REF_B
+			     , REF_BNO
+			     , ORIGIN_NAME
+			     , CHANGE_NAME
+			     , FILE_PATH
+			     )
+			     VALUES
+			     (
+			       SEQ_ANO.NEXTVAL
+			     , 'GUIDE'
+			     , SEQ_GNO.CURRVAL
+			     , ?
+			     , ?
+			     , ?
+			     )
+	</entry>
+	
+	<entry key="updateGuideStatus">
+		UPDATE GUIDE
+		   SET STATUS = 'N'
+		 WHERE GUIDE_NO != (SELECT LAST_NUMBER
+		                      FROM USER_SEQUENCES
+		                     WHERE SEQUENCE_NAME = 'SEQ_GNO')-1
+	</entry>
+	
 	<entry key="selectGuide">
 		SELECT 
 		       GUIDE_NO
 		     , GUIDE_TITLE
 		     , GUIDE_CONTENT
-		  FORM GUIDE
+		  FROM GUIDE
 		 WHERE STATUS = 'Y'
 	</entry>
 	
 	<entry key="selectAttachment">
-		SELECT
+		SELECT 
 		       CHANGE_NAME
 		     , FILE_PATH
-		  FROM ATTACHMENT
-		 WHERE REF_B = 'GUIDE'
+		  FROM (SELECT
+		               REF_BNO
+		             , CHANGE_NAME
+				     , FILE_PATH
+				  FROM ATTACHMENT
+				 WHERE REF_B = 'GUIDE'
+		        ) A
+		  JOIN GUIDE G ON(REF_BNO = GUIDE_NO)
+		 WHERE G.STATUS = 'Y'
 	</entry>
+	
 </properties>

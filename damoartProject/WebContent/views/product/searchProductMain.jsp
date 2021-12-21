@@ -148,24 +148,28 @@
 			let op4="";
 		
 			$(".op1").click(function(){
+				$(this).css("backgroundColor", "rgb(182, 167, 141)");
 	            op1 = $(this).attr('value');
 	            option[0] = op1;
 	            //console.log(op1);
 	            //console.log(option);
 	        })
 	        $(".op2").click(function(){
+				$(this).css("backgroundColor", "rgb(182, 167, 141)");
 	            op2 = $(this).attr('value');
 	            option[1] = op2;
 	            //console.log(option);
 	            //console.log(op2);
 	        })
 	        $(".op3").click(function(){
+				$(this).css("backgroundColor", "rgb(182, 167, 141)");
 	            op3 = $(this).attr('value');
 	            option[2] = op3;
 	            //console.log(option);
 	            //console.log(op3);
 	        })
 	        $(".op4").click(function(){
+				$(this).css("backgroundColor", "rgb(182, 167, 141)");
 	            op4 = $(this).attr('value');
 	            option[3] = op4;
 	            //console.log(op4);

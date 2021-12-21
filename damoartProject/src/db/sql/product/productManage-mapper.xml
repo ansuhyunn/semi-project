@@ -34,7 +34,6 @@ SELECT *
 </entry>
 
 
-
 <!-- 오픈 예정 전시 갯수 -->
 <entry key="selectPreCount">
 SELECT COUNT(*) COUNT
@@ -240,6 +239,10 @@ UPDATE
 	     , FILE_PATH = ?
 	 WHERE FILE_NO = ?
 </entry>
+
+
+
+
 	
 	
 </properties>

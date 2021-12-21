@@ -8,10 +8,21 @@ import java.util.ArrayList;
 
 import com.kh.product.model.dao.ManageDao;
 import com.kh.product.model.dao.ProductDao;
+import com.kh.product.model.vo.Best;
 import com.kh.product.model.vo.Product;
+import com.kh.product.model.vo.Qna;
 
 public class ProductService {
 	
+	
+	public ArrayList<Best> selectBestList() {
+		Connection conn = getConnection();
+		
+		ArrayList<Best> list = new ProductDao().selectBestList(conn);
+		
+		close(conn); 
+		return list;
+	}
 	
 	public ArrayList<Product> selectFreeList() {
 		Connection conn = getConnection();
@@ -81,13 +92,13 @@ public class ProductService {
 	}
 	
 	
-	public ArrayList<Product> selectDetailImg(int pno) {
+	public Product selectDetailImg(int pno) {
 		Connection conn = getConnection();
 		
-		ArrayList<Product> list = new ProductDao().selectDetailImg(conn, pno);
+		Product p = new ProductDao().selectDetailImg(conn, pno);
 		
 		close(conn);
-		return list;
+		return p;
 	}
 	
 	
@@ -228,4 +239,13 @@ public class ProductService {
 	}
 
 
+	public ArrayList<Qna> selectQnaList(int pno){
+		Connection conn = getConnection();
+		
+		ArrayList<Qna> list = new ProductDao().selectQnaList(conn, pno);
+		
+		close(conn);
+		return list;
+	}
+	
 }

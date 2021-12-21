@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.product.model.vo.Best" %>
+<% 
+	ArrayList<Best> bestList = (ArrayList<Best>)request.getAttribute("bestList");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +10,7 @@
 <title>Insert title here</title>
 </head>
 <style>
-	div{ box-sizing:border-box; }
+	div{ box-sizing:border-box;}
     .wrapper{
         width: 1000px;
         height: 1200px;
@@ -17,48 +20,53 @@
      /* 페이지 이름 스타일 */
     .name{ width: 100%; height: 30px; }
     #name1{
-        width: 100%;
-        font-size: 24px;
+        width: 70%;
+        font-size: 23px;
         font-weight: bolder;
-        text-align: center;
+        float: left;
     }
     /* 페이지 정렬 버튼 스타일 */
-    #name2{border:1px solid black; width: 500px; marginl-left: 500px;}
-    #name2>a{
-    	border:1px solid black;
-        width: 50px; 
-        font-size: 15px;
+    .name>a{
+        width: 6%; 
+        font-size: 10px;
         margin-top: 10px;
         padding-top: 10px;
-        margin-left: 100px;
         float: left;
         text-decoration: none;
         color: black;
-        text-align: center;
     }
-    #name2>a:hover{font-weight: bolder; text-decoration: none; color: black;}
-    #content1{
+    .name>a:hover{font-weight: bolder; text-decoration: none; color: black;}
+    .content1{
         width: 100%;
         height: 300px;
         margin: auto;
         margin-top: 20px;
         margin-bottom: 50px;
+        padding-left: 20px;
     }
-    #content{
-        width: 20%;
+    .content{
+        width: 25%;
         height: 100%;
         float: left;
-        margin-left: 25px;
+        margin-left: 30px;
         margin-right: 25px;
         margin-bottom: 50px;
         margin-top: 0px;
         display: block;
+    }
+    .rank{
+        width: 24px;
+        height: 25%;
+        float: left;
+        font-size: 24px;
+        font-weight: bolder;
     }
     .poster{
         width: 100%;
         height: 75%;
         width: 100%;
         height: 80%;
+        float: left;
     }
     .info{
         width: 100%;
@@ -86,15 +94,47 @@
             <div id="name1">BEST 전시</div>
             <br>
             <div id="name2">
-	            <a href="<%=request.getContextPath()%>/">주간</a>
-	            <a href="<%=request.getContextPath()%>/">월간</a>
+	            <a href="<%=contextPath%>/">주간</a>
+	            <a href="<%=contextPath%>/">월간</a>
             </div>
         </div>
         <br>
         <hr class="my-2">
+         <% int i = 0; %>
+         <div class="content1">
+	        <% if(bestList.isEmpty()) { %>
+	        	<p> 결과가 없습니다 </p>
+	        <% } else {%> 
+	        	<% for(int j=1; j<10; i++) { %>
+		        <% for(Best b : bestList){ %>
+		        	<div class="rank">
+		            		<%= j++ %>
+		            </div>
+		            <div class="content" id="">    
+		           		<div class="poster">
+		           			<input type="hidden" name="num" value="<%= b.getpNo() %>">
+		                	<a href="<%=request.getContextPath()%>/detail.pro?num=<%=b.getpNo()%>">
+		                		<img src="<%=request.getContextPath()%>/<%= b.getMainImg() %>" width="100%" height="100%">
+		                	</a>
+		            	</div>
+		            	<div class="info">
+		                    <p class="title">
+		                        <%= b.getTitle() %>
+		                    </p>
+		                    <p class="summary">
+		                        <%= b.getsDate() %> ~ <%= b.geteDate() %><br>
+		                        <%= b.getArea() %>
+		                    </p>
+		                </div>
+		            </div>
+		             <% i++; if(i>9){ break; }%>  
+		             <% } %> 
+		         <% } %> 
+	        <% } %> 
+    	</div>
+        
         
     </div>   <!-- wrapper클래스 -->
-    
     
     <%@ include file="../common/footerbar.jsp" %>
      

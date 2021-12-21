@@ -200,18 +200,18 @@
             <ul id="navi">
                 <li><a href="<%=contextPath%>/all.pro">전시</a>
                     <ul>
-                        <li><a href="<%=request.getContextPath()%>/pre.pro">오픈 예정 전시</a></li>
-                        <li><a href="<%=request.getContextPath()%>/ing.pro">진행중 전시</a>
+                        <li><a href="<%=contextPath%>/pre.pro">오픈 예정 전시</a></li>
+                        <li><a href="<%=contextPath%>/ing.pro">진행중 전시</a>
                             <ul id="navi_in">
-                                <li><a href="<%=request.getContextPath() %>/region.pro">지역별 전시</a></li>
-                                <li><a href="<%=request.getContextPath()%>/month.pro">이달의 전시</a></li>
-                                <li><a href="<%=request.getContextPath()%>/free.pro">무료 전시</a></li>
+                                <li><a href="<%=contextPath%>/region.pro">지역별 전시</a></li>
+                                <li><a href="<%=contextPath%>/month.pro">이달의 전시</a></li>
+                                <li><a href="<%=contextPath%>/free.pro">무료 전시</a></li>
                                 <li><a href="<%=contextPath%>/views/product/searchProductMain.jsp">맞춤 전시 검색</a></li>
                             </ul>
                         </li>
                     </ul>
                 </li>
-                <li><a href="<%=contextPath%>/views/product/bestMain.jsp">BEST전시</a>
+                <li><a href="<%=contextPath%>/best.pro">BEST전시</a>
                     
                 </li>
                 <li><a href="">커뮤니티</a>
@@ -225,7 +225,7 @@
                         <li><a href="<%=contextPath%>/list.no?cpage=1">공지사항</a></li>
                         <li><a href="<%=contextPath%>/views/cscenter/client/faqMain.jsp">FAQ</a></li>
                         <li><a href="<%=contextPath%>/list.qa?cpage=1">Q&A</a></li>
-                        <li><a href="<%=contextPath%>/views/cscenter/client/guideMain.jsp">이용안내</a></li>
+                        <li><a href="<%=contextPath%>/guideView.gu">이용안내</a></li>
                     </ul>
                 </li>
             </ul>

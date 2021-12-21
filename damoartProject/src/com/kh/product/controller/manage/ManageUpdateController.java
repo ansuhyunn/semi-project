@@ -64,10 +64,12 @@ public class ManageUpdateController extends HttpServlet {
 			String etc = multiRequest.getParameter("etc");
 			String soldOut = multiRequest.getParameter("soldOut");
 			
-		
+			
+			// 상품 포스터를 무조건 다시 등록해야 상품 수정이 가능^^;;;; 
 			Attachment at1 = null;
 			Attachment at2 = null;
-			if(multiRequest.getOriginalFileName("main") != null && multiRequest.getOriginalFileName("detail") != null) {
+			if(multiRequest.getOriginalFileName("main") != null) {
+				if(multiRequest.getOriginalFileName("detail") != null) {
 				at1 = new Attachment();
 				at1.setOriginName(multiRequest.getOriginalFileName("main"));
 				at1.setChangeName(multiRequest.getFilesystemName("main"));
@@ -78,6 +80,10 @@ public class ManageUpdateController extends HttpServlet {
 				at2.setOriginName(multiRequest.getOriginalFileName("detail"));
 				at2.setChangeName(multiRequest.getFilesystemName("detail"));
 				at2.setFilePath("resources/product/");
+				at2.setFileNo(Integer.parseInt(multiRequest.getParameter("originFileNo")));
+				}
+			} else {
+				at1.setFileNo(Integer.parseInt(multiRequest.getParameter("originFileNo")));
 				at2.setFileNo(Integer.parseInt(multiRequest.getParameter("originFileNo")));
 			}
 			
@@ -102,6 +108,7 @@ public class ManageUpdateController extends HttpServlet {
 			int result = new ManageService().updateProduct(p, at1, at2);
 		
 			HttpSession session = request.getSession();
+			
 			if(result > 0) {
 				
 				request.getSession().setAttribute("alertMsg", "상품 수정 완료");

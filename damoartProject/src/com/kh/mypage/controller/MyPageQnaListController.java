@@ -43,10 +43,14 @@ public class MyPageQnaListController extends HttpServlet {
 		HttpSession session = request.getSession();
 		String nickName = ((Member)session.getAttribute("loginUser")).getNickName();
 		
+		Qna question = new MemberQnaListService().selectQna(nickName);
+		
 		ArrayList<Qna> list = new MemberQnaListService().selectQnaList(nickName);
 		
+		session.setAttribute("question", question);
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("views/mypage/memberQnaList.jsp").forward(request, response);
+		
 	}
 
 	/**

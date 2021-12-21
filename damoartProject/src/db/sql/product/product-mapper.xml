@@ -407,8 +407,19 @@ ORDER BY TITLE
 
 
 
-<!-- 상세정보 문의내역 -->
 
+<!-- 상세정보 문의내역 -->
+<entry key="qnaList">
+SELECT DISTINCT 
+       PNO
+     , Q_CATEGORY_CODE
+     , Q_TITLE
+     , Q_WRITER
+     , CREATE_DATE
+ FROM QNA
+ JOIN PRODUCT USING (PNO)
+WHERE PNO = ?
+</entry>
 
 	
 </properties>

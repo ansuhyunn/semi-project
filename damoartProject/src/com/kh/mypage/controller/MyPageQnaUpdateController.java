@@ -11,37 +11,48 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.kh.member.model.vo.Member;
-import com.kh.mypage.model.service.MemberReserveService;
-import com.kh.mypage.model.vo.Order;
+import com.kh.mypage.controller.MyPageQnaListController;
+import com.kh.mypage.model.service.MemberQnaListService;
+import com.kh.mypage.model.vo.Qna;
 
 /**
- * Servlet implementation class MyPageRefundController
+ * Servlet implementation class MyPageQnaUpdateController
  */
-
-@WebServlet("/refund.mp")
-public class MyPageRefundController extends HttpServlet {
+@WebServlet("/qnaUpdate.mp")
+public class MyPageQnaUpdateController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-
+    public MyPageQnaUpdateController() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		
 		request.setCharacterEncoding("UTF-8");
 		
 		HttpSession session = request.getSession();
-		int memNo = ((Member)session.getAttribute("loginUser")).getMemNo();
 		
-		ArrayList<Order> clist = new MemberReserveService().selectRefund(memNo);
+		//String nickName = ((Member)session.getAttribute("loginUser")).getNickName();
+		//Qna question = new MemberQnaListService().selectQna(nickName);
 		
-		request.setAttribute("clist", clist);
-		request.getRequestDispatcher("views/mypage/refundDetail.jsp").forward(request, response);
+		//session.setAttribute("question", question);
+		int qNo = ((Qna)session.getAttribute("question")).getqNo();
+			
+		int result = new MemberQnaListService().updateQna(qNo);
+		
+		if(result > 0) {
+			//session.setAttribute("alertMsg", "삭제되었습니다.");
+			//response.sendRedirect(request.getContextPath() + "/views/mypage/memberQnaList.jsp");
+			//request.getRequestDispatcher("views/mypage/memberQnaList.jsp").forward(request, response);
+			response.sendRedirect(request.getContextPath() + "/qnaList.mp");
+		}
 	}
 
 	/**

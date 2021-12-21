@@ -73,6 +73,12 @@
 		margin-top: 100px;
 		width: 80%;
 	}
+	.content5{
+		margin: auto;
+		margin-left: 100px;
+		margin-top: 10px;
+		width: 80%;
+	}
 </style>
 </head>
 <body>
@@ -81,6 +87,7 @@
 	
 	<div class="wrapper">
 		<% for(Product p : detailList){ %>
+		<input type="hidden" id="pNo" name="pno" value="<%= p.getpNo() %>">
 		<div class="content1">
 			<div class="title" style="font-size: 30px; font-weight: bolder; margin-bottom: 7px;"><%= p.getTitle() %></div>
 			<div class="date" style="font-size: 13px;"><%= p.getsDate() %> ~ <%= p.geteDate() %> <%= p.getArea() %></div>
@@ -127,16 +134,16 @@
 							<th >옵션선택</th>
 							<td>
 								<select name="option" >
-									<option value="<%= p.getaPrice() %>" id="A">성인</option>
-									<option value="<%= p.gettPrice() %>" id="T">청소년</option>
-									<option value="<%= p.getcPrice() %>" id="C">소아</option>
+									<option value="<%= p.getaPrice() %>">성인</option>
+									<option value="<%= p.gettPrice() %>">청소년</option>
+									<option value="<%= p.getcPrice() %>">소아</option>
 								</select>
 							</td>
 							<th>수량</th>
 							<td><input type="number" style="width: 50px;"></td>
 						</tr>
 					</table>
-					<button class="btn btn-secondary" id="select">선택</button>
+					<button class="btn btn-secondary" onclick="orderlist();">선택</button>
 				</form>
 				<table id="result">
 					<tr>
@@ -158,70 +165,76 @@
 		</div>
 		
 		<div class="content4">
-			<div class="detail"><img id="detail" src="<%=request.getContextPath()%>/<%= p.getDetailImg()%>" width="100%" height="100%"></div>
+			<div class="detail"><img id="detail" src="<%=contextPath%>/<%= p.getDetailImg()%>" width="100%" height="100%"></div>
+        </div>
+       <div class="content5">
+			
         </div>
         <br><br><br><br><br>
 
 		<script>
-
-		
-			function onclick(){		
+			
+			$("#info1").click(function(){
 				$.ajax({
-					url : "",
-					cache: true,
-					processData : false,
-					success:function(detailImg){
-						$("#order").html(detailImg);
+					url:"ajaxImg.pro",
+					data:{pno:$("#pNo").val()},
+					success:function(result){
+						$("#detail").attr("src", "/resources/product/<%= p.getDetailImg()%>")
 					},error:function(){
-						console.log("ㅠㅠㅠ");
+						
 					}
 				})
-			}
-				$("#info1").click(function(){		// 아직 못함 아이고 어렵다~~~!!!!!! 
-					$.ajax({
-						url : "<%=request.getContextPath()%>/resources/product/<%=p.getpNo()%>D.jpg",
-						cache: true,
-					    processData : false,
-						success:function(detailImg){
-							$(".content4").html(detailImg);
-						},error:function(){
-							console.log("ㅠㅠㅠ");
-						}
-					})
-				})
-				$("#info2").click(function(){
-					$.ajax({
-						url : "<%=request.getContextPath()%>/views/product/detailCancelInfo.jsp",
-						dataType: "html",
-						success:function(result){
-							$(".content4").html(result);
-						},error:function(){
-							
-						}
-					})
-				})
-		
-			(function(){
-				
-				// 장바구니 넣기
-				$("#A").click(function(){
-				$.ajax({
-				url : "in.ca",
-	  		    data : {
-	  		    content:<%= p.getaPrice() %>,
-	  		    
-			    },
-	 		    typt : "post",
-			    success:function(result){
-			    console.log("장바구니 담기 성공");
-	   			}, erorr:function(){
-			    console.log("장바구니 담기 실패");
-	   			})
 			})
-	
-		})
 			
+
+			$("#info2").click(function(){
+				$.ajax({
+					url : "<%=contextPath%>/views/product/detailCancelInfo.jsp",
+					dataType: "html",
+					success:function(result){
+						$(".content4").html(result);
+					},error:function(){
+						
+					}
+				})
+			})
+			
+			
+			$("#info4").click(function(){
+				$.ajax({
+					url:"qna.pro",
+					data:{pno:$("#pNo").val()},
+					success:function(result){
+						let value = "";
+						let button = ""
+						if(result != null){
+							for(let i=0; i<result.length; i++){
+								value += "<table border=\"1px solid black\" width=\"800px\">"
+										   + "<tr>"
+												+ "<th width=\"80px\">" + result[i].qCategoryCode + "</td>"
+												+ "<td>" + result[i].qTitle + "</td>"
+												+ "<td width=\"80px\">" + result[i].qWriter + "</td>"
+												+ "<td width=\"150px\">" + result[i].createDate + "</td>"
+										   +"</tr>"
+									   +"</table>";
+								
+								$(".content4").html(value);
+								var btn = '<a class="btn" href=' + '\"<%=contextPath%>/enrollForm.qa\">문의 등록</a>'
+								$(".content5").html(btn);
+							}
+						}else{
+							$(".content4").html("문의사항이 없습니다");
+							console.log("땡!!");
+						} 
+						
+					},error:function(){
+						console.log("에러");
+					}
+				})
 				
+			})
+			
+			
 		</script>
 		<% } %>
 		
