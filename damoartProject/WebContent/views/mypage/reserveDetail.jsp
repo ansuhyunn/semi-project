@@ -199,14 +199,14 @@
                 <div>
                     <a href="<%= contextPath %>/reserve.mp" id="submenu" style="color:rgb(151, 138, 116)">예매 내역</a> <br>
                     <a href="<%= contextPath %>/refund.mp" id="submenu">취소/환불 내역</a> <br>
-                    <a href="<%=contextPath%>/pointList.mp" id="submenu">적립금 내역</a> <br>
+                    <a href="<%= contextPath %>/pointList.mp" id="submenu">적립금 내역</a> <br>
                     <hr width="120" align="left">
                     <a href="" id="submenu">최근 본 상품</a> <br>
                     <a href="" id="submenu">찜한 상품</a>
                 </div><br>
                 <li><h3>마이활동</h3></li>
                 <div>
-                    <a href="" id="submenu">리뷰 내역</a> <br>
+                    <a href="<%=request.getContextPath() %>/views/mypage/memberReviewList.jsp" id="submenu">리뷰 내역</a> <br>
                     <a href="<%=request.getContextPath() %>/qnaList.mp" id="submenu">Q&A 내역</a> <br>
                 </div><br>
                 <li><h3>마이정보</h3></li>

@@ -251,7 +251,7 @@
                 </div><br>
                 <li><h3>마이활동</h3></li>
                 <div>
-                    <a href="" id="submenu">리뷰 내역</a> <br>
+                    <a href="<%=request.getContextPath() %>/views/mypage/memberReviewList.jsp" id="submenu">리뷰 내역</a> <br>
                     <a href="<%= contextPath %>/qnaList.mp" id="submenu" style="color:rgb(151, 138, 116)">Q&A 내역</a> <br>
                 </div><br>
                 <li><h3>마이정보</h3></li>

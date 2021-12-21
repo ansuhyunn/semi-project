@@ -1,9 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.mypage.model.vo.Order" %>
-<%
-	ArrayList<Order> clist = (ArrayList<Order>)request.getAttribute("clist");
-
-%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -132,34 +128,58 @@
         padding-top:15px;
         padding-left:30px;
     }
-
+    
+    /*찜한상품, qna내역이 없을 경우*/
     #exclamationmark_icon{
     	padding-left:345px;
         padding-top:35px;
     }
 
-    /*content_2_tit : 예매내역 */
-    .contents p{
-        font-size:13px;
-        color:rgb(64, 64, 64);
-        letter-spacing: -.3px;
-    }
-
-    /*테이블*/
+    
+    /*Q&A 테이블*/
     .container{
-        padding-left:30px;
+        height:30%;
+        padding-top:70px;
         font-size:13px;
     }
-    
-    .container strong{color:white;}
-    .container strong:hover{cursor:pointer;}
-    
-    .container td{      
-        height:100px;        
+
+    #exclamationmark_icon{
+    	padding-left:320px;
+        padding-top:35px;
+    }
+    .container th, #table_category{text-align:center;}
+
+    .qustion_open p{font-size:15px; font-weight:700;}
+
+    .table td{
+        vertical-align:middle;
+        height:120px;
+        margin:auto;
+        padding-top:10px;
     }
 
-    .container th, #table_date{text-align:center;}
+    .contents p{font-size:13px;}
 
+    /*리뷰 선택 탭*/
+    .tab_menu{padding-left:30px; text-align:center;}
+    .tab_menu li{
+        float:left;
+        width:375px;
+        height:45px;
+        background:rgba(255, 255, 255, 0.45); 
+        border:1px solid rgb(209, 204, 204);
+    }
+    .tab_menu li:hover{ cursor:pointer;}
+    .tab_menu li:visited{background:rgb(203, 185, 153);}
+    .tab_menu li a{
+        text-decoration:none;
+        font-weight:700;
+        font-size:15px;
+        color:black;
+        width:100%;
+        height:100%;
+        line-height:3;
+    }
 </style>
 </head>
 <body>
@@ -178,10 +198,10 @@
         
         <div class="userbox_3">
         
-            <div class="userPoint" onclick="location.href='<%=request.getContextPath()%>/pointList.mp'">
+            <div class="userPoint">
                    	적립금 >
             </div>
-            <p class="point">2000원</p>
+            <p class="point">2,000원</p>
             
         </div>
     </div>
@@ -195,17 +215,17 @@
             <ul>  	
                 <li><h3>마이쇼핑</h3></li>
                 <div>
-                    <a href="<%= contextPath %>/reserve.mp" id="submenu" >예매 내역</a> <br>
-                    <a href="<%= contextPath %>/refund.mp" id="submenu" style="color:rgb(151, 138, 116)">취소/환불 내역</a> <br>
+                    <a href="<%= contextPath %>/reserve.mp" id="submenu">예매 내역</a> <br>
+                    <a href="<%= contextPath %>/refund.mp" id="submenu">취소/환불 내역</a> <br>
                     <a href="<%= contextPath %>/pointList.mp" id="submenu">적립금 내역</a> <br>
                     <hr width="120" align="left">
-                    <a href="" id="submenu">최근 본 상품</a> <br>
-                    <a href="" id="submenu">찜한 상품</a>
+                    <a href="<%=request.getContextPath() %>/views/mypage/recentlyViewProduct.jsp" id="submenu">최근 본 상품</a> <br>
+                    <a href="<%=request.getContextPath() %>/views/mypage/likeProduct.jsp" id="submenu">찜한 상품</a>
                 </div><br>
                 <li><h3>마이활동</h3></li>
                 <div>
-                    <a href="<%=request.getContextPath() %>/views/mypage/memberReviewList.jsp" id="submenu">리뷰 내역</a> <br>
-                    <a href="<%= contextPath %>/qnaList.mp" id="submenu">Q&A 내역</a> <br>
+                    <a href="<%=request.getContextPath() %>/views/mypage/memberReviewList.jsp" id="submenu" style="color:rgb(151, 138, 116)">리뷰 내역</a> <br>
+                    <a href="<%=request.getContextPath() %>/qnaList.mp" id="submenu">Q&A 내역</a> <br>
                 </div><br>
                 <li><h3>마이정보</h3></li>
                 <div>
@@ -216,82 +236,83 @@
         </div>
         <div id="content_2">
             <div class="contents">
-                <h4 class="contents_tit">취소/환불 내역</h4><br>
-                <p>● 최신순으로 취소/환불 내역 조회가 가능합니다.</p>
-                
+                <h4 class="contents_tit">리뷰 내역</h4><br>
+                <p>● 텍스트 리뷰 작성시 300원, 포토 리뷰 작성시 500원의 포인트가 적립됩니다. <br>
+                    ● 리뷰 작성은 예매확정 후 30일 이내 가능합니다.
+                </p>
             </div>
-            
+            <br>
+            <ul class="tab_menu">
+                <li style="background:rgb(203, 185, 153);">
+                    <a href=""  style="color:white">
+                        	작성 가능한 리뷰
+                    </a>
+                </li>
+                <li>
+                    <a href="<%=request.getContextPath() %>/views/mypage/memberReviewAfter.jsp">
+                        	내가 작성한 리뷰
+                    </a>
+                </li>
+            </ul>
+                
             <div class="container">
-                <br><br>
+           
                 <table class="table">
                   <thead>
-                    <tr style="background:rgb(203, 185, 153)">
-                      <th width="140">날짜/예매번호</th>
-                      <th colspan="2" width="470">상품</th>
-                      <th width="70">수량</th>
-                      <th width="110">결제금액</th>
-                      <th width="110">상태</th>
+                    <tr style="background:rgb(203, 185, 153);">
+                      <th colspan="2" width="550">상품</th>
+                      <th width="110">작성기간</th>
+                      <th width="110">리뷰 작성</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <!--예매 내역이 없을 경우-->
-                    <% if(clist.isEmpty()){ %>
-	                    <tr>
-	                        <td colspan="6" >
-	                            <div id="exclamationmark_icon">
-	                                <img src="<%=request.getContextPath() %>/resources/images/exclamationmark.png" width="70px" height="70px"> 
-	                            </div>
-	                            <br>
-	                            <div>
-	                                <p align="center">예매 내역이 없습니다.</p>
-	                            </div>
-	                        </td>
-	                    </tr>
-	                    <tr>
-	                        <td></td>
-	                        <td></td>
-	                        <td></td>
-	                        <td></td>
-	                        <td></td>
-                            <td></td>
-	                    </tr>
-                    <% }else{ %>
-                    <!-- 예매내역 있을 경우 -->
-                    	<% for(Order o : clist) {%>
-		                    <tr>
-		                      <td align="center" style="padding-top:20px;">
-		                      	<%= o.getOrderDate() %><br>
-		                      	<strong><%= o.getOrderNo() %></strong> <br>
-		                      	<button type="button" onclick="detailView();">상세조회</button>
-		                      </td>
-		                      <td width="130">
-		                      	<img src="<%=request.getContextPath()%>/<%= o.getMainImg() %>" width="80px" height="80px">
-		                      </td>
-		                      <td width="340" style="padding-top:30px;">
-		                      	<b><%= o.getpTitle() %></b> <br>
-		                      	옵션 : <%= o.getOrderOpt() %>
-		                      </td>
-		                      <td align="center" style="padding-top:40px;"><%= o.getOrderCount() %></td>
-                              <td align="center" style="padding-top:40px;"><%= o.getFinalPrice() %>원</td>
-                              <td align="center" style="padding-top:40px;"><%= o.getOrderStatus() %></td>
-		                    </tr>
-    					 <% } %>
-                    <% } %>
-	                    <tr>
-	                        <td></td>
-	                        <td></td>
-	                        <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-	                    </tr>
+                    <!--리뷰 내역이 없을 경우-->
+                    <!--
+                    <tr>
+                        <td colspan="4" >
+                            <div id="exclamationmark_icon">
+                                <img src="<%=request.getContextPath() %>/resources/images/exclamationmark.png" width="70px" height="70px"> 
+                            </div>
+                            <br>
+                            <div id="qna_txt">
+                                <p align="center">리뷰 내역이 없습니다.</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>-->
 
-                        <script>
-                            function detailView(){
-                                location.href = "<%=contextPath%>/cdetail.mp";
-                            }
-                        </script>
-	                    
+                    <!--리뷰 내역이 있을 경우-->
+                    
+                    <tr class="qustion">
+                        <td width="120" style="padding-top:20px">
+                            <img src= "<%=request.getContextPath()%>/resources/images/product/1M.gif" width="80px" height="80px">                
+                        </td>
+                        <td width="350" style="padding-top:35px">
+                           <strong>영국 테이트미술관 특별전</strong> <br>
+                          	              옵션 : 일반
+                        </td>    
+                        <td style="padding-top:40px">~2021-11-14</td>
+                        <td style="padding-top:40px">
+                          <button type="button" id="insertBtn" onclick="reviewInsert();">리뷰 작성</button>
+                        </td>
+                    </tr>             
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+                    <script>
+                        function reviewInsert(){
+                            location.href = "<%=contextPath%>/url.etc";
+                        }
+                    </script>
                   </tbody>
                 </table>
               </div>   
@@ -303,8 +324,6 @@
 
     
     </div>
-
-    
 
     <%@ include file="../common/footerbar.jsp" %>
 </body>

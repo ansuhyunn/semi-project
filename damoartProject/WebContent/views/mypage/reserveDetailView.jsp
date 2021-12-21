@@ -176,7 +176,7 @@
         
         <div class="userbox_3">
         
-            <div class="userPoint">
+            <div class="userPoint" onclick="location.href='<%=request.getContextPath()%>/pointList.mp'">
                    	적립금 >
             </div>
             <p class="point">2,000원</p>

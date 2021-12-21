@@ -157,6 +157,29 @@
         margin:auto;
         padding-top:10px;
     }
+
+    .contents p{font-size:13px;}
+
+    /*리뷰 선택 탭*/
+    .tab_menu{padding-left:30px; text-align:center;}
+    .tab_menu li{
+        float:left;
+        width:375px;
+        height:45px;
+        background:rgba(255, 255, 255, 0.45); 
+        border:1px solid rgb(209, 204, 204);
+    }
+    .tab_menu li:hover{ cursor:pointer;}
+    .tab_menu li:visited{background:rgb(203, 185, 153);}
+    .tab_menu li a{
+        text-decoration:none;
+        font-weight:700;
+        font-size:15px;
+        color:black;
+        width:100%;
+        height:100%;
+        line-height:3;
+    }
 </style>
 </head>
 <body>
@@ -169,7 +192,7 @@
         </div>
         <div class="userbox_2">
         	<p class="txt">
-        		<strong class="userName">xxx</strong>님 반갑습니다.
+        		<strong class="userName"><%= loginUser.getNickName() %></strong>님 반갑습니다.
         	</p>
         </div>
         
@@ -192,17 +215,17 @@
             <ul>  	
                 <li><h3>마이쇼핑</h3></li>
                 <div>
-                    <a href="<%=request.getContextPath() %>/views/mypage/reserveDetail.jsp" id="submenu">예매 내역</a> <br>
-                    <a href="<%=request.getContextPath() %>/views/mypage/refundDetail.jsp" id="submenu">취소/환불 내역</a> <br>
-                    <a href="<%=request.getContextPath() %>/views/mypage/pointCheck.jsp" id="submenu">적립금 내역</a> <br>
+                    <a href="<%= contextPath %>/reserve.mp" id="submenu">예매 내역</a> <br>
+                    <a href="<%= contextPath %>/refund.mp" id="submenu">취소/환불 내역</a> <br>
+                    <a href="<%= contextPath %>/pointList.mp" id="submenu">적립금 내역</a> <br>
                     <hr width="120" align="left">
                     <a href="<%=request.getContextPath() %>/views/mypage/recentlyViewProduct.jsp" id="submenu">최근 본 상품</a> <br>
                     <a href="<%=request.getContextPath() %>/views/mypage/likeProduct.jsp" id="submenu">찜한 상품</a>
                 </div><br>
                 <li><h3>마이활동</h3></li>
                 <div>
-                    <a href="" id="submenu" style="color:rgb(151, 138, 116)">리뷰 내역</a> <br>
-                    <a href="<%=request.getContextPath() %>/views/mypage/memberQnaList.jsp" id="submenu">Q&A 내역</a> <br>
+                    <a href="<%=request.getContextPath() %>/views/mypage/memberReviewList.jsp" id="submenu" style="color:rgb(151, 138, 116)">리뷰 내역</a> <br>
+                    <a href="<%=request.getContextPath() %>/qnaList.mp" id="submenu">Q&A 내역</a> <br>
                 </div><br>
                 <li><h3>마이정보</h3></li>
                 <div>
@@ -213,17 +236,30 @@
         </div>
         <div id="content_2">
             <div class="contents">
-                <h4 class="contents_tit">리뷰 내역</h4>
-                <hr align="left" width="765" color="rgb(64, 64, 64)" size="1">
+                <h4 class="contents_tit">리뷰 내역</h4><br>
+                <p>● 텍스트 리뷰 작성시 300원, 포토 리뷰 작성시 500원의 포인트가 적립됩니다. <br>
+                    ● 리뷰 작성은 예매확정 후 30일 이내 가능합니다.
+                </p>
             </div>
-
-            <div class="date">
+            <br>
+            <ul class="tab_menu">
+                <li style="background:rgb(203, 185, 153);">
+                    <a href="" style="color:white">
+                        작성 가능한 리뷰
+                    </a>
+                </li>
+                <li>
+                    <a href="" >
+                        내가 작성한 리뷰
+                    </a>
+                </li>
+            </ul>
                 
             <div class="container">
            
                 <table class="table">
                   <thead>
-                    <tr style="background:rgb(203, 185, 153)">
+                    <tr style="background:rgb(203, 185, 153);">
                       <th colspan="2" width="550">상품</th>
                       <th width="110">작성기간</th>
                       <th width="110">리뷰 작성</th>
@@ -253,17 +289,16 @@
                     <!--리뷰 내역이 있을 경우-->
                     
                     <tr class="qustion">
-                        <td width="200">
+                        <td width="120">
                             <img src= "<%=request.getContextPath()%>/resources/images/product/1M.gif" width="80px" height="80px">                
                         </td>
                         <td width="350">
-                           예매확정일 : 2021-11-15 <br>
-                           영국 테이트미술관 특별전 <br>
+                           <strong>영국 테이트미술관 특별전</strong> <br>
                            옵션 : 일반
                         </td>    
                         <td id="insertDate">~2021-11-14</td>
                         <td align="center">
-                          <button type="button" id="insertBtn">리뷰 작성</button>
+                          <button type="button" id="insertBtn" onclick="reviewInsert();">리뷰 작성</button>
                         </td>
                     </tr>             
                     <tr>
@@ -272,6 +307,12 @@
                         <td></td>
                         <td></td>
                     </tr>
+
+                    <script>
+                        function reviewInsert(){
+                            location.href = "<%=contextPath%>/url.etc";
+                        }
+                    </script>
                   </tbody>
                 </table>
               </div>   

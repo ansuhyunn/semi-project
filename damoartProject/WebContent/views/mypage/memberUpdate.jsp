@@ -290,7 +290,7 @@
                             <tr>
                                 <th height="70">* 전화번호</th>
                                 <td>
-                                    <input type="text" name="phone" placeholder="'-' 제외하고 입력" value="<%=loginUser.getPhone()%>" required>
+                                    <input type="text" name="phone" placeholder="'-' 포함해서 입력" value="<%=loginUser.getPhone()%>" required>
                                 </td>
                                 <td></td>
                             </tr>

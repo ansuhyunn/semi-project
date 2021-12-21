@@ -48,9 +48,7 @@ public class MyPageQnaUpdateController extends HttpServlet {
 		int result = new MemberQnaListService().updateQna(qNo);
 		
 		if(result > 0) {
-			//session.setAttribute("alertMsg", "삭제되었습니다.");
-			//response.sendRedirect(request.getContextPath() + "/views/mypage/memberQnaList.jsp");
-			//request.getRequestDispatcher("views/mypage/memberQnaList.jsp").forward(request, response);
+
 			response.sendRedirect(request.getContextPath() + "/qnaList.mp");
 		}
 	}
