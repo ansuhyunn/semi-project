@@ -44,6 +44,18 @@ public class GuideService {
 		return result1*result2;
 		
 	}
+	
+	public int updateGuideStatus() {
+		Connection conn = getConnection();
+		int result = new GuideDao().updateGuideStatus(conn);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
 
 	public Guide selectGuide() {
 		Connection conn = getConnection();
@@ -59,4 +71,5 @@ public class GuideService {
 		close(conn);
 		return at;
 	}
+	
 }

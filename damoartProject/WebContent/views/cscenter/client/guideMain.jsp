@@ -28,7 +28,7 @@
     #outer{
 
         width:1000px; 
-        height:1050px; 
+        height:auto; 
         padding:40px;
         margin-top:50px;
         margin:auto;
@@ -80,6 +80,7 @@
             </div>
            
         </div>
+        <br><br>
 
     <%@ include file="../../common/footerbar.jsp" %>
 

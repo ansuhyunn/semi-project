@@ -32,15 +32,12 @@
     }
 
     #enroll-form input, #enroll-form textarea{
-        width:98%;
+        width:100%;
         box-sizing:border-box;
     }
     th{
         height:40px;
         background:rgb(203, 185, 153);
-    }
-    td{
-        text-align:center;
     }
 
     #button{
@@ -75,23 +72,24 @@
         <br>
         <hr>
         <div id="inner" align="center">
-            <form id="enroll-form" action="<%=contextPath%>/insert.no" method="post" enctype="multipart/form-data">
+            <form id="enroll-form" action="<%=contextPath%>/insert.gu" method="post" enctype="multipart/form-data">
             	<input type="hidden" name="adminNo" value="<%=loginUser.getMemNo()%>"> 
                 <table id="enroll-tb">
                     <tr style="border-bottom:1px solid rgb(173, 157, 128); border-top:1px solid rgb(173, 157, 128)">
                         <th width="120">&nbsp;&nbsp;&nbsp;제목</th>
                         <td width="700"><input type="text" size="80" required name="title"></td>
                     </tr>
-                    <tr>
-                        <th style="border-bottom:1px solid rgb(173, 157, 128)">&nbsp;&nbsp;&nbsp;첨부 파일</th>
-                        <td><input type="file" name="upfile1"></td>
+                    <tr style="border-bottom:1px solid rgb(173, 157, 128)">
+                        <th>&nbsp;&nbsp;&nbsp;첨부 파일</th>
+                        <td><input type="file" name="upfile"></td>
                     </tr>
-                    <tr>
+                    <tr style="border-bottom:1px solid rgb(173, 157, 128)">
                         <th>&nbsp;&nbsp;&nbsp;상태</th>
                         <td>
-                            <select name="" id="">
-                                <option value="">게시중</option>
-                                <option value="">숨김</option>
+                            <select name="status" required>
+                            	<option value="">--선택--</option>
+                                <option value="Y">게시중</option>
+                                <option value="N">숨김</option>
                             </select>
                         </td>
                     </tr>
@@ -102,7 +100,7 @@
                 </table>
                 <br>
                 <div id="button" align="right">
-                    <a href="<%=contextPath%>/adminList.no?cpage=1" class="btn btn-sm" id="cancel">취소하기</a>
+                    <a href="<%=contextPath%>/adminList.gu?cpage=1" class="btn btn-sm" id="cancel">취소하기</a>
                     <button type="submit" class="btn btn-sm" id="insert">등록하기</button>
                 </div>
             </form>
