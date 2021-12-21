@@ -120,7 +120,7 @@
                     <% } %>
                     <tr style="border-bottom:1px solid rgb(173, 157, 128); border-top:1px solid rgb(173, 157, 128)">
                         <th>&nbsp;&nbsp;&nbsp;첨부 파일</th>
-                        <td colspan="3"><input type="file" name="upfile1"></td>
+                        <td colspan="3"><input type="file" name="upfile"></td>
                     </tr>
 
                     <tr style="border-bottom:1px solid rgb(173, 157, 128)">

@@ -32,7 +32,7 @@
 		       GUIDE_NO
 		     , GUIDE_TITLE
 		     , GUIDE_CONTENT
-		  FORM GUIDE
+		  FROM GUIDE
 		 WHERE STATUS = 'Y'
 	</entry>
 	
@@ -42,5 +42,25 @@
 		     , FILE_PATH
 		  FROM ATTACHMENT
 		 WHERE REF_B = 'GUIDE'
+	</entry>
+	
+	<entry key="insertGuide">
+		INSERT
+		  INTO GUIDE
+		     ( 
+		       GUIDE_NO
+		     , GUIDE_WRITER
+		     , GUIDE_TITLE
+		     , GUIDE_CONTENT
+		     , STATUS
+		     )
+		     VALUES
+		     (
+		       SEQ_GNO.NEXTVAL
+		     , ?
+		     , ?
+		     , ?
+		     , ?
+		     )
 	</entry>
 </properties>

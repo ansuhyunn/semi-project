@@ -1,7 +1,6 @@
 package com.kh.cscenter.model.service;
 
-import static com.kh.common.JDBCTemplate.close;
-import static com.kh.common.JDBCTemplate.getConnection;
+import static com.kh.common.JDBCTemplate.*;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -26,6 +25,24 @@ public class GuideService {
 		ArrayList<Guide> list = new GuideDao().selectList(conn, pi);
 		close(conn);
 		return list;
+	}
+	
+	public int insertGuide(Guide g, Attachment at) {
+		Connection conn = getConnection();
+		int result1 = new GuideDao().insertGuide(conn, g);
+		int result2 = 1;
+		if(at != null) {
+			result2 = new GuideDao().insertAttachment(conn, at);		
+		}
+		
+		if(result1 > 0 && result2 > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result1*result2;
+		
 	}
 
 	public Guide selectGuide() {

@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ page import="com.kh.cscenter.model.vo.Guide, com.kh.common.model.vo.Attachment"%>
+    
+<% 
+    Guide g = (Guide)request.getAttribute("g");
+	Attachment at = (Attachment)request.getAttribute("at");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -60,13 +67,15 @@
             <div class="inner">
 
                 <div class="title">
-                    제목
+                	<%=g.getGuideTitle() %>
                 </div>
                 <div class="img">
-                    첨부파일
+                    <% if(at != null) {%>
+                		<img src="<%=contextPath%>/<%=at.getFilePath() + at.getChangeName()%>" width="750" height="auto">
+                	<% } %>
                 </div>
                 <div class="content">
-                    내용
+                    <%=g.getGuideContent() %>
                 </div>
             </div>
            

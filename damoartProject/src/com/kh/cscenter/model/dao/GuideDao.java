@@ -83,17 +83,50 @@ public class GuideDao {
 		
 	}
 	
+	public int insertGuide(Connection conn, Guide g) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertGuide");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, Integer.parseInt(g.getGuideWriter()));
+			pstmt.setString(2, g.getGuideTitle());
+			pstmt.setString(3, g.getGuideContent());
+			pstmt.setString(4, g.getStatus());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
 	public Guide selectGuide(Connection conn) {
 		Guide g = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String sql = prop.getProperty("selectList");
+		String sql = prop.getProperty("selectGuide");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				g = new Guide();
+				g.setGuideNo(rset.getInt("guide_no"));
+				g.setGuideTitle(rset.getString("guide_title"));
+				g.setGuideContent(rset.getString("guide_content"));
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
 		}
+		System.out.println(g);
+		return g;
 		
 	}
 	
@@ -102,5 +135,20 @@ public class GuideDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String sql = prop.getProperty("selectAttachment");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				at = new Attachment();
+				at.setChangeName(rset.getString("change_Name"));
+				at.setFilePath(rset.getString("file_path"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return at;
 	}
 }
