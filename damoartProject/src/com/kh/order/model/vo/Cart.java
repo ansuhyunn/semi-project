@@ -55,9 +55,19 @@ public class Cart {
 	      this.soldOut = soldOut;
 	   }
 
+	   
 
 
-	   public int getmemNo() {
+	   public Cart(int memNo, int pNo, String cartOpt, int cartCount) {
+		super();
+		this.memNo = memNo;
+		this.pNo = pNo;
+		this.cartOpt = cartOpt;
+		this.cartCount = cartCount;
+	}
+
+
+	public int getmemNo() {
 	      return memNo;
 	   }
 

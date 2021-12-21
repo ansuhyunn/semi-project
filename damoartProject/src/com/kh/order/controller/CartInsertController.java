@@ -37,12 +37,8 @@ public class CartInsertController extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		int memNo = ((Member)session.getAttribute("loginUser")).getMemNo();
-		
 
-		if(content == null) {
-			
-			ArrayList<insertCart> list = service.insertCartS
-		}
+		ArrayList<insertCart> list = service.insertCart()
 
 		System.out.println("memNo :" + memNo);
 		int pNo = Integer.parseInt(request.getParameter("pNo"));
