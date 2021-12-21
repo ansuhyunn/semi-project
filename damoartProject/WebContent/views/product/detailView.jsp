@@ -81,6 +81,7 @@
 	
 	<div class="wrapper">
 		<% for(Product p : detailList){ %>
+		<input type="hidden" id="pNo" name="pno" value="<%= p.getpNo() %>">
 		<div class="content1">
 			<div class="title" style="font-size: 30px; font-weight: bolder; margin-bottom: 7px;"><%= p.getTitle() %></div>
 			<div class="date" style="font-size: 13px;"><%= p.getsDate() %> ~ <%= p.geteDate() %> <%= p.getArea() %></div>
@@ -153,7 +154,7 @@
 			<button id="info1" class="btn btn-secondary" >상세정보</button>
 			<button id="info2" class="btn btn-secondary" >예매/취소안내</button>
 			<button id="info3" class="btn btn-secondary" >REVIEW</button>
-			<button id="info4" class="btn btn-secondary" >Q&A</button>
+			<button id="info4" class="btn btn-secondary" onclick="qna();">Q&A</button>
 			<hr class="my-2">
 		</div>
 		
@@ -164,18 +165,47 @@
 
 		<script>
 
-		
-				$("#info2").click(function(){
-					$.ajax({
-						url : "<%=contextPath%>/views/product/detailCancelInfo.jsp",
-						dataType: "html",
-						success:function(result){
-							$(".content4").html(result);
-						},error:function(){
-							
-						}
-					})
+			$("#info2").click(function(){
+				$.ajax({
+					url : "<%=contextPath%>/views/product/detailCancelInfo.jsp",
+					dataType: "html",
+					success:function(result){
+						$(".content4").html(result);
+					},error:function(){
+						
+					}
 				})
+			})
+			
+			/*
+			$("#info4").click(function(){
+				$.ajax({
+					url:"qna.pro",
+					data:{pno:$("#pNo").val()},
+					success:function(result){
+						console.log(result);		
+						
+						let value = "";
+						for(let i=0; i<result.length; i++){
+							value += "<table border=\"1px solid black\" width=\"500px\">"
+									   + "<tr>"
+											+ "<td>" + result[i].qCategoryCode + "</td>"
+											+ "<td>" + result[i].qTitle + "</td>"
+											+ "<td>" + result[i].qWriter + "</td>"
+											+ "<td>" + result[i].createDate + "</td>"
+									   +"</tr>"
+								   +"</table>";
+						}
+						
+						$(".content4").html(value);
+						
+					},
+					error:function(){
+						console.log("에러");
+					}
+				})
+			})
+			*/
 			
 		</script>
 		<% } %>

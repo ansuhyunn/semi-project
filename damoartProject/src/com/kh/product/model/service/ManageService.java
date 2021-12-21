@@ -74,6 +74,7 @@ public class ManageService {
 		return list;
 	}
 	
+
 	
 	public Product productDetailView(int pNo) {
 		Connection conn = getConnection();

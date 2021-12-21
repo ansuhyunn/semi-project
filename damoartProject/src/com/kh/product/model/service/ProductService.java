@@ -10,6 +10,7 @@ import com.kh.product.model.dao.ManageDao;
 import com.kh.product.model.dao.ProductDao;
 import com.kh.product.model.vo.Best;
 import com.kh.product.model.vo.Product;
+import com.kh.product.model.vo.Qna;
 
 public class ProductService {
 	
@@ -238,4 +239,13 @@ public class ProductService {
 	}
 
 
+	public ArrayList<Qna> selectQnaList(int pno){
+		Connection conn = getConnection();
+		
+		ArrayList<Qna> list = new ProductDao().selectQnaList(conn, pno);
+		
+		close(conn);
+		return list;
+	}
+	
 }
