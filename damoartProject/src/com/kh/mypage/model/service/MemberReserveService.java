@@ -18,6 +18,7 @@ public class MemberReserveService {
 		return list;
 	}
 	
+	// 예매상세 
 	public Order selectReserveDetail(int memNo) {
 		Connection conn = getConnection();
 		Order detailView = new MemberReserveDao().selectReserveDetail(conn, memNo);

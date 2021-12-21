@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.kh.mypage.model.vo.Point, java.util.ArrayList, com.kh.mypage.model.vo.Order" %>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.mypage.model.vo.Order" %>
 <%
-	ArrayList<Order> list = (ArrayList<Order>)request.getAttribute("list");
-
-	Point poi = (Point)request.getAttribute("poi");
 
 %>
 <!DOCTYPE html>
@@ -183,7 +180,7 @@
             <div class="userPoint" onclick="location.href='<%=request.getContextPath()%>/pointList.mp'">
                    	적립금 >
             </div>
-            <p class="point"><%= poi.getPoint() %>원</p>
+            <p class="point">2000원</p>
             
         </div>
     </div>
@@ -212,7 +209,7 @@
                 <li><h3>마이정보</h3></li>
                 <div>
                     <a href="<%=request.getContextPath() %>/views/mypage/pwdVerificationMemUpdate.jsp" id="submenu">회원정보 수정</a> <br>
-                    <a href="" id="submenu">회원 탈퇴</a> <br>
+                    <a href="<%=request.getContextPath() %>/views/mypage/pwdVerificationMemDelete.jsp" id="submenu">회원 탈퇴</a> <br>
                 </div>
             </ul>
         </div>
@@ -305,6 +302,8 @@
 
     
     </div>
+
+    
 
     <%@ include file="../common/footerbar.jsp" %>
 </body>

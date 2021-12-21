@@ -1,24 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.kh.mypage.model.vo.Point, java.util.ArrayList, com.kh.mypage.model.vo.Order" %>
+<%
+	ArrayList<Order> list = (ArrayList<Order>)request.getAttribute("list");
 
+	Point poi = (Point)request.getAttribute("poi");
+
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Popper JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-   
- 
-
-   	
-   
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <style>
-
     /*회원박스 스타일*/
     .mypage_top{
         width:1000px;
@@ -124,110 +124,43 @@
         font-size:14px;
         letter-spacing:-0.8px;
         
-    } 
+    }
     #content_1 a:hover{
         color:rgb(151, 138, 116);
     }
 
     /*content_2*/
     .contents{
-        height:25%;
         padding-top:15px;
         padding-left:30px;
     }
 
-    /*예매내역*/
-    .order_box{
-        margin:auto;
-        width:765px; 
-        height:120px;
-        border-radius:10px;
-        position:absolute;
-    }
-    
-    /*찜한상품, qna내역이 없을 경우*/
     #exclamationmark_icon{
     	padding-left:345px;
         padding-top:35px;
     }
 
-    .order_view{
-        color:#666;
-        text-decoration:none;
+    /*content_2_tit : 예매내역 */
+    .contents p{
+        font-size:13px;
+        color:rgb(64, 64, 64);
+        letter-spacing: -.3px;
     }
 
-    #step_li{
-        float:left;
-        position:relative;
-        width:29%;
-        height:100px;
-        margin:auto;
-        margin-top:10px;
+    /*테이블*/
+    .container{
+        padding-left:30px;
+        font-size:13px;
+    }
+    
+    .container strong{color:white;}
+    .container strong:hover{cursor:pointer;}
+    
+    .container td{      
+        height:100px;        
     }
 
-    em{
-        top:25px;
-        color:#888;
-        font-style:normal;
-        font-size:50px;
-        line-height:50px;
-        font-weight:500;
-        padding-left:140px;
-    }
-    span{
-        color: #666;
-        font-size:16px;
-        line-height:40px;
-        margin-left:120px;
-    }
-
-    /*예매날짜*/
-    .order_date{
-        margin:auto;
-        margin-left:30px;
-        width:765px; 
-        height:110px;
-        border-radius:10px;
-        position:absolute;
-    }
-
-    .order_date>p{
-        float:left;
-        font-size:14px;
-        font-weight:bold;
-        margin-left:20px;
-        margin-top:20px;
-        margin-right:20px;
-        letter-spacing: -0.5px;
-    }
-
-    .select_date>li{
-        float:left;
-        width:auto;
-        height:28px;
-        margin-left:5px;
-        margin-top:15px;
-    }
-
-/*     .select-range{
-        width:700px;
-        padding-left:20px;
-    } */
-
-    .select-btn{
-        width:50px;
-        float:right;
-        margin-top:-30px;
-    }
-    #date_btn:focus{
-        background:rgb(182, 167, 141);
-        color:white;
-    }
-
-
-    .test{
-        padding-left:100px;
-    }
+    .container th, #table_date{text-align:center;}
 
 </style>
 </head>
@@ -241,16 +174,16 @@
         </div>
         <div class="userbox_2">
         	<p class="txt">
-        		<strong class="userName">xxx</strong>님 반갑습니다.
+        		<strong class="userName"><%= loginUser.getNickName() %></strong>님 반갑습니다.
         	</p>
         </div>
         
         <div class="userbox_3">
         
-            <div class="userPoint">
+            <div class="userPoint" onclick="location.href='<%=request.getContextPath()%>/pointList.mp'">
                    	적립금 >
             </div>
-            <p class="point">2,000원</p>
+            <p class="point"><%= poi.getPoint() %>원</p>
             
         </div>
     </div>
@@ -264,9 +197,9 @@
             <ul>  	
                 <li><h3>마이쇼핑</h3></li>
                 <div>
-                    <a href="<%=request.getContextPath() %>/views/mypage/reserveDetail.jsp" id="submenu">예매 내역</a> <br>
-                    <a href="<%=request.getContextPath() %>/views/mypage/refundDetail.jsp" id="submenu" style="color:rgb(151, 138, 116)">취소/환불 내역</a> <br>
-                    <a href="<%=request.getContextPath() %>/views/mypage/pointCheck.jsp" id="submenu">적립금 내역</a> <br>
+                    <a href="<%= contextPath %>/reserve.mp" id="submenu" >예매 내역</a> <br>
+                    <a href="<%= contextPath %>/refunt.mp" id="submenu" style="color:rgb(151, 138, 116)">취소/환불 내역</a> <br>
+                    <a href="<%=contextPath%>/pointList.mp" id="submenu">적립금 내역</a> <br>
                     <hr width="120" align="left">
                     <a href="" id="submenu">최근 본 상품</a> <br>
                     <a href="" id="submenu">찜한 상품</a>
@@ -274,107 +207,107 @@
                 <li><h3>마이활동</h3></li>
                 <div>
                     <a href="" id="submenu">리뷰 내역</a> <br>
-                    <a href="" id="submenu">Q&A 내역</a> <br>
+                    <a href="<%=request.getContextPath() %>/qnaList.mp" id="submenu">Q&A 내역</a> <br>
                 </div><br>
                 <li><h3>마이정보</h3></li>
                 <div>
-                    <a href="" id="submenu">회원정보 수정</a> <br>
-                    <a href="" id="submenu">회원 탈퇴</a> <br>
+                    <a href="<%=request.getContextPath() %>/views/mypage/pwdVerificationMemUpdate.jsp" id="submenu">회원정보 수정</a> <br>
+                    <a href="<%=request.getContextPath() %>/views/mypage/pwdVerificationMemDelete.jsp" id="submenu">회원 탈퇴</a> <br>
                 </div>
             </ul>
         </div>
         <div id="content_2">
             <div class="contents">
-                <h4 class="contents_tit">취소/환불 내역</h4><br>
-                <div class="order_box" style="background:rgba(255, 255, 255, 0.45)">
-                <a href="" class="order_view">
-                    <ul class="order-step">
-                        <li id="step_li">
-                            <em> 0 </em><br>
-                            <span>입금대기</span>
-                        </li>
-                        <li>
-                        	
-                        </li>
-                        <li id="step_li">
-                            <em> 0 </em><br>
-                            <span>결제완료</span>
-                        </li>
-                        <li id="step_li">
-                            <em> 0 </em><br>
-                            <span>예매확정</span>
-                        </li>
-                    </ul>
-                </a>    
-                </div>
-            </div>
-
-            <div class="order_date" style="background:rgba(255, 255, 255, 0.74)">
-                <p>예매기간</p>
-                <ul class="select_date">
-                    <li>
-                        <button type="button" id="date_btn1">일주일</button>
-                    </li>
-                    <li>
-                        <button type="button" id="date_btn2">1개월</button>
-                    </li>
-                    <li>
-                        <button type="button" id="date_btn3">3개월</button>
-                    </li>
-                    <li>
-                        <button type="button" id="date_btn4">6개월</button>
-                    </li>
-                      <li>
-                     <button onclick="zzz()">select</button>
-                  </li>
-                </ul>
-                <br><br>
-              
-               <!--  <form action="up" method="post"> -->
-                <div class="test" style="">
-            
-		<!-- 	<form action="datejsp" method="post"> -->
-                   <input type="date" id="start" name="startday" value="" min="2020-01-01">
-               <%-- <jsp:setProperty name="select-start" property="startDay" value=""/> --%>
-                    ~
-                    <%--  <jsp:getProperty property="startDay" name="select-start"/> --%>
-                   <input type="date" id="end" name="endday" value="" max="2022-12-31"> 
-            </form> 
-                </div>
-               
-                <div>
+                <h4 class="contents_tit">예매 내역</h4><br>
+                <p>● 최신순으로 예매 내역 조회가 가능합니다.</p>
                 
-                </div>
-            </div class="">
-            
-    
             </div>
-
             
+            <div class="container">
+                <br><br>
+                <table class="table">
+                  <thead>
+                    <tr style="background:rgb(203, 185, 153)">
+                      <th width="140">날짜/예매번호</th>
+                      <th colspan="2" width="470">상품</th>
+                      <th width="70">수량</th>
+                      <th width="110">결제금액</th>
+                      <th width="110">상태</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!--예매 내역이 없을 경우-->
+                    <% if(list.isEmpty()){ %>
+	                    <tr>
+	                        <td colspan="6" >
+	                            <div id="exclamationmark_icon">
+	                                <img src="<%=request.getContextPath() %>/resources/images/exclamationmark.png" width="70px" height="70px"> 
+	                            </div>
+	                            <br>
+	                            <div>
+	                                <p align="center">예매 내역이 없습니다.</p>
+	                            </div>
+	                        </td>
+	                    </tr>
+	                    <tr>
+	                        <td></td>
+	                        <td></td>
+	                        <td></td>
+	                        <td></td>
+	                        <td></td>
+                            <td></td>
+	                    </tr>
+                    <% }else{ %>
+                    <!-- 예매내역 있을 경우 -->
+                    	<% for(Order o : list) {%>
+		                    <tr>
+		                      <td align="center">
+		                      	<%= o.getOrderDate() %><br>
+		                      	<strong><%= o.getOrderNo() %></strong> <br>
+		                      	<button type="button" onclick="detailView();">상세조회</button>
+		                      </td>
+		                      <td width="130">
+		                      	<img src="<%=request.getContextPath()%>/<%= o.getMainImg() %>" width="80px" height="80px">
+		                      </td>
+		                      <td width="340">
+		                      	<b><%= o.getpTitle() %></b> <br>
+		                      	옵션 : <%= o.getOrderOpt() %>
+		                      </td>
+		                      <td align="center"><%= o.getOrderCount() %></td>
+                              <td align="center"><%= o.getFinalPrice() %>원</td>
+                              <td align="center"><%= o.getOrderStatus() %></td>
+		                    </tr>
+    					 <% } %>
+                    <% } %>
+	                    <tr>
+	                        <td></td>
+	                        <td></td>
+	                        <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+	                    </tr>
+
+                        <script>
+                            function detailView(){
+                                location.href = "<%=contextPath%>/rdetail.mp";
+                            }
+                        </script>
+	                    
+                  </tbody>
+                </table>
+              </div>   
+            
+            </div>
         </div>
 
-
+        
 
     
     </div>
 
+    
+
     <%@ include file="../common/footerbar.jsp" %>
 </body>
 </html>
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  
- <script type="text/javascript">
- function zzz() {
- 	
- 	var startDay = document.querySelector('input[name="startday"]').value;
-	var endDay = document.querySelector('input[name="endday"]').value;
-	/* alert(startDay+endDay); */
- 	 var a = "/damoart/up?startDay="+startDay+"&endDay="+endDay;
-	  location.href=a;	  
-
- } 
-</script> 
-
-<%--  --%>

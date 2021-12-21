@@ -19,10 +19,12 @@
 		  JOIN ORDER_P USING(ORDER_NO)
 		  JOIN PRODUCT USING(PNO)
 		 WHERE MEM_NO = ?
+		   AND (ORDER_STATUS = 'W' OR ORDER_STATUS = 'P' OR ORDER_STATUS = 'O')
 		 ORDER
     		BY ORDER_DATE DESC
 	</entry>
 	
+	<!-- 예매 상세 -->
 	<entry key="selectReserveDetail">
 		SELECT 
 		       ORDER_NO 
@@ -46,7 +48,29 @@
 		 ORDER
 		    BY ORDER_DATE DESC
 	</entry>
-
+	
+	<!-- 취소/환불 내역 -->
+	<entry key="selectRefund">
+		SELECT 
+		       MEM_NO
+		     , ORDER_NO
+		     , FINAL_PRICE
+		     , ORDER_DATE
+		     , PNO
+		     , TITLE
+		     , MAIN_IMG
+		     , ORDER_OPT
+		     , ORDER_COUNT
+		     , ORDER_STATUS
+		  FROM "ORDER" 
+		  JOIN ORDER_P USING(ORDER_NO)
+		  JOIN PRODUCT USING(PNO)
+		 WHERE MEM_NO = 7
+		   AND (ORDER_STATUS = 'C' OR ORDER_STATUS = 'CC' OR ORDER_STATUS = 'N')
+		 ORDER
+		    BY ORDER_DATE DESC;
+	</entry>
+	
 	<!-- 적립금 내역 -->
 	<entry key="pointList">
 		SELECT
