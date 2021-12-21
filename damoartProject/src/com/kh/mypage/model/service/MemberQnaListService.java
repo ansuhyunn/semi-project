@@ -17,6 +17,14 @@ public class MemberQnaListService {
 		return list;
 	}
 	
+	// q리스트
+	public Qna selectQna(String nickName) {
+		Connection conn = getConnection();
+		Qna question = new MemberQnaListDao().selectQna(conn, nickName);
+		close(conn);
+		return question;
+	}
+	
 	// qna 삭제(update)
 	public int updateQna(int qNo) {
 		Connection conn = getConnection();

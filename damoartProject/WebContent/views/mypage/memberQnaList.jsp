@@ -3,6 +3,7 @@
 <%
 	ArrayList<Qna> list = (ArrayList<Qna>)request.getAttribute("list");
 
+	Qna question = (Qna)session.getAttribute("question");
 %>
 <!DOCTYPE html>
 <html>
@@ -367,7 +368,7 @@
 						if(confirm("작성한 문의를 삭제하시겠습니까?")){
                             // 확인
                             location.href = "<%=contextPath%>/qnaUpdate.mp";
-                            //alert("삭제되었습니다.");
+                            alert("삭제되었습니다.");
                         }else{
                             // 취소
                             alert("취소되었습니다.");

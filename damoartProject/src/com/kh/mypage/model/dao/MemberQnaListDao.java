@@ -70,6 +70,33 @@ public class MemberQnaListDao {
 		return list;
 	}
 	
+	// q 리스트
+	public Qna selectQna(Connection conn, String nickName) {
+		Qna question = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;	
+		String sql = prop.getProperty("memberQna");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, nickName);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				question = new Qna(rset.getInt("q_no"),
+						 		   rset.getString("q_writer"));
+						
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return question;
+	}
+	
 	// qna 수정
 	public int updateQna(Connection conn, int qNo) {
 		int result = 0;

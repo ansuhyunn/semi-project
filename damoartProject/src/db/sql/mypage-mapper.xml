@@ -144,6 +144,16 @@
 		   AND Q.STATUS = 'Y'
 	</entry>
 	
+	<!-- qna 수정을 위한 번호 -->
+	<entry key="memberQna">
+		SELECT
+		       Q_NO
+		     , Q_WRITER
+		  FROM QNA 
+		 WHERE Q_WRITER = ?
+		   AND STATUS = 'Y'
+	</entry>
+	
 	<!-- qna 수정 -->
 	<entry key="updateQna">
 		UPDATE 

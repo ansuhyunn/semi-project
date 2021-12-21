@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.kh.member.model.vo.Member;
 import com.kh.mypage.controller.MyPageQnaListController;
 import com.kh.mypage.model.service.MemberQnaListService;
 import com.kh.mypage.model.vo.Qna;
@@ -37,13 +38,20 @@ public class MyPageQnaUpdateController extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		HttpSession session = request.getSession();
-		int qNo = ((Qna)request.getAttribute("list")).getqNo();
 		
+		//String nickName = ((Member)session.getAttribute("loginUser")).getNickName();
+		//Qna question = new MemberQnaListService().selectQna(nickName);
+		
+		//session.setAttribute("question", question);
+		int qNo = ((Qna)session.getAttribute("question")).getqNo();
+			
 		int result = new MemberQnaListService().updateQna(qNo);
 		
 		if(result > 0) {
 			//session.setAttribute("alertMsg", "삭제되었습니다.");
-			response.sendRedirect(request.getContextPath() + "/views/mypage/memberQnaList.jsp");
+			//response.sendRedirect(request.getContextPath() + "/views/mypage/memberQnaList.jsp");
+			//request.getRequestDispatcher("views/mypage/memberQnaList.jsp").forward(request, response);
+			response.sendRedirect(request.getContextPath() + "/qnaList.mp");
 		}
 	}
 
