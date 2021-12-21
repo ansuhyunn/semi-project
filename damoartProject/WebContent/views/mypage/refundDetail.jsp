@@ -1,9 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.kh.mypage.model.vo.Point, java.util.ArrayList, com.kh.mypage.model.vo.Order" %>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.mypage.model.vo.Order" %>
 <%
-	ArrayList<Order> list = (ArrayList<Order>)request.getAttribute("list");
-
-	Point poi = (Point)request.getAttribute("poi");
+	ArrayList<Order> clist = (ArrayList<Order>)request.getAttribute("clist");
 
 %>
 <!DOCTYPE html>
@@ -183,7 +181,7 @@
             <div class="userPoint" onclick="location.href='<%=request.getContextPath()%>/pointList.mp'">
                    	적립금 >
             </div>
-            <p class="point"><%= poi.getPoint() %>원</p>
+            <p class="point">2000원</p>
             
         </div>
     </div>
@@ -198,7 +196,7 @@
                 <li><h3>마이쇼핑</h3></li>
                 <div>
                     <a href="<%= contextPath %>/reserve.mp" id="submenu" >예매 내역</a> <br>
-                    <a href="<%= contextPath %>/refunt.mp" id="submenu" style="color:rgb(151, 138, 116)">취소/환불 내역</a> <br>
+                    <a href="<%= contextPath %>/refund.mp" id="submenu" style="color:rgb(151, 138, 116)">취소/환불 내역</a> <br>
                     <a href="<%=contextPath%>/pointList.mp" id="submenu">적립금 내역</a> <br>
                     <hr width="120" align="left">
                     <a href="" id="submenu">최근 본 상품</a> <br>
@@ -218,8 +216,8 @@
         </div>
         <div id="content_2">
             <div class="contents">
-                <h4 class="contents_tit">예매 내역</h4><br>
-                <p>● 최신순으로 예매 내역 조회가 가능합니다.</p>
+                <h4 class="contents_tit">취소/환불 내역</h4><br>
+                <p>● 최신순으로 취소/환불 내역 조회가 가능합니다.</p>
                 
             </div>
             
@@ -237,7 +235,7 @@
                   </thead>
                   <tbody>
                     <!--예매 내역이 없을 경우-->
-                    <% if(list.isEmpty()){ %>
+                    <% if(clist.isEmpty()){ %>
 	                    <tr>
 	                        <td colspan="6" >
 	                            <div id="exclamationmark_icon">
@@ -259,9 +257,9 @@
 	                    </tr>
                     <% }else{ %>
                     <!-- 예매내역 있을 경우 -->
-                    	<% for(Order o : list) {%>
+                    	<% for(Order o : clist) {%>
 		                    <tr>
-		                      <td align="center">
+		                      <td align="center" style="padding-top:20px;">
 		                      	<%= o.getOrderDate() %><br>
 		                      	<strong><%= o.getOrderNo() %></strong> <br>
 		                      	<button type="button" onclick="detailView();">상세조회</button>
@@ -269,13 +267,13 @@
 		                      <td width="130">
 		                      	<img src="<%=request.getContextPath()%>/<%= o.getMainImg() %>" width="80px" height="80px">
 		                      </td>
-		                      <td width="340">
+		                      <td width="340" style="padding-top:30px;">
 		                      	<b><%= o.getpTitle() %></b> <br>
 		                      	옵션 : <%= o.getOrderOpt() %>
 		                      </td>
-		                      <td align="center"><%= o.getOrderCount() %></td>
-                              <td align="center"><%= o.getFinalPrice() %>원</td>
-                              <td align="center"><%= o.getOrderStatus() %></td>
+		                      <td align="center" style="padding-top:40px;"><%= o.getOrderCount() %></td>
+                              <td align="center" style="padding-top:40px;"><%= o.getFinalPrice() %>원</td>
+                              <td align="center" style="padding-top:40px;"><%= o.getOrderStatus() %></td>
 		                    </tr>
     					 <% } %>
                     <% } %>
@@ -290,7 +288,7 @@
 
                         <script>
                             function detailView(){
-                                location.href = "<%=contextPath%>/rdetail.mp";
+                                location.href = "<%=contextPath%>/cdetail.mp";
                             }
                         </script>
 	                    

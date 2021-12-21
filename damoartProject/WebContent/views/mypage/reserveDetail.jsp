@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.mypage.model.vo.Order" %>
+    pageEncoding="UTF-8" import="com.kh.mypage.model.vo.Point, java.util.ArrayList, com.kh.mypage.model.vo.Order" %>
 <%
+	ArrayList<Order> list = (ArrayList<Order>)request.getAttribute("list");
+
+	Point poi = (Point)request.getAttribute("poi");
 
 %>
 <!DOCTYPE html>
@@ -180,7 +183,7 @@
             <div class="userPoint" onclick="location.href='<%=request.getContextPath()%>/pointList.mp'">
                    	적립금 >
             </div>
-            <p class="point">2000원</p>
+            <p class="point"><%= poi.getPoint() %>원</p>
             
         </div>
     </div>
@@ -195,7 +198,7 @@
                 <li><h3>마이쇼핑</h3></li>
                 <div>
                     <a href="<%= contextPath %>/reserve.mp" id="submenu" style="color:rgb(151, 138, 116)">예매 내역</a> <br>
-                    <a href="<%=request.getContextPath() %>/views/mypage/refundDetail.jsp" id="submenu">취소/환불 내역</a> <br>
+                    <a href="<%= contextPath %>/refund.mp" id="submenu">취소/환불 내역</a> <br>
                     <a href="<%=contextPath%>/pointList.mp" id="submenu">적립금 내역</a> <br>
                     <hr width="120" align="left">
                     <a href="" id="submenu">최근 본 상품</a> <br>
@@ -258,7 +261,7 @@
                     <!-- 예매내역 있을 경우 -->
                     	<% for(Order o : list) {%>
 		                    <tr>
-		                      <td align="center">
+		                      <td align="center"  style="padding-top:20px;">
 		                      	<%= o.getOrderDate() %><br>
 		                      	<strong><%= o.getOrderNo() %></strong> <br>
 		                      	<button type="button" onclick="detailView();">상세조회</button>
@@ -266,13 +269,13 @@
 		                      <td width="130">
 		                      	<img src="<%=request.getContextPath()%>/<%= o.getMainImg() %>" width="80px" height="80px">
 		                      </td>
-		                      <td width="340">
+		                      <td width="340"  style="padding-top:30px;">
 		                      	<b><%= o.getpTitle() %></b> <br>
 		                      	옵션 : <%= o.getOrderOpt() %>
 		                      </td>
-		                      <td align="center"><%= o.getOrderCount() %></td>
-                              <td align="center"><%= o.getFinalPrice() %>원</td>
-                              <td align="center"><%= o.getOrderStatus() %></td>
+		                      <td align="center" style="padding-top:40px;"><%= o.getOrderCount() %></td>
+                              <td align="center" style="padding-top:40px;"><%= o.getFinalPrice() %>원</td>
+                              <td align="center" style="padding-top:40px;"><%= o.getOrderStatus() %></td>
 		                    </tr>
     					 <% } %>
                     <% } %>
@@ -302,8 +305,6 @@
 
     
     </div>
-
-    
 
     <%@ include file="../common/footerbar.jsp" %>
 </body>

@@ -59,6 +59,12 @@ public class Qna {
 	}
 
 	
+	public Qna(int qNo, String qWriter) {
+		super();
+		this.qNo = qNo;
+		this.qWriter = qWriter;
+	}
+
 	public String getTitle() {
 		return title;
 	}

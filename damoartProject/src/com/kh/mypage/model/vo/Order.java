@@ -21,6 +21,10 @@ public class Order {
 	   private int payPrice;
 	   private String orderPhone;
 	   private Date payDate;
+	   
+	   private String bankName;
+	   private String refundAccount;
+	   private String refundName;
 
 public Order() {}
 
@@ -61,9 +65,60 @@ public Order(int orderNo, Date orderDate, String orderName, int pNo, String pTit
 	
 }
 
+public Order(int orderNo, Date orderDate, String orderName, int pNo, String pTitle, String mainImg, String orderOpt, int orderCount,
+		String area, Date payDate, String payOpt, int payPrice, String orderPhone, String bankName, String refundAccount, String refundName) {
+	super();
+	this.orderNo = orderNo;
+	this.orderDate = orderDate;
+	this.orderName = orderName;
+	this.pNo = pNo;
+	this.pTitle = pTitle;
+	this.mainImg = mainImg;
+	this.orderOpt = orderOpt;
+	this.orderCount = orderCount;
+	this.area = area;
+	this.payDate = payDate;
+	this.payOpt = payOpt;
+	this.payPrice = payPrice;
+	this.orderPhone = orderPhone;
+	this.bankName = bankName;
+	this.refundAccount = refundAccount;
+	this.refundName = refundName;
+	
+}
+
 public Order(int int1, Date date, String string, int int2, String string2, String string3, String opt, int int3,
 		String string4, Date date2, String payOpt2, int int4, int int5) {
 	// TODO Auto-generated constructor stub
+}
+
+
+
+
+public String getBankName() {
+	return bankName;
+}
+
+public void setBankName(String bankName) {
+	this.bankName = bankName;
+}
+
+public String getRefundAccount() {
+	return refundAccount;
+}
+
+public void setRefundAccount(String refundAccount) {
+	this.refundAccount = refundAccount;
+}
+
+
+
+public String getRefundName() {
+	return refundName;
+}
+
+public void setRefundName(String refundName) {
+	this.refundName = refundName;
 }
 
 public Date getPayDate() {

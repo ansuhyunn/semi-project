@@ -3,6 +3,7 @@
 <%
 	ArrayList<Qna> list = (ArrayList<Qna>)request.getAttribute("list");
 
+	Qna question = (Qna)session.getAttribute("question");
 %>
 <!DOCTYPE html>
 <html>
@@ -242,7 +243,7 @@
                 <li><h3>마이쇼핑</h3></li>
                 <div>
                     <a href="<%= contextPath %>/reserve.mp" id="submenu">예매 내역</a> <br>
-                    <a href="<%=request.getContextPath() %>/views/mypage/refundDetail.jsp" id="submenu">취소/환불 내역</a> <br>
+                    <a href="<%= contextPath %>/refund.mp" id="submenu">취소/환불 내역</a> <br>
                     <a href="<%=contextPath%>/pointList.mp" id="submenu">적립금 내역</a> <br>
                     <hr width="120" align="left">
                     <a href="<%=request.getContextPath() %>/views/mypage/recentlyViewProduct.jsp" id="submenu">최근 본 상품</a> <br>
@@ -263,7 +264,7 @@
         <div id="content_2">
             <div class="contents">
             <h4 class="contents_tit">Q&A 내역</h4><br>
-            <p>● 상품, 배송관련, 주문 관련 문의 내역을 확인할 수 있는 공간입니다.</p>
+            <p>● 상품 및 주문(결제/취소/환불) 관련 문의 내역을 확인할 수 있는 공간입니다.</p>
             </div> 
 
             <div class="container">
@@ -316,7 +317,9 @@
 			                      	</td>
 			                    </tr>
 			                    <tr class="open" style="display: none">
-			                        <td></td>
+			                        <td align="center" style="padding-top:50px;">
+                                        <button type="button" name="deleteQ" onclick="deleteCheck();">삭제</button>
+                                    </td>
 			                        <td colspan="3">
 			                            <div>
 			                                <strong><p>Q.</p></strong>
@@ -358,6 +361,19 @@
                     })
                     
                 })
+            </script>
+
+            <script type="text/javascript">
+                function deleteCheck(){
+						if(confirm("작성한 문의를 삭제하시겠습니까?")){
+                            // 확인
+                            location.href = "<%=contextPath%>/qnaUpdate.mp";
+                            alert("삭제되었습니다.");
+                        }else{
+                            // 취소
+                            alert("취소되었습니다.");
+                        } 			
+					}
             </script>
                   </tbody>
                 </table>

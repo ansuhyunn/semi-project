@@ -1,8 +1,6 @@
 package com.kh.mypage.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,33 +13,33 @@ import com.kh.mypage.model.service.MemberReserveService;
 import com.kh.mypage.model.vo.Order;
 
 /**
- * Servlet implementation class MyPageRefundController
+ * Servlet implementation class MyPageRefundDetailController
  */
-
-@WebServlet("/refund.mp")
-public class MyPageRefundController extends HttpServlet {
+@WebServlet("/cdetail.mp")
+public class MyPageRefundDetailController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-
+    public MyPageRefundDetailController() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		request.setCharacterEncoding("UTF-8");
 		
 		HttpSession session = request.getSession();
 		int memNo = ((Member)session.getAttribute("loginUser")).getMemNo();
 		
-		ArrayList<Order> clist = new MemberReserveService().selectRefund(memNo);
+		Order cdetailView = new MemberReserveService().selectRefundDetail(memNo);
 		
-		request.setAttribute("clist", clist);
-		request.getRequestDispatcher("views/mypage/refundDetail.jsp").forward(request, response);
+		request.setAttribute("cdetailView", cdetailView);
+		request.getRequestDispatcher("views/mypage/refundDetailView.jsp").forward(request, response);
 	}
 
 	/**
