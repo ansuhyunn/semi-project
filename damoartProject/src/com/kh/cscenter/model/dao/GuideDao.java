@@ -151,7 +151,7 @@ public class GuideDao {
 				g = new Guide();
 				g.setGuideNo(rset.getInt("guide_no"));
 				g.setGuideTitle(rset.getString("guide_title"));
-				g.setGuideContent(rset.getString("guide_content"));
+				g.setGuideContent(rset.getString("guide_content").replace("\r\n", "<br>"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

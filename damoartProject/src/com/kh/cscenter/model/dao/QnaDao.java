@@ -201,8 +201,9 @@ private Properties prop = new Properties();
 			
 			while(rset.next()) {
 				Product p = new Product();
-				p.setTitle("title");
-				p.setMainImg("main_img");
+				p.setpNo(rset.getInt("pno"));
+				p.setTitle(rset.getString("title"));
+				p.setMainImg(rset.getString("main_img"));
 				
 				list.add(p);
 			}
@@ -214,6 +215,32 @@ private Properties prop = new Properties();
 		}
 		
 		return list;
+	}
+	
+	public Product enrollFormProductSelectResult(Connection conn, int pNo) {
+		Product p = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("enrollFormProductSelectResult");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, pNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				p = new Product();
+				p.setpNo(rset.getInt("pno"));
+				p.setTitle(rset.getString("title"));
+				p.setMainImg(rset.getString("main_img"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return p;
 	}
 
 }
