@@ -3,12 +3,12 @@
 <properties>
 
 <!-- 페이징바 -->
-	<entry key="selectListCount">
-		  SELECT
-			     COUNT(*) count
-		    FROM REVIEW
-		   WHERE DELETE_STATUS = 'N'
-	</entry>
+<entry key="selectListCount">
+	  SELECT
+		     COUNT(*) count
+	    FROM REVIEW
+	   WHERE DELETE_STATUS = 'N'
+</entry>
 
 	<entry key="selectList">
 	  SELECT *
@@ -16,21 +16,20 @@
 			  SELECT ROWNUM RNUM, RR.*
  			    FROM (
 				SELECT
-				       RV_NO
+				       TITLE
+				     , MAIN_IMG
+				     , RV_NO
 				     , ORDER_NO
+				     , REVIEW_ID
 				     , REVIEW_NAME
+				     , REVIEW_CONTENT
 				     , TO_CHAR(REVIEW_DATE, 'YYYY-MM-DD') "REVIEW_DATE"
+				     , REVIEW_STAR
 				     , REVIEW_VIEW
-				     , REVIEW_SECRET
-				     , DELETE_STATUS
-				     , BLIND_STATUS
-				  FROM REVIEW RV
-				  JOIN ORDER USING(ORDER_NO)
-				  JOIN MEMBER ON (REVIEW_NAME = MEM_NAME)
-				   AND RV.DELETE_STATUS = 'N'
-				   AND ROWNUM BETWEEN 1 AND 10
-				 ORDER
-				    BY RV_NO DESC
+				     , REVIEW_FILE
+				  FROM REVIEW   
+				  JOIN ORDER_P USING (ORDER_NO)
+				  JOIN PRODUCT USING (PNO)
 				) RR
 			)
 	WHERE RNUM BETWEEN ? AND ?

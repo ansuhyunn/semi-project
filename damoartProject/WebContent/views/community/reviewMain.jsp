@@ -63,169 +63,57 @@
 
     <%@ include file="../common/menubar.jsp" %>
 
-    
-	 
-	<div class="wrap">
-        <br>
-        
-        <div class="">
-            <br><br>
-            <b id="review_on">커뮤니티 > 리뷰</b> <!-- 목록 누르면 해당 페이지로 넘어가야 할까?-->
-            <br><br>
+    <div class="wrapper">
+        <div class="name">
+            <div id="name1">REVIEW 게시판</div>
         </div>
-
-        <br>
-
-        <div class="review-list">
+        <hr class="my-2">
+        <div class="content1">
+	        <% if(list.isEmpty()) { %>
+	        	<p> 결과가 없습니다 </p>
+	        <% } else {%> 
+		        <% for(Review r : list){ %>
+		            <div class="content" id="">
+		           		<div class="poster">
+		                	<a href="<%=request.getContextPath()%>/detail.pro?num=<%= r.getRvNo() %>">
+		                		<img src="<%=request.getContextPath()%>/<%= r.getMainImg() %>" width="100%" height="100%">
+		                	</a>
+		            	</div>
+		            	<div class="info">
+		                    <p class="title">
+		                        <%= r.getTitle() %>
+		                    </p>
+		                </div>
+		            </div>
+		        <% } %> 
+	        <% } %> 
+    	</div>
+    	
+    </div> <!-- wrapper클래스 -->    
+    
+    <div class="paging-area" align="center">
         
-        	
-            <!--썸네일 한개-->
-            <div class="thumbnail" align="center"> <!-- center 안하면 치우쳐지는데 글씨가..-->
-                <br>
-                <input type="hidden" value="">
-                <img src="이미지경로" width="180" height="180">
-                <p align=""> <!--중앙할지 좌측정렬할지..우선은 중앙-->
-
-                   ㅇㅇㅇ전 보고왔어요~ [9]<!--[9] 댓글=> count방식으로?<<<- 찾아볼 것--> <br>
-                    test01 | 2021-12-01 <br>
-                </p>
-            </div>
-
-             
-             <!--썸네일 한개-->
-             <div class="thumbnail" align="center"> <!-- center 안하면 치우쳐지는데 글씨가..-->
-                <br>
-                <input type="hidden" value="">
-                <img src="이미지경로" width="180" height="180">
-                <p align=""> <!--중앙할지 좌측정렬할지..우선은 중앙-->
-                   ㅇㅇㅇ전 보고왔어요~ [9]<!--[9] 댓글=> count방식으로?<<<- 찾아볼 것--> <br>
-                    test01 | 2021-12-01 <br>
-                </p>
-            </div>
-
-
-             <!--썸네일 한개-->
-             <div class="thumbnail" align="center"> <!-- center 안하면 치우쳐지는데 글씨가..-->
-                <br>
-                <input type="hidden" value="">
-                <img src="이미지경로" width="180" height="180">
-                <p align=""> <!--중앙할지 좌측정렬할지..우선은 중앙-->
-                   ㅇㅇㅇ전 보고왔어요~ [9]<!--[9] 댓글=> count방식으로?<<<- 찾아볼 것--> <br>
-                    test01 | 2021-12-01 <br>
-                </p>
-            </div>
-
-
-             <!--썸네일 한개-->
-             <div class="thumbnail" align="center"> <!-- center 안하면 치우쳐지는데 글씨가..-->
-                <br>
-                <input type="hidden" value="">
-                <img src="이미지경로" width="180" height="180">
-                <p align=""> <!--중앙할지 좌측정렬할지..우선은 중앙-->
-                   ㅇㅇㅇ전 보고왔어요~ [9]<!--[9] 댓글=> count방식으로?<<<- 찾아볼 것--> <br>
-                    test01 | 2021-12-01 <br>
-                </p>
-            </div>
-
-
-             <!--썸네일 한개-->
-             <div class="thumbnail" align="center"> <!-- center 안하면 치우쳐지는데 글씨가..-->
-                <br>
-                <input type="hidden" value="">
-                <img src="이미지경로" width="180" height="180">
-                <p align=""> <!--중앙할지 좌측정렬할지..우선은 중앙-->
-                   ㅇㅇㅇ전 보고왔어요~ [9]<!--[9] 댓글=> count방식으로?<<<- 찾아볼 것--> <br>
-                    test01 | 2021-12-01 <br>
-                </p>
-            </div>
-
-
-             <!--썸네일 한개-->
-             <div class="thumbnail" align="center"> <!-- center 안하면 치우쳐지는데 글씨가..-->
-                <br>
-                <input type="hidden" value="">
-                <img src="이미지경로" width="180" height="180">
-                <p align=""> <!--중앙할지 좌측정렬할지..우선은 중앙-->
-                   ㅇㅇㅇ전 보고왔어요~ [9]<!--[9] 댓글=> count방식으로?<<<- 찾아볼 것--> <br>
-                    test01 | 2021-12-01 <br>
-                </p>
-            </div>
-
-
-             <!--썸네일 한개-->
-             <div class="thumbnail" align="center"> <!-- center 안하면 치우쳐지는데 글씨가..-->
-                <br>
-                <input type="hidden" value="">
-                <img src="이미지경로" width="180" height="180">
-                <p align=""> <!--중앙할지 좌측정렬할지..우선은 중앙-->
-                   ㅇㅇㅇ전 보고왔어요~ [9]<!--[9] 댓글=> count방식으로?<<<- 찾아볼 것--> <br>
-                    test01 | 2021-12-01 <br>
-                </p>
-            </div>
-
-
-             <!--썸네일 한개-->
-             <div class="thumbnail" align="center"> <!-- center 안하면 치우쳐지는데 글씨가..-->
-                <br>
-                <input type="hidden" value="">
-                <img src="이미지경로" width="180" height="180">
-                <p align=""> <!--중앙할지 좌측정렬할지..우선은 중앙-->
-                   ㅇㅇㅇ전 보고왔어요~ [9]<!--[9] 댓글=> count방식으로?<<<- 찾아볼 것--> <br>
-                    test01 | 2021-12-01 <br>
-                </p>
-            </div>
-
-
+			<% if(currentPage != 1){ %>
+            	<button class="btn" onclick="location.href='<%=contextPath%>/review.pro?cpage=<%=currentPage-1%>';">&lt;</button>
+            <% } %>
             
+            <% for(int p=startPage; p <= endPage; p++){ %>
+            	<% if(currentPage == p) {%>
+            		<button class="btn" disabled><%= p %></button>		
+	            <% }else { %>
+	            	<button class="btn" onclick="location.href='<%=contextPath%>/review.pro?cpage=<%= p %>';"><%= p %></button>
+	            <% } %>
+            <% } %>
             
-         <hr>
-         
-        <!-- 글쓰기 우측 하단-->
-        
-        <!--  비회원은 alert로 주문번호를 입력받도록 할까? -->
-        <!--  아니면 비회원은 주문목록에서만 리뷰를 쓸 수 있게 하는게 나은가? -->
-        <!--  우선 로그인 회원만 되도록 해야겠음..... -->
-        
-       <!--로그인한 회원만 보여지도록-->
-	        <div align="right" style="width:950px;">
-	            <a href="<%=contextPath%>/enrollForm.rv" class="btn btn-sm btn-secondary">글작성</a>
-	            <br><br>
-	        </div>
-        
-
-            <!-- 페이징바 구현-->
-            
-            <div class="paging-area" align="center">
-	        <button> &lt; </button>
-	        <button>1</button>
-	        <button>2</button>
-	        <button>3</button>
-	        <button>4</button>
-	        <button>5</button>
-	        <button>6</button>
-	        <button>7</button>
-	        <button>8</button>
-	        <button>9</button>
-	        <button>10</button>
-	        <button> &gt; </button>
-        </div>
-        
-        
-        
-        
-        
-        
-        <hr>
-
-         <!-- 검색 구현-->
-           
-            
-        </div>
-    </div>
-
+            <% if(currentPage != maxPage){%>
+            	<button class="btn" onclick="location.href='<%=contextPath%>/review.pro?cpage=<%=currentPage+1%>';">&gt;</button>
+			<% } %>
+			
+     </div>
     
     
     
+    <%@ include file="../common/footerbar.jsp" %>
 
 </body>
 </html>
