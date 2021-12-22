@@ -1,7 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.product.model.vo.Product" %>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.product.model.vo.Product, com.kh.common.model.vo.PageInfo" %>
 <% 
 	ArrayList<Product> ingList = (ArrayList<Product>)request.getAttribute("ingList");
+	
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	int currentPage = pi.getCurrentPage(); 
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage(); 
+	int maxPage = pi.getMaxPage();
+
 %>
 <!DOCTYPE html>
 <html>
@@ -20,7 +27,7 @@
 	div{ box-sizing:border-box;}
     .wrapper{
         width: 1000px;
-        height: 1200px;
+        height: 1000px;
         top: 0; left: 0; right: 0; bottom: 0; margin: auto;
         margin-top: 50px;
     }
@@ -45,9 +52,9 @@
     .name>a:hover{font-weight: bolder; text-decoration: none; color: black;}
     .content1{
         width: 100%;
-        height: 300px;
+        height: 350px;
         margin: auto;
-        margin-top: 20px;
+        margin-top: 30px;
         margin-bottom: 50px;
     }
     .content{
@@ -56,7 +63,7 @@
         float: left;
         margin-left: 25px;
         margin-right: 25px;
-        margin-bottom: 50px;
+        margin-bottom: 80px;
         margin-top: 0px;
         display: block;
     }
@@ -99,30 +106,50 @@
         <hr class="my-2">
         <div class="content1">
             <% if(ingList.isEmpty()) { %>
-        	<p> 결과가 없습니다 </p>
-        <% } else {%> 
-	        <% for(Product p : ingList){ %>
-	            <div class="content" id="">
-	           		<div class="poster">
-	                	<input type="hidden" name="num" value="<%= p.getpNo() %>">
-	                	<a href="<%=request.getContextPath()%>/detail.pro?num=<%=p.getpNo()%>">
-	                		<img src="<%=request.getContextPath()%>/<%= p.getMainImg() %>" width="100%" height="100%">
-	                	</a>
-	            	</div>
-	            	<div class="info">
-	                    <p class="title">
-	                        <%= p.getTitle() %>
-	                    </p>
-	                    <p class="summary">
-	                        <%= p.getsDate() %> ~ <%= p.geteDate() %><br>
-	                        <%= p.getArea() %>
-	                    </p>
-	                </div>
-	            </div>
+        		<p> 결과가 없습니다 </p>
+	        <% } else {%> 
+		        <% for(Product p : ingList){ %>
+		            <div class="content" id="">
+		           		<div class="poster">
+		                	<input type="hidden" name="num" value="<%= p.getpNo() %>">
+		                	<a href="<%=request.getContextPath()%>/detail.pro?num=<%=p.getpNo()%>">
+		                		<img src="<%=request.getContextPath()%>/<%= p.getMainImg() %>" width="100%" height="100%">
+		                	</a>
+		            	</div>
+		            	<div class="info">
+		                    <p class="title">
+		                        <%= p.getTitle() %>
+		                    </p>
+		                    <p class="summary">
+		                        <%= p.getsDate() %> ~ <%= p.geteDate() %><br>
+		                        <%= p.getArea() %>
+		                    </p>
+		                </div>
+		            </div>
+		        <% } %> 
 	        <% } %> 
-        <% } %> 
-                
         </div>
+        
+        <div class="paging-area" align="center">
+        
+			<% if(currentPage != 1){ %>
+            	<button class="btn" onclick="location.href='<%=contextPath%>/ing.pro?cpage=<%=currentPage-1%>';">&lt;</button>
+            <% } %>
+            
+            <% for(int p=startPage; p <= endPage; p++){ %>
+            	<% if(currentPage == p) {%>
+            		<button class="btn" disabled><%= p %></button>		
+	            <% }else { %>
+	            	<button class="btn" onclick="location.href='<%=contextPath%>/ing.pro?cpage=<%= p %>';"><%= p %></button>
+	            <% } %>
+            <% } %>
+            
+            <% if(currentPage != maxPage){%>
+            	<button class="btn" onclick="location.href='<%=contextPath%>/ing.pro?cpage=<%=currentPage+1%>';">&gt;</button>
+			<% } %>
+			
+        </div>
+        
     </div>    
     
     <%@ include file="../common/footerbar.jsp" %>
