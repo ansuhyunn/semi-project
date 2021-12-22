@@ -30,6 +30,14 @@ public class ReviewService {
 		close(conn);
 		return list;
 	}
+	
+	// 리뷰보기
+	public ArrayList<Review> selectReview(int rno) {
+		Connection conn = getConnection();
+		ArrayList<Review> list = new ReviewDao().selectReview(conn, rno);
+		close(conn);
+		return list;
+	}
 
 	
 //	//리뷰 작성 Review
@@ -66,12 +74,7 @@ public class ReviewService {
 //		return result;
 //	}
 //	
-//	public Review selectReview(int rvNo) {
-//		Connection conn = getConnection();
-//		Review r = new ReviewDao().selectReview(conn, rvNo);
-//		close(conn);
-//		return r;
-//	}
+
 //	
 //	public Attachment selectAttachment(int boardNo) {
 //		Connection conn = getConnection();

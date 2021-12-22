@@ -214,7 +214,7 @@
                 <li><a href="<%=contextPath%>/best.pro">BEST전시</a>
                     
                 </li>
-                <li><a href="<%=contextPath%>/list.rev?cpage=1">REVIEW</a>
+                <li><a href="<%=contextPath%>/review.pro?cpage=1">REVIEW</a>
 
                 </li>
                 <li><a href="<%=contextPath%>/csMain.cs">고객센터</a>

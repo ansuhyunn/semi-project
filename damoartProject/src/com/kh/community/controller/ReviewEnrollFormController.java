@@ -15,7 +15,7 @@ import com.kh.community.model.vo.SelectTicket;
 /**
  * Servlet implementation class ReviewEnrollFormController
  */
-@WebServlet("/enrollForm.rv")
+@WebServlet("/reviewEnrollForm.pro")
 public class ReviewEnrollFormController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
