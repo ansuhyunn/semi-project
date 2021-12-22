@@ -168,20 +168,11 @@
                     <li><a href="<%=contextPath%>/sales.mg">판매 현황</a></li>
                 </ul>
             </div>
-            <div class="menu">홈페이지 관리</div>
-            <div class="sub">
-                <ul>
-                    <li><a href="">배너 관리</a></li>
-                    <li><a href="">NEW 관리</a></li>
-                    <li><a href="">오픈예정 관리</a></li>
-                </ul>
-            </div>
-            <div class="menu">커뮤니티 관리</div>
+            <div class="menu">리뷰 관리</div>
             <div class="sub">
                 <ul>
                     <li><a href="<%=contextPath%>/views/community/manageReviewMain.jsp">REVIEW 관리</a></li>
                     <li><a href="<%=contextPath%>/views/community/manageReportMain.jsp">REVIEW 신고 관리</a></li>
-                    <li><a href="<%=contextPath%>/views/community/manageEventMain.jsp">EVENT 관리</a></li>
                 </ul>
             </div>
             <div class="menu">고객센터 관리</div>

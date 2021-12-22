@@ -88,7 +88,7 @@
     
         #navi>li{
             float:left;
-            width:167px;
+            width:200px;
             height:100%;
             text-align:center;
         }
@@ -101,7 +101,7 @@
             width:100%;
             height:100%;
             display:block;
-            line-height:60px;
+            line-height:60px;          
         }
         #navi a:hover{
             background:rgb(182, 167, 141);
@@ -179,18 +179,10 @@
                         <li><a href="">판매 현황</a></li>
                     </ul>
                 </li>
-                <li><a href="">홈페이지 관리</a>
-                    <ul>
-                        <li><a href="">배너 관리</a></li>
-                        <li><a href="">NEW 관리</a></li>
-                        <li><a href="">오픈예정 관리</a></li>
-                    </ul>
-                </li>
-                <li><a href="">커뮤니티 관리</a>
+                <li><a href="">리뷰 관리</a>
                     <ul>
                         <li><a href="">REVIEW 관리</a></li>
                         <li><a href="">REVIEW 신고 관리</a></li>
-                        <li><a href="">EVENT 관리</a></li>
                     </ul>
                 </li>
                 <li><a href="">고객센터 관리</a>

@@ -130,11 +130,15 @@
     }
 
     /*상세정보 영역 주문일자, 번호*/
-    .order-inf, .order-det1{
+    .order-inf{
         padding-top:10px; 
         border-radius: 5px;
-        margin-left:25px;
+        margin-left:20px;
         font-size:14px;
+    }
+    .order-det1{
+        margin-left:30px;
+        font-size:13px;
     }
     .contents_body{margin-left:30px; width:700px;}
     .contents_body p{font-size:16px; font-weight:700; padding-left:25px;}
@@ -196,9 +200,6 @@
                     <a href="<%= contextPath %>/reserve.mp" id="submenu"">예매 내역</a> <br>
                     <a href="<%= contextPath %>/refund.mp" id="submenu">취소/환불 내역</a> <br>
                     <a href="<%= contextPath %>/pointList.mp" id="submenu">적립금 내역</a> <br>
-                    <hr width="120" align="left">
-                    <a href="" id="submenu">최근 본 상품</a> <br>
-                    <a href="" id="submenu">찜한 상품</a>
                 </div><br>
                 <li><h3>마이활동</h3></li>
                 <div>
@@ -231,10 +232,10 @@
                 </ul>
                 <table class="order-det1" border="1">
                     <tr>
-                        <td width="130">
+                        <td>
                             <img src="<%=request.getContextPath()%>/<%= cdetailView.getMainImg() %>" width="80px" height="80px">
                         </td>
-                        <td colspan="3" width="400">
+                        <td colspan="3" width="400" style="padding-left:20px;">
                             	<strong><%= cdetailView.getpTitle() %></strong><br>
                             	옵션 : <%= cdetailView.getOrderOpt() %> <br>
                             	수량 : <%= cdetailView.getOrderCount() %>
