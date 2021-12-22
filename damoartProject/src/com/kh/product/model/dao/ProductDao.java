@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import com.kh.common.model.vo.PageInfo;
 import com.kh.product.model.vo.Best;
 import com.kh.product.model.vo.Product;
 import com.kh.product.model.vo.Qna;
@@ -128,7 +129,7 @@ public class ProductDao {
 	
 	
 	// 오픈예정 추출
-	public ArrayList<Product> selectPreList(Connection conn){
+	public ArrayList<Product> selectPreList(Connection conn, PageInfo pi){
 		ArrayList<Product> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -136,6 +137,12 @@ public class ProductDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
+			
+			int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+			int endRow = startRow + pi.getBoardLimit() - 1;
+			
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
@@ -160,6 +167,45 @@ public class ProductDao {
 		return list;
 	}
 	
+	
+	// 진행중 추출
+	public ArrayList<Product> selectIngList(Connection conn, PageInfo pi){
+		ArrayList<Product> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectIngList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+			int endRow = startRow + pi.getBoardLimit() - 1;
+			
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Product(rset.getInt("PNO"),
+									 rset.getString("TITLE"),
+									 rset.getString("REGION"),
+									 rset.getString("AGE"),
+									 rset.getString("AREA"),
+									 rset.getString("S_DATE"),
+									 rset.getString("E_DATE"),
+									 rset.getString("TIME"),
+									 rset.getString("MAIN_IMG"),
+									 rset.getString("DETAIL_IMG"),
+									 rset.getString("ETC")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+		
 	
 	// 지역별 메인 추출
 	public ArrayList<Product> selectRegionList(Connection conn){
@@ -346,40 +392,6 @@ public class ProductDao {
 			}
 		}else {}	
 			
-		return list;
-	}
-	
-	
-	// 진행중 추출
-	public ArrayList<Product> selectIngList(Connection conn){
-		ArrayList<Product> list = new ArrayList<>();
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		String sql = prop.getProperty("selectIngList");
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			rset = pstmt.executeQuery();
-			
-			while(rset.next()) {
-				list.add(new Product(rset.getInt("PNO"),
-									 rset.getString("TITLE"),
-									 rset.getString("REGION"),
-									 rset.getString("AGE"),
-									 rset.getString("AREA"),
-									 rset.getString("S_DATE"),
-									 rset.getString("E_DATE"),
-									 rset.getString("TIME"),
-									 rset.getString("MAIN_IMG"),
-									 rset.getString("DETAIL_IMG"),
-									 rset.getString("ETC")));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(rset);
-			close(pstmt);
-		}
 		return list;
 	}
 	
@@ -882,6 +894,7 @@ public class ProductDao {
 			pstmt = conn.prepareStatement(sql);
 			rset = pstmt.executeQuery();
 			
+			
 			while(rset.next()) {
 				list.add(new Product(rset.getInt("PNO"),
 									 rset.getString("TITLE"),
@@ -967,7 +980,7 @@ public class ProductDao {
 		}else if(op4.equals("kids")) {
 			op4 = "유아동";
 		}else if(op4.equals("teen")) {
-			op4 = "'청소년', '성인'";
+			op4 = "청소년";
 		}else{
 			op4 = "성인";
 		}

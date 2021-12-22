@@ -6,6 +6,7 @@ import static com.kh.common.JDBCTemplate.getConnection;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import com.kh.common.model.vo.PageInfo;
 import com.kh.product.model.dao.ManageDao;
 import com.kh.product.model.dao.ProductDao;
 import com.kh.product.model.vo.Best;
@@ -42,10 +43,11 @@ public class ProductService {
 		return list;
 	}
 	
-	public ArrayList<Product> selectPreList() {
+	
+	public ArrayList<Product> selectPreList(PageInfo pi) {
 		Connection conn = getConnection();
 		
-		ArrayList<Product> list = new ProductDao().selectPreList(conn);
+		ArrayList<Product> list = new ProductDao().selectPreList(conn, pi);
 		
 		close(conn); 
 		return list;
@@ -72,10 +74,10 @@ public class ProductService {
 	}
 	
 	
-	public ArrayList<Product> selectIngList() {
+	public ArrayList<Product> selectIngList(PageInfo pi) {
 		Connection conn = getConnection();
 		
-		ArrayList<Product> list = new ProductDao().selectIngList(conn);
+		ArrayList<Product> list = new ProductDao().selectIngList(conn, pi);
 		
 		close(conn); 
 		return list;

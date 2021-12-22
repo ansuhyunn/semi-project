@@ -223,6 +223,7 @@ SELECT
  WHERE SUBSTR(S_DATE, 5, 2) = TO_CHAR(SYSDATE, 'MM')
    AND SOLDOUT = 'N'
 ORDER BY A_PRICE DESC
+
 </entry>
 
 <!-- 낮은가격정렬 -->
@@ -299,7 +300,7 @@ SELECT *
                              , SUM(ORDER_COUNT) COUNT
                           FROM ORDER_P
                           JOIN "ORDER" USING (ORDER_NO)
-                        <![CDATA[ WHERE FLOOR(SYSDATE - TO_DATE(ORDER_DATE)) <= 31
+                          <![CDATA[WHERE FLOOR(SYSDATE - TO_DATE(ORDER_DATE)) <= 31
                            AND FLOOR(SYSDATE - TO_DATE(ORDER_DATE)) >= 0]]>
                           GROUP BY PNO
                           ORDER BY COUNT DESC)

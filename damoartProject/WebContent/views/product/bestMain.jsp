@@ -13,32 +13,21 @@
 	div{ box-sizing:border-box;}
     .wrapper{
         width: 1000px;
-        height: 1200px;
+        height: 1500px;
         top: 0; left: 0; right: 0; bottom: 0; margin: auto;
         margin-top: 50px;
     }
      /* 페이지 이름 스타일 */
     .name{ width: 100%; height: 30px; }
     #name1{
-        width: 70%;
-        font-size: 23px;
+        width: 100%;
+        font-size: 26px;
         font-weight: bolder;
-        float: left;
+        text-align: center;
     }
-    /* 페이지 정렬 버튼 스타일 */
-    .name>a{
-        width: 6%; 
-        font-size: 10px;
-        margin-top: 10px;
-        padding-top: 10px;
-        float: left;
-        text-decoration: none;
-        color: black;
-    }
-    .name>a:hover{font-weight: bolder; text-decoration: none; color: black;}
     .content1{
         width: 100%;
-        height: 300px;
+        height: 400px;
         margin: auto;
         margin-top: 20px;
         margin-bottom: 50px;
@@ -91,12 +80,8 @@
 
     <div class="wrapper">
         <div class="name">
-            <div id="name1">BEST 전시</div>
+            <div id="name1">월간 BEST</div>
             <br>
-            <div id="name2">
-	            <a href="<%=contextPath%>/">주간</a>
-	            <a href="<%=contextPath%>/">월간</a>
-            </div>
         </div>
         <br>
         <hr class="my-2">
@@ -127,7 +112,7 @@
 		                    </p>
 		                </div>
 		            </div>
-		             <% i++; if(i>9){ break; }%>  
+		             <% i++; if(i>8){ break; }%>  
 		             <% } %> 
 		         <% } %> 
 	        <% } %> 
