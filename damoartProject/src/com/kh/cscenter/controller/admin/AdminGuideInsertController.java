@@ -44,7 +44,7 @@ public class AdminGuideInsertController extends HttpServlet {
 			String title = multiRequest.getParameter("title");
 			String status = multiRequest.getParameter("status");
 			String content = multiRequest.getParameter("content");
-			content = content.replace("\r\n", "<br>"); // 줄바꿈 치환
+			//content = content.replace("\r\n", "<br>"); // 줄바꿈 치환
 			
 			Guide g = new Guide();
 			

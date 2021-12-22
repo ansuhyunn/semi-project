@@ -85,4 +85,77 @@
 		  FROM PRODUCT
 		 WHERE PNO = ?
 	</entry>
+	
+	<entry key="nonMemberInsertQuestion">
+		INSERT 
+		  INTO QNA
+		     (  
+		       Q_NO
+		     , PNO
+		     , Q_WRITER
+		     , Q_PWD
+		     , SECRET
+		     , Q_TITLE
+		     , Q_CONTENT
+		     , Q_CATEGORY_CODE
+		     )
+		     VALUES
+		     (
+		       SEQ_QNO.NEXTVAL
+		     , ?
+		     , ?
+		     , ?
+		     , ?
+		     , ?
+		     , ?
+		     , ?
+		     )
+	</entry>
+	
+	<entry key="memberInsertQuestion">
+		INSERT 
+		  INTO QNA
+		     (  
+		       Q_NO
+		     , PNO
+		     , MEM_NO
+		     , Q_WRITER
+		     , SECRET
+		     , Q_TITLE
+		     , Q_CONTENT
+		     , Q_CATEGORY_CODE
+		     )
+		     VALUES
+		     (
+		       SEQ_QNO.NEXTVAL
+		     , ?
+		     , ?
+		     , ?
+		     , ?
+		     , ?
+		     , ?
+		     , ?
+		     )
+	</entry>
+	
+	<entry key="insertAttachment">
+		INSERT
+			  INTO ATTACHMENT
+			     ( FILE_NO
+			     , REF_B
+			     , REF_BNO
+			     , ORIGIN_NAME
+			     , CHANGE_NAME
+			     , FILE_PATH
+			     )
+			     VALUES
+			     (
+			       SEQ_ANO.NEXTVAL
+			     , 'QnA'
+			     , SEQ_QNO.CURRVAL
+			     , ?
+			     , ?
+			     , ?
+			     )
+	</entry>
 </properties>

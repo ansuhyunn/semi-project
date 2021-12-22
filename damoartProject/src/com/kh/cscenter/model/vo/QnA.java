@@ -74,6 +74,18 @@ public class QnA {
 		this.aWriter = aWriter;
 		this.pMainImg = pMainImg;
 	}
+	
+
+	
+	public QnA(String pNo, String qWriter, String secret, String qTitle, String qContent, String qCategoryCode) {
+		super();
+		this.pNo = pNo;
+		this.qWriter = qWriter;
+		this.secret = secret;
+		this.qTitle = qTitle;
+		this.qContent = qContent;
+		this.qCategoryCode = qCategoryCode;
+	}
 
 	public String getpMainImg() {
 		return pMainImg;
