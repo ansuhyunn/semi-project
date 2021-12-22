@@ -31,6 +31,7 @@
     table th{text-align: center;}
     table td{padding-left: 20px;}
     input{border: none;}
+    .btn{margin-left: 40px}
     #insert{
         background-color:rgb(203, 185, 153);
         color:rgb(64, 64, 64);
@@ -48,9 +49,7 @@
 	<%@ include file="../../common/manageMenubar_2.jsp" %>
 	
     <div class="wrapper">
-        <div class="name" style="font-size: 30px; font-weight: bolder;">
-            	상품등록
-        </div>
+        <div class="name" style="font-size: 24px; font-weight: bolder;">상품등록</div>
         <br>
         <hr class="my-2">
         <br>
@@ -154,8 +153,8 @@
             <br><br>
             
             <div align="center">
-                <button id="insert" class="btn btn-sm" type="submit">등록</button>
-                <button id="cancel" class="btn btn-sm" type="reset">취소</button>
+                <button id="insert" class="btn" type="submit">등록</button>
+                <button id="cancel" class="btn" type="reset">취소</button>
             </div>
             
              <br><br>

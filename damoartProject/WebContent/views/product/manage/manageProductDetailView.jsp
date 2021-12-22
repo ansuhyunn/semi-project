@@ -24,10 +24,6 @@
         margin-left: auto; 
         margin-right: auto;
         margin-top: 200px
-    } 
-    .name{
-    	font-size: 16px;
-    	font-weight: border;
     }
     form>table{
         width: 800px;
@@ -35,8 +31,9 @@
         margin: 0 auto;
     }
     #table th{text-align: center;}
-    #table td{padding-left: 20px;}
+    #table td{padding-left: 30px;}
     input{border: none;}
+    a{margin-left: 20px}
     #insert, #back{
         background-color:rgb(203, 185, 153);
         color:rgb(64, 64, 64);
@@ -54,9 +51,7 @@
 	<%@ include file="../../common/manageMenubar_2.jsp" %>
 	
     <div class="wrapper">
-        <div class="name" >
-            <h4>상품 상세 조회</h4>	
-		</div>
+        <div class="name" style="font-size: 24px; font-weight: bolder;">상품 상세 조회</div>
 		<hr class="my-2">
 		<br>
         </div>
@@ -135,8 +130,8 @@
 
             <div align="center">
                 <a href="<%= contextPath %>/manageUpdateForm.pro?pno=<%= p.getpNo() %>" class="btn" id="insert">수정</a>
-                <a href="<%= contextPath %>/manageDelelte.pro?pno=<%= p.getpNo() %>" class="btn" id="delete">삭제</a>
-                <button id="back" class="btn btn-sm" type="button" onclick="history.back()">목록으로</button>
+                <a href="<%= contextPath %>/manageDelete.pro?pno=<%= p.getpNo() %>" class="btn" id="delete">삭제</a>
+                <a href="<%= contextPath %>/managelist.man?cpage=1" class="btn" id="back">목록가기</a>	
             </div>
 
              <br><br>

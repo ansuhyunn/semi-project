@@ -53,14 +53,14 @@ div{ box-sizing:border-box; }
         color:white;
     }
 	.button{
-		margin-left: 800px;
+		margin-left: 850px;
 	}
-	#enroll{
+	#insert{
         background-color:rgb(203, 185, 153);
         color:rgb(64, 64, 64);
         font-weight:600;
     }
-    #insert, #delete{
+    #delete{
         background-color:rgb(151, 138, 116);
         color:white;
     }
@@ -103,7 +103,6 @@ div{ box-sizing:border-box; }
 			</div>
 			<div class="button">
 				<a href="<%= contextPath %>/views/product/manage/manageInsertProduct.jsp" class="btn btn-sm" id="insert">등록</a>
-				<a href="<%= contextPath %>/update.pro" class="btn btn-sm" id="enroll">수정</a>
 				<a href="<%= contextPath %>/delete.pro" class="btn btn-sm" id="delete">삭제</a>
 			</div>
 		</div>
@@ -128,7 +127,7 @@ div{ box-sizing:border-box; }
 	        <tbody>
 	            <% for(Product p : allList){ %>
 		            <tr>
-		                <td><input type="checkbox"></td>
+		                <th><input type="checkbox"></th>
 		                <td><%= p.getpNo() %></td>
 		                <td><%= p.getEnrollDate() %></td>
 		                <td><%= p.getTitle() %></td>
@@ -168,7 +167,7 @@ div{ box-sizing:border-box; }
         <script>
 	    	$(function(){
 	    		$("#list-area>tbody>tr").click(function(){
-					console.log($(this).children().eq(0).text())
+					console.log($(this).children().eq(1).text())
 	    			location.href='<%=contextPath %>/manageDetail.pro?pno=' + $(this).children().eq(1).text();
 	    		})
 	    	})

@@ -126,4 +126,13 @@ public class ManageService {
 		return result1 * result2 * result3;
 	}
 	
+	
+	// 전시 삭제
+	public int deleteProduct(int pNo) {
+		Connection conn = getConnection();
+		int result = new ManageDao().deleteProduct(conn, pNo);
+		close(conn);
+		return result;
+	}
+	
 }

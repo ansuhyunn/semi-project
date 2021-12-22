@@ -163,7 +163,7 @@
 		</div>
 		
 		<div class="content4">
-			<div class="detail"><img id="detail" src="<%=contextPath%>\<%= p.getDetailImg()%>" width="100%" height="100%"></div>
+			<div class="detail"><img id="detail" src="<%=contextPath%>/<%= p.getDetailImg()%>" width="100%" height="100%"></div>
         </div>
        <div class="content5"></div>
         <br><br><br><br><br>
@@ -175,7 +175,9 @@
 					url:"ajaxImg.pro",
 					data:{pno:$("#pNo").val()},
 					success:function(result){
-						$("#detail").attr("src", "<%=contextPath%>\<%= p.getDetailImg()%>")
+						let value = '<img src=\"' + '<%=contextPath%>/<%= p.getDetailImg()%>' + '" width=\"100%\" height=\"100%\">';
+						$("#context4").html(value);
+						console.log(value);
 					},error:function(){
 						
 					}

@@ -302,6 +302,7 @@ SELECT *
                           JOIN "ORDER" USING (ORDER_NO)
                           <![CDATA[WHERE FLOOR(SYSDATE - TO_DATE(ORDER_DATE)) <= 31
                            AND FLOOR(SYSDATE - TO_DATE(ORDER_DATE)) >= 0]]>
+                           AND SOLDOUT = 'N'
                           GROUP BY PNO
                           ORDER BY COUNT DESC)
                   JOIN PRODUCT USING (PNO)
