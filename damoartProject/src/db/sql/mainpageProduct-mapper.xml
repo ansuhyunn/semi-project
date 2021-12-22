@@ -3,7 +3,7 @@
 <properties>
 
 	<entry key="selectNewPorduct">		
-		SELECT ROWNUM, P.*
+	  SELECT ROWNUM, P.*
 		  FROM	(SELECT 
 					   PNO
 					 , TITLE

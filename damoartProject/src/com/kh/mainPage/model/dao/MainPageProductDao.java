@@ -27,6 +27,7 @@ public class MainPageProductDao {
 	}
 	
 	// new전시
+	/*
 	public ArrayList<MainPageProduct> selectNewList(Connection conn){
 		ArrayList<MainPageProduct> newList = new ArrayList<>();
 		PreparedStatement pstmt = null;
@@ -45,6 +46,35 @@ public class MainPageProductDao {
 									 		    rset.getString("S_DATE"),
 									 		    rset.getString("E_DATE"),
 									 		    rset.getString("MAIN_IMG")));
+			}	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return newList;
+	}
+	*/
+	
+	public MainPageProduct selectNewList(Connection conn){
+		MainPageProduct newList = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectNewPorduct");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				newList = new MainPageProduct(rset.getInt("PNO"),
+									 		    rset.getString("TITLE"),
+									 		    rset.getString("REGION"),
+									 		    rset.getString("AREA"),
+									 		    rset.getString("S_DATE"),
+									 		    rset.getString("E_DATE"),
+									 		    rset.getString("MAIN_IMG"));
 			}	
 		} catch (SQLException e) {
 			e.printStackTrace();

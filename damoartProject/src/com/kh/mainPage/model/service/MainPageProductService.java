@@ -10,10 +10,11 @@ import com.kh.mainPage.model.vo.MainPageProduct;
 
 public class MainPageProductService {
 
-	public ArrayList<MainPageProduct> selectNewList(){
+	public MainPageProduct selectNewList(){
 		Connection conn = getConnection();
 		
-		ArrayList<MainPageProduct> newList = new MainPageProductDao().selectNewList(conn);
+		//ArrayList<MainPageProduct> newList = new MainPageProductDao().selectNewList(conn);
+		MainPageProduct newList = new MainPageProductDao().selectNewList(conn);
 		
 		close(conn); 
 		return newList;
