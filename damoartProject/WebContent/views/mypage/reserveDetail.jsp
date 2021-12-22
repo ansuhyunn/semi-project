@@ -229,7 +229,7 @@
                       <th colspan="2" width="470">상품</th>
                       <th width="70">수량</th>
                       <th width="110">결제금액</th>
-                      <th width="110">상태</th>
+                      <th width="110" id="orderStatus">상태</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -285,6 +285,11 @@
 	                    
                   </tbody>
                 </table>
+                
+                <div class="paging-area" align="center">
+                
+                </div>
+              
               </div>   
             
             </div>

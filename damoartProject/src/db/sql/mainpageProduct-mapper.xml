@@ -2,8 +2,30 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 
-	<entry key="selectNewPorduct">		
-	  SELECT ROWNUM, P.*
+	<entry key="selectNewPorduct">
+		SELECT *
+		  	FROM (
+		        SELECT ROWNUM RNUM, A.*
+			  	  FROM (
+			             SELECT 
+		                       PNO
+							 , TITLE
+							 , REGION
+							 , AREA
+							 , TO_CHAR(TO_DATE(S_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') S_DATE
+							 , TO_CHAR(TO_DATE(E_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') E_DATE
+							 , TIME
+							 , MAIN_IMG
+							 , DETAIL_IMG
+							 , ETC
+		                   FROM PRODUCT
+				           <![CDATA[WHERE FLOOR(MONTHS_BETWEEN(SYSDATE, TO_DATE(S_DATE, 'RRRRMMDD'))) >= 0 ]]>
+						  ORDER BY 1 DESC
+					 ) A
+				)
+		WHERE RNUM BETWEEN 1 AND 4	
+	</entry>
+	<!--    SELECT ROWNUM, P.*
 		  FROM	(SELECT 
 					   PNO
 					 , TITLE
@@ -16,9 +38,7 @@
 				 WHERE SOLDOUT = 'N'
 				 ORDER
 				    BY ENROLL_DATE DESC) P
-		 <![CDATA[WHERE ROWNUM <= 4]]> 
-	</entry>
-	
+		 <![CDATA[WHERE ROWNUM <= 4]]> -->	
 	
 	
 	
