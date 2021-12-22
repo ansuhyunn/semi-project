@@ -967,7 +967,7 @@ public class ProductDao {
 		}else if(op4.equals("kids")) {
 			op4 = "유아동";
 		}else if(op4.equals("teen")) {
-			op4 = "청소년";
+			op4 = "'청소년', '성인'";
 		}else{
 			op4 = "성인";
 		}

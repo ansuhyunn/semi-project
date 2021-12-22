@@ -135,7 +135,7 @@
 
             <div align="center">
                 <a href="<%= contextPath %>/manageUpdateForm.pro?pno=<%= p.getpNo() %>" class="btn" id="insert">수정</a>
-                <a href="<%= contextPath %>/updateForm.pro?pno=<%= p.getpNo() %>" class="btn" id="delete">삭제</a>
+                <a href="<%= contextPath %>/manageDelelte.pro?pno=<%= p.getpNo() %>" class="btn" id="delete">삭제</a>
                 <button id="back" class="btn btn-sm" type="button" onclick="history.back()">목록으로</button>
             </div>
 

@@ -165,11 +165,11 @@
 		</div>
 		
 		<div class="content4">
-			<div class="detail"><img id="detail" src="<%=contextPath%>/<%= p.getDetailImg()%>" width="100%" height="100%"></div>
+			<div class="detail"><img id="detail" src="<%=contextPath%>\<%= p.getDetailImg()%>" width="100%" height="100%"></div>
         </div>
        <div class="content5">
-			
-        </div>
+       	
+       </div>
         <br><br><br><br><br>
 
 		<script>
@@ -179,7 +179,7 @@
 					url:"ajaxImg.pro",
 					data:{pno:$("#pNo").val()},
 					success:function(result){
-						$("#detail").attr("src", "/resources/product/<%= p.getDetailImg()%>")
+						$("#detail").attr("src", "<%=contextPath%>\<%= p.getDetailImg()%>")
 					},error:function(){
 						
 					}
@@ -205,26 +205,32 @@
 					url:"qna.pro",
 					data:{pno:$("#pNo").val()},
 					success:function(result){
-						let value = "";
+						let value = "<table border=\"1px solid black\" width=\"800px\">"
+								  + "<tr>"
+									   + "<th width=\"80px\">분류</th>"
+									   + "<th>제목</th>"
+									   + "<th width=\"80px\">작성자</th>"
+									   + "<th width=\"80px\">작성날짜</th>"
+								  + "</tr>"
 						let button = ""
-						if(result != null){
+						if(result != ""){
 							for(let i=0; i<result.length; i++){
-								value += "<table border=\"1px solid black\" width=\"800px\">"
-										   + "<tr>"
-												+ "<th width=\"80px\">" + result[i].qCategoryCode + "</td>"
-												+ "<td>" + result[i].qTitle + "</td>"
-												+ "<td width=\"80px\">" + result[i].qWriter + "</td>"
-												+ "<td width=\"150px\">" + result[i].createDate + "</td>"
-										   +"</tr>"
-									   +"</table>";
-								
-								$(".content4").html(value);
+								value += "<tr>"
+											+ "<td width=\"80px\">" + result[i].qCategoryCode + "</td>"
+											+ "<td>" + result[i].qTitle + "</td>"
+											+ "<td width=\"80px\">" + result[i].qWriter + "</td>"
+											+ "<td width=\"150px\">" + result[i].createDate + "</td>"
+									   + "</tr>"
+									   
 								var btn = '<a class="btn" href=' + '\"<%=contextPath%>/enrollForm.qa\">문의 등록</a>'
-								$(".content5").html(btn);
 							}
+							value += "</table>"
+							
+							$(".content4").html(value);
+							$(".content5").html(btn);
 						}else{
-							$(".content4").html("문의사항이 없습니다");
-							console.log("땡!!");
+							let value = "<p align=\"center\"> 문의사항이 없습니다 </p>"
+							$(".content4").html(value);
 						} 
 						
 					},error:function(){
