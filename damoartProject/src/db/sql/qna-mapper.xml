@@ -70,9 +70,19 @@
 	
 	<entry key="enrollFormProductSearch">
 		SELECT
-		       TITLE
+			   PNO
+		     , TITLE
 		     , MAIN_IMG
 		  FROM PRODUCT
 		 WHERE TITLE LIKE '%'||?||'%'
+	</entry>
+	
+	<entry key="enrollFormProductSelectResult">
+		SELECT
+		       PNO
+		     , TITLE
+		     , MAIN_IMG
+		  FROM PRODUCT
+		 WHERE PNO = ?
 	</entry>
 </properties>

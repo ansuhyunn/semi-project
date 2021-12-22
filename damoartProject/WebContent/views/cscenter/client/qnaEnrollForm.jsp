@@ -48,17 +48,13 @@
         font-weight:600;
     }
 
-    #insert{
+    #insert, #proSelect, #searchbtn{
         background-color:rgb(151, 138, 116);
         color:white;
     }
 
     #enroll-tb{
         border:1px solid rgb(173, 157, 128);
-    }
-
-    #secret{
-        
     }
 
     #button{
@@ -68,6 +64,10 @@
     #pwd{
         background:rgb(203, 185, 153);
         font-weight: 700;
+    }
+    
+    #result{
+    	height:auto;
     }
 
 
@@ -107,6 +107,7 @@
                         <th >&nbsp;&nbsp;&nbsp;상품선택</th>
                         <td colspan="3">
                             <button type="button" data-toggle="modal" data-target="#myModal">상품 선택</button>
+                            <span id="select-result"></span>
                         </td>
                     </tr>
                     <% if(loginUser != null) {%>  
@@ -152,14 +153,14 @@
 	
 	      <!-- Modal body -->
 	      <div class="modal-body">
-	        	전시 이름으로 검색 : <input type="text" id="proSearch" name="keyword" placeholder="djd" required value="살바">
-            <button type="button" onclick="searchbtn();">검색</button>
-            <div id="result"></div>
+	        	전시 이름으로 검색 : <input type="text" id="proSearch" placeholder="키워드를 입력하세요">
+            <button type="button" onclick="searchbtn();" id="searchbtn" class="btn btn-sm">검색</button><br><br>
+            <div id="result"></div><br>
 	      </div>
 	
 	      <!-- Modal footer -->
 	      <div class="modal-footer">
-	        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+	        <button type="button" class="btn" data-dismiss="modal" id="proSelect" onclick="select();">선택</button>
 	      </div>
 	
 	    </div>
@@ -167,26 +168,44 @@
 	</div>
 
     <script>
-		console.log($("#proSearch").val()); //input value값이 안받아짐..
         function searchbtn() {
             $.ajax({
                 url:"qnaSearchPro.qa",
-                data:{Keyword:$("#proSearch").val()},
+                data:{keyword:$("#proSearch").val()},
                 success:function(result){
 					console.log("성공");
                     let value = "";
                     for(let i=0; i<result.length; i++){
-                        value += "<div>"
-                        			+ "<input type='radio' name='selectpro'>"
-                                    + "<img src=" + result[i].mainImg + " width='70' height='auto'>" 
-                                    + result[i].title
-                                + "</div>"
+                        value += "<tr height='80'>"
+                        			+ "<td width='20'><input type='radio' name='selectpro' value='" + result[i].pNo + "'></td>"
+                                    + "<td width='70'><img src=" + result[i].mainImg + " width='60' height='70'><td><br>" 
+                                    + "<td>" + result[i].title + "</td>"
+                                + "</tr>"
                     }
                     $("#result").html(value);
                 },error:function(result) {
                     console.log("ajax 통신 실패");
                 }
             })
+        }
+        
+        function select() {
+        	$.ajax({
+        		url:"proSelect.qa",
+        		data:{selectpro:$("input[name='selectpro']:checked").val()},
+        		success:function(result){
+					console.log("성공");
+					
+					let value="";
+					value = "<input type=hidden name='pno' value='" + result.pNo + "'> <img src=" + result.mainImg + " width='60' height='70'>&nbsp;&nbsp;&nbsp;" + result.title;
+					
+					$("#select-result").html(value);
+					$("#proSearch").val("");
+					$("#result").text("");
+        		},error:function(result) {
+        			console.log("ajax 통신 실패");
+        		}
+        	})
         }
     </script>
     <%@ include file="../../common/footerbar.jsp" %>

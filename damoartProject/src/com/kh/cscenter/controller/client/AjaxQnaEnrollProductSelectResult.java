@@ -1,7 +1,6 @@
 package com.kh.cscenter.controller.client;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,16 +13,16 @@ import com.kh.cscenter.model.service.QnaService;
 import com.kh.product.model.vo.Product;
 
 /**
- * Servlet implementation class AjaxQnaEnrollProductSearch
+ * Servlet implementation class AjaxQnaEnrollProductSelectResult
  */
-@WebServlet("/qnaSearchPro.qa")
-public class AjaxQnaEnrollProductSearch extends HttpServlet {
+@WebServlet("/proSelect.qa")
+public class AjaxQnaEnrollProductSelectResult extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AjaxQnaEnrollProductSearch() {
+    public AjaxQnaEnrollProductSelectResult() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,12 +31,12 @@ public class AjaxQnaEnrollProductSearch extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String keyword = request.getParameter("keyword");
+		int pNo = Integer.parseInt(request.getParameter("selectpro"));
 		
-		ArrayList<Product> list = new QnaService().enrollFormProductSearch(keyword);
-
+		Product p = new QnaService().enrollFormProductSelectResult(pNo);
+		
 		response.setContentType("application/json; charset=UTF-8");
-		new Gson().toJson(list, response.getWriter());
+		new Gson().toJson(p, response.getWriter());
 	}
 
 	/**

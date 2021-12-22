@@ -65,4 +65,12 @@ public class QnaService {
 		close(conn);
 		return list;
 	}
+	
+	public Product enrollFormProductSelectResult(int pNo) {
+		Connection conn = getConnection();
+		Product p = new QnaDao().enrollFormProductSelectResult(conn, pNo);
+		close(conn);
+		return p;
+		
+	}
 }
