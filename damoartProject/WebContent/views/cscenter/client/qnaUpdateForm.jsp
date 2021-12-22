@@ -1,5 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ 
+	page import="com.kh.common.model.vo.Attachment, com.kh.cscenter.model.vo.QnA" 
+%>
+
+<%
+	QnA q = (QnA)request.getAttribute("q");
+	Attachment at = (Attachment)request.getAttribute("at");
+%>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -84,11 +95,12 @@
         <hr>
         <br><br>
         <div id="inner" align="center">
-            <form id="enroll-form" action="<%=contextPath%>/insert.qa" method="post" enctype="multipart/form-data">
+            <form id="enroll-form" action="<%=contextPath%>/update.qa" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="qno" value="<%= q.getqNo() %>">
                 <table id="enroll-tb">
                     <tr style="border-bottom:1px solid rgb(173, 157, 128); border-top:1px solid rgb(173, 157, 128)">
                         <th width="120">&nbsp;&nbsp;&nbsp;제목</th>
-                        <td width="700" colspan="3"><input type="text" size="80" required name="title"></td>
+                        <td width="700" colspan="3"><input type="text" size="80" required name="title" value="<%=q.getqTitle()%>"></td>
                     </tr>
                     <tr>
                         <th>&nbsp;&nbsp;&nbsp;분류</th>
@@ -101,42 +113,70 @@
                                 <option value="Q4">[상품]</option>
                                 <option value="Q5">[기타]</option>
                             </select>
+                            <script>
+                                $(function() {
+                                     $("#enroll-tb option").each(function(){
+                                         if($(this).text()=="<%=q.getqCategoryCode()%>") {
+                                             $(this).attr("selected", true);
+                                         }
+                                     })
+                                 })
+                            </script>
                         </td>
                     </tr>
+                    
                     <tr style="border-bottom:1px solid rgb(173, 157, 128); border-top:1px solid rgb(173, 157, 128)">
                         <th >&nbsp;&nbsp;&nbsp;상품선택</th>
                         <td colspan="3">
                             <button type="button" data-toggle="modal" data-target="#myModal">상품 선택</button>
-                            <span id="select-result"></span>
+                            <span id="select-result">
+                            <% if(q.getpNo() != null) { %>
+                            <img src="<%=contextPath%>/<%= q.getpMainImg() %>" width="60" height="70">&nbsp;&nbsp;&nbsp;<%=q.getpNo() %>
+                        	<% } %>
+                            </span>
                         </td>
                     </tr>
+                    
                     <% if(loginUser != null) {%>  
                     	<input type="hidden" name="memNo" value="<%=loginUser.getMemNo()%>"> 
-            			<input type="hidden" name="nickName" value="<%=loginUser.getNickName()%>"> 
                     <% }else { %>
 	                    <tr>
 	                        <th>&nbsp;&nbsp;&nbsp;작성자</th>  <!-- 비회원 닉네임 입력시 중복 검사하기 -->
-	                        <td><input type="text" name="nickName"></td>
+	                        <td><input type="text" name="nickName" value="<%=q.getqWriter() %>"></td>
 	                        <td id="pwd">&nbsp;&nbsp;&nbsp;비밀번호</td>
-	                        <td><input type="password" name="pwd"></td>
+	                        <td><input type="password" name="pwd" value="<%=q.getqPwd()%>"></td>
 	                    </tr>
                     <% } %>
                     <tr style="border-bottom:1px solid rgb(173, 157, 128); border-top:1px solid rgb(173, 157, 128)">
-                        <th>&nbsp;&nbsp;&nbsp;첨부 파일</th>
-                        <td colspan="3"><input type="file" name="upfile"></td>
+                        <%if(at == null) { %>
+                             <th>&nbsp;&nbsp;&nbsp;첨부 파일</th>
+                             <td><input type="file" name="upfile"></td>
+                        <% }else { %>
+                             <th>&nbsp;&nbsp;&nbsp;첨부 파일</th>
+                             <td>
+                                                                          첨부파일 : <%=at.getOriginName()%>
+                                 <input type="hidden" name="OriginFileNo" value="<%=at.getFileNo()%>">
+                                 <input type="file" name="upfile">
+                             </td>
+                        <% } %>
                     </tr>
 
                     <tr style="border-bottom:1px solid rgb(173, 157, 128)">
                         <th>&nbsp;&nbsp;&nbsp;내용</th>
-                        <td colspan="3"><textarea name="content" id=""rows="20" required style="resize:none;"></textarea></td>
+                        <td colspan="3"><textarea name="content" id=""rows="20" required style="resize:none;"><%=q.getqContent().replace("<br>", "\r\n") %></textarea></td>
                     </tr>
                 </table>
                 <br>
                 <div id="button" align="right">
                     <input type="checkbox" style="zoom:1.5;" name="secret" value="Y">비밀글 <br><br>
-                    <a href="<%=contextPath%>/list.qa?cpage=1" class="btn btn-sm" id="cancel">취소하기</a>
-                    <button type="submit" class="btn btn-sm" id="insert">등록하기</button>
+                    <a href="<%=contextPath%>/detail.qa?qno=<%=q.getqNo()%>" class="btn btn-sm" id="cancel">취소하기</a>
+                    <button type="submit" class="btn btn-sm" id="insert">수정하기</button>
                 </div>
+                <script>
+                	<% if(q.getSecret().equals("Y")) {%>
+                		$("input[name=secret]").attr("checked", true);
+                	<% } %>
+                </script>
             </form>
         </div>
     </div>
@@ -196,10 +236,10 @@
         		data:{selectpro:$("input[name='selectpro']:checked").val()},
         		success:function(result){
 					console.log("성공");
-					
+					$("#select-result").html("");
 					let value="";
 					value = "<input type=hidden name='pno' value='" + result.pNo + "'> <img src=" + result.mainImg + " width='60' height='70'>&nbsp;&nbsp;&nbsp;" + result.title;
-					
+								
 					$("#select-result").html(value);
 					$("#proSearch").val("");
 					$("#result").text("");

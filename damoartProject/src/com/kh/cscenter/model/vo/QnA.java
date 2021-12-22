@@ -58,11 +58,12 @@ public class QnA {
 	
 
 	
-	public QnA(int qNo, String pNo, String qWriter, String secret, String qTitle, String qContent, String createDate,
+	public QnA(int qNo, String pNo, int memNo, String qWriter, String secret, String qTitle, String qContent, String createDate,
 			String qCategoryCode, String aContent, String aCreateDate, String aWriter, String pMainImg) {
 		super();
 		this.qNo = qNo;
 		this.pNo = pNo;
+		this.memNo = memNo;
 		this.qWriter = qWriter;
 		this.secret = secret;
 		this.qTitle = qTitle;
