@@ -52,17 +52,17 @@
     .name>a:hover{font-weight: bolder; text-decoration: none; color: black;}
     .content1{
         width: 100%;
-        height: 350px;
+        height: 800px;
         margin: auto;
         margin-top: 30px;
         margin-bottom: 50px;
     }
     .content{
         width: 20%;
-        height: 100%;
+        height: 350px;
         float: left;
         margin-left: 25px;
-        margin-right: 25px;
+        margin-right: 20px;
         margin-bottom: 80px;
         margin-top: 0px;
         display: block;
@@ -87,6 +87,10 @@
     }
     .title{font-weight: bolder; padding-top: 10px;}
     .summary{font-size: 12px; font-weight: bolder; margin-top: -10px;}
+    .paging-area{
+    	width: 100%;
+    	margin-bottom: 100px;
+    }
 </style>
 
 </head>
@@ -97,7 +101,7 @@
     <div class="wrapper">
         <div class="name">
             <div id="name1">진행중 전시</div>
-            <a href="<%=contextPath%>/high.pro">높은가격순</a>			<!-- 아직못함!!!!! -->
+            <a href="<%=contextPath%>/high.pro">높은가격순</a>			
             <a href="<%=contextPath%>/low.pro">낮은가격순</a>
             <a href="<%=contextPath%>/Open.pro">오픈날짜순</a>
             <a href="<%=contextPath%>/End.pro">마감임박순</a>

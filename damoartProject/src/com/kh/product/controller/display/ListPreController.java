@@ -34,31 +34,9 @@ public class ListPreController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int proCount;
-		int currentPage;
-		int pageLimit;
-		int boardLimit;
-		int maxPage;
-		int startPage;
-		int endPage;
 		
-		proCount = new ManageService().selectPreCount();
-		currentPage = Integer.parseInt(request.getParameter("cpage"));
-		pageLimit = 8; 			
-		boardLimit = 8;
+		ArrayList<Product> preList = new ProductService().selectPreList();
 		
-		maxPage = (int)Math.ceil((double)proCount / boardLimit);
-		startPage = (currentPage - 1) / pageLimit * pageLimit + 1;
-		endPage = startPage + pageLimit - 1;
-		if(endPage > maxPage) {
-			endPage = maxPage;
-		}
-		
-		PageInfo pi = new PageInfo(proCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
-	
-		ArrayList<Product> preList = new ProductService().selectPreList(pi);
-		
-		request.setAttribute("pi", pi);	
 		request.setAttribute("preList", preList);
 		request.getRequestDispatcher("views/product/preMain.jsp").forward(request, response);
 		

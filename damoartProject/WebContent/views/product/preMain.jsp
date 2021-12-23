@@ -3,12 +3,6 @@
 <% 
 	ArrayList<Product> preList = (ArrayList<Product>)request.getAttribute("preList");
 
-	PageInfo pi = (PageInfo)request.getAttribute("pi");
-	int currentPage = pi.getCurrentPage(); 
-	int startPage = pi.getStartPage();
-	int endPage = pi.getEndPage(); 
-	int maxPage = pi.getMaxPage();
-	
 %>
 <!DOCTYPE html>
 <html>
@@ -27,7 +21,7 @@
 	div{ box-sizing:border-box; }
     .wrapper{
         width: 1000px;
-        height: 1000px;
+        height: 1600px;
         top: 0; left: 0; right: 0; bottom: 0; margin: auto;
         margin-top: 50px;
     }
@@ -84,11 +78,6 @@
     }
     .title{font-weight: bolder; padding-top: 10px;}
     .summary{font-size: 12px; font-weight: bolder; margin-top: -10px;}
-    .paging-area{
-    	width: 100%;
-    	margin-top: -70px;
-    	margin-bottom: 100px;
-    }
 </style>
 
 </head>
@@ -132,28 +121,7 @@
     	
     </div> <!-- wrapper클래스 -->    
     
-    <div class="paging-area" align="center">
-        
-			<% if(currentPage != 1){ %>
-            	<button class="btn" onclick="location.href='<%=contextPath%>/pre.pro?cpage=<%=currentPage-1%>';">&lt;</button>
-            <% } %>
-            
-            <% for(int p=startPage; p <= endPage; p++){ %>
-            	<% if(currentPage == p) {%>
-            		<button class="btn" disabled><%= p %></button>		
-	            <% }else { %>
-	            	<button class="btn" onclick="location.href='<%=contextPath%>/pre.pro?cpage=<%= p %>';"><%= p %></button>
-	            <% } %>
-            <% } %>
-            
-            <% if(currentPage != maxPage){%>
-            	<button class="btn" onclick="location.href='<%=contextPath%>/pre.pro?cpage=<%=currentPage+1%>';">&gt;</button>
-			<% } %>
-			
-     </div>
-    
-    
-    
+   
     <%@ include file="../common/footerbar.jsp" %>
     
 </body>

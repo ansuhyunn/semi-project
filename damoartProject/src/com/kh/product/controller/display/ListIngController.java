@@ -42,7 +42,7 @@ public class ListIngController extends HttpServlet {
 		int startPage;
 		int endPage;
 		
-		proCount = new ManageService().selectPreCount();
+		proCount = new ManageService().selectIngCount();
 		currentPage = Integer.parseInt(request.getParameter("cpage"));
 		pageLimit = 8; 			
 		boardLimit = 8;
@@ -61,6 +61,7 @@ public class ListIngController extends HttpServlet {
 		request.setAttribute("pi", pi);	
 		request.setAttribute("ingList", ingList);
 		request.getRequestDispatcher("views/product/ingMain.jsp").forward(request, response);
+
 	}
 
 	/**
