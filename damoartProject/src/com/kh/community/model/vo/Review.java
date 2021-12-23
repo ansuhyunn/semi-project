@@ -2,6 +2,8 @@ package com.kh.community.model.vo;
 
 public class Review {
 
+	private String title;
+	private String mainImg;
 	private int rvNo;
 	private int orderNo;
 	private String reviewId;
@@ -18,10 +20,12 @@ public class Review {
 	
 	public Review() {}
 
-	public Review(int rvNo, int orderNo, String reviewId, String reviewPwd, String reviewName, String reviewContent,
-			String reviewDate, String reviewStar, int reviewView, String reviewSecret, String reviewFile,
-			String deleteStatus, String blindStatus) {
+	public Review(String title, String mainImg, int rvNo, int orderNo, String reviewId, String reviewPwd,
+			String reviewName, String reviewContent, String reviewDate, String reviewStar, int reviewView,
+			String reviewSecret, String reviewFile, String deleteStatus, String blindStatus) {
 		super();
+		this.title = title;
+		this.mainImg = mainImg;
 		this.rvNo = rvNo;
 		this.orderNo = orderNo;
 		this.reviewId = reviewId;
@@ -37,25 +41,44 @@ public class Review {
 		this.blindStatus = blindStatus;
 	}
 	
-	// 페이징바 관련
 	
-	public Review(int rvNo, String reviewName, String reviewDate, String reviewSecret, String deleteStatus,
-			String blindStatus) {
+	// 리뷰 메인화면 및 게시글 화면
+	public Review(String title, String mainImg, int rvNo, int orderNo, String reviewId, String reviewName,
+			String reviewContent, String reviewDate, String reviewStar, int reviewView, String reviewFile) {
 		super();
+		this.title = title;
+		this.mainImg = mainImg;
 		this.rvNo = rvNo;
+		this.orderNo = orderNo;
+		this.reviewId = reviewId;
 		this.reviewName = reviewName;
+		this.reviewContent = reviewContent;
 		this.reviewDate = reviewDate;
-		this.reviewSecret = reviewSecret;
-		this.deleteStatus = deleteStatus;
-		this.blindStatus = blindStatus;
+		this.reviewStar = reviewStar;
+		this.reviewView = reviewView;
+		this.reviewFile = reviewFile;
 	}
 
-	
-	
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getMainImg() {
+		return mainImg;
+	}
+
+	public void setMainImg(String mainImg) {
+		this.mainImg = mainImg;
+	}
 
 	public int getRvNo() {
 		return rvNo;
 	}
+
 	public void setRvNo(int rvNo) {
 		this.rvNo = rvNo;
 	}
@@ -158,11 +181,11 @@ public class Review {
 
 	@Override
 	public String toString() {
-		return "Review [rvNo=" + rvNo + ", orderNo=" + orderNo + ", reviewId=" + reviewId + ", reviewPwd=" + reviewPwd
-				+ ", reviewName=" + reviewName + ", reviewContent=" + reviewContent + ", reviewDate=" + reviewDate
-				+ ", reviewStar=" + reviewStar + ", reviewView=" + reviewView + ", reviewSecret=" + reviewSecret
-				+ ", reviewFile=" + reviewFile + ", deleteStatus=" + deleteStatus + ", blindStatus=" + blindStatus
-				+ "]";
+		return "Review [title=" + title + ", mainImg=" + mainImg + ", rvNo=" + rvNo + ", orderNo=" + orderNo
+				+ ", reviewId=" + reviewId + ", reviewPwd=" + reviewPwd + ", reviewName=" + reviewName
+				+ ", reviewContent=" + reviewContent + ", reviewDate=" + reviewDate + ", reviewStar=" + reviewStar
+				+ ", reviewView=" + reviewView + ", reviewSecret=" + reviewSecret + ", reviewFile=" + reviewFile
+				+ ", deleteStatus=" + deleteStatus + ", blindStatus=" + blindStatus + "]";
 	}
 
 	

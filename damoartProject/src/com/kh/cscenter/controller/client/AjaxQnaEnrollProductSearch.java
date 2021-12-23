@@ -35,9 +35,8 @@ public class AjaxQnaEnrollProductSearch extends HttpServlet {
 		String keyword = request.getParameter("keyword");
 		
 		ArrayList<Product> list = new QnaService().enrollFormProductSearch(keyword);
-		System.out.println(list);
-		System.out.println(keyword);
-		response.setContentType("applicateion/json; charcet=UTF-8");
+
+		response.setContentType("application/json; charset=UTF-8");
 		new Gson().toJson(list, response.getWriter());
 	}
 

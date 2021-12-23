@@ -103,8 +103,8 @@
 	            <div id="content">
 	           		<div class="poster">
 	           			<input type="hidden" name="num" value="<%= p.getpNo() %>">
-	                	<a href="<%=request.getContextPath()%>/detail.pro?num=<%=p.getpNo()%>">
-	                		<img src="<%=request.getContextPath()%>/<%= p.getMainImg() %>" width="100%" height="100%">
+	                	<a href="<%=contextPath%>/detail.pro?num=<%=p.getpNo()%>">
+	                		<img src="<%=contextPath%>/<%= p.getMainImg() %>" width="100%" height="100%">
 	                	</a>
 	            	</div>
 	            	<div class="info">

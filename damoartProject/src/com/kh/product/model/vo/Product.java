@@ -20,14 +20,15 @@ public class Product {
 	private String detailImg;
 	private String etc;
 	private String soldOut;
+	private int star;
 	
 	
 	public Product() {}
-
 	
+	// 상세조회
 	public Product(int pNo, String enrollDate, String title, String region, String age, String area, String sDate,
 			String eDate, String time, int aPrice, int tPrice, int cPrice, String mainImg, String detailImg, String etc,
-			String soldOut) {
+			String soldOut, int star) {
 		super();
 		this.pNo = pNo;
 		this.enrollDate = enrollDate;
@@ -45,9 +46,9 @@ public class Product {
 		this.detailImg = detailImg;
 		this.etc = etc;
 		this.soldOut = soldOut;
+		this.star = star;
 	}
-	
-	
+
 	// 무료 조회 시 사용
 	public Product(int pNo, String title, String region, String age, String area, String sDate, 
 				   String eDate, String time, String mainImg, String detailImg, String etc) {
@@ -65,6 +66,20 @@ public class Product {
 		this.etc = etc;
 	}
 	
+
+	// 별점순 정렬
+	public Product(int pNo, String area, String sDate, String eDate, String mainImg, String title, int star) {
+		super();
+		this.pNo = pNo;
+		this.area = area;
+		this.sDate = sDate;
+		this.eDate = eDate;
+		this.mainImg = mainImg;
+		this.title = title;
+		this.star = star;
+	}
+
+
 	// 상세조회 이미지에 사용
 	public Product(String detailImg) {
 		super();
@@ -216,14 +231,22 @@ public class Product {
 	public void setSoldOut(String soldOut) {
 		this.soldOut = soldOut;
 	}
-
 	
+	public int getStar() {
+		return star;
+	}
+
+	public void setStar(int star) {
+		this.star = star;
+	}
+
+
 	@Override
 	public String toString() {
 		return "Product [pNo=" + pNo + ", enrollDate=" + enrollDate + ", title=" + title + ", region=" + region
 				+ ", age=" + age + ", area=" + area + ", sDate=" + sDate + ", eDate=" + eDate + ", time=" + time
 				+ ", aPrice=" + aPrice + ", tPrice=" + tPrice + ", cPrice=" + cPrice + ", mainImg=" + mainImg
-				+ ", detailImg=" + detailImg + ", etc=" + etc + ", soldOut=" + soldOut + "]";
+				+ ", detailImg=" + detailImg + ", etc=" + etc + ", soldOut=" + soldOut + ", star=" + star + "]";
 	}
 	
 	

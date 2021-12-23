@@ -200,9 +200,6 @@
                     <a href="<%= contextPath %>/reserve.mp" id="submenu" style="color:rgb(151, 138, 116)">예매 내역</a> <br>
                     <a href="<%= contextPath %>/refund.mp" id="submenu">취소/환불 내역</a> <br>
                     <a href="<%= contextPath %>/pointList.mp" id="submenu">적립금 내역</a> <br>
-                    <hr width="120" align="left">
-                    <a href="" id="submenu">최근 본 상품</a> <br>
-                    <a href="" id="submenu">찜한 상품</a>
                 </div><br>
                 <li><h3>마이활동</h3></li>
                 <div>
@@ -232,7 +229,7 @@
                       <th colspan="2" width="470">상품</th>
                       <th width="70">수량</th>
                       <th width="110">결제금액</th>
-                      <th width="110">상태</th>
+                      <th width="110" id="orderStatus">상태</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -248,14 +245,6 @@
 	                                <p align="center">예매 내역이 없습니다.</p>
 	                            </div>
 	                        </td>
-	                    </tr>
-	                    <tr>
-	                        <td></td>
-	                        <td></td>
-	                        <td></td>
-	                        <td></td>
-	                        <td></td>
-                            <td></td>
 	                    </tr>
                     <% }else{ %>
                     <!-- 예매내역 있을 경우 -->
@@ -296,6 +285,11 @@
 	                    
                   </tbody>
                 </table>
+                
+                <div class="paging-area" align="center">
+                
+                </div>
+              
               </div>   
             
             </div>

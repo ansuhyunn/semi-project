@@ -48,7 +48,7 @@ public class MyPageReserveController extends HttpServlet {
 		request.setAttribute("list", list);
 		request.setAttribute("poi", poi);
 		request.getRequestDispatcher("views/mypage/reserveDetail.jsp").forward(request, response);
-		//response.sendRedirect(request.getContextPath() + "/reserve.mp");	
+		
 	}
 
 	/**

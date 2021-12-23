@@ -16,7 +16,7 @@ import com.kh.community.model.vo.Review;
 /**
  * Servlet implementation class ReviewMainController
  */
-@WebServlet("/list.rev")
+@WebServlet("/review.pro")
 public class ReviewMainController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -33,41 +33,41 @@ public class ReviewMainController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-			// 페이징바
-				int listCount;		
-				int currentPage; 	
-				int pageLimit; 		
-				int boardLimit;		
+	
+		int listCount;		
+		int currentPage; 	
+		int pageLimit; 		
+		int boardLimit;		
 
-				int maxPage;		
-				int startPage;		
-				int endPage;		
-				
-				listCount = new ReviewService().selectListCount();
-				
-				currentPage = Integer.parseInt(request.getParameter("cpage"));
-				
-				pageLimit = 10;
-				boardLimit = 10;
-				
-				maxPage = (int)Math.ceil((double)listCount / boardLimit);
-				startPage = (currentPage - 1) / pageLimit * pageLimit + 1;
-				endPage = startPage + pageLimit - 1;
-				
-				if(endPage > maxPage) {
-					endPage = maxPage;
-				}
-				
-				PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
-				
-				ArrayList<Review> list = new ReviewService().selectList(pi);
-				
-				request.setAttribute("pi", pi);
-				request.setAttribute("list", list);
-				
-				request.getRequestDispatcher("views/community/reviewMain.jsp").forward(request, response);
-			
-			}
+		int maxPage;		
+		int startPage;		
+		int endPage;		
+		
+		listCount = new ReviewService().selectListCount();
+		
+		currentPage = Integer.parseInt(request.getParameter("cpage"));
+		
+		pageLimit = 8;
+		boardLimit = 8;
+		
+		maxPage = (int)Math.ceil((double)listCount / boardLimit);
+		startPage = (currentPage - 1) / pageLimit * pageLimit + 1;
+		endPage = startPage + pageLimit - 1;
+		
+		if(endPage > maxPage) {
+			endPage = maxPage;
+		}
+		
+		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
+		
+		ArrayList<Review> list = new ReviewService().selectList(pi);
+		
+		request.setAttribute("pi", pi);
+		request.setAttribute("list", list);
+		
+		request.getRequestDispatcher("views/community/reviewMain.jsp").forward(request, response);
+	
+	}
 	
 
 	/**

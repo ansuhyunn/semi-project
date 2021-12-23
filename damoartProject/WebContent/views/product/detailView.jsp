@@ -37,12 +37,30 @@
 		height: 33%;
 	}
 	.poster{
+		border: 1px solid black;
 		width: 300px;
 		height: 400px;
 		float: left;
 		margin-top: 20px;
 		margin-left: 50px;
 		margin-right: 40px;
+	}
+	.poster>div{
+		border: 1px solid black;
+	}
+	#star, #review{
+		width: 50%;
+		float: left;
+	}
+	#star{
+		text-align: center;
+		font-size: x-large;
+	}
+	#review{
+		text-decoration: none;
+		text-align: center;
+		font-size: x-large;
+		color: black;
 	}
 	.info{
 		width: 500px;
@@ -64,7 +82,7 @@
 		font-weight: bolder; 
 		margin:30px; 
 		width:150px;
-		margin-left: 40px;
+		margin-left: 200px;
 		margin-top: 50px;
 		margin-bottom: 10px;
 	}
@@ -94,7 +112,11 @@
 		</div>
 		<hr class="my-2">
 		<div class="content2" >
-			<div class="poster"><img src="<%=request.getContextPath()%>/<%= p.getMainImg() %>" width="100%" height="100%"></div>
+			<div class="poster">
+				<img src="<%=request.getContextPath()%>/<%= p.getMainImg() %>" width="100%" height="100%">
+				<div id="star"> <%= p.getStar() %> </div>
+				<a id="review" href="">review </a>
+			</div>
 			<div class="info">
 				<table id="info">
 					<tr>
@@ -159,17 +181,13 @@
 		<div class="content3">
 			<button id="info1" class="btn btn-secondary" >상세정보</button>
 			<button id="info2" class="btn btn-secondary" >예매/취소안내</button>
-			<button id="info3" class="btn btn-secondary" >REVIEW</button>
-			<button id="info4" class="btn btn-secondary" >Q&A</button>
 			<hr class="my-2">
 		</div>
 		
 		<div class="content4">
 			<div class="detail"><img id="detail" src="<%=contextPath%>/<%= p.getDetailImg()%>" width="100%" height="100%"></div>
         </div>
-       <div class="content5">
-			
-        </div>
+       <div class="content5"></div>
         <br><br><br><br><br>
 
 		<script>
@@ -179,7 +197,9 @@
 					url:"ajaxImg.pro",
 					data:{pno:$("#pNo").val()},
 					success:function(result){
-						$("#detail").attr("src", "/resources/product/<%= p.getDetailImg()%>")
+						let value = '<img src=\"' + '<%=contextPath%>/<%= p.getDetailImg()%>' + '" width=\"100%\" height=\"100%\">';
+						$("#context4").html(value);
+						console.log(value);
 					},error:function(){
 						
 					}
@@ -205,27 +225,34 @@
 					url:"qna.pro",
 					data:{pno:$("#pNo").val()},
 					success:function(result){
-						let value = "";
-						let button = ""
-						if(result != null){
+						let value = "<table border=\"1px\" width=\"800px\" style=\"background-color:whitesmoke;\">"
+								  + "<tr align=\"center\" style=\"background-color: rgb(203, 185, 153);\">"
+									   + "<th width=\"80px\">분류</th>"
+									   + "<th>제목</th>"
+									   + "<th width=\"80px\">작성자</th>"
+									   + "<th width=\"80px\">작성날짜</th>"
+								  + "</tr>"
+						var btn1 = '<a class="btn" style="backgroundcolor:black;" href=' + '\"<%=contextPath%>/enrollForm.qa\">문의 등록</a>'
+						
+						if(result != ""){
 							for(let i=0; i<result.length; i++){
-								value += "<table border=\"1px solid black\" width=\"800px\">"
-										   + "<tr>"
-												+ "<th width=\"80px\">" + result[i].qCategoryCode + "</td>"
-												+ "<td>" + result[i].qTitle + "</td>"
-												+ "<td width=\"80px\">" + result[i].qWriter + "</td>"
-												+ "<td width=\"150px\">" + result[i].createDate + "</td>"
-										   +"</tr>"
-									   +"</table>";
+								value += "<tr align=\"center\">"
+											+ "<td width=\"80px\">" + result[i].qCategoryCode + "</td>"
+											+ "<td>" + result[i].qTitle + "</td>"
+											+ "<td width=\"80px\">" + result[i].qWriter + "</td>"
+											+ "<td width=\"150px\">" + result[i].createDate + "</td>"
+									   + "</tr>"
+									   
 								
-								$(".content4").html(value);
-								var btn = '<a class="btn" href=' + '\"<%=contextPath%>/enrollForm.qa\">문의 등록</a>'
-								$(".content5").html(btn);
 							}
+							value += "</table>"
+							
+							$(".content4").html(value);
 						}else{
-							$(".content4").html("문의사항이 없습니다");
-							console.log("땡!!");
+							let value = "<p align=\"center\"> 문의사항이 없습니다 </p>"
+							$(".content4").html(value);
 						} 
+						$(".content5").html(btn1);
 						
 					},error:function(){
 						console.log("에러");
@@ -233,6 +260,7 @@
 				})
 				
 			})
+			
 			
 			
 		</script>

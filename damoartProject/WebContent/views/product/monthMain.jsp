@@ -15,12 +15,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/gh/marshall-ku/infinite-scroll/dist/infiniteScroll.js"></script>
 
 <style>
 	div{ box-sizing:border-box; }
     .wrapper{
         width: 1000px;
-        height: 1200px;;
+        height: 2300px;
         top: 0; left: 0; right: 0; bottom: 0; margin: auto;
         margin-top: 50px;
     }
@@ -45,9 +47,9 @@
     .name>a:hover{font-weight: bolder; text-decoration: none; color: black;}
     .content1{
         width: 100%;
-        height: 300px;
+        height: 350px;
         margin: auto;
-        margin-top: 20px;
+        margin-top: 30px;
         margin-bottom: 50px;
     }
     .content{
@@ -56,7 +58,7 @@
         float: left;
         margin-left: 25px;
         margin-right: 25px;
-        margin-bottom: 50px;
+        margin-bottom: 80px;
         margin-top: 0px;
         display: block;
     }
@@ -95,37 +97,37 @@
             <a href="<%=request.getContextPath()%>/monthLow.pro">낮은가격순</a>
             <a href="<%=request.getContextPath()%>/monthOpen.pro">오픈날짜순</a>
             <a href="<%=request.getContextPath()%>/monthEnd.pro">마감임박순</a>
-            <a href="">별점순</a>
+            <a href="<%=request.getContextPath()%>/monthStar.pro">별점순</a>
         </div>
         <hr class="my-2">
         <div class="content1">
             <% if(monthList.isEmpty()) { %>
-        	<p> 결과가 없습니다 </p>
-        <% } else {%> 
-	        <% for(Product p : monthList){ %>
-	            <div class="content" id="">
-	           		<div class="poster">
-	                	<a href="<%=request.getContextPath()%>/detail.pro?num=<%=p.getpNo()%>">
-                            <img src="<%=request.getContextPath()%>/<%= p.getMainImg() %>" width="100%" height="100%">
-                        </a>
-	            	</div>
-	            	<div class="info">
-	                    <p class="title">
-	                        <%= p.getTitle() %>
-	                    </p>
-	                    <p class="summary">
-	                        <%= p.getsDate() %> ~ <%= p.geteDate() %><br>
-	                        <%= p.getArea() %>
-	                    </p>
-	                </div>
-	            </div>
-	        <% } %> 
-        <% } %> 
-                
+        		<p> 결과가 없습니다 </p>
+	        <% } else {%> 
+		        <% for(Product p : monthList){ %>
+		            <div class="content" id="">
+		           		<div class="poster">
+		                	<a href="<%=contextPath%>/detail.pro?num=<%=p.getpNo()%>">
+	                            <img src="<%=contextPath%>/<%= p.getMainImg() %>" width="100%" height="100%">
+	                        </a>
+		            	</div>
+		            	<div class="info">
+		                    <p class="title">
+		                        <%= p.getTitle() %>
+		                    </p>
+		                    <p class="summary">
+		                        <%= p.getsDate() %> ~ <%= p.geteDate() %><br>
+		                        <%= p.getArea() %>
+		                    </p>
+		                </div>
+		            </div>
+		         <% } %> 
+	         <% } %> 
         </div>
     </div>    
     
     <%@ include file="../common/footerbar.jsp" %>
+    
     
 </body>
 </html>

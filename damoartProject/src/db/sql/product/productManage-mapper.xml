@@ -242,6 +242,14 @@ UPDATE
 
 
 
+<!-- 전시 삭제 -->
+<entry key="deleteProduct"> 
+UPDATE PRODUCT
+   SET SOLDOUT='Y'
+ WHERE PNO = ?
+</entry>
+
+
 
 	
 	

@@ -120,10 +120,11 @@ private Properties prop = new Properties();
 				}
 				q = new QnA(rset.getInt("q_no"),
 						    rset.getString("title"),
+						    rset.getInt("mem_no"),
 						    rset.getString("q_writer"),
 						    rset.getString("secret"),
 						    rset.getString("q_title"),
-						    rset.getString("q_content"),
+						    rset.getString("q_content").replace("\r\n", "<br>"),
 						    rset.getString("create_date"),
 						    category,
 						    rset.getString("a_content"),
@@ -201,8 +202,9 @@ private Properties prop = new Properties();
 			
 			while(rset.next()) {
 				Product p = new Product();
-				p.setTitle("title");
-				p.setMainImg("main_img");
+				p.setpNo(rset.getInt("pno"));
+				p.setTitle(rset.getString("title"));
+				p.setMainImg(rset.getString("main_img"));
 				
 				list.add(p);
 			}
@@ -214,6 +216,161 @@ private Properties prop = new Properties();
 		}
 		
 		return list;
+	}
+	
+	public Product enrollFormProductSelectResult(Connection conn, int pNo) {
+		Product p = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("enrollFormProductSelectResult");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, pNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				p = new Product();
+				p.setpNo(rset.getInt("pno"));
+				p.setTitle(rset.getString("title"));
+				p.setMainImg(rset.getString("main_img"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return p;
+	}
+	
+	public int nonMemberInsertQuestion(Connection conn, QnA q) {
+		int result =0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("nonMemberInsertQuestion");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, Integer.parseInt(q.getpNo()));
+			pstmt.setString(2, q.getqWriter());
+			pstmt.setString(3, q.getqPwd());
+			pstmt.setString(4, q.getSecret());
+			pstmt.setString(5, q.getqTitle());
+			pstmt.setString(6, q.getqContent());
+			pstmt.setString(7, q.getqCategoryCode());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+		
+	}
+	
+	public int memberInsertQuestion(Connection conn, QnA q) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("memberInsertQuestion");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, Integer.parseInt(q.getpNo()));
+			pstmt.setInt(2, q.getMemNo());
+			pstmt.setString(3, q.getqWriter());
+			pstmt.setString(4, q.getSecret());
+			pstmt.setString(5, q.getqTitle());
+			pstmt.setString(6, q.getqContent());
+			pstmt.setString(7, q.getqCategoryCode());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public int insertAttachment(Connection conn, Attachment at) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertAttachment");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, at.getOriginName());
+			pstmt.setString(2, at.getChangeName());
+			pstmt.setString(3, at.getFilePath());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public int updateQuestion(Connection conn, QnA q) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateQuestion");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, q.getqTitle());
+			pstmt.setString(2, q.getqCategoryCode());
+			pstmt.setInt(3, Integer.parseInt(q.getpNo()));
+			pstmt.setString(4, q.getqContent());
+			pstmt.setString(5, q.getSecret());
+			pstmt.setInt(6, q.getqNo());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
+	public int updateAttachment(Connection conn, Attachment at) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateAttachment");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, at.getOriginName());
+			pstmt.setString(2, at.getChangeName());
+			pstmt.setString(3, at.getFilePath());
+			pstmt.setInt(4, at.getFileNo());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public int insertNewAttachment(Connection conn, Attachment at) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertNewAttachment");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, at.getRefBno());
+			pstmt.setString(2, at.getOriginName());
+			pstmt.setString(3, at.getChangeName());
+			pstmt.setString(4, at.getFilePath());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
 	}
 
 }

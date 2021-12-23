@@ -1,4 +1,4 @@
-package com.kh.product.controller.display;
+package com.kh.product.controller.display.array;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,21 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
 import com.kh.product.model.service.ProductService;
 import com.kh.product.model.vo.Product;
 
 /**
- * Servlet implementation class DetailViewImgController
+ * Servlet implementation class ArrayStarList
  */
-@WebServlet("/img.pro")
-public class DetailViewImgController extends HttpServlet {
+@WebServlet("/star.pro")
+public class ArrayStarList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DetailViewImgController() {
+    public ArrayStarList() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,14 +31,11 @@ public class DetailViewImgController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int pno = ((Product)request.getSession().getAttribute("pno")).getpNo();
-		ArrayList<Product> detailImg = new ProductService().selectDetailImg(pno);
 		
-		response.setContentType("application/json; charset=utf-8");
+		ArrayList<Product> ingList = new ProductService().selectMonthStar();
 		
-		new Gson().toJson(detailImg, response.getWriter());
-		
-		// 미완성~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		request.setAttribute("ingList", ingList);
+		request.getRequestDispatcher("views/product/ingMain.jsp").forward(request, response);
 	}
 
 	/**

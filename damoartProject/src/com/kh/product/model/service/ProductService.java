@@ -6,6 +6,7 @@ import static com.kh.common.JDBCTemplate.getConnection;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import com.kh.common.model.vo.PageInfo;
 import com.kh.product.model.dao.ManageDao;
 import com.kh.product.model.dao.ProductDao;
 import com.kh.product.model.vo.Best;
@@ -42,10 +43,11 @@ public class ProductService {
 		return list;
 	}
 	
-	public ArrayList<Product> selectPreList() {
+	
+	public ArrayList<Product> selectPreList(PageInfo pi) {
 		Connection conn = getConnection();
 		
-		ArrayList<Product> list = new ProductDao().selectPreList(conn);
+		ArrayList<Product> list = new ProductDao().selectPreList(conn, pi);
 		
 		close(conn); 
 		return list;
@@ -72,10 +74,10 @@ public class ProductService {
 	}
 	
 	
-	public ArrayList<Product> selectIngList() {
+	public ArrayList<Product> selectIngList(PageInfo pi) {
 		Connection conn = getConnection();
 		
-		ArrayList<Product> list = new ProductDao().selectIngList(conn);
+		ArrayList<Product> list = new ProductDao().selectIngList(conn, pi);
 		
 		close(conn); 
 		return list;
@@ -102,6 +104,8 @@ public class ProductService {
 	}
 	
 	
+	
+	// 무료전시 정렬
 	public ArrayList<Product> selectOpenFree(){
 		Connection conn = getConnection();
 		
@@ -120,8 +124,11 @@ public class ProductService {
 		close(conn);
 		return list;
 	}
+	//
 	
 	
+	
+	// 진행중 정렬
 	public ArrayList<Product> selectOpenDate(){
 		Connection conn = getConnection();
 		
@@ -162,7 +169,19 @@ public class ProductService {
 	}
 	
 	
+	public ArrayList<Product> selectStar(){
+		Connection conn = getConnection();
+		
+		ArrayList<Product> list = new ProductDao().selectStar(conn);
+		
+		close(conn);
+		return list;
+	}
+	//
 	
+	
+	
+	// 오픈예정 정렬
 	public ArrayList<Product> selectOpenPre(){
 		Connection conn = getConnection();
 		
@@ -189,9 +208,11 @@ public class ProductService {
 		close(conn);
 		return list;
 	}
+	//
 	
 	
 	
+	// 이달의전시 정렬
 	public ArrayList<Product> selectMonthEnd(){
 		Connection conn = getConnection();
 		
@@ -229,6 +250,19 @@ public class ProductService {
 	}
 	
 	
+	public ArrayList<Product> selectMonthStar(){
+		Connection conn = getConnection();
+		
+		ArrayList<Product> list = new ProductDao().selectMonthStar(conn);
+		
+		close(conn);
+		return list;
+	}
+	//
+	
+	
+	
+	// 상세검색결과
 	public ArrayList<Product> selectSearchList(String op1,String op2,String op3,String op4){
 		Connection conn = getConnection();
 		
@@ -238,7 +272,9 @@ public class ProductService {
 		return list;
 	}
 
-
+	
+	
+	// qna내역결과
 	public ArrayList<Qna> selectQnaList(int pno){
 		Connection conn = getConnection();
 		

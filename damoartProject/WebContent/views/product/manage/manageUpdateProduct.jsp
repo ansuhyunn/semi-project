@@ -26,24 +26,21 @@
         margin-right: auto;
         margin-top: 200px
     } 
-    .name{
-    	font-size: 16px;
-    	font-weight: border;
-    }
     form>table{
         width: 800px;
         height: 800px;
         margin: 0 auto;
     }
     #table th{text-align: center;}
-    #table td{padding-left: 20px;}
+    #table td{padding-left: 30px;}
     input{border: none;}
+    a{margin-left: 20px}
     #insert, #back{
         background-color:rgb(203, 185, 153);
         color:rgb(64, 64, 64);
         font-weight:600;
     }
-    #cancel{
+    #delete{
         background-color:rgb(151, 138, 116);
         color:white;
     }
@@ -55,9 +52,7 @@
 	<%@ include file="../../common/manageMenubar_2.jsp" %>
 	
     <div class="wrapper">
-        <div class="name" >
-            <h4>상품 상세 조회</h4>	
-		</div>
+        <div class="name" style="font-size: 24px; font-weight: bolder;">상품 수정</div>
 		<hr class="my-2">
 		<br>
         </div>

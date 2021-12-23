@@ -14,6 +14,7 @@ public class MainPageProductService {
 		Connection conn = getConnection();
 		
 		ArrayList<MainPageProduct> newList = new MainPageProductDao().selectNewList(conn);
+		//MainPageProduct newList = new MainPageProductDao().selectNewList(conn);
 		
 		close(conn); 
 		return newList;

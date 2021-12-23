@@ -6,6 +6,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <style>
     /*회원박스 스타일*/
     .mypage_top{
@@ -51,7 +58,7 @@
         height:1000px;
         background:#e1d5bf;
         margin:auto;
-        }
+    }
     #content_1, #content_2{
         box-sizing:border-box;
         height:100%;
@@ -66,15 +73,12 @@
         height:100%;
         float:left;
     }
-    #content_1{width:20%;}
-    #content_2{width:80%;}
 
     #content_1 h2{
         padding: 5px 0 20px 1px;
 		letter-spacing:-1px;
         font-size:28px;
         font-weight:700;
-        letter-spacing:-1px;
     }
     .mem-box{
         height:120px;
@@ -122,7 +126,6 @@
 
     /*content_2*/
     .contents{
-        height:30%;
         padding-top:15px;
         padding-left:30px;
     }
@@ -203,9 +206,6 @@
                     <a href="<%=request.getContextPath() %>/views/mypage/reserveDetail.jsp" id="submenu">예매 내역</a> <br>
                     <a href="<%=request.getContextPath() %>/views/mypage/refundDetail.jsp" id="submenu">취소/환불 내역</a> <br>
                     <a href="<%=request.getContextPath() %>/views/mypage/pointCheck.jsp" id="submenu">적립금 내역</a> <br>
-                    <hr width="120" align="left">
-                    <a href="<%=request.getContextPath() %>/views/mypage/recentlyViewProduct.jsp" id="submenu">최근 본 상품</a> <br>
-                    <a href="<%=request.getContextPath() %>/views/mypage/likeProduct.jsp" id="submenu">찜한 상품</a>
                 </div><br>
                 <li><h3>마이활동</h3></li>
                 <div>
@@ -272,7 +272,7 @@
                             <tr>
                                 <th height="70">* 이메일</th>
                                 <td>
-                                    <input type="text" name="emailId" value="<%= loginUser.getEmail().split("@")[0] %>"style="width:170px;"required> 
+                                    <input type="text" name="emailId" value="<%= loginUser.getEmail().split("@")[0] %>" style="width:170px;" required> 
                                     &nbsp;
                                     <select id="emailDomain" name="emailDomain" value="<%= loginUser.getEmail().split("@")[1] %>" class="email_select"> 
                                         <option value="">직접입력</option> 

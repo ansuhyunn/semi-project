@@ -189,10 +189,12 @@
                 <a id="list" href="<%= contextPath %>/list.qa?cpage=1" class="btn btn-sm">목록가기</a>			
             </div>
             <div align="right">
-                <a id="delete" href="" class="btn btn-sm">삭제하기</a>
-                <% if(q.getaContent() == null) { %>
-                    <a id="update" href="<%=contextPath %>/updateForm.qa?qno=<%=q.getqNo() %>" class="btn btn-sm">수정하기</a>
-                <% } %>
+            	<%if(loginUser.getNickName().equals(q.getqWriter())) { %>
+	                <a id="delete" href="" class="btn btn-sm">삭제하기</a>
+	                <% if(q.getaContent() == null) { %>
+	                    <a id="update" href="<%=contextPath %>/updateForm.qa?qno=<%=q.getqNo() %>" class="btn btn-sm">수정하기</a>
+	                <% } %>
+	            <% } %>
             </div>
         </div>
             

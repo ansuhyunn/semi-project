@@ -34,7 +34,7 @@ public class AdminQnaUpdateController extends HttpServlet {
 		int adminNo = Integer.parseInt(request.getParameter("adminNo"));
 		String answer = request.getParameter("answer");
 		
-		int result = new QnaService().insertQnA(qNo, answer, adminNo);
+		int result = new QnaService().insertAnswer(qNo, answer, adminNo);
 		
 		if(result > 0) {
 			request.getSession().setAttribute("alertMsg", "답변이 성공적으로 수정되었습니다.");

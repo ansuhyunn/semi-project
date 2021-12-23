@@ -47,9 +47,6 @@ SELECT
  ORDER BY E_DATE
 </entry>
 
-<!-- 별점순은 데이터 나오면 하기 -->
-
-
 
 
 <!-- 진행중 전시 상품정렬 -->
@@ -134,6 +131,28 @@ SELECT
 <![CDATA[WHERE FLOOR(MONTHS_BETWEEN(SYSDATE, TO_DATE(S_DATE, 'RRRRMMDD'))) >= 0 ]]>
   AND SOLDOUT = 'N'
 ORDER BY A_PRICE
+</entry>
+
+
+<!-- 별점순 -->
+<entry  key="star">
+SELECT DISTINCT
+  	   PNO
+	 , AREA
+	 , TO_CHAR(TO_DATE(S_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') S_DATE
+	 , TO_CHAR(TO_DATE(E_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') E_DATE
+	 , MAIN_IMG
+     , A.*
+  FROM (SELECT TITLE, ROUND(AVG(REVIEW_STAR), 1) AS REVIEW_STAR
+          FROM PRODUCT
+          JOIN "ORDER_P" USING (PNO)
+          JOIN REVIEW USING (ORDER_NO)
+         GROUP BY TITLE) A
+  JOIN PRODUCT P ON (P.TITLE = A.TITLE)
+  JOIN "ORDER_P" O USING (PNO)
+  JOIN REVIEW R USING (ORDER_NO)
+<![CDATA[WHERE FLOOR(MONTHS_BETWEEN(SYSDATE, TO_DATE(S_DATE, 'RRRRMMDD'))) >= 0 ]]>
+ ORDER BY A.REVIEW_STAR DESC
 </entry>
 
 
@@ -223,6 +242,7 @@ SELECT
  WHERE SUBSTR(S_DATE, 5, 2) = TO_CHAR(SYSDATE, 'MM')
    AND SOLDOUT = 'N'
 ORDER BY A_PRICE DESC
+
 </entry>
 
 <!-- 낮은가격정렬 -->
@@ -285,9 +305,30 @@ SELECT
 ORDER BY E_DATE
 </entry>
 
+<!-- 별점순 -->
+<entry  key="MonthStar">
+SELECT DISTINCT
+  	   PNO
+	 , AREA
+	 , TO_CHAR(TO_DATE(S_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') S_DATE
+	 , TO_CHAR(TO_DATE(E_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') E_DATE
+	 , MAIN_IMG
+     , A.*
+  FROM (SELECT TITLE, ROUND(AVG(REVIEW_STAR), 1) AS REVIEW_STAR
+          FROM PRODUCT
+          JOIN "ORDER_P" USING (PNO)
+          JOIN REVIEW USING (ORDER_NO)
+         GROUP BY TITLE) A
+  JOIN PRODUCT P ON (P.TITLE = A.TITLE)
+  JOIN "ORDER_P" O USING (PNO)
+  JOIN REVIEW R USING (ORDER_NO)
+ WHERE SUBSTR(S_DATE, 5, 2) = TO_CHAR(SYSDATE, 'MM')
+ ORDER BY A.REVIEW_STAR DESC
+</entry>
 
-<!-- 베스트 전시 -->
-<!-- 월간 -->
+
+
+<!-- 월간 베스트 전시 -->
 <entry key="bestMonth">
 SELECT *
   FROM (
@@ -299,13 +340,17 @@ SELECT *
                              , SUM(ORDER_COUNT) COUNT
                           FROM ORDER_P
                           JOIN "ORDER" USING (ORDER_NO)
-                        <![CDATA[ WHERE FLOOR(SYSDATE - TO_DATE(ORDER_DATE)) <= 31
+                          <![CDATA[WHERE FLOOR(SYSDATE - TO_DATE(ORDER_DATE)) <= 31
                            AND FLOOR(SYSDATE - TO_DATE(ORDER_DATE)) >= 0]]>
                           GROUP BY PNO
                           ORDER BY COUNT DESC)
                   JOIN PRODUCT USING (PNO)
+                  WHERE SOLDOUT = 'N'
 			 ) A
 		 )
 </entry>
+
+
+	
 	
 </properties>
