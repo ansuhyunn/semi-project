@@ -73,33 +73,41 @@
     /* 장바구니 하단 스타일 */
     .cart_bottom{
         margin-top:20px;
-        margin-left:310px;
+        margin: auto;
         font-size: 13px;
         padding: 5px;    
-    }
-
-    .cart_bottom>a{
-        margin-left: 10px;
-        text-decoration: none;
-        color: black;
+        width: 950px;
+        height: 100px;
     }
 
     .cart_bottom>b{
-        margin-right: 310px;
         float: right;
         font-size: 13px;
         padding: 5px;
+        margin-top: 15px;
+        margin-right: 20px;
     }
 
-    .button>.btn{
+
+    #goPay{
         float: right;
-        margin-top: 10px;
-        margin-right: 310px;
-        width: 100px;
-        height: 35px;
+        margin: 30px;
         background-color: rgb(182, 167, 141);
         font-size: 14px;
+        height: 35px;
+        margin-top: 10px;
+        width: 100px;
     }
+    #delete{
+       color: whitesmoke;
+       background-color: rgba(78, 67, 44, 0.7);
+       float: left;
+       margin: 30px;
+       font-size: 14px;
+       height: 35px;
+       margin-top: 10px;
+       width: 150px;
+   }
   
 </style>
 </head>
@@ -292,14 +300,13 @@
     
     <!-- 장바구니 하단 -->
     <div class="cart_bottom" width="800">
-    <!-- 걍 전체 지우기 이런거로,, 장바구니 비우기라던가 -->
-        <button class="btn deleteCart" onclick="deleteCart();">장바구니 비우기</button>
+        <button class="btn" id="delete" onclick="deleteCart();">장바구니 비우기</button>
+        <a href="<%=contextPath%>/order.ca" button type="submit" class="btn" id="goPay"><b>주문하기</b></a>
         <b>결제금액 28000￦</b>
+         
     </div>
     <br>
-    <div class="button">
-     <a href="<%=contextPath%>/order.ca" button type="submit" class="btn"><b>주문하기</b></a>
-   
+    
    <script>
 	function deleteCart(){
 	console.log("카트비우기 되나?")
@@ -316,7 +323,6 @@
 		})
 	}
     </script>
-    </div>
 
 
     <br><br><br><br><br><br><br><br>
