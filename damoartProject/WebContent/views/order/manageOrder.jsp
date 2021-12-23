@@ -134,16 +134,18 @@ ArrayList<ManageOrder> list = (ArrayList<ManageOrder>)request.getAttribute("list
     </div>
         <br><br><br>
         <!--주문 현황-->
+        <% for(ManageOrder m : list) { %>
         <div class="order_chart" align="center">
            <div class="box new_order">
-                신규주문&nbsp;&nbsp; 14
+                신규주문&nbsp;&nbsp; <%= m.getOrderCount() %>
            </div>
            <div class="box com_order">
-               결제완료&nbsp;&nbsp; 8
+               결제완료&nbsp;&nbsp; <%= m.getOrderStatus().equals("P") %>
            </div>
            <div class="box wait_order">
-                입금대기&nbsp;&nbsp; 6
+                입금대기&nbsp;&nbsp; <%= m.getOrderStatus().equals("W") %>
            </div>
+        <% } %>
         </div>
         
         <!--조회기간 날짜 선택-->

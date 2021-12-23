@@ -65,6 +65,14 @@ public class Cart {
 		this.cartOpt = cartOpt;
 		this.cartCount = cartCount;
 	}
+	   
+	   
+
+
+	public Cart(int memNo) {
+		super();
+		this.memNo = memNo;
+	}
 
 
 	public int getmemNo() {

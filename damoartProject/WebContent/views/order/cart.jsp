@@ -2,6 +2,7 @@
     pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.order.model.vo.Cart"%>
 <% 
 	ArrayList<Cart> list = (ArrayList<Cart>)request.getAttribute("list");
+
 %>
 <!DOCTYPE html>
 <html>
@@ -15,7 +16,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    
+
 
 <style>
 
@@ -117,11 +118,11 @@
     <div class="cart_name" align="center">
         <table>
             <tr id="cart_name" height=40>
-                <th colspan="3" width=400>상품</th>
+                <th colspan="2" width=400>상품</th>
                 <th width=130>옵션</th>
                 <th width=90>수량</th>
                 <th width=90>결제금액</th>
-                <th width=90>적립예상금액</th>
+                <th width=100>적립예상금액</th>
             </tr>
 
 	<!-- 로그인 조건 -->
@@ -144,9 +145,8 @@
             
             <!--상품 품절일 때-->
             <tr id="cart_content">
-                <td width="50"><input type="checkbox" ></td>
-                <td width="200"><img src= "<%=request.getContextPath()%>/resources/images/product/1M.gif" width="80px" height="80px"></td>
-                <td width="200" id="soldout">
+                <td width="220"><img src= "<%=request.getContextPath()%>/resources/images/product/1M.gif" width="80px" height="80px"></td>
+                <td width="230" id="soldout">
 						   <%= c.getTitle() %>
                       <br> <%= c.getArea() %>
                       <br><%= c.getsDate() %> ~ <%= c.geteDate() %>
@@ -157,7 +157,6 @@
             </div>
  			</tr> 
                 <tr id="cart_content>">
-                    <td class="" width="50"><input class="chkState" type="checkbox"></td>
                     <td width="200"><img src= "<%=request.getContextPath()%> 이미지 " width="80px" height="80px"></td>
                     <td width="200">
                       	   <%= c.getTitle() %>
@@ -200,6 +199,7 @@
 	<%} %>
     </table>    	
     <script>    	
+    /*
 	function rqOrder(){
 		debugger
 		let chekObj = document.getElementsByClassName("chkState");
@@ -216,7 +216,8 @@
    		    }
    		  }
    		  /* 주문하기 화면으로 이동하기 */
-   		  
+   		
+   		 /*
    		$.ajax({
    			url : "/list.ca",
 			data : {
@@ -239,13 +240,13 @@
 						console.log("ㅠㅠㅠ");
 					}
 				})
-				*/
 			},error:function(){
 				console.log("ㅠㅠㅠ");
 			}
 		})
 		
 	}
+	*/
 	/* $('.btn_order').on('click',function(){
 		debugger
 		let chekObj = document.getElementsByClassName("chkState");
@@ -264,6 +265,8 @@
 	})
 	*/
 </script>
+<!-- 
+
     	/* $('.btn_order').on('click',function(){
     		debugger
     		let chekObj = document.getElementsByClassName("chkState");
@@ -281,23 +284,45 @@
 	   		  }
     	})
     	*/
+ -->
+
     </script>
     </div>
     
+    
     <!-- 장바구니 하단 -->
     <div class="cart_bottom" width="800">
-        <input type="checkbox"> 전체선택
-        <a href="">선택삭제</a>
+    <!-- 걍 전체 지우기 이런거로,, 장바구니 비우기라던가 -->
+        <button class="btn deleteCart" onclick="deleteCart();">장바구니 비우기</button>
         <b>결제금액 28000￦</b>
     </div>
     <br>
-    <div class="" style="display:block;width:80px;height:30px;">
-      <button type="submit" class="btn_order" onclick="rqOrder()"><b>주문하기</b></button>
+    <div class="button">
+     <a href="<%=contextPath%>/order.ca" button type="submit" class="btn"><b>주문하기</b></a>
+   
+   <script>
+	function deleteCart(){
+	console.log("카트비우기 되나?")
+		$.ajax({
+			url:"out.ca",
+				type:"post",
+	             success:function(result){
+	                console.log("ajax통신 성공: " + result);
+	                alert("성공적으로 장바구니를 비웠습니다.");
+	                location.reload()
+				}, error : function(){
+	               console.log("ajax통신 실패"); 
+	               }
+		})
+	}
+    </script>
     </div>
 
 
     <br><br><br><br><br><br><br><br>
     
     <%@ include file="../common/footerbar.jsp" %>
+    
+
 </body>
 </html>

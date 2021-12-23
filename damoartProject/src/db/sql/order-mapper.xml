@@ -12,8 +12,34 @@ SELECT
  , A_PRICE
  , T_PRICE
  , C_PRICE
+ , MEM_NAME
+ , PHONE
+ , EMAIL
+ , C.MEM_NO
  FROM CART C
  JOIN PRODUCT P ON (C.PNO = P.PNO)
+ JOIN MEMBER M ON (C.MEM_NO = M.MEM_NO)
+ WHERE C.MEM_NO = ?
+</entry>
+
+<entry key="selectOrder">
+SELECT
+        PAY_NO,
+        ORDER_NO,
+        PAY_OPT,
+        PAY_DATE,
+        PAY_PRICE,
+        TITLE,
+        M.MEM_NAME,
+        M.MEM_NO
+FROM "ORDER" O
+JOIN PAY P ON (O.ORDER_NO = P.ORDER_NO)
+JOIN ORDER_P PP ON (O.ORDER_NO = PP.ORDER_NO)
+JOIN PRODUCT PPP ON (PP.PNO = PPP.PNO)
+JOIN MEMBER M ON (M.MEM_NO = O.MEM_NO)
+WHERE O.ORDER_NO = ?
+        
+        
 </entry>
 
 

@@ -20,7 +20,7 @@ public class CartDao {
 
 	private Properties prop = new Properties();
 	
-	int memNo = -1;
+	int memNo = 0;
 	
 	
 	public CartDao() {
@@ -48,10 +48,12 @@ public class CartDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String sql = prop.getProperty("selectCartList");
+		System.out.println(rset);
+		System.out.println("카트 왜 안나오지? " + memNo);
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, this.memNo); // memNo으로 바꿔야됨
+			pstmt.setInt(1, this.memNo);
 			rset = pstmt.executeQuery();
 			
 			System.out.println("memNo: " + this.memNo);
@@ -75,15 +77,17 @@ public class CartDao {
 								  ));
 			}
 
-			System.out.println("end");
+			System.out.println(" cart list : " + list);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close(rset);
 			close(pstmt);
 		} 
+		
 		return list;
 	} 
+	
 	
 	public int insertCart(Connection conn, Cart c) {
 		int result = 0;
@@ -96,6 +100,26 @@ public class CartDao {
 			pstmt.setInt(2, c.getpNo());
 			pstmt.setString(3, c.getCartOpt());
 			pstmt.setInt(4, c.getCartCount());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(conn);
+		}
+		return result;
+	}
+
+	public int deleteCart(Connection conn, Cart c) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteCart");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, c.getmemNo());
 			
 			result = pstmt.executeUpdate();
 			

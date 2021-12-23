@@ -40,7 +40,11 @@ SELECT
     WHERE MEM_NO = ?
 </entry>
 
-
+<entry key="deleteCart">
+DELETE FROM CART C
+WHERE
+    MEM_NO = ?
+</entry>
 </properties>
 
 
