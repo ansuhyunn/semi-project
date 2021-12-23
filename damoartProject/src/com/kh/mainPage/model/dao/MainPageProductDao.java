@@ -29,7 +29,7 @@ public class MainPageProductDao {
 	// new전시
 	
 	public ArrayList<MainPageProduct> selectNewList(Connection conn){
-		ArrayList<MainPageProduct> newList = new ArrayList<>();
+		ArrayList<MainPageProduct> nlist = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String sql = prop.getProperty("selectNewPorduct");
@@ -39,13 +39,13 @@ public class MainPageProductDao {
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
-				newList.add(new MainPageProduct(rset.getInt("PNO"),
-									 		    rset.getString("TITLE"),
-									 		    rset.getString("REGION"),
-									 		    rset.getString("AREA"),
-									 		    rset.getString("S_DATE"),
-									 		    rset.getString("E_DATE"),
-									 		    rset.getString("MAIN_IMG")));
+				nlist.add(new MainPageProduct(rset.getInt("PNO"),
+									 		  rset.getString("TITLE"),
+									 		  rset.getString("REGION"),
+									 		  rset.getString("AREA"),
+									 		  rset.getString("S_DATE"),
+									 		  rset.getString("E_DATE"),
+									 		  rset.getString("MAIN_IMG")));
 			}	
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -53,36 +53,36 @@ public class MainPageProductDao {
 			close(rset);
 			close(pstmt);
 		}
-		return newList;
+		return nlist;
 	}
 	
-	/*
-	public MainPageProduct selectNewList(Connection conn){
-		MainPageProduct newList = null;
+
+	public ArrayList<MainPageProduct> selectPreList(Connection conn){
+		ArrayList<MainPageProduct> plist = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String sql = prop.getProperty("selectNewPorduct");
+		String sql = prop.getProperty("selectPrePorduct");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
-				newList = new MainPageProduct(rset.getInt("PNO"),
-									 		    rset.getString("TITLE"),
-									 		    rset.getString("REGION"),
-									 		    rset.getString("AREA"),
-									 		    rset.getString("S_DATE"),
-									 		    rset.getString("E_DATE"),
-									 		    rset.getString("MAIN_IMG"));
-			}	
+				plist.add(new MainPageProduct(rset.getInt("pno"),
+											  rset.getString("TITLE"),
+											  rset.getString("REGION"),
+											  rset.getString("AREA"),
+											  rset.getString("S_DATE"),
+											  rset.getString("E_DATE"),
+											  rset.getString("MAIN_IMG")));
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close(rset);
 			close(pstmt);
 		}
-		return newList;
+		
+		return plist;
 	}
-	*/
 }

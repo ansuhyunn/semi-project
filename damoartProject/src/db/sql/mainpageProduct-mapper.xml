@@ -1,10 +1,32 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
-
+	<!-- new전시 조회 -->
 	<entry key="selectNewPorduct">
 		SELECT *
-		  	FROM (
+	  	FROM (
+	        SELECT ROWNUM RNUM, A.*
+		  	  FROM (
+		             SELECT 
+	                       PNO
+						 , TITLE
+						 , REGION
+						 , AREA
+						 , TO_CHAR(TO_DATE(S_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') S_DATE
+						 , TO_CHAR(TO_DATE(E_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') E_DATE
+						 , MAIN_IMG
+	                   FROM PRODUCT
+			           <![CDATA[WHERE FLOOR(MONTHS_BETWEEN(SYSDATE, TO_DATE(S_DATE, 'RRRRMMDD'))) >= 0 ]]>
+					  ORDER BY 1 DESC
+				 ) A
+			)
+	WHERE RNUM BETWEEN 1 AND 4	
+	</entry>
+
+	<!-- 오픈예정전시 조회 -->
+	<entry key="selectPrePorduct">
+		SELECT *
+		  FROM (
 		        SELECT ROWNUM RNUM, A.*
 			  	  FROM (
 			             SELECT 
@@ -14,31 +36,15 @@
 							 , AREA
 							 , TO_CHAR(TO_DATE(S_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') S_DATE
 							 , TO_CHAR(TO_DATE(E_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') E_DATE
-							 , TIME
 							 , MAIN_IMG
-							 , DETAIL_IMG
-							 , ETC
 		                   FROM PRODUCT
-				           <![CDATA[WHERE FLOOR(MONTHS_BETWEEN(SYSDATE, TO_DATE(S_DATE, 'RRRRMMDD'))) >= 0 ]]>
-						  ORDER BY 1 DESC
+				           <![CDATA[WHERE FLOOR(MONTHS_BETWEEN(SYSDATE, TO_DATE(S_DATE))) < 0 ]]>
+				           AND SOLDOUT = 'N'
+						  ORDER BY S_DATE DESC
 					 ) A
 				)
-		WHERE RNUM BETWEEN 1 AND 4	
+		 WHERE RNUM BETWEEN 1 AND 4
 	</entry>
-	<!--    SELECT ROWNUM, P.*
-		  FROM	(SELECT 
-					   PNO
-					 , TITLE
-					 , REGION
-					 , AREA
-					 , TO_CHAR(TO_DATE(S_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') S_DATE
-					 , TO_CHAR(TO_DATE(E_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') E_DATE  
-					 , MAIN_IMG
-				  FROM PRODUCT
-				 WHERE SOLDOUT = 'N'
-				 ORDER
-				    BY ENROLL_DATE DESC) P
-		 <![CDATA[WHERE ROWNUM <= 4]]> -->	
 	
 	
 	
