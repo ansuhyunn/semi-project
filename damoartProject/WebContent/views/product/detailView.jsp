@@ -172,17 +172,17 @@
 						<tr>
 							<th >옵션선택</th>
 							<td>
-								<select name="option" >
+								<select name="option" id="option" >
 									<option value="A">성인</option>
 									<option value="T">청소년</option>
 									<option value="C">소아</option>
 								</select>
 							</td>
 							<th>수량</th>
-							<td><input type="number" style="width: 50px;"></td>
+							<td><input type="number" id="count" style="width: 50px;"></td>
 						</tr>
 					</table>
-					<button class="btn btn-secondary" id="insertCart">선택</button>
+					<button class="btn btn-secondary" id="insertCart" onclick="insertCart();">선택</button>
 			
 				<table id="result">
 					<tr>
@@ -278,7 +278,7 @@
 				
 			})
 			
-			$(".insertCart").on('click',function(){
+			function insertCart(){
 				$.ajax({
 					url:"in.ca",
 					data:{
@@ -290,11 +290,11 @@
  		             success:function(result){
  		                console.log("ajax통신 성공: " + result);
  		                alert("성공적으로 장바구니에 담겼습니다.");
- 					}, error : function(){
+ 						}, error : function(){
  		               console.log("ajax통신 실패"); 
  		               }
 				})
-			})
+			}
 			
 			
 			
