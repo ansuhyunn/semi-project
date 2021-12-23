@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.kh.mainPage.model.service.MainPageProductService;
 import com.kh.mainPage.model.vo.MainPageProduct;
@@ -32,12 +33,18 @@ public class MainPageProductController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		//ArrayList<MainPageProduct> newList = new MainPageProductService().selectNewList();
+		ArrayList<MainPageProduct> newList = new MainPageProductService().selectNewList();
 		
-		MainPageProduct newList = new MainPageProductService().selectNewList();
+		//MainPageProduct newList = new MainPageProductService().selectNewList();
 		
-		request.setAttribute("newList", newList);
-		request.getRequestDispatcher("views/common/mainPage.jsp").forward(request, response);
+		if(newList == null) {
+			
+		}else {
+			HttpSession session = request.getSession();
+			session.setAttribute("newList", newList);
+			
+			response.sendRedirect("views/common/mainPage.jsp");
+		}
 	}
 
 	/**

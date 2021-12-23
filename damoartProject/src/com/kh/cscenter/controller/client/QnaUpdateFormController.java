@@ -1,25 +1,28 @@
-package com.kh.cscenter.controller.admin;
+package com.kh.cscenter.controller.client;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.common.model.vo.Attachment;
 import com.kh.cscenter.model.service.QnaService;
+import com.kh.cscenter.model.vo.QnA;
 
 /**
- * Servlet implementation class AdminQnaUpdateController
+ * Servlet implementation class QnaUpdateFormController
  */
-@WebServlet("/adminUpdate.qa")
-public class AdminQnaUpdateController extends HttpServlet {
+@WebServlet("/updateForm.qa")
+public class QnaUpdateFormController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminQnaUpdateController() {
+    public QnaUpdateFormController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,20 +31,14 @@ public class AdminQnaUpdateController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		
 		int qNo = Integer.parseInt(request.getParameter("qno"));
-		int adminNo = Integer.parseInt(request.getParameter("adminNo"));
-		String answer = request.getParameter("answer");
 		
-		int result = new QnaService().insertAnswer(qNo, answer, adminNo);
+		QnA q = new QnaService().selectQnA(qNo);
+		Attachment at = new QnaService().selectAttachment(qNo);
 		
-		if(result > 0) {
-			request.getSession().setAttribute("alertMsg", "답변이 성공적으로 수정되었습니다.");
-			response.sendRedirect(request.getContextPath() + "/adminDetail.qa?qno=" + Integer.parseInt(request.getParameter("qno")));
-		}else { //에러페이지
-			
-		}
+		request.setAttribute("q", q);
+		request.setAttribute("at", at);
+		request.getRequestDispatcher("views/cscenter/client/qnaUpdateForm.jsp").forward(request, response);
 	}
 
 	/**

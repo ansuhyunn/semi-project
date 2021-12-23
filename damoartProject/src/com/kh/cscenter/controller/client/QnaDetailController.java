@@ -39,7 +39,7 @@ public class QnaDetailController extends HttpServlet {
 		
 		request.setAttribute("q", q);
 		request.setAttribute("at", at);
-		
+		System.out.println(q);
 		request.getRequestDispatcher("views/cscenter/client/qnaDetailView.jsp").forward(request, response);
 		
 		

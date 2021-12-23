@@ -33,6 +33,7 @@
 		SELECT
 		       Q_NO
 		     , TITLE
+		     , Q.MEM_NO
 		     , Q_WRITER
 		     , SECRET
 		     , Q_TITLE
@@ -43,7 +44,7 @@
 		     , A_CREATE_DATE
 		     , NICKNAME
 		     , MAIN_IMG
-		  FROM QNA
+		  FROM QNA Q
 		  LEFT JOIN PRODUCT USING (PNO)
 		  LEFT JOIN MEMBER M ON (MEM_NO2 = M.MEM_NO)
 		 WHERE Q_NO = ?
@@ -84,5 +85,118 @@
 		     , MAIN_IMG
 		  FROM PRODUCT
 		 WHERE PNO = ?
+	</entry>
+	
+	<entry key="nonMemberInsertQuestion">
+		INSERT 
+		  INTO QNA
+		     (  
+		       Q_NO
+		     , PNO
+		     , Q_WRITER
+		     , Q_PWD
+		     , SECRET
+		     , Q_TITLE
+		     , Q_CONTENT
+		     , Q_CATEGORY_CODE
+		     )
+		     VALUES
+		     (
+		       SEQ_QNO.NEXTVAL
+		     , ?
+		     , ?
+		     , ?
+		     , ?
+		     , ?
+		     , ?
+		     , ?
+		     )
+	</entry>
+	
+	<entry key="memberInsertQuestion">
+		INSERT 
+		  INTO QNA
+		     (  
+		       Q_NO
+		     , PNO
+		     , MEM_NO
+		     , Q_WRITER
+		     , SECRET
+		     , Q_TITLE
+		     , Q_CONTENT
+		     , Q_CATEGORY_CODE
+		     )
+		     VALUES
+		     (
+		       SEQ_QNO.NEXTVAL
+		     , ?
+		     , ?
+		     , ?
+		     , ?
+		     , ?
+		     , ?
+		     , ?
+		     )
+	</entry>
+	
+	<entry key="insertAttachment">
+		INSERT
+			  INTO ATTACHMENT
+			     ( FILE_NO
+			     , REF_B
+			     , REF_BNO
+			     , ORIGIN_NAME
+			     , CHANGE_NAME
+			     , FILE_PATH
+			     )
+			     VALUES
+			     (
+			       SEQ_ANO.NEXTVAL
+			     , 'QnA'
+			     , SEQ_QNO.CURRVAL
+			     , ?
+			     , ?
+			     , ?
+			     )
+	</entry>
+	
+	<entry key="updateQuestion">
+		UPDATE QNA
+		   SET Q_TITLE = ?
+		   	 , Q_CATEGORY_CODE = ?
+		   	 , PNO = ?
+		     , Q_CONTENT = ?
+		     , SECRET = ?
+		 WHERE Q_NO = ?
+	</entry>
+	
+	<entry key="updateAttachment">
+		UPDATE ATTACHMENT
+		   SET ORIGIN_NAME = ?
+		     , CHANGE_NAME = ?
+		     , FILE_PATH = ?
+		 WHERE FILE_NO = ?
+	</entry>
+	
+	<entry key="insertNewAttachment">
+		INSERT 
+		  INTO ATTACHMENT
+		     (  
+		       FILE_NO
+		     , REF_B
+		     , REF_BNO
+		     , ORIGIN_NAME
+		     , CHANGE_NAME
+		     , FILE_PATH
+		     )
+		     VALUES
+		     (
+		       SEQ_ANO.NEXTVAL
+		     , 'QnA'
+		     , ?
+		     , ?
+		     , ?
+		     , ?
+		     )
 	</entry>
 </properties>

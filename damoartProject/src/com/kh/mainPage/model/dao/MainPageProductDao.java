@@ -27,7 +27,7 @@ public class MainPageProductDao {
 	}
 	
 	// new전시
-	/*
+	
 	public ArrayList<MainPageProduct> selectNewList(Connection conn){
 		ArrayList<MainPageProduct> newList = new ArrayList<>();
 		PreparedStatement pstmt = null;
@@ -55,8 +55,8 @@ public class MainPageProductDao {
 		}
 		return newList;
 	}
-	*/
 	
+	/*
 	public MainPageProduct selectNewList(Connection conn){
 		MainPageProduct newList = null;
 		PreparedStatement pstmt = null;
@@ -84,4 +84,5 @@ public class MainPageProductDao {
 		}
 		return newList;
 	}
+	*/
 }
