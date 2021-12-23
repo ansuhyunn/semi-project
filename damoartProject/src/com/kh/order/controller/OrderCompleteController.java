@@ -15,27 +15,26 @@ import com.kh.order.model.service.OrderService;
 import com.kh.order.model.vo.Order;
 
 /**
- * Servlet implementation class OrderController
+ * Servlet implementation class OrderCompleteController
  */
-@WebServlet("/order.ca")
-public class OrderController extends HttpServlet {
+@WebServlet("/orcom.ca")
+public class OrderCompleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-   
-	
+       
 	public OrderService service = new OrderService();
     private ArrayList<Order> list = new ArrayList<Order>();
+    
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public OrderController() {
+    public OrderCompleteController() {
         super();
         // TODO Auto-generated constructor stub
     }
-    
+
     public int getMemNo() {
     	return service.getMemNo();
     }
-
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -48,12 +47,9 @@ public class OrderController extends HttpServlet {
 		
 		this.service.setMemNo(memNo.getMemNo());
 		this.list = service.selectOrderList();
-		System.out.println("controller this.list 했을때 : " + this.list);
-
+	
 		request.setAttribute("list", list);
-		request.getRequestDispatcher("views/order/orderPage.jsp").forward(request, response);
-		
-		System.out.println("memNo" + memNo);
+		request.getRequestDispatcher("views/order/order.jsp").forward(request, response);	
 		}
 	}
 

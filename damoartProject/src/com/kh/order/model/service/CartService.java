@@ -36,8 +36,6 @@ public class CartService {
 		return this.dao.getMemNo();
 	}
 	
-		
-	
 	public int insertCart(Cart c) {
 		Connection conn = getConnection();
 		int result = new CartDao().insertCart(conn, c);
@@ -49,5 +47,16 @@ public class CartService {
 		close(conn);
 		return result;
 	}
-	
+
+	public int deleteCart(Cart c) {
+		Connection conn = getConnection();
+		int result = new CartDao().deleteCart(conn, c);
+		if(result > 0) {
+			commit (conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
 }	

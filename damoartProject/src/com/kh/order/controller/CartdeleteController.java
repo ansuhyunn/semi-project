@@ -1,60 +1,44 @@
 package com.kh.order.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.kh.member.model.vo.Member;
-import com.kh.order.model.service.OrderService;
-import com.kh.order.model.vo.Order;
+import com.kh.order.model.service.CartService;
+import com.kh.order.model.vo.Cart;
 
 /**
- * Servlet implementation class OrderController
+ * Servlet implementation class CartdeleteController
  */
-@WebServlet("/order.ca")
-public class OrderController extends HttpServlet {
+@WebServlet("/out.ca")
+public class CartdeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-   
-	
-	public OrderService service = new OrderService();
-    private ArrayList<Order> list = new ArrayList<Order>();
+       
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public OrderController() {
+    public CartdeleteController() {
         super();
         // TODO Auto-generated constructor stub
-    }
-    
-    public int getMemNo() {
-    	return service.getMemNo();
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		 
+		int memNo = ((Member)request.getSession().getAttribute("loginUser")).getMemNo();
 
-		HttpSession session = request.getSession();
-		Member memNo = (Member) session.getAttribute("loginUser");
 		
-		if( memNo != null) {
+		Cart c = new Cart();
+		c.setmemNo(memNo);
 		
-		this.service.setMemNo(memNo.getMemNo());
-		this.list = service.selectOrderList();
-		System.out.println("controller this.list 했을때 : " + this.list);
-
-		request.setAttribute("list", list);
-		request.getRequestDispatcher("views/order/orderPage.jsp").forward(request, response);
-		
-		System.out.println("memNo" + memNo);
-		}
+		int result = new CartService().deleteCart(c);
+		response.getWriter().print(result);
 	}
 
 	/**
