@@ -88,6 +88,38 @@ public class NoticeDao {
 
 	}
 	
+	public ArrayList<Notice> selectList(Connection conn) {
+		ArrayList<Notice> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, 1);
+			pstmt.setInt(2, 5);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Notice(rset.getInt("notice_no"),
+								    rset.getString("nickname"),
+								    rset.getString("notice_title"),
+								    rset.getString("create_date"),
+								    rset.getInt("count")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+
+	}
+	
 	public int increaseCount(Connection conn, int noticeNo) {
 		int result = 0;
 		PreparedStatement pstmt = null;

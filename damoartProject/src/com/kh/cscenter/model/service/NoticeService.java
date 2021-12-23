@@ -30,6 +30,13 @@ public class NoticeService {
 		return list;
 	}
 	
+	public ArrayList<Notice> selectList() {
+		Connection conn = getConnection();
+		ArrayList<Notice> list = new NoticeDao().selectList(conn);
+		close(conn);
+		return list;
+	}
+	
 	public int increaseCount(int noticeNo) {
 		Connection conn = getConnection();
 		

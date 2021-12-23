@@ -27,6 +27,15 @@ public class FaqService {
 		return list;
 	}
 	
+	public ArrayList<FAQ> selectList() {
+		Connection conn = getConnection();
+		ArrayList<FAQ> list = new FaqDao().selectList(conn);
+		close(conn);
+		return list;
+	}
+	
+	
+	
 	public FAQ selectFaq(int FaqNo) {
 		Connection conn = getConnection();
 		FAQ f = new FaqDao().selectFaq(conn, FaqNo);

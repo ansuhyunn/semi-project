@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.ArrayList, com.kh.cscenter.model.vo.FAQ, com.kh.cscenter.model.vo.QnA, com.kh.cscenter.model.vo.Notice" %>
+<%
+	ArrayList<FAQ> fList = (ArrayList<FAQ>)request.getAttribute("fList");
+	ArrayList<QnA> qList = (ArrayList<QnA>)request.getAttribute("qList");
+	ArrayList<Notice> nList = (ArrayList<Notice>)request.getAttribute("nList");
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -123,110 +130,24 @@
             <br>
             <hr>
             <div id="faq_area" style="height:auto">
-                <a href="">FAQ <i class="fas fa-angle-right"></i></a>
+                <a href="<%=contextPath%>/list.fa?cpage=1">FAQ <i class="fas fa-angle-right"></i></a>
                 <div style="height:auto">
 
                     <table id="faq_tb">
-                        <tr class="q">
-                            <td width="150">[취소/환불]</td>
-                            <td width="660">Q 티켓 구매 취소를 하고싶어요</td>
-                            <td width="40"><i class="fas fa-angle-down"></i></td>
-                        </tr>
-                        <tr class="a">
-                            <td></td>
-                            <td colspan="2"><div>
-                                A
-    
-                                ▼ 환불 안내 <br>
-                                - MY PAGE 클릭 -> 최근 주문 정보 -> 티켓 번호 클릭 -> 환불신청<br>
-                                - 본 상품은 특가로 진행되는 상품으로 미사용 티켓에 한하여 구매일로부터 7일 이내에만 환불이 가능합니다. <br>
-                                - 티켓 사용 여부 상관없이 환불기간, 유효기간 이후, 전시종료 이후에는 어떠한 사유로든 환불이 불가합니다. <br>
-                                - 해당 절차는 환불 규정에 적합하지 않은 상품일 경우 신청이 철회될 수 있습니다. <br>
-                                - 결제수단에 따라 환불규정이 각기 다르므로 결제수단 별 환불 기간을 확인해주세요. <br>
-                                - 신용카드 : 카드 취소일 로부터 2-5일 이내 이내 카드사별 개별 승인취소 확인이 가능합니다.<br>
-                                - 무통장 입금 및 계좌이체 : 취소/환불 접수 시 입력한 환불 계좌로 (평일 기준) 2-3일 이내 입금됩니다.
-                            </div></td> 
-                        </tr>
-                        <tr class="q">
-                            <td >[취소/환불]</td>
-                            <td>Q 티켓 구매 취소를 하고싶어요</td>
-                            <td><i class="fas fa-angle-down"></i></td>
-                        </tr>
-                        <tr class="a">
-                            <td width="150"></td>
-                            <td colspan="2" width="700"><div>
-                                A
-    
-                                ▼ 환불 안내 <br>
-                                - MY PAGE 클릭 -> 최근 주문 정보 -> 티켓 번호 클릭 -> 환불신청<br>
-                                - 본 상품은 특가로 진행되는 상품으로 미사용 티켓에 한하여 구매일로부터 7일 이내에만 환불이 가능합니다. <br>
-                                - 티켓 사용 여부 상관없이 환불기간, 유효기간 이후, 전시종료 이후에는 어떠한 사유로든 환불이 불가합니다. <br>
-                                - 해당 절차는 환불 규정에 적합하지 않은 상품일 경우 신청이 철회될 수 있습니다. <br>
-                                - 결제수단에 따라 환불규정이 각기 다르므로 결제수단 별 환불 기간을 확인해주세요. <br>
-                                - 신용카드 : 카드 취소일 로부터 2-5일 이내 이내 카드사별 개별 승인취소 확인이 가능합니다.<br>
-                                - 무통장 입금 및 계좌이체 : 취소/환불 접수 시 입력한 환불 계좌로 (평일 기준) 2-3일 이내 입금됩니다.
-                            </div></td> 
-                        </tr>
-                        <tr class="q">
-                            <td >[취소/환불]</td>
-                            <td>Q 티켓 구매 취소를 하고싶어요</td>
-                            <td><i class="fas fa-angle-down"></i></td>
-                        </tr>
-                        <tr class="a">
-                            <td width="150"></td>
-                            <td colspan="2" width="700"><div>
-                                A
-    
-                                ▼ 환불 안내 <br>
-                                - MY PAGE 클릭 -> 최근 주문 정보 -> 티켓 번호 클릭 -> 환불신청<br>
-                                - 본 상품은 특가로 진행되는 상품으로 미사용 티켓에 한하여 구매일로부터 7일 이내에만 환불이 가능합니다. <br>
-                                - 티켓 사용 여부 상관없이 환불기간, 유효기간 이후, 전시종료 이후에는 어떠한 사유로든 환불이 불가합니다. <br>
-                                - 해당 절차는 환불 규정에 적합하지 않은 상품일 경우 신청이 철회될 수 있습니다. <br>
-                                - 결제수단에 따라 환불규정이 각기 다르므로 결제수단 별 환불 기간을 확인해주세요. <br>
-                                - 신용카드 : 카드 취소일 로부터 2-5일 이내 이내 카드사별 개별 승인취소 확인이 가능합니다.<br>
-                                - 무통장 입금 및 계좌이체 : 취소/환불 접수 시 입력한 환불 계좌로 (평일 기준) 2-3일 이내 입금됩니다.
-                            </div></td> 
-                        </tr>
-                        <tr class="q">
-                            <td >[취소/환불]</td>
-                            <td>Q 티켓 구매 취소를 하고싶어요</td>
-                            <td><i class="fas fa-angle-down"></i></td>
-                        </tr>
-                        <tr class="a">
-                            <td width="150"></td>
-                            <td colspan="2" width="700"><div>
-                                A
-    
-                                ▼ 환불 안내 <br>
-                                - MY PAGE 클릭 -> 최근 주문 정보 -> 티켓 번호 클릭 -> 환불신청<br>
-                                - 본 상품은 특가로 진행되는 상품으로 미사용 티켓에 한하여 구매일로부터 7일 이내에만 환불이 가능합니다. <br>
-                                - 티켓 사용 여부 상관없이 환불기간, 유효기간 이후, 전시종료 이후에는 어떠한 사유로든 환불이 불가합니다. <br>
-                                - 해당 절차는 환불 규정에 적합하지 않은 상품일 경우 신청이 철회될 수 있습니다. <br>
-                                - 결제수단에 따라 환불규정이 각기 다르므로 결제수단 별 환불 기간을 확인해주세요. <br>
-                                - 신용카드 : 카드 취소일 로부터 2-5일 이내 이내 카드사별 개별 승인취소 확인이 가능합니다.<br>
-                                - 무통장 입금 및 계좌이체 : 취소/환불 접수 시 입력한 환불 계좌로 (평일 기준) 2-3일 이내 입금됩니다.
-                            </div></td> 
-                        </tr>
-                        <tr class="q">
-                            <td >[취소/환불]</td>
-                            <td>Q 티켓 구매 취소를 하고싶어요</td>
-                            <td><i class="fas fa-angle-down"></i></td>
-                        </tr>
-                        <tr class="a">
-                            <td width="150"></td>
-                            <td colspan="2" width="700"><div>
-                                A
-    
-                                ▼ 환불 안내 <br>
-                                - MY PAGE 클릭 -> 최근 주문 정보 -> 티켓 번호 클릭 -> 환불신청<br>
-                                - 본 상품은 특가로 진행되는 상품으로 미사용 티켓에 한하여 구매일로부터 7일 이내에만 환불이 가능합니다. <br>
-                                - 티켓 사용 여부 상관없이 환불기간, 유효기간 이후, 전시종료 이후에는 어떠한 사유로든 환불이 불가합니다. <br>
-                                - 해당 절차는 환불 규정에 적합하지 않은 상품일 경우 신청이 철회될 수 있습니다. <br>
-                                - 결제수단에 따라 환불규정이 각기 다르므로 결제수단 별 환불 기간을 확인해주세요. <br>
-                                - 신용카드 : 카드 취소일 로부터 2-5일 이내 이내 카드사별 개별 승인취소 확인이 가능합니다.<br>
-                                - 무통장 입금 및 계좌이체 : 취소/환불 접수 시 입력한 환불 계좌로 (평일 기준) 2-3일 이내 입금됩니다.
-                            </div></td> 
-                        </tr>                   
+                    	<%for(FAQ f : fList) { %>
+	                        <tr class="q">
+	                            <td width="150"><%=f.getfCategoryCode() %></td>
+	                            <td width="660">Q <%=f.getFaqTitle() %></td>
+	                            <td width="40"><i class="fas fa-angle-down"></i></td>
+	                        </tr>
+	                        <tr class="a">
+	                            <td></td>
+	                            <td colspan="2"><div>
+	                                A <br>
+	    							<%=f.getFaqContent() %>                        
+	                            </div></td> 
+	                        </tr>
+                        <% } %>
                     </table>
                 </div>
             </div>
@@ -248,43 +169,29 @@
             </script>
     
             <div id="qna_area">
-                <a href="">Q&A <i class="fas fa-angle-right"></i></a>
+                <a href="<%=contextPath%>/list.qa?cpage=1">Q&A <i class="fas fa-angle-right"></i></a>
                 <table id="qna_tb">
-                    <tr class="qna">
-                        <td width="150">[취소/환불]</td>
-                        <td width="400">환불신청합니다.(비밀글)</td>
-                        <td width=100>닉네임</td>
-                        <td width="130">2021-12-12</td>
-                        <td width="80">미답변</td>
-                    </tr>
-                    <tr class="qna">
-                        <td>[취소/환불]</td>
-                        <td>환불신청합니다.(비밀글)</td>
-                        <td>닉네임</td>
-                        <td>2021-12-12</td>
-                        <td>미답변</td>
-                    </tr>
-                    <tr class="qna">
-                        <td>[취소/환불]</td>
-                        <td>환불신청합니다.(비밀글)</td>
-                        <td>닉네임</td>
-                        <td>2021-12-12</td>
-                        <td>미답변</td>
-                    </tr>
-                    <tr class="qna">
-                        <td>[취소/환불]</td>
-                        <td>환불신청합니다.(비밀글)</td>
-                        <td>닉네임</td>
-                        <td>2021-12-12</td>
-                        <td>미답변</td>
-                    </tr>
-                    <tr class="qna">
-                        <td>[취소/환불]</td>
-                        <td>환불신청합니다.(비밀글)</td>
-                        <td>닉네임</td>
-                        <td>2021-12-12</td>
-                        <td>미답변</td>
-                    </tr>
+                	<%for(QnA q : qList) {%>
+	                    <tr class="qna">
+	                        <td width="150"><%=q.getqCategoryCode() %></td>
+	                        <td width="400">
+	                        	<%=q.getqTitle() %>
+	                        	<% if(q.getSecret().equals("Y")) { %>
+			                        <i class="fas fa-lock"></i>
+			                    <% } %>
+	                        </td>
+	                        <td width=100><%=q.getqWriter() %></td>
+	                        <td width="130"><%=q.getCreateDate() %></td>
+	                        <td width="80">
+	                        	<% if(q.getaContent() != null) { %>
+									답변 완료
+			                    <% }else { %>
+			                        	미답변
+			                    <% } %>
+	                        </td>
+	                    </tr>
+                    <% } %>
+                    
                 </table>
             </div>
     
@@ -292,30 +199,22 @@
                 <div id="notice_area">
                     <a href="<%=contextPath%>/list.no?cpage=1">공지사항 <i class="fas fa-angle-right"></i></a>
                     <table id="notice_tb">
-                        <tr class="notice" style="border-bottom:1px solid rgb(151, 138, 116)">
-                            <td width="320">환불신청합니다.(비밀글)</td>
-                            <td width="90">2021-12-12</td>
-                        </tr>
-                        <tr class="notice">
-                            <td width="320">환불신청합니다.(비밀글)</td>
-                            <td width="90">2021-12-12</td>
-                        </tr>
-                        <tr class="notice">
-                            <td width="320">환불신청합니다.(비밀글)</td>
-                            <td width="90">2021-12-12</td>
-                        </tr>
-                        <tr class="notice">
-                            <td width="320">환불신청합니다.(비밀글)</td>
-                            <td width="90">2021-12-12</td>
-                        </tr>
-                        <tr class="notice">
-                            <td width="320">환불신청합니다.(비밀글)</td>
-                            <td width="90">2021-12-12</td>
-                        </tr>
-
-                    </table>
-        
+                    	<% for(Notice n : nList) { %>
+	                        <tr class="notice" style="border-bottom:1px solid rgb(151, 138, 116)">
+	                        	<input type="hidden" name="nno" value="<%=n.getNoticeNo() %>">
+	                            <td width="320"><%=n.getNoticeTitle() %></td>
+	                            <td width="90"><%=n.getCreateDate() %></td>
+	                        </tr>
+                        <% } %>
+                    </table>       
                 </div>
+                <script>
+			    	$(function(){
+			    		$("#notice_area tr").click(function(){
+			    			location.href='<%=contextPath%>/detail.no?nno=' + $(this).children("input").val();
+			    		})
+			    	})
+			    </script>
                 <div id="call_area">
                     <div id="icon" align="center"><i class="fas fa-headphones-alt fa-7x"></i></div>
                     <div id="call_content">

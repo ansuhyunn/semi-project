@@ -97,6 +97,47 @@ private Properties prop = new Properties();
 		return list;
 	}
 	
+	public ArrayList<QnA> selectList(Connection conn) {
+		ArrayList<QnA> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, 1);
+			pstmt.setInt(2, 5);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				String category = "";
+				switch(rset.getString("Q_CATEGORY_CODE")) {
+				case "Q1" : category = "[티켓]"; break;
+         	    case "Q2" : category = "[취소/환불]"; break;
+         	    case "Q3" : category = "[주문/결제]"; break;
+         	    case "Q4" : category = "[상품]"; break;
+         	    case "Q5" : category = "[기타]"; break;
+         	    default :  break;
+				}
+				list.add(new QnA(rset.getInt("Q_NO"),
+						 		 rset.getInt("MEM_NO"),
+						 		 rset.getString("Q_WRITER"),
+						 		 rset.getString("SECRET"),
+						 		 rset.getString("Q_TITLE"),
+						 		 rset.getString("CREATE_DATE"),
+						 		 category,
+						 		 rset.getString("A_CONTENT")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+	
 	public QnA selectQnA(Connection conn, int qNo) {
 		QnA q = null;
 		PreparedStatement pstmt = null;

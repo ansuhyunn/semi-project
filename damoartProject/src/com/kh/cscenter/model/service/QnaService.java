@@ -32,6 +32,14 @@ public class QnaService {
 		
 	}
 	
+	public ArrayList<QnA> selectList() {
+		Connection conn = getConnection();
+		ArrayList<QnA> list = new QnaDao().selectList(conn);
+		close(conn);
+		return list;
+		
+	}
+	
 	public QnA selectQnA(int qNo) {
 		Connection conn = getConnection();
 		QnA q = new QnaDao().selectQnA(conn, qNo);
