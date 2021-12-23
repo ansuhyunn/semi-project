@@ -60,13 +60,13 @@
             float:left;
         }
     
-        #cancel{
+        #delete, #deleteCancel{
             background-color:rgb(203, 185, 153);
             color:rgb(64, 64, 64);
             font-weight:600;
         }
     
-        #insert, #list{
+        #insert, #list, #deleteCheck{
             background-color:rgb(151, 138, 116);
             color:white;
         }
@@ -75,6 +75,9 @@
             border:1px solid rgb(173, 157, 128);
         }
     
+        #myModal{
+    	padding-top:150px;
+   		}
     
     </style>
     </head>
@@ -140,12 +143,31 @@
                             <a id="list" href="<%= contextPath %>/adminList.gu?cpage=1" class="btn btn-sm">목록가기</a>			
                         </div>
                         <div align="right">
-                            <a href="" class="btn btn-sm" id="cancel">삭제하기</a>
+                            <a class="btn btn-sm" id="delete"  data-toggle="modal" data-target="#myModal" type="button">삭제하기</a>
                             <button type="submit" class="btn btn-sm" id="insert">등록하기</button>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
+        
+        <!-- The Modal -->
+		<div class="modal" id="myModal">
+		  <div class="modal-dialog modal-sm">
+		    <div class="modal-content">
+		
+		      <!-- Modal body -->
+		      <div class="modal-body" align="center">
+		        	삭제하시겠습니까?
+		      </div>
+		
+		      <!-- Modal footer -->
+		      <div class="modal-footer">
+		      	<button id="deleteCancel" type="button" class="btn" data-dismiss="modal">취소</button>
+		      	<button id ="deleteCheck" type="button" class="btn" data-dismiss="modal" onclick="location.href='<%=contextPath%>/delete.gu?gno=<%=g.getGuideNo()%>';">확인</button>
+			  </div>	
+		    </div>
+		  </div>
+		</div>
     </body>
     </html>

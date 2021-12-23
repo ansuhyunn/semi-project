@@ -120,4 +120,16 @@ public class GuideService {
 		return result;
 	}
 	
+	public int deleteGuide(int guideNo) {
+		Connection conn = getConnection();
+		int result = new GuideDao().deleteGuide(conn, guideNo);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	
 }

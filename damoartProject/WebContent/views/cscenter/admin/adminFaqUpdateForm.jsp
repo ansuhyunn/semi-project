@@ -110,7 +110,7 @@
                 </table>
                 <br>
                 <div id="button" align="right">
-                    <a href="<%=contextPath%>/detail.fa?fno=<%=f.getFaqNo() %>" class="btn btn-sm" id="cancel">취소하기</a>
+                    <a href="<%=contextPath%>/adminDetail.fa?fno=<%=f.getFaqNo() %>" class="btn btn-sm" id="cancel">취소하기</a>
                     <button type="submit" class="btn btn-sm" id="insert">등록하기</button>
                 </div>
             </form>
