@@ -44,10 +44,10 @@ public class ProductService {
 	}
 	
 	
-	public ArrayList<Product> selectPreList(PageInfo pi) {
+	public ArrayList<Product> selectPreList() {
 		Connection conn = getConnection();
 		
-		ArrayList<Product> list = new ProductDao().selectPreList(conn, pi);
+		ArrayList<Product> list = new ProductDao().selectPreList(conn);
 		
 		close(conn); 
 		return list;
