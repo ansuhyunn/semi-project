@@ -162,6 +162,7 @@
                     <th>메인포스터</th>
                     <td>
 	                    <%= at1.getOriginName() %>
+	                    <input type="hidden" name="originMain" value="<%= at1.getOriginName() %>">
 	                    <input type="hidden" name="originFileNo" value="<%= at1.getFileNo() %>">
 	                    <input type="file" name="main">
                     </td>
@@ -170,6 +171,7 @@
                     <th>상세포스터</th>
                     <td>
                     	<%= at2.getOriginName() %>
+                    	<input type="hidden" name="originDetail" value="<%= at2.getOriginName() %>">
 	                    <input type="hidden" name="originFileNo" value="<%= at2.getFileNo() %>">
 	                    <input type="file" name="detail">
                     </td>

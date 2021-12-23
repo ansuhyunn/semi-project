@@ -61,19 +61,19 @@ public class ReviewService {
 //		return result1 * result2;
 //	}
 //	
-//	// 카운팅
-//	public int increaseCount(int rvNo) {
-//		Connection conn = getConnection();
-//		int result = new ReviewDao().increaseCount(conn, rvNo);
-//		if(result > 0) {
-//			commit(conn);
-//		}else {
-//			rollback(conn);
-//		}
-//		close(conn);
-//		return result;
-//	}
-//	
+	// 카운팅
+	public int increaseCount(int rno) {
+		Connection conn = getConnection();
+		int result = new ReviewDao().increaseCount(conn, rno);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	
 
 //	
 //	public Attachment selectAttachment(int boardNo) {

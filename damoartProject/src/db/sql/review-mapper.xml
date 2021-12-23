@@ -84,4 +84,12 @@ SELECT
 		  )
 	</entry>
 	
+<entry key="increaseCount">
+	UPDATE
+	       REVIEW
+	   SET REVIEW_VIEW = REIVEW_VIEW+1
+	 WHERE RV_NO = ?
+	   AND DELETE_STATUS = 'N'
+</entry>
+	
 </properties>

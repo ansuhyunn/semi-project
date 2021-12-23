@@ -10,6 +10,7 @@ import com.kh.common.model.vo.PageInfo;
 import com.kh.product.model.dao.ManageDao;
 import com.kh.product.model.dao.ProductDao;
 import com.kh.product.model.vo.Best;
+import com.kh.product.model.vo.Detail;
 import com.kh.product.model.vo.Product;
 import com.kh.product.model.vo.Qna;
 
@@ -102,13 +103,13 @@ public class ProductService {
 	}
 	
 	
-	public Product selectDetailImg(int pno) {
+	public Detail selectDetailImg(int pno) {
 		Connection conn = getConnection();
 		
-		Product p = new ProductDao().selectDetailImg(conn, pno);
+		Detail d = new ProductDao().selectDetailImg(conn, pno);
 		
 		close(conn);
-		return p;
+		return d;
 	}
 	
 	

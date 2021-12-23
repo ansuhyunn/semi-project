@@ -1,7 +1,6 @@
-package com.kh.product.controller.display;
+package com.kh.cscenter.controller.admin;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,22 +8,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
-import com.kh.product.model.service.ProductService;
-import com.kh.product.model.vo.Detail;
-import com.kh.product.model.vo.Product;
+import com.kh.cscenter.model.service.FaqService;
+import com.kh.cscenter.model.vo.FAQ;
 
 /**
- * Servlet implementation class AjaxDetailViewController
+ * Servlet implementation class AdminFaqUpdateFormController
  */
-@WebServlet("/ajaxImg.pro")
-public class AjaxDetailViewController extends HttpServlet {
+@WebServlet("/updateForm.fa")
+public class AdminFaqUpdateFormController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AjaxDetailViewController() {
+    public AdminFaqUpdateFormController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,12 +30,14 @@ public class AjaxDetailViewController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int faqNo = Integer.parseInt(request.getParameter("fno"));
 		
-		int pno = Integer.parseInt(request.getParameter("pno"));
-		Detail d = new ProductService().selectDetailImg(pno);
+		FAQ f = new FaqService().selectFaq(faqNo);
 		
-		response.setContentType("application/json; charset=utf-8");
-		new Gson().toJson(d, response.getWriter());}
+		request.setAttribute("f", f);
+		
+		request.getRequestDispatcher("views/cscenter/admin/adminFaqUpdateForm.jsp").forward(request, response);
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

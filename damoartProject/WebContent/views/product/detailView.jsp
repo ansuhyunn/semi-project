@@ -81,6 +81,10 @@
 	.info th{width: 100px; height: 60px;}
 	.info td{width: 500px; height: 60px; padding: 20px}
 	#pay th{width: 400px; height: 40px;}
+	#pay{width: 500px; margin-left:  -10px;}
+	#pay th{width: 80px; height: 40px;}
+	#pay td{width: 30px; height: 40px;}
+	#insertCart {width: 70px; background-color:rgb(203, 185, 153);}
 	.content3{
 		width: 90%;
 		height: 67%;
@@ -180,9 +184,10 @@
 							</td>
 							<th>수량</th>
 							<td><input type="number" id="count" style="width: 50px;"></td>
+							<td><button class="btn btn-secondary" id="insertCart" onclick="insertCart();">선택</button></td>
 						</tr>
 					</table>
-					<button class="btn btn-secondary" id="insertCart" onclick="insertCart();">선택</button>
+					
 			
 				<table id="result">
 					<tr>
@@ -194,6 +199,7 @@
 				</table>
 			</div>
 		</div>	
+		
 
 		<div class="content3">
 			<button id="info1" class="btn btn-secondary" >상세정보</button>

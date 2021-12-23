@@ -61,4 +61,12 @@
 		     , ?
 		     )
 	</entry>
+	
+	<entry key="updateFaq">
+		UPDATE FAQ
+		   SET FAQ_TITLE = ?
+		     , FAQ_CONTENT = ?
+		     , F_CATEGORY_CODE = ?
+		 WHERE FAQ_NO = ?
+	</entry>
 </properties>

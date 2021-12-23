@@ -219,7 +219,7 @@ public class ReviewDao {
 //			
 //		}
 		
-		public int increaseCount(Connection conn, int boardNo) {
+		public int increaseCount(Connection conn, int rno) {
 			
 			int result = 0;
 			PreparedStatement pstmt = null;
@@ -227,7 +227,7 @@ public class ReviewDao {
 			
 			try {
 				pstmt = conn.prepareStatement(sql);
-				pstmt.setInt(1, boardNo);
+				pstmt.setInt(1, rno);
 				result = pstmt.executeUpdate();
 				
 			} catch (SQLException e) {
