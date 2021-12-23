@@ -35,10 +35,18 @@ public class reviewDetailForm extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int rno = Integer.parseInt(request.getParameter("num"));
 		
-		ArrayList<Review> reviewList = new ReviewService().selectReview(rno);
+		ReviewService rService = new ReviewService();
 		
-		request.setAttribute("reviewList", reviewList);
-		request.getRequestDispatcher("views/community/reviewDetailView.jsp").forward(request, response);
+		int result = rService.increaseCount(rno);
+		
+		if(result > 0) {
+			ArrayList<Review> reviewList = rService.selectReview(rno);
+			
+			request.setAttribute("reviewList", reviewList);
+			request.getRequestDispatcher("views/community/reviewDetailView.jsp").forward(request, response);
+		}
+		
+		
 	}
 
 	/**
