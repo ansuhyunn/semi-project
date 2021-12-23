@@ -40,7 +40,7 @@ public class DetailViewController extends HttpServlet {
 		request.setAttribute("starlist", starlist);
 		request.setAttribute("detailList", detailList);
 		request.getRequestDispatcher("views/product/detailView.jsp").forward(request, response);
-	
+		
 	}
 
 	/**

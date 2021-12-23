@@ -47,7 +47,14 @@ public class Product {
 		this.etc = etc;
 		this.soldOut = soldOut;
 	}
+	
+	// 별점 출력
+	public Product(String star) {
+		super();
+		this.star = star;
+	}
 
+	
 	// 무료 조회 시 사용
 	public Product(int pNo, String title, String region, String age, String area, String sDate, 
 				   String eDate, String time, String mainImg, String detailImg, String etc) {
@@ -77,13 +84,7 @@ public class Product {
 		this.title = title;
 		this.star = star;
 	}
-
-
-	// 상세조회 이미지에 사용
-	public Product(String detailImg) {
-		super();
-		this.detailImg = detailImg;
-	}
+	
 	
 	
 	// 관리자 전체조회용

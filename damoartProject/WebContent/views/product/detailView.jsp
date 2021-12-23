@@ -45,9 +45,6 @@
 		margin-left: 50px;
 		margin-right: 40px;
 	}
-	.poster>div{
-		border: 1px solid black;
-	}
 	#star1, #star2, #review{
 		width: 25%;
 		height: 50px;
