@@ -424,7 +424,8 @@ public class ProductDao {
 									 rset.getString("MAIN_IMG"),
 									 rset.getString("DETAIL_IMG"),
 									 rset.getString("ETC"),
-									 rset.getString("SOLDOUT")));
+									 rset.getString("SOLDOUT"),
+									 rset.getInt("REVIEW_STAR")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -709,6 +710,36 @@ public class ProductDao {
 		return list;
 	}
 	
+	
+	// 진행중 별점순
+	public ArrayList<Product> selectStar(Connection conn){
+		ArrayList<Product> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = ArrayProp.getProperty("star");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Product(rset.getInt("PNO"),
+									 rset.getString("AREA"),
+									 rset.getString("S_DATE"),
+									 rset.getString("E_DATE"),
+									 rset.getString("MAIN_IMG"),
+									 rset.getString("TITLE"),
+									 rset.getInt("REVIEW_STAR")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+	
 		
 		
 
@@ -950,6 +981,37 @@ public class ProductDao {
 		}
 		return list;
 	}
+	
+	
+	// 이달의전시 별점순
+	public ArrayList<Product> selectMonthStar(Connection conn){
+		ArrayList<Product> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = ArrayProp.getProperty("MonthStar");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Product(rset.getInt("PNO"),
+									 rset.getString("AREA"),
+									 rset.getString("S_DATE"),
+									 rset.getString("E_DATE"),
+									 rset.getString("MAIN_IMG"),
+									 rset.getString("TITLE"),
+									 rset.getInt("REVIEW_STAR")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+
 	
 	
 	

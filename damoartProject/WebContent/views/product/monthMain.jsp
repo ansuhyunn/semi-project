@@ -97,7 +97,7 @@
             <a href="<%=request.getContextPath()%>/monthLow.pro">낮은가격순</a>
             <a href="<%=request.getContextPath()%>/monthOpen.pro">오픈날짜순</a>
             <a href="<%=request.getContextPath()%>/monthEnd.pro">마감임박순</a>
-            <a href="">별점순</a>
+            <a href="<%=request.getContextPath()%>/monthStar.pro">별점순</a>
         </div>
         <hr class="my-2">
         <div class="content1">
@@ -107,8 +107,8 @@
 		        <% for(Product p : monthList){ %>
 		            <div class="content" id="">
 		           		<div class="poster">
-		                	<a href="<%=request.getContextPath()%>/detail.pro?num=<%=p.getpNo()%>">
-	                            <img src="<%=request.getContextPath()%>/<%= p.getMainImg() %>" width="100%" height="100%">
+		                	<a href="<%=contextPath%>/detail.pro?num=<%=p.getpNo()%>">
+	                            <img src="<%=contextPath%>/<%= p.getMainImg() %>" width="100%" height="100%">
 	                        </a>
 		            	</div>
 		            	<div class="info">

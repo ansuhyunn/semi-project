@@ -37,12 +37,30 @@
 		height: 33%;
 	}
 	.poster{
+		border: 1px solid black;
 		width: 300px;
 		height: 400px;
 		float: left;
 		margin-top: 20px;
 		margin-left: 50px;
 		margin-right: 40px;
+	}
+	.poster>div{
+		border: 1px solid black;
+	}
+	#star, #review{
+		width: 50%;
+		float: left;
+	}
+	#star{
+		text-align: center;
+		font-size: x-large;
+	}
+	#review{
+		text-decoration: none;
+		text-align: center;
+		font-size: x-large;
+		color: black;
 	}
 	.info{
 		width: 500px;
@@ -94,7 +112,11 @@
 		</div>
 		<hr class="my-2">
 		<div class="content2" >
-			<div class="poster"><img src="<%=request.getContextPath()%>/<%= p.getMainImg() %>" width="100%" height="100%"></div>
+			<div class="poster">
+				<img src="<%=request.getContextPath()%>/<%= p.getMainImg() %>" width="100%" height="100%">
+				<div id="star"> <%= p.getStar() %> </div>
+				<a id="review" href="">review </a>
+			</div>
 			<div class="info">
 				<table id="info">
 					<tr>

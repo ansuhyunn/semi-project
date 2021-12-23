@@ -1,4 +1,4 @@
-package com.kh.product.controller.display;
+package com.kh.product.controller.display.array;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,16 +13,16 @@ import com.kh.product.model.service.ProductService;
 import com.kh.product.model.vo.Product;
 
 /**
- * Servlet implementation class DetailViewController
+ * Servlet implementation class ArrayStarList
  */
-@WebServlet("/detail.pro")
-public class DetailViewController extends HttpServlet {
+@WebServlet("/star.pro")
+public class ArrayStarList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DetailViewController() {
+    public ArrayStarList() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,14 +31,11 @@ public class DetailViewController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int pno = Integer.parseInt(request.getParameter("num"));
 		
-		ArrayList<Product> detailList = new ProductService().selectDetailList(pno);
+		ArrayList<Product> ingList = new ProductService().selectMonthStar();
 		
-		request.setAttribute("detailList", detailList);
-		request.getRequestDispatcher("views/product/detailView.jsp").forward(request, response);
-		
-		System.out.println(detailList);
+		request.setAttribute("ingList", ingList);
+		request.getRequestDispatcher("views/product/ingMain.jsp").forward(request, response);
 	}
 
 	/**
