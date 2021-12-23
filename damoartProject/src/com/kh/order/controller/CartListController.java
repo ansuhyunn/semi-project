@@ -1,6 +1,7 @@
 package com.kh.order.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -37,9 +38,11 @@ public class CartListController extends HttpServlet {
     }
 
     
+    
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		Member mem = (Member) session.getAttribute("loginUser");
@@ -55,8 +58,8 @@ public class CartListController extends HttpServlet {
 				String arrIdx = request.getParameter("select");
 //				this.list
 				System.out.println(arrIdx);
-			}
-			
+			} 
+		}else {
 		}
 		
 		

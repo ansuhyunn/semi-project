@@ -2,6 +2,7 @@
     pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.order.model.vo.Order"%>
 <% 
 	ArrayList<Order> list = (ArrayList<Order>)request.getAttribute("list");
+	Order o = (Order)request.getAttribute("o");
 %>
 <!DOCTYPE html>
 <html>
@@ -123,7 +124,7 @@
 
    <!-- 주문하는 상품 -->
    	<% if ( loginUser != null ) { %>
-   <div class="cart_name" align="center"> <% for(Order o : list) { %>
+   <div class="cart_name" align="center">
        <table>
            <tr id="cart_name" height=40>
                <th colspan="2" width=400>상품</th>
@@ -133,50 +134,61 @@
                <th width=90>적립예상금액</th>
            </tr>
            <div>
+            <% for(Order or : list) { %>
                <tr id="cart_content">
                
                    <td width="200"><img src= "<%=request.getContextPath()%>/resources/images/product/1M.gif" width="80px" height="80px"></td>
                    <td width="200">
-                      <%= o.getTitle() %>
-                     <br> <%= o.getArea() %>
-                     <br><%= o.getsDate() %> ~ <%= o.geteDate() %> 
+                      <%= or.getTitle() %>
+                     <br> <%= or.getArea() %>
+                     <br><%= or.getsDate() %> ~ <%= or.geteDate() %> 
                    </td>                           
-                   <td width="50"><%= o.getCartOpt() %></td>
+                   <td width="50">                    
+                   <% if (o.getCartOpt().equals("C")) { %>
+                 	   어린이
+                    <% } else if (o.getCartOpt().equals("T")) { %>
+                                           청소년
+                    <% } else { %>
+                                           성인
+                    <% } %></td>
                    <td width="50"><%= o.getCartCount() %></td>
                    <td width="50">
-					<% if (o.getCartOpt().equals("C")) { %>
-                    <%= o.getcPrice() %>
-                    <% } else if (o.getCartOpt().equals("T")) { %>
-                    <%=o.gettPrice() %>
+					<% if (or.getCartOpt().equals("C")) { %>
+                    <%= or.getcPrice() %>
+                    <% } else if (or.getCartOpt().equals("T")) { %>
+                    <%=or.gettPrice() %>
                     <% } else { %>
-                    <%=o.getaPrice() %>
+                    <%=or.getaPrice() %>
                     <% } %>￦</td>
-                   <td width="50"><% if (o.getCartOpt().equals("C")) { %>
-                    <%= o.getcPrice()/100 %>
-                    <% } else if (o.getCartOpt().equals("T")) { %>
-                    <%=o.gettPrice()/100 %>
+                   <td width="50"><% if (or.getCartOpt().equals("C")) { %>
+                    <%= or.getcPrice()/100 %>
+                    <% } else if (or.getCartOpt().equals("T")) { %>
+                    <%=or.gettPrice()/100 %>
                     <% } else { %>
-                    <%=o.getaPrice()/100 %>
+                    <%=or.getaPrice()/100 %>
                     <% } %>￦</td>
                </tr>
                
+        <% } %>
+              <%System.out.println("o에 들어가있는것들" + o ); %>
            </table>
            </div>
            <div class="order_bottom" width="800">
-               <p>총 <%= o.getCartCount() %> 개의 상품   &nbsp; &nbsp; &nbsp;
+           <% for(Order or : list) { %>
+               <p>총 <%= or.getCartCount() %> 개의 상품   &nbsp; &nbsp; &nbsp;
                	합계 &nbsp; 
-               		<% if (o.getCartOpt().equals("C")) { %>
-                    <%= o.getcPrice() %>
-                    <% } else if (o.getCartOpt().equals("T")) { %>
-                    <%=o.gettPrice() %>
+               		<% if (or.getCartOpt().equals("C")) { %>
+                    <%= or.getcPrice() %>
+                    <% } else if (or.getCartOpt().equals("T")) { %>
+                    <%=or.gettPrice() %>
                     <% } else { %>
-                    <%=o.getaPrice() %>
+                    <%=or.getaPrice() %>
                     <% } %>￦</p>
            </div>
            <% } %>
+           <% } %>
            
-               	
-
+            
            <!-- 약관 동의 -->
            <div class="orderTerms">
                <hr><br>
@@ -189,7 +201,7 @@
            <b>&nbsp;&nbsp;&nbsp;주문자 정보</b>
            <hr>
            <table id="order" width="460px">
-               <tr> <% for(Order o : list) { %>
+               <tr>
                    <td width="5px">●</td>
                    <td width="150px">주문하시는 분</td>
                    <td width="150px"><%= o.getMemName() %></td>
@@ -203,7 +215,7 @@
                    <td width="5px" >●</td>
                    <td>이메일</td>
                    <td><%= o.getEmail() %></td>
-               </tr> 
+               </tr>
            </table>
            
        
@@ -216,14 +228,14 @@
                <tr>
                    <td width="5px" ></td>
                    <td width="150px">상품 합계 금액</td>
-                   <td width="150px">  
-                   <% if (o.getCartOpt().equals("C")) { %>
-                    <%= o.getCartCount()*o.getcPrice() %>
-                    <% } else if (o.getCartOpt().equals("T")) { %>
-                    <%=o.getCartCount()*o.gettPrice() %>
+                   <td width="150px">  <% for(Order or : list) { %>
+                   <% if (or.getCartOpt().equals("C")) { %>
+                    <%= or.getCartCount()*or.getcPrice() %>
+                    <% } else if (or.getCartOpt().equals("T")) { %>
+                    <%=or.getCartCount()*or.gettPrice() %>
                     <% } else { %>
-                    <%=o.getCartCount()*o.getaPrice() %>
-                    <% } %>)</td>
+                    <%=or.getCartCount()*or.getaPrice() %>
+                    <% } %>)</td> <%} %>
                </tr>
                <tr>
                    <td></td>
@@ -243,11 +255,10 @@
                    <td><input></td>
                 </tr>
            </table>
-			<% } %>
 
        <!--결제 수단 선택-->
         <br><br>
-        <b>&nbsp;&nbsp;&nbsp;결제 수단 선택 / 결제</b>
+        <b>&nbsp;&nbsp;&nbsp;결제</b>
         <hr>
         <table id="option" width="460px">
             <tr>
@@ -321,8 +332,13 @@
     });
 		}
 		// 결제 완료 페이지 띄우기
+		/*
+			request.getSession().setAttribute("alertMsg", "로그인한 회원만 이용할 수 있습니다.");
+			response.sendRedirect(request.getContextPath()+ "/memlogin.me");
+		
+		*/
+
 		</script>
-        <% } %>
        <br><br>
         <%@ include file="../common/footerbar.jsp" %>
     </body>

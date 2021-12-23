@@ -43,6 +43,7 @@ public class OrderController extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		Member memNo = (Member) session.getAttribute("loginUser");
+		Order o = service.selectOrderListO();
 		
 		if( memNo != null) {
 		
@@ -51,6 +52,8 @@ public class OrderController extends HttpServlet {
 		System.out.println("controller this.list 했을때 : " + this.list);
 
 		request.setAttribute("list", list);
+		request.setAttribute("o", o);
+		
 		request.getRequestDispatcher("views/order/orderPage.jsp").forward(request, response);
 		
 		System.out.println("memNo" + memNo);

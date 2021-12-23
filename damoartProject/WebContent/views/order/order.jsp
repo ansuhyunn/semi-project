@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.order.model.vo.Order"%>
 <% 
-	ArrayList<Order> list = (ArrayList<Order>)request.getAttribute("list");
+	Order o = (Order)request.getAttribute("o");
 %>
 <!DOCTYPE html>
 <html>
@@ -57,28 +57,7 @@ div{box-sizing:border-box;}
 </head>
 <body>
 
-	<%String word ="인코딩 문제인가? 이클립스 문제인가? WAS문제 인가 그것이 알고 싶다....";
-	System.out.println("utf-8 -> euc-kr        : " +new String(word.getBytes("utf-8"),"euc-kr"));
-	System.out.println("utf-8 -> ksc5601       : " +new String(word.getBytes("utf-8"),"ksc5601"));
-	System.out.println("utf-8 -> x-windows-949 : " +new String(word.getBytes("utf-8"),"x-windows-949"));
-	System.out.println("utf-8 -> iso-8859-1    : " +new String(word.getBytes("utf-8"),"iso-8859-1"));
-	System.out.println("iso-8859-1 -> euc-kr        : " +new String(word.getBytes("iso-8859-1"),"euc-kr"));
-	System.out.println("iso-8859-1 -> ksc5601       : " +new String(word.getBytes("iso-8859-1"),"ksc5601"));
-	System.out.println("iso-8859-1 -> x-windows-949 : " +new String(word.getBytes("iso-8859-1"),"x-windows-949"));
-	System.out.println("iso-8859-1 -> utf-8         : " +new String(word.getBytes("iso-8859-1"),"utf-8"));
-	System.out.println("euc-kr -> utf-8         : " +new String(word.getBytes("euc-kr"),"utf-8"));
-	System.out.println("euc-kr -> ksc5601       : " +new String(word.getBytes("euc-kr"),"ksc5601"));
-	System.out.println("euc-kr -> x-windows-949 : " +new String(word.getBytes("euc-kr"),"x-windows-949"));
-	System.out.println("euc-kr -> iso-8859-1    : " +new String(word.getBytes("euc-kr"),"iso-8859-1"));
-	System.out.println("ksc5601 -> euc-kr        : " +new String(word.getBytes("ksc5601"),"euc-kr"));
-	System.out.println("ksc5601 -> utf-8         : " +new String(word.getBytes("ksc5601"),"utf-8"));
-	System.out.println("ksc5601 -> x-windows-949 : " +new String(word.getBytes("ksc5601"),"x-windows-949"));
-	System.out.println("ksc5601 -> iso-8859-1    : " +new String(word.getBytes("ksc5601"),"iso-8859-1"));
-	System.out.println("x-windows-949 -> euc-kr     : " +new String(word.getBytes("x-windows-949"),"euc-kr"));
-	System.out.println("x-windows-949 -> utf-8      : " +new String(word.getBytes("x-windows-949"),"utf-8"));
-	System.out.println("x-windows-949 -> ksc5601    : " +new String(word.getBytes("x-windows-949"),"ksc5601"));
-	System.out.println("x-windows-949 -> iso-8859-1 : " +new String(word.getBytes("x-windows-949"),"iso-8859-1"));%>
-   <%@ include file="../common/menubar.jsp" %>
+	   <%@ include file="../common/menubar.jsp" %>
    
        <div class="order_head" align="center">
         <br>
@@ -94,7 +73,7 @@ div{box-sizing:border-box;}
    
     <div class="order_form">
         <hr>
-        <table id="order_info">  <% for(Order o : list) { %>
+        <table id="order_info">  
             <tr>
                 <td width="100px">주문자명</td>
                 <td><%=o.getMemName() %></td>
@@ -124,7 +103,7 @@ div{box-sizing:border-box;}
                     <small>&nbsp;&nbsp;(주문하신 상품의 티켓이 문자와 이메일로 전송됩니다.)</small>
                 </td>
             </tr>
-        </table> <% } %>
+        </table> 
     </div>
     <div class="button" align="center">
         <a href=""><button class="btn" id="confirm"><b>확인</b></button></a>

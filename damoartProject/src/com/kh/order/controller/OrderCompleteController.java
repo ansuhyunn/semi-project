@@ -22,7 +22,6 @@ public class OrderCompleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	public OrderService service = new OrderService();
-    private ArrayList<Order> list = new ArrayList<Order>();
     
     /**
      * @see HttpServlet#HttpServlet()
@@ -42,13 +41,14 @@ public class OrderCompleteController extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		Member memNo = (Member) session.getAttribute("loginUser");
+		Order o = service.selectOrder();
 		
 		if( memNo != null) {
 		
 		this.service.setMemNo(memNo.getMemNo());
-		this.list = service.selectOrderList();
-	
-		request.setAttribute("list", list);
+
+		request.setAttribute("o", o);
+		
 		request.getRequestDispatcher("views/order/order.jsp").forward(request, response);	
 		}
 	}

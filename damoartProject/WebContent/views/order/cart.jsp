@@ -115,6 +115,7 @@
 
     <%@ include file="../common/menubar.jsp" %>
     
+    <% if ( loginUser != null ) { %>
     <!-- 장바구니 윗 부분 -->
     <div class="cart_head" align="center">
         <br>
@@ -134,7 +135,7 @@
             </tr>
 
 	<!-- 로그인 조건 -->
-	<% if ( loginUser != null ) { %>
+	
             <!--상품 없을 때-->
             <% if(list.isEmpty()) { %>            
             <tr>
@@ -272,6 +273,11 @@
    		  }
 	})
 	*/
+	/*
+	request.getSession().setAttribute("alertMsg", "로그인한 회원만 이용할 수 있습니다.");
+	response.sendRedirect(request.getContextPath()+ "/memlogin.me");
+
+*/
 </script>
 <!-- 
 

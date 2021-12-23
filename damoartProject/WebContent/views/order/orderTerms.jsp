@@ -277,7 +277,16 @@
                         </p>    
                     </div>
                 </div>
-                <input type="checkbox" id="checkboxes" align="center"> 다모아트의 모든 약관을 확인하고 전체 동의합니다. 
+                <input type="checkbox" id="checkboxes" name="orderTerms" align="center" required> 다모아트의 모든 약관을 확인하고 전체 동의합니다. 
                 </div>
+                
+                <script>
+        		function orderTerms(){
+    				if($("input[name=agree]").is(":checked") == false){
+    					alert("약관을 확인하고 동의해주세요.");
+    		        	return false;   			
+    				}
+    				}
+                </script>
 </body>
 </html>

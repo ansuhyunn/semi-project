@@ -35,6 +35,48 @@ public class OrderDao {
 		return this.memNo;
 	}
 	
+
+	public Order selectOrderListO(Connection conn) {
+			Order o =null;
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			String sql = prop.getProperty("selectOrderList");
+			
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, this.memNo);
+				rset = pstmt.executeQuery();
+				
+				System.out.println("memNo: " + this.memNo);
+				
+				if(rset.next()) {
+
+					o = new Order(rset.getString("title"),
+									  rset.getString("area"),
+									  rset.getString("s_date"),
+									  rset.getString("e_date"),
+									  rset.getString("cart_opt"),
+									  rset.getInt("cart_count"),
+									  rset.getInt("a_price"),
+									  rset.getInt("t_price"),
+									  rset.getInt("c_price"),
+									  rset.getString("mem_name"),
+									  rset.getString("phone"),
+									  rset.getString("email"),
+									  rset.getInt("mem_no"));
+				}
+
+				System.out.println("o : " + o);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt);
+			} 
+			return o;
+		} 
+	
 	
 	public ArrayList<Order> selectOrderList(Connection conn) {
 			ArrayList<Order> list = new ArrayList<>();
@@ -82,8 +124,8 @@ public class OrderDao {
 	
 
 	
-	public ArrayList<Order> selectOrder(Connection conn) {
-			ArrayList<Order> list = new ArrayList<>();
+	public Order selectOrder(Connection conn) {
+			Order o = null;
 			PreparedStatement pstmt = null;
 			ResultSet rset = null;
 			String sql = prop.getProperty("selectOrder");
@@ -94,15 +136,15 @@ public class OrderDao {
 				pstmt.setInt(1, this.memNo);
 				rset = pstmt.executeQuery();
 				
-				while(rset.next()) {
+				if(rset.next()) {
 
-					list.add(new Order(rset.getString("title"),
-									  rset.getString("mem_name"),
-									  rset.getInt("mem_no"),
-									  rset.getInt("pay_no"),
-									  rset.getInt("pay_price"),
-									  rset.getInt("order_no"),
-									  rset.getDate("pay_date")));
+					o = new Order(rset.getString("title"),
+								  rset.getString("mem_name"),
+								  rset.getInt("mem_no"),
+								  rset.getInt("pay_no"),
+								  rset.getInt("pay_price"),
+								  rset.getInt("order_no"),
+								  rset.getDate("pay_date"));
 				}
 
 			} catch (SQLException e) {
@@ -111,7 +153,7 @@ public class OrderDao {
 				close(rset);
 				close(pstmt);
 			} 
-			return list;
+			return o;
 		} 
 	}
 

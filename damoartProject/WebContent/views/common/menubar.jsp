@@ -165,7 +165,7 @@
             <div id="header_3">
                 <div id="buttons">
                 	<% if(loginUser == null) { %> 
-	                    <a href="<%=contextPath%>/list.ca" id="cart_btn" class="btn btn-sm">장바구니</a>
+	                    <a href="<%=contextPath%>/loginPage.me" id="cart_btn" class="btn btn-sm cart">장바구니</a>
 	                    <a href="<%=contextPath%>/loginPage.me" id="login_btn" class="btn btn-sm">로그인</a>
 	                    <a href="<%=contextPath%>/agreement.me" id="enroll_btn" class="btn btn-sm">회원가입</a>
                     <% }else { %>
@@ -230,7 +230,11 @@
 
         </div>
     </div>
-
+<script>
+ $('.cart').click(function(){
+	 alert("로그인 후 이용가능한 서비스입니다");
+ })
+</script>
 
 </body>
 </html>

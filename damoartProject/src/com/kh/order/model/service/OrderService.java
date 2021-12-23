@@ -26,6 +26,14 @@ public class OrderService {
 			close(conn);
 			return list;
 		}
+		
+		public Order selectOrderListO(){
+			Connection conn = getConnection();
+			Order o = dao.selectOrderListO(conn);
+			close(conn);
+			return o;
+		}
+	
 	
 	public void setMemNo(int memNo) {
 		this.dao.setMemNo(memNo);
@@ -35,11 +43,11 @@ public class OrderService {
 		return this.dao.getMemNo();
 	}
 	
-	public ArrayList<Order> selectOrder(){
+	public Order selectOrder(){
 		Connection conn = getConnection();
-		ArrayList<Order> list = dao.selectOrderList(conn);
+		Order o = dao.selectOrder(conn);
 		close(conn);
-		return list;
+		return o;
 	}
 	
 }
