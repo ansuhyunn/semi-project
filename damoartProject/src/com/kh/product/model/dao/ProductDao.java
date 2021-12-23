@@ -13,6 +13,7 @@ import java.util.Properties;
 
 import com.kh.common.model.vo.PageInfo;
 import com.kh.product.model.vo.Best;
+import com.kh.product.model.vo.Detail;
 import com.kh.product.model.vo.Product;
 import com.kh.product.model.vo.Qna;
 
@@ -457,8 +458,8 @@ public class ProductDao {
 	
 	
 	// detail 이미지 추출
-	public Product selectDetailImg(Connection conn, int pno) {
-		Product p = null;
+	public Detail selectDetailImg(Connection conn, int pno) {
+		Detail d = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String sql = prop.getProperty("selectDetailImg");
@@ -469,7 +470,7 @@ public class ProductDao {
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
-				p = new Product(rset.getString("DETAIL_IMG"));
+				d = new Detail(rset.getString("DETAIL_IMG"));
 			}
 			
 		} catch (SQLException e) {
@@ -479,7 +480,7 @@ public class ProductDao {
 			close(pstmt);
 		}
 		
-		return p;
+		return d;
 	}
 	
 	

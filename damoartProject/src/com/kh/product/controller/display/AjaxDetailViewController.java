@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 import com.kh.product.model.service.ProductService;
+import com.kh.product.model.vo.Detail;
 import com.kh.product.model.vo.Product;
 
 /**
@@ -34,11 +35,10 @@ public class AjaxDetailViewController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int pno = Integer.parseInt(request.getParameter("pno"));
-		Product p = new ProductService().selectDetailImg(pno);
+		Detail d = new ProductService().selectDetailImg(pno);
 		
 		response.setContentType("application/json; charset=utf-8");
-		new Gson().toJson(p, response.getWriter());}
-
+		new Gson().toJson(d, response.getWriter());}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
