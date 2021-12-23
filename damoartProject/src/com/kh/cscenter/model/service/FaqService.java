@@ -26,4 +26,11 @@ public class FaqService {
 		close(conn);
 		return list;
 	}
+	
+	public FAQ selectFaq(int FaqNo) {
+		Connection conn = getConnection();
+		FAQ f = new FaqDao().selectFaq(conn, FaqNo);
+		close(conn);
+		return f;
+	}
 }

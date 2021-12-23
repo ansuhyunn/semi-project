@@ -79,6 +79,8 @@ private Properties prop = new Properties();
 				f.setFaqTitle(rset.getString("faq_title"));
 				f.setFaqContent(rset.getString("faq_content"));
 				f.setfCategoryCode(category);
+				f.setCreateDate(rset.getString("create_date"));
+				f.setFaqWriter(rset.getString("nickname"));
 				
 				list.add(f);
 			}
@@ -89,5 +91,44 @@ private Properties prop = new Properties();
 			close(pstmt);
 		}
 		return list;
+	}
+	
+	public FAQ selectFaq(Connection conn, int FaqNo) {
+		FAQ f = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectFaq");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, FaqNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				String category = "";
+				switch(rset.getString("f_category_code")) {
+				case "Q1" : category = "[티켓]"; break;
+         	    case "Q2" : category = "[취소/환불]"; break;
+         	    case "Q3" : category = "[주문/결제]"; break;
+         	    case "Q4" : category = "[상품]"; break;
+         	    case "Q5" : category = "[기타]"; break;
+         	    default :  break;
+				}
+				f = new FAQ(rset.getInt("faq_no"),
+						    rset.getString("nickname"),
+						    rset.getString("faq_title"),
+						    rset.getString("faq_content"),
+						    rset.getString("create_date"),
+						    category);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return f;
+		
 	}
 }

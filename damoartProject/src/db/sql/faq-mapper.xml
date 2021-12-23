@@ -15,10 +15,13 @@
 		          FROM (
 		                SELECT
 		                       FAQ_NO
+		                     , NICKNAME
 		                     , FAQ_TITLE
 		                     , FAQ_CONTENT
+		                     , TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') "CREATE_DATE"
 		                     , F_CATEGORY_CODE
 		                  FROM FAQ
+		                  JOIN MEMBER ON(FAQ_WRITER = MEM_NO)
 		                 ORDER
 		                    BY FAQ_NO DESC
 		                ) A
@@ -26,4 +29,16 @@
 		  WHERE RNO BETWEEN ? AND ?
 	</entry>
 
+	<entry key="selectFaq">
+		SELECT
+		       FAQ_NO
+		     , NICKNAME
+		     , FAQ_TITLE
+		     , FAQ_CONTENT
+		     , TO_CHAR(CREATE_DATE, 'YYYY-MM-DD HH:MI:SS') "CREATE_DATE"
+		     , F_CATEGORY_CODE
+		  FROM FAQ
+		  JOIN MEMBER ON (FAQ_WRITER = MEM_NO)
+		 WHERE FAQ_NO = ?
+	</entry>
 </properties>

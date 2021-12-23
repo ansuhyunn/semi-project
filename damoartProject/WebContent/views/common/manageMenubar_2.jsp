@@ -179,7 +179,7 @@
             <div class="sub">
                 <ul>
                     <li><a href="<%=contextPath%>/adminList.no?cpage=1">공지사항 관리</a></li>
-                    <li><a href="">FAQ 관리</a></li>
+                    <li><a href="<%=contextPath%>/adminList.fa?cpage=1">FAQ 관리</a></li>
                     <li><a href="<%=contextPath%>/adminList.qa?cpage=1">Q&A 관리</a></li>
                     <li><a href="<%=contextPath%>/adminList.gu?cpage=1">이용안내 관리</a></li>
                 </ul>

@@ -23,6 +23,19 @@ public class FAQ {
 		this.fCategoryCode = fCategoryCode;
 		this.status = status;
 	}
+	
+	
+
+	public FAQ(int faqNo, String faqWriter, String faqTitle, String faqContent, String createDate,
+			String fCategoryCode) {
+		super();
+		this.faqNo = faqNo;
+		this.faqWriter = faqWriter;
+		this.faqTitle = faqTitle;
+		this.faqContent = faqContent;
+		this.createDate = createDate;
+		this.fCategoryCode = fCategoryCode;
+	}
 
 	public int getFaqNo() {
 		return faqNo;
