@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.kh.mainPage.model.vo.MainPageProduct"%>
-<% 
-	MainPageProduct newList = (MainPageProduct)request.getAttribute("newList");
-%>
+    pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -87,18 +85,18 @@
         </ul>
         <div class="carousel-inner">
           <div class="carousel-item active">
-          	<a href="">
+          	<a href="<%=request.getContextPath()%>/detail.pro?num=11">
             	<img src="<%=request.getContextPath() %>/resources/product/11M.gif" alt="banner1">
             </a>
           </div>
           <div class="carousel-item">
-          	<a href="">
-            	<img src="<%=request.getContextPath() %>/resources/product/3M.gif" alt="banner2">
+          	<a href="<%=request.getContextPath()%>/detail.pro?num=4">
+            	<img src="<%=request.getContextPath() %>/resources/product/4M.gif" alt="banner2">
             </a>
           </div>
           <div class="carousel-item">
-          	<a href="">
-            	<img src="<%=request.getContextPath() %>/resources/product/34M.gif" alt="banner3">
+          	<a href="<%=request.getContextPath()%>/detail.pro?num=6">
+            	<img src="<%=request.getContextPath() %>/resources/product/6M.gif" alt="banner3">
             </a>
           </div>
         </div>
@@ -111,132 +109,106 @@
       </div>
       <br>
 	
-	<!--new, 오픈예정 전시 썸네일-->
+	<!--new, 오픈예정 전시 -->
 	
     <div class="wrapper">
+    
       <div class="name">New 전시</div>
           <div id="range">
-              <a href="<%=request.getContextPath()%>/ing.pro">더보기+</a>
+              <a href="<%=contextPath%>/ing.pro?cpage=1">더보기+</a>
           </div>
       <hr class="my-2">
-      <div class="content1">
+      <div class="content1" id="newContent">
 
-	          <div class="content" id="">
-	              <div class="poster">
-	              	<img src="<%=request.getContextPath() %>/resources/product/30M.gif" width="100%" height="100%">
-	              </div>
-	              <div class="info">
-	                  <p class="title">
-			다모아트 특별전 : 무에서 ...
-	                  </p>
-	                  <p class="summary">
-	                      2021.12.01 ~ 2021.12.31<br>
-	                      KH강남점
-	                  </p>
-	              </div>
-	          </div>
+	  </div>
+
+           
+	  <!-- 전시 조회 -->
+      <script>
+             $(function(){
+                 selectNewList();
+             })
+
+             function selectNewList(){
+                 $.ajax({
+                     url:"nlist.ma",
+                     success:function(nlist){
+                         let result = "";
+                         for(let i=0; i<nlist.length; i++){
+                             result += "<div class='content'>"
+                           	  	  +	"<div class='poster'>"
+                           	  	  	+"<a href='detail.pro?num=" + nlist[i].pNo + "'>"
+   	        						  + "<img src='"+ nlist[i].mainImg + "' width='100%' height='100%'>"
+   	        						+"</a>"
+   	        					  + "</div>"
+   	        					  + "<div class='info'>"
+   	        						  + "<p class='title'>"
+   	        						  +	nlist[i].title + "</p>"
+   	        						  + "<p class='summary'>"
+   	        						  +	nlist[i].sDate + " ~ " + nlist[i].eDate + "<br>"
+                                         + nlist[i].area
+                                         + "</p>"
+   	        					  + "</div>"
+   	        					  +"</div>";
+                         }
+                         $("#newContent").html(result);
+                     },error:function(){
+                         console.log("new전시 조회용 ajax 통신 실패");
+                     }
+                 })             
+             }
       
-          <div class="content" id="">
-              <div class="poster">
-              	<img src="<%=request.getContextPath() %>/resources/product/33M.gif" width="100%" height="100%">
-              </div>
-              <div class="info">
-                  <p class="title">
-                        다모아트 특별전 : 무에서 ...
-                  </p>
-                  <p class="summary">
-                      2021.12.01 ~ 2021.12.31<br>
-                      KH강남점
-                  </p>
-              </div>
-          </div>
-          <div class="content" id="">
-              <div class="poster">
-              	<img src="<%=request.getContextPath() %>/resources/product/32M.gif" width="100%" height="100%">
-              </div>
-              <div class="info">
-                  <p class="title">
-                        다모아트 특별전 : 무에서 ...
-                  </p>
-                  <p class="summary">
-                      2021.12.01 ~ 2021.12.31<br>
-                      KH강남점
-                  </p>
-              </div>
-          </div>
-          <div class="content" id="">
-              <div class="poster">
-              	<img src="<%=request.getContextPath() %>/resources/product/31M.gif" width="100%" height="100%">
-              </div>
-              <div class="info">
-                  <p class="title">
-                        다모아트 특별전 : 무에서 ...
-                  </p>
-                  <p class="summary">
-                      2021.12.01 ~ 2021.12.31<br>
-                      KH강남점
-                  </p>
-              </div>
-          </div>
-      </div>
+      </script>
+  
+    	    				
+      <!-- 오픈예정 전시 조회 -->
       <br><br><br>
       <div class="name">오픈예정 전시</div>
           <div id="range">
-              <a href="<%=request.getContextPath()%>/pre.pro">더보기+</a>
+              <a href="<%=contextPath%>/pre.pro?cpage=1">더보기+</a>
           </div>
       <hr class="my-2">
-      <div class="content1">
-          <div class="content" id="">
-              <div class="poster"></div>
-              <div class="info">
-                  <p class="title">
-                        다모아트 특별전 : 무에서 ...
-                  </p>
-                  <p class="summary">
-                      2021.12.01 ~ 2021.12.31<br>
-                      KH강남점
-                  </p>
-              </div>
-          </div>
-          <div class="content" id="">
-              <div class="poster"></div>
-              <div class="info">
-                  <p class="title">
-                        다모아트 특별전 : 무에서 ...
-                  </p>
-                  <p class="summary">
-                      2021.12.01 ~ 2021.12.31<br>
-                      KH강남점
-                  </p>
-              </div>
-          </div>
-          <div class="content" id="">
-              <div class="poster"></div>
-              <div class="info">
-                  <p class="title">
-                        다모아트 특별전 : 무에서 ...
-                  </p>
-                  <p class="summary">
-                      2021.12.01 ~ 2021.12.31<br>
-                      KH강남점
-                  </p>
-              </div>
-          </div>
-          <div class="content" id="">
-              <div class="poster"></div>
-              <div class="info">
-                  <p class="title">
-                        다모아트 특별전 : 무에서 ...
-                  </p>
-                  <p class="summary">
-                      2021.12.01 ~ 2021.12.31<br>
-                      KH강남점
-                  </p>
-              </div>
-          </div>
-      </div>
+      <div class="content1" id="preContent">
+          
+      </div>  
+          
+      <script>
+             $(function(){                
+                 selectPreList();
+             })
+
+             function selectPreList(){
+                 $.ajax({
+                     url:"plist.ma",
+                     success:function(plist){
+                         let result = "";
+                         for(let i=0; i<plist.length; i++){
+                             result += "<div class='content'>"
+                           	  	  +	"<div class='poster'>"
+                           	  	  	+"<a href='detail.pro?num=" + plist[i].pNo + "'>"
+   	        						  + "<img src='"+ plist[i].mainImg + "' width='100%' height='100%'>"
+   	        						+"</a>"
+   	        					  + "</div>"
+   	        					  + "<div class='info'>"
+   	        						  + "<p class='title'>"
+   	        						  +	plist[i].title + "</p>"
+   	        						  + "<p class='summary'>"
+   	        						  +	plist[i].sDate + " ~ " + plist[i].eDate + "<br>"
+                                         + plist[i].area
+                                         + "</p>"
+   	        					  + "</div>"
+   	        					  +"</div>";
+                         }
+                         $("#preContent").html(result);
+                     },error:function(){
+                         console.log("예정전시 조회용 ajax 통신 실패");
+                     }
+                 })             
+             }           
+      </script>
       
-  </div> 
+  </div>
+  <br><br> 
     <%@ include file="../common/footerbar.jsp" %>
 </body>
 </html>

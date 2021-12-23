@@ -1,29 +1,29 @@
-package com.kh.member.controller;
+package com.kh.mainPage.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import com.kh.member.model.service.MemberService;
-import com.kh.member.model.vo.Member;
+import com.google.gson.Gson;
+import com.kh.mainPage.model.service.MainPageProductService;
+import com.kh.mainPage.model.vo.MainPageProduct;
 
 /**
- * Servlet implementation class LoginController
+ * Servlet implementation class AjaxMainProductPreController
  */
-@WebServlet("/memlogin.me")
-public class LoginController extends HttpServlet {
+@WebServlet("/plist.ma")
+public class AjaxMainProductPreController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginController() {
+    public AjaxMainProductPreController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,22 +33,10 @@ public class LoginController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String memId = request.getParameter("memId");
-		String memPwd = request.getParameter("memPwd");
+		ArrayList<MainPageProduct> plist = new MainPageProductService().selectPreList();
 		
-		//System.out.println(memId);
-		//System.out.println(memPwd);
-		
-		Member loginUser = new MemberService().loginMember(memId, memPwd);
-		
-		if(loginUser == null) { // 로그인 실패
-			
-		}else { // 로그인 성공
-			HttpSession session = request.getSession();
-			session.setAttribute("loginUser", loginUser);
-			
-			response.sendRedirect(request.getContextPath());  
-		}
+		response.setContentType("application/json; charset=UTF-8");
+		new Gson().toJson(plist, response.getWriter());
 	}
 
 	/**

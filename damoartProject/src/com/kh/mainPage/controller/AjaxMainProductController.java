@@ -8,22 +8,22 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
 import com.kh.mainPage.model.service.MainPageProductService;
 import com.kh.mainPage.model.vo.MainPageProduct;
 
 /**
- * Servlet implementation class MainPageProductController
+ * Servlet implementation class AjaxMainProductController
  */
-@WebServlet("/mainProduct.ma")
-public class MainPageProductController extends HttpServlet {
+@WebServlet("/nlist.ma")
+public class AjaxMainProductController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MainPageProductController() {
+    public AjaxMainProductController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,18 +33,10 @@ public class MainPageProductController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		ArrayList<MainPageProduct> newList = new MainPageProductService().selectNewList();
+		ArrayList<MainPageProduct> nlist = new MainPageProductService().selectNewList();
 		
-		//MainPageProduct newList = new MainPageProductService().selectNewList();
-		
-		if(newList == null) {
-			
-		}else {
-			HttpSession session = request.getSession();
-			session.setAttribute("newList", newList);
-			
-			response.sendRedirect("views/common/mainPage.jsp");
-		}
+		response.setContentType("application/json; charset=UTF-8");
+		new Gson().toJson(nlist, response.getWriter());
 	}
 
 	/**

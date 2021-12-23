@@ -13,10 +13,17 @@ public class MainPageProductService {
 	public ArrayList<MainPageProduct> selectNewList(){
 		Connection conn = getConnection();
 		
-		ArrayList<MainPageProduct> newList = new MainPageProductDao().selectNewList(conn);
-		//MainPageProduct newList = new MainPageProductDao().selectNewList(conn);
+		ArrayList<MainPageProduct> nlist = new MainPageProductDao().selectNewList(conn);
 		
 		close(conn); 
-		return newList;
+		return nlist;
+	}
+	
+	public ArrayList<MainPageProduct> selectPreList(){
+		Connection conn = getConnection();
+		
+		ArrayList<MainPageProduct> plist = new MainPageProductDao().selectPreList(conn);
+		close(conn);
+		return plist;
 	}
 }
