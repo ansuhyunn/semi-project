@@ -3,6 +3,7 @@
 <% 
 	Product pro = (Product)request.getAttribute("p");
 	ArrayList<Product> detailList = (ArrayList<Product>)request.getAttribute("detailList");
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -150,23 +151,23 @@
 					</tr>
 				</table>
 				<hr class="my-2">
-				<form>
+				
 					<table id="pay">
 						<tr>
 							<th >옵션선택</th>
 							<td>
 								<select name="option" >
-									<option value="<%= p.getaPrice() %>">성인</option>
-									<option value="<%= p.gettPrice() %>">청소년</option>
-									<option value="<%= p.getcPrice() %>">소아</option>
+									<option value="A">성인</option>
+									<option value="T">청소년</option>
+									<option value="C">소아</option>
 								</select>
 							</td>
 							<th>수량</th>
 							<td><input type="number" style="width: 50px;"></td>
 						</tr>
 					</table>
-					<button class="btn btn-secondary" onclick="orderlist();">선택</button>
-				</form>
+					<button class="btn btn-secondary" id="insertCart">선택</button>
+			
 				<table id="result">
 					<tr>
 						<td id="order" colspan="4" style="background-color: whitesmoke;">몇개샀는지~~</td>
@@ -260,6 +261,25 @@
 				})
 				
 			})
+			
+			$(".insertCart").on('click',function(){
+				$.ajax({
+					url:"in.ca",
+					data:{
+					   pno: $("#pNo").val(),
+					 count: $("#count").val(),
+				    option: $("#option").val()
+ 						},
+ 					type:"post",
+ 		             success:function(result){
+ 		                console.log("ajax통신 성공: " + result);
+ 		                alert("성공적으로 장바구니에 담겼습니다.");
+ 					}, error : function(){
+ 		               console.log("ajax통신 실패"); 
+ 		               }
+				})
+			})
+			
 			
 			
 			
