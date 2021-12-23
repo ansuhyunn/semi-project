@@ -20,15 +20,15 @@ public class Product {
 	private String detailImg;
 	private String etc;
 	private String soldOut;
-	private int star;
+	private String star;
 	
 	
 	public Product() {}
 	
-	// 상세조회
+	
 	public Product(int pNo, String enrollDate, String title, String region, String age, String area, String sDate,
 			String eDate, String time, int aPrice, int tPrice, int cPrice, String mainImg, String detailImg, String etc,
-			String soldOut, int star) {
+			String soldOut) {
 		super();
 		this.pNo = pNo;
 		this.enrollDate = enrollDate;
@@ -46,7 +46,6 @@ public class Product {
 		this.detailImg = detailImg;
 		this.etc = etc;
 		this.soldOut = soldOut;
-		this.star = star;
 	}
 
 	// 무료 조회 시 사용
@@ -68,7 +67,7 @@ public class Product {
 	
 
 	// 별점순 정렬
-	public Product(int pNo, String area, String sDate, String eDate, String mainImg, String title, int star) {
+	public Product(int pNo, String area, String sDate, String eDate, String mainImg, String title, String star) {
 		super();
 		this.pNo = pNo;
 		this.area = area;
@@ -232,11 +231,11 @@ public class Product {
 		this.soldOut = soldOut;
 	}
 	
-	public int getStar() {
+	public String getStar() {
 		return star;
 	}
 
-	public void setStar(int star) {
+	public void setStar(String star) {
 		this.star = star;
 	}
 

@@ -390,45 +390,70 @@ public class ProductDao {
 	}
 	
 	
-	// detail 정보 추출
-	public ArrayList<Product> selectDetailList(Connection conn, int pno){
-		ArrayList<Product> list = new ArrayList<>();
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		String sql = prop.getProperty("selectDetailList");
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, pno);
-			rset = pstmt.executeQuery();
+	// 별점데이터 추출
+		public ArrayList<Product> haveStar(Connection conn, int pno) {
+			ArrayList<Product> list = new ArrayList<>();
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			String sql = prop.getProperty("haveStar");
 			
-			while(rset.next()) {
-				list.add(new Product(rset.getInt("PNO"),
-									 rset.getString("ENROLL_DATE"),
-									 rset.getString("TITLE"),
-									 rset.getString("REGION"),
-									 rset.getString("AGE"),
-									 rset.getString("AREA"),
-									 rset.getString("S_DATE"),
-									 rset.getString("E_DATE"),
-									 rset.getString("TIME"),
-									 rset.getInt("A_PRICE"),
-									 rset.getInt("T_PRICE"),
-									 rset.getInt("C_PRICE"),
-									 rset.getString("MAIN_IMG"),
-									 rset.getString("DETAIL_IMG"),
-									 rset.getString("ETC"),
-									 rset.getString("SOLDOUT"),
-									 rset.getInt("REVIEW_STAR")));
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, pno);
+				rset = pstmt.executeQuery();
+				
+				while(rset.next()) {
+					list.add(new Product(rset.getString("STAR")));
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt);
 			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(rset);
-			close(pstmt);
+			return list;
 		}
-		return list;
-	}
+		
+		
+		// detail 정보 추출
+		public ArrayList<Product> selectDetailList(Connection conn, int pno){
+			ArrayList<Product> list = new ArrayList<>();
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			String sql = prop.getProperty("selectDetailList");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, pno);
+				rset = pstmt.executeQuery();
+				
+				while(rset.next()) {
+					list.add(new Product(rset.getInt("PNO"),
+										 rset.getString("ENROLL_DATE"),
+										 rset.getString("TITLE"),
+										 rset.getString("REGION"),
+										 rset.getString("AGE"),
+										 rset.getString("AREA"),
+										 rset.getString("S_DATE"),
+										 rset.getString("E_DATE"),
+										 rset.getString("TIME"),
+										 rset.getInt("A_PRICE"),
+										 rset.getInt("T_PRICE"),
+										 rset.getInt("C_PRICE"),
+										 rset.getString("MAIN_IMG"),
+										 rset.getString("DETAIL_IMG"),
+										 rset.getString("ETC"),
+										 rset.getString("SOLDOUT")));
+					}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt);
+			}
+			return list;
+		}
 	
 	
 	// detail 이미지 추출
@@ -723,7 +748,7 @@ public class ProductDao {
 									 rset.getString("E_DATE"),
 									 rset.getString("MAIN_IMG"),
 									 rset.getString("TITLE"),
-									 rset.getInt("REVIEW_STAR")));
+									 rset.getString("REVIEW_STAR")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -995,7 +1020,7 @@ public class ProductDao {
 									 rset.getString("E_DATE"),
 									 rset.getString("MAIN_IMG"),
 									 rset.getString("TITLE"),
-									 rset.getInt("REVIEW_STAR")));
+									 rset.getString("REVIEW_STAR")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
