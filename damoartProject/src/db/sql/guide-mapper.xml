@@ -165,4 +165,10 @@
 		 WHERE GUIDE_NO != ?
 	</entry>
 	
+	<entry key="deleteGuide">
+		 DELETE 
+		   FROM GUIDE
+		  WHERE GUIDE_NO = ?
+	</entry>
+	
 </properties>

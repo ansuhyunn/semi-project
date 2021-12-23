@@ -310,4 +310,21 @@ public class GuideDao {
 		}
 		return result;
 	}
+	
+	public int deleteGuide(Connection conn, int guideNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteGuide");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, guideNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
 }

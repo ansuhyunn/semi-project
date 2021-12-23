@@ -57,4 +57,16 @@ public class FaqService {
 		close(conn);
 		return result;
 	}
+	
+	public int deleteFaq(int faqNo) {
+		Connection conn = getConnection();
+		int result = new FaqDao().deleteFaq(conn, faqNo);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
 }

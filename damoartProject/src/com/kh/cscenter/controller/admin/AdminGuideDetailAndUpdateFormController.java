@@ -16,13 +16,13 @@ import com.kh.cscenter.model.vo.Guide;
  * Servlet implementation class AdminGuideDatailAndUpdateFormController
  */
 @WebServlet("/detailAndUpdate.gu")
-public class AdminGuideDatailAndUpdateFormController extends HttpServlet {
+public class AdminGuideDetailAndUpdateFormController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminGuideDatailAndUpdateFormController() {
+    public AdminGuideDetailAndUpdateFormController() {
         super();
         // TODO Auto-generated constructor stub
     }
