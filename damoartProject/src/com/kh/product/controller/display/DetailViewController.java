@@ -31,14 +31,17 @@ public class DetailViewController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		int pno = Integer.parseInt(request.getParameter("num"));
+		
+		ArrayList<Product> starlist = new ProductService().haveStar(pno);
 		
 		ArrayList<Product> detailList = new ProductService().selectDetailList(pno);
 		
+		request.setAttribute("starlist", starlist);
 		request.setAttribute("detailList", detailList);
 		request.getRequestDispatcher("views/product/detailView.jsp").forward(request, response);
 		
-		System.out.println(detailList);
 	}
 
 	/**

@@ -20,15 +20,15 @@ public class Product {
 	private String detailImg;
 	private String etc;
 	private String soldOut;
-	private int star;
+	private String star;
 	
 	
 	public Product() {}
 	
-	// 상세조회
+
 	public Product(int pNo, String enrollDate, String title, String region, String age, String area, String sDate,
 			String eDate, String time, int aPrice, int tPrice, int cPrice, String mainImg, String detailImg, String etc,
-			String soldOut, int star) {
+			String soldOut, String star) {
 		super();
 		this.pNo = pNo;
 		this.enrollDate = enrollDate;
@@ -48,6 +48,9 @@ public class Product {
 		this.soldOut = soldOut;
 		this.star = star;
 	}
+	
+	
+	
 
 	// 무료 조회 시 사용
 	public Product(int pNo, String title, String region, String age, String area, String sDate, 
@@ -66,9 +69,39 @@ public class Product {
 		this.etc = etc;
 	}
 	
+	
+	// 상세조회
+	public Product(int pNo, String enrollDate, String title, String region, String age, String area, String sDate,
+			String eDate, String time, int aPrice, int tPrice, int cPrice, String mainImg, String detailImg, String etc,
+			String soldOut) {
+		super();
+		this.pNo = pNo;
+		this.enrollDate = enrollDate;
+		this.title = title;
+		this.region = region;
+		this.age = age;
+		this.area = area;
+		this.sDate = sDate;
+		this.eDate = eDate;
+		this.time = time;
+		this.aPrice = aPrice;
+		this.tPrice = tPrice;
+		this.cPrice = cPrice;
+		this.mainImg = mainImg;
+		this.detailImg = detailImg;
+		this.etc = etc;
+		this.soldOut = soldOut;
+	}
+
+	// 별점조회
+	public Product(String star) {
+		super();
+		this.star = star;
+	}
+
 
 	// 별점순 정렬
-	public Product(int pNo, String area, String sDate, String eDate, String mainImg, String title, int star) {
+	public Product(int pNo, String area, String sDate, String eDate, String mainImg, String title, String star) {
 		super();
 		this.pNo = pNo;
 		this.area = area;
@@ -79,13 +112,6 @@ public class Product {
 		this.star = star;
 	}
 
-
-	// 상세조회 이미지에 사용
-	public Product(String detailImg) {
-		super();
-		this.detailImg = detailImg;
-	}
-	
 	
 	// 관리자 전체조회용
 	public Product(int pNo, String enrollDate, String title, String region, String area, 
@@ -232,11 +258,11 @@ public class Product {
 		this.soldOut = soldOut;
 	}
 	
-	public int getStar() {
+	public String getStar() {
 		return star;
 	}
 
-	public void setStar(int star) {
+	public void setStar(String star) {
 		this.star = star;
 	}
 

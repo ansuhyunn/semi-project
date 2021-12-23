@@ -253,6 +253,16 @@ ORDER BY TITLE
 
 
 
+
+<!-- 별점 -->
+<entry key="haveStar">
+SELECT ROUND(AVG(REVIEW_STAR), 1) AS STAR
+  FROM PRODUCT
+  JOIN "ORDER_P" O USING (PNO)
+  JOIN REVIEW R USING (ORDER_NO)
+ WHERE PNO = ?
+</entry>
+
 <!-- 디테일 -->
 <entry key="selectDetailList">
 SELECT 
@@ -272,10 +282,7 @@ SELECT
 	 , DETAIL_IMG
 	 , ETC
 	 , SOLDOUT
-     , REVIEW_STAR
   FROM PRODUCT
-  JOIN "ORDER_P" O USING (PNO)
-  JOIN REVIEW R USING (ORDER_NO)
  WHERE PNO = ?
 </entry>
 

@@ -396,6 +396,33 @@ public class ProductDao {
 	}
 	
 	
+	
+	// 별점데이터 추출
+	public ArrayList<Product> haveStar(Connection conn, int pno) {
+		ArrayList<Product> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("haveStar");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, pno);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Product(rset.getString("STAR")));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+	
+	
 	// detail 정보 추출
 	public ArrayList<Product> selectDetailList(Connection conn, int pno){
 		ArrayList<Product> list = new ArrayList<>();
@@ -424,9 +451,8 @@ public class ProductDao {
 									 rset.getString("MAIN_IMG"),
 									 rset.getString("DETAIL_IMG"),
 									 rset.getString("ETC"),
-									 rset.getString("SOLDOUT"),
-									 rset.getInt("REVIEW_STAR")));
-			}
+									 rset.getString("SOLDOUT")));
+				}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -435,6 +461,7 @@ public class ProductDao {
 		}
 		return list;
 	}
+
 	
 	
 	// detail 이미지 추출
@@ -729,7 +756,7 @@ public class ProductDao {
 									 rset.getString("E_DATE"),
 									 rset.getString("MAIN_IMG"),
 									 rset.getString("TITLE"),
-									 rset.getInt("REVIEW_STAR")));
+									 rset.getString("REVIEW_STAR")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -1001,7 +1028,7 @@ public class ProductDao {
 									 rset.getString("E_DATE"),
 									 rset.getString("MAIN_IMG"),
 									 rset.getString("TITLE"),
-									 rset.getInt("REVIEW_STAR")));
+									 rset.getString("REVIEW_STAR")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

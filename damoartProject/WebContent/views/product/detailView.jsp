@@ -3,6 +3,7 @@
 <% 
 	Product pro = (Product)request.getAttribute("p");
 	ArrayList<Product> detailList = (ArrayList<Product>)request.getAttribute("detailList");
+	ArrayList<Product> starList = (ArrayList<Product>)request.getAttribute("starlist");
 %>
 <!DOCTYPE html>
 <html>
@@ -37,7 +38,6 @@
 		height: 33%;
 	}
 	.poster{
-		border: 1px solid black;
 		width: 300px;
 		height: 400px;
 		float: left;
@@ -45,22 +45,31 @@
 		margin-left: 50px;
 		margin-right: 40px;
 	}
-	.poster>div{
-		border: 1px solid black;
-	}
-	#star, #review{
-		width: 50%;
+	#star1, #star2, #review{
+		width: 25%;
+		height: 50px;
 		float: left;
+		margin-top: 10px;
 	}
-	#star{
+	#star1{
 		text-align: center;
-		font-size: x-large;
+		font-size: large;
+		padding-top: 15px;
+		margin-left: 30px;
+	}
+	#star2{
+		text-align: center;
+		font-size: xx-large;
+		font-weight: bolder;
+		padding-right: 15px;
 	}
 	#review{
+		width: 100px;
 		text-decoration: none;
 		text-align: center;
 		font-size: x-large;
 		color: black;
+		padding-top: 6px;
 	}
 	.info{
 		width: 500px;
@@ -114,8 +123,16 @@
 		<div class="content2" >
 			<div class="poster">
 				<img src="<%=request.getContextPath()%>/<%= p.getMainImg() %>" width="100%" height="100%">
-				<div id="star"> <%= p.getStar() %> </div>
-				<a id="review" href="">review </a>
+				<% for(Product s : starList){ %>
+					<% if(s.getStar() != null){ %>
+						<div id="star1"> 별점 </div>
+						<div id="star2"> <%= s.getStar() %> </div>
+					<%}else { %>
+						<div id="star1"> 별점 </div>
+						<div id="star2"> - </div>
+					<%} %>
+				<%} %>
+				<a id="review" href="<%=contextPath%>/review.pro?cpage=1">review </a>
 			</div>
 			<div class="info">
 				<table id="info">
@@ -172,7 +189,7 @@
 						<td id="order" colspan="4" style="background-color: whitesmoke;">몇개샀는지~~</td>
 					</tr>
 					<tr>
-						<th colspan="4" style="text-align: right; font-size: 30px;">총 27000원</td>
+						<th colspan="4" style="text-align: right; font-size: 30px;">총 27000원</th>
 					</tr>
 				</table>
 			</div>
@@ -242,8 +259,6 @@
 											+ "<td width=\"80px\">" + result[i].qWriter + "</td>"
 											+ "<td width=\"150px\">" + result[i].createDate + "</td>"
 									   + "</tr>"
-									   
-								
 							}
 							value += "</table>"
 							
@@ -260,8 +275,6 @@
 				})
 				
 			})
-			
-			
 			
 		</script>
 		<% } %>

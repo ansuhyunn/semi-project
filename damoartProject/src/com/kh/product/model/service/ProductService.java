@@ -84,6 +84,16 @@ public class ProductService {
 	}
 	
 	
+	public ArrayList<Product> haveStar(int pno) {
+		Connection conn = getConnection();
+		
+		ArrayList<Product> list = new ProductDao().haveStar(conn, pno);
+		
+		close(conn); 
+		return list;
+	}
+	
+	
 	public ArrayList<Product> selectDetailList(int pno) {
 		Connection conn = getConnection();
 		
