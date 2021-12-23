@@ -59,7 +59,6 @@
         display: block;
     }
     .poster{
-        border: 1px solid black;
         width: 100%;
         height: 75%;
         width: 100%;
