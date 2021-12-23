@@ -199,4 +199,10 @@
 		     , ?
 		     )
 	</entry>
+	
+	<entry key="deleteQna">
+		 UPDATE QNA
+		    SET STATUS = 'N'
+		  WHERE Q_NO = ?
+	</entry>
 </properties>

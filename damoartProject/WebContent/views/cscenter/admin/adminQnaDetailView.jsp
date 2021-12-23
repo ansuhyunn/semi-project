@@ -100,12 +100,12 @@
         box-sizing:border-box;
     }
 
-    #list, #update{
+    #list, #update, #deleteCheck{
         background-color:rgb(151, 138, 116);
         color:white;
     }
 
-    #delete{
+    #delete, #deleteCancel{
         background-color:rgb(203, 185, 153);
         color:rgb(64, 64, 64);
         font-weight:600;
@@ -125,6 +125,9 @@
         font-weight:750;
     }
     
+    #myModal{
+    	padding-top:150px;
+    }
 
 </style>
 </head>
@@ -208,7 +211,7 @@
                     <a id="list" href="<%= contextPath %>/adminList.qa?cpage=1" class="btn btn-sm">목록가기</a>			
                 </div>
                 <div align="right">
-                    <a id="delete" href="" class="btn btn-sm">삭제하기</a>
+                    <a id="delete" class="btn btn-sm"  data-toggle="modal" data-target="#myModal" type="button">삭제하기</a>
                     <% if(q.getaContent() != null) { %>
                         <a id="update" href="<%=contextPath %>/adminUpdateForm.qa?qno=<%=q.getqNo() %>" class="btn btn-sm">수정하기</a>
                     <% }else { %>
@@ -216,10 +219,27 @@
                     <% } %>
                 </div>
             </div>
-        </form>
-            
+        </form>          
     </div>
     
+    <!-- The Modal -->
+		<div class="modal" id="myModal">
+		  <div class="modal-dialog modal-sm">
+		    <div class="modal-content">
+		
+		      <!-- Modal body -->
+		      <div class="modal-body" align="center">
+		        	삭제하시겠습니까?
+		      </div>
+		
+		      <!-- Modal footer -->
+		      <div class="modal-footer">
+		      	<button id="deleteCancel" type="button" class="btn" data-dismiss="modal">취소</button>
+		      	<button id ="deleteCheck" type="button" class="btn" data-dismiss="modal" onclick="location.href='<%=contextPath%>/adminDelete.qa?qno=<%=q.getqNo()%>';">확인</button>
+			  </div>	
+		    </div>
+		  </div>
+		</div>
 
 
 </html>

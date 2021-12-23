@@ -118,5 +118,17 @@ public class QnaService {
 		return result1*result2;
 	}
 	
+	public int deleteQna(int qnaNo) {
+		Connection conn = getConnection();
+		int result = new QnaDao().deleteQna(conn, qnaNo);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	
 	
 }

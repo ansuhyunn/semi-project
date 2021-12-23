@@ -143,7 +143,7 @@
                             <a id="list" href="<%= contextPath %>/adminList.gu?cpage=1" class="btn btn-sm">목록가기</a>			
                         </div>
                         <div align="right">
-                            <a class="btn btn-sm" id="delete"  data-toggle="modal" data-target="#myModal" type="button">삭제하기</a>
+                            <a class="btn btn-sm" id="delete" data-toggle="modal" data-target="#myModal" type="button">삭제하기</a>
                             <button type="submit" class="btn btn-sm" id="insert">등록하기</button>
                         </div>
                     </div>

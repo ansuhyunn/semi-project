@@ -93,12 +93,12 @@
         padding-left:10px;
     }
 
-    #list, #update{
+    #list, #update, #deleteCheck{
         background-color:rgb(151, 138, 116);
         color:white;
     }
 
-    #delete{
+    #delete, #deleteCancel{
         background-color:rgb(203, 185, 153);
         color:rgb(64, 64, 64);
         font-weight:600;
@@ -116,6 +116,10 @@
     span{
         font-size:30px;
         font-weight:750;
+    }
+    
+    #myModal{
+    	padding-top:150px;
     }
     
 
@@ -190,7 +194,7 @@
             </div>
             <div align="right">
             	<%if(loginUser.getNickName().equals(q.getqWriter())) { %>
-	                <a id="delete" href="" class="btn btn-sm">삭제하기</a>
+	                <a id="delete" class="btn btn-sm" data-toggle="modal" data-target="#myModal" type="button">삭제하기</a>
 	                <% if(q.getaContent() == null) { %>
 	                    <a id="update" href="<%=contextPath %>/updateForm.qa?qno=<%=q.getqNo() %>" class="btn btn-sm">수정하기</a>
 	                <% } %>
@@ -199,6 +203,25 @@
         </div>
             
     </div>
+    
+    <!-- The Modal -->
+		<div class="modal" id="myModal">
+		  <div class="modal-dialog modal-sm">
+		    <div class="modal-content">
+		
+		      <!-- Modal body -->
+		      <div class="modal-body" align="center">
+		        	삭제하시겠습니까?
+		      </div>
+		
+		      <!-- Modal footer -->
+		      <div class="modal-footer">
+		      	<button id="deleteCancel" type="button" class="btn" data-dismiss="modal">취소</button>
+		      	<button id ="deleteCheck" type="button" class="btn" data-dismiss="modal" onclick="location.href='<%=contextPath%>/delete.qa?qno=<%=q.getqNo()%>';">확인</button>
+			  </div>	
+		    </div>
+		  </div>
+		</div>
     
     <%@ include file="../../common/footerbar.jsp" %>
 
