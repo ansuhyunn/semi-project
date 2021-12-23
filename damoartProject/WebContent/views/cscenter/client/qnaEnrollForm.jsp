@@ -39,7 +39,7 @@
     }
 
     #button{
-        width:85%;
+        width:83%;
     }
 
     #cancel{
@@ -48,13 +48,17 @@
         font-weight:600;
     }
 
-    #insert, #proSelect, #searchbtn{
+    #insert{
         background-color:rgb(151, 138, 116);
         color:white;
     }
 
     #enroll-tb{
         border:1px solid rgb(173, 157, 128);
+    }
+
+    #secret{
+        
     }
 
     #button{
@@ -64,10 +68,6 @@
     #pwd{
         background:rgb(203, 185, 153);
         font-weight: 700;
-    }
-    
-    #result{
-    	height:auto;
     }
 
 
@@ -95,11 +95,11 @@
                         <td colspan="3">
                             <select name="category" required>
                             	<option value="">--선택--</option>
-                                <option value="Q1">[티켓]</option>
-                                <option value="Q2">[취소/환불]</option>
-                                <option value="Q3">[주문/결제]</option>
-                                <option value="Q4">[상품]</option>
-                                <option value="Q5">[기타]</option>
+                                <option value="Q1">티켓</option>
+                                <option value="Q2">취소/환불</option>
+                                <option value="Q3">주문/결제</option>
+                                <option value="Q4">상품</option>
+                                <option value="Q5">기타</option>
                             </select>
                         </td>
                     </tr>
@@ -107,18 +107,16 @@
                         <th >&nbsp;&nbsp;&nbsp;상품선택</th>
                         <td colspan="3">
                             <button type="button" data-toggle="modal" data-target="#myModal">상품 선택</button>
-                            <span id="select-result"></span>
                         </td>
                     </tr>
                     <% if(loginUser != null) {%>  
-                    	<input type="hidden" name="memNo" value="<%=loginUser.getMemNo()%>"> 
-            			<input type="hidden" name="nickName" value="<%=loginUser.getNickName()%>"> 
+            			<input type="hidden" name="memNo" value="<%=loginUser.getMemNo()%>"> 
                     <% }else { %>
 	                    <tr>
 	                        <th>&nbsp;&nbsp;&nbsp;작성자</th>  <!-- 비회원 닉네임 입력시 중복 검사하기 -->
-	                        <td><input type="text" name="nickName"></td>
+	                        <td><input type="text"></td>
 	                        <td id="pwd">&nbsp;&nbsp;&nbsp;비밀번호</td>
-	                        <td><input type="password" name="pwd"></td>
+	                        <td><input type="text"></td>
 	                    </tr>
                     <% } %>
                     <tr style="border-bottom:1px solid rgb(173, 157, 128); border-top:1px solid rgb(173, 157, 128)">
@@ -133,7 +131,7 @@
                 </table>
                 <br>
                 <div id="button" align="right">
-                    <input type="checkbox" style="zoom:1.5;" name="secret" value="Y">비밀글 <br><br>
+                    <input id="secret" type="checkbox">비밀글 <br><br>
                     <a href="<%=contextPath%>/list.qa?cpage=1" class="btn btn-sm" id="cancel">취소하기</a>
                     <button type="submit" class="btn btn-sm" id="insert">등록하기</button>
                 </div>
@@ -154,14 +152,14 @@
 	
 	      <!-- Modal body -->
 	      <div class="modal-body">
-	        	전시 이름으로 검색 : <input type="text" id="proSearch" placeholder="키워드를 입력하세요">
-            <button type="button" onclick="searchbtn();" id="searchbtn" class="btn btn-sm">검색</button><br><br>
-            <div id="result"></div><br>
+	        	전시 이름으로 검색 : <input type="text" id="proSearch" name="keyword" palceholder="djd" required placeholder="">
+            <button type="button" onclick="searchbtn();">검색</button>
+            <div id="result"></div>
 	      </div>
 	
 	      <!-- Modal footer -->
 	      <div class="modal-footer">
-	        <button type="button" class="btn" data-dismiss="modal" id="proSelect" onclick="select();">선택</button>
+	        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
 	      </div>
 	
 	    </div>
@@ -169,44 +167,26 @@
 	</div>
 
     <script>
+		console.log($("#proSearch").val());
         function searchbtn() {
             $.ajax({
                 url:"qnaSearchPro.qa",
-                data:{keyword:$("#proSearch").val()},
+                data:{Keyword:$("#proSearch").val()},
                 success:function(result){
 					console.log("성공");
                     let value = "";
                     for(let i=0; i<result.length; i++){
-                        value += "<tr height='80'>"
-                        			+ "<td width='20'><input type='radio' name='selectpro' value='" + result[i].pNo + "'></td>"
-                                    + "<td width='70'><img src=" + result[i].mainImg + " width='60' height='70'><td><br>" 
-                                    + "<td>" + result[i].title + "</td>"
-                                + "</tr>"
+                        value += "<div>"
+                        			+ "<input type='radio' name='selectpro'>"
+                                    + "<img src=" + result[i].mainImg + " width='70' height='auto'>" 
+                                    + result[i].title
+                                + "</div>"
                     }
                     $("#result").html(value);
                 },error:function(result) {
                     console.log("ajax 통신 실패");
                 }
             })
-        }
-        
-        function select() {
-        	$.ajax({
-        		url:"proSelect.qa",
-        		data:{selectpro:$("input[name='selectpro']:checked").val()},
-        		success:function(result){
-					console.log("성공");
-					
-					let value="";
-					value = "<input type=hidden name='pno' value='" + result.pNo + "'> <img src=" + result.mainImg + " width='60' height='70'>&nbsp;&nbsp;&nbsp;" + result.title;
-					
-					$("#select-result").html(value);
-					$("#proSearch").val("");
-					$("#result").text("");
-        		},error:function(result) {
-        			console.log("ajax 통신 실패");
-        		}
-        	})
         }
     </script>
     <%@ include file="../../common/footerbar.jsp" %>

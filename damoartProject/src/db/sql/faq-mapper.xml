@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+	<entry key="selectListCount">
+		SELECT COUNT(*) count
+		  FROM FAQ
+		 WHERE STATUS = 'Y'	
+	</entry>
+	
+	<entry key="selectList">
+		SELECT *
+		  FROM (
+		        SELECT ROWNUM RNO, A.*
+		          FROM (
+		                SELECT
+		                       FAQ_NO
+		                     , FAQ_TITLE
+		                     , FAQ_CONTENT
+		                     , F_CATEGORY_CODE
+		                  FROM FAQ
+		                 ORDER
+		                    BY FAQ_NO DESC
+		                ) A
+		        )
+		  WHERE RNO BETWEEN ? AND ?
+	</entry>
+
+</properties>
