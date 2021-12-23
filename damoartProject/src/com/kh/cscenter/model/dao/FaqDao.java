@@ -131,4 +131,25 @@ private Properties prop = new Properties();
 		return f;
 		
 	}
+	
+	public int insertFaq(Connection conn, FAQ f) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertFaq");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, Integer.parseInt(f.getFaqWriter()));
+			pstmt.setString(2, f.getFaqTitle());
+			pstmt.setString(3, f.getFaqContent());
+			pstmt.setString(4, f.getfCategoryCode());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
 }

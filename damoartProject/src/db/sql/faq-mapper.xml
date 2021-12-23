@@ -41,4 +41,24 @@
 		  JOIN MEMBER ON (FAQ_WRITER = MEM_NO)
 		 WHERE FAQ_NO = ?
 	</entry>
+	
+	<entry key="insertFaq">
+		INSERT
+		  INTO FAQ
+		     ( 
+		       FAQ_NO
+		     , FAQ_WRITER
+		     , FAQ_TITLE
+		     , FAQ_CONTENT
+		     , F_CATEGORY_CODE
+		     )
+		     VALUES
+		     (
+		       SEQ_FAQNO.NEXTVAL
+		     , ?
+		     , ?
+		     , ?
+		     , ?
+		     )
+	</entry>
 </properties>

@@ -95,11 +95,11 @@
                         <td colspan="3">
                             <select name="category" required>
                             	<option value="">--선택--</option>
-                                <option value="Q1">티켓</option>
-                                <option value="Q2">취소/환불</option>
-                                <option value="Q3">주문/결제</option>
-                                <option value="Q4">상품</option>
-                                <option value="Q5">기타</option>
+                                <option value="Q1">[티켓]</option>
+                                <option value="Q2">[취소/환불]</option>
+                                <option value="Q3">[주문/결제]</option>
+                                <option value="Q4">[상품]</option>
+                                <option value="Q5">[기타]</option>
                             </select>
                         </td>
                     </tr>
