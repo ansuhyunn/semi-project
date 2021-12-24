@@ -95,7 +95,7 @@ div{box-sizing:border-box;}
             </tr>
             <tr>
                 <td>주문일자</td>
-                <td>2021-12-09 07:06:03</td>
+                <td><%=o.getPayDate() %></td>
             </tr>
             <tr>
                 <td>결제 수단</td>

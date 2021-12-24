@@ -89,7 +89,7 @@
     }
 
 
-    #goPay{
+    #goPay, #goPay1{
         float: right;
         margin: 30px;
         background-color: rgb(182, 167, 141);
@@ -307,7 +307,11 @@
     <!-- 장바구니 하단 -->
     <div class="cart_bottom" width="800">
         <button class="btn" id="delete" onclick="deleteCart();">장바구니 비우기</button>
+        <% if(list.isEmpty()) { %>    
+        <button class="btn" id="goPay1"><b>주문하기</b></button>
+        <%} else { %>
         <a href="<%=contextPath%>/order.ca" button type="submit" class="btn" id="goPay"><b>주문하기</b></a>
+        <% } %>
         <b>결제금액 28000￦</b>
          
     </div>
@@ -328,6 +332,10 @@
 	               }
 		})
 	}
+	
+	 $('#goPay1').click(function(){
+		 alert("장바구니에 담긴 상품이 없습니다.");
+	 })
     </script>
 
 
