@@ -94,7 +94,7 @@ div{ box-sizing:border-box; }
 		<div class="header">
 			<div class="button">
 				<a href="" class="btn btn-sm" id="delete" data-toggle="modal" data-target="#myModal" type="button">숨김처리</a>
-				<a href="<%= contextPath %>/manageBlind.rv" class="btn btn-sm" id="insert">삭제</a>
+				<a href="<%= contextPath %>/delete.rv" class="btn btn-sm" id="insert">삭제</a>
 			</div>
 		</div>
         
@@ -150,7 +150,7 @@ div{ box-sizing:border-box; }
         <script>
             $(function(){
             	$(".clickTitle").click(function(){
-            		location.href='<%=contextPath%>/adminDetail.no?nno=' + $(this).prev().text();
+            		location.href='<%=contextPath%>/manageDetail.rv?rno=' + $(this).prev().text();
             	})
             		
             	$("#allCheck").click(function(){

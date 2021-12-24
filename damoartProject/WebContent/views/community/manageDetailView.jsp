@@ -1,12 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ 
-	page import="com.kh.community.model.vo.Review"
+    pageEncoding="UTF-8" import="com.kh.community.model.vo.Review"%>
 
-%>
     
 <% 
-	Product p = (Product)request.getAttribute("p");
+	Review r = (Review)request.getAttribute("r");
 %>
 <!DOCTYPE html>
 <html>
@@ -55,55 +52,44 @@
         <form action="<%= request.getContextPath() %>/manageInsert.pro" method="post" enctype="multipart/form-data">
             <table id="table" border=1px;>
                 <tr>
-                    <th>상품코드</th>
-                    <td><%= p.getpNo() %></td>
+                    <th>리뷰번호</th>
+                    <td><%= r.getRvNo() %></td>
                 </tr>
                 <tr>
-                    <th>등록날짜</th>
-                    <td><%= p.getEnrollDate() %></td>
+                    <th>회원아이디</th>
+                    <td><%= r.getMemId() %></td>
                 </tr>
                 <tr>
-                    <th>타이틀</th>
-                    <td><%= p.getTitle() %></td>
+                    <th>주문번호</th>
+                    <td><%= r.getOrderNo() %></td>
                 </tr>
                 <tr>
-                    <th>지역</th>
-                    <td><%= p.getRegion() %></td>
+                    <th>리뷰제목</th>
+                    <td><%= r.getReviewTitle() %></td>
                 </tr>
                 <tr>
-                    <th>장소</th>
-                    <td><%= p.getArea() %></td>
+                    <th>리뷰내용</th>
+                    <td><%= r.getReviewContent() %></td>
                 </tr>
                 <tr>
-                    <th>관람연령</th>
-                    <td><%= p.getAge() %></td>
+                    <th>작성날짜</th>
+                    <td><%= r.getReviewDate() %></td>
                 </tr>
                 <tr>
-                    <th>시작일</th>
-                    <td><%= p.getsDate() %></td>
+                    <th>별점</th>
+                    <td><%= r.getReviewStar() %></td>
                 </tr>
                 <tr>
-                    <th>종료일</th>
-                    <td><%= p.geteDate() %></td>
+                    <th>블라인드처리</th>
+                    <td><%= r.getDeleteStatus() %></td>
                 </tr>
-                <tr>
-                    <th>관람시간</th>
-                    <td><%= p.getTime() %></td>
-                </tr>
-                <tr>
-                    <th>성인가격</th>
-                    <td><%= p.getaPrice() %></td>
-                </tr>
-                <tr>
-                    <th>청소년가격</th>
-                    <td><%= p.gettPrice() %></td>
-                </tr>
+                
             </table>
             <br><br>
 
             <div align="center">
-                <a href="<%= contextPath %>/manageDelete.pro?pno=<%= p.getpNo() %>" class="btn" id="delete">삭제</a>
-                <a href="<%= contextPath %>/managelist.man?cpage=1" class="btn" id="back">목록가기</a>	
+                <a href="<%= contextPath %>/delete.rv?rno=<%= r.getRvNo() %>" class="btn" id="delete">삭제</a>
+                <a href="<%= contextPath %>/manageList.rv?cpage=1" class="btn" id="back">목록가기</a>	
             </div>
 
              <br><br>
