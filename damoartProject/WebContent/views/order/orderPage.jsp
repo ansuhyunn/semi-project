@@ -121,7 +121,8 @@
        <br>
        <b id="order01">01 장바구니 ></b><b id="order02"> 02 주문서작성/결제 ></b><b id="order03"> 03 주문완료</b>
    </div>
-
+   
+   
    <!-- 주문하는 상품 -->
    	<% if ( loginUser != null ) { %>
    <div class="cart_name" align="center">
@@ -174,18 +175,17 @@
            </table>
            </div>
            <div class="order_bottom" width="800">
-           <% for(Order or : list) { %>
-               <p>총 <%= or.getCartCount() %> 개의 상품   &nbsp; &nbsp; &nbsp;
+        
+               <p>총 <%= o.getCartCount() %> 개의 상품   &nbsp; &nbsp; &nbsp;
                	합계 &nbsp; 
-               		<% if (or.getCartOpt().equals("C")) { %>
-                    <%= or.getcPrice() %>
-                    <% } else if (or.getCartOpt().equals("T")) { %>
-                    <%=or.gettPrice() %>
+               		<% if (o.getCartOpt().equals("C")) { %>
+                    <%= o.getcPrice() %>
+                    <% } else if (o.getCartOpt().equals("T")) { %>
+                    <%=o.gettPrice() %>
                     <% } else { %>
-                    <%=or.getaPrice() %>
+                    <%=o.getaPrice() %>
                     <% } %>￦</p>
            </div>
-           <% } %>
            <% } %>
            
             
@@ -304,9 +304,9 @@
 
 		<script>
 		function iamport(){
-			IMP.init('TC0ONETIME');
+			IMP.init('imp70168812');
 	        IMP.request_pay({
-		       	pg : 'inicis',
+	        	pg: "html5_inicis",
 		       	may_method: 'card',
 		        merchant_uid : 'merchant_' + new Date().getTime(),
 		        name : '주문명 : 결제테스트',
@@ -331,13 +331,7 @@
        	alert(msg);
     });
 		}
-		// 결제 완료 페이지 띄우기
-		/*
-			request.getSession().setAttribute("alertMsg", "로그인한 회원만 이용할 수 있습니다.");
-			response.sendRedirect(request.getContextPath()+ "/memlogin.me");
 		
-		*/
-
 		</script>
        <br><br>
         <%@ include file="../common/footerbar.jsp" %>
