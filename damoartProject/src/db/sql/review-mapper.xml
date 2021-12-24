@@ -60,12 +60,13 @@ INSERT
   INTO REVIEW
   (
     RV_NO
+  , MEM_NO
   , ORDER_NO
   , REVIEW_TITLE
   , REVIEW_CONTENT
+  , REVIEW_DATE
   , REVIEW_STAR
-  , MEM_NO
-  , REVIEW_ID
+  , REVIEW_VIEW
   )
 VALUES
   (
@@ -74,8 +75,9 @@ VALUES
    , ?
    , ?
    , ?
+   , DEFAULT
    , ?
-   , ?
+   , DEFAULT
   )
 </entry>
 

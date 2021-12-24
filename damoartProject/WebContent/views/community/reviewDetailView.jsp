@@ -120,11 +120,11 @@
 	       <div class="detail-area">
 		       	<div class="detail-area1">
 		           <div class="title">
-		               <%= r.getReviewName() %>
+		               <%= r.getReviewTitle() %>
 		           </div>
 		           <div class="detail-data">
 		               <div class="writer">
-		                   <%= r.getReviewId() %>
+		                   <%= r.getNickName() %>
 		               </div>
 		               <div class="date">
 		                   <%= r.getReviewDate() %>

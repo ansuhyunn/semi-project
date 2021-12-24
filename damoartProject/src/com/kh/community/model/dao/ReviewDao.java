@@ -167,6 +167,11 @@ public class ReviewDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql); 
+			pstmt.setInt(1, r.getMemNo());
+			pstmt.setInt(2, r.getOrderNo());
+			pstmt.setString(3, r.getReviewTitle());
+			pstmt.setString(4, r.getReviewContent());
+			pstmt.setString(5, r.getReviewStar());
 			result = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {

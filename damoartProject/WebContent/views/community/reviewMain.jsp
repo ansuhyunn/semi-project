@@ -118,10 +118,10 @@
 		            	</div>
 		            	<div class="info">
 		                    <p class="title">
-		                        <%= r.getReviewName() %>
+		                        <%= r.getReviewTitle() %>
 		                    </p>
 		                    <p class="summary">
-		                        <%= r.getReviewId() %>  <%= r.getReviewDate() %>
+		                        <%= r.getNickName() %>  <%= r.getReviewDate() %>
 		                    </p>
 		                </div>
 		            </div>

@@ -34,22 +34,24 @@ public class ReviewInsertController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		
+		int memNo = ((Member)session.getAttribute("loginUser")).getMemNo(); 
 		int orderNo = Integer.parseInt(request.getParameter("orderNo"));
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
-		int star = Integer.parseInt(request.getParameter("star"));
-		int memNo = ((Member)session.getAttribute("loginUser")).getMemNo();
-		String memId = ((Member)session.getAttribute("loginUser")).getMemId(); 
+		String star = request.getParameter("star");
 		
 		Review r = new Review();
-		r.set
+		r.setMemNo(memNo);
+		r.setOrderNo(orderNo);
+		r.setReviewTitle(title);
+		r.setReviewContent(content);
+		r.setReviewStar(star);
 		
-		
-		int result = new ReviewService().insertReview();
+		int result = new ReviewService().insertReview(r);
 		
 		if(result > 0) {
-			request.getSession().setAttribute("alertMsg", "게시글이 성공적으로 등록되었습니다.");
-			response.sendRedirect(request.getContextPath() + "/list.qa?cpage=1");
+			request.getSession().setAttribute("alertMsg", "리뷰가 성공적으로 등록되었습니다.");
+			response.sendRedirect(request.getContextPath() + "/");
 		}else { // 에러페이지
 			
 		}

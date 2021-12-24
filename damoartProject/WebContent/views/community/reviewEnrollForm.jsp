@@ -90,7 +90,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>&nbsp;&nbsp;&nbsp;작성자</th>  <!-- 비회원 닉네임 입력시 중복 검사하기 -->
+                        <th>&nbsp;&nbsp;&nbsp;작성자</th>  
                         <td>로그인유저닉네임</td>
                     </tr>
                     <tr style="border-bottom:1px solid rgb(173, 157, 128)">
@@ -100,8 +100,8 @@
                 </table>
                 <br>
                 <div id="button" align="right">
-                    <a href="<%=contextPath%>/list.qa?cpage=1" class="btn btn-sm" id="cancel">취소하기</a>
                     <button type="submit" class="btn btn-sm" id="insert">등록하기</button>
+                    <button type="reset" class="btn btn-sm" id="cancel">취소하기</button>
                 </div>
             </form>
         </div>
