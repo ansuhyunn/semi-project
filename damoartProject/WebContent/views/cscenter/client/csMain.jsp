@@ -167,18 +167,74 @@
                     })
                 })
             </script>
-    
+    		
+    		<% if(loginUser != null) { %>
             <div id="qna_area">
                 <a href="<%=contextPath%>/list.qa?cpage=1">Q&A <i class="fas fa-angle-right"></i></a>
                 <table id="qna_tb">
                 	<%for(QnA q : qList) {%>
 	                    <tr class="qna">
+	                    	<input type="hidden" name="qno" value="<%=q.getqNo()%>">
+	                        <td width="150"><%=q.getqCategoryCode() %><input type="hidden" value="<%=q.getqWriter() %>"></td>
+	                        <td width="400">
+	                        	<%=q.getqTitle() %>
+	                        	<% if(q.getSecret().equals("Y")) { %>
+			                        <i class="fas fa-lock"></i>
+		                            <input type="hidden" value="Y">
+			                    <% }else { %>
+		                            <input type="hidden" value="N">
+		                        <% } %>
+	                        </td>
+	                        <td width=100><%=q.getqWriter() %><input type="hidden" value="<%=loginUser.getNickName() %>"></td>
+	                        <td width="130"><%=q.getCreateDate() %></td>
+	                        <td width="80">
+	                        	<% if(q.getaContent() != null) { %>
+									답변 완료
+			                    <% }else { %>
+			                        	미답변
+			                    <% } %>
+	                        </td>
+	                    </tr>
+                    <% } %>
+                    
+                </table>
+            </div>
+            <script>
+            	$(function(){
+            		
+		            $("#qna_tb tr").click(function(){
+				    	var secret = $(this).children().eq(2).find("input").val();
+				    	var writer = $(this).children().eq(1).find("input").val();
+				    	var User = $(this).children().eq(3).find("input").val();
+				    	if(secret == 'Y') {
+				    		if(User == writer) {
+				    			location.href='<%=contextPath %>/detail.qa?qno=' + $(this).children("input").val();
+				    		}else {
+				    			
+					    		$("#myModal").modal();
+				    		}
+				    	}else {
+				    		location.href='<%=contextPath %>/detail.qa?qno=' + $(this).children("input").val();
+				    	}
+				    })
+            	})
+			</script>
+    		<% }else { %>
+            <div id="qna_area">
+                <a href="<%=contextPath%>/list.qa?cpage=1">Q&A <i class="fas fa-angle-right"></i></a>
+                <table id="qna_tb">
+                	<%for(QnA q : qList) {%>
+	                    <tr class="qna">
+	                    	<input type="hidden" name="qno" value="<%=q.getqNo() %>">
 	                        <td width="150"><%=q.getqCategoryCode() %></td>
 	                        <td width="400">
 	                        	<%=q.getqTitle() %>
 	                        	<% if(q.getSecret().equals("Y")) { %>
 			                        <i class="fas fa-lock"></i>
-			                    <% } %>
+		                            <input type="hidden" value="Y">
+			                    <% }else { %>
+		                            <input type="hidden" value="N">
+		                        <% } %>
 	                        </td>
 	                        <td width=100><%=q.getqWriter() %></td>
 	                        <td width="130"><%=q.getCreateDate() %></td>
@@ -194,6 +250,21 @@
                     
                 </table>
             </div>
+            <script>
+            	$(function(){
+            		
+		            $("#qna_tb tr").click(function(){
+				    	var secret = $(this).children().eq(2).find("input").val();
+		            	console.log(secret);
+				    	if(secret == 'Y') {				    	
+					    	$("#myModal").modal();				    		
+				    	}else {
+				    		location.href='<%=contextPath %>/detail.qa?qno=' + $(this).children("input").val();	
+				    	}
+				    })
+            	})
+			</script>
+			<% } %>
     
             <div id="area">
                 <div id="notice_area">
@@ -227,6 +298,25 @@
                 </div>
             </div>
         </div>
+        
+        <!-- The Modal -->
+		<div class="modal" id="myModal">
+		  <div class="modal-dialog modal-sm">
+		    <div class="modal-content">
+		
+		      <!-- Modal body -->
+		      <div class="modal-body" align="center">
+		        	다른 회원의 비밀글입니다.
+		      </div>
+		
+		      <!-- Modal footer -->
+		      <div class="modal-footer">
+		        <button id="modalClose" type="button" class="btn" data-dismiss="modal">닫기</button>
+		      </div>
+		
+		    </div>
+		  </div>
+		</div>
 
     <%@ include file="../../common/footerbar.jsp" %>
 
