@@ -101,11 +101,6 @@
     <div class="wrapper">
         <div class="name">
             <div id="name1">진행중 전시</div>
-            <a href="<%=contextPath%>/high.pro">높은가격순</a>			
-            <a href="<%=contextPath%>/low.pro">낮은가격순</a>
-            <a href="<%=contextPath%>/Open.pro">오픈날짜순</a>
-            <a href="<%=contextPath%>/End.pro">마감임박순</a>
-            <a href="<%=contextPath%>/star.pro">별점순</a>
         </div>
         <hr class="my-2">
         <div class="content1">

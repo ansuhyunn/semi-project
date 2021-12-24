@@ -3,6 +3,7 @@
     
 <% 
 	ArrayList<Product> searchList = (ArrayList<Product>)request.getAttribute("regionList");
+	
 %>
 
 <!DOCTYPE html>

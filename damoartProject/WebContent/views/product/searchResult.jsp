@@ -1,8 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.product.model.vo.Product" %>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.product.model.vo.Product, com.kh.product.model.vo.Search" %>
     
 <% 
 	ArrayList<Product> searchList = (ArrayList<Product>)request.getAttribute("searchList");
+
+	Search sc = (Search)request.getAttribute("sc");
+	String date = sc.getSearchDate();
+	String price = sc.getSearchPrice();
 %>
 
 <!DOCTYPE html>
@@ -32,12 +36,24 @@
         text-align: center;
 		margin-bottom: 20px;
 	}
+	.condition{
+		width: 100%;
+        font-size: 20px;
+        font-weight: bolder;
+        text-align: center;
+		margin-bottom: 30px;
+	}
 	.content1{
         width: 100%;
         height: 300px;
         margin: auto;
         margin-top: 20px;
         margin-bottom: 50px;
+    }
+    .content1>p{
+    	font-size: 20px;
+    	text-align: center;
+    	margin-top: 50px;
     }
     .content{
         width: 20%;
@@ -80,6 +96,14 @@
 	
 	<div class="wrapper">
 		<div class="name">검색 결과</div>
+		<div class="condition">
+			<% int i = 0;%>
+			<% for(Product p : searchList){ %>
+				<%= date %> | <%= p.getRegion() %> | <%= price %> | <%= p.getAge() %> 
+				<% i++; %>
+				<% if(i == 1){ break; } %>
+			<% } %> 
+		</div>
 		<hr class="my-2">
 		
 		<div class="content1">
