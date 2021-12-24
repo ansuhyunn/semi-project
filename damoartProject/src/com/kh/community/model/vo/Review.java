@@ -5,58 +5,48 @@ public class Review {
 	private String title;
 	private String mainImg;
 	private int rvNo;
+	private String nickName;
 	private int orderNo;
-	private String reviewId;
-	private String reviewPwd;
-	private String reviewName;
+	private String reviewTitle;
 	private String reviewContent;
 	private String reviewDate;
 	private String reviewStar;	// 별점 점수
 	private int reviewView; // == count
-	private String reviewSecret;
-	private String reviewFile;
 	private String deleteStatus;
-	private String blindStatus;
 	
 	public Review() {}
 
-	public Review(String title, String mainImg, int rvNo, int orderNo, String reviewId, String reviewPwd,
-			String reviewName, String reviewContent, String reviewDate, String reviewStar, int reviewView,
-			String reviewSecret, String reviewFile, String deleteStatus, String blindStatus) {
+	public Review(String title, String mainImg, int rvNo, String nickName, int orderNo, String reviewTitle,
+			String reviewContent, String reviewDate, String reviewStar, int reviewView, String deleteStatus) {
 		super();
 		this.title = title;
 		this.mainImg = mainImg;
 		this.rvNo = rvNo;
+		this.nickName = nickName;
 		this.orderNo = orderNo;
-		this.reviewId = reviewId;
-		this.reviewPwd = reviewPwd;
-		this.reviewName = reviewName;
+		this.reviewTitle = reviewTitle;
 		this.reviewContent = reviewContent;
 		this.reviewDate = reviewDate;
 		this.reviewStar = reviewStar;
 		this.reviewView = reviewView;
-		this.reviewSecret = reviewSecret;
-		this.reviewFile = reviewFile;
 		this.deleteStatus = deleteStatus;
-		this.blindStatus = blindStatus;
 	}
 	
 	
-	// 리뷰 메인화면 및 게시글 화면
-	public Review(String title, String mainImg, int rvNo, int orderNo, String reviewId, String reviewName,
-			String reviewContent, String reviewDate, String reviewStar, int reviewView, String reviewFile) {
+
+	public Review(String title, String mainImg, int rvNo, String nickName, int orderNo, String reviewTitle,
+			String reviewContent, String reviewDate, String reviewStar, int reviewView) {
 		super();
 		this.title = title;
 		this.mainImg = mainImg;
 		this.rvNo = rvNo;
+		this.nickName = nickName;
 		this.orderNo = orderNo;
-		this.reviewId = reviewId;
-		this.reviewName = reviewName;
+		this.reviewTitle = reviewTitle;
 		this.reviewContent = reviewContent;
 		this.reviewDate = reviewDate;
 		this.reviewStar = reviewStar;
 		this.reviewView = reviewView;
-		this.reviewFile = reviewFile;
 	}
 
 	public String getTitle() {
@@ -83,6 +73,14 @@ public class Review {
 		this.rvNo = rvNo;
 	}
 
+	public String getNickName() {
+		return nickName;
+	}
+
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
+
 	public int getOrderNo() {
 		return orderNo;
 	}
@@ -91,28 +89,12 @@ public class Review {
 		this.orderNo = orderNo;
 	}
 
-	public String getReviewId() {
-		return reviewId;
+	public String getReviewTitle() {
+		return reviewTitle;
 	}
 
-	public void setReviewId(String reviewId) {
-		this.reviewId = reviewId;
-	}
-
-	public String getReviewPwd() {
-		return reviewPwd;
-	}
-
-	public void setReviewPwd(String reviewPwd) {
-		this.reviewPwd = reviewPwd;
-	}
-
-	public String getReviewName() {
-		return reviewName;
-	}
-
-	public void setReviewName(String reviewName) {
-		this.reviewName = reviewName;
+	public void setReviewTitle(String reviewTitle) {
+		this.reviewTitle = reviewTitle;
 	}
 
 	public String getReviewContent() {
@@ -147,22 +129,6 @@ public class Review {
 		this.reviewView = reviewView;
 	}
 
-	public String getReviewSecret() {
-		return reviewSecret;
-	}
-
-	public void setReviewSecret(String reviewSecret) {
-		this.reviewSecret = reviewSecret;
-	}
-
-	public String getReviewFile() {
-		return reviewFile;
-	}
-
-	public void setReviewFile(String reviewFile) {
-		this.reviewFile = reviewFile;
-	}
-
 	public String getDeleteStatus() {
 		return deleteStatus;
 	}
@@ -171,22 +137,12 @@ public class Review {
 		this.deleteStatus = deleteStatus;
 	}
 
-	public String getBlindStatus() {
-		return blindStatus;
-	}
-
-	public void setBlindStatus(String blindStatus) {
-		this.blindStatus = blindStatus;
-	}
-
 	@Override
 	public String toString() {
-		return "Review [title=" + title + ", mainImg=" + mainImg + ", rvNo=" + rvNo + ", orderNo=" + orderNo
-				+ ", reviewId=" + reviewId + ", reviewPwd=" + reviewPwd + ", reviewName=" + reviewName
-				+ ", reviewContent=" + reviewContent + ", reviewDate=" + reviewDate + ", reviewStar=" + reviewStar
-				+ ", reviewView=" + reviewView + ", reviewSecret=" + reviewSecret + ", reviewFile=" + reviewFile
-				+ ", deleteStatus=" + deleteStatus + ", blindStatus=" + blindStatus + "]";
+		return "Review [title=" + title + ", mainImg=" + mainImg + ", rvNo=" + rvNo + ", nickName=" + nickName
+				+ ", orderNo=" + orderNo + ", reviewTitle=" + reviewTitle + ", reviewContent=" + reviewContent
+				+ ", reviewDate=" + reviewDate + ", reviewStar=" + reviewStar + ", reviewView=" + reviewView
+				+ ", deleteStatus=" + deleteStatus + "]";
 	}
 
-	
 }

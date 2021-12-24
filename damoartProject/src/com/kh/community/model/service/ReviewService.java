@@ -11,6 +11,7 @@ import com.kh.community.model.dao.ReviewDao;
 import com.kh.community.model.vo.Review;
 
 public class ReviewService {
+	
 
 	// 페이징바 관련
 	public int selectListCount() {
@@ -75,15 +76,5 @@ public class ReviewService {
 	}
 	
 
-//	
-//	public Attachment selectAttachment(int boardNo) {
-//		Connection conn = getConnection();
-//		Attachment at = new ReviewDao().selectAttachment(conn, rvNo);
-//		close(conn);
-//		return at;
-//	}
-
-	
-	
 	
 }

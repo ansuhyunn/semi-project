@@ -220,9 +220,13 @@
 					url:"ajaxImg.pro",
 					data:{pno:$("#pNo").val()},
 					success:function(result){
-						let value = '<img src=\"' + '<%=contextPath%>/<%= p.getDetailImg()%>' + '" width=\"100%\" height=\"100%\">';
-						$("#context4").html(value);
+						let value = '<img src="' 
+								   + '<%=contextPath%>/'
+								   + result.detail
+								   + '" width="100%" height="100%">';
+						$(".detail").html(value);
 						console.log(value);
+						console.log(result);
 					},error:function(){
 						
 					}
@@ -235,7 +239,7 @@
 					url : "<%=contextPath%>/views/product/detailCancelInfo.jsp",
 					dataType: "html",
 					success:function(result){
-						$(".content4").html(result);
+						$(".detail").html(result);
 					},error:function(){
 						
 					}
