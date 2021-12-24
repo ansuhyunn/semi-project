@@ -132,20 +132,46 @@
 		 WHERE MEM_ID = ?
 	</entry>
 	
-	<!-- 작성 가능한 리뷰 -->
+	<!-- 작성 가능한 리뷰 조회 -->
 	<entry key="reviewBeforeList">
+		SELECT *
+		  FROM (SELECT PNO
+		             , ORDER_NO
+		             , TITLE
+		             , MAIN_IMG
+		             , ORDER_OPT
+		             , TO_CHAR(ORDER_DATE, 'YYYY-MM-DD') "ORDER_DATE"
+		             , TO_CHAR((ORDER_DATE + 30), 'YYYY-MM-DD') "AVADATE"
+		             , MEM_NO
+		          FROM ORDER_P
+		          JOIN PRODUCT USING (PNO)
+		          JOIN "ORDER" USING (ORDER_NO)
+		         WHERE ORDER_STATUS = 'O'
+		           AND MEM_NO = ?) A
+		 WHERE NOT ORDER_NO IN (SELECT ORDER_NO
+		                          FROM MEMBER
+		                          JOIN REVIEW USING (MEM_NO)
+		                         WHERE MEM_NO = ?)
+	</entry>
+	
+	<!-- 내가 작성한 리뷰 조회 -->
+	<entry key="reviewAfterList">
 		SELECT 
-		       TITLE
+			   RV_NO
+		     , TITLE
 		     , MAIN_IMG
 		     , ORDER_OPT
 		     , TO_CHAR(ORDER_DATE, 'YYYY-MM-DD') "ORDER_DATE"
 		     , TO_CHAR((ORDER_DATE + 30), 'YYYY-MM-DD') "AVADATE"
-		     , MEM_NO
-		  FROM ORDER_P
-		  JOIN PRODUCT USING (PNO)
+		     , TO_CHAR(REVIEW_DATE, 'YYYY-MM-DD') "REVIEW_DATE"
+		     , REVIEW_TITLE
+		  FROM REVIEW R
+		  JOIN ORDER_P USING (ORDER_NO)
+		  JOIN PRODUCT USING (PNO) 
 		  JOIN "ORDER" USING (ORDER_NO)
-		 WHERE ORDER_STATUS = 'O'
-		   AND MEM_NO = ?
+		 WHERE R.MEM_NO = ?
+		 ORDER 
+		    BY ORDER_DATE DESC
 	</entry>
 	
 	<!-- qna 내역 -->

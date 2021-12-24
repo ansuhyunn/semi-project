@@ -17,6 +17,7 @@ public class Review {
 	private String reviewStar;	// 별점 점수, 소수점때문에 string으로 받음
 	private int reviewView; // == count
 	private String deleteStatus;
+	private int pNo;
 
 	public Review() {}
 
@@ -43,14 +44,40 @@ public class Review {
 
 	
 	// 작성 가능한 리뷰
-	public Review(String title, String mainImg, String orderOpt, String orderDate, String avaDate, int memNo) {
+	public Review(int pNo, int orderNo, String title, String mainImg, String orderOpt, String orderDate, String avaDate, int memNo) {
 		super();
+		this.pNo = pNo;
+		this.orderNo = orderNo;
 		this.title = title;
 		this.mainImg = mainImg;
 		this.orderOpt = orderOpt;
 		this.orderDate = orderDate;
 		this.avaDate = avaDate;
 		this.memNo = memNo;
+	}
+	
+	// 작성한 리뷰
+	
+	public Review(int rvNo, String title, String mainImg, String orderOpt, String orderDate, String avaDate,
+			String reviewDate, String reviewTitle) {
+		super();
+		this.rvNo = rvNo;
+		this.title = title;
+		this.mainImg = mainImg;
+		this.orderOpt = orderOpt;
+		this.orderDate = orderDate;
+		this.avaDate = avaDate;
+		this.reviewDate = reviewDate;
+		this.reviewTitle = reviewTitle;
+	}
+	
+	
+	public int getpNo() {
+		return pNo;
+	}
+
+	public void setpNo(int pNo) {
+		this.pNo = pNo;
 	}
 
 	public String getTitle() {

@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.kh.mypage.model.vo.Point"%>
+    pageEncoding="UTF-8" import="com.kh.mypage.model.vo.Point, com.kh.mypage.model.vo.Review, java.util.ArrayList"%>
 <%
 	Point poi = (Point)session.getAttribute("poi");
+
+	ArrayList<Review> alist = (ArrayList<Review>)request.getAttribute("alist");
 %>
 <!DOCTYPE html>
 <html>
@@ -183,6 +185,11 @@
         height:100%;
         line-height:3;
     }
+    /*버튼*/
+    .qustion a{
+    	background-color:rgb(151, 138, 116);
+        color:white;
+    }
 </style>
 </head>
 <body>
@@ -244,12 +251,12 @@
             <br>
             <ul class="tab_menu">
                 <li>
-                    <a href="<%= contextPath %>/views/mypage/memberReviewBefore.jsp">
+                    <a href="<%= contextPath %>/rbefore.mp" style="color:white">
                         	작성 가능한 리뷰
                     </a>
                 </li>
                 <li style="background:rgb(203, 185, 153);">
-                    <a href="<%= contextPath %>/views/mypage/memberReviewAfter.jsp" style="color:white">
+                    <a href="<%= contextPath %>/rafter.mp">
                         	내가 작성한 리뷰
                     </a>
                 </li>
@@ -266,7 +273,7 @@
                   </thead>
                   <tbody>
                     <!--리뷰 내역이 없을 경우-->
-                    <!--
+                    <% if(alist.isEmpty()){ %>
                     <tr>
                         <td colspan="4" >
                             <div id="exclamationmark_icon">
@@ -278,32 +285,28 @@
                             </div>
                         </td>
                     </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>-->
-
+					<% }else{ %>
                     <!--리뷰 내역이 있을 경우-->
-                    
+                    <% for(Review r : alist) {%>
                     <tr class="qustion">
                         <td>
-                            <img src= "<%=request.getContextPath()%>/resources/images/product/1M.gif" width="80px" height="80px"> <br>            
+                            <img src= "<%=request.getContextPath()%>/<%= r.getMainImg() %>" width="80px" height="80px"> <br>            
                         </td>
                         <td style="padding-top:25px">
-                            	      주문일자 | 2021-11-14 <br>
-                           <strong>영국 테이트미술관 특별전</strong><br>
-                           		      옵션 : 성인
+                            	      주문일자 | <%= r.getOrderDate() %> <br>
+                           <strong><%= r.getTitle() %></strong><br>
+                           		      옵션 : <%= r.getOrderOpt() %>
                         </td>    
                         <td style="padding-top:25px">
-                            	     작성일자 | 2021-11-14 <br>
-                           		      제목 : ~~~
+                            	     작성일자 | <%= r.getReviewDate() %> <br>
+                           		      제목 : <%= r.getReviewTitle() %>
                         </td>
                         <td style="padding-top:40px">
-                          <button type="button" onclick="reviewView();">리뷰 보기</button>
-                        </td>
-                    </tr>             
+                          <a href="<%= contextPath %>/rvDetail.pro?num=<%= r.getRvNo() %>" class="btn btn-sm">리뷰 보기</a>
+                    </tr>  
+          
+                        <% } %>
+                    <% } %>  
                     <tr>
                         <td></td>
                         <td></td>
@@ -311,11 +314,6 @@
                         <td></td>
                     </tr>
 
-                    <script>
-                        function reviewView(){
-                            location.href = "<%=contextPath%>/url.etc";
-                        }
-                    </script>
                   </tbody>
                 </table>
               </div>   

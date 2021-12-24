@@ -185,6 +185,10 @@
         height:100%;
         line-height:3;
     }
+    .qustion a{
+   		background-color:rgb(151, 138, 116);
+     	color:white;
+    }
 </style>
 </head>
 <body>
@@ -246,12 +250,12 @@
             <br>
             <ul class="tab_menu">
                 <li style="background:rgb(203, 185, 153);">
-                    <a href="<%=request.getContextPath() %>/views/mypage/memberReviewBefore.jsp"  style="color:white">
+                    <a href="<%= contextPath %>/rbefore.mp" >
                         	작성 가능한 리뷰
                     </a>
                 </li>
                 <li>
-                    <a href="<%=request.getContextPath() %>/views/mypage/memberReviewAfter.jsp">
+                    <a href="<%= contextPath %>/rafter.mp" style="color:white">
                         	내가 작성한 리뷰
                     </a>
                 </li>
@@ -295,16 +299,19 @@
                         </td>    
                         <td style="padding-top:40px">~<%= r.getAvaDate() %></td>
                         <td style="padding-top:40px">
-                          <button type="button" id="insertBtn" onclick="reviewInsert();">리뷰 작성</button>
+                          <a href="<%= contextPath %>/insert.rv" class="btn btn-sm">리뷰 작성</a>
                         </td>
                     </tr>             
                         <% } %>
                     <% } %>  
-                    <script>
-                        function reviewInsert(){
-                            location.href = "<%=request.getContextPath()%>/insert.rv";
-                        }
-                    </script>
+                    
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    
                     
                   </tbody>
                 </table>

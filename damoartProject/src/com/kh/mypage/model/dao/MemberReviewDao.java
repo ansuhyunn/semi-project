@@ -35,6 +35,7 @@ public class MemberReviewDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, memNo);
+			pstmt.setInt(2, memNo);
 			
 			rset = pstmt.executeQuery();
 			
@@ -47,7 +48,9 @@ public class MemberReviewDao {
 				default : break;
 				}
 				
-				blist.add(new Review(rset.getString("title"),
+				blist.add(new Review(rset.getInt("pno"),
+									 rset.getInt("order_no"),
+									 rset.getString("title"),
 						 			 rset.getString("main_img"),
 						 			 opt,
 						 			 rset.getString("order_date"),
@@ -62,5 +65,47 @@ public class MemberReviewDao {
 		}
 		return blist;
 		
+	}
+	
+	public ArrayList<Review> reviewAfterList(Connection conn, int memNo){
+		ArrayList<Review> alist = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;	
+		String sql = prop.getProperty("reviewAfterList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, memNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				String opt = "";
+				switch(rset.getString("order_opt")) {
+				case "C" : opt = "어린이"; break;
+				case "T" : opt = "청소년"; break;
+				case "A" : opt = "성인"; break;
+				default : break;
+				}
+				
+				alist.add(new Review(rset.getInt("rv_no"),
+									 rset.getString("title"),
+									 rset.getString("main_img"),
+									 opt,
+									 rset.getString("order_date"),
+									 rset.getString("avadate"),
+									 rset.getString("review_date"),
+									 rset.getString("review_title")));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return alist;
 	}
 }

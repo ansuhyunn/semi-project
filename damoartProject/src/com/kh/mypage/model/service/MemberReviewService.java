@@ -18,5 +18,12 @@ public class MemberReviewService {
 		return blist;
 		
 	}
+	
+	public ArrayList<Review> reviewAfterList(int memNo){
+		Connection conn = getConnection();
+		ArrayList<Review> alist = new MemberReviewDao().reviewAfterList(conn, memNo);
+		close(conn);
+		return alist;
+	}
 
 }
