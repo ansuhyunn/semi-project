@@ -62,7 +62,7 @@
         font-weight:600;
     }
     
-    #myModal{
+    #myModal, #myModal1{
     	padding-top:150px;
     }
 
@@ -209,7 +209,11 @@
 			<% } %>	   
                 <br>
                 <div class="button" align="right">
-                    <a href="<%= contextPath %>/enrollForm.qa" class="btn btn-sm" id="enroll">문의 등록</a>
+                	<%if(loginUser == null) {%>
+                    	<a class="btn btn-sm" id="enroll" data-toggle="modal" data-target="#myModal1" type="button">문의 등록</a>
+                    <% }else { %>
+                    	<a href="<%= contextPath %>/enrollForm.qa" class="btn btn-sm" id="enroll">문의 등록</a>
+                    <% } %>
             	</div>
                 <br>
                 <div class="paging-area" align="center">
@@ -265,7 +269,25 @@
 		    </div>
 		  </div>
 		</div>
-
+	
+		<!-- The Modal -->
+		<div class="modal" id="myModal1">
+		  <div class="modal-dialog modal-sm">
+		    <div class="modal-content">
+		
+		      <!-- Modal body -->
+		      <div class="modal-body" align="center">
+		        	로그인 후 이용하실 수 있습니다.
+		      </div>
+		
+		      <!-- Modal footer -->
+		      <div class="modal-footer">
+		        <button id="modalClose" type="button" class="btn" data-dismiss="modal">닫기</button>
+		      </div>
+		
+		    </div>
+		  </div>
+		</div>
         
 
     <%@ include file="../../common/footerbar.jsp" %>
