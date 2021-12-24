@@ -88,8 +88,31 @@
 		 WHERE PNO = ?
 	</entry>
 	
-	
 	<entry key="insertQuestion">
+		INSERT 
+		  INTO QNA
+		     (  
+		       Q_NO
+		     , MEM_NO
+		     , Q_WRITER
+		     , SECRET
+		     , Q_TITLE
+		     , Q_CONTENT
+		     , Q_CATEGORY_CODE
+		     )
+		     VALUES
+		     (
+		       SEQ_QNO.NEXTVAL
+		     , ?
+		     , ?
+		     , ?
+		     , ?
+		     , ?
+		     , ?
+		     )
+	</entry>
+	
+	<entry key="insertPQuestion">
 		INSERT 
 		  INTO QNA
 		     (  

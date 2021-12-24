@@ -286,11 +286,32 @@ private Properties prop = new Properties();
 		return p;
 	}
 	
-
 	public int insertQuestion(Connection conn, QnA q) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("insertQuestion");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, q.getMemNo());
+			pstmt.setString(2,  q.getqWriter());
+			pstmt.setString(3, q.getSecret());
+			pstmt.setString(4, q.getqTitle());
+			pstmt.setString(5, q.getqContent());
+			pstmt.setString(6, q.getqCategoryCode());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int insertPQuestion(Connection conn, QnA q) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertPQuestion");
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, Integer.parseInt(q.getpNo()));
