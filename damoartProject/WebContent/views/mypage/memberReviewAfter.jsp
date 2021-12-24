@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.kh.mypage.model.vo.Point"%>
+<%
+	Point poi = (Point)session.getAttribute("poi");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -201,7 +204,7 @@
             <div class="userPoint">
                    	적립금 >
             </div>
-            <p class="point">2,000원</p>
+            <p class="point"><%= poi.getPoint() %>원</p>
             
         </div>
     </div>
@@ -241,12 +244,12 @@
             <br>
             <ul class="tab_menu">
                 <li>
-                    <a href="<%=request.getContextPath() %>/views/mypage/memberReviewBefore.jsp">
+                    <a href="<%= contextPath %>/views/mypage/memberReviewBefore.jsp">
                         	작성 가능한 리뷰
                     </a>
                 </li>
                 <li style="background:rgb(203, 185, 153);">
-                    <a href="<%=request.getContextPath() %>/views/mypage/memberReviewAfter.jsp" style="color:white">
+                    <a href="<%= contextPath %>/views/mypage/memberReviewAfter.jsp" style="color:white">
                         	내가 작성한 리뷰
                     </a>
                 </li>
