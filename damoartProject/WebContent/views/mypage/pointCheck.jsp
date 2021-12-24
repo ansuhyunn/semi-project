@@ -2,6 +2,8 @@
     pageEncoding="UTF-8" import="com.kh.mypage.model.vo.Point, java.util.ArrayList" %>
 <%
 	ArrayList<Point> list = (ArrayList<Point>)request.getAttribute("list");
+
+	Point poi = (Point)session.getAttribute("poi");
 %>
 <!DOCTYPE html>
 <html>
@@ -178,7 +180,7 @@
             <div class="userPoint" onclick="location.href='<%=request.getContextPath()%>/pointList.mp'">
                    	적립금 >
             </div>
-            <p class="point">2000원</p>
+            <p class="point"><%= poi.getPoint() %>원</p>
             
         </div>
     </div>
@@ -227,7 +229,7 @@
                     <!--적립금 내역이 없을 경우-->
                     <% if(list.isEmpty()){ %>
 	                    <tr>
-	                        <td colspan="4" >
+	                        <td colspan="3" >
 	                            <div id="exclamationmark_icon">
 	                                <img src="<%=request.getContextPath() %>/resources/images/exclamationmark.png" width="70px" height="70px"> 
 	                            </div>
@@ -237,12 +239,7 @@
 	                            </div>
 	                        </td>
 	                    </tr>
-	                    <tr>
-	                        <td></td>
-	                        <td></td>
-	                        <td></td>
-	                        <td></td>
-	                    </tr>
+
                     <% }else{ %>
                     <!-- 적립금이 있을 경우 -->
                     	<% for(Point p : list) {%>

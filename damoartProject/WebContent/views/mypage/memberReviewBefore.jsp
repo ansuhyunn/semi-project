@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.kh.mypage.model.vo.Point, com.kh.mypage.model.vo.Review, java.util.ArrayList"%>
+<%
+	Point poi = (Point)session.getAttribute("poi");
+
+	ArrayList<Review> blist = (ArrayList<Review>)request.getAttribute("blist");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -180,6 +185,10 @@
         height:100%;
         line-height:3;
     }
+    .qustion a{
+   		background-color:rgb(151, 138, 116);
+     	color:white;
+    }
 </style>
 </head>
 <body>
@@ -201,7 +210,7 @@
             <div class="userPoint">
                    	적립금 >
             </div>
-            <p class="point">2,000원</p>
+            <p class="point"><%= poi.getPoint() %>원</p>
             
         </div>
     </div>
@@ -241,12 +250,12 @@
             <br>
             <ul class="tab_menu">
                 <li style="background:rgb(203, 185, 153);">
-                    <a href=""  style="color:white">
+                    <a href="<%= contextPath %>/rbefore.mp" >
                         	작성 가능한 리뷰
                     </a>
                 </li>
                 <li>
-                    <a href="<%=request.getContextPath() %>/views/mypage/memberReviewAfter.jsp">
+                    <a href="<%= contextPath %>/rafter.mp" style="color:white">
                         	내가 작성한 리뷰
                     </a>
                 </li>
@@ -264,7 +273,7 @@
                   </thead>
                   <tbody>
                     <!--리뷰 내역이 없을 경우-->
-                    <!--
+                    <% if(blist.isEmpty()){ %>
                     <tr>
                         <td colspan="4" >
                             <div id="exclamationmark_icon">
@@ -272,44 +281,38 @@
                             </div>
                             <br>
                             <div id="qna_txt">
-                                <p align="center">리뷰 내역이 없습니다.</p>
+                                <p align="center">작성 가능한 리뷰 내역이 없습니다.</p>
                             </div>
                         </td>
                     </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>-->
+					<% }else{ %>
 
                     <!--리뷰 내역이 있을 경우-->
-                    
+                    <% for(Review r : blist) {%>
                     <tr class="qustion">
                         <td width="120" style="padding-top:20px">
-                            <img src= "<%=request.getContextPath()%>/resources/images/product/1M.gif" width="80px" height="80px">                
+                            <img src= "<%=request.getContextPath()%>/<%= r.getMainImg() %>" width="80px" height="80px">                
                         </td>
                         <td width="350" style="padding-top:35px">
-                           <strong>영국 테이트미술관 특별전</strong> <br>
-                          	              옵션 : 일반
+                           <strong><%= r.getTitle() %></strong> <br>
+                          	              옵션 : <%= r.getOrderOpt() %>
                         </td>    
-                        <td style="padding-top:40px">~2021-11-14</td>
+                        <td style="padding-top:40px">~<%= r.getAvaDate() %></td>
                         <td style="padding-top:40px">
-                          <button type="button" id="insertBtn" onclick="reviewInsert();">리뷰 작성</button>
+                          <a href="<%= contextPath %>/insert.rv" class="btn btn-sm">리뷰 작성</a>
                         </td>
                     </tr>             
+                        <% } %>
+                    <% } %>  
+                    
                     <tr>
                         <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
                     </tr>
-
-                    <script>
-                        function reviewInsert(){
-                            location.href = "<%=contextPath%>/url.etc";
-                        }
-                    </script>
+                    
+                    
                   </tbody>
                 </table>
               </div>   

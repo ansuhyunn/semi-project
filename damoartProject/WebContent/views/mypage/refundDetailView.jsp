@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.kh.mypage.model.vo.Order"%>
+    pageEncoding="UTF-8" import="com.kh.mypage.model.vo.Order, com.kh.mypage.model.vo.Point"%>
 <%
 	Order cdetailView = (Order)request.getAttribute("cdetailView");
+	Point poi = (Point)session.getAttribute("poi");
 %>
 <!DOCTYPE html>
 <html>
@@ -183,7 +184,7 @@
             <div class="userPoint" onclick="location.href='<%=request.getContextPath()%>/pointList.mp'">
                    	적립금 >
             </div>
-            <p class="point">2,000원</p>
+            <p class="point"><%= poi.getPoint() %>원</p>
             
         </div>
     </div>
@@ -227,7 +228,7 @@
                     <br>
                     <li>
                         <span>주문번호 :&nbsp;&nbsp;</span>
-                        <strong style="color:white"><%= cdetailView.getOrderNo() %></strong>
+                        <strong><%= cdetailView.getOrderNo() %></strong>
                     </li>
                 </ul>
                 <table class="order-det1" border="1">

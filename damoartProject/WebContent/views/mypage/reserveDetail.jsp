@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.kh.mypage.model.vo.Point, java.util.ArrayList, com.kh.mypage.model.vo.Order" %>
 <%
+
 	ArrayList<Order> list = (ArrayList<Order>)request.getAttribute("list");
 
-	Point poi = (Point)request.getAttribute("poi");
+	Point poi = (Point)session.getAttribute("poi");
 
 %>
 <!DOCTYPE html>
@@ -162,6 +163,7 @@
 
     .container th, #table_date{text-align:center;}
 
+
 </style>
 </head>
 <body>
@@ -203,7 +205,7 @@
                 </div><br>
                 <li><h3>마이활동</h3></li>
                 <div>
-                    <a href="<%=request.getContextPath() %>/views/mypage/memberReviewList.jsp" id="submenu">리뷰 내역</a> <br>
+                    <a href="<%=request.getContextPath() %>/rbefore.mp" id="submenu">리뷰 내역</a> <br>
                     <a href="<%=request.getContextPath() %>/qnaList.mp" id="submenu">Q&A 내역</a> <br>
                 </div><br>
                 <li><h3>마이정보</h3></li>
@@ -285,17 +287,23 @@
 	                    
                   </tbody>
                 </table>
-                
-                <div class="paging-area" align="center">
-                
+                <div class="paging-navigation" align="center">
+                    <button type="button" class="paging-prev" disabled>
+                        <span><</span>
+                    </button>
+                    <button type="button" class="paging-1" disabled>
+                        <span>1</span>
+                    </button>
+                    <button type="button" class="paging-next" disabled>
+                        <span>></span>
+                    </button>
                 </div>
+              
               
               </div>   
             
             </div>
         </div>
-
-        
 
     
     </div>

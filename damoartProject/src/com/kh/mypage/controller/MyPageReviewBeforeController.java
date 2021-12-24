@@ -11,22 +11,20 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.kh.member.model.vo.Member;
-import com.kh.mypage.model.service.MemberPointService;
-import com.kh.mypage.model.service.MemberReserveService;
-import com.kh.mypage.model.vo.Order;
-import com.kh.mypage.model.vo.Point;
+import com.kh.mypage.model.service.MemberReviewService;
+import com.kh.mypage.model.vo.Review;
 
 /**
- * Servlet implementation class MyPageReserveController
+ * Servlet implementation class MyPageReviewBeforeController
  */
-@WebServlet("/reserve.mp")
-public class MyPageReserveController extends HttpServlet {
+@WebServlet("/rbefore.mp")
+public class MyPageReviewBeforeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyPageReserveController() {
+    public MyPageReviewBeforeController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,19 +34,13 @@ public class MyPageReserveController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.setCharacterEncoding("UTF-8");
-		
 		HttpSession session = request.getSession();
 		int memNo = ((Member)session.getAttribute("loginUser")).getMemNo();
-		String memId = ((Member)session.getAttribute("loginUser")).getMemId();
 		
-		ArrayList<Order> list = new MemberReserveService().selectReserve(memNo);
-		Point poi = new MemberPointService().memberPoint(memId);
+		ArrayList<Review> blist = new MemberReviewService().reviewBeforeList(memNo);
 		
-		request.setAttribute("list", list);
-		session.setAttribute("poi", poi);
-		request.getRequestDispatcher("views/mypage/reserveDetail.jsp").forward(request, response);
-		
+		request.setAttribute("blist", blist);
+		request.getRequestDispatcher("views/mypage/memberReviewBefore.jsp").forward(request, response);
 	}
 
 	/**

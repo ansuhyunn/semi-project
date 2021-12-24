@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.kh.mypage.model.vo.Point" %>
+<%
+	Point poi = (Point)session.getAttribute("poi");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -179,7 +182,7 @@
             <div class="userPoint" onclick="location.href='<%=request.getContextPath()%>/pointList.mp'">
                    	적립금 >
             </div>
-            <p class="point">2,000원</p>
+            <p class="point"><%= poi.getPoint() %>원</p>
             
         </div>
     </div>

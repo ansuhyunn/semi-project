@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.kh.mypage.model.vo.Qna, java.util.ArrayList"%>
+    pageEncoding="UTF-8" import="com.kh.mypage.model.vo.Qna, java.util.ArrayList, com.kh.mypage.model.vo.Point"%>
 <%
 	ArrayList<Qna> list = (ArrayList<Qna>)request.getAttribute("list");
 
 	Qna question = (Qna)session.getAttribute("question");
+	
+	Point poi = (Point)session.getAttribute("poi");
 %>
 <!DOCTYPE html>
 <html>
@@ -228,7 +230,7 @@
             <div class="userPoint">
                    	적립금 >
             </div>
-            <p class="point">2000원</p>
+            <p class="point"><%= poi.getPoint() %>원</p>
             
         </div>
     </div>
