@@ -191,10 +191,10 @@
 			
 				<table id="result">
 					<tr>
-						<td id="order" colspan="4" style="background-color: whitesmoke;">몇개샀는지~~</td>
+						<td id="order" colspan="4" style="background-color: whitesmoke;"></td>
 					</tr>
 					<tr>
-						<th colspan="4" style="text-align: right; font-size: 30px;">총 27000원</td>
+						<th id="total" colspan="4" style="text-align: right; font-size: 30px;"></td>
 					</tr>
 				</table>
 			</div>
@@ -246,47 +246,6 @@
 				})
 			})
 			
-			
-			$("#info4").click(function(){
-				$.ajax({
-					url:"qna.pro",
-					data:{pno:$("#pNo").val()},
-					success:function(result){
-						let value = "<table border=\"1px\" width=\"800px\" style=\"background-color:whitesmoke;\">"
-								  + "<tr align=\"center\" style=\"background-color: rgb(203, 185, 153);\">"
-									   + "<th width=\"80px\">분류</th>"
-									   + "<th>제목</th>"
-									   + "<th width=\"80px\">작성자</th>"
-									   + "<th width=\"80px\">작성날짜</th>"
-								  + "</tr>"
-						var btn1 = '<a class="btn" style="backgroundcolor:black;" href=' + '\"<%=contextPath%>/enrollForm.qa\">문의 등록</a>'
-						
-						if(result != ""){
-							for(let i=0; i<result.length; i++){
-								value += "<tr align=\"center\">"
-											+ "<td width=\"80px\">" + result[i].qCategoryCode + "</td>"
-											+ "<td>" + result[i].qTitle + "</td>"
-											+ "<td width=\"80px\">" + result[i].qWriter + "</td>"
-											+ "<td width=\"150px\">" + result[i].createDate + "</td>"
-									   + "</tr>"
-									   
-								
-							}
-							value += "</table>"
-							
-							$(".content4").html(value);
-						}else{
-							let value = "<p align=\"center\"> 문의사항이 없습니다 </p>"
-							$(".content4").html(value);
-						} 
-						$(".content5").html(btn1);
-						
-					},error:function(){
-						console.log("에러");
-					}
-				})
-				
-			})
 			
 			function insertCart(){
 				$.ajax({

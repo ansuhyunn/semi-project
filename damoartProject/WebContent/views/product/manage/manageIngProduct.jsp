@@ -100,8 +100,7 @@ div{ box-sizing:border-box; }
 				</form>
 			</div>
 			<div class="button">
-				<a href="<%= contextPath %>/update.pro" class="btn btn-sm" id="enroll">수정</a>
-				<a href="<%= contextPath %>/delete.pro" class="btn btn-sm" id="delete">삭제</a>
+				<a href="<%= contextPath %>/delete.pro" class="btn btn-sm" id="delete">선택삭제</a>
 			</div>
 		</div>
 

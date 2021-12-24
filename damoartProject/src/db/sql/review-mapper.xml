@@ -30,6 +30,7 @@
 			  JOIN ORDER_P USING (ORDER_NO)
 			  JOIN PRODUCT USING (PNO)
 			  JOIN MEMBER USING (MEM_NO)
+			  WHERE DELETE_STATUS = 'N'
 			) RR
 		)
 WHERE RNUM BETWEEN ? AND ?
@@ -126,6 +127,26 @@ SELECT *
 
 <!-- 리뷰 상세보기 -->
 <entry key="detailReview">
+SELECT 
+       RV_NO
+     , MEM_NO
+     , MEM_ID
+     , ORDER_NO
+     , REVIEW_TITLE
+     , REVIEW_CONTENT
+     , REVIEW_DATE
+     , REVIEW_STAR
+     , REVIEW_VIEW
+     , DELETE_STATUS
+  FROM REVIEW
+  JOIN MEMBER USING (MEM_NO)
+ WHERE RV_NO=?
+</entry>
+
+<entry key="deleteReview">
+UPDATE REVIEW
+   SET DELETE_STATUS = 'Y'
+ WHERE RV_NO = ?
 </entry>
 	
 </properties>

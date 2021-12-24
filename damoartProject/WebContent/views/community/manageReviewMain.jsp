@@ -50,7 +50,7 @@ div{ box-sizing:border-box; }
         color:white;
     }
 	.button{
-		margin-left: 850px;
+		margin-left: 1050px;
 	}
 	#insert{
         background-color:rgb(203, 185, 153);
@@ -93,8 +93,8 @@ div{ box-sizing:border-box; }
 		<hr class="my-2">
 		<div class="header">
 			<div class="button">
-				<a href="<%= contextPath %>/manageBlind.rv" class="btn btn-sm" id="insert">숨김처리</a>
-				<a href="<%= contextPath %>/delete.pro" class="btn btn-sm" id="delete">삭제</a>
+				<a href="" class="btn btn-sm" id="delete" data-toggle="modal" data-target="#myModal" type="button">숨김처리</a>
+				<a href="<%= contextPath %>/manageBlind.rv" class="btn btn-sm" id="insert">삭제</a>
 			</div>
 		</div>
         
@@ -102,7 +102,7 @@ div{ box-sizing:border-box; }
 
 			<thead>
 	            <tr>
-	                <th>&nbsp;&nbsp;&nbsp;</th>
+	                <th><input type="checkbox" id="allCheck"></th>
 	                <th>글번호</th>
 	                <th>제목</th>
 	                <th>작성자ID</th>
@@ -114,9 +114,9 @@ div{ box-sizing:border-box; }
 	        <tbody>
 	            <% for(Review r : allList){ %>
 		            <tr>
-		                <th><input type="checkbox"></th>
+		                <th><input type="checkbox" class="deleteCheck" name="checkNo" value="<%= r.getRvNo() %>"></th>
 		                <td><%= r.getRvNo() %></td>
-		                <td><%= r.getReviewTitle() %></td>
+		                <td class="clickTitle"><%= r.getReviewTitle() %></td>
 		                <td><%= r.getNickName() %></td>
 		                <td><%= r.getReviewDate() %></td>
 		                <td><%= r.getReviewStar() %></td>
@@ -148,15 +148,48 @@ div{ box-sizing:border-box; }
         </div>
         
         <script>
-	    	$(function(){
-	    		$("#list-area>tbody>tr").click(function(){
-					console.log($(this).children().eq(1).text())
-	    			location.href='<%=contextPath %>/manageDetail.rv?rno=' + $(this).children().eq(1).text();
-	    		})
-	    	})
-	    </script>
+            $(function(){
+            	$(".clickTitle").click(function(){
+            		location.href='<%=contextPath%>/adminDetail.no?nno=' + $(this).prev().text();
+            	})
+            		
+            	$("#allCheck").click(function(){
+            		$(".deleteCheck").prop("checked", $(this).prop("checked"));
+            	})
+            })
+        </script>
         
     </div>
+    
+    
+    <!-- The Modal -->
+	<div class="modal" id="myModal">
+	  <div class="modal-dialog modal-sm">
+	    <div class="modal-content">
+	
+	      <!-- Modal body -->
+	      <div class="modal-body" align="center">
+	        	리뷰 블라인드 처리 하시겠습니까?
+	      </div>
+	
+	      <!-- Modal footer -->
+	      <div class="modal-footer">
+	      	<button id="deleteCancel" type="button" class="btn" data-dismiss="modal">취소</button>
+	      	<button id ="deleteCheck" type="button" class="btn" data-dismiss="modal" onclick="checkDelete();" name="checkDelete">확인</button>
+		  </div>	
+	    </div>
+	  </div>
+	</div>
+	<script>
+		function checkDelete(){
+            var checkArr = [];
+            $("input:checkbox[class='deleteCheck']:checked").each(function(){
+                checkArr.push($(this).val());
+            })
+            console.log(checkArr);
+            location.href = "/damoart/checkDelete.rv?arr=" + checkArr
+		}    
+	</script>
     
 
 </body>

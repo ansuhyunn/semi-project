@@ -34,11 +34,10 @@ public class ProductDetailViewController extends HttpServlet {
 		
 		int pNo = Integer.parseInt(request.getParameter("pno"));
 		Product p = new ManageService().productDetailView(pNo);
-//		Attachment at = new ManageService().selectAttachment(pNo);
+		Attachment at = new ManageService().selectAttachment(pNo);
 		
 		request.setAttribute("p", p);
-//		request.setAttribute("at", at);
-		
+		request.setAttribute("at", at);
 		request.getRequestDispatcher("views/product/manage/manageProductDetailView.jsp").forward(request, response);
 	}
 

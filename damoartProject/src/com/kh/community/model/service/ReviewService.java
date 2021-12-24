@@ -9,6 +9,7 @@ import com.kh.common.model.vo.Attachment;
 import com.kh.common.model.vo.PageInfo;
 import com.kh.community.model.dao.ReviewDao;
 import com.kh.community.model.vo.Review;
+import com.kh.cscenter.model.dao.NoticeDao;
 import com.kh.product.model.dao.ManageDao;
 import com.kh.product.model.vo.Product;
 
@@ -100,6 +101,20 @@ public class ReviewService {
 		Review r = new ReviewDao().detailReview(conn, rno);
 		close(conn);
 		return r;
+	}
+	
+	
+	// 리뷰 삭제
+	public int deleteReview(int rNo) {
+		Connection conn = getConnection();
+		int result = new ReviewDao().deleteReview(conn, rNo);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
 	}
 	
 }

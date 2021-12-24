@@ -53,7 +53,7 @@ div{ box-sizing:border-box; }
         color:white;
     }
 	.button{
-		margin-left: 850px;
+		margin-left: 820px;
 	}
 	#insert{
         background-color:rgb(203, 185, 153);
@@ -102,8 +102,8 @@ div{ box-sizing:border-box; }
 				</form>
 			</div>
 			<div class="button">
-				<a href="<%= contextPath %>/views/product/manage/manageInsertProduct.jsp" class="btn btn-sm" id="insert">등록</a>
-				<a href="<%= contextPath %>/delete.pro" class="btn btn-sm" id="delete">삭제</a>
+				<a href="<%= contextPath %>/InsertForm.pro" class="btn btn-sm" id="insert">등록</a>
+				<a href="" class="btn btn-sm" id="delete" data-toggle="modal" data-target="#myModal" type="button">판매중지</a>
 			</div>
 		</div>
         
@@ -111,7 +111,7 @@ div{ box-sizing:border-box; }
 
 			<thead>
 	            <tr>
-	                <th>&nbsp;&nbsp;&nbsp;</th>
+	                <th><input type="checkbox" id="allCheck"></th>
 	                <th>상품번호</th>
 	                <th>등록날짜</th>
 	                <th>Title</th>
@@ -127,10 +127,10 @@ div{ box-sizing:border-box; }
 	        <tbody>
 	            <% for(Product p : allList){ %>
 		            <tr>
-		                <th><input type="checkbox"></th>
+		                <th><input type="checkbox" class="check" name="pno" value="<%= p.getpNo() %>"></th>
 		                <td><%= p.getpNo() %></td>
 		                <td><%= p.getEnrollDate() %></td>
-		                <td><%= p.getTitle() %></td>
+		                <td class="click"><%= p.getTitle() %></td>
 		                <td><%= p.getRegion() %></td>
 		                <td><%= p.getArea() %></td>
 		                <td><%= p.getTime() %></td>
@@ -166,14 +166,49 @@ div{ box-sizing:border-box; }
         
         <script>
 	    	$(function(){
-	    		$("#list-area>tbody>tr").click(function(){
-					console.log($(this).children().eq(1).text())
-	    			location.href='<%=contextPath %>/manageDetail.pro?pno=' + $(this).children().eq(1).text();
+	    		$(".click").click(function(){
+					console.log($(this).prev().prev().text())
+	    			location.href='<%=contextPath %>/manageDetail.pro?pno=' + $(this).prev().prev().text();
 	    		})
+	    		
+	    		$("#allCheck").click(function(){
+                	$(".check").prop("checked", $(this).prop("checked"));
+                })
 	    	})
 	    </script>
         
     </div>
+    
+    
+    <!-- The Modal -->
+	<div class="modal" id="myModal">
+	  <div class="modal-dialog modal-sm">
+	    <div class="modal-content">
+	
+	      <!-- Modal body -->
+	      <div class="modal-body" align="center">
+	        	판매중지하시겠습니까?
+	      </div>
+	
+	      <!-- Modal footer -->
+	      <div class="modal-footer">
+	      	<button id="deleteCancel" type="button" class="btn" data-dismiss="modal">취소</button>
+	      	<button id ="deleteCheck" type="button" class="btn" data-dismiss="modal" onclick="checkDelete();" name="checkDelete">확인</button>
+		  </div>	
+	    </div>
+	  </div>
+	</div>
+	<script>
+		function checkDelete(){
+            var checkArr = [];
+            $("input:checkbox[class='check']:checked").each(function(){
+                checkArr.push($(this).val());
+            })
+            console.log(checkArr);
+            location.href = "<%=contextPath%>/checkDelete.pro?arr=" + checkArr
+		}    
+	</script>
+    
     
 
 </body>

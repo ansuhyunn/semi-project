@@ -37,8 +37,8 @@ public class CartInsertController extends HttpServlet {
 	  
 		int memNo = ((Member)request.getSession().getAttribute("loginUser")).getMemNo();
 		int pNo = Integer.parseInt(request.getParameter("pno"));
-		int count = Integer.parseInt(request.getParameter("count"));
-		String option = request.getParameter("option");
+		int count = Integer.parseInt(request.getParameter("count"));		// 갯수
+		String option = request.getParameter("option");						// 옵션
 		
 		
 		Cart c = new Cart();

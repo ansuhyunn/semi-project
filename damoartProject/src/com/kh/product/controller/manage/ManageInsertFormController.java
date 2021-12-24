@@ -1,4 +1,4 @@
-package com.kh.community.controller;
+package com.kh.product.controller.manage;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,20 +7,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.community.model.service.ReviewService;
-import com.kh.community.model.vo.Review;
-
 /**
- * Servlet implementation class ManageDetailController
+ * Servlet implementation class ManageInsertFormController
  */
-@WebServlet("/manageDetail.rv")
-public class ManageDetailController extends HttpServlet {
+@WebServlet("/InsertForm.pro")
+public class ManageInsertFormController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ManageDetailController() {
+    public ManageInsertFormController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,8 +27,8 @@ public class ManageDetailController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int rno = Integer.parseInt(request.getParameter("rno"));
-		Review r = new ReviewService().detailReview(rno);
+		request.getRequestDispatcher("views/product/manage/manageInsertProduct.jsp").forward(request, response);
+		
 	}
 
 	/**

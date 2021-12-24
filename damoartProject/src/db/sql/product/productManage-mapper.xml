@@ -93,7 +93,8 @@ SELECT *
                       , TO_CHAR(TO_DATE(E_DATE), 'RRRR.MM.DD') E_DATE
                       , SOLDOUT
                    FROM PRODUCT
-		           <![CDATA[WHERE FLOOR(MONTHS_BETWEEN(SYSDATE, TO_DATE(S_DATE))) >= 0 ]]>
+		           <![CDATA[WHERE FLOOR(MONTHS_BETWEEN(SYSDATE, TO_DATE(S_DATE))) >= 0 
+		           AND SOLDOUT = 'N']]>
 				  ORDER BY 1 DESC
 			 ) A
 		)

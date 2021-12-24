@@ -250,6 +250,50 @@ public class ReviewDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String sql = prop.getProperty("detailReview");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, rno);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				r= new Review(rset.getInt("RV_NO"),
+									rset.getInt("MEM_NO"),
+									rset.getString("MEM_ID"),
+									rset.getInt("ORDER_NO"),
+									rset.getString("REVIEW_TITLE"),
+									rset.getString("REVIEW_CONTENT"),
+									rset.getString("REVIEW_DATE"),
+									rset.getString("REVIEW_STAR"),
+									rset.getInt("REVIEW_VIEW"),
+									rset.getString("DELETE_STATUS"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return r;
+	}
+	
+	
+	// 리뷰 삭제
+	public int deleteReview(Connection conn, int rNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteReview");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, rNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
 	}
 
 

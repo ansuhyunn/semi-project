@@ -86,7 +86,6 @@ public class Product {
 	}
 	
 	
-	
 	// 관리자 전체조회용
 	public Product(int pNo, String enrollDate, String title, String region, String area, 
 				   String age, String time, String sDate, String eDate, String soldOut) {
@@ -104,6 +103,7 @@ public class Product {
 	}
 
 	
+
 	public int getpNo() {
 		return pNo;
 	}

@@ -6,6 +6,7 @@ public class Review {
 	private String mainImg;
 	private int rvNo;
 	private int memNo;
+	private String memId;
 	private String nickName;
 	private int orderNo;
 	private String reviewTitle;
@@ -34,7 +35,6 @@ public class Review {
 		this.deleteStatus = deleteStatus;
 	}
 	
-	
 
 	public Review(String title, String mainImg, int rvNo, String nickName, int orderNo, String reviewTitle,
 			String reviewContent, String reviewDate, String reviewStar, int reviewView) {
@@ -61,6 +61,22 @@ public class Review {
 		this.reviewTitle = reviewTitle;
 		this.reviewDate = reviewDate;
 		this.reviewStar = reviewStar;
+		this.deleteStatus = deleteStatus;
+	}
+	
+	// 관리자 리뷰 상세봏기
+	public Review(int rvNo, int memNo, String memId, int orderNo, String reviewTitle, String reviewContent,
+			String reviewDate, String reviewStar, int reviewView, String deleteStatus) {
+		super();
+		this.rvNo = rvNo;
+		this.memNo = memNo;
+		this.memId = memId;
+		this.orderNo = orderNo;
+		this.reviewTitle = reviewTitle;
+		this.reviewContent = reviewContent;
+		this.reviewDate = reviewDate;
+		this.reviewStar = reviewStar;
+		this.reviewView = reviewView;
 		this.deleteStatus = deleteStatus;
 	}
 
@@ -160,14 +176,23 @@ public class Review {
 		this.deleteStatus = deleteStatus;
 	}
 
-	
+	public String getMemId() {
+		return memId;
+	}
+
+	public void setMemId(String memId) {
+		this.memId = memId;
+	}
+
 	@Override
 	public String toString() {
-		return "Review [title=" + title + ", mainImg=" + mainImg + ", rvNo=" + rvNo + ", memNo=" + memNo + ", nickName="
-				+ nickName + ", orderNo=" + orderNo + ", reviewTitle=" + reviewTitle + ", reviewContent="
-				+ reviewContent + ", reviewDate=" + reviewDate + ", reviewStar=" + reviewStar + ", reviewView="
-				+ reviewView + ", deleteStatus=" + deleteStatus + "]";
+		return "Review [title=" + title + ", mainImg=" + mainImg + ", rvNo=" + rvNo + ", memNo=" + memNo + ", memId="
+				+ memId + ", nickName=" + nickName + ", orderNo=" + orderNo + ", reviewTitle=" + reviewTitle
+				+ ", reviewContent=" + reviewContent + ", reviewDate=" + reviewDate + ", reviewStar=" + reviewStar
+				+ ", reviewView=" + reviewView + ", deleteStatus=" + deleteStatus + "]";
 	}
+
+	
 
 
 }
