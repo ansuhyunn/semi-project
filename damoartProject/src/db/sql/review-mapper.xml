@@ -4,10 +4,10 @@
 
 <!-- 페이징바 -->
 <entry key="selectListCount">
-	  SELECT
-		     COUNT(*) count
-	    FROM REVIEW
-	   WHERE DELETE_STATUS = 'N'
+ SELECT
+     COUNT(*) count
+   FROM REVIEW
+  WHERE DELETE_STATUS = 'N'
 </entry>
 
 <entry key="selectList">
@@ -88,6 +88,44 @@ VALUES
 	   SET REVIEW_VIEW = REVIEW_VIEW+1
 	 WHERE RV_NO = ?
 	   AND DELETE_STATUS = 'N'
+</entry>
+
+
+
+
+<!-- 관리자단 -->
+<!-- 리뷰 전체 갯수 -->
+<entry key="countReview">
+ SELECT
+     COUNT(*) count
+   FROM REVIEW
+</entry>
+
+
+<!-- 리뷰 리스트로 뽑기 -->
+<entry key="selectAllList">
+SELECT *
+  FROM (
+  		SELECT ROWNUM RNUM, A.*
+  		  FROM (
+                SELECT 
+                       RV_NO
+                     , MEM_ID
+                     , REVIEW_TITLE
+                     , REVIEW_DATE
+                     , REVIEW_STAR
+                     , DELETE_STATUS
+                  FROM REVIEW   
+                  JOIN MEMBER USING (MEM_NO)
+                 ORDER BY 1 DESC
+			 ) A
+		 )
+ WHERE RNUM BETWEEN ? AND ?
+</entry>
+
+
+<!-- 리뷰 상세보기 -->
+<entry key="detailReview">
 </entry>
 	
 </properties>

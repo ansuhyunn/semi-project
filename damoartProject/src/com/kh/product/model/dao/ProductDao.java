@@ -139,7 +139,7 @@ public class ProductDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			rset = pstmt.executeQuery();
-			
+			  
 			while(rset.next()) {
 				list.add(new Product(rset.getInt("PNO"),
 									 rset.getString("TITLE"),
@@ -152,7 +152,7 @@ public class ProductDao {
 									 rset.getString("MAIN_IMG"),
 									 rset.getString("DETAIL_IMG"),
 									 rset.getString("ETC")));
-			}
+			} 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

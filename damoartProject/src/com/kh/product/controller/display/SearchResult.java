@@ -37,45 +37,39 @@ public class SearchResult extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		String[] value = request.getParameterValues("value");
 		
-		if(value == null || value.length == 0) {
-			
-			request.setAttribute("alertMsg", "검색조건을 입력해주세요!");
-			request.getRequestDispatcher("views/product/searchResult.jsp").forward(request, response);
-			
-		}else {
-			String[] option = Arrays.toString(value).split(",");
-			String op1 = option[0].substring(1);
-			String op2 = option[1];
-			String op3 = option[2];
-			String op4 = option[3].substring(0, option[3].lastIndexOf(']'));
+		String[] option = Arrays.toString(value).split(",");
+		String op1 = option[0].substring(1);
+		String op2 = option[1];
+		String op3 = option[2];
+		String op4 = option[3].substring(0, option[3].lastIndexOf(']'));
 
-			ArrayList<Product> searchList = new ProductService().selectSearchList(op1, op2, op3, op4);
-			
-			if(op1.equals("today")) {
-				op1 = "오늘 관람 가능";
-			}else if(op1.equals("week")) {
-				op1 = "1주일 이내 종료";
-			}else {
-				op1 = "1달 이내 종료";
-			}
-			
-			if(Integer.parseInt(op3) == 0) {
-				op3 = "무료";
-			}else if(Integer.parseInt(op3) == 10000) {
-				op3 = "10000원 이하";
-			}else if(Integer.parseInt(op3) == 19999) {
-				op3 = "20000원 미만";
-			}else {
-				op3 = "20000원 이상";
-			}
-			
-			Search sc = new Search(op1, op2, op3, op4);
-			
-			request.setAttribute("sc", sc);
-			request.setAttribute("searchList", searchList);
-			request.getRequestDispatcher("views/product/searchResult.jsp").forward(request, response);
+		ArrayList<Product> searchList = new ProductService().selectSearchList(op1, op2, op3, op4);
+		
+		if(op1.equals("today")) {
+			op1 = "오늘 관람 가능";
+		}else if(op1.equals("week")) {
+			op1 = "1주일 이내 종료";
+		}else {
+			op1 = "1달 이내 종료";
 		}
 		
+		if(Integer.parseInt(op3) == 0) {
+			op3 = "무료";
+		}else if(Integer.parseInt(op3) == 10000) {
+			op3 = "10000원 이하";
+		}else if(Integer.parseInt(op3) == 19999) {
+			op3 = "20000원 미만";
+		}else {
+			op3 = "20000원 이상";
+		}
+		
+		Search sc = new Search(op1, op2, op3, op4);
+		
+		request.setAttribute("sc", sc);
+		request.setAttribute("searchList", searchList);
+		request.getRequestDispatcher("views/product/searchResult.jsp").forward(request, response);
+
+		System.out.println(searchList);
 		
 //		request.setAttribute("regionList", regionList);
 //		request.getRequestDispatcher("views/product/regionResult.jsp").forward(request, response);

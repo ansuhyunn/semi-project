@@ -159,7 +159,7 @@ public class ReviewDao {
 	}
 	
 	
-	
+	// 리뷰작성
 	public int insertReview(Connection conn, Review r) {
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -181,6 +181,75 @@ public class ReviewDao {
 		}
 		
 		return result;
+	}
+	
+	
+	// 관리자 리뷰 전체 갯수
+	public int selectReviewCount(Connection conn) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("countReview");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				result = rset.getInt("count");
+			}
+					
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
+	
+	// 전체 상품 조회해서 갯수만큼 담긴 list 만들기
+	public ArrayList<Review> selectAllList(Connection conn, PageInfo pi){
+		ArrayList<Review> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectAllList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+			int endRow = startRow + pi.getBoardLimit() - 1;
+			
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Review(rset.getInt("RV_NO"),
+									 rset.getString("MEM_ID"),
+									 rset.getString("REVIEW_TITLE"),
+									 rset.getString("REVIEW_DATE"),
+									 rset.getString("REVIEW_STAR"),
+									 rset.getString("DELETE_STATUS")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+	
+	
+	public Review detailReview(Connection conn, int rno) {
+		Review r =  null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("detailReview");
 	}
 
 

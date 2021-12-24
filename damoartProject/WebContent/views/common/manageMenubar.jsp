@@ -181,8 +181,7 @@
                 </li>
                 <li><a href="">리뷰 관리</a>
                     <ul>
-                        <li><a href="">REVIEW 관리</a></li>
-                        <li><a href="">REVIEW 신고 관리</a></li>
+                        <li><a href="<%=contextPath%>/manageList.rv?cpage=1">REVIEW 관리</a></li>
                     </ul>
                 </li>
                 <li><a href="">고객센터 관리</a>

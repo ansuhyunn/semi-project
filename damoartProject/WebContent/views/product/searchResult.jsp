@@ -42,6 +42,7 @@
         font-weight: bolder;
         text-align: center;
 		margin-bottom: 30px;
+		margin-left: 30px;
 	}
 	.content1{
         width: 100%;

@@ -171,8 +171,7 @@
             <div class="menu">리뷰 관리</div>
             <div class="sub">
                 <ul>
-                    <li><a href="<%=contextPath%>/views/community/manageReviewMain.jsp">REVIEW 관리</a></li>
-                    <li><a href="<%=contextPath%>/views/community/manageReportMain.jsp">REVIEW 신고 관리</a></li>
+                    <li><a href="<%=contextPath%>/manageList.rv?cpage=1">REVIEW 관리</a></li>
                 </ul>
             </div>
             <div class="menu">고객센터 관리</div>

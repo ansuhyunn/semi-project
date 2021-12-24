@@ -52,6 +52,17 @@ public class Review {
 	}
 	
 	
+	// 관리자 리뷰 리스트
+	public Review(int rvNo, String nickName, String reviewTitle, String reviewDate, String reviewStar,
+			String deleteStatus) {
+		super();
+		this.rvNo = rvNo;
+		this.nickName = nickName;
+		this.reviewTitle = reviewTitle;
+		this.reviewDate = reviewDate;
+		this.reviewStar = reviewStar;
+		this.deleteStatus = deleteStatus;
+	}
 
 	public int getMemNo() {
 		return memNo;

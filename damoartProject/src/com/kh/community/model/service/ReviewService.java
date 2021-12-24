@@ -9,6 +9,8 @@ import com.kh.common.model.vo.Attachment;
 import com.kh.common.model.vo.PageInfo;
 import com.kh.community.model.dao.ReviewDao;
 import com.kh.community.model.vo.Review;
+import com.kh.product.model.dao.ManageDao;
+import com.kh.product.model.vo.Product;
 
 public class ReviewService {
 	
@@ -70,6 +72,34 @@ public class ReviewService {
 		return result;
 	}
 	
+	
+	// 관리자 리뷰 전체 갯수
+	public int selectReviewCount() {
+		Connection conn = getConnection();
+		
+		int result = new ReviewDao().selectReviewCount(conn);
 
+		close(conn);	
+		return result;
+	}
+	
+	// 관리자 리뷰 리스트
+	public ArrayList<Review> selectAllList(PageInfo pi){
+		Connection conn = getConnection();
+		
+		ArrayList<Review> list = new ReviewDao().selectAllList(conn, pi);
+		
+		close(conn); 
+		return list;
+	}
+	
+	// 관리자 리뷰 상세보기
+	public Review detailReview(int rno) {
+		Connection conn = getConnection();
+		
+		Review r = new ReviewDao().detailReview(conn, rno);
+		close(conn);
+		return r;
+	}
 	
 }

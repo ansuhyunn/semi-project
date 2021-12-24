@@ -1,5 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.community.model.vo.Review, com.kh.common.model.vo.PageInfo"%>
+<% 
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	ArrayList<Review> allList = (ArrayList<Review>)request.getAttribute("allList");
+	
+	int currentPage = pi.getCurrentPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+	int maxPage = pi.getMaxPage();
+%>    
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,98 +22,142 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 	<!-- Latest compiled JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-	<style>
-	    body{
-	        background:#e1d5bf;
-	    }
-	    .outer{
-	        width:900px; 
-	        margin:auto;
-	        margin-top:150px;
-	        margin-left:250px;
-	    }
-	    #outer>a{
-	    color:rgb(64, 64, 64);
-	    }
-	    thead{background:rgb(207, 206, 206);}
-	    tbody{background:white;}
-	    .buttons>div{float:left;}
-	    .buttons{width:100%; height:40px; position:relative;}
-		.up_button{
-	        position:absolute;
-			padding-right: 10px;
-	        right:0;
-	    }
-	    .under_button{
-	        position:absolute;
-			padding-right: 120px;
-	        right:0;
-	    }
-	    #update{
-	        background-color:rgb(203, 185, 153);
-	        color:rgb(64, 64, 64);
-	        font-weight:bold;
-	    }
-	    #delete, #blind{
-	        background-color:rgb(151, 138, 116);
-	        color:white;
-	    }
-	    .point{
-	        text-align:center;
-	        font-weight:bold;
-	        margin-left:5px;
-	    }
-	</style>
+<style>
+div{ box-sizing:border-box; }
+    .wrapper{
+        width:1300px; 
+        height:auto; 
+        padding:20px;
+        margin:auto;
+        margin-top:200px;
+        margin-left:230px;
+    }  
+	.wrapper>a{
+        color:rgb(64, 64, 64);
+    }
+	.name>h4{
+		font-weight: bolder;
+	}
+    #list-area{
+    	width: 1200px;
+    	margin-left: auto;
+    	margin-right: 150px;
+    }
+	.header{width:100%; height:40px; position:relative;}
+    .header>div{float:left;}
+    .header a{
+        background-color:rgb(151, 138, 116);
+        color:white;
+    }
+	.button{
+		margin-left: 850px;
+	}
+	#insert{
+        background-color:rgb(203, 185, 153);
+        color:rgb(64, 64, 64);
+        font-weight:600;
+    }
+    #delete{
+        background-color:rgb(151, 138, 116);
+        color:white;
+    }
+    thead{
+        background:rgb(207, 206, 206);
+        font-size:12px;
+    }
+	#list-area *{
+		text-align: center;
+	}
+    #list-area>tbody{
+        background:white;
+        font-size:12px;
+    }
+     #list-area>tbody>tr:hover{
+    	background:rgb(240, 239, 239);
+    	cursor:pointer;
+    }
+
+</style>
+
 </head>
 <body>
-	<%@ include file="../common/manageMenubar_2.jsp" %>
 
-    <div class="outer">
-        <br><br>
-		<h4 style="font-weight:bold;">REVIEW 글 관리</h4>
-        <br>
-        <hr>
-        
-        <br>
-        
-        <div>
-            <table align="center" class="table table-bordered" style="text-align:center;">
-                <thead>
-	                    <tr>
-	                        <th width="20"><input type="checkbox"></th>
-	                        <th width="20">No</th>
-	                        <th width="90">글 번호</th>
-	                        <th width="200">게시글 제목</th>
-	                        <th width="60">작성자</th>
-	                        <th width="80">조회수</th>
-                            <th width="80">추천수</th>
-	                        <th width="80">작성일</th>
-	                    </tr>
-                </thead>
-                
-                <tbody>
-	                    <tr>
-	                    	<td width="20"><input type="checkbox"></td>
-	                        <td width="20">1</td>
-	                        <td width="90">1</td>
-	                        <td width="200">전시노잼</td>
-	                        <td width="60">test01</td>
-	                        <td width="80">21</td>
-	                        <td width="80">0</td>
-                            <td width="90">2021-01-01</td>
-	                    </tr>
-                </tbody>
-                
-            </table>
-            
-            
-			<div class="under_button">
-				<a href="" class="btn btn-sm" id="blind">숨김처리</a>
-				<a href="" class="btn btn-sm" id="delete">삭제하기</a>
+	<%@ include file="../common/manageMenubar_2.jsp" %>
+	
+    <div class="wrapper">
+
+		<div class="name">
+			<h4>REVIEW 관리</h4>
+			<br>
+		</div>
+		<hr class="my-2">
+		<div class="header">
+			<div class="button">
+				<a href="<%= contextPath %>/manageBlind.rv" class="btn btn-sm" id="insert">숨김처리</a>
+				<a href="<%= contextPath %>/delete.pro" class="btn btn-sm" id="delete">삭제</a>
 			</div>
+		</div>
+        
+        <table align="center" id="list-area" class="table table-bordered">
+
+			<thead>
+	            <tr>
+	                <th>&nbsp;&nbsp;&nbsp;</th>
+	                <th>글번호</th>
+	                <th>제목</th>
+	                <th>작성자ID</th>
+	                <th>작성일</th> 
+	                <th>별점</th> 
+	                <th>숨김처리</th>
+	            </tr>
+	        </thead>
+	        <tbody>
+	            <% for(Review r : allList){ %>
+		            <tr>
+		                <th><input type="checkbox"></th>
+		                <td><%= r.getRvNo() %></td>
+		                <td><%= r.getReviewTitle() %></td>
+		                <td><%= r.getNickName() %></td>
+		                <td><%= r.getReviewDate() %></td>
+		                <td><%= r.getReviewStar() %></td>
+		                <td><%= r.getDeleteStatus() %></td>
+		            </tr>
+		        <% } %>
+		     </tbody>    
+        </table>
+
+        
+        <div class="paging-area" align="center">
+        
+			<% if(currentPage != 1){ %>
+            	<button class="btn" onclick="location.href='<%=contextPath%>/manageList.rv?cpage=<%=currentPage-1%>';">&lt;</button>
+            <% } %>
+            
+            <% for(int p=startPage; p <= endPage; p++){ %>
+            	<% if(currentPage == p) {%>
+            		<button class="btn" disabled><%= p %></button>		
+	            <% }else { %>
+	            	<button class="btn" onclick="location.href='<%=contextPath%>/manageList.rv?cpage=<%= p %>';"><%= p %></button>
+	            <% } %>
+            <% } %>
+            
+            <% if(currentPage != maxPage){%>
+            	<button class="btn" onclick="location.href='<%=contextPath%>/manageList.rv?cpage=<%=currentPage+1%>';">&gt;</button>
+			<% } %>
+			
         </div>
         
+        <script>
+	    	$(function(){
+	    		$("#list-area>tbody>tr").click(function(){
+					console.log($(this).children().eq(1).text())
+	    			location.href='<%=contextPath %>/manageDetail.rv?rno=' + $(this).children().eq(1).text();
+	    		})
+	    	})
+	    </script>
         
     </div>
+    
+
 </body>
 </html>
