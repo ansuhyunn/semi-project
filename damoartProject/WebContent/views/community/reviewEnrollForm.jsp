@@ -23,11 +23,6 @@
         margin:auto;
     }
 
-    #outer>a{
-        color:rgb(64, 64, 64);
-    }
-
-
     #enroll-form table input, #enroll-form textarea{
         width:100%;
         box-sizing:border-box;
@@ -76,50 +71,37 @@
     <%@ include file="../common/menubar.jsp" %>
 
     <div id="outer">
-        <a href="">고객센터</a>&gt<a href=""><b>Q&A</b></a>
-        <br><br>
-		<h4 style="font-weight:bolder;" align="center">Q&A</h4>
+		<h4 style="font-weight:bolder;" align="center">리뷰작성</h4>
         <br>
         <hr>
         <br><br>
         <div id="inner" align="center">
-            <form id="enroll-form" action="<%=contextPath%>/insert.qa" method="post" enctype="multipart/form-data">
+            <form id="enroll-form" action="<%=contextPath%>/insert.rv" method="post">
                 <table id="enroll-tb">
                     <tr style="border-bottom:1px solid rgb(173, 157, 128); border-top:1px solid rgb(173, 157, 128)">
                         <th width="120">&nbsp;&nbsp;&nbsp;제목</th>
-                        <td width="700" colspan="3"><input type="text" size="80" required name="title"></td>
+                        <td width="700" colspan="3"><input type="text" size="80" name="title" required></td>
                     </tr>
                     
                     <tr style="border-bottom:1px solid rgb(173, 157, 128); border-top:1px solid rgb(173, 157, 128)">
-                        <th >&nbsp;&nbsp;&nbsp;상품선택</th>
+                        <th >&nbsp;&nbsp;&nbsp;상품</th>
                         <td colspan="3">
-                            <button type="button" data-toggle="modal" data-target="#myModal">상품 선택</button>
+                            			해당전시제목
                         </td>
                     </tr>
-                    <% if(loginUser != null) {%>  
-            			<input type="hidden" name="memNo" value="<%=loginUser.getMemNo()%>"> 
-                    <% }else { %>
-	                    <tr>
-	                        <th>&nbsp;&nbsp;&nbsp;작성자</th>  <!-- 비회원 닉네임 입력시 중복 검사하기 -->
-	                        <td><input type="text"></td>
-	                        <td id="pwd">&nbsp;&nbsp;&nbsp;비밀번호</td>
-	                        <td><input type="text"></td>
-	                    </tr>
-                    <% } %>
-                    <tr style="border-bottom:1px solid rgb(173, 157, 128); border-top:1px solid rgb(173, 157, 128)">
-                        <th>&nbsp;&nbsp;&nbsp;첨부 파일</th>
-                        <td colspan="3"><input type="file" name="upfile"></td>
+                    <tr>
+                        <th>&nbsp;&nbsp;&nbsp;작성자</th>  
+                        <td>로그인유저닉네임</td>
                     </tr>
-
                     <tr style="border-bottom:1px solid rgb(173, 157, 128)">
                         <th>&nbsp;&nbsp;&nbsp;내용</th>
-                        <td colspan="3"><textarea name="content" id=""rows="20" required style="resize:none;"></textarea></td>
+                        <td colspan="3"><textarea name="content" id=""rows="20" style="resize:none;" required></textarea></td>
                     </tr>
                 </table>
                 <br>
                 <div id="button" align="right">
-                    <a href="<%=contextPath%>/list.qa?cpage=1" class="btn btn-sm" id="cancel">취소하기</a>
                     <button type="submit" class="btn btn-sm" id="insert">등록하기</button>
+                    <button type="reset" class="btn btn-sm" id="cancel">취소하기</button>
                 </div>
             </form>
         </div>

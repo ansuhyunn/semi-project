@@ -85,12 +85,11 @@
         white-space:nowrap; 
     }
     .title{font-weight: bolder; padding-top: 10px;}
-    .summary{font-size: 12px; font-weight: bolder; margin-top: -10px;}
+    .summary{font-size: 12px; font-weight: bolder; margin-top: -20px;}
     .paging-area{
-    	width: 50%;
-    	margin-top: -50px;
+    	width: 100%;
+    	margin-top: -10px;
     	margin-bottom: 100px;
-    	margin-left: 430px;
     }
 
 </style>
@@ -118,23 +117,16 @@
 		            	</div>
 		            	<div class="info">
 		                    <p class="title">
-		                        <%= r.getReviewName() %>
+		                        <%= r.getReviewTitle() %>
 		                    </p>
 		                    <p class="summary">
-		                        <%= r.getReviewId() %>  <%= r.getReviewDate() %>
+		                        <%= r.getNickName() %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= r.getReviewDate() %>
 		                    </p>
 		                </div>
 		            </div>
 		        <% } %> 
 	        <% } %> 
     	</div>
-    	
-    	<% if(loginUser != null){ %>
-	        <div style="width:850px;" align="right">
-	            <a href="<%= contextPath %>/reviewEnrollForm.pro" class="btn">글작성</a>
-	            <br><br>
-	        </div>
-		<% } %>	
     	
     </div> <!-- wrapper클래스 -->    
     

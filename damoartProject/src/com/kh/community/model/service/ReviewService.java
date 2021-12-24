@@ -11,6 +11,7 @@ import com.kh.community.model.dao.ReviewDao;
 import com.kh.community.model.vo.Review;
 
 public class ReviewService {
+	
 
 	// 페이징바 관련
 	public int selectListCount() {
@@ -40,27 +41,22 @@ public class ReviewService {
 	}
 
 	
-//	//리뷰 작성 Review
-//	public int insertReview(Review r, Attachment at) {
-//		Connection conn = getConnection();
-//		
-//		int result1 = new ReviewDao().insertReview(conn, r);
-//		int result2 = 1;
-//		if(at != null) {
-//			result2 = new ReviewDao().insertAttachment(conn, at);
-//		}
-//		
-//		if(result1 > 0 && result2 > 0) {
-//			commit(conn);
-//		}else {
-//			rollback(conn);
-//		}
-//		
-//		close(conn);
-//		
-//		return result1 * result2;
-//	}
-//	
+	//리뷰 작성 
+	public int insertReview(Review r) {
+		Connection conn = getConnection();
+		int result = new ReviewDao().insertReview(conn, r);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		
+		return result;
+		
+	}
+	
 	// 카운팅
 	public int increaseCount(int rno) {
 		Connection conn = getConnection();
@@ -75,15 +71,5 @@ public class ReviewService {
 	}
 	
 
-//	
-//	public Attachment selectAttachment(int boardNo) {
-//		Connection conn = getConnection();
-//		Attachment at = new ReviewDao().selectAttachment(conn, rvNo);
-//		close(conn);
-//		return at;
-//	}
-
-	
-	
 	
 }

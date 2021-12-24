@@ -46,6 +46,7 @@
         height:40px;
     }
     .title{
+    	width: 80%;
         height:40px;
         line-height:40px;
         background:rgb(203, 185, 153);
@@ -53,6 +54,18 @@
         border-bottom:1px solid rgb(163, 162, 162);
         padding-left:10px;
         font-weight:600;
+        float: left;
+    }
+    .star{
+    	width: 20%;
+        height:40px;
+        line-height:40px;
+        background:rgb(203, 185, 153);
+        /* border-top:1px solid rgb(163, 162, 162); */
+        border-bottom:1px solid rgb(163, 162, 162);
+        padding-left:80px;
+        font-weight:600;
+        float: left;
     }
     .writer{
         width:13%;
@@ -67,7 +80,7 @@
     }
     .count{
         width:20%;
-        height:60px;
+        height:100px;
         line-height:40px;
         padding-right:10px;
     }
@@ -81,18 +94,11 @@
     .content{
         border-top:1px solid rgb(163, 162, 162);
         border-bottom:1px solid rgb(163, 162, 162);
-        padding-top:50px;
-        padding-bottom:80px;
+        padding-top:30px;
+        padding-bottom:100px;
         padding-left:10px;
         padding-right: 30px;
     }
-	.reply table{
-		width: 100%;
-		border-top:1px solid rgb(163, 162, 162);
-        border-bottom:1px solid rgb(163, 162, 162);
-        padding-bottom:50px;
-        padding-left:10px;
-	}
     .button>a{
         background-color:rgb(151, 138, 116);
         color:white;
@@ -120,11 +126,14 @@
 	       <div class="detail-area">
 		       	<div class="detail-area1">
 		           <div class="title">
-		               <%= r.getReviewName() %>
+		               <%= r.getReviewTitle() %>
+		           </div>
+		           <div class="star">
+		           		 평점 <%= r.getReviewStar() %>
 		           </div>
 		           <div class="detail-data">
 		               <div class="writer">
-		                   <%= r.getReviewId() %>
+		                   <%= r.getNickName() %>
 		               </div>
 		               <div class="date">
 		                   <%= r.getReviewDate() %>
@@ -135,37 +144,11 @@
 		        	</div>
 		      	</div>
 		      	<div class="poster">
-		                <img src="<%= r.getMainImg() %>" width="100%" height="100%">
+	                <img src="<%= r.getMainImg() %>" width="100%" height="100%">
 		        </div>
 		      	<div class="detail-area2">
 		            <div class="content">
 		                <%= r.getReviewContent() %>
-		            </div>
-	            </div>
-	            <div class="detail-area3">
-		            <div class="reply">
-			            <table align="center">
-			                <thead>
-			                    <tr>
-			                        <th width="100px">댓글작성</th>
-			                        <% if(loginUser != null){ %>
-				                        <td>
-				                            <textarea id="replyContent" cols="100" rows="1" style="resize: none;"></textarea>
-				                        </td>
-				                        <td><button onclick="insertReply();">댓글등록</button></td>
-			                        <% }else{ %>
-			                        	<td>
-				                            <textarea cols="70" rows="1" style="resize: none;" readonly>로그인 후 이용 가능</textarea>
-				                        </td>
-				                        <td><button class="btn btn-sm" style="background-color:rgb(151, 138, 116); color:white;" disabled>댓글등록</button></td>
-			                        <% } %>
-			                        
-			                    </tr>
-			                </thead>
-			                <tbody>
-			                
-			                </tbody>
-	            		</table>
 		            </div>
 	            </div>
 	       </div>

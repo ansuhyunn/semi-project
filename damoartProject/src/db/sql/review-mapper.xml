@@ -19,17 +19,17 @@
 			       TITLE
 			     , MAIN_IMG
 			     , RV_NO
+			     , NICKNAME
 			     , ORDER_NO
-			     , REVIEW_ID
-			     , REVIEW_NAME
+			     , REVIEW_TITLE
 			     , REVIEW_CONTENT
-			     , TO_CHAR(REVIEW_DATE, 'YYYY-MM-DD') "REVIEW_DATE"
+			     , TO_CHAR(REVIEW_DATE, 'YYYY-MM-DD') REVIEW_DATE
 			     , REVIEW_STAR
 			     , REVIEW_VIEW
-			     , REVIEW_FILE
 			  FROM REVIEW   
 			  JOIN ORDER_P USING (ORDER_NO)
 			  JOIN PRODUCT USING (PNO)
+			  JOIN MEMBER USING (MEM_NO)
 			) RR
 		)
 WHERE RNUM BETWEEN ? AND ?
@@ -40,54 +40,52 @@ SELECT
        TITLE
      , MAIN_IMG
      , RV_NO
+     , NICKNAME
      , ORDER_NO
-     , REVIEW_ID
-     , REVIEW_PWD
-     , REVIEW_NAME
+     , REVIEW_TITLE
      , REVIEW_CONTENT
-     , REVIEW_DATE
+     , TO_CHAR(REVIEW_DATE, 'YYYY-MM-DD') REVIEW_DATE
      , REVIEW_STAR
      , REVIEW_VIEW
-     , REVIEW_SECRET
-     , REVIEW_FILE
-     , DELETE_STATUS
-     , BLIND_STATUS
   FROM REVIEW   
   JOIN ORDER_P USING (ORDER_NO)
   JOIN PRODUCT USING (PNO)
+  JOIN MEMBER USING (MEM_NO)
  WHERE RV_NO = ?
 </entry>
 	
-		<entry key="insertReview">
-		INSERT 
-		  INTO REVIEW
-		  (
-		    RV_NO
-		  , REVIEW_ID
-		  , REVIEW_PWD
-		  , REVIEW_NAME
-		  , REVIEW_CONTENT
-		  , REVIEW_STAR
-		  , REVIEW_SECRET
-		  , REVIEW_FILE
-		  )
-		  VALUES
-		  (
-		    SEQ_BNO.NEXTVAL
-		  , ?
-		  , ?
-		  , ?
-		  , ?
-		  , ? 
-		  , ?
-		  , ?
-		  )
-	</entry>
 	
+<entry key="insertReview">
+INSERT 
+  INTO REVIEW
+  (
+    RV_NO
+  , MEM_NO
+  , ORDER_NO
+  , REVIEW_TITLE
+  , REVIEW_CONTENT
+  , REVIEW_DATE
+  , REVIEW_STAR
+  , REVIEW_VIEW
+  )
+VALUES
+  (
+     SEQ_RVNO
+   , ?
+   , ?
+   , ?
+   , ?
+   , DEFAULT
+   , ?
+   , DEFAULT
+  )
+</entry>
+
+
 <entry key="increaseCount">
 	UPDATE
 	       REVIEW
-	   SET REVIEW_VIEW = REIVEW_VIEW+1
+	   SET REVIEW_VIEW = REVIEW_VIEW+1
 	 WHERE RV_NO = ?
 	   AND DELETE_STATUS = 'N'
 </entry>
