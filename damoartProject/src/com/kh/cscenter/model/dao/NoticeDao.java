@@ -156,7 +156,38 @@ public class NoticeDao {
 				n = new Notice(rset.getInt("notice_no"),
 							   rset.getString("NICKNAME"),
 							   rset.getString("notice_title"),
-							   rset.getString("notice_content"),
+							   rset.getString("notice_content").replace("\r\n", "<br>"),
+							   rset.getString("create_date"),
+							   rset.getInt("count")
+						       );
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return n;
+	}
+	
+	public Notice updateDetailNotice(Connection conn, int noticeNo) {
+		Notice n = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectNotice");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, noticeNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				n = new Notice(rset.getInt("notice_no"),
+							   rset.getString("NICKNAME"),
+							   rset.getString("notice_title"),
+							   rset.getString("notice_content").replace("<br>", "\r\n"),
 							   rset.getString("create_date"),
 							   rset.getInt("count")
 						       );

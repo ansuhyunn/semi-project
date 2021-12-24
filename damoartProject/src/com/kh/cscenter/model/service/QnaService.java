@@ -85,11 +85,8 @@ public class QnaService {
 	public int insertQuestion(QnA q, Attachment at) {
 		Connection conn = getConnection();
 		int result1 = 0;
-		if(q.getqPwd() != null) {			
-			result1 = new QnaDao().nonMemberInsertQuestion(conn, q);
-		}else {
-			result1 = new QnaDao().memberInsertQuestion(conn, q);
-		}
+		result1 = new QnaDao().insertQuestion(conn, q);
+		
 		int result2 = 1;
 		if(at != null) {
 			result2 = new QnaDao().insertAttachment(conn, at);

@@ -36,7 +36,7 @@ public class AdminNoticeUpdateFormController extends HttpServlet {
 		
 		NoticeService nService = new NoticeService();
 		
-		Notice n = nService.selectNotice(noticeNo);
+		Notice n = nService.updateDetailNotice(noticeNo);
 		ArrayList<Attachment> atList = nService.selectAttachment(noticeNo);
 		
 		request.setAttribute("n", n);

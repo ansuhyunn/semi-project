@@ -97,6 +97,7 @@
         <div id="inner" align="center">
             <form id="enroll-form" action="<%=contextPath%>/update.qa" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="qno" value="<%= q.getqNo() %>">
+                <input type="hidden" name="memNo" value="<%=loginUser.getMemNo()%>"> 
                 <table id="enroll-tb">
                     <tr style="border-bottom:1px solid rgb(173, 157, 128); border-top:1px solid rgb(173, 157, 128)">
                         <th width="120">&nbsp;&nbsp;&nbsp;제목</th>
@@ -128,25 +129,15 @@
                     <tr style="border-bottom:1px solid rgb(173, 157, 128); border-top:1px solid rgb(173, 157, 128)">
                         <th >&nbsp;&nbsp;&nbsp;상품선택</th>
                         <td colspan="3">
+                        	<input type="hidden" name="originProNo" value="<%=q.getpNo() %>">
                             <button type="button" data-toggle="modal" data-target="#myModal">상품 선택</button>
                             <span id="select-result">
                             <% if(q.getpNo() != null) { %>
-                            <img src="<%=contextPath%>/<%= q.getpMainImg() %>" width="60" height="70">&nbsp;&nbsp;&nbsp;<%=q.getpNo() %>
+                            	<img src="<%=contextPath%>/<%= q.getpMainImg() %>" width="60" height="70">&nbsp;&nbsp;&nbsp;<%=q.getpTitle() %>
                         	<% } %>
                             </span>
                         </td>
-                    </tr>
-                    
-                    <% if(loginUser != null) {%>  
-                    	<input type="hidden" name="memNo" value="<%=loginUser.getMemNo()%>"> 
-                    <% }else { %>
-	                    <tr>
-	                        <th>&nbsp;&nbsp;&nbsp;작성자</th>  <!-- 비회원 닉네임 입력시 중복 검사하기 -->
-	                        <td><input type="text" name="nickName" value="<%=q.getqWriter() %>"></td>
-	                        <td id="pwd">&nbsp;&nbsp;&nbsp;비밀번호</td>
-	                        <td><input type="password" name="pwd" value="<%=q.getqPwd()%>"></td>
-	                    </tr>
-                    <% } %>
+                    </tr>                    
                     <tr style="border-bottom:1px solid rgb(173, 157, 128); border-top:1px solid rgb(173, 157, 128)">
                         <%if(at == null) { %>
                              <th>&nbsp;&nbsp;&nbsp;첨부 파일</th>

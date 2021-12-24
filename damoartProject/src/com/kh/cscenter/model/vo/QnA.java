@@ -17,12 +17,13 @@ public class QnA {
 	private String status;
 	
 	private String pMainImg;
+	private String pTitle;
 	
 	public QnA () {}
 
 	public QnA(int qNo, String pNo, int memNo, String qWriter, String qPwd, String secret, String qTitle, String qContent,
 			String createDate, String qCategoryCode, String aContent, String aCreateDate, String aWriter,
-			String status) {
+			String status, String pMainImg, String pTitle) {
 		super();
 		this.qNo = qNo;
 		this.pNo = pNo;
@@ -38,6 +39,8 @@ public class QnA {
 		this.aCreateDate = aCreateDate;
 		this.aWriter = aWriter;
 		this.status = status;
+		this.pMainImg = pMainImg;
+		this.pTitle = pTitle;
 	}
 	
 	
@@ -59,7 +62,7 @@ public class QnA {
 
 	
 	public QnA(int qNo, String pNo, int memNo, String qWriter, String secret, String qTitle, String qContent, String createDate,
-			String qCategoryCode, String aContent, String aCreateDate, String aWriter, String pMainImg) {
+			String qCategoryCode, String aContent, String aCreateDate, String aWriter, String pMainImg, String pTitle) {
 		super();
 		this.qNo = qNo;
 		this.pNo = pNo;
@@ -74,18 +77,28 @@ public class QnA {
 		this.aCreateDate = aCreateDate;
 		this.aWriter = aWriter;
 		this.pMainImg = pMainImg;
+		this.pTitle = pTitle;
 	}
 	
 
 	
-	public QnA(String pNo, String qWriter, String secret, String qTitle, String qContent, String qCategoryCode) {
+	public QnA(String pNo, int memNo, String qWriter, String secret, String qTitle, String qContent, String qCategoryCode) {
 		super();
 		this.pNo = pNo;
+		this.memNo = memNo;
 		this.qWriter = qWriter;
 		this.secret = secret;
 		this.qTitle = qTitle;
 		this.qContent = qContent;
 		this.qCategoryCode = qCategoryCode;
+	}
+	
+	public String getpTitle() {
+		return pTitle;
+	}
+
+	public void setpTitle(String pTitle) {
+		this.pTitle = pTitle;
 	}
 
 	public String getpMainImg() {
@@ -213,7 +226,7 @@ public class QnA {
 		return "QnA [qNo=" + qNo + ", pNo=" + pNo + ", memNo=" + memNo + ", qWriter=" + qWriter + ", qPwd=" + qPwd
 				+ ", secret=" + secret + ", qTitle=" + qTitle + ", qContent=" + qContent + ", createDate=" + createDate
 				+ ", qCategoryCode=" + qCategoryCode + ", aContent=" + aContent + ", aCreateDate=" + aCreateDate
-				+ ", aWriter=" + aWriter + ", status=" + status + ", pMainImg=" + pMainImg + "]";
+				+ ", aWriter=" + aWriter + ", status=" + status + ", pMainImg=" + pMainImg + ",pTitle=" + pTitle + "]";
 	}
 
 	

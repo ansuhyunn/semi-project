@@ -32,7 +32,7 @@
 	<entry key="selectQnA">
 		SELECT
 		       Q_NO
-		     , TITLE
+		     , PNO
 		     , Q.MEM_NO
 		     , Q_WRITER
 		     , SECRET
@@ -44,6 +44,7 @@
 		     , A_CREATE_DATE
 		     , NICKNAME
 		     , MAIN_IMG
+		     , TITLE
 		  FROM QNA Q
 		  LEFT JOIN PRODUCT USING (PNO)
 		  LEFT JOIN MEMBER M ON (MEM_NO2 = M.MEM_NO)
@@ -87,33 +88,8 @@
 		 WHERE PNO = ?
 	</entry>
 	
-	<entry key="nonMemberInsertQuestion">
-		INSERT 
-		  INTO QNA
-		     (  
-		       Q_NO
-		     , PNO
-		     , Q_WRITER
-		     , Q_PWD
-		     , SECRET
-		     , Q_TITLE
-		     , Q_CONTENT
-		     , Q_CATEGORY_CODE
-		     )
-		     VALUES
-		     (
-		       SEQ_QNO.NEXTVAL
-		     , ?
-		     , ?
-		     , ?
-		     , ?
-		     , ?
-		     , ?
-		     , ?
-		     )
-	</entry>
 	
-	<entry key="memberInsertQuestion">
+	<entry key="insertQuestion">
 		INSERT 
 		  INTO QNA
 		     (  

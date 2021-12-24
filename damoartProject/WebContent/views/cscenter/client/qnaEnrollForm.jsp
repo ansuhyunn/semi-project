@@ -86,6 +86,8 @@
         <br><br>
         <div id="inner" align="center">
             <form id="enroll-form" action="<%=contextPath%>/insert.qa" method="post" enctype="multipart/form-data">
+        		<input type="hidden" name="memNo" value="<%=loginUser.getMemNo()%>"> 
+				<input type="hidden" name="memNick" value="<%=loginUser.getNickName()%>">
                 <table id="enroll-tb">
                     <tr style="border-bottom:1px solid rgb(173, 157, 128); border-top:1px solid rgb(173, 157, 128)">
                         <th width="120">&nbsp;&nbsp;&nbsp;제목</th>
@@ -111,16 +113,6 @@
                             <span id="select-result"></span>
                         </td>
                     </tr>
-                    <% if(loginUser != null) {%>  
-            			<input type="hidden" name="memNo" value="<%=loginUser.getMemNo()%>"> 
-                    <% }else { %>
-	                    <tr>
-	                        <th>&nbsp;&nbsp;&nbsp;작성자</th>  <!-- 비회원 닉네임 입력시 중복 검사하기 -->
-	                        <td><input type="text"></td>
-	                        <td id="pwd">&nbsp;&nbsp;&nbsp;비밀번호</td>
-	                        <td><input type="text"></td>
-	                    </tr>
-                    <% } %>
                     <tr style="border-bottom:1px solid rgb(173, 157, 128); border-top:1px solid rgb(173, 157, 128)">
                         <th>&nbsp;&nbsp;&nbsp;첨부 파일</th>
                         <td colspan="3"><input type="file" name="upfile"></td>
@@ -133,7 +125,7 @@
                 </table>
                 <br>
                 <div id="button" align="right">
-                    <input id="secret" type="checkbox">비밀글 <br><br>
+                    <input id="secret" type="checkbox" name="secret" value="Y">비밀글 <br><br>
                     <a href="<%=contextPath%>/list.qa?cpage=1" class="btn btn-sm" id="cancel">취소하기</a>
                     <button type="submit" class="btn btn-sm" id="insert">등록하기</button>
                 </div>

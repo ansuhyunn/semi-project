@@ -53,7 +53,7 @@ public class QnaUpdateController extends HttpServlet {
 			if(multiRequest.getParameter("pno") != null) {
 				q.setpNo(multiRequest.getParameter("pno"));				
 			}else {
-				q.setpNo("0");
+				q.setpNo(multiRequest.getParameter("originProNo"));
 			}
 			
 			if(multiRequest.getParameter("secret") != null) {

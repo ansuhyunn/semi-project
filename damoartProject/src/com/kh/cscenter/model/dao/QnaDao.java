@@ -160,7 +160,7 @@ private Properties prop = new Properties();
          	    default :  break;
 				}
 				q = new QnA(rset.getInt("q_no"),
-						    rset.getString("title"),
+						    rset.getString("pNo"),
 						    rset.getInt("mem_no"),
 						    rset.getString("q_writer"),
 						    rset.getString("secret"),
@@ -171,7 +171,8 @@ private Properties prop = new Properties();
 						    rset.getString("a_content"),
 						    rset.getString("a_create_date"),
 						    rset.getString("nickname"),
-						    rset.getString("main_img"));
+						    rset.getString("main_img"),
+						    rset.getString("title"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -285,39 +286,16 @@ private Properties prop = new Properties();
 		return p;
 	}
 	
-	public int nonMemberInsertQuestion(Connection conn, QnA q) {
-		int result =0;
-		PreparedStatement pstmt = null;
-		String sql = prop.getProperty("nonMemberInsertQuestion");
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, Integer.parseInt(q.getpNo()));
-			pstmt.setString(2, q.getqWriter());
-			pstmt.setString(3, q.getqPwd());
-			pstmt.setString(4, q.getSecret());
-			pstmt.setString(5, q.getqTitle());
-			pstmt.setString(6, q.getqContent());
-			pstmt.setString(7, q.getqCategoryCode());
-			
-			result = pstmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			close(pstmt);
-		}
-		return result;
-		
-	}
-	
-	public int memberInsertQuestion(Connection conn, QnA q) {
+
+	public int insertQuestion(Connection conn, QnA q) {
 		int result = 0;
 		PreparedStatement pstmt = null;
-		String sql = prop.getProperty("memberInsertQuestion");
+		String sql = prop.getProperty("insertQuestion");
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, Integer.parseInt(q.getpNo()));
 			pstmt.setInt(2, q.getMemNo());
-			pstmt.setString(3, q.getqWriter());
+			pstmt.setString(3,  q.getqWriter());
 			pstmt.setString(4, q.getSecret());
 			pstmt.setString(5, q.getqTitle());
 			pstmt.setString(6, q.getqContent());

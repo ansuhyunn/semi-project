@@ -40,28 +40,21 @@ public class QnaInsertController extends HttpServlet {
 			int maxSize = 10*1024*1024;
 			String savePath = request.getSession().getServletContext().getRealPath("/resources/board_upfiles/qna/");
 			MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "UTF-8", new MyFileRenamePolicy());
+			
 			String title = multiRequest.getParameter("title");
 			String pNo = multiRequest.getParameter("pno");
 			String category = multiRequest.getParameter("category");
-			String qWriter = multiRequest.getParameter("nickName");
 			String content = multiRequest.getParameter("content");
 			String secret = multiRequest.getParameter("secret");
+			int memNo = Integer.parseInt(multiRequest.getParameter("memNo"));
+			String qWriter = multiRequest.getParameter("memNick");
 			
-			QnA q = new QnA(pNo, qWriter, secret, title, content, category);
-			
-			if(multiRequest.getParameter("memNo") != null) {
-				q.setMemNo(Integer.parseInt(multiRequest.getParameter("memNo")));
-			}else {
-				q.setqPwd(multiRequest.getParameter("pwd"));
-			}
+			QnA q = new QnA(pNo, memNo, qWriter, secret, title, content, category);
 			
 			if(secret == null) {
 				q.setSecret("N");
 			}
 			
-			if(pNo == null) {
-				q.setpNo("0");		
-			}
 			System.out.println(q);
 			Attachment at = null;
 			if(multiRequest.getOriginalFileName("upfile") != null) {

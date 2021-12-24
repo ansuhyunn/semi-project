@@ -56,10 +56,14 @@
         color:rgb(64, 64, 64);
     }
     
-    .button>a{
+    .button>a, #modalClose{
         background-color:rgb(203, 185, 153);
         color:rgb(64, 64, 64);
         font-weight:600;
+    }
+    
+    #myModal{
+    	padding-top:150px;
     }
 
 
@@ -77,6 +81,7 @@
             <br>
             <br>
             <div>
+            <% if(loginUser != null) {%>
                 <table align="center" id="list-area" class="table table-hover">
                     <thead>
                         <tr>
@@ -96,18 +101,86 @@
                         <% }else { %>
                         	<%for(QnA q : list) { %>
 		                        <tr>
-		                            <td><%=q.getqNo() %></td>
+		                            <td><%=q.getqNo() %><input type="hidden" value="<%=q.getqWriter() %>"></td>
                                     <td><%=q.getqCategoryCode()%></td>
 		                            <td>
 		                            	<%=q.getqTitle() %>
 		                            	<% if(q.getSecret().equals("Y")) { %>
 		                            		<i class="fas fa-lock"></i>
+		                            		<input type="hidden" value="Y">
+		                            	<% }else { %>
+		                            		<input type="hidden" value="N">
 		                            	<% } %>
 		                            </td>
 		                            <td>
-			                            <% if(q.getMemNo() == 0) {%>
-	                    					(비회원)
-	                    					<% } %>
+			                            <%=q.getqWriter() %>
+			                            <input type="hidden" value="<%=loginUser.getNickName() %>">
+		                            </td>
+		                            <td><%=q.getCreateDate() %></td>
+		                            <td>
+			                            <% if(q.getaContent() != null) { %>
+											답변 완료
+		                            	<% }else { %>
+		                            		미답변
+		                            	<% } %>
+		                            </td>
+		                        </tr>
+                        	<% } %>
+                        <% } %>
+                    </tbody>
+                </table> <!-- 비밀글 구현해야함 -->
+                <script>
+				    $("#list-area>tbody>tr").click(function(){
+                		var secret = $(this).children().eq(2).find("input").val();
+                		var writer = $(this).children().eq(0).find("input").val();
+                		var User = $(this).children().eq(3).find("input").val();
+			    		console.log(secret);	
+			    		console.log(writer);
+			    		console.log(User);
+				    	if(secret == 'Y') {
+				    		if(User == writer) {
+				    			location.href='<%=contextPath %>/detail.qa?qno=' + $(this).children().eq(0).text();
+				    		}else {
+				    			
+					    		$("#myModal").modal();
+				    		}
+				    	}else {
+				    		location.href='<%=contextPath %>/detail.qa?qno=' + $(this).children().eq(0).text();	
+				    	}
+				    })				    	
+			    </script>
+			<% }else { %> 
+				<table align="center" id="list-area" class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th width="50">번호</th>
+                            <th width="80">분류</th>
+                            <th width="280">제목</th>
+                            <th width="100">작성자</th>
+                            <th width="90">등록일</th>
+                            <th width="70">답변상태</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    	<% if(list.isEmpty()) { %>
+	                        <tr>
+	                            <td colspan="6">게시글이 없습니다.</td>
+	                        </tr>
+                        <% }else { %>
+                        	<%for(QnA q : list) { %>
+		                        <tr>
+		                            <td><%=q.getqNo() %><input type="hidden" value="<%=q.getqWriter() %>"></td>
+                                    <td><%=q.getqCategoryCode()%></td>
+		                            <td>
+		                            	<%=q.getqTitle() %>
+		                            	<% if(q.getSecret().equals("Y")) { %>
+		                            		<i class="fas fa-lock"></i>
+		                            		<input type="hidden" value="Y">
+		                            	<% }else { %>
+		                            		<input type="hidden" value="N">
+		                            	<% } %>
+		                            </td>
+		                            <td>
 			                            <%=q.getqWriter() %>
 		                            </td>
 		                            <td><%=q.getCreateDate() %></td>
@@ -124,19 +197,16 @@
                     </tbody>
                 </table> <!-- 비밀글 구현해야함 -->
                 <script>
-			    	<% if(loginUser == null) { %>				    	
-				    		$("#list-area>tbody>tr").click(function(){
-				    				$("#myModal").modal();
-				    		})			    		
-			    	<% }else { %>
-
-				    		$("#list-area>tbody>tr").click(function(){
-	
-				    				location.href='<%=contextPath %>/detail.qa?qno=' + $(this).children().eq(0).text();			
-				    		})	
-
-			    	<% } %>
+				    $("#list-area>tbody>tr").click(function(){
+				    	var secret = $(this).children().eq(2).find("input").val();
+				    	if(secret == 'Y') {				    	
+					    	$("#myModal").modal();				    		
+				    	}else {
+				    		location.href='<%=contextPath %>/detail.qa?qno=' + $(this).children().eq(0).text();	
+				    	}
+				    })				    	
 			    </script>
+			<% } %>	   
                 <br>
                 <div class="button" align="right">
                     <a href="<%= contextPath %>/enrollForm.qa" class="btn btn-sm" id="enroll">문의 등록</a>
@@ -179,23 +249,17 @@
         
         <!-- The Modal -->
 		<div class="modal" id="myModal">
-		  <div class="modal-dialog">
+		  <div class="modal-dialog modal-sm">
 		    <div class="modal-content">
 		
-		      <!-- Modal Header -->
-		      <div class="modal-header">
-		        <h4 class="modal-title">Modal Heading</h4>
-		        <button type="button" class="close" data-dismiss="modal">&times;</button>
-		      </div>
-		
 		      <!-- Modal body -->
-		      <div class="modal-body">
-		        Modal body..
+		      <div class="modal-body" align="center">
+		        	다른 회원의 비밀글입니다.
 		      </div>
 		
 		      <!-- Modal footer -->
 		      <div class="modal-footer">
-		        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+		        <button id="modalClose" type="button" class="btn" data-dismiss="modal">닫기</button>
 		      </div>
 		
 		    </div>

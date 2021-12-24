@@ -61,6 +61,13 @@ public class NoticeService {
 		return n;
 	}
 	
+	public Notice updateDetailNotice(int noticeNo) {
+		Connection conn = getConnection();
+		Notice n = new NoticeDao().updateDetailNotice(conn, noticeNo);
+		close(conn);
+		return n;
+	}
+	
 	public ArrayList<Attachment> selectAttachment(int noticeNo) {
 		Connection conn = getConnection();
 		ArrayList<Attachment> atList = new NoticeDao().selectAttachment(conn, noticeNo);

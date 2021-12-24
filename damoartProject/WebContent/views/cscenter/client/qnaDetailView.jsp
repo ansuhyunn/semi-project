@@ -142,9 +142,6 @@
             </div>
             <div class="detail-data">
                 <div class="writer">
-                	<% if(q.getMemNo() == 0) {%>
-                    	(비회원)
-                    <% } %>
                     <%= q.getqWriter() %>
                 </div>
                 <div class="date">
@@ -161,7 +158,7 @@
             <% if(q.getpNo() != null) { %>
                 <div class="product">
                     <img src="<%=contextPath%>/<%= q.getpMainImg() %>" width="100" height="130">
-                    <%= q.getpNo() %>
+                    <%= q.getpTitle() %>
                 </div>
             <% } %>
             <div class="qcontent">
@@ -193,12 +190,14 @@
                 <a id="list" href="<%= contextPath %>/list.qa?cpage=1" class="btn btn-sm">목록가기</a>			
             </div>
             <div align="right">
-            	<%if(loginUser.getNickName().equals(q.getqWriter())) { %>
-	                <a id="delete" class="btn btn-sm" data-toggle="modal" data-target="#myModal" type="button">삭제하기</a>
-	                <% if(q.getaContent() == null) { %>
-	                    <a id="update" href="<%=contextPath %>/updateForm.qa?qno=<%=q.getqNo() %>" class="btn btn-sm">수정하기</a>
-	                <% } %>
-	            <% } %>
+            	<%if(loginUser != null) {%>
+	            	<%if(loginUser.getNickName().equals(q.getqWriter())) { %>
+		                <a id="delete" class="btn btn-sm" data-toggle="modal" data-target="#myModal" type="button">삭제하기</a>
+		                <% if(q.getaContent() == null) { %>
+		                    <a id="update" href="<%=contextPath %>/updateForm.qa?qno=<%=q.getqNo() %>" class="btn btn-sm">수정하기</a>
+		                <% } %>
+		            <% } %>
+		        <% } %>
             </div>
         </div>
             
