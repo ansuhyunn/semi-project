@@ -51,12 +51,12 @@
         right:0;
     }
 
-    #enroll{
+    #enroll, #deleteCancel{
         background-color:rgb(203, 185, 153);
         color:rgb(64, 64, 64);
         font-weight:600;
     }
-    #delete{
+    #delete, #deleteCheck{
         background-color:rgb(151, 138, 116);
         color:white;
     }
@@ -77,6 +77,10 @@
     #list-area>tbody>tr:hover{
     	background:rgb(240, 239, 239);
     	cursor:pointer;
+    }
+    
+    #myModal{
+    	padding-top:150px;
     }
 
 
@@ -105,7 +109,7 @@
                 </div>
                 <div class="button" width="50%">
                     <a href="<%= contextPath %>/enrollForm.no" class="btn btn-sm" id="enroll">등록</a>
-                    <a href="" class="btn btn-sm" id="delete">선택 삭제</a>
+                    <a href="" class="btn btn-sm" id="delete" data-toggle="modal" data-target="#myModal" type="button">선택 삭제</a>
                 </div>
             </div>
             <br>
@@ -113,7 +117,7 @@
                 <table align="center" id="list-area" class="table table-bordered">
                     <thead>
                         <tr>
-                            <th width="10"><input type="checkbox"></th>
+                            <th width="10"><input type="checkbox" id="allCheck"></th>
                             <th width="40">번호</th>
                             <th width="280">제목</th>
                             <th width="60">작성자</th>
@@ -129,7 +133,7 @@
                         <% }else { %>
                         	<%for(Notice n : list) { %>
 		                        <tr>
-                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox" class="deleteCheck" name="checkNo" value="<%=n.getNoticeNo()%>"></td>
 		                            <td><%=n.getNoticeNo() %></td>
 		                            <td class="clickTitle"><%=n.getNoticeTitle() %></td>
 		                            <td><%=n.getNoticeWriter() %></td>
@@ -144,6 +148,10 @@
                 	$(function(){
                 		$(".clickTitle").click(function(){
                 			location.href='<%=contextPath%>/adminDetail.no?nno=' + $(this).prev().text();
+                		})
+                		
+                		$("#allCheck").click(function(){
+                			$(".deleteCheck").prop("checked", $(this).prop("checked"));
                 		})
                 	})
                 </script>
@@ -166,6 +174,35 @@
             </div>
             
         </div>
+        
+        <!-- The Modal -->
+		<div class="modal" id="myModal">
+		  <div class="modal-dialog modal-sm">
+		    <div class="modal-content">
+		
+		      <!-- Modal body -->
+		      <div class="modal-body" align="center">
+		        	삭제하시겠습니까?
+		      </div>
+		
+		      <!-- Modal footer -->
+		      <div class="modal-footer">
+		      	<button id="deleteCancel" type="button" class="btn" data-dismiss="modal">취소</button>
+		      	<button id ="deleteCheck" type="button" class="btn" data-dismiss="modal" onclick="checkDelete();" name="checkDelete">확인</button>
+			  </div>	
+		    </div>
+		  </div>
+		</div>
+		<script>
+			function checkDelete(){
+	            var checkArr = [];
+	            $("input:checkbox[class='deleteCheck']:checked").each(function(){
+	                checkArr.push($(this).val());
+	            })
+	            console.log(checkArr);
+	            location.href = "/damoart/checkDelete.no?arr=" + checkArr
+			}    
+		</script>
 
 </body>
 </html>
