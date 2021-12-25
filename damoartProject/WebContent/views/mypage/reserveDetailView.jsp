@@ -275,7 +275,7 @@
                     </tr>
                     <tr>
                         <th>결제수단</th>
-                        <td colspan="3"><%= detailView.getPayOpt() %></td>
+                        <td colspan="3">신용카드</td>
                     </tr>
                     <tr>
                         <th>결제금액</th>

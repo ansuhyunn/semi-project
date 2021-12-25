@@ -54,7 +54,7 @@ public class MemberReserveDao {
 				case "W" : status = "입금대기"; break;
 				case "P" : status = "결제완료"; break;
 				case "C" : status = "예매취소"; break;
-				case "CC" : status = "취소완료"; break;
+				case "CC" : status = "환불완료"; break;
 				case "N" : status = "취소거절"; break;
 				case "O" : status = "예매확정"; break;
 				default : break;
@@ -82,7 +82,7 @@ public class MemberReserveDao {
 	}
 	
 	// 예매내역 상세조회
-	public Order selectReserveDetail(Connection conn, int memNo) {
+	public Order selectReserveDetail(Connection conn, int memNo, int oNo) {
 		Order detailView = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;	
@@ -91,6 +91,7 @@ public class MemberReserveDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, memNo);
+			pstmt.setInt(2, oNo);
 			
 			rset = pstmt.executeQuery();
 			
@@ -103,14 +104,7 @@ public class MemberReserveDao {
 				default : break;
 				}
 				
-				String payOpt = "";
-				switch(rset.getString("pay_opt")) {
-				case "C" : payOpt = "신용카드"; break;
-				case "D" : payOpt = "무통장입금"; break;
-				default : break;
-				}
-				
-				detailView = new Order(rset.getInt("order_no"),
+				detailView =new Order(rset.getInt("order_no"),
 									   rset.getDate("order_date"),
 									   rset.getString("order_name"),
 									   rset.getInt("pno"),
@@ -120,7 +114,6 @@ public class MemberReserveDao {
 									   rset.getInt("order_count"),
 									   rset.getString("area"),
 									   rset.getDate("pay_date"),
-									   payOpt,
 									   rset.getInt("pay_price"),
 									   rset.getString("order_phone"));
 			}
@@ -163,7 +156,7 @@ public class MemberReserveDao {
 				case "W" : status = "입금대기"; break;
 				case "P" : status = "결제완료"; break;
 				case "C" : status = "예매취소"; break;
-				case "CC" : status = "취소완료"; break;
+				case "CC" : status = "환불완료"; break;
 				case "N" : status = "취소거절"; break;
 				case "O" : status = "예매확정"; break;
 				default : break;
@@ -191,7 +184,7 @@ public class MemberReserveDao {
 	}
 	
 	// 취소환불 상세
-	public Order selectRefundDetail(Connection conn, int memNo) {
+	public Order selectRefundDetail(Connection conn, int memNo, int oNo) {
 		Order cdetailView = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;	
@@ -200,6 +193,7 @@ public class MemberReserveDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, memNo);
+			pstmt.setInt(2, oNo);
 			
 			rset = pstmt.executeQuery();
 			
@@ -209,13 +203,6 @@ public class MemberReserveDao {
 				case "C" : opt = "어린이"; break;
 				case "T" : opt = "청소년"; break;
 				case "A" : opt = "성인"; break;
-				default : break;
-				}
-				
-				String payOpt = "";
-				switch(rset.getString("pay_opt")) {
-				case "C" : payOpt = "신용카드"; break;
-				case "D" : payOpt = "무통장입금"; break;
 				default : break;
 				}
 				
@@ -229,12 +216,8 @@ public class MemberReserveDao {
 									   rset.getInt("order_count"),
 									   rset.getString("area"),
 									   rset.getDate("pay_date"),
-									   payOpt,
 									   rset.getInt("pay_price"),
-									   rset.getString("order_phone"),
-									   rset.getString("bank_name"),
-									   rset.getString("refund_account"),
-									   rset.getString("refund_name"));
+									   rset.getString("order_phone"));
 			}
 			
 		} catch (SQLException e) {

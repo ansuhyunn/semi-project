@@ -209,6 +209,11 @@
 
     .contents p{font-size:13px;}
     
+    #deleteQ{
+    	background-color:rgb(151, 138, 116);
+        color:white;
+        font-size:12px;
+    }
 </style>
 </head>
 <body>
@@ -317,7 +322,7 @@
 			                    </tr>
 			                    <tr class="open" style="display: none">
 			                        <td align="center" style="padding-top:50px;">
-                                        <button type="button" name="deleteQ" onclick="deleteCheck();">삭제</button>
+                                        <button type="button" id="deleteQ" class="btn btn-sm" onclick="deleteCheck();">삭제</button>
                                     </td>
 			                        <td colspan="3">
 			                            <div>

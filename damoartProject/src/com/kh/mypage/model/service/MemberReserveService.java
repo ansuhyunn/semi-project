@@ -19,9 +19,9 @@ public class MemberReserveService {
 	}
 	
 	// 예매상세 
-	public Order selectReserveDetail(int memNo) {
+	public Order selectReserveDetail(int memNo, int oNo) {
 		Connection conn = getConnection();
-		Order detailView = new MemberReserveDao().selectReserveDetail(conn, memNo);
+		Order detailView = new MemberReserveDao().selectReserveDetail(conn, memNo, oNo);
 		close(conn);
 		return detailView;
 	}
@@ -35,9 +35,9 @@ public class MemberReserveService {
 	}
 	
 	// 취소/환불 상세
-	public Order selectRefundDetail(int memNo) {
+	public Order selectRefundDetail(int memNo, int oNo) {
 		Connection conn = getConnection();
-		Order cdetailView = new MemberReserveDao().selectRefundDetail(conn, memNo);
+		Order cdetailView = new MemberReserveDao().selectRefundDetail(conn, memNo, oNo);
 		close(conn);
 		return cdetailView;
 	}

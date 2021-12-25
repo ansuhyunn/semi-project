@@ -163,7 +163,11 @@
 
     .container th, #table_date{text-align:center;}
 
-
+	#detailv{
+	    background-color:rgb(151, 138, 116);
+        color:white;
+        font-size:13
+	}
 </style>
 </head>
 <body>
@@ -255,7 +259,7 @@
 		                      <td align="center"  style="padding-top:20px;">
 		                      	<%= o.getOrderDate() %><br>
 		                      	<strong><%= o.getOrderNo() %></strong> <br>
-		                      	<button type="button" onclick="detailView();">상세조회</button>
+		                      	<a href="<%=contextPath%>/rdetail.mp?num=<%= o.getOrderNo() %>" id = "detailv" class="btn btn-sm">상세 조회</a>
 		                      </td>
 		                      <td width="130">
 		                      	<img src="<%=request.getContextPath()%>/<%= o.getMainImg() %>" width="80px" height="80px">
@@ -279,11 +283,6 @@
                             <td></td>
 	                    </tr>
 
-                        <script>
-                            function detailView(){
-                                location.href = "<%=contextPath%>/rdetail.mp";
-                            }
-                        </script>
 	                    
                   </tbody>
                 </table>

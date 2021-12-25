@@ -161,6 +161,11 @@
 
     .container th, #table_date{text-align:center;}
 
+	#detailv{
+	    background-color:rgb(151, 138, 116);
+        color:white;
+        font-size:12px;
+	}
 </style>
 </head>
 <body>
@@ -202,7 +207,7 @@
                 </div><br>
                 <li><h3>마이활동</h3></li>
                 <div>
-                    <a href="<%=request.getContextPath() %>/views/mypage/memberReviewList.jsp" id="submenu">리뷰 내역</a> <br>
+                    <a href="<%= contextPath %>/rbefore.mp" id="submenu">리뷰 내역</a> <br>
                     <a href="<%= contextPath %>/qnaList.mp" id="submenu">Q&A 내역</a> <br>
                 </div><br>
                 <li><h3>마이정보</h3></li>
@@ -253,7 +258,7 @@
 		                      <td align="center" style="padding-top:20px;">
 		                      	<%= o.getOrderDate() %><br>
 		                      	<strong><%= o.getOrderNo() %></strong> <br>
-		                      	<button type="button" onclick="detailView();">상세조회</button>
+		                      	<a href="<%=contextPath%>/cdetail.mp?num=<%= o.getOrderNo() %>" id = "detailv" class="btn btn-sm">상세 조회</a>
 		                      </td>
 		                      <td width="130">
 		                      	<img src="<%=request.getContextPath()%>/<%= o.getMainImg() %>" width="80px" height="80px">
@@ -277,11 +282,6 @@
                             <td></td>
 	                    </tr>
 
-                        <script>
-                            function detailView(){
-                                location.href = "<%=contextPath%>/cdetail.mp";
-                            }
-                        </script>
 	                    
                   </tbody>
                 </table>

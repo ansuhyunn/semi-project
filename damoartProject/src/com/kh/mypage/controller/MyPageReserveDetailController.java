@@ -35,8 +35,9 @@ public class MyPageReserveDetailController extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		int memNo = ((Member)session.getAttribute("loginUser")).getMemNo();
+		int oNo = Integer.parseInt(request.getParameter("num"));
 		
-		Order detailView = new MemberReserveService().selectReserveDetail(memNo);
+		Order detailView = new MemberReserveService().selectReserveDetail(memNo, oNo);
 		
 		request.setAttribute("detailView", detailView);
 		request.getRequestDispatcher("views/mypage/reserveDetailView.jsp").forward(request, response);

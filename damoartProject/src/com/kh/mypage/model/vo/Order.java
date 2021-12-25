@@ -47,7 +47,7 @@ public Order(int memNo, int orderNo, int finalPrice, Date orderDate, int pNo, St
 
 
 public Order(int orderNo, Date orderDate, String orderName, int pNo, String pTitle, String mainImg, String orderOpt, int orderCount,
-		String area, Date payDate, String payOpt, int payPrice, String orderPhone) {
+		String area, Date payDate, int payPrice, String orderPhone) {
 	super();
 	this.orderNo = orderNo;
 	this.orderDate = orderDate;
@@ -59,7 +59,6 @@ public Order(int orderNo, Date orderDate, String orderName, int pNo, String pTit
 	this.orderCount = orderCount;
 	this.area = area;
 	this.payDate = payDate;
-	this.payOpt = payOpt;
 	this.payPrice = payPrice;
 	this.orderPhone = orderPhone;
 	
@@ -81,9 +80,6 @@ public Order(int orderNo, Date orderDate, String orderName, int pNo, String pTit
 	this.payOpt = payOpt;
 	this.payPrice = payPrice;
 	this.orderPhone = orderPhone;
-	this.bankName = bankName;
-	this.refundAccount = refundAccount;
-	this.refundName = refundName;
 	
 }
 

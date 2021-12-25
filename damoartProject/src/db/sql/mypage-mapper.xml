@@ -28,7 +28,7 @@
 		  JOIN ORDER_P USING(ORDER_NO)
 		  JOIN PRODUCT USING(PNO)
 		 WHERE MEM_NO = ?
-		   AND (ORDER_STATUS = 'W' OR ORDER_STATUS = 'P' OR ORDER_STATUS = 'O')
+		   AND (ORDER_STATUS = 'C' OR ORDER_STATUS = 'P' OR ORDER_STATUS = 'O')
 		 ORDER
     		BY ORDER_DATE DESC
 	</entry>
@@ -46,7 +46,6 @@
 		     , ORDER_COUNT
 		     , AREA
 		     , PAY_DATE
-		     , PAY_OPT
 		     , PAY_PRICE
 		     , ORDER_PHONE
 		  FROM "ORDER" 
@@ -54,7 +53,8 @@
 		  JOIN PRODUCT USING(PNO)
 		  JOIN PAY USING(ORDER_NO)
 		 WHERE MEM_NO = ?
-		   AND (ORDER_STATUS = 'W' OR ORDER_STATUS = 'P' OR ORDER_STATUS = 'O')
+		   AND ORDER_NO = ? 
+		   AND (ORDER_STATUS = 'C' OR ORDER_STATUS = 'P' OR ORDER_STATUS = 'O')
 		 ORDER
 		    BY ORDER_DATE DESC
 	</entry>
@@ -76,7 +76,7 @@
 		  JOIN ORDER_P USING(ORDER_NO)
 		  JOIN PRODUCT USING(PNO)
 		 WHERE MEM_NO = ?
-		   AND (ORDER_STATUS = 'C' OR ORDER_STATUS = 'CC' OR ORDER_STATUS = 'N')
+		   AND (ORDER_STATUS = 'CC')
 		 ORDER
 		    BY ORDER_DATE DESC
 	</entry>
@@ -94,17 +94,14 @@
 		     , ORDER_COUNT
 		     , AREA
 		     , PAY_DATE
-		     , PAY_OPT
 		     , PAY_PRICE
 		     , ORDER_PHONE
-             , BANK_NAME
-             , REFUND_ACCOUNT
-             , REFUND_NAME
 		  FROM "ORDER" 
 		  JOIN ORDER_P USING(ORDER_NO)
 		  JOIN PRODUCT USING(PNO)
 		  JOIN PAY USING(ORDER_NO)
 		 WHERE MEM_NO = ?
+		   AND ORDER_NO = ?
 		   AND (ORDER_STATUS = 'CC')
 		 ORDER
 		    BY ORDER_DATE DESC
@@ -121,6 +118,8 @@
 		  FROM POINT
 		  JOIN MEMBER USING(MEM_NO) 
 		 WHERE MEM_ID = ?
+		 ORDER
+		    BY POI_DATE DESC
 	</entry>
 	
 	<!-- 회원 적립금 -->

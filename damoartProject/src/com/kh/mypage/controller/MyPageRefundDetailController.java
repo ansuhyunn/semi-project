@@ -35,8 +35,9 @@ public class MyPageRefundDetailController extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		int memNo = ((Member)session.getAttribute("loginUser")).getMemNo();
+		int oNo = Integer.parseInt(request.getParameter("num"));
 		
-		Order cdetailView = new MemberReserveService().selectRefundDetail(memNo);
+		Order cdetailView = new MemberReserveService().selectRefundDetail(memNo, oNo);
 		
 		request.setAttribute("cdetailView", cdetailView);
 		request.getRequestDispatcher("views/mypage/refundDetailView.jsp").forward(request, response);

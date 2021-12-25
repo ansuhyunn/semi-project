@@ -1,5 +1,7 @@
 package com.kh.mypage.model.vo;
 
+import java.sql.Date;
+
 public class Member {
 
 	private int memNo;
@@ -10,7 +12,7 @@ public class Member {
 	private String email;
 	private String phone;
 	private String birth;
-	private String enrollDate;
+	private Date enrollDate;
 	private String memType;
 	private String status;
 	
@@ -22,21 +24,7 @@ public class Member {
 	
 	public Member() {}
 
-	public Member(int memNo, String memId, String memPwd, String memName, String nickName, String email, String phone,
-			String birth, String enrollDate, String memType, String status) {
-		super();
-		this.memNo = memNo;
-		this.memId = memId;
-		this.memPwd = memPwd;
-		this.memName = memName;
-		this.nickName = nickName;
-		this.email = email;
-		this.phone = phone;
-		this.birth = birth;
-		this.enrollDate = enrollDate;
-		this.memType = memType;
-		this.status = status;
-	}
+	
 
 	public Member(String memId, String memPwd, String memName, String nickName, String email, String phone,
 			String birth) {
@@ -48,6 +36,20 @@ public class Member {
 		this.email = email;
 		this.phone = phone;
 		this.birth = birth;
+	}
+
+
+
+	public Member(String memPwd, String memName, String nickName, String email, String phone,
+			String birth) {
+		super();
+		this.memPwd = memPwd;
+		this.memName = memName;
+		this.nickName = nickName;
+		this.email = email;
+		this.phone = phone;
+		this.birth = birth;
+		this.memId = memId;
 	}
 	
 
@@ -64,6 +66,24 @@ public class Member {
 		this.birth1 = birth1;
 		this.birth2 = birth2;
 		this.birth3 = birth3;
+	}
+
+	
+
+	public Member(int memNo, String memId, String memPwd, String memName, String nickName, String email, String phone,
+			String birth, Date enrollDate, String memType, String status) {
+		super();
+		this.memNo = memNo;
+		this.memId = memId;
+		this.memPwd = memPwd;
+		this.memName = memName;
+		this.nickName = nickName;
+		this.email = email;
+		this.phone = phone;
+		this.birth = birth;
+		this.enrollDate = enrollDate;
+		this.memType = memType;
+		this.status = status;
 	}
 
 	public String getEmailId() {
@@ -138,11 +158,11 @@ public class Member {
 		this.birth = birth;
 	}
 
-	public String getEnrollDate() {
+	public Date getEnrollDate() {
 		return enrollDate;
 	}
 
-	public void setEnrollDate(String enrollDate) {
+	public void setEnrollDate(Date enrollDate) {
 		this.enrollDate = enrollDate;
 	}
 

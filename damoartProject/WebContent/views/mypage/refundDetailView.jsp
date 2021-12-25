@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.kh.mypage.model.vo.Order, com.kh.mypage.model.vo.Point"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.mypage.model.vo.Order, com.kh.mypage.model.vo.Point"%>
 <%
 	Order cdetailView = (Order)request.getAttribute("cdetailView");
 	Point poi = (Point)session.getAttribute("poi");
@@ -274,24 +274,11 @@
                     </tr>
                     <tr>
                         <th>결제수단</th>
-                        <td colspan="3"><%= cdetailView.getPayOpt() %></td>
+                        <td colspan="3">신용(체크)카드</td>
                     </tr>
                     <tr>
                         <th>결제금액</th>
                         <td colspan="3"><%= cdetailView.getPayPrice() %>원</td>
-                    </tr>
-                </table>
-                <br><br>
-
-                <p>● 환불정보</p>  
-                <table class="order-det3">
-                    <tr>
-                        <th>예금주명</td>
-                        <td colspan="3"><%= cdetailView.getRefundName() %></td>
-                    </tr>
-                    <tr>
-                        <th>계좌번호</th>
-                        <td colspan="3"><%= cdetailView.getBankName()%>&nbsp;<%= cdetailView.getRefundAccount() %></td>
                     </tr>
                     <tr>
                         <th>환불금액</th>
@@ -299,6 +286,7 @@
                     </tr>
                 </table>
                 <br><br>
+
 
             </div>
             <br><br>

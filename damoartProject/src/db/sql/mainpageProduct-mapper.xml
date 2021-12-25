@@ -17,7 +17,7 @@
 						 , MAIN_IMG
 	                   FROM PRODUCT
 			           <![CDATA[WHERE FLOOR(MONTHS_BETWEEN(SYSDATE, TO_DATE(S_DATE, 'RRRRMMDD'))) >= 0 ]]>
-					  ORDER BY 1 DESC
+					  ORDER BY ENROLL_DATE DESC
 				 ) A
 			)
 	WHERE RNUM BETWEEN 1 AND 4	
