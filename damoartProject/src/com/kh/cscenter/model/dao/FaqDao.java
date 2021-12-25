@@ -159,7 +159,7 @@ private Properties prop = new Properties();
 				f = new FAQ(rset.getInt("faq_no"),
 						    rset.getString("nickname"),
 						    rset.getString("faq_title"),
-						    rset.getString("faq_content"),
+						    rset.getString("faq_content").replace("\r\n", "<br>"),
 						    rset.getString("create_date"),
 						    category);
 			}

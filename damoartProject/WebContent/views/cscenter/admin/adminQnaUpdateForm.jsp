@@ -180,7 +180,7 @@
                 <div class="acontent">
                 	<input type="hidden" name="adminNo" value="<%=loginUser.getMemNo() %>">
                     <input type="hidden" name="qno" value="<%= q.getqNo() %>">
-                    <textarea name="answer" rows="15" required style="resize:none;"><%=q.getaContent()%></textarea>
+                    <textarea name="answer" rows="15" required style="resize:none;"><%=q.getaContent().replace("<br>", "\r\n")%></textarea>
                 </div>
 
                 

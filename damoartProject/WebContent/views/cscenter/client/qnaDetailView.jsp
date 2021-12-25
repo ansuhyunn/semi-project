@@ -181,7 +181,7 @@
 	            
 	            <div class="acontent">
 	            	<span>A</span> <br>
-	            	<%= q.getaContent() %>
+	            	<%= q.getaContent().replace("\r\n", "<br>") %>
 	            </div>
             <% } %>
         </div>

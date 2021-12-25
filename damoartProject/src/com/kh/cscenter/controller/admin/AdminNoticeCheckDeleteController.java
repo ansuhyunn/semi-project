@@ -42,7 +42,7 @@ public class AdminNoticeCheckDeleteController extends HttpServlet {
 		}
 		if(result > 0) {
 			request.getSession().setAttribute("alertMsg", "성공적으로 삭제되었습니다.");
-			response.sendRedirect(request.getContextPath() + "/adminList.fa?cpage=1");
+			response.sendRedirect(request.getContextPath() + "/adminList.no?cpage=1");
 		}else {
 			//에러
 		}

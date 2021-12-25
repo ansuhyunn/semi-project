@@ -105,7 +105,7 @@
                     </tr>
                     <tr>
                         <th>&nbsp;&nbsp;&nbsp;내용</th>
-                        <td><textarea name="content" rows="20" required style="resize:none;"><%=f.getFaqContent() %></textarea></td>
+                        <td><textarea name="content" rows="20" required style="resize:none;"><%=f.getFaqContent().replace("<br>", "\r\n")  %></textarea></td>
                     </tr>
                 </table>
                 <br>

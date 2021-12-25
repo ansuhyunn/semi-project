@@ -37,7 +37,7 @@ public class AdminNoticeInsertController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		
+
 		if(ServletFileUpload.isMultipartContent(request)) {
 			int maxSize = 10 * 1024 * 1024;
 			String savePath = request.getSession().getServletContext().getRealPath("/resources/board_upfiles/notice/");
@@ -62,10 +62,10 @@ public class AdminNoticeInsertController extends HttpServlet {
 					
 					list.add(at);
 				}
-				
 			}
+			System.out.println(list);
+			System.out.println(n);
 			int result = new NoticeService().insertNotice(n, list);
-			
 			
 			if(result > 0) {
 				request.getSession().setAttribute("alertMsg", "게시글이 성공적으로 등록되었습니다.");
@@ -77,6 +77,7 @@ public class AdminNoticeInsertController extends HttpServlet {
 			
 			
 		}
+		
 	}
 
 	/**

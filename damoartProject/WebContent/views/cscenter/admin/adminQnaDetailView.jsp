@@ -149,9 +149,6 @@
                 </div>
                 <div class="detail-data">
                     <div class="writer">
-                    	<% if(q.getMemNo() == 0) {%>
-                    		(비회원)
-                    	<% } %>
                         <%= q.getqWriter() %>
                     </div>
                     <div class="date">
@@ -168,7 +165,7 @@
                 <% if(q.getpNo() != null) { %>
                     <div class="product">
                         <img src="<%=contextPath%>/<%= q.getpMainImg() %>" width="100" height="130">
-                        <%= q.getpNo() %>
+                        <%= q.getpTitle() %>
                     </div>
                 <% } %>
                 <div class="qcontent">

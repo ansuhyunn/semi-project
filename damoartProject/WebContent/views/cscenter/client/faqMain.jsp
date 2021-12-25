@@ -170,7 +170,7 @@
 		                            <td></td>
 		                            <td colspan="2">
 		                            	<p><b>A</b></p>
-		                            	<%=f.getFaqContent() %>
+		                            	<%=f.getFaqContent().replace("\r\n", "<br>")%>
 		                            </td>
 		                        </tr>
                         	<% } %>
