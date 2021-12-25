@@ -139,4 +139,32 @@
 		    SET STATUS = 'N'
 		  WHERE NOTICE_NO = ?
 	</entry>
+	
+	<entry key="selectSearchListCount">
+		SELECT COUNT(*) count
+		  FROM NOTICE
+		 WHERE STATUS = 'Y'
+		   AND ? LIKE '%'||?||'%'
+	</entry>
+	
+	<entry key="selectSearchList">
+		SELECT *
+		  FROM (
+		        SELECT ROWNUM RNO, A.*
+		          FROM (
+		                SELECT 
+		                       NOTICE_NO
+		                     , NICKNAME
+		                     , NOTICE_TITLE
+		                     , TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') "CREATE_DATE"
+		                     , COUNT
+		                  FROM NOTICE N
+		                  JOIN MEMBER ON (NOTICE_WRITER = MEM_NO)
+		                 WHERE N.STATUS = 'Y'
+		                   AND ? LIKE '%'||?||'%'
+		                 ORDER BY NOTICE_NO DESC
+		                 ) A
+		        )
+		  WHERE RNO BETWEEN ? AND ?	
+	</entry>
 </properties>

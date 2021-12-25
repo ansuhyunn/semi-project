@@ -4,6 +4,8 @@
     
 <% PageInfo pi = (PageInfo)request.getAttribute("pi");
    ArrayList<Notice> list = (ArrayList<Notice>)request.getAttribute("list");
+   String keyword = request.getParameter("keyword");
+   String category = request.getParameter("searchCategory");
    
    int currentPage = pi.getCurrentPage();
    int startPage = pi.getStartPage();
@@ -68,7 +70,15 @@
 			<h4 style="font-weight: bolder;" align="center">공지사항</h4>
             <br>
             <hr>
-            <br><br>
+            <br>
+            <h5>
+            	<%if(category.equals("NOTICE_TITLE")) { %>
+            		제목으로
+            	<%}else { %>
+            		내용으로
+            	<%} %> "<%= keyword %>" 검색한 결과
+            </h5>
+            <br>
             <div>
                 <table align="center" id="list-area" class="table table-hover">
                     <thead>

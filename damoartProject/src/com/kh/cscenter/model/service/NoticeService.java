@@ -139,5 +139,20 @@ public class NoticeService {
 		close(conn);
 		return result;
 	}
+	
+	public int selectSearchListCount(String category, String keyword) {
+		Connection conn = getConnection();
+		int listCount = new NoticeDao().selectSearchListCount(conn, category, keyword);
+		close(conn);
+		return listCount;
+		
+	}
+	
+	public ArrayList<Notice> selectSearchList(PageInfo pi, String category, String keyword) {
+		Connection conn = getConnection();
+		ArrayList<Notice> list = new NoticeDao().selectSearchList(conn, pi, category, keyword);
+		close(conn);
+		return list;
+	}
 
 }
