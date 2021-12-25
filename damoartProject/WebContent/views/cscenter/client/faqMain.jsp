@@ -137,6 +137,7 @@
             <script>
                 $(function(){
                 	let all = $("tbody").html();
+                	let paging = $(".paging-area").html();
                     $("#category-btn>button").click(function(){
                         $(this).css({backgroundColor:"rgb(151, 138, 116)", color:"white"});
                         $(this).css("font-weight", "700");
@@ -166,6 +167,7 @@
 					                      +  "</tr>"
                     			}
                     			$("tbody").html(value);
+                    			$(".paging-area").html("");
                     			trClick();
                     		},error:function(result){
                     			console.log("ajax 통신 실패");
@@ -176,6 +178,7 @@
                      
                      $(".a").click(function(){
                     	 $("tbody").html(all);
+                    	 $(".paging-area").html(paging);
                     	 trClick();
                      })
                 })
@@ -246,8 +249,6 @@
                 <div class="paging-area" align="center">
                 	<% if(currentPage != 1) {%>
                     	<button class="btn" onclick="location.href='<%=contextPath%>/list.fa?cpage=<%=currentPage-1%>'">&lt;</button>
-                    <% }else { %>
-                    	<button class="btn" disabled>&lt;</button>
                     <% } %>
                     
                     <% for(int p=startPage; p<=endPage; p++) { %>
@@ -259,15 +260,13 @@
                     <% } %>
                     <% if(currentPage != maxPage) {%>
                     <button class="btn" onclick="location.href='<%=contextPath%>/list.fa?cpage=<%=currentPage+1%>'">&gt;</button>
-                    <% }else { %>
-                    	<button class="btn" disabled>&gt;</button>
                     <% } %>
                 </div>
                 <br>
             </div>
            
         </div>
-
+		<br><br><br>
         
 
     <%@ include file="../../common/footerbar.jsp" %>

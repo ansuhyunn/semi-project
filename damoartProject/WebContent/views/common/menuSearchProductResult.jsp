@@ -104,7 +104,7 @@
     <div class="wrapper">
     	<br>
         <div class="name">
-            <div id="name1">"<%= keyword %>"로 검색한 결과</div>
+            <div id="name1">"<%= keyword %>"(으)로 검색한 결과</div>
         </div>
         <hr class="my-2">
         <div class="content1">
