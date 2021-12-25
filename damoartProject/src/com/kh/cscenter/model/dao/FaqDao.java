@@ -232,4 +232,42 @@ private Properties prop = new Properties();
 		}
 		return result;
 	}
+	
+	public ArrayList<FAQ> faqChangeCategory(Connection conn, String category){
+		ArrayList<FAQ> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("faqChangeCategory");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, category);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				String c = "";
+				switch(rset.getString("F_CATEGORY_CODE")) {
+				case "Q1" : c = "[티켓]"; break;
+         	    case "Q2" : c = "[취소/환불]"; break;
+         	    case "Q3" : c = "[주문/결제]"; break;
+         	    case "Q4" : c = "[상품]"; break;
+         	    case "Q5" : c = "[기타]"; break;
+         	    default :  break;
+				}
+				FAQ f = new FAQ();
+				f.setFaqNo(rset.getInt("faq_no"));
+				f.setFaqTitle(rset.getString("faq_title"));
+				f.setFaqContent(rset.getString("faq_content"));
+				f.setfCategoryCode(c);
+				
+				list.add(f);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
 }

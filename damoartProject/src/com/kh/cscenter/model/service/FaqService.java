@@ -78,4 +78,11 @@ public class FaqService {
 		close(conn);
 		return result;
 	}
+	
+	public ArrayList<FAQ> faqChangeCategory(String category){
+		Connection conn = getConnection();
+		ArrayList<FAQ> list = new FaqDao().faqChangeCategory(conn, category);
+		close(conn);
+		return list;
+	}
 }

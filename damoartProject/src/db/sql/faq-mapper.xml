@@ -76,4 +76,16 @@
 		    SET STATUS = 'N'
 		  WHERE FAQ_NO = ?
 	</entry>
+	
+	<entry key="faqChangeCategory">
+		SELECT
+		       FAQ_NO
+		     , FAQ_TITLE
+		     , FAQ_CONTENT
+		     , F_CATEGORY_CODE
+		  FROM FAQ
+		 WHERE F_CATEGORY_CODE = ? 
+		 ORDER
+		    BY FAQ_NO DESC
+	</entry>
 </properties>
