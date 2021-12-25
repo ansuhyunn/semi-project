@@ -290,7 +290,7 @@
 
             <script>
                 function reserveList(){
-                    location.href = "<%=contextPath%>/reserve.mp";
+                    location.href = "<%=contextPath%>/reserve.mp?cpage=1";
                 }
             </script>
         </div>

@@ -8,29 +8,37 @@
 		     COUNT(*) count
 	    FROM ORDER_P
         JOIN "ORDER" USING(ORDER_NO)
-	   WHERE ORDER_STATUS = 'P'
+	   WHERE (ORDER_STATUS = 'P' OR ORDER_STATUS = 'O')
          AND MEM_NO = ?
 	</entry>
+	
 	<!-- 예매 내역 -->
 	<entry key="selectReserve">
-		SELECT 
-		       MEM_NO
-		     , ORDER_NO
-		     , FINAL_PRICE
-		     , ORDER_DATE
-		     , PNO
-		     , TITLE
-		     , MAIN_IMG
-		     , ORDER_OPT
-		     , ORDER_COUNT
-		     , ORDER_STATUS
-		  FROM "ORDER" 
-		  JOIN ORDER_P USING(ORDER_NO)
-		  JOIN PRODUCT USING(PNO)
-		 WHERE MEM_NO = ?
-		   AND (ORDER_STATUS = 'C' OR ORDER_STATUS = 'P' OR ORDER_STATUS = 'O')
-		 ORDER
-    		BY ORDER_DATE DESC
+		SELECT *
+		  FROM (
+		        SELECT ROWNUM RNUM, O.*
+		          FROM (
+		                SELECT 
+		                       MEM_NO
+		                     , ORDER_NO
+		                     , FINAL_PRICE
+		                     , ORDER_DATE
+		                     , PNO
+		                     , TITLE
+		                     , MAIN_IMG
+		                     , ORDER_OPT
+		                     , ORDER_COUNT
+		                     , ORDER_STATUS
+		                  FROM "ORDER" 
+		                  JOIN ORDER_P USING(ORDER_NO)
+		                  JOIN PRODUCT USING(PNO)
+		                 WHERE MEM_NO = ?
+		                   AND (ORDER_STATUS = 'P' OR ORDER_STATUS = 'O')
+		                 ORDER
+		                    BY ORDER_DATE DESC
+		               ) "O"
+		        )
+		 WHERE RNUM BETWEEN ? AND ?
 	</entry>
 	
 	<!-- 예매 상세 -->
@@ -54,33 +62,50 @@
 		  JOIN PAY USING(ORDER_NO)
 		 WHERE MEM_NO = ?
 		   AND ORDER_NO = ? 
-		   AND (ORDER_STATUS = 'C' OR ORDER_STATUS = 'P' OR ORDER_STATUS = 'O')
+		   AND (ORDER_STATUS = 'P' OR ORDER_STATUS = 'O')
 		 ORDER
 		    BY ORDER_DATE DESC
+	</entry>
+	
+	<!-- 환불 내역 페이징바 -->
+	<entry key="selectCaListCount">
+	  SELECT
+		     COUNT(*) count
+	    FROM ORDER_P
+        JOIN "ORDER" USING(ORDER_NO)
+	   WHERE (ORDER_STATUS = 'CC')
+         AND MEM_NO = ?
 	</entry>
 	
 	<!-- 취소/환불 내역 -->
 	<entry key="selectRefund">
-		SELECT 
-		       MEM_NO
-		     , ORDER_NO
-		     , FINAL_PRICE
-		     , ORDER_DATE
-		     , PNO
-		     , TITLE
-		     , MAIN_IMG
-		     , ORDER_OPT
-		     , ORDER_COUNT
-		     , ORDER_STATUS
-		  FROM "ORDER" 
-		  JOIN ORDER_P USING(ORDER_NO)
-		  JOIN PRODUCT USING(PNO)
-		 WHERE MEM_NO = ?
-		   AND (ORDER_STATUS = 'CC')
-		 ORDER
-		    BY ORDER_DATE DESC
+	  SELECT *
+		  FROM (
+		        SELECT ROWNUM RNUM, O.*
+		          FROM (
+		                SELECT 
+		                       MEM_NO
+		                     , ORDER_NO
+		                     , FINAL_PRICE
+		                     , ORDER_DATE
+		                     , PNO
+		                     , TITLE
+		                     , MAIN_IMG
+		                     , ORDER_OPT
+		                     , ORDER_COUNT
+		                     , ORDER_STATUS
+		                  FROM "ORDER" 
+		                  JOIN ORDER_P USING(ORDER_NO)
+		                  JOIN PRODUCT USING(PNO)
+		                 WHERE MEM_NO = ?
+		                   AND (ORDER_STATUS = 'CC')
+		                 ORDER
+		                    BY ORDER_DATE DESC
+		               ) "O"
+		        )
+		 WHERE RNUM BETWEEN ? AND ?
 	</entry>
-	
+
 	<!-- 취소/환불 상세 -->
 	<entry key="selectRefundDetail">
 			SELECT 
@@ -107,19 +132,35 @@
 		    BY ORDER_DATE DESC
 	</entry>
 	
+	<!-- 적립금내역 페이징바 -->
+	<entry key="selectPoListCount">
+	  SELECT
+	         COUNT(*) count
+	    FROM POINT
+	    JOIN MEMBER USING(MEM_NO)
+	   WHERE MEM_ID = ?
+	</entry>
+
 	<!-- 적립금 내역 -->
 	<entry key="pointList">
-		SELECT
-		       POI_DATE
-		     , POI_POINT
-		     , POI_CONTENT
-		     , ORDER_NO
-		     , MEM_ID
-		  FROM POINT
-		  JOIN MEMBER USING(MEM_NO) 
-		 WHERE MEM_ID = ?
-		 ORDER
-		    BY POI_DATE DESC
+		SELECT *
+			FROM (
+			    SELECT ROWNUM RNUM, POI.*
+			      FROM (         
+			            SELECT
+			                   POI_DATE
+			                 , POI_POINT
+			                 , POI_CONTENT
+			                 , ORDER_NO
+			                 , MEM_ID
+			              FROM POINT
+			              JOIN MEMBER USING(MEM_NO) 
+			             WHERE MEM_ID = ?
+			             ORDER
+			                BY POI_DATE DESC
+			            ) "POI"
+			    )
+			WHERE RNUM BETWEEN ? AND ?
 	</entry>
 	
 	<!-- 회원 적립금 -->

@@ -294,7 +294,7 @@
 
             <script>
                 function reserveList(){
-                    location.href = "<%=contextPath%>/refund.mp";
+                	location.href = "<%=contextPath%>/refund.mp?cpage=1";
                 }
             </script>
         </div>

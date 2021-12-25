@@ -1,9 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.kh.mypage.model.vo.Point, java.util.ArrayList" %>
+    pageEncoding="UTF-8" import="com.kh.mypage.model.vo.Point, java.util.ArrayList, com.kh.common.model.vo.PageInfo" %>
 <%
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	ArrayList<Point> list = (ArrayList<Point>)request.getAttribute("list");
-
 	Point poi = (Point)session.getAttribute("poi");
+	
+	int currentPage = pi.getCurrentPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+	int maxPage = pi.getMaxPage();
 %>
 <!DOCTYPE html>
 <html>
@@ -194,9 +199,9 @@
             <ul>  	
                 <li><h3>마이쇼핑</h3></li>
                 <div>
-                    <a href="<%=contextPath%>/reserve.mp" id="submenu">예매 내역</a> <br>
-                    <a href="<%= contextPath %>/refund.mp" id="submenu">취소/환불 내역</a> <br>
-                    <a href="<%=contextPath%>/pointList.mp" id="submenu" style="color:rgb(151, 138, 116)">적립금 내역</a> <br>
+                    <a href="<%=contextPath%>/reserve.mp?cpage=1" id="submenu">예매 내역</a> <br>
+                    <a href="<%= contextPath %>/refund.mp?cpage=1" id="submenu">취소/환불 내역</a> <br>
+                    <a href="<%=contextPath%>/pointList.mp?cpage=1" id="submenu" style="color:rgb(151, 138, 116)">적립금 내역</a> <br>
                 </div><br>
                 <li><h3>마이활동</h3></li>
                 <div>
@@ -257,6 +262,28 @@
 	                    </tr>
                   </tbody>
                 </table>
+                
+                <div class="paging-area" align="center">
+                	<% if(currentPage != 1) {%>
+                    	<button class="btn" onclick="location.href='<%=contextPath%>/pointList.mp?cpage=<%=currentPage-1%>'">&lt;</button>
+                    <% }else { %>
+                    	<button class="btn" disabled>&lt;</button>
+                    <% } %>
+                    
+                    <% for(int p=startPage; p<=endPage; p++) { %>
+                    	<% if(p == currentPage) { %>
+                    		<button class="btn" disabled><%=p %></button>
+                    	<% }else { %>
+                    		<button class="btn" onclick="location.href='<%=contextPath %>/pointList.mp?cpage=<%=p%>'"><%=p %></button>
+                    	<% } %>
+                    <% } %>
+                    <% if(currentPage != maxPage) {%>
+                    <button class="btn" onclick="location.href='<%=contextPath%>/pointList.mp?cpage=<%=currentPage+1%>'">&gt;</button>
+                    <% }else { %>
+                    	<button class="btn" disabled>&gt;</button>
+                    <% } %>
+                </div>
+                
               </div>   
             
             </div>

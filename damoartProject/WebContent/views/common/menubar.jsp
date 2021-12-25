@@ -175,7 +175,7 @@
 	                    	<a href="<%=contextPath%>/logout.me" id="logout_btn" class="btn btn-sm">로그아웃</a>
                 		<% }else {%>
 	                    	<a href="<%=contextPath%>/list.ca" id="cart_btn" class="btn btn-sm">장바구니</a>
-	                    	<a href="<%=contextPath%>/reserve.mp" id="myPage_btn" class="btn btn-sm">마이페이지</a>
+	                    	<a href="<%=contextPath%>/reserve.mp?cpage=1" id="myPage_btn" class="btn btn-sm">마이페이지</a>
 	                    	<a href="<%=contextPath%>/logout.me" id="logout_btn" class="btn btn-sm">로그아웃</a>
                     	<% } %>
                     	<br>
