@@ -184,12 +184,13 @@
                 </div>
                 <div id="search_area">
                     <br>
-                    <form action="menuSearchPro.ma" id="search_form">
+                    <form action="menuSearchPro.me" id="search_form">
                         <div id="search_box">
-                            <input type="text" name="keyword" placeholder="검색 키워드를 입력해주세요.">                      
+                            <input type="text" name="keyword" placeholder="검색 키워드를 입력해주세요." required>
+                            <input type="hidden" name="cpage" value="1">                      
                         </div>
                         <div id="search_btn" align="center">
-                            <a type="submit"><img src="<%=contextPath%>/resources/images/search.png" width="33px" height="33px"></a>
+                            <button type="submit" class="btn"><img src="<%=contextPath%>/resources/images/search.png" width="33px" height="33px"></button>
                         </div>
                     </form>
                 </div>

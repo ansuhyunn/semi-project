@@ -2,7 +2,7 @@
     pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.product.model.vo.Product, com.kh.common.model.vo.PageInfo" %>
 <% 
 	ArrayList<Product> ingList = (ArrayList<Product>)request.getAttribute("ingList");
-    String keyword = request.getAttribute("keyword");
+    String keyword = request.getParameter("keyword");
 	
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	int currentPage = pi.getCurrentPage(); 
@@ -28,9 +28,10 @@
 	div{ box-sizing:border-box;}
     .wrapper{
         width: 1000px;
-        height: 1000px;
-        top: 0; left: 0; right: 0; bottom: 0; margin: auto;
+        height: auto;
+        margin: auto;
         margin-top: 50px;
+
     }
      /* 페이지 이름 스타일 */
     .name{ width: 100%; height: 30px; }
@@ -53,30 +54,34 @@
     .name>a:hover{font-weight: bolder; text-decoration: none; color: black;}
     .content1{
         width: 100%;
-        height: 800px;
+        height: auto;
         margin: auto;
         margin-top: 30px;
         margin-bottom: 50px;
+
     }
+    
     .content{
         width: 20%;
         height: 350px;
-        float: left;
         margin-left: 25px;
         margin-right: 20px;
         margin-bottom: 80px;
         margin-top: 0px;
-        display: block;
+        display: inline-block;
+
     }
     .poster{
         width: 100%;
         height: 75%;
         width: 100%;
         height: 80%;
+        
     }
     .info{
         width: 100%;
         height: 25%;
+        
     }
     .info>p{
         width: 100%;
@@ -88,10 +93,7 @@
     }
     .title{font-weight: bolder; padding-top: 10px;}
     .summary{font-size: 12px; font-weight: bolder; margin-top: -10px;}
-    .paging-area{
-    	width: 100%;
-    	margin-bottom: 100px;
-    }
+
 </style>
 
 </head>
@@ -100,6 +102,7 @@
     <%@ include file="../common/menubar.jsp" %>
 
     <div class="wrapper">
+    	<br>
         <div class="name">
             <div id="name1">"<%= keyword %>"로 검색한 결과</div>
         </div>
@@ -109,7 +112,7 @@
         		<p> 검색 결과가 없습니다. </p>
 	        <% } else {%> 
 		        <% for(Product p : ingList){ %>
-		            <div class="content" id="">
+                    <div class="content" id="">
 		           		<div class="poster">
 		                	<input type="hidden" name="num" value="<%= p.getpNo() %>">
 		                	<a href="<%=request.getContextPath()%>/detail.pro?num=<%=p.getpNo()%>">
@@ -131,27 +134,24 @@
         </div>
         
         <div class="paging-area" align="center">
-        
-			<% if(currentPage != 1){ %>
-            	<button class="btn" onclick="location.href='<%=contextPath%>/ing.pro?cpage=<%=currentPage-1%>';">&lt;</button>
-            <% } %>
-            
-            <% for(int p=startPage; p <= endPage; p++){ %>
-            	<% if(currentPage == p) {%>
-            		<button class="btn" disabled><%= p %></button>		
-	            <% }else { %>
-	            	<button class="btn" onclick="location.href='<%=contextPath%>/ing.pro?cpage=<%= p %>';"><%= p %></button>
-	            <% } %>
-            <% } %>
-            
-            <% if(currentPage != maxPage){%>
-            	<button class="btn" onclick="location.href='<%=contextPath%>/ing.pro?cpage=<%=currentPage+1%>';">&gt;</button>
-			<% } %>
-			
-        </div>
+          	<% if(currentPage != 1) {%>
+              	<button class="btn" onclick="location.href='<%=contextPath%>/menuSearchPro.me?keyword=<%=keyword %>&cpage=<%=currentPage-1%>';">&lt;</button>
+              <% } %>
+              
+              <% for(int p=startPage; p<=endPage; p++) { %>
+              	<% if(p == currentPage) { %>
+              		<button class="btn" disabled><%=p %></button>
+              	<% }else { %>
+              		<button class="btn" onclick="location.href='<%=contextPath %>/menuSearchPro.me?keyword=<%=keyword %>&cpage=<%=p%>';"><%=p %></button>
+              	<% } %>
+              <% } %>
+              <% if(currentPage != maxPage) {%>
+              <button class="btn" onclick="location.href='<%=contextPath%>/menuSearchPro.me?keyword=<%=keyword %>&cpage=<%=currentPage+1%>';">&gt;</button>
+              <% } %>
+          </div>
         
     </div>    
-    
+    <br><br><br>
     <%@ include file="../common/footerbar.jsp" %>
 
 </body>

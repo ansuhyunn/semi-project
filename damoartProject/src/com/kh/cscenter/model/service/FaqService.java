@@ -7,8 +7,10 @@ import java.util.ArrayList;
 
 import com.kh.common.model.vo.PageInfo;
 import com.kh.cscenter.model.dao.FaqDao;
-import com.kh.cscenter.model.dao.GuideDao;
+import com.kh.cscenter.model.dao.NoticeDao;
 import com.kh.cscenter.model.vo.FAQ;
+import com.kh.product.model.dao.ProductDao;
+import com.kh.product.model.vo.Product;
 
 public class FaqService {
 	
@@ -83,6 +85,23 @@ public class FaqService {
 		Connection conn = getConnection();
 		ArrayList<FAQ> list = new FaqDao().faqChangeCategory(conn, category);
 		close(conn);
+		return list;
+	}
+	
+	public int menuSearchProductCount(String keyword) {
+		Connection conn = getConnection();
+		int listCount = new FaqDao().menuSearchProductCount(conn, keyword);
+		close(conn);
+		return listCount;
+		
+	}
+	
+	public ArrayList<Product> menuSearchProduct(PageInfo pi, String keyword){
+		Connection conn = getConnection();
+		
+		ArrayList<Product> list = new FaqDao().menuSearchProduct(conn, pi, keyword);
+		
+		close(conn); 
 		return list;
 	}
 }
