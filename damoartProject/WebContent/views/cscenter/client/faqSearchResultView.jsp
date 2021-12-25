@@ -4,6 +4,7 @@
     
 <% PageInfo pi = (PageInfo)request.getAttribute("pi");
    ArrayList<FAQ> list = (ArrayList<FAQ>)request.getAttribute("list");
+   String keyword = request.getParameter("keyword");
    
    int currentPage = pi.getCurrentPage();
    int startPage = pi.getStartPage();
@@ -126,64 +127,8 @@
                     </form>
                 </div>
             </div>
-            <br>
-            <div id="category-btn">
-                <button class="btn a" style="background:rgb(151, 138, 116); color:white;">전체</button>|
-                <button class="btn c" value="Q1">티켓</button>|
-                <button class="btn c" value="Q2">취소/환불</button>|
-                <button class="btn c" value="Q3">주문/결제</button>|
-                <button class="btn c" value="Q4">상품</button>|
-                <button class="btn c" value="Q5">기타</button>
-            </div>
-            <script>
-                $(function(){
-                	let all = $("tbody").html();
-                	let paging = $(".paging-area").html();
-                    $("#category-btn>button").click(function(){
-                        $(this).css({backgroundColor:"rgb(151, 138, 116)", color:"white"});
-                        $(this).css("font-weight", "700");
-                        $(this).siblings().css({backgroundColor:"transparent", color:"black"});
-                        $(this).siblings().css("font-weight", "500");
-                    
-                    })
-                     $(".c").click(function(){
-                    	$.ajax({
-                    		url:"changeCategory.fa",
-                    		data:{category:$(this).val()},
-                    		success:function(result){
-                    			console.log("성공");
-                    			let value= "";
-                    			for(let i=0; i<result.length; i++){
-                    				value += "<tr class='q'>"
-					                          +  "<td>" + result[i].fCategoryCode + "</td>"
-					                          +  "<td align='left'><span><b>Q</b></span>&nbsp;&nbsp;" + result[i].faqTitle + "</td>"
-			                                  +  "<td><i class='fas fa-angle-down'></i></td>"
-					                      +  "</tr>"
-			                              +  "<tr class='a' align='left'>"
-					                          +  "<td></td>"
-					                          +  "<td colspan='2'>"
-					                            +	 "<p><b>A</b></p>"
-					                            +	 result[i].faqContent.replace('\r\n', '<br>')
-					                          +  "</td>"
-					                      +  "</tr>"
-                    			}
-                    			$("tbody").html(value);
-                    			$(".paging-area").html("");
-                    			trClick();
-                    		},error:function(result){
-                    			console.log("ajax 통신 실패");
-                    			
-                    		}
-                    	})
-                     })	
-                     
-                     $(".a").click(function(){
-                    	 $("tbody").html(all);
-                    	 $(".paging-area").html(paging);
-                    	 trClick();
-                     })
-                })
-            </script>
+            <br><br>
+            <h5>"<%=keyword %>"(으)로 검색한 결과</h5>
             <br>
             <div>
                 <table align="center" id="list-area" class="table table-hover">
@@ -232,19 +177,7 @@
                         })
                     })
                     
-                    function trClick(){
-                        $(".q").click(function(){
-                            const $tr = $(this).next();
-    
-                            if($tr.css("display") == "none"){
-                                $(this).siblings(".a").hide();
-    
-                                $tr.show();
-                            }else{
-                                $tr.hide();
-                            }
-                        })
-                    }
+                    
                 </script>
                 <br><br>
                 <div class="paging-area" align="center">

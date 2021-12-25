@@ -272,6 +272,79 @@ private Properties prop = new Properties();
 		return list;
 	}
 	
+	public int selectSearchListCount(Connection conn, String keyword) {
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectSearchListCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, keyword);
+			pstmt.setString(2, keyword);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt("count");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return listCount;
+		
+	}
+	
+	public ArrayList<FAQ> selectSearchList(Connection conn, PageInfo pi, String keyword) {
+		ArrayList<FAQ> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectSearchList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			int startRow = (pi.getCurrentPage() - 1)*pi.getBoardLimit() + 1;
+			int endRow = startRow + pi.getBoardLimit() - 1;
+			
+			pstmt.setString(1, keyword);
+			pstmt.setString(2, keyword);
+			pstmt.setInt(3, startRow);
+			pstmt.setInt(4, endRow);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				String category = "";
+				switch(rset.getString("F_CATEGORY_CODE")) {
+				case "Q1" : category = "[티켓]"; break;
+         	    case "Q2" : category = "[취소/환불]"; break;
+         	    case "Q3" : category = "[주문/결제]"; break;
+         	    case "Q4" : category = "[상품]"; break;
+         	    case "Q5" : category = "[기타]"; break;
+         	    default :  break;
+				}
+				FAQ f = new FAQ();
+				f.setFaqNo(rset.getInt("faq_no"));
+				f.setFaqTitle(rset.getString("faq_title"));
+				f.setFaqContent(rset.getString("faq_content"));
+				f.setfCategoryCode(category);
+				f.setCreateDate(rset.getString("create_date"));
+				f.setFaqWriter(rset.getString("nickname"));
+				
+				list.add(f);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+	
 	public int menuSearchProductCount(Connection conn, String keyword) {
 		int listCount = 0;
 		PreparedStatement pstmt = null;
@@ -339,4 +412,5 @@ private Properties prop = new Properties();
 		}
 		return list;
 	}
+	
 }

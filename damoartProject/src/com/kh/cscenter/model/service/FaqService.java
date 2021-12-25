@@ -88,6 +88,21 @@ public class FaqService {
 		return list;
 	}
 	
+	public int selectSearchListCount(String keyword) {
+		Connection conn = getConnection();		
+		int listCount = new FaqDao().selectSearchListCount(conn, keyword);		
+		close(conn);
+		return listCount;
+		
+	}
+
+	public ArrayList<FAQ> selectSearchList(PageInfo pi, String keyword) {
+		Connection conn = getConnection();
+		ArrayList<FAQ> list = new FaqDao().selectSearchList(conn, pi, keyword);
+		close(conn);
+		return list;
+	}
+	
 	public int menuSearchProductCount(String keyword) {
 		Connection conn = getConnection();
 		int listCount = new FaqDao().menuSearchProductCount(conn, keyword);
@@ -104,4 +119,6 @@ public class FaqService {
 		close(conn); 
 		return list;
 	}
+	
+	
 }
