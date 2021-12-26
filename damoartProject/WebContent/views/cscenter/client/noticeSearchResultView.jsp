@@ -72,7 +72,7 @@
             <hr>
             <br>
             <h5>
-            	<%if(category.equals("NOTICE_TITLE")) { %>
+            	<%if(category.equals("searchTitle")) { %>
             		제목으로
             	<%}else { %>
             		내용으로
@@ -97,7 +97,7 @@
 	                        </tr>
                         <% }else { %>
                         	<%for(Notice n : list) { %>
-		                        <tr>
+		                        <tr class="clickList">
 		                            <td><%=n.getNoticeNo() %></td>
 		                            <td><%=n.getNoticeTitle() %></td>
 		                            <td><%=n.getNoticeWriter() %></td>
@@ -110,7 +110,7 @@
                 </table>
                 <script>
 			    	$(function(){
-			    		$("#list-area>tbody>tr").click(function(){
+			    		$(".clickList").click(function(){
 			    			location.href='<%=contextPath%>/detail.no?nno=' + $(this).children().eq(0).text();
 			    		})
 			    	})
@@ -118,28 +118,28 @@
                 <br><br>
                 <div class="paging-area" align="center">
                 	<% if(currentPage != 1) {%>
-                    	<button class="btn" onclick="location.href='<%=contextPath%>/list.no?cpage=<%=currentPage-1%>'">&lt;</button>
+                    	<button class="btn" onclick="location.href='<%=contextPath%>/search.no?cpage=<%=currentPage-1%>'">&lt;</button>
                     <% } %>
                     
                     <% for(int p=startPage; p<=endPage; p++) { %>
                     	<% if(p == currentPage) { %>
                     		<button class="btn" disabled><%=p %></button>
                     	<% }else { %>
-                    		<button class="btn" onclick="location.href='<%=contextPath %>/list.no?cpage=<%=p%>'"><%=p %></button>
+                    		<button class="btn" onclick="location.href='<%=contextPath %>/search.no?cpage=<%=p%>'"><%=p %></button>
                     	<% } %>
                     <% } %>
                     <% if(currentPage != maxPage) {%>
-                    <button class="btn" onclick="location.href='<%=contextPath%>/list.no?cpage=<%=currentPage+1%>'">&gt;</button>
+                    <button class="btn" onclick="location.href='<%=contextPath%>/search.no?cpage=<%=currentPage+1%>'">&gt;</button>
                     <% }%>
                 </div>
                 <br>
                 <div class="search-area" align="center">
                     <form action="search.no">
                         <select name="searchCategory">
-                            <option value="NOTICE_TITLE">제목</option>
-                            <option value="NOTICE_CONTENT">내용</option>
+                            <option value="searchTitle">제목</option>
+                            <option value="searchContent">내용</option>
                         </select>
-                        <input type="text" name="keyword">
+                        <input type="text" name="keyword" required>
                         <input type="hidden" name="cpage" value="1">
                         <button type="submit" class="btn btn-sm">검색</a>
                     </form>

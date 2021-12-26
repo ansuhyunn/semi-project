@@ -120,7 +120,7 @@
                 </div>
                 <div id="search">
                     <form action="search.fa">
-                        <input type="text" size="50" placeholder="검색어를 입력하세요" name="keyword">
+                        <input type="text" size="50" placeholder="검색어를 입력하세요" name="keyword" required>
                         <input type="hidden" name="cpage" value="1">
                         <button type="submit" class="btn btn-sm">검색</button> <br>
                         찾으시는 질문이 없다면 Q&A게시판을 이용해주세요.

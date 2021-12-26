@@ -87,7 +87,7 @@
 	                        </tr>
                         <% }else { %>
                         	<%for(Notice n : list) { %>
-		                        <tr>
+		                        <tr class="clickList">
 		                            <td><%=n.getNoticeNo() %></td>
 		                            <td><%=n.getNoticeTitle() %></td>
 		                            <td><%=n.getNoticeWriter() %></td>
@@ -100,7 +100,7 @@
                 </table>
                 <script>
 			    	$(function(){
-			    		$("#list-area>tbody>tr").click(function(){
+			    		$(".clickList").click(function(){
 			    			location.href='<%=contextPath%>/detail.no?nno=' + $(this).children().eq(0).text();
 			    		})
 			    	})
@@ -126,10 +126,10 @@
                 <div class="search-area" align="center">
                     <form action="search.no">
                         <select name="searchCategory">
-                            <option value="NOTICE_TITLE">제목</option>
-                            <option value="NOTICE_CONTENT">내용</option>
+                            <option value="searchTitle">제목</option>
+                            <option value="SearchContent">내용</option>
                         </select>
-                        <input type="text" name="keyword">
+                        <input type="text" name="keyword" required>
                         <input type="hidden" name="cpage" value="1">
                         <button type="submit" class="btn btn-sm">검색</a>
                     </form>
