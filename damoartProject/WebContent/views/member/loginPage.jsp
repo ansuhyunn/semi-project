@@ -30,8 +30,8 @@
         }
         .outer{
             margin:auto;
-            margin-top:100px;
-            height:700px;
+            margin-top:80px;
+            height:500px;
         }
         ul.tabs{
             list-style:none;
@@ -87,13 +87,8 @@
     
     <div class="outer">
         <h2 align="center" style="font-weight:bold;"> LOGIN </h2>
-        <br><br>
-        <!--탭-->
-        <ul class="tabs" align="center">
-            <li class="tab-login current" data-tab="tab-1">회원 로그인</li>
-            <li class="tab-login" data-tab="tab-2">비회원 주문조회</li>
-        </ul>
-
+        <br><br><br>
+        
         <!--회원 로그인-->
         <div id="tab-1" class="tab-loginform current">
             <form action="<%=contextPath%>/memlogin.me" method="post" class="inputlogin">
@@ -113,37 +108,17 @@
             </form>
         </div>
 
-        <!--비회원 주문조회-->
-        <div id="tab-2" class="tab-loginform">
-            <form action="" method="post" align="center">
-                        <input type="text" class="input" name="phone" placeholder="휴대전화번호" required> <br>
-                        <input type="password" class="input" name="orderNum" placeholder="주문번호" required> <br><br>
-                        <button type="submit" class="btn-mem">주문조회</button> <br><br>
-            </form>
-        </div>
+       
         <hr style="width:30%;">
         <!--하단-->
         <div id="tab-1-etc" class="tab-loginform-etc" align="center">
-            <a href="">아이디 찾기</a>
+            <a href="<%=contextPath%>/views/member/findId.jsp">아이디 찾기</a>
             <a href="">비밀번호 찾기</a>
             <a href="<%=contextPath%>/agreement.me">회원가입</a>
         </div>
 
     </div>
 
-    <script>
-        $(document).ready(function(){
-            $('ul.tabs li').click(function(){
-                var tab_id=$(this).attr('data-tab');
-
-                $('ul.tabs li').removeClass('current');
-                $('.tab-loginform').removeClass('current');
-
-                $(this).addClass('current');
-                $("#"+tab_id).addClass('current');
-            })
-        })
-    </script>
     
     <%@ include file="../common/footerbar.jsp" %>
 </body>
