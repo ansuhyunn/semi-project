@@ -4,6 +4,8 @@
     
 <% PageInfo pi = (PageInfo)request.getAttribute("pi");
    ArrayList<QnA> list = (ArrayList<QnA>)request.getAttribute("list");
+   String keyword = request.getParameter("keyword");
+   String category = request.getParameter("searchCategory");
    
    int currentPage = pi.getCurrentPage();
    int startPage = pi.getStartPage();
@@ -79,6 +81,13 @@
             <br>
             <hr>
             <br>
+            <h5>
+            	<%if(category.equals("searchTitle")) { %>
+            		제목으로
+            	<%}else { %>
+            		내용으로
+            	<%} %> "<%= keyword %>" 검색한 결과
+            </h5>
             <br>
             <div>
             <% if(loginUser != null) {%>
@@ -218,18 +227,18 @@
                 <br>
                 <div class="paging-area" align="center">
                 	<% if(currentPage != 1) {%>
-                    	<button class="btn" onclick="location.href='<%=contextPath%>/list.qa?cpage=<%=currentPage-1%>'">&lt;</button>
+                    	<button class="btn" onclick="location.href='<%=contextPath%>/search.qa?cpage=<%=currentPage-1%>'">&lt;</button>
                     <% } %>
                     
                     <% for(int p=startPage; p<=endPage; p++) { %>
                     	<% if(p == currentPage) { %>
                     		<button class="btn" disabled><%=p %></button>
                     	<% }else { %>
-                    		<button class="btn" onclick="location.href='<%=contextPath %>/list.qa?cpage=<%=p%>'"><%=p %></button>
+                    		<button class="btn" onclick="location.href='<%=contextPath %>/search.qa?cpage=<%=p%>'"><%=p %></button>
                     	<% } %>
                     <% } %>
                     <% if(currentPage != maxPage) {%>
-                    <button class="btn" onclick="location.href='<%=contextPath%>/list.qa?cpage=<%=currentPage+1%>'">&gt;</button>
+                    <button class="btn" onclick="location.href='<%=contextPath%>/search.qa?cpage=<%=currentPage+1%>'">&gt;</button>
                     <% } %>
                 </div>
                 <br>
