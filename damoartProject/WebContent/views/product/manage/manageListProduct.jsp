@@ -53,7 +53,7 @@ div{ box-sizing:border-box; }
         color:white;
     }
 	.button{
-		margin-left: 820px;
+		margin-left: 630px;
 	}
 	#insert{
         background-color:rgb(203, 185, 153);
@@ -95,15 +95,21 @@ div{ box-sizing:border-box; }
 		</div>
 		<hr class="my-2">
 		<div class="header">
-			<div class="search" width="50%">
-				<form action="">
+			<div class="searchOption">
+				<input type="checkbox" id="title"> 제목
+				<input type="checkbox" id="area"> 지역
+				<input type="checkbox" id="soldOut"> 판매여부
+			</div>
+			<div class="searchTitle" width="50%">
+				<form action="searchTitle">
 					<input type="text">
 					<a href="" class="btn btn-sm">검색</a>
 				</form>
 			</div>
 			<div class="button">
 				<a href="<%= contextPath %>/InsertForm.pro" class="btn btn-sm" id="insert">등록</a>
-				<a href="" class="btn btn-sm" id="delete" data-toggle="modal" data-target="#myModal" type="button">판매중지</a>
+				<a href="" class="btn btn-sm" id="soldout" data-toggle="modal" data-target="#myModal1" type="button">판매중지</a>
+				<a href="" class="btn btn-sm" id="delete" data-toggle="modal" data-target="#myModal2" type="button">삭제</a>
 			</div>
 		</div>
         
@@ -181,13 +187,41 @@ div{ box-sizing:border-box; }
     
     
     <!-- The Modal -->
-	<div class="modal" id="myModal">
+	<div class="modal" id="myModal1">
 	  <div class="modal-dialog modal-sm">
 	    <div class="modal-content">
 	
 	      <!-- Modal body -->
 	      <div class="modal-body" align="center">
 	        	판매중지하시겠습니까?
+	      </div>
+	
+	      <!-- Modal footer -->
+	      <div class="modal-footer">
+	      	<button id="deleteCancel" type="button" class="btn" data-dismiss="modal">취소</button>
+	      	<button id ="deleteCheck" type="button" class="btn" data-dismiss="modal" onclick="checkDelete();" name="checkDelete">확인</button>
+		  </div>	
+	    </div>
+	  </div>
+	</div>
+	<script>
+		function checkDelete(){
+            var checkArr = [];
+            $("input:checkbox[class='check']:checked").each(function(){
+                checkArr.push($(this).val());
+            })
+            console.log(checkArr);
+            location.href = "<%=contextPath%>/checkSoldOut.pro?arr=" + checkArr
+		}    
+	</script>
+	
+	<div class="modal" id="myModal2">
+	  <div class="modal-dialog modal-sm">
+	    <div class="modal-content">
+	
+	      <!-- Modal body -->
+	      <div class="modal-body" align="center">
+	        	삭제하시겠습니까?
 	      </div>
 	
 	      <!-- Modal footer -->

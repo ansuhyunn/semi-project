@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import com.kh.common.model.vo.Attachment;
 import com.kh.common.model.vo.PageInfo;
 import com.kh.product.model.dao.ManageDao;
+import com.kh.product.model.dao.ManageSearchDao;
 import com.kh.product.model.vo.Product;
 
 public class ManageService {
@@ -126,6 +127,14 @@ public class ManageService {
 		return result1 * result2 * result3;
 	}
 	
+	// 전시 판매 중지
+	public int SoldOutProduct(int pNo) {
+		Connection conn = getConnection();
+		int result = new ManageDao().SoldOutProduct(conn, pNo);
+		close(conn);
+		return result;
+	}
+	
 	
 	// 전시 삭제
 	public int deleteProduct(int pNo) {
@@ -133,6 +142,37 @@ public class ManageService {
 		int result = new ManageDao().deleteProduct(conn, pNo);
 		close(conn);
 		return result;
+	}
+	
+	
+	// 진행중 전시 검색 
+	public int selectSearchListCount(String category, String keyword) {
+		Connection conn = getConnection();
+		int listCount = 0;
+		if(category.equals("searchTitle")) {
+			listCount = new ManageSearchDao().ingTitleSearchCount(conn, keyword);
+		}else if(category.equals("searchArea")) {
+			listCount = new ManageSearchDao().ingAreaSearchCount(conn, keyword);
+		}else {
+			listCount = new ManageSearchDao().ingSoldSearchCount(conn, keyword);
+		}
+		close(conn);
+		return listCount;
+	}
+	
+	
+	public ArrayList<Product> selectIngSearchList(PageInfo pi, String category, String keyword) {
+		Connection conn = getConnection();
+		ArrayList<Product> list = new ArrayList<>();
+		if(category.equals("searchTitle")) {
+			list = new ManageSearchDao().ingTitleSearchList(conn, pi, keyword);
+		}else if(category.equals("searchArea")) {
+			list = new ManageSearchDao().ingAreaSearchList(conn, pi, keyword);
+		}else {
+			list = new ManageSearchDao().ingSoldSearchList(conn, pi, keyword);
+		}
+		close(conn);
+		return list;
 	}
 	
 }

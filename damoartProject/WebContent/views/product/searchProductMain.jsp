@@ -148,7 +148,8 @@
 			let op3="";
 			let op4="";
 		
-			$(".op1").click(function(){
+			$(".op1").unbind("click");
+			$(".op1").bind("click", function(){
 				$(this).css("backgroundColor", "rgb(182, 167, 141)");
 	            op1 = $(this).attr('value');
 	            option[0] = op1;
