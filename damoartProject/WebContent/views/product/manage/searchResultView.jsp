@@ -2,7 +2,7 @@
     pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.product.model.vo.Product, com.kh.common.model.vo.PageInfo"%>
 <% 
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
-	ArrayList<Product> ingList = (ArrayList<Product>)request.getAttribute("ingList");
+	ArrayList<Product> list = (ArrayList<Product>)request.getAttribute("list");
 	
 	int currentPage = pi.getCurrentPage(); 
 	int startPage = pi.getStartPage(); 
@@ -127,7 +127,7 @@ div{ box-sizing:border-box; }
 	            </tr>
 	        </thead>
 	        <tbody>
-	            <% for(Product p : ingList){ %>
+	            <% for(Product p : list){ %>
 		            <tr>
 		                <td><input type="checkbox"></td>
 		                <td><%= p.getpNo() %></td>

@@ -69,10 +69,8 @@ public class SearchResult extends HttpServlet {
 		request.setAttribute("searchList", searchList);
 		request.getRequestDispatcher("views/product/searchResult.jsp").forward(request, response);
 
-		System.out.println(searchList);
+//		System.out.println(searchList);
 		
-//		request.setAttribute("regionList", regionList);
-//		request.getRequestDispatcher("views/product/regionResult.jsp").forward(request, response);
 	}
 
 	/**

@@ -95,17 +95,18 @@ div{ box-sizing:border-box; }
 		</div>
 		<hr class="my-2">
 		<div class="header">
-			<div class="searchOption">
-				<input type="checkbox" id="title"> 제목
-				<input type="checkbox" id="area"> 지역
-				<input type="checkbox" id="soldOut"> 판매여부
-			</div>
-			<div class="searchTitle" width="50%">
-				<form action="searchTitle">
-					<input type="text">
-					<a href="" class="btn btn-sm">검색</a>
-				</form>
-			</div>
+			<div class="search-area" align="center">
+                <form action="search.ing">
+                    <select name="searchCategory">
+                        <option value="searchTitle">타이틀</option>
+                        <option value="searchArea">지역</option>
+                        <option value="searchSoldOut">판매여부</option>
+                    </select>
+                    <input type="text" name="keyword" required>
+                    <input type="hidden" name="cpage" value="1">
+                    <button type="submit" class="btn btn-sm">검색</button>
+                </form>
+            </div>
 			<div class="button">
 				<a href="<%= contextPath %>/InsertForm.pro" class="btn btn-sm" id="insert">등록</a>
 				<a href="" class="btn btn-sm" id="soldout" data-toggle="modal" data-target="#myModal1" type="button">판매중지</a>

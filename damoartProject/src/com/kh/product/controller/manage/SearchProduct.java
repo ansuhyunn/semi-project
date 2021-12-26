@@ -16,14 +16,14 @@ import com.kh.product.model.vo.Product;
 /**
  * Servlet implementation class SearchIngProduct
  */
-@WebServlet("/search.ing")
-public class SearchIngProduct extends HttpServlet {
+@WebServlet("/searchAll.pro")
+public class SearchProduct extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SearchIngProduct() {
+    public SearchProduct() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -46,7 +46,7 @@ public class SearchIngProduct extends HttpServlet {
 		System.out.println(category);
 		System.out.println(keyword);
 		
-		listCount = new ManageService().selectSearchIngListCount(category, keyword);
+		listCount = new ManageService().selectSearchListCount(category, keyword);
 		currentPage = Integer.parseInt(request.getParameter("cpage"));
 		pageLimit = 10;
 		boardLimit = 10;
@@ -59,15 +59,11 @@ public class SearchIngProduct extends HttpServlet {
 		}
 		
 		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
-		ArrayList<Product> ingList = new ManageService().selectIngSearchList(pi, category, keyword);
+		ArrayList<Product> list = new ManageService().selectSearchList(pi, category, keyword);
 		
 		request.setAttribute("pi", pi);
-		request.setAttribute("ingList", ingList);
-		
-//		System.out.println(pi);
-//		System.out.println(ingList);
-		
-		request.getRequestDispatcher("views/product/manage/searchIngResultView.jsp").forward(request, response);
+		request.setAttribute("list", list);
+		request.getRequestDispatcher("views/product/manage/searchResultView.jsp").forward(request, response);
 	
 	}
 

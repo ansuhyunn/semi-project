@@ -94,17 +94,17 @@ div{ box-sizing:border-box; }
 		<hr class="my-2">
 		<div class="header">
 			<div class="search-area" align="center">
-                    <form action="search.ing">
-                        <select name="searchCategory">
-                            <option value="searchTitle">타이틀</option>
-                            <option value="searchArea">지역</option>
-                            <option value="searchSoldOut">판매여부</option>
-                        </select>
-                        <input type="text" name="keyword" required>
-                        <input type="hidden" name="cpage" value="1">
-                        <button type="submit" class="btn btn-sm">검색</button>
-                    </form>
-                </div>
+                <form action="search.ing">
+                    <select name="searchCategory">
+                        <option value="searchTitle">타이틀</option>
+                        <option value="searchArea">지역</option>
+                        <option value="searchSoldOut">판매여부</option>
+                    </select>
+                    <input type="text" name="keyword" required>
+                    <input type="hidden" name="cpage" value="1">
+                    <button type="submit" class="btn btn-sm">검색</button>
+                </form>
+            </div>
 			<div class="button">
 				<a href="" class="btn btn-sm" id="delete" data-toggle="modal" data-target="#myModal" type="button">판매중지</a>
 			</div>

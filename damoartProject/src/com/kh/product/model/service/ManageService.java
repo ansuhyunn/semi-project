@@ -146,7 +146,7 @@ public class ManageService {
 	
 	
 	// 진행중 전시 검색 
-	public int selectSearchListCount(String category, String keyword) {
+	public int selectSearchIngListCount(String category, String keyword) {
 		Connection conn = getConnection();
 		int listCount = 0;
 		if(category.equals("searchTitle")) {
@@ -170,6 +170,36 @@ public class ManageService {
 			list = new ManageSearchDao().ingAreaSearchList(conn, pi, keyword);
 		}else {
 			list = new ManageSearchDao().ingSoldSearchList(conn, pi, keyword);
+		}
+		close(conn);
+		return list;
+	}
+	
+	
+	
+	public int selectSearchListCount(String category, String keyword) {
+		Connection conn = getConnection();
+		int listCount = 0;
+		if(category.equals("searchTitle")) {
+			listCount = new ManageSearchDao().titleSearchCount(conn, keyword);
+		}else if(category.equals("searchArea")) {
+			listCount = new ManageSearchDao().areaSearchCount(conn, keyword);
+		}else {
+			listCount = new ManageSearchDao().soldSearchCount(conn, keyword);
+		}
+		close(conn);
+		return listCount;
+	}
+	
+	public ArrayList<Product> selectSearchList(PageInfo pi, String category, String keyword) {
+		Connection conn = getConnection();
+		ArrayList<Product> list = new ArrayList<>();
+		if(category.equals("searchTitle")) {
+			list = new ManageSearchDao().titleSearchList(conn, pi, keyword);
+		}else if(category.equals("searchArea")) {
+			list = new ManageSearchDao().areaSearchList(conn, pi, keyword);
+		}else {
+			list = new ManageSearchDao().soldSearchList(conn, pi, keyword);
 		}
 		close(conn);
 		return list;
