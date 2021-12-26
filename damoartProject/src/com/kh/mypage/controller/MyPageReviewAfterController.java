@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.kh.common.model.vo.PageInfo;
 import com.kh.member.model.vo.Member;
+import com.kh.mypage.model.service.MemberReserveService;
 import com.kh.mypage.model.service.MemberReviewService;
 import com.kh.mypage.model.vo.Review;
 
@@ -37,8 +39,33 @@ public class MyPageReviewAfterController extends HttpServlet {
 		HttpSession session = request.getSession();
 		int memNo = ((Member)session.getAttribute("loginUser")).getMemNo();
 		
-		ArrayList<Review> alist = new MemberReviewService().reviewAfterList(memNo);
+		int listCount; 
+		int currentPage; 
+		int pageLimit; 
+		int boardLimit; 
 		
+		int maxPage; 
+		int startPage; 
+		int endPage; 
+		
+		listCount = new MemberReviewService().selectListCount(memNo);
+		currentPage = Integer.parseInt(request.getParameter("cpage"));
+		pageLimit = 5;
+		boardLimit = 5;
+		
+		maxPage = (int)Math.ceil((double)listCount / boardLimit);
+		startPage = (currentPage - 1) / pageLimit * pageLimit + 1;
+		endPage = startPage + pageLimit - 1;
+		
+		if(endPage > maxPage) {
+			endPage = maxPage;
+		}
+		
+		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
+		
+		ArrayList<Review> alist = new MemberReviewService().reviewAfterList(memNo, pi);
+		
+		request.setAttribute("pi", pi);
 		request.setAttribute("alist", alist);
 		request.getRequestDispatcher("views/mypage/memberReviewAfter.jsp").forward(request, response);
 	}

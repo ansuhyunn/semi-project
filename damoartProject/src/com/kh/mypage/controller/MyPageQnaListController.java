@@ -10,9 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.kh.common.model.vo.PageInfo;
 import com.kh.member.model.vo.Member;
 import com.kh.mypage.model.service.MemberPointService;
 import com.kh.mypage.model.service.MemberQnaListService;
+import com.kh.mypage.model.service.MemberReserveService;
 import com.kh.mypage.model.vo.Point;
 import com.kh.mypage.model.vo.Qna;
 
@@ -43,10 +45,35 @@ public class MyPageQnaListController extends HttpServlet {
 		HttpSession session = request.getSession();
 		String nickName = ((Member)session.getAttribute("loginUser")).getNickName();
 		
+		int listCount; 
+		int currentPage; 
+		int pageLimit; 
+		int boardLimit; 
+		
+		int maxPage; 
+		int startPage; 
+		int endPage; 
+		
+		listCount = new MemberQnaListService().selectListCount(nickName);
+		currentPage = Integer.parseInt(request.getParameter("cpage"));
+		pageLimit = 5;
+		boardLimit = 5;
+		
+		maxPage = (int)Math.ceil((double)listCount / boardLimit);
+		startPage = (currentPage - 1) / pageLimit * pageLimit + 1;
+		endPage = startPage + pageLimit - 1;
+		
+		if(endPage > maxPage) {
+			endPage = maxPage;
+		}
+		
+		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);	
+		
 		Qna question = new MemberQnaListService().selectQna(nickName);
 		
-		ArrayList<Qna> list = new MemberQnaListService().selectQnaList(nickName);
+		ArrayList<Qna> list = new MemberQnaListService().selectQnaList(nickName, pi);
 		
+		request.setAttribute("pi", pi);
 		session.setAttribute("question", question);
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("views/mypage/memberQnaList.jsp").forward(request, response);

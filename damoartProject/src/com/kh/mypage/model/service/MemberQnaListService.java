@@ -5,14 +5,24 @@ import java.util.ArrayList;
 
 import static com.kh.common.JDBCTemplate.*;
 
+import com.kh.common.model.vo.PageInfo;
 import com.kh.mypage.model.dao.MemberQnaListDao;
+import com.kh.mypage.model.dao.MemberReserveDao;
 import com.kh.mypage.model.vo.Qna;
 
 public class MemberQnaListService {
 
-	public ArrayList<Qna> selectQnaList(String nickName){
+	// qna 페이징바
+	public int selectListCount(String nickName) {
 		Connection conn = getConnection();
-		ArrayList<Qna> list = new MemberQnaListDao().selectQnaList(conn, nickName);
+		int listCount = new MemberQnaListDao().selectListCount(conn, nickName); 
+		close(conn);
+		return listCount; 
+	}
+	
+	public ArrayList<Qna> selectQnaList(String nickName, PageInfo pi){
+		Connection conn = getConnection();
+		ArrayList<Qna> list = new MemberQnaListDao().selectQnaList(conn, nickName, pi);
 		close(conn);
 		return list;
 	}

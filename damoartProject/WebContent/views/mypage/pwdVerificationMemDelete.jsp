@@ -154,12 +154,12 @@
         border:1px solid #ccc;
     }
     #check_btn{
-        width:100px;
+        width:90px;
         height:40px;
-        background:rgb(182, 167, 141);
-        border:none;
-        font-size:15px;
         font-weight:600;
+        background-color:rgb(151, 138, 116);
+        color:white;
+        font-size:14px;
     }
 </style>
 </head>
@@ -196,14 +196,14 @@
             <ul>  	
                 <li><h3>마이쇼핑</h3></li>
                 <div>
-                    <a href="<%= contextPath %>/reserve.mp" id="submenu">예매 내역</a> <br>
-                    <a href="<%= contextPath %>/refund.mp" id="submenu">취소/환불 내역</a> <br>
-                    <a href="<%=request.getContextPath() %>/pointList.mp" id="submenu">적립금 내역</a> <br>
+                    <a href="<%= contextPath %>/reserve.mp?cpage=1" id="submenu">예매 내역</a> <br>
+                    <a href="<%= contextPath %>/refund.mp?cpage=1" id="submenu">취소/환불 내역</a> <br>
+                    <a href="<%=request.getContextPath() %>/pointList.mp?cpage=1" id="submenu">적립금 내역</a> <br>
                 </div><br>
                 <li><h3>마이활동</h3></li>
                 <div>
-                    <a href="" id="submenu">리뷰 내역</a> <br>
-                    <a href="<%=request.getContextPath() %>/qnaList.mp" id="submenu">Q&A 내역</a> <br>
+                    <a href="<%=request.getContextPath() %>/rbefore.mp" id="submenu">리뷰 내역</a> <br>
+                    <a href="<%=request.getContextPath() %>/qnaList.mp?cpage=1" id="submenu">Q&A 내역</a> <br>
                 </div><br>
                 <li><h3>마이정보</h3></li>
                 <div>
@@ -231,7 +231,7 @@
 	                    <input type="password" name="pwd" placeholder="비밀번호 입력" required>
 	                </div><br>
 	                <div id="pwd_confirm_btn" align="center">
-	                    <button type="submit" id="check_btn" class="btn btn-sm btn-secondary" onclick="return pwdConfirm();">확인</button>
+	                    <button type="submit" id="check_btn" class="btn btn-sm" onclick="return pwdConfirm();">확인</button>
 	                </div>
 	            </form>
 	            

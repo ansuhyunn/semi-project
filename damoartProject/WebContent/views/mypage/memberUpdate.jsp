@@ -161,7 +161,12 @@
         border:1px solid #ccc;
     }
     .update_button button{
-        background:rgb(182, 167, 141);
+        width:90px;
+        height:40px;
+        font-weight:600;
+        background-color:rgb(151, 138, 116);
+        color:white;
+        font-size:14px;
     }
     .birth_day input{
         width:97px;
@@ -205,14 +210,14 @@
             <ul>  	
                 <li><h3>마이쇼핑</h3></li>
                 <div>
-                    <a href="<%=request.getContextPath() %>/views/mypage/reserveDetail.jsp" id="submenu">예매 내역</a> <br>
-                    <a href="<%=request.getContextPath() %>/views/mypage/refundDetail.jsp" id="submenu">취소/환불 내역</a> <br>
-                    <a href="<%=request.getContextPath() %>/views/mypage/pointCheck.jsp" id="submenu">적립금 내역</a> <br>
+                    <a href="<%= contextPath %>/reserve.mp?cpage=1" id="submenu">예매 내역</a> <br>
+                    <a href="<%= contextPath %>/refund.mp?cpage=1" id="submenu">취소/환불 내역</a> <br>
+                    <a href="<%= contextPath %>/pointList.mp?cpage=1" id="submenu">적립금 내역</a> <br>
                 </div><br>
                 <li><h3>마이활동</h3></li>
                 <div>
-                    <a href="" id="submenu">리뷰 내역</a> <br>
-                    <a href="<%=request.getContextPath() %>/views/mypage/memberQnaList.jsp" id="submenu">Q&A 내역</a> <br>
+                    <a href="<%=request.getContextPath() %>/rbefore.mp" id="submenu">리뷰 내역</a> <br>
+                    <a href="<%=request.getContextPath() %>/qnaList.mp?cpage=1" id="submenu">Q&A 내역</a> <br>
                 </div><br>
                 <li><h3>마이정보</h3></li>
                 <div>
@@ -350,7 +355,7 @@
                         <br><br>
             
                         <div class="update_button" align="center">
-                            <button type="submit" class="btn btn-sm btn-secondary" onclick="return updateCheck();">저장하기</button>
+                            <button type="submit" class="btn btn-sm" onclick="return updateCheck();">저장하기</button>
                         </div>
                         <script>
 	            			function updateCheck(){

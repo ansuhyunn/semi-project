@@ -194,45 +194,77 @@
 		                         WHERE MEM_NO = ?)
 	</entry>
 	
+	<!-- 작성한 리뷰 페이징바 -->
+	<entry key="selectReviewListCount">
+      SELECT
+	         COUNT(*) count
+	    FROM REVIEW
+	    JOIN MEMBER USING(MEM_NO)
+	   WHERE MEM_NO = ?
+	</entry>
+	
 	<!-- 내가 작성한 리뷰 조회 -->
 	<entry key="reviewAfterList">
-		SELECT 
-			   RV_NO
-		     , TITLE
-		     , MAIN_IMG
-		     , ORDER_OPT
-		     , TO_CHAR(ORDER_DATE, 'YYYY-MM-DD') "ORDER_DATE"
-		     , TO_CHAR((ORDER_DATE + 30), 'YYYY-MM-DD') "AVADATE"
-		     , TO_CHAR(REVIEW_DATE, 'YYYY-MM-DD') "REVIEW_DATE"
-		     , REVIEW_TITLE
-		  FROM REVIEW R
-		  JOIN ORDER_P USING (ORDER_NO)
-		  JOIN PRODUCT USING (PNO) 
-		  JOIN "ORDER" USING (ORDER_NO)
-		 WHERE R.MEM_NO = ?
-		 ORDER 
-		    BY ORDER_DATE DESC
+		SELECT *
+		  FROM (
+		       SELECT ROWNUM RNUM, RE.*
+		         FROM (
+		                SELECT 
+		                   RV_NO
+		                 , TITLE
+		                 , MAIN_IMG
+		                 , ORDER_OPT
+		                 , TO_CHAR(ORDER_DATE, 'YYYY-MM-DD') "ORDER_DATE"
+		                 , TO_CHAR((ORDER_DATE + 30), 'YYYY-MM-DD') "AVADATE"
+		                 , TO_CHAR(REVIEW_DATE, 'YYYY-MM-DD') "REVIEW_DATE"
+		                 , REVIEW_TITLE
+		                FROM REVIEW R
+		                JOIN ORDER_P USING (ORDER_NO)
+		                JOIN PRODUCT USING (PNO) 
+		                JOIN "ORDER" USING (ORDER_NO)
+		                WHERE R.MEM_NO = ?
+		                ORDER 
+		                BY ORDER_DATE DESC
+		                ) "RE"
+		      )
+		  WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	
+	<!-- qna 페이징바 -->
+	<entry key="selectQnaListCount">
+        SELECT
+	         COUNT(*) count
+	    FROM QNA
+	    JOIN MEMBER USING(MEM_NO)
+	   WHERE Q_WRITER = ?	
 	</entry>
 	
 	<!-- qna 내역 -->
 	<entry key="memberQnaList">
-		SELECT
-		       Q_NO
-		     , TITLE
-		     , Q_WRITER
-		     , SECRET
-		     , Q_TITLE
-		     , Q_CONTENT
-		     , TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') "CREATE_DATE"
-		     , Q_CATEGORY_CODE
-		     , A_CONTENT
-		     , A_CREATE_DATE
-		     , NICKNAME
-		  FROM QNA Q
-		  LEFT JOIN PRODUCT USING (PNO)
-		  LEFT JOIN MEMBER M ON (Q.MEM_NO2 = M.MEM_NO)
-		 WHERE Q_WRITER = ?
-		   AND Q.STATUS = 'Y'
+		SELECT *
+		  FROM (
+		        SELECT ROWNUM RNUM, QL.*
+		          FROM ( 
+		                SELECT
+		                       Q_NO
+		                     , TITLE
+		                     , Q_WRITER
+		                     , SECRET
+		                     , Q_TITLE
+		                     , Q_CONTENT
+		                     , TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') "CREATE_DATE"
+		                     , Q_CATEGORY_CODE
+		                     , A_CONTENT
+		                     , A_CREATE_DATE
+		                     , NICKNAME
+		                  FROM QNA Q
+		                  LEFT JOIN PRODUCT USING (PNO)
+		                  LEFT JOIN MEMBER M ON (Q.MEM_NO2 = M.MEM_NO)
+		                 WHERE Q_WRITER = ?
+		                   AND Q.STATUS = 'Y'
+		                ) "QL"
+		     )
+		 WHERE RNUM BETWEEN ? AND ?
 	</entry>
 	
 	<!-- qna 수정을 위한 번호 -->

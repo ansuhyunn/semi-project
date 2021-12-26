@@ -165,11 +165,9 @@ public class MemberReserveDao {
 				
 				String status = "";
 				switch(rset.getString("order_status")) {
-				case "W" : status = "입금대기"; break;
 				case "P" : status = "결제완료"; break;
 				case "C" : status = "예매취소"; break;
 				case "CC" : status = "환불완료"; break;
-				case "N" : status = "취소거절"; break;
 				case "O" : status = "예매확정"; break;
 				default : break;
 				}
@@ -328,11 +326,9 @@ public class MemberReserveDao {
 				
 				String status = "";
 				switch(rset.getString("order_status")) {
-				case "W" : status = "입금대기"; break;
 				case "P" : status = "결제완료"; break;
 				case "C" : status = "예매취소"; break;
 				case "CC" : status = "환불완료"; break;
-				case "N" : status = "취소거절"; break;
 				case "O" : status = "예매확정"; break;
 				default : break;
 				}

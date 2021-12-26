@@ -206,7 +206,7 @@
                 <li><h3>마이활동</h3></li>
                 <div>
                     <a href="<%= contextPath %>/rbefore.mp" id="submenu">리뷰 내역</a> <br>
-                    <a href="<%= contextPath %>/qnaList.mp" id="submenu">Q&A 내역</a> <br>
+                    <a href="<%= contextPath %>/qnaList.mp?cpage=1" id="submenu">Q&A 내역</a> <br>
                 </div><br>
                 <li><h3>마이정보</h3></li>
                 <div>
