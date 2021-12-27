@@ -98,5 +98,18 @@
 		   AND EMAIL = ?
 	</entry>
 	
+	
+	<entry key="pointList">
+		SELECT 
+		       MEM_NO
+		     , POI_DATE
+		     , POI_POINT
+		     , POI_CONTENT
+		  FROM POINT
+		  JOIN MEMBER USING (MEM_NO)
+		 WHERE MEM_NO = ?
+		 ORDER BY 2 DESC
+	</entry>
+	
 
 </properties>

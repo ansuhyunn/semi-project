@@ -13,6 +13,7 @@ import java.util.Properties;
 
 import com.kh.common.model.vo.PageInfo;
 import com.kh.member.model.vo.Member;
+import com.kh.member.model.vo.Point;
 
 public class MemberDao {
 	
@@ -228,6 +229,37 @@ public class MemberDao {
 		
 		return m;
 		
+	}
+	
+	
+	public ArrayList<Point> pointList(Connection conn, int memNo){
+		
+		ArrayList<Point> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("pointList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql); // 미완성된 sql문
+			pstmt.setInt(1, memNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Point(rset.getInt("mem_no"),
+									rset.getDate("poi_date"),
+									rset.getInt("poi_point"),
+									rset.getString("poi_content")));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
 		
 	}
 

@@ -22,6 +22,14 @@ public class Point {
 		this.poiContent = poiContent;
 		this.orderNo = orderNo;
 	}
+	
+	public Point(int memNo, Date poiDate, int poiPoint, String poiContent) {
+		super();
+		this.memNo = memNo;
+		this.poiDate = poiDate;
+		this.poiPoint = poiPoint;
+		this.poiContent = poiContent;
+	}
 
 	public int getPoiNo() {
 		return poiNo;

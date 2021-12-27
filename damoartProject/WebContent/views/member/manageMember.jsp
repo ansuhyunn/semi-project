@@ -135,7 +135,8 @@
 		                        <td id="point"><%= m.getPoiPoint() %>
 		                        </td>  
 		                        <td>  
-		                            <button class="btn btn-sm btn-warning point" id="select">상세</button>
+		                            <a class="ls-modal btn btn-outline-primary" data-toggle="modal"
+										href="point.mem?mnum=<%= m.getMemNo() %>" data-target="#modal">보기</a>
 		                            <input type="button" class="btn btn-sm btn-warning point" value="변경">
 		                        </td>
 		                    </tr>
@@ -167,5 +168,40 @@
   			 			
         </div>
     </div>
+    
+    <div class="modal fade" id="modal" >
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+		
+		      <!-- Modal Header -->
+		      <div class="modal-header">
+		        <h4 class="modal-title">적립금 내역</h4>
+		        <button type="button" class="close" data-dismiss="modal">×</button>
+		      </div>
+		
+		      <!-- Modal body -->
+		      <div class="modal-body">
+		      </div>
+		
+		      <!-- Modal footer -->
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">확인</button>
+		      </div>
+		
+		    </div>
+	  	</div>
+	</div>
+	
+	<script type="text/javascript">
+		$(".ls-modal").on('click', function(e){
+			e.preventDefault();
+			$('#modal').modal('show').find('.modal-body').load($(this).attr('href'));
+		});
+	
+	</script>
+	
+	
+    
+    
 </body>
 </html>

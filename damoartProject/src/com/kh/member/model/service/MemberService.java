@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import com.kh.common.model.vo.PageInfo;
 import com.kh.member.model.dao.MemberDao;
 import com.kh.member.model.vo.Member;
+import com.kh.member.model.vo.Point;
 
 public class MemberService {
 	
@@ -72,6 +73,15 @@ public class MemberService {
 		close(conn);
 
 		return m;
+	}
+	
+	public ArrayList<Point> pointList(int memNo){
+		Connection conn = getConnection();
+		ArrayList<Point> list = new MemberDao().pointList(conn, memNo);
+		
+		close(conn);
+		
+		return list;
 	}
 	
 }
