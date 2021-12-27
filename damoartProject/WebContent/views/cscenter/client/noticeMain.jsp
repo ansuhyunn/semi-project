@@ -56,6 +56,10 @@
         color:rgb(64, 64, 64);
     }
 
+    .clickList{
+        cursor:pointer;
+    }
+
 
 </style>
 </head>
