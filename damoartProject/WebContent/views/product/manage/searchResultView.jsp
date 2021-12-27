@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.product.model.vo.Product, com.kh.common.model.vo.PageInfo"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.product.model.vo.Product, com.kh.common.model.vo.PageInfo, com.kh.product.model.vo.ManageSearch"%>
 <% 
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	ArrayList<Product> list = (ArrayList<Product>)request.getAttribute("list");
@@ -8,6 +8,7 @@
 	int startPage = pi.getStartPage(); 
 	int endPage = pi.getEndPage();
 	int maxPage = pi.getMaxPage();
+	
 %>
     
 <!DOCTYPE html>
@@ -51,9 +52,9 @@ div{ box-sizing:border-box; }
         color:white;
     }
 	.button{
-		margin-left: 850px;
+		margin-left: 1000px;
 	}
-	#enroll{
+	#soldOut{
         background-color:rgb(203, 185, 153);
         color:rgb(64, 64, 64);
         font-weight:600;
@@ -88,32 +89,21 @@ div{ box-sizing:border-box; }
     <div class="wrapper">
 
 		<div class="name">
-			<h4>진행중 상품</h4>
+			<h4>전체 상품 검색 결과</h4>
 			<br>
 		</div>
 		<hr class="my-2">
 		<div class="header">
-			<div class="search-area" align="center">
-                    <form action="search.ing">
-                        <select name="searchCategory">
-                            <option value="searchTitle">타이틀</option>
-                            <option value="searchArea">지역</option>
-                            <option value="searchSoldOut">판매여부</option>
-                        </select>
-                        <input type="text" name="keyword" required>
-                        <input type="hidden" name="cpage" value="1">
-                        <button type="submit" class="btn btn-sm">검색</button>
-                    </form>
-                </div>
 			<div class="button">
-				<a href="<%= contextPath %>/delete.pro" class="btn btn-sm" id="delete">선택삭제</a>
+				<a href="" class="btn btn-sm" id="soldOut" data-toggle="modal" data-target="#myModal1" type="button">판매중지</a>
+				<a href="" class="btn btn-sm" id="delete" data-toggle="modal" data-target="#myModal2" type="button">선택삭제</a>
 			</div>
 		</div>
 
         <table align="center" id="list-area" class="table table-bordered">
 			<thead>
-	            <tr style="background-color: lightgrey;">
-	                <th>&nbsp;&nbsp;&nbsp;</th>
+	            <tr>
+	                <th><input type="checkbox" id="allCheck"></th>
 	                <th>상품번호</th>
 	                <th>등록날짜</th>
 	                <th>Title</th>
@@ -121,7 +111,7 @@ div{ box-sizing:border-box; }
 	                <th>장소</th>
 	                <th>시간</th>
 	                <th>관람연령</th>
-	                <th>시작일</th>
+	                <th>시작일</th> 
 	                <th>종료일</th>
 	                <th>품절여부</th>
 	            </tr>
@@ -129,10 +119,10 @@ div{ box-sizing:border-box; }
 	        <tbody>
 	            <% for(Product p : list){ %>
 		            <tr>
-		                <td><input type="checkbox"></td>
+		                <th><input type="checkbox" class="check" name="pno" value="<%= p.getpNo() %>"></th>
 		                <td><%= p.getpNo() %></td>
 		                <td><%= p.getEnrollDate() %></td>
-		                <td><%= p.getTitle() %></td>
+		                <td class="click"><%= p.getTitle() %></td>
 		                <td><%= p.getRegion() %></td>
 		                <td><%= p.getArea() %></td>
 		                <td><%= p.getTime() %></td>
@@ -148,7 +138,7 @@ div{ box-sizing:border-box; }
         <div class="paging-area" align="center">
         
 			<% if(currentPage != 1){ %>
-            	<button class="btn" onclick="location.href='<%=contextPath%>/manageIng.man?cpage=<%=currentPage-1%>';">&lt;</button>
+            	<button class="btn" onclick="location.href='<%=contextPath%>/searchAll.pro?cpage=<%=currentPage-1%>';">&lt;</button>
             <% } %>
             
             <!-- 페이지 p가 startPage부터 endPage까지 1씩 증가 --> 
@@ -156,26 +146,88 @@ div{ box-sizing:border-box; }
             	<% if(currentPage == p) {%>
             		<button class="btn" disabled><%= p %></button>		
 	            <% }else { %>
-	            	<button class="btn" onclick="location.href='<%=contextPath%>/manageIng.man?cpage=<%= p %>';"><%= p %></button>
+	            	<button class="btn" onclick="location.href='<%=contextPath%>/searchAll.pro?cpage=<%= p %>';"><%= p %></button>
 	            <% } %>
             <% } %>
             
             <% if(currentPage != maxPage){%>
-            	<button class="btn" onclick="location.href='<%=contextPath%>/manageIng.man?cpage=<%=currentPage+1%>';">&gt;</button>
+            	<button class="btn" onclick="location.href='<%=contextPath%>/searchAll.pro?cpage=<%=currentPage+1%>';">&gt;</button>
 			<% } %>
 			
         </div>
         
         <script>
 	    	$(function(){
-	    		$("#list-area>tbody>tr").click(function(){
-					console.log($(this).children().eq(0).text())
-	    			location.href='<%=contextPath %>/manageDetail.pro?pno=' + $(this).children().eq(1).text();
+	    		$(".click").click(function(){
+					console.log($(this).prev().prev().text())
+	    			location.href='<%=contextPath %>/manageDetail.pro?pno=' + $(this).prev().prev().text();
 	    		})
+	    		
+	    		$("#allCheck").click(function(){
+                	$(".check").prop("checked", $(this).prop("checked"));
+                })
 	    	})
 	    </script>
     
     </div>
+    
+    
+    <!-- The Modal -->
+	<div class="modal" id="myModal1">
+	  <div class="modal-dialog modal-sm">
+	    <div class="modal-content">
+	
+	      <!-- Modal body -->
+	      <div class="modal-body" align="center">
+	        	판매중지하시겠습니까?
+	      </div>
+	
+	      <!-- Modal footer -->
+	      <div class="modal-footer">
+	      	<button id="deleteCancel" type="button" class="btn" data-dismiss="modal">취소</button>
+	      	<button id ="deleteCheck" type="button" class="btn" data-dismiss="modal" onclick="checkSoldOut();" name="checkSoldOute">확인</button>
+		  </div>	
+	    </div>
+	  </div>
+	</div>
+	<script>
+		function checkSoldOut(){
+            var checkArr = [];
+            $("input:checkbox[class='check']:checked").each(function(){
+                checkArr.push($(this).val());
+            })
+            console.log(checkArr);
+            location.href = "<%=contextPath%>/checkSoldOut.pro?arr=" + checkArr
+		}    
+	</script>
+
+	<div class="modal" id="myModal2">
+	  <div class="modal-dialog modal-sm">
+	    <div class="modal-content">
+	
+	      <!-- Modal body -->
+	      <div class="modal-body" align="center">
+	        	삭제하시겠습니까?
+	      </div>
+	
+	      <!-- Modal footer -->
+	      <div class="modal-footer">
+	      	<button id="deleteCancel" type="button" class="btn" data-dismiss="modal">취소</button>
+	      	<button id ="deleteCheck" type="button" class="btn" data-dismiss="modal" onclick="checkDelete();" name="checkDelete">확인</button>
+		  </div>	
+	    </div>
+	  </div>
+	</div>
+	<script>
+		function checkDelete(){
+            var checkArr = [];
+            $("input:checkbox[class='check']:checked").each(function(){
+                checkArr.push($(this).val());
+            })
+            console.log(checkArr);
+            location.href = "<%=contextPath%>/checkDelete.pro?arr=" + checkArr
+		}    
+	</script>
     
 
 </body>

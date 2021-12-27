@@ -11,21 +11,19 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.common.model.vo.PageInfo;
 import com.kh.product.model.service.ManageService;
-import com.kh.product.model.vo.ManageSearch;
 import com.kh.product.model.vo.Product;
-import com.kh.product.model.vo.Search;
 
 /**
  * Servlet implementation class SearchIngProduct
  */
-@WebServlet("/searchAll.pro")
-public class SearchProduct extends HttpServlet {
+@WebServlet("/search.Pre")
+public class SearchPreProduct extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SearchProduct() {
+    public SearchPreProduct() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -48,7 +46,7 @@ public class SearchProduct extends HttpServlet {
 		System.out.println(category);
 		System.out.println(keyword);
 		
-		listCount = new ManageService().selectSearchListCount(category, keyword);
+		listCount = new ManageService().selectSearchIngListCount(category, keyword);
 		currentPage = Integer.parseInt(request.getParameter("cpage"));
 		pageLimit = 10;
 		boardLimit = 10;
@@ -60,16 +58,16 @@ public class SearchProduct extends HttpServlet {
 			endPage = maxPage;
 		}
 		
-		ManageSearch ch = new ManageSearch(category, keyword);
 		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
-		ArrayList<Product> list = new ManageService().selectSearchList(pi, category, keyword);
-		System.out.println(ch);
+		ArrayList<Product> ingList = new ManageService().selectIngSearchList(pi, category, keyword);
 		
 		request.setAttribute("pi", pi);
-		request.setAttribute("list", list);
-		request.setAttribute("category", category);
-		request.setAttribute("keyword", keyword);
-		request.getRequestDispatcher("views/product/manage/searchResultView.jsp").forward(request, response);
+		request.setAttribute("ingList", ingList);
+		
+//		System.out.println(pi);
+//		System.out.println(ingList);
+		
+		request.getRequestDispatcher("views/product/manage/searchIngResultView.jsp").forward(request, response);
 	
 	}
 

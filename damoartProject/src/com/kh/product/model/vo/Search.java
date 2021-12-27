@@ -16,6 +16,8 @@ public class Search {
 		this.searchPrice = searchPrice;
 		this.searchAge = searchAge;
 	}
+	
+	
 
 	public String getSearchDate() {
 		return searchDate;

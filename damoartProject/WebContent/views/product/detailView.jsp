@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.product.model.vo.Product" %>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.product.model.vo.Product, com.kh.order.model.vo.Cart" %>
 <% 
 	Product pro = (Product)request.getAttribute("p");
 	ArrayList<Product> detailList = (ArrayList<Product>)request.getAttribute("detailList");
 	ArrayList<Product> starList = (ArrayList<Product>)request.getAttribute("starlist");
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -171,7 +172,7 @@
 					</tr>
 				</table>
 				<hr class="my-2">
-				
+					
 					<table id="pay">
 						<tr>
 							<th >옵션선택</th>
@@ -187,14 +188,12 @@
 							<td><button class="btn btn-secondary" id="insertCart" onclick="insertCart();">선택</button></td>
 						</tr>
 					</table>
-					
-			
+				
 				<table id="result">
 					<tr>
-						<td id="order" colspan="4" style="background-color: whitesmoke;"></td>
-					</tr>
-					<tr>
-						<th id="total" colspan="4" style="text-align: right; font-size: 30px;"></td>
+						<th id="total" colspan="4" style="text-align: right; font-size: 30px;">
+			               
+						</th>
 					</tr>
 				</table>
 			</div>
@@ -248,6 +247,7 @@
 			
 			
 			function insertCart(){
+				
 				$.ajax({
 					url:"in.ca",
 					data:{
@@ -259,15 +259,12 @@
  		             success:function(result){
  		                console.log("ajax통신 성공: " + result);
  		                alert("성공적으로 장바구니에 담겼습니다.");
- 						}, error : function(){
+ 		                
+ 					 }, error : function(){
  		               console.log("ajax통신 실패"); 
- 		               }
+ 		             }
 				})
 			}
-			
-			
-			
-			
 		</script>
 		<% } %>
 		

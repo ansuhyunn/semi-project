@@ -51,14 +51,9 @@
         color:white;
     }
 	.button{
-		margin-left: 850px;
+		margin-left: 750px;
 	}
-	#enroll{
-        background-color:rgb(203, 185, 153);
-        color:rgb(64, 64, 64);
-        font-weight:600;
-    }
-    #delete{
+    #delete, #search{
         background-color:rgb(151, 138, 116);
         color:white;
     }
@@ -92,14 +87,20 @@
 		</div>
 		<hr class="my-2">
 		<div class="header">
-			<div class="search" width="50%">
-				<form action="">
-					<input type="text">
-					<a href="" class="btn btn-sm">검색</a>
-				</form>
-			</div>
+			<div class="search-area" align="center">
+                <form action="searchAll.pro">
+                    <select name="searchCategory">
+                        <option value="searchTitle">타이틀</option>
+                        <option value="searchArea">지역</option>
+                        <option value="searchSoldOut">품절여부</option>
+                    </select>
+                    <input type="text" name="keyword" required>
+                    <input type="hidden" name="cpage" value="1">
+                    <button type="submit" class="btn btn-sm" id="search">검색</button>
+                </form>
+            </div>
 			<div class="button">
-				<a href="<%= contextPath %>/delete.pro" class="btn btn-sm" id="delete">삭제</a>
+				<a href="" class="btn btn-sm" id="delete" data-toggle="modal" data-target="#myModal" type="button">판매중지</a>
 			</div>
 		</div>
 
@@ -173,6 +174,36 @@
 	    </script>
         
     </div>
+    
+    
+    <!-- The Modal -->
+	<div class="modal" id="myModal">
+	  <div class="modal-dialog modal-sm">
+	    <div class="modal-content">
+	
+	      <!-- Modal body -->
+	      <div class="modal-body" align="center">
+	        	판매중지하시겠습니까?
+	      </div>
+	
+	      <!-- Modal footer -->
+	      <div class="modal-footer">
+	      	<button id="deleteCancel" type="button" class="btn" data-dismiss="modal">취소</button>
+	      	<button id ="deleteCheck" type="button" class="btn" data-dismiss="modal" onclick="checkSoldOut();" name="checkDelete">확인</button>
+		  </div>	
+	    </div>
+	  </div>
+	</div>
+	<script>
+		function checkSoldOut(){
+            var checkArr = [];
+            $("input:checkbox[class='check']:checked").each(function(){
+                checkArr.push($(this).val());
+            })
+            console.log(checkArr);
+            location.href = "<%=contextPath%>/checkSoldOut.pro?arr=" + checkArr
+		}    
+	</script>
     
 
 </body>

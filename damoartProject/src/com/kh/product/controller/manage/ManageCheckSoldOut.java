@@ -41,6 +41,7 @@ public class ManageCheckSoldOut extends HttpServlet {
 			result *= new ManageService().SoldOutProduct(Integer.parseInt(pno));
 	
 		}
+		System.out.println(result);
 		if(result > 0) {
 			request.getSession().setAttribute("alertMsg", "판매 중지 되었습니다.");
 			response.sendRedirect(request.getContextPath() + "/managelist.man?cpage=1");

@@ -184,9 +184,9 @@ public class ManageService {
 			listCount = new ManageSearchDao().titleSearchCount(conn, keyword);
 		}else if(category.equals("searchArea")) {
 			listCount = new ManageSearchDao().areaSearchCount(conn, keyword);
-		}else {
+		}else if(category.equals("searchSoldOut")){
 			listCount = new ManageSearchDao().soldSearchCount(conn, keyword);
-		}
+		}else {}
 		close(conn);
 		return listCount;
 	}
@@ -198,11 +198,42 @@ public class ManageService {
 			list = new ManageSearchDao().titleSearchList(conn, pi, keyword);
 		}else if(category.equals("searchArea")) {
 			list = new ManageSearchDao().areaSearchList(conn, pi, keyword);
-		}else {
+		}else if(category.equals("searchSoldOut")) {
 			list = new ManageSearchDao().soldSearchList(conn, pi, keyword);
-		}
+		}else {}
 		close(conn);
 		return list;
 	}
+	
+	
+	
+	public int selectSearchPreListCount(String category, String keyword) {
+		Connection conn = getConnection();
+		int listCount = 0;
+		if(category.equals("searchTitle")) {
+			listCount = new ManageSearchDao().PreTitleSearchCount(conn, keyword);
+		}else if(category.equals("searchArea")) {
+			listCount = new ManageSearchDao().PreAreaSearchCount(conn, keyword);
+		}else if(category.equals("searchSoldOut")){
+			listCount = new ManageSearchDao().PreSoldSearchCount(conn, keyword);
+		}else {}
+		close(conn);
+		return listCount;
+	}
+	
+	public ArrayList<Product> selectPreSearchList(PageInfo pi, String category, String keyword) {
+		Connection conn = getConnection();
+		ArrayList<Product> list = new ArrayList<>();
+		if(category.equals("searchTitle")) {
+			list = new ManageSearchDao().PreTitleSearchList(conn, pi, keyword);
+		}else if(category.equals("searchArea")) {
+			list = new ManageSearchDao().PreAreaSearchList(conn, pi, keyword);
+		}else if(category.equals("searchSoldOut")) {
+			list = new ManageSearchDao().PreSoldSearchList(conn, pi, keyword);
+		}else {}
+		close(conn);
+		return list;
+	}
+	
 	
 }
