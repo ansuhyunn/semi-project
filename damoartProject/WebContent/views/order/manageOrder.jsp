@@ -2,6 +2,8 @@
     pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.order.model.vo.ManageOrder"%>
 <%
 ArrayList<ManageOrder> list = (ArrayList<ManageOrder>)request.getAttribute("list");
+int totalOrder = (int)request.getAttribute("totalOrder");
+int totalPay = (int)request.getAttribute("totalPay");
 %>
 <!DOCTYPE html>
 <html>
@@ -134,17 +136,14 @@ ArrayList<ManageOrder> list = (ArrayList<ManageOrder>)request.getAttribute("list
     </div>
         <br><br><br>
         <!--주문 현황-->
-        
         <div class="order_chart" align="center">
            <div class="box new_order">
-                신규주문&nbsp;&nbsp;
+                신규주문&nbsp;&nbsp; <%= totalOrder %>
            </div>
            <div class="box com_order">
-               결제완료&nbsp;&nbsp;
+               결제완료&nbsp;&nbsp; <%= totalPay %>
            </div>
-           <div class="box wait_order">
-                입금대기&nbsp;&nbsp;
-           </div>
+
         </div>
         
         <!--조회기간 날짜 선택-->
@@ -160,7 +159,7 @@ ArrayList<ManageOrder> list = (ArrayList<ManageOrder>)request.getAttribute("list
            
         <!--판매 리스트-->
         <div class="order_box">
-            <button class="btn" id="cancel"><b>판매취소</b></button>
+            <a href="" class="btn" id="cancel" data-toggle="modal" data-target="#myModal1" type="button"><b>판매취소</b></a>
             <div class="search">
                 <input type="text" placeholder="구매자 ID, 이름, 주문번호">
                 <button class="btn" id="search"><b>검색</b></button>
@@ -171,7 +170,8 @@ ArrayList<ManageOrder> list = (ArrayList<ManageOrder>)request.getAttribute("list
                 <table class="chart_order">
                 <thead>
                         <tr align="center" class="table_title">
-                        <th width="150" colspan="2">주문번호 / 시각</th>
+                        <th width="10"><input type="checkbox" id="allCheck"></th>
+                        <th width="150">주문번호 / 시각</th>
                         <th width="220" colspan="2">주문상품</th>
                         <th width="80">상품금액</th>
                         <th width="60">수량</th>
@@ -184,16 +184,10 @@ ArrayList<ManageOrder> list = (ArrayList<ManageOrder>)request.getAttribute("list
                 <% System.out.println("data_size=>" + list.size()); %>
      
                 <tbody id="table_content">
-					<% if( list.isEmpty()){  %>
-					    <tr>
-						<td  colspan="8" style="height: 200px;" align="center">
-						조회된 데이터가 없습니다.
-						</td>  
-				  		</tr>
-					<% } %>
-		       			<% for(ManageOrder m : list) { %>
-                 		<tr align="center">
-                        <td ><input type="checkbox" id="checkbox"></td>
+       			 <% for(ManageOrder m : list) { %>
+       			 <% System.out.println(m.toString()); %>
+                  <tr align="center">
+                        <td ><input type="checkbox" class="deleteCheck" name="checkNo" value="<%=m.getOrderNo()%>"></td>
                         <td> <%= m.getOrderName() %><br><%= m.getOrderNo() %><br><%= m.getOrderDate() %></td>
                         <td width="60"><img src="<%=request.getContextPath()%>/resources/images/product/1M.gif" width="40px" height="40px"></td>
                         <td><%= m.getpNo() %><br><%= m.getTitle() %></td>
@@ -211,10 +205,7 @@ ArrayList<ManageOrder> list = (ArrayList<ManageOrder>)request.getAttribute("list
                          	  취소거절
                          	  <% } else { %>
                          	  예매확정 <%} %></td>
-                        <td>총 결제금액 &nbsp; <%=m.getPayPrice()%>￦ <br>
-                         	   결제 방법 &nbsp; <% if (m.getPayOpt().equals("C")) {%>
-                         	   				카드 <% } else { %>
-                         	   				무통장입금 <% } %>
+                        <td>총 결제금액 &nbsp; <%=m.getPayPrice()%>￦ 
                          	  
                         </td>
                         </tr>
@@ -225,7 +216,11 @@ ArrayList<ManageOrder> list = (ArrayList<ManageOrder>)request.getAttribute("list
             </div>    
             <script>
 			(function(){
-				
+
+        		$("#allCheck").click(function(){
+        			$(".deleteCheck").prop("checked", $(this).prop("checked"));
+        		})
+        		
 				$("#today").click(function(){
 					console.log("11111");
 		 			var startDt = new Date();
@@ -392,14 +387,6 @@ ArrayList<ManageOrder> list = (ArrayList<ManageOrder>)request.getAttribute("list
 	    			})
 		        })
 		        
-		        $("#cancel").click(function(){
-			        $("[id=checkbox]:checked").each(function(){
-			        	$(this).val();
-			        	console.log("되고있나?");
-			        	});	        	
-		        })
-		        	 
-		        
 			})();
 			
 	    </script>
@@ -408,10 +395,41 @@ ArrayList<ManageOrder> list = (ArrayList<ManageOrder>)request.getAttribute("list
 
 
         </div>
+        
+       
         <br><br><br><br><br><br>
 <%@ include file="../common/footerbar.jsp" %>
 </div>
 
+ 
+	<!-- The Modal -->
+	<div class="modal" id="myModal1">
+	  <div class="modal-dialog modal-sm">
+	    <div class="modal-content">
+	
+	      <!-- Modal body -->
+	      <div class="modal-body" align="center">
+	        	판매 취소하시겠습니까?
+	      </div>
+	
+	      <!-- Modal footer -->
+	      <div class="modal-footer">
+	      	<button id="deleteCancel" type="button" class="btn" data-dismiss="modal">취소</button>
+	      	<button id ="deleteCheck" type="button" class="btn" data-dismiss="modal" onclick="checkCancel();" name="checkCancel">확인</button>
+		  </div>	
+	    </div>
+	  </div>
+	</div>
+	<script>
+		function checkCancel(){
+            var checkArr = [];
+            $("input:checkbox[class='check']:checked").each(function(){
+                checkArr.push($(this).val());
+            })
+            console.log("checkArr" + checkArr);
+            location.href = "/damoart/checkCancel.mg?arr=" + checkArr
+		}    
+	</script>
 
 
 

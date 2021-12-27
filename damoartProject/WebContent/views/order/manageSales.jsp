@@ -2,6 +2,10 @@
     pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.order.model.vo.ManageSales"%>
 <%
 ArrayList<ManageSales> list = (ArrayList<ManageSales>) request.getAttribute("list");
+int totalOrder = (int)request.getAttribute("totalOrder");
+int totalPay = (int)request.getAttribute("totalPay");
+int totalPrice = (int)request.getAttribute("totalPrice");
+int number = (int)request.getAttribute("number");
 %>
 <!DOCTYPE html>
 <html>
@@ -29,7 +33,22 @@ ArrayList<ManageSales> list = (ArrayList<ManageSales>) request.getAttribute("lis
     margin: auto;
     margin-top: 220px;
     }
-    
+    .order_chart{    
+        margin:auto;
+        width:800px; 
+        height:110px;
+        border-radius:10px;
+        background-color: rgb(203, 185, 153);
+    }
+
+    .box{
+        display: inline-block;
+        height: 110px;
+        width: 180px;
+        padding-top: 3%;
+        font-size: 20px;
+        font-weight: 800;
+    }
     #title{
         font-size: 25px;
     }
@@ -103,7 +122,26 @@ ArrayList<ManageSales> list = (ArrayList<ManageSales>) request.getAttribute("lis
         <div class="manage_head" align="center">
             <p>현황 관리<b id="title"> > 판매 현황</b></p>
         </div>
-    
+
+        <div class="order_chart" align="center">
+            <div class="box new_order">
+                 주문수
+                 <br><%= totalOrder %>
+            </div>
+            <div class="box com_order">
+                취소수
+                <br>@@@해야됨
+            </div>
+            <div class="box com_order">
+                주문액
+                <br><%= totalPay %> ￦
+            </div>
+            <div class="box com_order">
+                매출액
+                <br><%= totalPrice %> ￦
+            </div>
+         </div>
+
         <!-- 조회 기간 -->
             <div class="date">
                 <div class="date01">
@@ -119,57 +157,11 @@ ArrayList<ManageSales> list = (ArrayList<ManageSales>) request.getAttribute("lis
             </div>
 
 
+
+
     <!-- 조회 표 -->
     <div class="sales" align="center">
-        <table id="sales_table" style="width: 700px; background-color: rgba(179, 165, 141, 0.829);">
-            <tr align="center">
-                <th width="130" style="padding: 7px;">일자</th>
-                <th width="130">주문수</th>
-                <th width="130">취소수</th>
-                <th width="155">주문액</th>
-                <th width="155">매출액</th>
-            </tr>
-            <% for(ManageSales m : list) {  %>
-               <tr align="center">
-                <td>2021-10</td>
-                <td><%= m.getOrderCount() %></td>
-                <td><%= m.getsoldout() %></td>
-                <td><%= m.getTotalPrice() %> ￦</td>
-                <td><%= m.getFinalPrice() %> ￦</td>
-            </tr>
-            <% } %>
-            <tr align="center">
-                <td>687</td>
-                <td>52</td>
-                <td>13</td>
-                <td>620.000 ￦</td>
-                <td>580.000 ￦</td>
-            </tr>  
-            
-                 <tr align="center">
-                <td>2021-10</td>
-                <td>75</td>
-                <td>21</td>
-                <td>1.230.000 ￦</td>
-                <td>1.230.000 ￦</td>
-            </tr>
-            
-       
-            <tr align="center">
-                <td>2021-09</td>
-                <td>47</td>
-                <td>3</td>
-                <td>1.100.000 ￦</td>
-                <td>980.000 ￦</td>
-            </tr>
-            <tr align="center">
-                <td>2021-08</td>
-                <td>34</td>
-                <td>6</td>
-                <td>450.000 ￦</td>
-                <td>390.000 ￦</td>
-            </tr>
-        </table>
+    
                 <!--주문 상품 표-->
                 <% System.out.println("data_size=>" + list.size()); %>
 
@@ -185,7 +177,7 @@ ArrayList<ManageSales> list = (ArrayList<ManageSales>) request.getAttribute("lis
                          <tbody id="tbody">
 						<% for(ManageSales m : list) {  %>
                         <tr align="center" style="height:90px">
-                            <td width="70">i</td>
+                            <td width="70"><%= number %></td>
                             <td width="130">
                                 <img src="" width="50" height="50">
                             </td>

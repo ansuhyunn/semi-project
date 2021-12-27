@@ -24,7 +24,7 @@ ORDER BY ORDER_DATE DESC
 </entry>
 
 
-<entry key="updateOrderCancelManage">
+<entry key="updateOrderCancel">
 UPDATE
     ORDER_P
 SET ORDER_STATUS = 'CC'

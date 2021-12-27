@@ -16,7 +16,6 @@
     
     #checkboxes{
         margin-bottom: 15px;
-        margin: auto;
     }
 
     .terms{
@@ -24,6 +23,7 @@
         border: 1px solid black;
         padding: 15px;
         margin: 10px;
+        
     }
 
     .term{

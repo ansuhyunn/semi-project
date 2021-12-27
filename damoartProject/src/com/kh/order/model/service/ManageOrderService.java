@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Date;
 
+import com.kh.cscenter.model.dao.GuideDao;
 import com.kh.order.model.dao.ManageOrderDao;
 import com.kh.order.model.vo.ManageOrder;
 import com.kh.order.model.vo.Order;
@@ -31,7 +32,6 @@ public class ManageOrderService {
 
 	}
 	
-	
 	public ManageOrder selectOrderManageO(){
 		Connection conn = getConnection();
 		ManageOrder o = manageOrder.selectOrderManageO(conn);
@@ -53,6 +53,19 @@ public class ManageOrderService {
 		
 		return result;
 		
+	}
+
+
+	public int deleteOrder(int orderNo) {
+		Connection conn = getConnection();
+		int result = new ManageOrderDao().deleteOrder(conn, orderNo);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
 	}
 	
 }
