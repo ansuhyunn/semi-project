@@ -569,5 +569,26 @@ private Properties prop = new Properties();
 		}
 		return list;
 	}
+	
+	public int nonAnswerCount(Connection conn) {
+		int nonAnswerCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("nonAnswerCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				nonAnswerCount = rset.getInt("count");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return nonAnswerCount;
+	}
 
 }

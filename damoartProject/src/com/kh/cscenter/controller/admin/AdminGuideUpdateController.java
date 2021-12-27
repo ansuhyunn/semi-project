@@ -40,7 +40,7 @@ public class AdminGuideUpdateController extends HttpServlet {
 		if(ServletFileUpload.isMultipartContent(request)) {
 			int maxSize = 10*1024*1024;
 			
-			String savePath = request.getSession().getServletContext().getRealPath("/resources/board_upfiles/notice/");
+			String savePath = request.getSession().getServletContext().getRealPath("/resources/board_upfiles/guide/");
 			
 			MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "UTF-8", new MyFileRenamePolicy());
 			

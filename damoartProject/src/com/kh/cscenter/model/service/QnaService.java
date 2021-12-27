@@ -167,5 +167,12 @@ public class QnaService {
 		
 	}
 	
+	public int nonAnswerCount() {
+		Connection conn = getConnection();
+		int nonAnswerCount = new QnaDao().nonAnswerCount(conn);
+		close(conn);
+		return nonAnswerCount;
+	}
+	
 	
 }

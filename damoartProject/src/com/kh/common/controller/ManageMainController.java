@@ -1,11 +1,20 @@
 package com.kh.common.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.kh.cscenter.model.service.QnaService;
+import com.kh.member.model.service.MemberService;
+import com.kh.member.model.vo.Member;
+import com.kh.order.model.service.ManageCancelService;
+import com.kh.order.model.service.ManageOrderService;
+import com.kh.order.model.vo.Order;
 
 /**
  * Servlet implementation class ManageMainController
@@ -26,6 +35,18 @@ public class ManageMainController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ArrayList<Member> mList = new MemberService().selectAdminMainList();
+		ArrayList<Order> oList = new ManageOrderService().selectAdminNaminList();
+		int newOrderCount = new ManageOrderService().newOrderCount();
+		int cancelCount = new ManageCancelService().orderCancelCount();		
+		int nonAnswerCount = new QnaService().nonAnswerCount();
+		
+		request.setAttribute("mList", mList);
+		request.setAttribute("oList", oList);
+		request.setAttribute("newOrderCount", newOrderCount);
+		request.setAttribute("cancelCount", cancelCount);
+		request.setAttribute("nonAnswerCount", nonAnswerCount);
+		
 		request.getRequestDispatcher("views/common/manageMenubar_2.jsp").forward(request, response);
 	}
 

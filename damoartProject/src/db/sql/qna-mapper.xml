@@ -266,4 +266,10 @@
 		        )
 		  WHERE RNO BETWEEN ? AND ?	
 	</entry>
+	
+	<entry key="nonAnswerCount">
+		SELECT COUNT(*) count
+		  FROM QNA
+		 WHERE A_CONTENT IS NULL
+	</entry>
 </properties>
