@@ -37,7 +37,7 @@
 
     #member, #order{
         width:900px;
-        height:250px;
+        height:auto;
         margin:auto;
         margin-top:40px;
     }
@@ -115,7 +115,7 @@
                     <tbody class="mem-tb">
                     	<% if(mList.isEmpty()) { %>
 	                        <tr>
-	                            <td colspan="7">리스트가 없습니다.</td>
+	                            <td colspan="7">신규회원이 없습니다.</td>
 	                        </tr>
                         <% }else { %>
                         	<%for(Member m : mList) { %>
