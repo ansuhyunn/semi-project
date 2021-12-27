@@ -42,7 +42,7 @@
                 
            
                 <div class="terms" id="term02">
-                    <b>이용약관 동의</b>
+                    <b>다모아트 이용약관</b>
                     <div class="term">
                         <p>
                             제1조(목적) 
@@ -267,7 +267,7 @@
                 </div>
                 <br>
                 <div class="terms" id="term03">
-                    <b>상품 공급사 개인정보 제공 동의</b>
+                    <b>상품 공급사 개인정보 제공 약관</b>
                     <div class="term">
                         <p>
                             - 제공받는 자 : K현대미술관 공급사
@@ -277,16 +277,8 @@
                         </p>    
                     </div>
                 </div>
-                <input type="checkbox" id="checkboxes" name="orderTerms" align="center" required> 다모아트의 모든 약관을 확인하고 전체 동의합니다. 
                 </div>
                 
-                <script>
-        		function orderTerms(){
-    				if($("input[name=agree]").is(":checked") == false){
-    					alert("약관을 확인하고 동의해주세요.");
-    		        	return false;   			
-    				}
-    				}
-                </script>
+          
 </body>
 </html>

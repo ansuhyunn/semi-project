@@ -91,6 +91,44 @@ public class ManageOrderDao {
 		
 	}
 	
+	public ManageOrder selectOrderManageO(Connection conn) {
+		ManageOrder o = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectOrderManage");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, startDt);
+			pstmt.setString(2, endDt);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				
+				    o =  new ManageOrder(rset.getInt("order_no"),
+										 rset.getInt("total_price"),
+										 rset.getInt("pay_price"),
+										 rset.getDate("order_date"),
+										 rset.getInt("pNo"),
+										 rset.getString("order_opt"),
+										 rset.getString("order_name"),
+										 rset.getInt("order_count"),
+										 rset.getString("title"),
+										 rset.getString("order_status"),
+										 rset.getString("pay_opt"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return o;
+		
+	}
+	
 	public void setDate(String st, String edt) {
 		if(st != null && edt != null){
 			startDt = st;

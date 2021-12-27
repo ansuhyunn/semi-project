@@ -134,18 +134,17 @@ ArrayList<ManageOrder> list = (ArrayList<ManageOrder>)request.getAttribute("list
     </div>
         <br><br><br>
         <!--주문 현황-->
-        <% for(ManageOrder m : list) { %>
+        
         <div class="order_chart" align="center">
            <div class="box new_order">
-                신규주문&nbsp;&nbsp; <%= m.getOrderCount() %>
+                신규주문&nbsp;&nbsp;
            </div>
            <div class="box com_order">
-               결제완료&nbsp;&nbsp; <%= m.getOrderStatus().equals("P") %>
+               결제완료&nbsp;&nbsp;
            </div>
            <div class="box wait_order">
-                입금대기&nbsp;&nbsp; <%= m.getOrderStatus().equals("W") %>
+                입금대기&nbsp;&nbsp;
            </div>
-        <% } %>
         </div>
         
         <!--조회기간 날짜 선택-->
@@ -162,7 +161,6 @@ ArrayList<ManageOrder> list = (ArrayList<ManageOrder>)request.getAttribute("list
         <!--판매 리스트-->
         <div class="order_box">
             <button class="btn" id="cancel"><b>판매취소</b></button>
-            <button class="btn" id="check"><b>입금확인처리</b></button>
             <div class="search">
                 <input type="text" placeholder="구매자 ID, 이름, 주문번호">
                 <button class="btn" id="search"><b>검색</b></button>
@@ -186,9 +184,15 @@ ArrayList<ManageOrder> list = (ArrayList<ManageOrder>)request.getAttribute("list
                 <% System.out.println("data_size=>" + list.size()); %>
      
                 <tbody id="table_content">
-       			 <% for(ManageOrder m : list) { %>
-       			 <% System.out.println(m.toString()); %>
-                  <tr align="center">
+					<% if( list.isEmpty()){  %>
+					    <tr>
+						<td  colspan="8" style="height: 200px;" align="center">
+						조회된 데이터가 없습니다.
+						</td>  
+				  		</tr>
+					<% } %>
+		       			<% for(ManageOrder m : list) { %>
+                 		<tr align="center">
                         <td ><input type="checkbox" id="checkbox"></td>
                         <td> <%= m.getOrderName() %><br><%= m.getOrderNo() %><br><%= m.getOrderDate() %></td>
                         <td width="60"><img src="<%=request.getContextPath()%>/resources/images/product/1M.gif" width="40px" height="40px"></td>

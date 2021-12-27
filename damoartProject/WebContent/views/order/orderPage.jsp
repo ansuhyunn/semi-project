@@ -2,7 +2,10 @@
     pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.order.model.vo.Order"%>
 <% 
 	ArrayList<Order> list = (ArrayList<Order>)request.getAttribute("list");
-	Order o = (Order)request.getAttribute("o");
+	int totalCount = (int)request.getAttribute("totalCount");
+	int totalPrice = (int)request.getAttribute("totalPrice");
+	//Order o = (Order)request.getAttribute("o");
+ 	//Order totalCount = (Order)request.getAttribute("totalCount");
 %>
 <!DOCTYPE html>
 <html>
@@ -80,7 +83,7 @@
    }
 
    #order, #pay, #option{
-       width: 460px;
+       width: 470px;
        font-size: 13px;
    }
 
@@ -90,7 +93,7 @@
    }
 
    .last{
-       width: 460px;
+       width: 480px;
        height: 100px;
        margin: auto;
        font-size: 13px;
@@ -122,13 +125,14 @@
        <b id="order01">01 장바구니 ></b><b id="order02"> 02 주문서작성/결제 ></b><b id="order03"> 03 주문완료</b>
    </div>
    
+   <% //System.out.println(totalCount); %>
    
-   <!-- 주문하는 상품 -->
+   <!-- 주문하는  -->
    	<% if ( loginUser != null ) { %>
    <div class="cart_name" align="center">
        <table>
            <tr id="cart_name" height=40>
-               <th colspan="2" width=400>상품</th>
+               <th colspan="2" width=400></th>
                <th width=130>옵션</th>
                <th width=90>수량</th>
                <th width=90>결제금액</th>
@@ -138,21 +142,21 @@
             <% for(Order or : list) { %>
                <tr id="cart_content">
                
-                   <td width="200"><img src= "<%=request.getContextPath()%>/resources/images/product/1M.gif" width="80px" height="80px"></td>
+                   <td width="200"><img src= "이미지" width="80px" height="80px"></td>
                    <td width="200">
                       <%= or.getTitle() %>
                      <br> <%= or.getArea() %>
                      <br><%= or.getsDate() %> ~ <%= or.geteDate() %> 
                    </td>                           
                    <td width="50">                    
-                   <% if (o.getCartOpt().equals("C")) { %>
+                   <% if (or.getCartOpt().equals("C")) { %>
                  	   어린이
-                    <% } else if (o.getCartOpt().equals("T")) { %>
+                    <% } else if (or.getCartOpt().equals("T")) { %>
                                            청소년
                     <% } else { %>
                                            성인
                     <% } %></td>
-                   <td width="50"><%= o.getCartCount() %></td>
+                   <td width="50"><%= or.getCartCount() %></td>
                    <td width="50">
 					<% if (or.getCartOpt().equals("C")) { %>
                     <%= or.getcPrice() %>
@@ -171,24 +175,17 @@
                </tr>
                
         <% } %>
-              <%System.out.println("o에 들어가있는것들" + o ); %>
            </table>
            </div>
            <div class="order_bottom" width="800">
         
-               <p>총 <%= o.getCartCount() %> 개의 상품   &nbsp; &nbsp; &nbsp;
+               <p>총 <%= totalCount %> 개의 상품   &nbsp; &nbsp; &nbsp;
                	합계 &nbsp; 
-               		<% if (o.getCartOpt().equals("C")) { %>
-                    <%= o.getcPrice() %>
-                    <% } else if (o.getCartOpt().equals("T")) { %>
-                    <%=o.gettPrice() %>
-                    <% } else { %>
-                    <%=o.getaPrice() %>
-                    <% } %>￦</p>
+               		<%= totalPrice %>￦</p>
            </div>
            <% } %>
            
-            
+           
            <!-- 약관 동의 -->
            <div class="orderTerms">
                <hr><br>
@@ -197,50 +194,44 @@
 
        <!--주문 정보-->
        <div class="order_wrap">
-           <br><br>
+           <br><br><br><br>
            <b>&nbsp;&nbsp;&nbsp;주문자 정보</b>
            <hr>
            <table id="order" width="460px">
                <tr>
                    <td width="5px">●</td>
                    <td width="150px">주문하시는 분</td>
-                   <td width="150px"><%= o.getMemName() %></td>
+                   <td width="150px"><%= list.get(0).getMemName() %></td>
                </tr>
                <tr>
                    <td>●</td>
                    <td>휴대폰 번호</td>
-                   <td><%= o.getPhone() %></td>
+                   <td><%= list.get(0).getPhone() %></td>
                </tr>
                <tr>
                    <td width="5px" >●</td>
                    <td>이메일</td>
-                   <td><%= o.getEmail() %></td>
+                   <td><%= list.get(0).getEmail() %></td>
                </tr>
            </table>
            
        
        <!--결제 정보-->
 
-           <br><br>
+           <br><br><br><br>
            <b>&nbsp;&nbsp;&nbsp;결제 정보</b>
            <hr>
            <table id="pay" width="500px">
                <tr>
                    <td width="5px" ></td>
-                   <td width="150px">상품 합계 금액</td>
-                   <td width="150px">  <% for(Order or : list) { %>
-                   <% if (or.getCartOpt().equals("C")) { %>
-                    <%= or.getCartCount()*or.getcPrice() %>
-                    <% } else if (or.getCartOpt().equals("T")) { %>
-                    <%=or.getCartCount()*or.gettPrice() %>
-                    <% } else { %>
-                    <%=or.getCartCount()*or.getaPrice() %>
-                    <% } %>)</td> <%} %>
+                   <td width="230px"> 합계 금액</td>
+                   <td width="150px">  
+                   <%= totalPrice %>
                </tr>
                <tr>
                    <td></td>
                    <td>할인 및 적립</td>
-                   <td><input></td>
+                   <td><%= totalPrice/100 %></td>
                </tr>
                <tr>
                 <td></td>
@@ -255,47 +246,14 @@
                    <td><input></td>
                 </tr>
            </table>
-
-       <!--결제 수단 선택-->
-        <br><br>
-        <b>&nbsp;&nbsp;&nbsp;결제</b>
-        <hr>
-        <table id="option" width="460px">
-            <tr>
-                <td width="5px"><input type="radio"></td>
-                <td width="100%" colspan="2" input type="radio">무통장 입금</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td width="155px" input type="radio">입금자명</td>
-                <td><input width="150px"></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>입금은행</td>
-                <td><select name="option">
-                    <option>국민은행 1234-567-8888 예금주명:다모아트</option>
-                    <option>농협은행 1234-567-8888 예금주명:다모아트</option>
-                    <option>카카오뱅크 1234-567-8888 예금주명:다모아트</option></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>환불계좌<br>&nbsp;</td>
-                <td><input placeholder="계좌번호">
-                    <br><small>구매후 주문 취소시 입력한 계좌로 환불됩니다.</small></td>
-            </tr>
-            <tr>
-                <td><input type="radio"></td>
-                <td colspan="2">신용카드</td>
-            </tr>
-        </table>
+           <br><br><br>
         </div>
 
         
         <!--결제 버튼-->
         <br><br><hr>
         <div class="last">
-        <input type="checkbox"><b>&nbsp;(필수) 구매하실 상품의 결제정보를 확인하였으며, 구매 진행에 동의합니다.</b>
+        <input type="checkbox"><b>&nbsp;(필수) 구매하실 결제정보를 확인하였으며, 다모아트의 구매 약관에 동의합니다.</b>
         <br>
             <a href="<%=contextPath%>/orcom.ca"><button class="btn" id="goBack"><b>돌아가기</b></button></a>
             <button type="submit" class="btn" id="goPay" onclick="iamport();"><b>결제하기</b></button>
@@ -303,6 +261,15 @@
 
 
 		<script>
+
+		
+  		// function orderTerms(){
+		//		if($("input[name=agree]").is(":checked") == false){
+		//			alert("약관을 확인하고 동의해주세요.");
+		//        	return false;   			
+		//		}
+		//		}
+  		
 		function iamport(){
 			IMP.init('imp70168812');
 	        IMP.request_pay({

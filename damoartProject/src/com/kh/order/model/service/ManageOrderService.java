@@ -8,6 +8,7 @@ import java.util.Date;
 
 import com.kh.order.model.dao.ManageOrderDao;
 import com.kh.order.model.vo.ManageOrder;
+import com.kh.order.model.vo.Order;
 
 public class ManageOrderService {
 	ManageOrderDao manageOrder = new ManageOrderDao();
@@ -28,6 +29,14 @@ public class ManageOrderService {
 		close (conn);		
 		return list;
 
+	}
+	
+	
+	public ManageOrder selectOrderManageO(){
+		Connection conn = getConnection();
+		ManageOrder o = manageOrder.selectOrderManageO(conn);
+		close(conn);
+		return o;
 	}
 	
 	public int updateOrderCancel(ManageOrder m) {
