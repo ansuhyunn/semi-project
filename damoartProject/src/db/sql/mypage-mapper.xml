@@ -157,7 +157,7 @@
 			              JOIN MEMBER USING(MEM_NO) 
 			             WHERE MEM_ID = ?
 			             ORDER
-			                BY POI_DATE DESC
+			                BY POI_NO DESC
 			            ) "POI"
 			    )
 			WHERE RNUM BETWEEN ? AND ?
