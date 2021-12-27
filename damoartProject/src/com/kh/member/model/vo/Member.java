@@ -23,6 +23,8 @@ public class Member {
 	private String birth2;
 	private String birth3;
 	
+	private int poiPoint;
+	
 	public Member() {}
 	
 	public Member(int memNo, String memId, String memPwd, String memName, String nickName, String email, String phone,
@@ -55,6 +57,21 @@ public class Member {
 		this.birth = birth;
 	}
 	
+	
+	public Member(int memNo, String memId, String memName, String nickName, String email, String phone, String birth,
+			Date enrollDate, String status, int poiPoint) {
+		super();
+		this.memNo = memNo;
+		this.memId = memId;
+		this.memName = memName;
+		this.nickName = nickName;
+		this.email = email;
+		this.phone = phone;
+		this.birth = birth;
+		this.enrollDate = enrollDate;
+		this.status = status;
+		this.poiPoint = poiPoint;
+	}
 	
 
 	public Member(String memId, String memPwd, String memName, String nickName, String email, String phone,
@@ -92,6 +109,16 @@ public class Member {
 		super();
 		this.memNo = memNo;
 		this.memId = memId;
+	}
+	
+	
+
+	public int getPoiPoint() {
+		return poiPoint;
+	}
+
+	public void setPoiPoint(int poiPoint) {
+		this.poiPoint = poiPoint;
 	}
 
 	public int getMemNo() {

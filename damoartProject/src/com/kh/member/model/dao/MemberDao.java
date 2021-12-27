@@ -182,7 +182,8 @@ public class MemberDao {
 						           rset.getString("phone"),
 						           rset.getString("birth"),
 						           rset.getDate("enroll_date"),
-						           rset.getString("status")));
+						           rset.getString("status"),
+						           rset.getInt("point")));
 			}
 			
 		} catch (SQLException e) {

@@ -67,7 +67,7 @@
 		        SELECT ROWNUM RNUM, A.*
 		          FROM (
 		                SELECT 
-		                       MEM_NO
+						       MEM_NO
 						     , MEM_ID
 						     , MEM_NAME
 						     , NICKNAME
@@ -76,9 +76,14 @@
 						     , BIRTH
 						     , ENROLL_DATE
 						     , STATUS
-						  FROM MEMBER
+						     , POINT
+						  FROM (SELECT MEM_NO, SUM(POI_POINT) POINT
+						          FROM MEMBER
+						          JOIN POINT USING (MEM_NO)
+						         GROUP BY MEM_NO) 
+						  JOIN MEMBER USING (MEM_NO)
 						  ORDER
-				          BY MEM_NO DESC
+						  BY MEM_NO DESC
 		               ) A 
 		        )
 		 WHERE RNUM BETWEEN ? AND ?

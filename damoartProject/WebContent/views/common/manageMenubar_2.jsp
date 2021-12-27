@@ -148,7 +148,7 @@
             <div class="menu">회원 관리</div>
             <div class="sub">
                 <ul>
-                    <li><a href="<%=contextPath%>/views/member/manageMember.jsp">회원 목록</a></li>
+                    <li><a href="<%=contextPath%>/mngmem.me?cpage=1">회원 목록</a></li>
                 </ul>
             </div>
             <div class="menu">상품 관리</div>
