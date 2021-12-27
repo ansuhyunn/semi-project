@@ -64,7 +64,7 @@
    .order_bottom{
        float: right;
        margin-top:20px;
-       margin-right:310px;
+       width:600px;
        font-size: 13px;
        padding: 5px;    
    }
@@ -114,6 +114,10 @@
        margin: 30px;
    }
 
+   #checkboxx{
+       margin: auto;
+   }
+
 </style>
 <body>
    <%@ include file="../common/menubar.jsp" %>
@@ -142,7 +146,7 @@
             <% for(Order or : list) { %>
                <tr id="cart_content">
                
-                   <td width="200"><img src= "이미지" width="80px" height="80px"></td>
+                   <td width="200"><img src= "<%=request.getContextPath()%>/<%= or.getMainImg() %>"  width="80px" height="80px"></td>
                    <td width="200">
                       <%= or.getTitle() %>
                      <br> <%= or.getArea() %>
@@ -226,24 +230,24 @@
                    <td width="5px" ></td>
                    <td width="230px"> 합계 금액</td>
                    <td width="150px">  
-                   <%= totalPrice %>
+                   <div class="totalP"><%= totalPrice %> ￦</div>
                </tr>
                <tr>
                    <td></td>
                    <td>할인 및 적립</td>
-                   <td><%= totalPrice/100 %></td>
+                   <td><%= totalPrice/100 %> ￦</td>
                </tr>
                <tr>
                 <td></td>
                 <td>적립금 사용<br>&nbsp;</td>
-                <td width="600"><input> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;보유적립금 : 적립금얼마
-                    <br><small>적립금은 5000원 이상부터 사용 가능합니다.</small>
+                <td width="600"><input class="inPoint" onchange="ccc()"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;보유적립금 : <%= list.get(0).getPoiPoint() %> ￦
+                    <br><small>적립금은 3000원 이상부터 사용 가능합니다.</small>
                 </td>
                 </tr>
                 <tr>
                    <td></td>
                    <td>최종 결제 금액</td>
-                   <td><input></td>
+                   <td><input class="finPrice"> ￦</td>
                 </tr>
            </table>
            <br><br><br>
@@ -253,36 +257,50 @@
         <!--결제 버튼-->
         <br><br><hr>
         <div class="last">
-        <input type="checkbox"><b>&nbsp;(필수) 구매하실 결제정보를 확인하였으며, 다모아트의 구매 약관에 동의합니다.</b>
+        <input type="checkbox" class="check type1" id="checkboxx"><b>&nbsp;(필수) 구매할 결제정보를 확인했습니다.</b>
         <br>
             <a href="<%=contextPath%>/orcom.ca"><button class="btn" id="goBack"><b>돌아가기</b></button></a>
-            <button type="submit" class="btn" id="goPay" onclick="iamport();"><b>결제하기</b></button>
+            <button type="submit" class="btn" id="goPay" onclick="orderTerms();"><b>결제하기</b></button>
         </div>
 
 
 		<script>
 
 		
-  		// function orderTerms(){
-		//		if($("input[name=agree]").is(":checked") == false){
-		//			alert("약관을 확인하고 동의해주세요.");
-		//        	return false;   			
-		//		}
-		//		}
-  		
+  		 function orderTerms(){
+  			 debugger
+  			 var chkList = $('.check')
+  			 for(var i =0; i < chkList.length ; i++){
+  				if(!chkList[i].checked){
+  					$('#goPay')[0].disabled = false;
+  					switch(chkList[i].classList[1]){
+  						case "type1":
+		  					alert("결제정보를 확인하고 동의해주세요.");
+		  					break;
+  						case "type2":
+		  					alert("이용약관을 확인하고 동의해주세요.");
+		  					break;
+	  					default :
+	  						alert("개인정보 제공 약관을 확인하고 동의해주세요.");
+	  						break;
+  					}  					
+  					 return 
+  				 } 
+  			 }
+  			 iamPort()
+  		 }
 		function iamport(){
+			debugger 
 			IMP.init('imp70168812');
 	        IMP.request_pay({
 	        	pg: "html5_inicis",
 		       	may_method: 'card',
 		        merchant_uid : 'merchant_' + new Date().getTime(),
-		        name : '주문명 : 결제테스트',
-		        amount : 100,
-		        buyer_email : 'iamport@siot.do',
-		        buyer_name : '$buyerName',
-		        buyer_tel : '010-1234-5678',
-		        buyer_addr : '서울특별시 강남구 삼성동',
-		        buyer_postcode : '123-456'
+		        name : '<%=list.get(0).getTitle()%>',
+		        amount : '<%= totalPrice %>',
+		        buyer_email : '<%=list.get(0).getEmail()%>',
+		        buyer_name : '<%=list.get(0).getMemName()%>',
+		        buyer_tel : '<%=list.get(0).getPhone()%>'
     }, function(rsp) {
         if ( rsp.success ) {
             var msg = '결제가 완료되었습니다.';
@@ -290,13 +308,41 @@
             msg += '상점 거래ID : ' + rsp.merchant_uid;
             msg += '결제 금액 : ' + rsp.paid_amount;
             msg += '카드 승인번호 : ' + rsp.apply_num;
-       
+
+            location.href='<%=contextPath %>/orcom.ca'
+            
         } else {
             var msg = '결제에 실패하였습니다.';
             msg += '에러내용 : ' + rsp.error_msg;
+        	alert(msg);
         }
-       	alert(msg);
+       
     });
+		}
+		
+		function ccc(){
+			debugger;
+			var inVal = $('.inPoint')[0].value;
+			if(inVal && inVal.length > 0){
+				var ppp = parseInt(inVal);
+				var ttt = parseInt($('.totalP')[0].textContent/* .replaceAll(',',"") */);
+				// 1. 적립금이랑 비교
+				if(parseInt(inVal) <= <%=list.get(0).getPoiPoint()%> && parseInt(inVal) >= 3000){
+					// 2. 비교 결과 처리
+					$('.finPrice')[0].value = ttt-ppp ;
+					$('#goPay')[0].disabled = false;
+				} else {
+					alert("유효한 값을 넣어주세요");
+					$('#goPay')[0].disabled = true;
+				}
+				
+				
+			}else{
+				// 버튼 풀기
+				$('#goPay')[0].disabled = false;
+			}
+				
+			console.log("111");
 		}
 		
 		</script>

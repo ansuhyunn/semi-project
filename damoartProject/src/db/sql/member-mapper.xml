@@ -84,8 +84,9 @@
 		 WHERE RNUM BETWEEN ? AND ?
 	</entry>
 	
-	<entry key="findId">
+	<entry key="findIdResult">
 		SELECT 
+			   MEM_NO
 		       MEM_ID
 		  FROM MEMBER     
 		 WHERE MEM_NAME = ?

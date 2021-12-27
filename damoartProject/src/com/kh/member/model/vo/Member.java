@@ -86,6 +86,13 @@ public class Member {
 		this.enrollDate = enrollDate;
 		this.status = status;
 	}
+	
+	
+	public Member(int memNo, String memId) {
+		super();
+		this.memNo = memNo;
+		this.memId = memId;
+	}
 
 	public int getMemNo() {
 		return memNo;

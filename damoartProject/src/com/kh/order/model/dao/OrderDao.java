@@ -64,7 +64,9 @@ public class OrderDao {
 									  rset.getString("mem_name"),
 									  rset.getString("phone"),
 									  rset.getString("email"),
-									  rset.getInt("mem_no"));
+									  rset.getInt("mem_no"),
+									  rset.getString("main_img"),
+									  rset.getInt("poi_point"));
 				}
 
 				System.out.println("o : " + o);
@@ -108,7 +110,9 @@ public class OrderDao {
 									  rset.getString("mem_name"),
 									  rset.getString("phone"),
 									  rset.getString("email"),
-									  rset.getInt("mem_no")));
+									  rset.getInt("mem_no"),
+									  rset.getString("main_img"),
+									  rset.getInt("poi_point")));
 				}
 
 				System.out.println("list : " + list);
