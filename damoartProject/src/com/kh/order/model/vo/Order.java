@@ -21,6 +21,8 @@ public class Order {
 	 private int payPrice;
 	 private int orderNo;
 	 private Date payDate;
+	 private String mainImg;
+	 private int poiPoint;
 	 
 	 
 	 public Order() {}
@@ -28,7 +30,7 @@ public class Order {
 
 	public Order(String title, String area, String sDate, String eDate, String cartOpt, int cartCount, int aPrice,
 			int tPrice, int cPrice, String memName, String phone, String email, int memNo, int payNo, int payPrice,
-			int orderNo, Date payDate) {
+			int orderNo, Date payDate, String mainImg, int poiPoint) {
 		super();
 		this.title = title;
 		this.area = area;
@@ -47,11 +49,13 @@ public class Order {
 		this.payPrice = payPrice;
 		this.orderNo = orderNo;
 		this.payDate = payDate;
+		this.mainImg = mainImg;
+		this.poiPoint = poiPoint;
 	}
 
 
 	public Order(String title, String area, String sDate, String eDate, String cartOpt, int cartCount, int aPrice,
-			int tPrice, int cPrice, String memName, String phone, String email, int memNo) {
+			int tPrice, int cPrice, String memName, String phone, String email, int memNo, String mainImg, int poiPoint) {
 		super();
 		this.title = title;
 		this.area = area;
@@ -66,6 +70,8 @@ public class Order {
 		this.phone = phone;
 		this.email = email;
 		this.memNo = memNo;
+		this.mainImg = mainImg;
+		this.poiPoint= poiPoint;
 	}
 
 
@@ -251,13 +257,45 @@ public class Order {
 	}
 
 
+	public String getMainImg() {
+		return mainImg;
+	}
+
+
+	public void setMainImg(String mainImg) {
+		this.mainImg = mainImg;
+	}
+
+ 
+	
+	public int getPoiPoint() {
+		return poiPoint;
+	}
+
+
+	public void setPoiPoint(int poiPoint) {
+		this.poiPoint = poiPoint;
+	}
+
+
 	@Override
 	public String toString() {
 		return "Order [title=" + title + ", area=" + area + ", sDate=" + sDate + ", eDate=" + eDate + ", cartOpt="
 				+ cartOpt + ", cartCount=" + cartCount + ", aPrice=" + aPrice + ", tPrice=" + tPrice + ", cPrice="
 				+ cPrice + ", memName=" + memName + ", phone=" + phone + ", email=" + email + ", memNo=" + memNo
-				+ ", payNo=" + payNo + ", payPrice=" + payPrice + ", orderNo=" + orderNo + ", payDate=" + payDate + "]";
+				+ ", payNo=" + payNo + ", payPrice=" + payPrice + ", orderNo=" + orderNo + ", payDate=" + payDate
+				+ ", mainImg=" + mainImg + ", poiPoint=" + poiPoint + ", getTitle()=" + getTitle() + ", getArea()="
+				+ getArea() + ", getsDate()=" + getsDate() + ", geteDate()=" + geteDate() + ", getCartOpt()="
+				+ getCartOpt() + ", getCartCount()=" + getCartCount() + ", getaPrice()=" + getaPrice()
+				+ ", gettPrice()=" + gettPrice() + ", getcPrice()=" + getcPrice() + ", getMemName()=" + getMemName()
+				+ ", getPhone()=" + getPhone() + ", getEmail()=" + getEmail() + ", getMemNo()=" + getMemNo()
+				+ ", getPayNo()=" + getPayNo() + ", getPayPrice()=" + getPayPrice() + ", getOrderNo()=" + getOrderNo()
+				+ ", getPayDate()=" + getPayDate() + ", getMainImg()=" + getMainImg() + ", getPoiPoint()="
+				+ getPoiPoint() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
+				+ super.toString() + "]";
 	}
+
+
 
 	 
 }
