@@ -57,7 +57,7 @@
         position:absolute;
         left:0;
         top:150px;
-        height:auto;
+        height:1300px;
     }   
 
 
@@ -144,7 +144,7 @@
         <!--좌측 메뉴바-->
         <div id="left_menubar">
             <br>
-            <div class="home"><a href="">HOME</a></div>
+            <div class="home"><a href="<%=contextPath%>/adminMain.ad">HOME</a></div>
             <div class="menu">회원 관리</div>
             <div class="sub">
                 <ul>

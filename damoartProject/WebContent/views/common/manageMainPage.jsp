@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.util.ArrayList, com.kh.order.model.vo.Order, com.kh.member.model.vo.Member" %>
+<%@ page import="java.util.ArrayList, com.kh.common.model.vo.AdminMainOrder, com.kh.member.model.vo.Member" %>
 
 <%
 	ArrayList<Member> mList = (ArrayList<Member>)request.getAttribute("mList");
-	ArrayList<Order> oList = (ArrayList<Order>)request.getAttribute("oList");
+	ArrayList<AdminMainOrder> oList = (ArrayList<AdminMainOrder>)request.getAttribute("oList");
 	int newOrderCount = (int)request.getAttribute("newOrderCount");
 	int cancelCount = (int)request.getAttribute("cancelCount");
 	int nonAnswerCount = (int)request.getAttribute("nonAnswerCount");
@@ -31,11 +31,11 @@
         height:auto; 
         padding:20px;
         margin:auto;
-        margin-top:150px;
+        margin-top:180px;
         margin-left:230px;
     }
 
-    #outer>div{
+    #member, #order{
         width:900px;
         height:250px;
         margin:auto;
@@ -44,15 +44,15 @@
 
     #area>div{
         display:inline-block;
-        margin-left:35px;
+        margin-left:80px;
         border-radius: 20px;;
-        width:250px;
-        height:200px;
+        width:200px;
+        height:180px;
         background:rgb(151, 138, 116);
         color:white;
         font-size:22px;
         text-align:center;
-        padding-top:60px;
+        padding-top:50px;
     }
 
     thead{
@@ -69,17 +69,25 @@
     	cursor:pointer;
     }
     
-    h6 a{
+    #outer a{
         text-decoration:none;
-        color:rgb(64, 64, 64);
+            color:rgb(64, 64, 64);
+            font-size:18px;
+            font-weight:600;
+    }
+
+    .mem-tb, .order-tb{
+        background:white;
+        font-size:14px;
     }
 
 </style>
 </head>
-<body>	
+<body>
+	<%@ include file="../common/manageMenubar_2.jsp" %>	
         <div id="outer">
 
-            <h4 style="font-weight: bolder;">HOME</h4>
+            <h3 style="font-weight: bolder;">HOME</h3>
             <br>
             <hr>
 
@@ -88,26 +96,26 @@
                 <div id="orderCancel"> <%=cancelCount %> <br>취소관리</div>
                 <div id="nonAnswer"> <%=nonAnswerCount %> <br>미답변 Q&A</div>
             </div>
-            <br>
-            <h6> <b> <a href="">신규 회원</a> </b> </h6>
+            <br><br>
+            <a href="<%=contextPath%>/mngmem.me?cpage=1">신규 회원<i class="fas fa-angle-right"></i></a>
             <hr>
-            <div>
+            <div id="member">
                 <table align="center" id="list-area" class="table table-bordered">
                     <thead>
                         <tr>
-                            <th width="10">번호</th>
-                            <th width="40">아이디</th>
-                            <th width="40">이름</th>
-                            <th width="60">닉네임</th>
-                            <th width="140">이메일</th>
-                            <th width="100">전화번호</th>
-                            <th width="100">가입일</th>
+                            <th>번호</th>
+                            <th>아이디</th>
+                            <th>이름</th>
+                            <th>닉네임</th>
+                            <th>이메일</th>
+                            <th>전화번호</th>
+                            <th>가입일</th>
                         </tr>
                     </thead>
                     <tbody class="mem-tb">
                     	<% if(mList.isEmpty()) { %>
 	                        <tr>
-	                            <td colspan="7">게시글이 없습니다.</td>
+	                            <td colspan="7">리스트가 없습니다.</td>
 	                        </tr>
                         <% }else { %>
                         	<%for(Member m : mList) { %>
@@ -132,35 +140,35 @@
                 	})
                 </script>
             </div>
-    		<br><br>
-            <h6> <b><a href="">주문 내역</a></b> </h6>
+    		<br><br><br><br>
+            <a href="<%=contextPath%>/order.mg">주문 내역<i class="fas fa-angle-right"></i></a>
             <hr>
-            <div>
+            <div id="order">
                 <table align="center" id="list-area" class="table table-bordered">
                     <thead>
                         <tr>
-                            <th width="100">주문 번호</th>
-                            <th width="100">회원 아이디</th> 
-                            <th width="100">회원 이름</th>                           
-                            <th width="100">주문일자</th>
-                            <th width="60">결제 금액</th>
-                            <th width="70">상태</th>
+                            <th>주문 번호</th>
+                            <th>회원 아이디</th> 
+                            <th>회원 이름</th>                           
+                            <th>주문일자</th>
+                            <th>결제 금액</th>
+                            <th>상태</th>
                         </tr>
                     </thead>
                     <tbody class="order-tb">
                     	<% if(oList.isEmpty()) { %>
 	                        <tr>
-	                            <td colspan="7">게시글이 없습니다.</td>
+	                            <td colspan="7">리스트가 없습니다.</td>
 	                        </tr>
                         <% }else { %>
-                        	<%for(Order o : oList) { %>
+                        	<%for(AdminMainOrder o : oList) { %>
 		                        <tr>
                                     <td><%=o.getOrderNo() %></td>
-		                            <td><%=o.getNoticeNo() %></td>
-		                            <td><%=o.getNoticeTitle() %></td>
-		                            <td><%=o.getNoticeWriter() %></td>
-		                            <td><%=o.getCreateDate() %></td>
-		                            <td><%=o.getCount() %></td>
+		                            <td><%=o.getMemId() %></td>
+		                            <td><%=o.getMemName() %></td>
+		                            <td><%=o.getOrderDate() %></td>
+		                            <td><%=o.getTotalPrice() %></td>
+		                            <td><%=o.getOrderStatus() %></td>
 		                        </tr>
                         	<% } %>
                         <% } %>

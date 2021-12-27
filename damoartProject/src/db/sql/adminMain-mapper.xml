@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<entry key="selectAdminMainList">
+		SELECT *
+		  FROM (
+		        SELECT ROWNUM RNO, A.*
+		          FROM (
+		                SELECT 
+		                       ORDER_NO
+		                     , MEM_ID
+		                     , ORDER_NAME
+		                     , TO_CHAR(ORDER_DATE, 'YYYY-MM-DD') "ORDER_DATE"
+		                     , TOTAL_PRICE
+		                     , ORDER_STATUS
+		                  FROM "ORDER"
+		                  JOIN ORDER_P USING (ORDER_NO)
+		                  JOIN MEMBER USING (MEM_NO)
+		                 WHERE ORDER_STATUS = 'O'
+		                    OR ORDER_STATUS = 'P'
+		                 ORDER
+		                    BY ORDER_NO DESC
+		                ) A
+		       )
+		 WHERE RNO BETWEEN 1 AND 5
+	</entry>
+	
+	<entry key="newOrderCount">
+		SELECT COUNT(*) "count"
+          FROM "ORDER"
+          JOIN ORDER_P USING (ORDER_NO)
+         WHERE ORDER_STATUS IN ('O', 'P')
+           AND ORDER_DATE BETWEEN SYSDATE-2 AND SYSDATE
+	</entry>
+	
+	<entry key="orderCancelCount">
+		SELECT COUNT(*) "count"
+          FROM "ORDER"
+          JOIN ORDER_P USING (ORDER_NO)
+         WHERE ORDER_STATUS = 'C'
+           AND ORDER_DATE BETWEEN SYSDATE-2 AND SYSDATE
+	</entry>
+</properties>

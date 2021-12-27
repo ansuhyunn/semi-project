@@ -9,12 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.common.model.service.AdminMainService;
+import com.kh.common.model.vo.AdminMainOrder;
 import com.kh.cscenter.model.service.QnaService;
 import com.kh.member.model.service.MemberService;
 import com.kh.member.model.vo.Member;
-import com.kh.order.model.service.ManageCancelService;
-import com.kh.order.model.service.ManageOrderService;
-import com.kh.order.model.vo.Order;
 
 /**
  * Servlet implementation class ManageMainController
@@ -36,9 +35,9 @@ public class ManageMainController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ArrayList<Member> mList = new MemberService().selectAdminMainList();
-		ArrayList<Order> oList = new ManageOrderService().selectAdminMainList();
-		int newOrderCount = new ManageOrderService().newOrderCount();
-		int cancelCount = new ManageCancelService().orderCancelCount();		
+		ArrayList<AdminMainOrder> oList = new AdminMainService().selectAdminMainList();
+		int newOrderCount = new AdminMainService().newOrderCount();
+		int cancelCount = new AdminMainService().orderCancelCount();		
 		int nonAnswerCount = new QnaService().nonAnswerCount();
 		
 		request.setAttribute("mList", mList);
@@ -47,7 +46,7 @@ public class ManageMainController extends HttpServlet {
 		request.setAttribute("cancelCount", cancelCount);
 		request.setAttribute("nonAnswerCount", nonAnswerCount);
 		
-		request.getRequestDispatcher("views/common/manageMenubar_2.jsp").forward(request, response);
+		request.getRequestDispatcher("views/common/manageMainPage.jsp").forward(request, response);
 	}
 
 	/**
