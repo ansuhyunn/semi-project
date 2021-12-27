@@ -116,7 +116,7 @@
                 	<% if(list.isEmpty()) { %>
 		                <!--case1. 회원 없을 경우-->
 		                <tr>
-		                    <td colspan="10">조회된 회원이 없습니다.</td>
+		                    <td colspan="11">조회된 회원이 없습니다.</td>
 		                </tr>
 		            <% }else { %>    
 		                <!--case2. 회원 있을 경우-->

@@ -71,8 +71,8 @@
 	    
 	    	<div class ="findIdResult">
 		     	<div class ="success">
-			      <h5> 홍길동님의 아이디는 </h5>  
-			      <div class ="userId">user04</div>
+			      <h5> 김영희님의 아이디는 </h5>  
+			      <div class ="userId">young2</div>
 			      <h5>  입니다 </h5>
 			     </div>
 			     <br><br>
