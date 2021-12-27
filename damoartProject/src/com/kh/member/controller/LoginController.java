@@ -43,7 +43,7 @@ public class LoginController extends HttpServlet {
 		
 		if(loginUser == null) { // 로그인 실패
 			request.setAttribute("errorMsg", "아이디 혹은 비밀번호를 잘못 입력하셨습니다.");
-			RequestDispatcher view = request.getRequestDispatcher("views/common/mainPage.jsp");
+			RequestDispatcher view = request.getRequestDispatcher("views/member/loginPage.jsp");
 			view.forward(request, response);
 		
 		}else { // 로그인 성공
