@@ -29,8 +29,8 @@
         }
         .outer{
             margin:auto;
-            margin-top:200px;
-            height:700px;
+            margin-top:100px;
+            height:600px;
         }
         .findPwdForm{
             border:1px solid rgb(180, 172, 166);
@@ -45,7 +45,7 @@
             height:45px;
             background:rgba(255, 255, 255, 0.45);
         }
-        #inputEmail{width:295px;}
+        #inputEmail{width:290px;}
         .btn-mem{
             width:400px;
             height:45px;
@@ -76,7 +76,13 @@
             </select> 
             <br><br>
 
-            <button type="submit" class="btn-mem">비밀번호 찾기</button> <br>
+            <button type="submit" class="btn-mem" onclick="findPwdResult();">비밀번호 재설정</button> <br>
+            
+            <script>
+            	function findPwdResult(){
+            		location.href = "<%=contextPath%>/views/member/findPwdResult.jsp";
+            	}
+            </script>
         </form>
     </div>
     

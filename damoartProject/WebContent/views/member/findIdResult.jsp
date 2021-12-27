@@ -35,35 +35,58 @@
             margin-top:100px;
             height:500px;
         }
-        .found-id{
-        	font-size:30px;
+        .findIdResult{
+        	border:1px solid rgb(180, 172, 166);
+            margin:auto;
+            padding:50px;
+            width:500px;
+        }
+        .userId{
+        	font-size:25px;
         	font-weight:bold;
         }
-        #btnLogin{
-        	width:100px;
+        #btnLogin, #btnfindPwd{
+        	width:120px;
             height:45px;
             border:none;
             border-radius:3px;
             background:rgb(203, 185, 153);
             font-weight:bold;
+            margin:auto;  
+        }
+        #btnfindPwd{
+        	margin-left:30px;
+        	background:rgba(78, 67, 44, 0.6);
+            color:white;
         }
     </style>
 </head>
 <body>
 	<%@ include file="../common/menubar.jsp" %>
 	<div class="outer" align="center">
+		<h3 align="center" style="font-weight:bold">아이디 찾기</h3>
+		<br><br>
+		
 	 	<form action="" method="post">
-	     
-	     
-	    	<div class ="result">
+	    
+	    	<div class ="findIdResult">
 		     	<div class ="success">
-			      <h4> 홍길동님의 아이디는 </h4>  
-			      <div class ="found-id">user04</div>
-			      <h4>  입니다 </h4>
+			      <h5> 홍길동님의 아이디는 </h5>  
+			      <div class ="userId">user04</div>
+			      <h5>  입니다 </h5>
 			     </div>
 			     <br><br>
-		     	<div class = "found-login">
-				    <input type="button" id="btnLogin" value="로그인" onclick = >
+		     	<div class ="findId-buttons">
+				    <input type="button" id="btnLogin" class="btn btn-sm" value="로그인" onclick="loginPage();" >
+				    <input type="button" id="btnfindPwd" class="btn btn-sm" value="비밀번호 찾기" onclick="findPwd();" >
+				    <script>
+				    	function loginPage(){
+				    		location.href = "<%=contextPath%>/loginPage.me";
+				    	}
+				    	function findPwd(){
+				    		location.href = "<%=contextPath%>/views/member/findPwd.jsp";
+				    	}
+				    </script>
 		      	</div>
 		     </div>
 		     <!-- 
