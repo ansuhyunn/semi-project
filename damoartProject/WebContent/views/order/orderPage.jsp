@@ -114,9 +114,12 @@
        margin: 30px;
    }
 
-   #checkboxx{
-       margin: auto;
+   .lastlast{
+        width: 260px;
+        margin: auto;
+        margin-top: 30px;
    }
+   
 
 </style>
 <body>
@@ -250,14 +253,16 @@
                    <td><input class="finPrice"> ￦</td>
                 </tr>
            </table>
-           <br><br><br>
+           <br><br>
         </div>
 
         
         <!--결제 버튼-->
         <br><br><hr>
         <div class="last">
-        <input type="checkbox" class="check type1" id="checkboxx"><b>&nbsp;(필수) 구매할 결제정보를 확인했습니다.</b>
+            <div class="lastlast">
+                <input type="checkbox" class="check type1" id="checkboxx" style="text-align: center;" ><b>&nbsp;(필수) 구매할 결제정보를 확인했습니다.</b>
+            </div>
         <br>
             <a href="<%=contextPath%>/orcom.ca"><button class="btn" id="goBack"><b>돌아가기</b></button></a>
             <button type="submit" class="btn" id="goPay" onclick="orderTerms();"><b>결제하기</b></button>

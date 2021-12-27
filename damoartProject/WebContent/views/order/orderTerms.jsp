@@ -16,6 +16,7 @@
     
     #checkboxes{
         margin-bottom: 15px;
+        margin: auto;
     }
 
     .terms{
