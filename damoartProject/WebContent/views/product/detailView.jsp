@@ -23,6 +23,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 
 <style>
 	div{ box-sizing:border-box;}
@@ -142,8 +144,11 @@
 		<input type="hidden" id="pNo" name="pno" value="<%= p.getpNo() %>">
 		<div class="content1">
 			<div class="title" style="font-size: 30px; font-weight: bolder; margin-bottom: 7px;"><%= p.getTitle() %></div>
-			<div class="date" style="font-size: 13px;"><%= p.getsDate() %> ~ <%= p.geteDate() %> <%= p.getArea() %></div>
+			<div class="date" style="font-size: 13px;"><%= p.getsDate() %> ~ <%= p.geteDate() %>&nbsp;&nbsp;&nbsp;<%= p.getArea() %>
+			</div>
 		</div>
+		
+		
 		<hr class="my-2">
 		<div class="content2" >
 			<div class="poster">
@@ -167,7 +172,8 @@
 					</tr>
 					<tr>
 						<th>장소</th>
-						<td><%= p.getArea() %></td>
+						<td><a class="ls-modal btn btn-sm btn-outline-secondary" data-toggle="modal"
+										href="area.pro" data-target="#modal"><%= p.getArea() %></a></td>
 					</tr>
 					<tr>
 						<th>관람연령</th>
@@ -205,7 +211,7 @@
 							</td>
 							<th>수량</th>
 							<td><input type="number" id="count" style="width: 50px;"></td>
-							<td><button class="btn btn-secondary" id="insertCart" onclick="insertCart();">선택</button></td>
+							<td><button class="btn" id="insertCart" onclick="insertCart();">선택</button></td>
 						</tr>
 					</table>
 				
@@ -307,6 +313,38 @@
 		<% } %>
 		
 	</div>
+	
+	
+	<div class="modal fade" id="modal" >
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+		
+		      <!-- Modal Header -->
+		      <div class="modal-header">
+		        <h4 class="modal-title">전시장 위치</h4>
+		        <button type="button" class="close" data-dismiss="modal">×</button>
+		      </div>
+		
+		      <!-- Modal body -->
+		      <div class="modal-body">
+		      </div>
+		
+		      <!-- Modal footer -->
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">확인</button>
+		      </div>
+		
+		    </div>
+	  	</div>
+	</div>
+	
+	<script type="text/javascript">
+		$(".ls-modal").on('click', function(e){
+			e.preventDefault();
+			$('#modal').modal('show').find('.modal-body').load($(this).attr('href'));
+		});
+	
+	</script>
 
 	
 	<%@ include file="../common/footerbar.jsp" %>
