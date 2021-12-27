@@ -32,7 +32,7 @@ public class LoginController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+			
 		String memId = request.getParameter("memId");
 		String memPwd = request.getParameter("memPwd");
 		
@@ -42,7 +42,8 @@ public class LoginController extends HttpServlet {
 		Member loginUser = new MemberService().loginMember(memId, memPwd);
 		
 		if(loginUser == null) { // 로그인 실패
-			
+			request.setAttribute("errorMsg", "아이디 또는 비밀번호를 확인해주세요.");
+
 		}else { // 로그인 성공
 			HttpSession session = request.getSession();
 			session.setAttribute("loginUser", loginUser);

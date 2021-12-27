@@ -47,7 +47,7 @@
         height:100%;
     }
 
-    #searchbox a{
+    #searchbox button{
 
         background-color:rgb(151, 138, 116);
             color:white;
@@ -118,9 +118,10 @@
                     <p id="str2">검색하기</p>
                 </div>
                 <div id="search">
-                    <form action="">
-                        <input type="text" size="50" placeholder="검색어를 입력하세요">
-                        <a href="" class="btn btn-sm">검색</a> <br>
+                    <form action="search.fa">
+                        <input type="text" size="50" placeholder="검색어를 입력하세요" name="keyword" required>
+                        <input type="hidden" name="cpage" value="1">
+                        <button type="submit" class="btn btn-sm">검색</button> <br>
                         찾으시는 질문이 없다면 Q&A게시판을 이용해주세요.
                     </form>
                 </div>
@@ -137,6 +138,7 @@
             <script>
                 $(function(){
                 	let all = $("tbody").html();
+                	let paging = $(".paging-area").html();
                     $("#category-btn>button").click(function(){
                         $(this).css({backgroundColor:"rgb(151, 138, 116)", color:"white"});
                         $(this).css("font-weight", "700");
@@ -166,6 +168,7 @@
 					                      +  "</tr>"
                     			}
                     			$("tbody").html(value);
+                    			$(".paging-area").html("");
                     			trClick();
                     		},error:function(result){
                     			console.log("ajax 통신 실패");
@@ -176,6 +179,7 @@
                      
                      $(".a").click(function(){
                     	 $("tbody").html(all);
+                    	 $(".paging-area").html(paging);
                     	 trClick();
                      })
                 })
@@ -246,8 +250,6 @@
                 <div class="paging-area" align="center">
                 	<% if(currentPage != 1) {%>
                     	<button class="btn" onclick="location.href='<%=contextPath%>/list.fa?cpage=<%=currentPage-1%>'">&lt;</button>
-                    <% }else { %>
-                    	<button class="btn" disabled>&lt;</button>
                     <% } %>
                     
                     <% for(int p=startPage; p<=endPage; p++) { %>
@@ -259,15 +261,13 @@
                     <% } %>
                     <% if(currentPage != maxPage) {%>
                     <button class="btn" onclick="location.href='<%=contextPath%>/list.fa?cpage=<%=currentPage+1%>'">&gt;</button>
-                    <% }else { %>
-                    	<button class="btn" disabled>&gt;</button>
                     <% } %>
                 </div>
                 <br>
             </div>
            
         </div>
-
+		<br><br><br>
         
 
     <%@ include file="../../common/footerbar.jsp" %>

@@ -38,7 +38,7 @@
         text-align:center;
     }
     
-    .search-area a{
+    .search-area button{
         background-color:rgb(151, 138, 116);
         color:white;
     }
@@ -100,7 +100,7 @@
 	                        </tr>
                         <% }else { %>
                         	<%for(QnA q : list) { %>
-		                        <tr>
+		                        <tr class="clickList">
 		                            <td><%=q.getqNo() %><input type="hidden" value="<%=q.getqWriter() %>"></td>
                                     <td><%=q.getqCategoryCode()%></td>
 		                            <td>
@@ -130,7 +130,7 @@
                     </tbody>
                 </table> <!-- 비밀글 구현해야함 -->
                 <script>
-				    $("#list-area>tbody>tr").click(function(){
+				    $(".clickList").click(function(){
                 		var secret = $(this).children().eq(2).find("input").val();
                 		var writer = $(this).children().eq(0).find("input").val();
                 		var User = $(this).children().eq(3).find("input").val();
@@ -168,7 +168,7 @@
 	                        </tr>
                         <% }else { %>
                         	<%for(QnA q : list) { %>
-		                        <tr>
+		                        <tr class="clickList">
 		                            <td><%=q.getqNo() %><input type="hidden" value="<%=q.getqWriter() %>"></td>
                                     <td><%=q.getqCategoryCode()%></td>
 		                            <td>
@@ -197,7 +197,7 @@
                     </tbody>
                 </table> <!-- 비밀글 구현해야함 -->
                 <script>
-				    $("#list-area>tbody>tr").click(function(){
+				    $(".clickList").click(function(){
 				    	var secret = $(this).children().eq(2).find("input").val();
 				    	if(secret == 'Y') {				    	
 					    	$("#myModal").modal();				    		
@@ -219,8 +219,6 @@
                 <div class="paging-area" align="center">
                 	<% if(currentPage != 1) {%>
                     	<button class="btn" onclick="location.href='<%=contextPath%>/list.qa?cpage=<%=currentPage-1%>'">&lt;</button>
-                    <% }else { %>
-                    	<button class="btn" disabled>&lt;</button>
                     <% } %>
                     
                     <% for(int p=startPage; p<=endPage; p++) { %>
@@ -232,19 +230,18 @@
                     <% } %>
                     <% if(currentPage != maxPage) {%>
                     <button class="btn" onclick="location.href='<%=contextPath%>/list.qa?cpage=<%=currentPage+1%>'">&gt;</button>
-                    <% }else { %>
-                    	<button class="btn" disabled>&gt;</button>
                     <% } %>
                 </div>
                 <br>
                 <div class="search-area" align="center">
-                    <form action="">
-                        <select name="" id="">
-                            <option value="">제목</option>
-                            <option value="">내용</option>
+                    <form action="search.qa">
+                        <select name="searchCategory">
+                            <option value="searchTitle">제목</option>
+                            <option value="searchContent">내용</option>
                         </select>
-                        <input type="text">
-                        <a href="" class="btn btn-sm">검색</a>
+                        <input type="text" name="keyword" required>
+                        <input type="hidden" name="cpage" value="1">
+                        <button type="submit" class="btn btn-sm">검색</a>
                     </form>
                 </div>
             </div>

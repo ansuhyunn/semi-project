@@ -56,7 +56,7 @@
         color:rgb(64, 64, 64);
         font-weight:600;
     }
-    #delete, #deleteCheck{
+    #delete, #deleteCheck, #modalClose{
         background-color:rgb(151, 138, 116);
         color:white;
     }
@@ -79,7 +79,7 @@
     	cursor:pointer;
     }
     
-    #myModal{
+    #myModal, #myModal2{
     	padding-top:150px;
     }
 
@@ -193,6 +193,24 @@
 		    </div>
 		  </div>
 		</div>
+		
+		<!-- The Modal -->
+		<div class="modal" id="myModal2">
+		  <div class="modal-dialog modal-sm">
+		    <div class="modal-content">
+		
+		      <!-- Modal body -->
+		      <div class="modal-body" align="center">
+		        	선택된 게시글이 없습니다.
+		      </div>
+		
+		      <!-- Modal footer -->
+		      <div class="modal-footer">
+		      	<button id="modalClose" type="button" class="btn" data-dismiss="modal">닫기</button>
+			  </div>	
+		    </div>
+		  </div>
+		</div>
 		<script>
 			function checkDelete(){
 	            var checkArr = [];
@@ -200,7 +218,11 @@
 	                checkArr.push($(this).val());
 	            })
 	            console.log(checkArr);
-	            location.href = "/damoart/checkDelete.no?arr=" + checkArr
+	            if(checkArr != "") {	            	
+	            	location.href = "/damoart/checkDelete.no?arr=" + checkArr
+	            }else {
+	            	$("#myModal2").modal();
+	            }
 			}    
 		</script>
 

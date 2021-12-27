@@ -38,7 +38,7 @@
         text-align:center;
     }
     
-    .search-area a{
+    .search-area button{
         background-color:rgb(151, 138, 116);
         color:white;
     }
@@ -87,7 +87,7 @@
 	                        </tr>
                         <% }else { %>
                         	<%for(Notice n : list) { %>
-		                        <tr>
+		                        <tr class="clickList">
 		                            <td><%=n.getNoticeNo() %></td>
 		                            <td><%=n.getNoticeTitle() %></td>
 		                            <td><%=n.getNoticeWriter() %></td>
@@ -100,7 +100,7 @@
                 </table>
                 <script>
 			    	$(function(){
-			    		$("#list-area>tbody>tr").click(function(){
+			    		$(".clickList").click(function(){
 			    			location.href='<%=contextPath%>/detail.no?nno=' + $(this).children().eq(0).text();
 			    		})
 			    	})
@@ -109,8 +109,6 @@
                 <div class="paging-area" align="center">
                 	<% if(currentPage != 1) {%>
                     	<button class="btn" onclick="location.href='<%=contextPath%>/list.no?cpage=<%=currentPage-1%>'">&lt;</button>
-                    <% }else { %>
-                    	<button class="btn" disabled>&lt;</button>
                     <% } %>
                     
                     <% for(int p=startPage; p<=endPage; p++) { %>
@@ -122,19 +120,18 @@
                     <% } %>
                     <% if(currentPage != maxPage) {%>
                     <button class="btn" onclick="location.href='<%=contextPath%>/list.no?cpage=<%=currentPage+1%>'">&gt;</button>
-                    <% }else { %>
-                    	<button class="btn" disabled>&gt;</button>
-                    <% } %>
+                    <% }%>
                 </div>
                 <br>
                 <div class="search-area" align="center">
-                    <form action="">
-                        <select name="" id="">
-                            <option value="">제목</option>
-                            <option value="">내용</option>
+                    <form action="search.no">
+                        <select name="searchCategory">
+                            <option value="searchTitle">제목</option>
+                            <option value="SearchContent">내용</option>
                         </select>
-                        <input type="text">
-                        <a href="" class="btn btn-sm">검색</a>
+                        <input type="text" name="keyword" required>
+                        <input type="hidden" name="cpage" value="1">
+                        <button type="submit" class="btn btn-sm">검색</a>
                     </form>
                 </div>
             </div>

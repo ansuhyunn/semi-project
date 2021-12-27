@@ -139,5 +139,31 @@ public class NoticeService {
 		close(conn);
 		return result;
 	}
+	
+	public int selectSearchListCount(String category, String keyword) {
+		Connection conn = getConnection();
+		int listCount = 0;
+		if(category.equals("searchTitle")) {
+			
+			listCount = new NoticeDao().selectTitleSearchListCount(conn, keyword);
+		}else {
+			listCount = new NoticeDao().selectContentSearchListCount(conn, keyword);
+		}
+		close(conn);
+		return listCount;
+		
+	}
+	
+	public ArrayList<Notice> selectSearchList(PageInfo pi, String category, String keyword) {
+		Connection conn = getConnection();
+		ArrayList<Notice> list = new ArrayList<>();
+		if(category.equals("searchTitle")) {
+			list = new NoticeDao().selectTitleSearchList(conn, pi, keyword);
+		}else {
+			list = new NoticeDao().selectContentSearchList(conn, pi, keyword);
+		}
+		close(conn);
+		return list;
+	}
 
 }

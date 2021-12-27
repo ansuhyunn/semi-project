@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import com.kh.common.model.vo.Attachment;
 import com.kh.common.model.vo.PageInfo;
 import com.kh.cscenter.model.dao.QnaDao;
+
 import com.kh.cscenter.model.vo.QnA;
 import com.kh.product.model.vo.Product;
 
@@ -137,6 +138,33 @@ public class QnaService {
 		}
 		close(conn);
 		return result;
+	}
+	
+	public int selectSearchListCount(String category, String keyword) {
+		Connection conn = getConnection();		
+		int listCount = 0;
+		if(category.equals("searchTitle")) {
+			
+			listCount = new QnaDao().selectTitleSearchListCount(conn, keyword);
+		}else {
+			listCount = new QnaDao().selectContentSearchListCount(conn, keyword);
+		}		
+		close(conn);
+		return listCount;
+		
+	}
+	
+	public ArrayList<QnA> selectSearchList(PageInfo pi, String category, String keyword) {
+		Connection conn = getConnection();
+		ArrayList<QnA> list = new ArrayList<>();
+		if(category.equals("searchTitle")) {
+			list = new QnaDao().selectTitleSearchList(conn, pi, keyword);
+		}else {
+			list = new QnaDao().selectContentSearchList(conn, pi, keyword);
+		}
+		close(conn);
+		return list;
+		
 	}
 	
 	

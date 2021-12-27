@@ -99,14 +99,14 @@
 				</form>
 			</div>
 			<div class="button">
-				<a href="<%= contextPath %>/delete.pro" class="btn btn-sm" id="delete">선택삭제</a>
+				<a href="<%= contextPath %>/delete.pro" class="btn btn-sm" id="delete">삭제</a>
 			</div>
 		</div>
 
         <table align="center" id="list-area" class="table table-bordered">
 			<thead>
-	            <tr style="background-color: lightgrey;">
-	                <th>&nbsp;&nbsp;&nbsp;</th>
+	            <tr>
+	                <th><input type="checkbox" id="allCheck"></th>
 	                <th>상품번호</th>
 	                <th>등록날짜</th>
 	                <th>Title</th>
@@ -114,23 +114,25 @@
 	                <th>장소</th>
 	                <th>시간</th>
 	                <th>관람연령</th>
-	                <th>시작일</th>
+	                <th>시작일</th> 
 	                <th>종료일</th>
+	                <th>품절여부</th>
 	            </tr>
 	        </thead>
 	        <tbody>
 	            <% for(Product p : preList){ %>
 		            <tr>
-		                <td><input type="checkbox"></td>
+		                <th><input type="checkbox" class="check" name="pno" value="<%= p.getpNo() %>"></th>
 		                <td><%= p.getpNo() %></td>
 		                <td><%= p.getEnrollDate() %></td>
-		                <td><%= p.getTitle() %></td>
+		                <td class="click"><%= p.getTitle() %></td>
 		                <td><%= p.getRegion() %></td>
 		                <td><%= p.getArea() %></td>
 		                <td><%= p.getTime() %></td>
 		                <td><%= p.getAge() %></td>
 		                <td><%= p.getsDate() %></td>
 		                <td><%= p.geteDate() %></td>
+		                <td><%= p.getSoldOut() %></td>
 		            </tr>
 		        <% } %>
 		     </tbody>    
@@ -159,10 +161,14 @@
         
         <script>
 	    	$(function(){
-	    		$("#list-area>tbody>tr").click(function(){
-					console.log($(this).children().eq(0).text())
-	    			location.href='<%=contextPath %>/manageDetail.pro?pno=' + $(this).children().eq(1).text();
+	    		$(".click").click(function(){
+					console.log($(this).prev().prev().text())
+	    			location.href='<%=contextPath %>/manageDetail.pro?pno=' + $(this).prev().prev().text();
 	    		})
+	    		
+	    		$("#allCheck").click(function(){
+                	$(".check").prop("checked", $(this).prop("checked"));
+                })
 	    	})
 	    </script>
         

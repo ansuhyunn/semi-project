@@ -144,12 +144,12 @@
         font-size:13px;
     }
     #check_btn{
-        width:100px;
+        width:90px;
         height:40px;
-        background:rgb(182, 167, 141);
-        border:none;
-        font-size:15px;
         font-weight:600;
+        background-color:rgb(151, 138, 116);
+        color:white;
+        font-size:14px;
     }
 </style>
 </head>
@@ -216,7 +216,7 @@
                     보다 나은 서비스로 다시 만나뵐 수 있기를 바랍니다. <br>
                 </div><br><br>
                 <div id="delete_success_btn" align="center">
-                    <button type="submit" id="check_btn" class="btn btn-sm btn-secondary" onclick="mainHome();">홈 바로가기</button>
+                    <button type="submit" id="check_btn" class="btn btn-sm" onclick="mainHome();">홈 바로가기</button>
                 </div>
                 
                 <script>

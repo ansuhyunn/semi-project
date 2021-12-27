@@ -10,8 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.kh.common.model.vo.PageInfo;
 import com.kh.member.model.vo.Member;
 import com.kh.mypage.model.service.MemberPointService;
+import com.kh.mypage.model.service.MemberReserveService;
 import com.kh.mypage.model.vo.Point;
 
 /**
@@ -39,8 +41,33 @@ public class MyPagePointListController extends HttpServlet {
 		HttpSession session = request.getSession();
 		String memId = ((Member)session.getAttribute("loginUser")).getMemId();
 		
-		ArrayList<Point> list = new MemberPointService().selectPoint(memId);
+		int listCount; 
+		int currentPage; 
+		int pageLimit; 
+		int boardLimit; 
 		
+		int maxPage; 
+		int startPage; 
+		int endPage; 
+		
+		listCount = new MemberPointService().selectListCount(memId);
+		currentPage = Integer.parseInt(request.getParameter("cpage"));
+		pageLimit = 5;
+		boardLimit = 5;
+		
+		maxPage = (int)Math.ceil((double)listCount / boardLimit);
+		startPage = (currentPage - 1) / pageLimit * pageLimit + 1;
+		endPage = startPage + pageLimit - 1;
+		
+		if(endPage > maxPage) {
+			endPage = maxPage;
+		}
+		
+		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
+		
+		ArrayList<Point> list = new MemberPointService().selectPoint(memId, pi);
+		
+		request.setAttribute("pi", pi);
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("views/mypage/pointCheck.jsp").forward(request, response);
 	}

@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import com.kh.common.model.vo.PageInfo;
 import com.kh.mypage.model.vo.Review;
 
 import static com.kh.common.JDBCTemplate.*;
@@ -23,6 +24,33 @@ public class MemberReviewDao {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	// 작성한 리뷰 페이징바
+	public int selectListCount(Connection conn, int memNo) {
+		int listCount = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectReviewListCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, memNo);	
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt("count");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return listCount;
 	}
 	
 	public ArrayList<Review> reviewBeforeList(Connection conn, int memNo){
@@ -67,7 +95,7 @@ public class MemberReviewDao {
 		
 	}
 	
-	public ArrayList<Review> reviewAfterList(Connection conn, int memNo){
+	public ArrayList<Review> reviewAfterList(Connection conn, int memNo, PageInfo pi){
 		ArrayList<Review> alist = new ArrayList<>();
 		
 		PreparedStatement pstmt = null;
@@ -77,6 +105,11 @@ public class MemberReviewDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, memNo);
+			
+			int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+			int endRow = startRow + pi.getBoardLimit() - 1;
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
 			
 			rset = pstmt.executeQuery();
 			

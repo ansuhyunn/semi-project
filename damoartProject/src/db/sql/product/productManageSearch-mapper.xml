@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+<!-- 전체 전시 타이틀 -->
+<entry key="titleSearchCount">
+SELECT COUNT(*) COUNT
+  FROM PRODUCT
+ WHERE TITLE LIKE '%'||?||'%'
+</entry>
+
+<entry key="titleSearchList">
+SELECT *
+  FROM (
+  		SELECT ROWNUM RNUM, A.*
+  		  FROM (
+                SELECT 
+                       PNO
+                     , TO_CHAR(ENROLL_DATE, 'RRRR.MM.DD') ENROLL_DATE
+                     , TITLE
+                     , REGION
+                     , AREA
+                     , AGE
+                     , TIME
+                     , TO_CHAR(TO_DATE(S_DATE), 'RRRR.MM.DD') S_DATE
+                     , TO_CHAR(TO_DATE(E_DATE), 'RRRR.MM.DD') E_DATE
+                     , SOLDOUT
+                  FROM PRODUCT
+                 WHERE TITLE LIKE '%'||?||'%'
+                 ORDER BY 1 DESC
+			 ) A
+		 )
+ WHERE RNUM BETWEEN ? AND ?
+</entry>
+
+
+<!-- 전체 전시 지역 -->
+<entry key="areaSearchCount">
+SELECT COUNT(*) COUNT
+  FROM PRODUCT
+ WHERE REGION LIKE '%'||?||'%'
+</entry>
+
+
+<!-- 전체 전시 목록 -->
+<entry key="areaSearchList">
+SELECT *
+  FROM (
+  		SELECT ROWNUM RNUM, A.*
+  		  FROM (
+                SELECT 
+                       PNO
+                     , TO_CHAR(ENROLL_DATE, 'RRRR.MM.DD') ENROLL_DATE
+                     , TITLE
+                     , REGION
+                     , AREA
+                     , AGE
+                     , TIME
+                     , TO_CHAR(TO_DATE(S_DATE), 'RRRR.MM.DD') S_DATE
+                     , TO_CHAR(TO_DATE(E_DATE), 'RRRR.MM.DD') E_DATE
+                     , SOLDOUT
+                  FROM PRODUCT
+                 WHERE REGION LIKE '%'||?||'%'
+                 ORDER BY 1 DESC
+			 ) A
+		 )
+ WHERE RNUM BETWEEN ? AND ?
+</entry>
+
+<!-- 전체 전시 품절 -->
+<entry key="soldSearchCount">
+SELECT COUNT(*) COUNT
+  FROM PRODUCT
+ WHERE SOLDOUT = ?
+</entry>
+
+
+<!-- 전체 전시 목록 -->
+<entry key="soldSearchList">
+SELECT *
+  FROM (
+  		SELECT ROWNUM RNUM, A.*
+  		  FROM (
+                SELECT 
+                       PNO
+                     , TO_CHAR(ENROLL_DATE, 'RRRR.MM.DD') ENROLL_DATE
+                     , TITLE
+                     , REGION
+                     , AREA
+                     , AGE
+                     , TIME
+                     , TO_CHAR(TO_DATE(S_DATE), 'RRRR.MM.DD') S_DATE
+                     , TO_CHAR(TO_DATE(E_DATE), 'RRRR.MM.DD') E_DATE
+                     , SOLDOUT
+                  FROM PRODUCT
+                 WHERE SOLDOUT = ?
+                 ORDER BY 1 DESC
+			 ) A
+		 )
+ WHERE RNUM BETWEEN ? AND ?
+</entry>
+
+
+
+<!-- 오픈 예정 전시 갯수 -->
+<entry key="selectPreCount">
+SELECT COUNT(*) COUNT
+  FROM PRODUCT
+<![CDATA[WHERE FLOOR(MONTHS_BETWEEN(SYSDATE, TO_DATE(S_DATE, 'RRRRMMDD'))) < 0 ]]>
+</entry>
+
+<!-- 오픈 예정 전시 목록 -->
+<entry key="selectPreList">
+SELECT *
+  FROM (
+        SELECT ROWNUM RNUM, A.*
+	  	  FROM (
+	             SELECT 
+                        PNO
+                      , TO_CHAR(ENROLL_DATE, 'RRRR.MM.DD') ENROLL_DATE
+                      , TITLE
+                      , REGION
+                      , AREA
+                      , AGE
+                      , TIME
+                      , TO_CHAR(TO_DATE(S_DATE), 'RRRR.MM.DD') S_DATE
+                      , TO_CHAR(TO_DATE(E_DATE), 'RRRR.MM.DD') E_DATE
+                      , SOLDOUT
+                   FROM PRODUCT
+		           <![CDATA[WHERE FLOOR(MONTHS_BETWEEN(SYSDATE, TO_DATE(S_DATE))) < 0 ]]>
+				  ORDER BY 1 DESC
+			 ) A
+		)
+ WHERE RNUM BETWEEN ? AND ?
+</entry>
+
+
+
+<!-- 진행중 타이틀 검색 -->
+<entry key="ingTitleSearchCount">
+SELECT COUNT(*) COUNT
+  FROM PRODUCT
+ WHERE TITLE LIKE '%'||?||'%'
+<![CDATA[AND FLOOR(MONTHS_BETWEEN(SYSDATE, TO_DATE(S_DATE, 'RRRRMMDD'))) >= 0 ]]>
+</entry>
+
+<entry key="ingTitleSearchList">
+SELECT *
+  FROM (
+        SELECT ROWNUM RNUM, A.*
+	  	  FROM (
+	             SELECT 
+                        PNO
+                      , TO_CHAR(ENROLL_DATE, 'RRRR.MM.DD') ENROLL_DATE
+                      , TITLE
+                      , REGION
+                      , AREA
+                      , AGE
+                      , TIME
+                      , TO_CHAR(TO_DATE(S_DATE), 'RRRR.MM.DD') S_DATE
+                      , TO_CHAR(TO_DATE(E_DATE), 'RRRR.MM.DD') E_DATE
+                      , SOLDOUT
+                   FROM PRODUCT
+		           <![CDATA[WHERE FLOOR(MONTHS_BETWEEN(SYSDATE, TO_DATE(S_DATE))) >= 0 
+		            AND SOLDOUT = 'N']]>
+		            AND TITLE LIKE '%'||?||'%'
+				  ORDER BY 1 DESC
+			 ) A
+		)
+ WHERE RNUM BETWEEN ? AND ?
+</entry>
+
+
+
+<!-- 진행중 지역 검색 -->
+<entry key="ingAreaSearchCount">
+SELECT COUNT(*) COUNT
+  FROM PRODUCT
+ WHERE REGION LIKE '%'||?||'%'
+<![CDATA[AND FLOOR(MONTHS_BETWEEN(SYSDATE, TO_DATE(S_DATE, 'RRRRMMDD'))) >= 0 ]]>
+</entry>
+
+<entry key="ingAreaSearchList">
+SELECT *
+  FROM (
+        SELECT ROWNUM RNUM, A.*
+	  	  FROM (
+	             SELECT 
+                        PNO
+                      , TO_CHAR(ENROLL_DATE, 'RRRR.MM.DD') ENROLL_DATE
+                      , TITLE
+                      , REGION
+                      , AREA
+                      , AGE
+                      , TIME
+                      , TO_CHAR(TO_DATE(S_DATE), 'RRRR.MM.DD') S_DATE
+                      , TO_CHAR(TO_DATE(E_DATE), 'RRRR.MM.DD') E_DATE
+                      , SOLDOUT
+                   FROM PRODUCT
+		           <![CDATA[WHERE FLOOR(MONTHS_BETWEEN(SYSDATE, TO_DATE(S_DATE))) >= 0 
+		            AND SOLDOUT = 'N']]>
+		            AND REGION LIKE '%'||?||'%'
+				  ORDER BY 1 DESC
+			 ) A
+		)
+ WHERE RNUM BETWEEN ? AND ?
+</entry>
+
+
+<!-- 진행중 품절 검색 -->
+<entry key="ingSoldSearchCount">
+SELECT COUNT(*) COUNT
+  FROM PRODUCT
+ WHERE SOLDOUT = ?
+<![CDATA[AND FLOOR(MONTHS_BETWEEN(SYSDATE, TO_DATE(S_DATE, 'RRRRMMDD'))) >= 0 ]]>
+</entry>
+
+<entry key="ingSoldSearchList">
+SELECT *
+  FROM (
+        SELECT ROWNUM RNUM, A.*
+	  	  FROM (
+	             SELECT 
+                        PNO
+                      , TO_CHAR(ENROLL_DATE, 'RRRR.MM.DD') ENROLL_DATE
+                      , TITLE
+                      , REGION
+                      , AREA
+                      , AGE
+                      , TIME
+                      , TO_CHAR(TO_DATE(S_DATE), 'RRRR.MM.DD') S_DATE
+                      , TO_CHAR(TO_DATE(E_DATE), 'RRRR.MM.DD') E_DATE
+                      , SOLDOUT
+                   FROM PRODUCT
+		           <![CDATA[WHERE FLOOR(MONTHS_BETWEEN(SYSDATE, TO_DATE(S_DATE))) >= 0 
+		            AND SOLDOUT = ?]]>
+				  ORDER BY 1 DESC
+			 ) A
+		)
+ WHERE RNUM BETWEEN ? AND ?
+</entry>
+
+
+
+</properties>

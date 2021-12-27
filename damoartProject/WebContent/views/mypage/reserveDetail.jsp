@@ -1,10 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.kh.mypage.model.vo.Point, java.util.ArrayList, com.kh.mypage.model.vo.Order" %>
+    pageEncoding="UTF-8" import="com.kh.mypage.model.vo.Point, java.util.ArrayList, com.kh.mypage.model.vo.Order, com.kh.common.model.vo.PageInfo" %>
 <%
-
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	ArrayList<Order> list = (ArrayList<Order>)request.getAttribute("list");
-
 	Point poi = (Point)session.getAttribute("poi");
+	
+	int currentPage = pi.getCurrentPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+	int maxPage = pi.getMaxPage();
 
 %>
 <!DOCTYPE html>
@@ -203,14 +207,14 @@
             <ul>  	
                 <li><h3>마이쇼핑</h3></li>
                 <div>
-                    <a href="<%= contextPath %>/reserve.mp" id="submenu" style="color:rgb(151, 138, 116)">예매 내역</a> <br>
-                    <a href="<%= contextPath %>/refund.mp" id="submenu">취소/환불 내역</a> <br>
-                    <a href="<%= contextPath %>/pointList.mp" id="submenu">적립금 내역</a> <br>
+                    <a href="<%= contextPath %>/reserve.mp?cpage=1" id="submenu" style="color:rgb(151, 138, 116)">예매 내역</a> <br>
+                    <a href="<%= contextPath %>/refund.mp?cpage=1" id="submenu">취소/환불 내역</a> <br>
+                    <a href="<%= contextPath %>/pointList.mp?cpage=1" id="submenu">적립금 내역</a> <br>
                 </div><br>
                 <li><h3>마이활동</h3></li>
                 <div>
                     <a href="<%=request.getContextPath() %>/rbefore.mp" id="submenu">리뷰 내역</a> <br>
-                    <a href="<%=request.getContextPath() %>/qnaList.mp" id="submenu">Q&A 내역</a> <br>
+                    <a href="<%=request.getContextPath() %>/qnaList.mp?cpage=1" id="submenu">Q&A 내역</a> <br>
                 </div><br>
                 <li><h3>마이정보</h3></li>
                 <div>
@@ -286,23 +290,32 @@
 	                    
                   </tbody>
                 </table>
-                <div class="paging-navigation" align="center">
-                    <button type="button" class="paging-prev" disabled>
-                        <span><</span>
-                    </button>
-                    <button type="button" class="paging-1" disabled>
-                        <span>1</span>
-                    </button>
-                    <button type="button" class="paging-next" disabled>
-                        <span>></span>
-                    </button>
+
+                <div class="paging-area" align="center">
+                	<% if(currentPage != 1) {%>
+                    	<button class="btn" onclick="location.href='<%=contextPath%>/reserve.mp?cpage=<%=currentPage-1%>'">&lt;</button>
+                    <% }else { %>
+                    	<button class="btn" disabled>&lt;</button>
+                    <% } %>
+                    
+                    <% for(int p=startPage; p<=endPage; p++) { %>
+                    	<% if(p == currentPage) { %>
+                    		<button class="btn" disabled><%=p %></button>
+                    	<% }else { %>
+                    		<button class="btn" onclick="location.href='<%=contextPath %>/reserve.mp?cpage=<%=p%>'"><%=p %></button>
+                    	<% } %>
+                    <% } %>
+                    <% if(currentPage != maxPage) {%>
+                    <button class="btn" onclick="location.href='<%=contextPath%>/reserve.mp?cpage=<%=currentPage+1%>'">&gt;</button>
+                    <% }else { %>
+                    	<button class="btn" disabled>&gt;</button>
+                    <% } %>
                 </div>
-              
-              
-              </div>   
-            
+
+              </div>         
             </div>
         </div>
+
 
     
     </div>

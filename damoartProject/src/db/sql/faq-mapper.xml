@@ -88,4 +88,74 @@
 		 ORDER
 		    BY FAQ_NO DESC
 	</entry>
+	
+	<entry key="selectSearchListCount">
+		SELECT COUNT(*) count
+		  FROM FAQ
+		 WHERE STATUS = 'Y'
+		   AND FAQ_TITLE LIKE '%'||?||'%'
+		    OR FAQ_CONTENT LIKE '%'||?||'%'	
+	</entry>
+	
+	<entry key="selectSearchList">
+		SELECT *
+		  FROM (
+		        SELECT ROWNUM RNO, A.*
+		          FROM (
+		                SELECT
+		                       FAQ_NO
+		                     , NICKNAME
+		                     , FAQ_TITLE
+		                     , FAQ_CONTENT
+		                     , TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') "CREATE_DATE"
+		                     , F_CATEGORY_CODE
+		                  FROM FAQ F
+		                  JOIN MEMBER ON(FAQ_WRITER = MEM_NO)
+		                 WHERE F.STATUS = 'Y'
+		                   AND FAQ_TITLE LIKE '%'||?||'%'
+		    			    OR FAQ_CONTENT LIKE '%'||?||'%'
+		                 ORDER
+		                    BY FAQ_NO DESC
+		                ) A
+		        )
+		  WHERE RNO BETWEEN ? AND ?
+	</entry>
+	
+	<entry key="menuSearchProductCount">
+		
+		SELECT COUNT(*) "count"
+		  FROM PRODUCT
+		 WHERE FLOOR(MONTHS_BETWEEN(SYSDATE, TO_DATE(S_DATE, 'RRRRMMDD'))) >= 0
+		   AND SOLDOUT = 'N'
+           AND TITLE LIKE '%'||?||'%' 
+            OR REGION LIKE '%'||?||'%' 
+            OR AREA LIKE '%'||?||'%'		
+	</entry>
+	
+	<entry key="menuSearchProduct">
+		SELECT *
+		  FROM (
+		        SELECT ROWNUM RNUM, A.*
+			  	  FROM (
+			             SELECT 
+		                       PNO
+							 , TITLE
+							 , REGION
+							 , AGE
+							 , AREA
+							 , TO_CHAR(TO_DATE(S_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') S_DATE
+							 , TO_CHAR(TO_DATE(E_DATE, 'RRRRMMDD'), 'RRRR.MM.DD') E_DATE
+							 , TIME
+							 , MAIN_IMG
+							 , DETAIL_IMG
+							 , ETC
+		                   FROM PRODUCT
+				           WHERE FLOOR(MONTHS_BETWEEN(SYSDATE, TO_DATE(S_DATE, 'RRRRMMDD'))) >= 0
+						    AND SOLDOUT = 'N'
+                            AND TITLE LIKE '%'||?||'%' OR REGION LIKE '%'||?||'%' OR AREA LIKE '%'||?||'%' 
+						  ORDER BY 1 DESC
+					 ) A
+				)
+		WHERE RNUM BETWEEN ? AND ?
+	</entry>
 </properties>

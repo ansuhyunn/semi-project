@@ -139,4 +139,60 @@
 		    SET STATUS = 'N'
 		  WHERE NOTICE_NO = ?
 	</entry>
+	
+	<entry key="selectTitleSearchListCount">
+		SELECT COUNT(*) count
+		  FROM NOTICE
+		 WHERE STATUS = 'Y'
+		   AND NOTICE_TITLE LIKE '%'||?||'%'
+	</entry>
+	
+	<entry key="selectTitleSearchList">
+		SELECT *
+		  FROM (
+		        SELECT ROWNUM RNO, A.*
+		          FROM (
+		                SELECT 
+		                       NOTICE_NO
+		                     , NICKNAME
+		                     , NOTICE_TITLE
+		                     , TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') "CREATE_DATE"
+		                     , COUNT
+		                  FROM NOTICE N
+		                  JOIN MEMBER ON (NOTICE_WRITER = MEM_NO)
+		                 WHERE N.STATUS = 'Y'
+		                   AND NOTICE_TITLE LIKE '%'||?||'%'
+		                 ORDER BY NOTICE_NO DESC
+		                 ) A
+		        )
+		  WHERE RNO BETWEEN ? AND ?	
+	</entry>
+	
+	<entry key="selectContentSearchListCount">
+		SELECT COUNT(*) count
+		  FROM NOTICE
+		 WHERE STATUS = 'Y'
+		   AND NOTICE_CONTENT LIKE '%'||?||'%'
+	</entry>
+	
+	<entry key="selectContentSearchList">
+		SELECT *
+		  FROM (
+		        SELECT ROWNUM RNO, A.*
+		          FROM (
+		                SELECT 
+		                       NOTICE_NO
+		                     , NICKNAME
+		                     , NOTICE_TITLE
+		                     , TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') "CREATE_DATE"
+		                     , COUNT
+		                  FROM NOTICE N
+		                  JOIN MEMBER ON (NOTICE_WRITER = MEM_NO)
+		                 WHERE N.STATUS = 'Y'
+		                   AND NOTICE_CONTENT LIKE '%'||?||'%'
+		                 ORDER BY NOTICE_NO DESC
+		                 ) A
+		        )
+		  WHERE RNO BETWEEN ? AND ?	
+	</entry>
 </properties>

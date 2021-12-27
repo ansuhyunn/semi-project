@@ -73,8 +73,8 @@
 						     , NICKNAME
 						     , EMAIL
 						     , PHONE
-						     , TO_CHAR(BIRTH,'YYYY-MM-DD') "BIRTH"
-						     , TO_CHAR(ENROLL_DATE, 'YYYY-MM-DD') "ENROLL_DATE"
+						     , BIRTH
+						     , ENROLL_DATE
 						     , STATUS
 						  FROM MEMBER
 						  ORDER
@@ -82,6 +82,14 @@
 		               ) A 
 		        )
 		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	
+	<entry key="findId">
+		SELECT 
+		       MEM_ID
+		  FROM MEMBER     
+		 WHERE MEM_NAME = ?
+		   AND EMAIL = ?
 	</entry>
 	
 

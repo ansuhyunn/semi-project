@@ -118,6 +118,16 @@
         font-weight:500;
     }
     
+    #myModal{
+    	padding-top:150px;
+    }
+    
+    #modalClose{
+        background-color:rgb(203, 185, 153);
+        color:rgb(64, 64, 64);
+        font-weight:600;
+    }
+    
 
 </style>
 </head>

@@ -243,13 +243,17 @@ UPDATE
 
 
 
-<!-- 전시 삭제 -->
-<entry key="deleteProduct"> 
+<!-- 판매 중지-->
+<entry key="SoldOutProduct"> 
 UPDATE PRODUCT
    SET SOLDOUT='Y'
  WHERE PNO = ?
 </entry>
 
+<entry key="deleteProduct"> 
+DELETE FROM PRODUCT
+ WHERE PNO = ?
+</entry>
 
 
 	
