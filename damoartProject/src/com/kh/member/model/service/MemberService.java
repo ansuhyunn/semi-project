@@ -84,4 +84,11 @@ public class MemberService {
 		return list;
 	}
 	
+	public ArrayList<Member> selectAdminMainList() {
+		Connection conn = getConnection();
+		ArrayList<Member> mList = new MemberDao().selectAdminMainList(conn);
+		close(conn);
+		return mList;
+	}
+	
 }

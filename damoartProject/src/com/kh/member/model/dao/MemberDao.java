@@ -262,5 +262,37 @@ public class MemberDao {
 		return list;
 		
 	}
+	
+	public ArrayList<Member> selectAdminMainList(Connection conn){
+		ArrayList<Member> mList = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectAdminMainList");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, 1);
+			pstmt.setInt(2, 5);
+			
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				Member m = new Member();
+				m.setMemNo(rset.getInt("mem_no"));
+				m.setMemId(rset.getString("mem_id"));
+				m.setMemName(rset.getString("mem_name"));
+				m.setNickName(rset.getString("nickname"));
+				m.setEmail(rset.getString("email"));
+				m.setPhone(rset.getString("phone"));
+				m.setEnrollDate(rset.getDate("enroll_date"));
+				
+				mList.add(m);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return mList;
+	}
 
 }

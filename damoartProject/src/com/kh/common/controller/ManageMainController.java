@@ -36,7 +36,7 @@ public class ManageMainController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ArrayList<Member> mList = new MemberService().selectAdminMainList();
-		ArrayList<Order> oList = new ManageOrderService().selectAdminNaminList();
+		ArrayList<Order> oList = new ManageOrderService().selectAdminMainList();
 		int newOrderCount = new ManageOrderService().newOrderCount();
 		int cancelCount = new ManageCancelService().orderCancelCount();		
 		int nonAnswerCount = new QnaService().nonAnswerCount();

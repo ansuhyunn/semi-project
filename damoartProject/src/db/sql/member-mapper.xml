@@ -111,5 +111,28 @@
 		 ORDER BY 2 DESC
 	</entry>
 	
+	<entry key="selectAdminMainList">
+		SELECT *
+		  FROM (
+				SELECT ROWNUM RNO, A.*
+				  FROM (
+						SELECT
+						       MEM_NO
+						     , MEM_ID
+						     , MEM_NAME
+						     , NICKNAME
+						     , EMAIL
+						     , PHONE
+						     , ENROLL_DATE
+						  FROM MEMBER
+						 WHERE STATUS = 'N'
+						 ORDER
+						    BY MEM_NO DESC
+				  		) A
+		  		)
+		  WHERE RNO BETWEEN ? AND ?
+		    
+	</entry>
+	
 
 </properties>
