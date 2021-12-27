@@ -56,9 +56,19 @@ public class Cart {
 	   }
 
 	   
+	   public Cart(int memNo, int pNo, String cartOpt, int cartCount, int aPrice, int tPrice, int cPrice) {
+		super();
+		this.memNo = memNo;
+		this.pNo = pNo;
+		this.cartOpt = cartOpt;
+		this.cartCount = cartCount;
+		this.aPrice = aPrice;
+		this.tPrice = tPrice;
+		this.cPrice = cPrice;
+	}
 
 
-	   public Cart(int memNo, int pNo, String cartOpt, int cartCount) {
+	public Cart(int memNo, int pNo, String cartOpt, int cartCount) {
 		super();
 		this.memNo = memNo;
 		this.pNo = pNo;

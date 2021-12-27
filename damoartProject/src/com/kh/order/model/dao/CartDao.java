@@ -131,4 +131,39 @@ public class CartDao {
 		}
 		return result;
 	}
+	
+	
+	public ArrayList<Cart> selectPrice(Connection conn, Cart c) {
+		ArrayList<Cart> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectPrice");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, c.getpNo());
+			pstmt.setInt(2, c.getmemNo());
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				
+				list.add(new Cart(rset.getInt("MEM_NO"),
+								  rset.getInt("PNO"),
+								  rset.getString("CART_OPT"),
+								  rset.getInt("CART_COUNT"),
+								  rset.getInt("a_price"),
+								  rset.getInt("t_price"),
+								  rset.getInt("c_price")
+								  ));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		} 
+		
+		return list;
+	} 
+	
 }

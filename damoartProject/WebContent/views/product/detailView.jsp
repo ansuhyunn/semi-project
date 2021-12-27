@@ -5,6 +5,11 @@
 	ArrayList<Product> detailList = (ArrayList<Product>)request.getAttribute("detailList");
 	ArrayList<Product> starList = (ArrayList<Product>)request.getAttribute("starlist");
 	
+	ArrayList<Cart> list = (ArrayList<Cart>)request.getAttribute("list");
+	
+	int totalCount = 0;
+	int totalPrice = 0;
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -86,6 +91,21 @@
 	#pay th{width: 80px; height: 40px;}
 	#pay td{width: 30px; height: 40px;}
 	#insertCart {width: 70px; background-color:rgb(203, 185, 153);}
+	
+	#order{
+		width: 300px;
+		background-color: whitesmoke;
+		font-size: 20px;
+		text-align: center;
+		font-weight: border;
+	}
+	#total{
+		width: 300px;
+		background-color: whitesmoke;
+		text-align: right; 
+		font-size: 30px;
+		padding-right: 30px;
+	}
 	.content3{
 		width: 90%;
 		height: 67%;
@@ -191,9 +211,8 @@
 				
 				<table id="result">
 					<tr>
-						<th id="total" colspan="4" style="text-align: right; font-size: 30px;">
-			               
-						</th>
+						<td id="order"></td>
+						<th id="total"></th>
 					</tr>
 				</table>
 			</div>
@@ -252,14 +271,33 @@
 					url:"in.ca",
 					data:{
 					   pno: $("#pNo").val(),
-					 count: $("#count").val(),
-				    option: $("#option").val()
+					   count: $("#count").val(),
+				       option: $("#option").val()
  						},
  					type:"post",
- 		             success:function(result){
- 		                console.log("ajax통신 성공: " + result);
+ 		            success:function(list){
+ 		                console.log("ajax통신 성공: " + list);
  		                alert("성공적으로 장바구니에 담겼습니다.");
+ 		                let totalCount = 0;
+ 		                let totalPrice = 0;
+ 		                let orderList = "";
  		                
+ 		                $.each(list, function(index, data){
+ 		                	totalCount += data.cartCount;
+ 		                	 if(data.aPrice != 0) {
+ 		                		totalPrice += data.cartCount * data.aPrice;
+ 		                		orderList = "성인";
+ 		                     }else if(ca.getCartOpt().equals("C")) {
+ 		                    	totalPrice += data.cartCount * data.tPrice;
+ 		                    	orderList = "청소년";
+ 		                     }else if(ca.getCartOpt().equals("T")){
+ 		                    	totalPrice += data.cartCount * data.cPrice;
+ 		                    	orderList = "소아";
+ 		                     }else {};
+ 		                });
+ 		                
+ 		                $("#order").html(orderList + totalCount + "장            " + totalPrice + "원");
+ 		                $("#total").html("총 " + totalPrice + "원");
  					 }, error : function(){
  		               console.log("ajax통신 실패"); 
  		             }

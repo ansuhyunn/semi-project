@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
 
+import com.google.gson.Gson;
 import com.kh.member.model.vo.Member;
 import com.kh.order.model.service.CartService;
 import com.kh.order.model.vo.Cart;
@@ -48,9 +49,14 @@ public class CartInsertController extends HttpServlet {
 		c.setCartCount(count);
 		
 		int result = new CartService().insertCart(c);
-		response.getWriter().print(result);
 		
-		System.out.println(result);
+		ArrayList<Cart> list = new CartService().selectPrice(c);
+		
+//		request.setAttribute("list", list);
+//		response.getWriter().print(list);
+//		System.out.println(list);
+		response.setContentType("application/json; charset=UTF-8");
+		new Gson().toJson(list, response.getWriter());
 		
 		/*
 		JSONObject jObj = new JSONObject();	

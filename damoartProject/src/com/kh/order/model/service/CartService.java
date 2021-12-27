@@ -59,4 +59,13 @@ public class CartService {
 		close(conn);
 		return result;
 	}
+	
+	
+	public ArrayList<Cart> selectPrice(Cart c) {
+		Connection conn = getConnection();
+		ArrayList<Cart> list = dao.selectPrice(conn, c);
+		close(conn);
+		
+		return list;
+	}
 }	

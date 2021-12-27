@@ -45,6 +45,23 @@ DELETE FROM CART C
 WHERE
     MEM_NO = ?
 </entry>
+
+<entry key="selectPrice">
+SELECT
+	    MEM_NO,
+	    p.PNO AS PNO, 
+	    CART_OPT, 
+	    CART_COUNT, 
+		A_PRICE, 
+		T_PRICE,
+		C_PRICE
+    FROM CART C
+    JOIN PRODUCT P ON (C.PNO = P.PNO)
+    WHERE C.PNO = ?
+      AND MEM_NO = ?
+</entry>
+
+
 </properties>
 
 
