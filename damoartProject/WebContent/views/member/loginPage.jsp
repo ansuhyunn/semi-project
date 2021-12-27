@@ -84,8 +84,7 @@
 </head>
 <body>
     <%@ include file="../common/menubar.jsp" %>
-    
-    <div class="outer">
+	<div class=outer>
         <h2 align="center" style="font-weight:bold;"> LOGIN </h2>
         <br><br><br>
         

@@ -29,7 +29,7 @@
         }
         .outer{
             margin:auto;
-            margin-top:200px;
+            margin-top:100px;
             height:700px;
         }
         .findIdForm{
@@ -45,7 +45,7 @@
             height:45px;
             background:rgba(255, 255, 255, 0.45);
         }
-        #inputEmail{width:295px;}
+        #inputEmail{width:270px;}
         .btn-mem{
             width:400px;
             height:45px;
@@ -65,28 +65,27 @@
         <br><br><br>
         
         <div class="findIdForm" align="center">
-            <div class="findIdForm_radio">
-                <input type="radio" id="email" name="findId">
-                <label for="findIdEmail">이메일</label>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <input type="radio" id="phone" name="findId">
-                <label for="findIdPhone">휴대전화번호</label> 
-            </div>
-            <br>
+            <br><br>
             <div class="findIdForm_content">
                 <form action="" method="post">
                     <input type="text" class="input" name="userName" placeholder="이름" required> <br><br>
-                    <input type="text" class="input" id="inputEmail" name="email" placeholder="이메일" required> 
+                    <input type="text" class="input" id="inputEmail" name="emailId" placeholder="이메일" required> 
                     <select id="emailDomain" id="inputEmailDomain" name="emailDomain" class="email_select"> 
                         <option value="self">직접입력</option> 
-                        <option value="naver.com">naver.com</option> 
-                        <option value="gmail.com">gmail.com</option> 
-                        <option value="daum.net">daum.net</option> 
-                        <option value="nate.com">nate.com</option> 
+                        <option value="@naver.com">@naver.com</option> 
+                        <option value="@gmail.com">@gmail.com</option> 
+                        <option value="@daum.net">@daum.net</option> 
+                        <option value="@nate.com">@nate.com</option> 
                     </select> 
                     <br>
                     <input type="text" class="input" name="phone" style="display:none;" placeholder="휴대전화번호('-'제외하고 입력)" required> <br><br> 
-                    <button type="submit" class="btn-mem">아이디 찾기</button> <br><br>
+                    <button type="submit" class="btn-mem" onclick="findIdResult();">아이디 찾기</button> <br><br>
+                    
+                    <script>
+	                    function findIdResult(){
+	          				location.href = "<%=contextPath%>/views/member/findIdResult.jsp";
+	          			}
+                    </script>
                 </form>
             </div>
         </div>
