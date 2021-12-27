@@ -43,6 +43,7 @@
            
                 <div class="terms" id="term02">
                     <b>다모아트 이용약관</b>
+                    <br>
                     <div class="term">
                         <p>
                             제1조(목적) 
@@ -264,10 +265,14 @@
                             <br> 1. 이 약관은 년 월 일부터 적용됩니다. 
                         </p>    
                     </div>
+                    <br>
+                    <input type="checkbox" class="check type2"><b>&nbsp;(필수) 다모아트의 이용약관에 동의합니다.</b>
+        			<br>
                 </div>
                 <br>
-                <div class="terms" id="term03">
+                <div class="terms type3" id="term03">
                     <b>상품 공급사 개인정보 제공 약관</b>
+                    <br>
                     <div class="term">
                         <p>
                             - 제공받는 자 : K현대미술관 공급사
@@ -276,6 +281,8 @@
                             - 보유 / 이용기간 : 상품 제공 완료 후 3개월
                         </p>    
                     </div>
+                    <br>
+                    <input type="checkbox" class="check type3"><b>&nbsp;(필수) 개인정보 제공약관에 동의합니다.</b>
                 </div>
                 </div>
                 
