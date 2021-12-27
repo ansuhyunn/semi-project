@@ -8,6 +8,8 @@
 
 	String alertMsg = (String)session.getAttribute("alertMsg");
 	
+	String errorMsg = (String)request.getAttribute("errorMsg");
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -145,6 +147,13 @@
 </head>
 
 <body>
+
+	<% if(errorMsg != null){ %>
+		<script>
+			alert("<%=errorMsg%>");
+		</script>
+	<% session.removeAttribute("errorMsg"); %>
+	<% } %>
 
 	<% if(alertMsg != null){ %>
 		<script>

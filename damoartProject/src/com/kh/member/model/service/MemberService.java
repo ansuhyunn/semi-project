@@ -65,4 +65,13 @@ public class MemberService {
 		return list;
 	}
 	
+	public Member findIdResult(String memName, String email) {
+		Connection conn = getConnection();
+		Member m = new MemberDao().findIdResult(conn, memName, email);
+		
+		close(conn);
+
+		return m;
+	}
+	
 }

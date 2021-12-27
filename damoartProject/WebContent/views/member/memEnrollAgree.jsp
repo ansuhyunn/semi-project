@@ -89,11 +89,6 @@
               
             <form action="" name="agree" id="agree" method="post">
               
-              <!--모두 동의-->
-              <div id="agree_all" class="checks">
-                  <input type="checkbox" name="chk_all" id="chk_all">
-                  <label for="chk_all">회원가입 약관에 모두 동의합니다</label>
-              </div>
               
               <!--첫번째 동의-->
               <div id="agree-first">
