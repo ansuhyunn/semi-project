@@ -39,7 +39,7 @@
 	        font-family: 'IBMPlexSansKR-Regular'; 
 	    }
 	    .outer{
-	        width:1500px; 
+	        width:1300px; 
 	        margin:auto;
 	        margin-top:150px;
 	        margin-left:250px;
@@ -98,17 +98,17 @@
             <table align="center" class="table table-bordered list-area" style="text-align:center;">
                 <thead>
                     <tr>
-                        <th width="10"><input type="checkbox"></th>
-                        <th width="100">회원번호</th>
+                        <th width="30"><input type="checkbox"></th>
+                        <th width="90">회원번호</th>
                         <th width="80">아이디</th>
                         <th width="80">이름</th>
-                        <th width="90">닉네임</th>
+                        <th width="120">닉네임</th>
                         <th width="150">이메일</th>
                         <th width="150">전화번호</th>
                         <th width="110">생년월일</th>
                         <th width="110">가입일</th>
-                        <th width="100">회원중지</th>
-                        <th colspan="2" width="70">적립금</th>
+                        <th width="90">회원중지</th>
+                        <th colspan="2" width="50">적립금</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -136,8 +136,7 @@
 		                        </td>  
 		                        <td>  
 		                            <a class="ls-modal btn btn-outline-primary" data-toggle="modal"
-										href="point.mem?mnum=<%= m.getMemNo() %>" data-target="#modal">보기</a>
-		                            <input type="button" class="btn btn-sm btn-warning point" value="변경">
+										href="point.mem?mnum=<%= m.getMemNo() %>" data-target="#modal">보기</a>                   
 		                        </td>
 		                    </tr>
 		            	<% } %>    
