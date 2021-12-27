@@ -195,4 +195,34 @@
 		        )
 		  WHERE RNO BETWEEN ? AND ?	
 	</entry>
+	
+	<entry key="adminSelectSearchListCount">
+		SELECT COUNT(*) count
+		  FROM NOTICE
+		 WHERE STATUS = 'Y'
+		   AND NOTICE_TITLE LIKE '%'||?||'%'
+		    OR NOTICE_CONTENT LIKE '%'||?||'%'
+	</entry>
+	
+	<entry key="adminSelectSearchList">
+		SELECT *
+		  FROM (
+		        SELECT ROWNUM RNO, A.*
+		          FROM (
+		                SELECT 
+		                       NOTICE_NO
+		                     , NICKNAME
+		                     , NOTICE_TITLE
+		                     , TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') "CREATE_DATE"
+		                     , COUNT
+		                  FROM NOTICE N
+		                  JOIN MEMBER ON (NOTICE_WRITER = MEM_NO)
+		                 WHERE N.STATUS = 'Y'
+		                   AND NOTICE_TITLE LIKE '%'||?||'%'
+		    				OR NOTICE_CONTENT LIKE '%'||?||'%'
+		                 ORDER BY NOTICE_NO DESC
+		                 ) A
+		        )
+		  WHERE RNO BETWEEN ? AND ?	
+	</entry>
 </properties>

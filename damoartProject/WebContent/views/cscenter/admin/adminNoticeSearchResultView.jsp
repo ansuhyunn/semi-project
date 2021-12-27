@@ -4,8 +4,8 @@
 <%@ page import="java.util.ArrayList, com.kh.common.model.vo.PageInfo, com.kh.cscenter.model.vo.Notice" %>
     
 <% PageInfo pi = (PageInfo)request.getAttribute("pi");
-    ArrayList<Notice> list = (ArrayList<Notice>)request.getAttribute("list");
-    
+    ArrayList<Notice> searchList = (ArrayList<Notice>)request.getAttribute("searchList");
+    String keyword = request.getParameter("keyword");
     int currentPage = pi.getCurrentPage();
     int startPage = pi.getStartPage();
     int endPage = pi.getEndPage();
@@ -114,6 +114,7 @@
                 </div>
             </div>
             <br>
+            <p><b>"<%=keyword%>" (으)로 검색한 결과</b></p>
             <div>
                 <table align="center" id="list-area" class="table table-bordered">
                     <thead>
@@ -127,12 +128,12 @@
                         </tr>
                     </thead>
                     <tbody class="no-tb">
-                    	<% if(list.isEmpty()) { %>
+                    	<% if(searchList.isEmpty()) { %>
 	                        <tr>
 	                            <td colspan="6">게시글이 없습니다.</td>
 	                        </tr>
                         <% }else { %>
-                        	<%for(Notice n : list) { %>
+                        	<%for(Notice n : searchList) { %>
 		                        <tr>
                                     <td><input type="checkbox" class="deleteCheck" name="checkNo" value="<%=n.getNoticeNo()%>"></td>
 		                            <td><%=n.getNoticeNo() %></td>
@@ -158,18 +159,18 @@
                 </script>
                 <div class="paging-area" align="center">
                 	<% if(currentPage != 1) {%>
-                    	<button class="btn" onclick="location.href='<%=contextPath%>/adminList.no?cpage=<%=currentPage-1%>';">&lt;</button>
+                    	<button class="btn" onclick="location.href='<%=contextPath%>/adminSearch.no?cpage=<%=currentPage-1%>';">&lt;</button>
                     <% } %>
                     
                     <% for(int p=startPage; p<=endPage; p++) { %>
                     	<% if(p == currentPage) { %>
                     		<button class="btn" disabled><%=p %></button>
                     	<% }else { %>
-                    		<button class="btn" onclick="location.href='<%=contextPath %>/adminList.no?cpage=<%=p%>';"><%=p %></button>
+                    		<button class="btn" onclick="location.href='<%=contextPath %>/adminSearch.no?cpage=<%=p%>';"><%=p %></button>
                     	<% } %>
                     <% } %>
                     <% if(currentPage != maxPage) {%>
-                    <button class="btn" onclick="location.href='<%=contextPath%>/adminList.no?cpage=<%=currentPage+1%>';">&gt;</button>
+                    <button class="btn" onclick="location.href='<%=contextPath%>/adminSearch.no?cpage=<%=currentPage+1%>';">&gt;</button>
                     <% } %>
                 </div>
             </div>
