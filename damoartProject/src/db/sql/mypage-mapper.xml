@@ -262,6 +262,8 @@
 		                  LEFT JOIN MEMBER M ON (Q.MEM_NO2 = M.MEM_NO)
 		                 WHERE Q_WRITER = ?
 		                   AND Q.STATUS = 'Y'
+		                 ORDER 
+		                    BY CREATE_DATE DESC
 		                ) "QL"
 		     )
 		 WHERE RNUM BETWEEN ? AND ?
