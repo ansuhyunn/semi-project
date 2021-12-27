@@ -165,5 +165,23 @@ public class NoticeService {
 		close(conn);
 		return list;
 	}
+	
+	public int adminSelectSearchListCount(String keyword) {
+		Connection conn = getConnection();
+		int listCount = 0;
+		listCount = new NoticeDao().adminSelectSearchListCount(conn, keyword);
+		close(conn);
+		return listCount;
+		
+	}
+	
+	public ArrayList<Notice> adminSelectSearchList(PageInfo pi, String keyword) {
+		Connection conn = getConnection();
+		ArrayList<Notice> list = new ArrayList<>();		
+		list = new NoticeDao().adminSelectSearchList(conn, pi, keyword);		
+		close(conn);
+		return list;
+	}
+
 
 }

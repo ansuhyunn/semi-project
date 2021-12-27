@@ -590,5 +590,78 @@ private Properties prop = new Properties();
 		}
 		return nonAnswerCount;
 	}
+	
+	public int adminSelectSearchListCount(Connection conn, String keyword) {
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("adminSelectSearchListCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, keyword);
+			pstmt.setString(2, keyword);
+			pstmt.setString(3, keyword);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt("count");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		System.out.println(listCount);
+		return listCount;
+		
+	}
+	
+	public ArrayList<QnA> adminSelectSearchList(Connection conn, PageInfo pi, String keyword) {
+		ArrayList<QnA> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("adminSelectSearchList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+			int endRow = startRow + pi.getBoardLimit() -1;
+			pstmt.setString(1, keyword);
+			pstmt.setString(2, keyword);
+			pstmt.setString(3, keyword);
+			pstmt.setInt(4, startRow);
+			pstmt.setInt(5, endRow);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				String category = "";
+				switch(rset.getString("Q_CATEGORY_CODE")) {
+				case "Q1" : category = "[티켓]"; break;
+         	    case "Q2" : category = "[취소/환불]"; break;
+         	    case "Q3" : category = "[주문/결제]"; break;
+         	    case "Q4" : category = "[상품]"; break;
+         	    case "Q5" : category = "[기타]"; break;
+         	    default :  break;
+				}
+				list.add(new QnA(rset.getInt("Q_NO"),
+						 		 rset.getInt("MEM_NO"),
+						 		 rset.getString("Q_WRITER"),
+						 		 rset.getString("SECRET"),
+						 		 rset.getString("Q_TITLE"),
+						 		 rset.getString("CREATE_DATE"),
+						 		 category,
+						 		 rset.getString("A_CONTENT")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
 
 }
