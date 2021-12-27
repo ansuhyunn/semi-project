@@ -30,7 +30,7 @@
         .outer{
             margin:auto;
             margin-top:100px;
-            height:700px;
+            height:600px;
         }
         .findIdForm{
             border:1px solid rgb(180, 172, 166);
@@ -40,7 +40,6 @@
         }
         .input{
             border:none;
-            
             width:400px;
             height:45px;
             background:rgba(255, 255, 255, 0.45);

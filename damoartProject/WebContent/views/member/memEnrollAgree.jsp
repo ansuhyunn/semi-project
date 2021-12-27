@@ -93,7 +93,7 @@
               <!--첫번째 동의-->
               <div id="agree-first">
                   <fieldset class="agree-content">            
-                      <input type="checkbox" name="agree1" id="agree1">
+                      <input type="checkbox" name="agree1" id="agree1" required>
                       <label for="agree1">이용약관 동의 <span style="color:red;">(필수)</span></label>
                   </fieldset>
                   
@@ -340,7 +340,7 @@
                 <!--두번째 동의--> 
                 <div id="agree-second">
                   <fieldset class="agree-content">            
-                      <input type="checkbox" name="agree2" id="agree2">
+                      <input type="checkbox" name="agree2" id="agree2" required>
                       <label for="agree2">개인정보 수집 및 이용 동의 <span style="color:red;">(필수)</span></label>
                   </fieldset>
           
@@ -497,6 +497,8 @@
           			function enrollPage(){
           				location.href = "<%=contextPath%>/enrollForm.me";
           			}
+	             	
+          			
           		</script>
               </div>
 

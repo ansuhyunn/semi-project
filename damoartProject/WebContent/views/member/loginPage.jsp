@@ -63,7 +63,7 @@
             text-decoration:none;
             color:black;
             padding:10px;
-            font-size:13px;
+            font-size:14px;
         }
         .input{
             border:1px solid lightgray;
@@ -112,7 +112,7 @@
         <!--하단-->
         <div id="tab-1-etc" class="tab-loginform-etc" align="center">
             <a href="<%=contextPath%>/views/member/findId.jsp">아이디 찾기</a>
-            <a href="">비밀번호 찾기</a>
+            <a href="<%=contextPath%>/views/member/findPwd.jsp">비밀번호 찾기</a>
             <a href="<%=contextPath%>/agreement.me">회원가입</a>
         </div>
 
