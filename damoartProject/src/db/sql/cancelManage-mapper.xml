@@ -15,6 +15,8 @@ SELECT
 		   ,PAY_PRICE
            ,PAY_OPT
            ,MEM_ID
+           ,MAIN_IMG
+           ,ORDER_COUNT
 		 FROM "ORDER_P" P
 		 JOIN "ORDER" O ON (O.ORDER_NO = P.ORDER_NO)
 		 JOIN PRODUCT ON (PRODUCT.PNO = P.PNO)
@@ -25,6 +27,20 @@ SELECT
          OR P.ORDER_STATUS = 'N'
          AND O.ORDER_DATE BETWEEN ? AND ?
 		 ORDER BY ORDER_DATE DESC
+</entry>
+
+<entry key="updateCancelCancel">
+UPDATE
+    ORDER_P
+SET ORDER_STATUS = 'CC'
+WHERE ORDER_NO = ?
+</entry>
+
+<entry key="updateCanceldeny">
+UPDATE
+    ORDER_P
+SET ORDER_STATUS = 'P'
+WHERE ORDER_NO = ?
 </entry>
 
 </properties>

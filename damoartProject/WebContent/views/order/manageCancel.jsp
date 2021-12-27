@@ -2,6 +2,8 @@
     pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.order.model.vo.ManageCancel"%>
 <%
 ArrayList<ManageCancel> list = (ArrayList<ManageCancel>)request.getAttribute("list");
+int totalwant = (int)request.getAttribute("totalwant");
+int totalCancel = (int)request.getAttribute("totalCancel");
 %>
 <!DOCTYPE html>
 <html>
@@ -88,7 +90,7 @@ ArrayList<ManageCancel> list = (ArrayList<ManageCancel>)request.getAttribute("li
         background-color: rgb(203, 185, 153);
 
     }
-    #check{
+    #deny{
         color: white;
         background-color: rgba(78, 67, 44, 0.6);
     }
@@ -136,13 +138,10 @@ ArrayList<ManageCancel> list = (ArrayList<ManageCancel>)request.getAttribute("li
         <!--주문 현황-->
         <div class="order_chart" align="center">
            <div class="box new_order">
-                취소요청&nbsp;&nbsp; 4
-           </div>
-           <div class="box com_order">
-               취소거절&nbsp;&nbsp; 1
+                취소요청&nbsp;&nbsp; <%= totalwant %>
            </div>
            <div class="box wait_order">
-                취소완료&nbsp;&nbsp; 3
+                취소완료&nbsp;&nbsp; <%= totalCancel %>
            </div>
         </div>
         
@@ -158,8 +157,8 @@ ArrayList<ManageCancel> list = (ArrayList<ManageCancel>)request.getAttribute("li
            
         <!--판매 리스트-->
         <div class="order_box">
-            <button class="btn" id="cancel"><b>취소 승인</b></button>
-            <button class="btn" id="check"><b>취소 거절</b></button>
+            <a href="" class="btn" id="cancel" data-toggle="modal" data-target="#myModal1" type="button"><b>취소 승인</b></a>
+            <a href="" class="btn" id="deny" data-toggle="modal" data-target="#myModal2" type="button"><b>취소 거절</b></a>
             <div class="search">
                 <input type="text" placeholder="구매자 ID, 이름, 주문번호">
                 <button class="btn" id="search"><b>검색</b></button>
@@ -169,20 +168,19 @@ ArrayList<ManageCancel> list = (ArrayList<ManageCancel>)request.getAttribute("li
             <div class="chart">
                 <table class="chart_order">
                     <tr align="center" class="table_title">
-                        <th width="180" colspan="2">주문번호 / 시각</th>
+                   	    <th width="30"><input type="checkbox" id="allCheck"></th>
+                        <th width="180">주문번호 / 시각</th>
                         <th width="220" colspan="2">주문상품</th>
-                        <th width="180">취소사유</th>
                         <th width="60">상태</th>
                         <th width="200">환불정보</th>
                     </tr>
                     <tbody id="table_content">   
        				 <% for(ManageCancel m : list) { %>
                         <tr align="center" class="table_content">
-                        <td><input type="checkbox"></td>
+                        <td><input type="checkbox" class="deleteCheck" name="checkNo" value="<%=m.getOrderNo()%>"></td>
                         <td><%=m.getMemId() %> <%=m.getOrderName() %><br><%=m.getOrderNo() %><br><small><%=m.getOrderDate() %></small></td>
-                        <td width="60"><img src="<%=request.getContextPath()%>/resources/images/product/1M.gif" width="40px" height="40px"></td>
+                        <td width="60"><img src="<%=request.getContextPath()%>/<%= m.getMainImg()%>" width="40px" height="40px"></td>
                         <td><%=m.getpNo() %><br><%=m.getTitle() %></td>
-                        <td>구매 의사 취소</td>
                         <td> <% if (m.getOrderStatus().equals("C")) { %>
                          	  예매취소
                          	  <% } else if (m.getOrderStatus().equals("CC")) { %>
@@ -191,9 +189,6 @@ ArrayList<ManageCancel> list = (ArrayList<ManageCancel>)request.getAttribute("li
                          	  취소거절 <% } %>
                         </td>
                         <td>총 결제금액 &nbsp; <%=m.getTotalPrice() %>￦ <br>
-                    	        결제 방법 &nbsp; <% if (m.getPayOpt().equals("C")) {%>
-                         	   			           카드 <% } else { %>
-                         	   				   무통장입금 <% } %> <br>
                      	       총 환불 금액 &nbsp; <%=m.getPayPrice() %>￦
                         </td>
                     </tr>   
@@ -206,6 +201,11 @@ ArrayList<ManageCancel> list = (ArrayList<ManageCancel>)request.getAttribute("li
         </div>    
             <script>
 (function(){
+	
+
+	$("#allCheck").click(function(){
+		$(".deleteCheck").prop("checked", $(this).prop("checked"));
+	})
 				
 				$("#today").click(function(){
 					console.log("11111");
@@ -376,7 +376,7 @@ ArrayList<ManageCancel> list = (ArrayList<ManageCancel>)request.getAttribute("li
 		        })
 		        	 
 		        
-			)();
+			)}();
 			
 	    </script>
        
@@ -388,7 +388,65 @@ ArrayList<ManageCancel> list = (ArrayList<ManageCancel>)request.getAttribute("li
         <br><br><br><br><br><br>
 <%@ include file="../common/footerbar.jsp" %>
 </div>
+ 
+	<!-- The Modal -->
+	<div class="modal" id="myModal1">
+	  <div class="modal-dialog modal-sm">
+	    <div class="modal-content">
+	
+	      <!-- Modal body -->
+	      <div class="modal-body" align="center">
+	        	판매 취소 승인 하시겠습니까?
+	      </div>
+	
+	      <!-- Modal footer -->
+	      <div class="modal-footer">
+	      	<button id="deleteCancel" type="button" class="btn" data-dismiss="modal">취소</button>
+	      	<button id ="deleteCheck" type="button" class="btn" data-dismiss="modal" onclick="checkCancel();" name="checkCancel">확인</button>
+		  </div>	
+	    </div>
+	  </div>
+	</div>
+	<script>
+		function checkCancel(){
+            var checkArr = [];
+            $("input:checkbox[class='deleteCheck']:checked").each(function(){
+                checkArr.push($(this).val());
+            })
+            console.log("checkArr" + checkArr);
+            location.href = "/damoart/cancelcan.mg?arr=" + checkArr
+		}    
+	</script>
 
+
+<!-- The Modal -->
+	<div class="modal" id="myModal2">
+	  <div class="modal-dialog modal-sm">
+	    <div class="modal-content">
+	
+	      <!-- Modal body -->
+	      <div class="modal-body" align="center">
+	        	판매 취소 거절 하시겠습니까?
+	      </div>
+	
+	      <!-- Modal footer -->
+	      <div class="modal-footer">
+	      	<button id="deleteCancel" type="button" class="btn" data-dismiss="modal">취소</button>
+	      	<button id ="deleteCheck" type="button" class="btn" data-dismiss="modal" onclick="checkCanceldeny();" name="checkCancedeny">확인</button>
+		  </div>	
+	    </div>
+	  </div>
+	</div>
+	<script>
+		function checkCanceldeny(){
+            var checkArr = [];
+            $("input:checkbox[class='deleteCheck']:checked").each(function(){
+                checkArr.push($(this).val());
+            })
+            console.log("checkArr" + checkArr);
+            location.href = "/damoart/canceldeny.mg?arr=" + checkArr
+		}    
+	</script>
 
 
 

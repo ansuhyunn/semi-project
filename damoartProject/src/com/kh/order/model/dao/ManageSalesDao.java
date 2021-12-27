@@ -50,7 +50,8 @@ public class ManageSalesDao {
 											 rset.getString("title"),
 											 rset.getString("s_date"),
 											 rset.getString("e_date"),
-											 rset.getString("order_status")));
+											 rset.getString("order_status"),
+											 rset.getString("main_img")));
 
 				}
 		} catch (SQLException e) {
@@ -84,7 +85,8 @@ public class ManageSalesDao {
 										 rset.getInt("final_price"),
 										 rset.getDate("order_date"),
 										 rset.getInt("order_count"),
-										 rset.getString("order_status")));
+										 rset.getString("order_status"),
+										 rset.getString("main_img")));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

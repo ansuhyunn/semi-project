@@ -170,7 +170,7 @@ int totalPay = (int)request.getAttribute("totalPay");
                 <table class="chart_order">
                 <thead>
                         <tr align="center" class="table_title">
-                        <th width="10"><input type="checkbox" id="allCheck"></th>
+                        <th width="30"><input type="checkbox" id="allCheck"></th>
                         <th width="150">주문번호 / 시각</th>
                         <th width="220" colspan="2">주문상품</th>
                         <th width="80">상품금액</th>
@@ -189,7 +189,7 @@ int totalPay = (int)request.getAttribute("totalPay");
                   <tr align="center">
                         <td ><input type="checkbox" class="deleteCheck" name="checkNo" value="<%=m.getOrderNo()%>"></td>
                         <td> <%= m.getOrderName() %><br><%= m.getOrderNo() %><br><%= m.getOrderDate() %></td>
-                        <td width="60"><img src="<%=request.getContextPath()%>/resources/images/product/1M.gif" width="40px" height="40px"></td>
+                        <td width="60"><img src="<%=request.getContextPath()%>/<%= m.getMainImg()%>" width="40px" height="40px"></td>
                         <td><%= m.getpNo() %><br><%= m.getTitle() %></td>
                         <td><%= m.getTotalPrice() %>￦</td>
                         <td><%= m.getOrderCount() %></td>
@@ -206,7 +206,7 @@ int totalPay = (int)request.getAttribute("totalPay");
                          	  <% } else { %>
                          	  예매확정 <%} %></td>
                         <td>총 결제금액 &nbsp; <%=m.getPayPrice()%>￦ 
-                         	  
+                         	 
                         </td>
                         </tr>
                         <% } %>
@@ -423,7 +423,7 @@ int totalPay = (int)request.getAttribute("totalPay");
 	<script>
 		function checkCancel(){
             var checkArr = [];
-            $("input:checkbox[class='check']:checked").each(function(){
+            $("input:checkbox[class='deleteCheck']:checked").each(function(){
                 checkArr.push($(this).val());
             })
             console.log("checkArr" + checkArr);

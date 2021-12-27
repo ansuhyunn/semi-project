@@ -37,24 +37,23 @@ public class ManageSalesController extends HttpServlet {
 		int totalOrder = 0;
 		int totalPay = 0;
 		int totalPrice = 0;
-		int number = 0;
+		int cancel = 0;
 		// int total cancel 취소수 구해야되는데... 
 		
 		for(ManageSales or : list) {
 			totalOrder += or.getOrderCount();
 			totalPay += or.getFinalPrice();
 			totalPrice += or.getTotalPrice();
+			if(or.getorderStatus().equals("CC")) {
+				cancel += or.getOrderCount();
+			}
 		}
-		for( number=0 ; number <= list.size() ; number++) {
-			number++;
-		}
-		// 숫자 하나씩 담고싶은데 어쩌지..?
 		
 		
 		request.setAttribute("totalOrder", totalOrder);
 		request.setAttribute("totalPay", totalPay);
 		request.setAttribute("totalPrice", totalPrice);
-		request.setAttribute("number", number);
+		request.setAttribute("cancel", cancel);
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("views/order/manageSales.jsp").forward(request, response);
 		

@@ -5,7 +5,7 @@ ArrayList<ManageSales> list = (ArrayList<ManageSales>) request.getAttribute("lis
 int totalOrder = (int)request.getAttribute("totalOrder");
 int totalPay = (int)request.getAttribute("totalPay");
 int totalPrice = (int)request.getAttribute("totalPrice");
-int number = (int)request.getAttribute("number");
+int cancel = (int)request.getAttribute("cancel");
 %>
 <!DOCTYPE html>
 <html>
@@ -130,7 +130,7 @@ int number = (int)request.getAttribute("number");
             </div>
             <div class="box com_order">
                 취소수
-                <br>@@@해야됨
+                <br><%= cancel %>
             </div>
             <div class="box com_order">
                 주문액
@@ -169,19 +169,18 @@ int number = (int)request.getAttribute("number");
                     <table width="700">
                         <thead>
                         <tr align="center" style="background-color: rgba(179, 165, 141, 0.829);" >
-                            <th colspan="3" width="400" style="padding: 7px;">상품 정보</th>
+                            <th  width="400" style="padding: 7px;" colspan="2">상품 정보</th>
                             <th width="100">주문수</th>
-                            <th width="180">비고</th>
+                            <th width="200">비고</th>
                         </tr>
                          </thead>
                          <tbody id="tbody">
 						<% for(ManageSales m : list) {  %>
                         <tr align="center" style="height:90px">
-                            <td width="70"><%= number %></td>
-                            <td width="130">
-                                <img src="" width="50" height="50">
+                            <td width="100">
+                                <img src="<%=request.getContextPath()%>/<%= m.getMainImg()%>" width="50" height="50">
                             </td>
-                            <td width="200" align="left">
+                            <td width="230" align="center">
                                 <%=m.getpNo()%> <br>
                                	<%=m.getTitle() %>
                             </td>
@@ -190,6 +189,8 @@ int number = (int)request.getAttribute("number");
                                 <%=m.getsoldout() %>
                                 <br><%=m.getsDate() %>~<%=m.geteDate() %>
                             </td>
+                            
+                            
                         </tbody>
                         <% } %>
                     </table>

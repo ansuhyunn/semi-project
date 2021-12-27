@@ -78,7 +78,8 @@ public class ManageOrderDao {
 										 rset.getInt("order_count"),
 										 rset.getString("title"),
 										 rset.getString("order_status"),
-										 rset.getString("pay_opt")));
+										 rset.getString("pay_opt"),
+										 rset.getString("main_img")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -116,7 +117,8 @@ public class ManageOrderDao {
 										 rset.getInt("order_count"),
 										 rset.getString("title"),
 										 rset.getString("order_status"),
-										 rset.getString("pay_opt"));
+										 rset.getString("pay_opt"),
+										 rset.getString("main_img"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

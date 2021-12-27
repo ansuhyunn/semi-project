@@ -45,7 +45,7 @@ public class ManageOrderController extends HttpServlet {
 			int totalPay = 0;
 			for(ManageOrder or : list) {
 				totalOrder += or.getOrderCount();
-				if(or.getOrderStatus() == "P") {
+				if(or.getOrderStatus().contentEquals("P")) {
 					totalPay += or.getOrderCount();
 				}
 			}

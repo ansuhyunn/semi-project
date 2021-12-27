@@ -15,12 +15,13 @@ public class ManageOrder {
 	   private String title;
 	   private String orderStatus;
 	   private String payOpt;
+	   private String mainImg;
 	   
 public ManageOrder() {}
 
 
 
-public ManageOrder(int totalPrice, int payPrice, Date orderDate, int orderCount, String orderStatus) {
+public ManageOrder(int totalPrice, int payPrice, Date orderDate, int orderCount, String orderStatus, String mainImg) {
 	super();
 	
 	this.totalPrice = totalPrice;
@@ -28,12 +29,13 @@ public ManageOrder(int totalPrice, int payPrice, Date orderDate, int orderCount,
 	this.orderDate = orderDate;
 	this.orderCount = orderCount;
 	this.orderStatus = orderStatus;
+	this.mainImg = mainImg;
 }
 
 
 
 public ManageOrder(int orderNo, int totalPrice, int payPrice, Date orderDate, int pNo, String orderOpt, String orderName, int orderCount,
-		String title, String orderStatus, String payOpt) {
+		String title, String orderStatus, String payOpt, String mainImg) {
 	super();
 	this.orderNo = orderNo;
 	this.totalPrice = totalPrice;
@@ -46,6 +48,7 @@ public ManageOrder(int orderNo, int totalPrice, int payPrice, Date orderDate, in
 	this.title = title;
 	this.orderStatus = orderStatus;
 	this.payOpt = payOpt;
+	this.mainImg = mainImg;
 }
 
 public int getOrderNo() {
@@ -136,12 +139,33 @@ public void setPayOpt(String payOpt) {
 	this.payOpt = payOpt;
 }
 
+
+public String getMainImg() {
+	return mainImg;
+}
+
+
+public void setMainImg(String mainImg) {
+	this.mainImg = mainImg;
+}
+
+
+
+public void setOrderName(String orderName) {
+	this.orderName = orderName;
+}
+
+
+
 @Override
 public String toString() {
 	return "ManageOrder [orderNo=" + orderNo + ", totalPrice=" + totalPrice + ", payPrice=" + payPrice + ", orderDate="
-			+ orderDate + ", pNo=" + pNo + ", orderOpt=" + orderOpt + ", orderCount=" + orderCount + ", title=" + title
-			+ ", orderStatus=" + orderStatus + ", payOpt=" + payOpt + "]";
+			+ orderDate + ", pNo=" + pNo + ", orderOpt=" + orderOpt + ", orderName=" + orderName + ", orderCount="
+			+ orderCount + ", title=" + title + ", orderStatus=" + orderStatus + ", payOpt=" + payOpt + ", mainImg="
+			+ mainImg + "]";
 }
+
+
 
 
 }
