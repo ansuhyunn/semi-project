@@ -4,7 +4,8 @@
 <%@ page import="java.util.ArrayList, com.kh.common.model.vo.PageInfo, com.kh.cscenter.model.vo.FAQ" %>
     
 <% PageInfo pi = (PageInfo)request.getAttribute("pi");
-    ArrayList<FAQ> list = (ArrayList<FAQ>)request.getAttribute("list");
+    ArrayList<FAQ> searchList = (ArrayList<FAQ>)request.getAttribute("searchList");
+    String keyword = request.getParameter("keyword");
     
     int currentPage = pi.getCurrentPage();
     int startPage = pi.getStartPage();
@@ -101,7 +102,7 @@
             
             <div class="search-button">
                 <div class="search" width="50%">
-                    <form action="adminSearch.fa">
+                    <form action="amdinSearch.fa">
                         <input type="text" name="keyword" placeholder="키워드를 입력해주세요" required>
                         <input type="hidden" name="cpage" value="1">
                         <button type="submit" class="btn btn-sm">검색</button>
@@ -113,6 +114,7 @@
                 </div>
             </div>
             <br>
+            <p><b>"<%=keyword%>" (으)로 검색한 결과</b></p>
             <div>
                 <table align="center" id="list-area" class="table table-bordered">
                     <thead>
@@ -126,12 +128,12 @@
                         </tr>
                     </thead>
                     <tbody class="qna-tb">
-                    	<% if(list.isEmpty()) { %>
+                    	<% if(searchList.isEmpty()) { %>
 	                        <tr>
 	                            <td colspan="6">게시글이 없습니다.</td>
 	                        </tr>
                         <% }else { %>
-                        	<%for(FAQ f : list) { %>
+                        	<%for(FAQ f : searchList) { %>
 		                        <tr>
                                     <td width="10"><input type="checkbox" class="deleteCheck" name="checkNo" value="<%=f.getFaqNo()%>"></td>
 		                            <td><%=f.getFaqNo() %></td>
@@ -162,18 +164,18 @@
                 </script>
                 <div class="paging-area" align="center">
                 	<% if(currentPage != 1) {%>
-                    	<button class="btn" onclick="location.href='<%=contextPath%>/adminList.fa?cpage=<%=currentPage-1%>'">&lt;</button>
+                    	<button class="btn" onclick="location.href='<%=contextPath%>/adminSearch.fa?cpage=<%=currentPage-1%>'">&lt;</button>
                     <% } %>
                     
                     <% for(int p=startPage; p<=endPage; p++) { %>
                     	<% if(p == currentPage) { %>
                     		<button class="btn" disabled><%=p %></button>
                     	<% }else { %>
-                    		<button class="btn" onclick="location.href='<%=contextPath %>/adminList.fa?cpage=<%=p%>'"><%=p %></button>
+                    		<button class="btn" onclick="location.href='<%=contextPath %>/adminSearch.fa?cpage=<%=p%>'"><%=p %></button>
                     	<% } %>
                     <% } %>
                     <% if(currentPage != maxPage) {%>
-                    <button class="btn" onclick="location.href='<%=contextPath%>/adminList.fa?cpage=<%=currentPage+1%>'">&gt;</button>
+                    <button class="btn" onclick="location.href='<%=contextPath%>/adminSearch.fa?cpage=<%=currentPage+1%>'">&gt;</button>
                     <% } %>
                 </div>
             </div>
