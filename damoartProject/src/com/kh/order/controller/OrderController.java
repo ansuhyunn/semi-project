@@ -49,10 +49,25 @@ public class OrderController extends HttpServlet {
 		
 		this.service.setMemNo(memNo.getMemNo());
 		this.list = service.selectOrderList();
+		
 		System.out.println("controller this.list 했을때 : " + this.list);
-
+		int totalCount = 0;
+		int totalPrice = 0;
+		for(Order or : list) {
+			totalCount += or.getCartCount();
+			if(or.getCartOpt().equals("A")) {
+				totalPrice += or.getaPrice() * or.getCartCount();
+			}else if(or.getCartOpt().equals("C")) {
+				totalPrice += or.getcPrice() * or.getCartCount();
+			}else {
+				totalPrice += or.gettPrice() * or.getCartCount();
+			}
+		}
+		
+		request.setAttribute("totalPrice", totalPrice);
+		request.setAttribute("totalCount", totalCount);
 		request.setAttribute("list", list);
-		request.setAttribute("o", o);
+		//request.setAttribute("o", o);
 		
 		request.getRequestDispatcher("views/order/orderPage.jsp").forward(request, response);
 		

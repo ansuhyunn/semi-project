@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import com.google.gson.Gson;
 import com.kh.order.model.service.CartService;
 import com.kh.order.model.vo.Cart;
+import com.kh.order.model.vo.Order;
 import com.kh.member.model.vo.Member;
 
 /**
@@ -47,12 +48,32 @@ public class CartListController extends HttpServlet {
 		HttpSession session = request.getSession();
 		Member mem = (Member) session.getAttribute("loginUser");
 		String content = (String) request.getParameter("content");
+
+		int totalCount = 0;
+		int totalPrice = 0;
+		
 		if(mem != null) {
 			if(content == null) {
 				this.service.SetMemNo(mem.getMemNo());
 				this.list = service.selectCartList();
-				request.setAttribute("list", list);
-				request.getRequestDispatcher("views/order/cart.jsp").forward(request, response);
+
+					for(Cart ca : list) {
+						totalCount += ca.getCartCount();
+						if(ca.getCartOpt().equals("A")) {
+							totalPrice += ca.getaPrice() * ca.getCartCount();
+						}else if(ca.getCartOpt().equals("C")) {
+							totalPrice += ca.getcPrice() * ca.getCartCount();
+						}else {
+							totalPrice += ca.gettPrice() * ca.getCartCount();
+						}
+					}
+					
+					request.setAttribute("totalPrice", totalPrice);
+					request.setAttribute("totalCount", totalCount);
+					request.setAttribute("list", list);
+					request.getRequestDispatcher("views/order/cart.jsp").forward(request, response);
+
+			
 			}
 			else if(content == "order") {
 				String arrIdx = request.getParameter("select");
@@ -62,8 +83,6 @@ public class CartListController extends HttpServlet {
 		}else {
 		}
 		
-		
-		// 비회원일경우 메인으로보내거나 로그인페이지 띄우기
 	}
 
 	/**

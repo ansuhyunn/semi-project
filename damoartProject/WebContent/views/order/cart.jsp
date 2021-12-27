@@ -2,7 +2,8 @@
     pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.order.model.vo.Cart"%>
 <% 
 	ArrayList<Cart> list = (ArrayList<Cart>)request.getAttribute("list");
-
+	int totalCount = (int)request.getAttribute("totalCount");
+	int totalPrice = (int)request.getAttribute("totalPrice");
 %>
 <!DOCTYPE html>
 <html>
@@ -166,7 +167,7 @@
             </div>
  			</tr> 
                 <tr id="cart_content>">
-                    <td width="200"><img src= "<%=request.getContextPath()%> 이미지 " width="80px" height="80px"></td>
+                    <td width="200"><img src= "<%=request.getContextPath()%>/<%= c.getMainImage() %>"  width="80px" height="80px"></td>
                     <td width="200">
                       	   <%= c.getTitle() %>
                       <br> <%= c.getArea() %>
@@ -312,7 +313,7 @@
         <%} else { %>
         <a href="<%=contextPath%>/order.ca" button type="submit" class="btn" id="goPay"><b>주문하기</b></a>
         <% } %>
-        <b>결제금액 28000￦</b>
+        <b> 총 <%= totalCount %>개의 상품 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;결제금액 <%= totalPrice %>￦</b>
          
     </div>
     <br>
