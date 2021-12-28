@@ -125,39 +125,40 @@ public class OrderDao {
 			System.out.println(" listlistlistlist : " + list);
 			return list;
 		} 
-	
 
+	public ArrayList<Order> selectOrder(Connection conn) {
+		ArrayList<Order> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectOrder");
+		
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, this.memNo);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
 	
-	public Order selectOrder(Connection conn) {
-			Order o = null;
-			PreparedStatement pstmt = null;
-			ResultSet rset = null;
-			String sql = prop.getProperty("selectOrder");
-			
-			
-			try {
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setInt(1, this.memNo);
-				rset = pstmt.executeQuery();
-				
-				if(rset.next()) {
-
-					o = new Order(rset.getString("title"),
+			   list.add(new Order(rset.getString("title"),
 								  rset.getString("mem_name"),
 								  rset.getInt("mem_no"),
 								  rset.getInt("pay_no"),
 								  rset.getInt("pay_price"),
 								  rset.getInt("order_no"),
-								  rset.getDate("pay_date"));
-				}
+								  rset.getDate("pay_date")));
+			}
 
-			} catch (SQLException e) {
-				e.printStackTrace();
-			} finally {
-				close(rset);
-				close(pstmt);
-			} 
-			return o;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
 		} 
+		return list;
+		
+		} 
+
+
 	}
 

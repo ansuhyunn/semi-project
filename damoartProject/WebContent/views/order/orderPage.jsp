@@ -273,7 +273,6 @@
 
 		
   		 function orderTerms(){
-  			 debugger
   			 var chkList = $('.check')
   			 for(var i =0; i < chkList.length ; i++){
   				if(!chkList[i].checked){
@@ -292,10 +291,9 @@
   					 return 
   				 } 
   			 }
-  			 iamPort()
+  			 iamport()
   		 }
 		function iamport(){
-			debugger 
 			IMP.init('imp70168812');
 	        IMP.request_pay({
 	        	pg: "html5_inicis",
@@ -326,7 +324,6 @@
 		}
 		
 		function ccc(){
-			debugger;
 			var inVal = $('.inPoint')[0].value;
 			if(inVal && inVal.length > 0){
 				var ppp = parseInt(inVal);

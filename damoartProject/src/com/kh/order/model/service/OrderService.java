@@ -43,11 +43,11 @@ public class OrderService {
 		return this.dao.getMemNo();
 	}
 	
-	public Order selectOrder(){
+	public ArrayList<Order> selectOrder(){
 		Connection conn = getConnection();
-		Order o = dao.selectOrder(conn);
+		ArrayList<Order> list = dao.selectOrder(conn);
 		close(conn);
-		return o;
+		return list;
 	}
 	
 }

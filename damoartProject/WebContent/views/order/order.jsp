@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.order.model.vo.Order"%>
 <% 
-	Order o = (Order)request.getAttribute("o");
+ArrayList<Order> list = (ArrayList<Order>)request.getAttribute("o");
+	int totalCount = (int)request.getAttribute("totalCount");
+	int totalPrice = (int)request.getAttribute("totalPrice");
 %>
 <!DOCTYPE html>
 <html>
@@ -76,26 +78,27 @@ div{box-sizing:border-box;}
         <table id="order_info">  
             <tr>
                 <td width="100px">주문자명</td>
-                <td><%=o.getMemName() %></td>
+                <td><%= list.get(0).getMemName() %></td>
             </tr>
             <tr>
                 <td>총 결제 금액</td>
-                <td><%=o.getPayPrice() %>￦</td>
+                <td><%=totalPrice %>￦</td>
             </tr>
             <tr>
                 <td>주문 상품</td>
-                <td><%=o.getTitle() %></td>
+                <td> <%= list.get(0).getTitle()%> 
+                </td>
             </tr>
         </table>
         <hr>
         <table id="order_no">
             <tr>
                 <td width="100px">주문 번호</td>
-                <td><%=o.getPayNo() %></td>
+                <td><%=list.get(0).getPayNo() %></td>
             </tr>
             <tr>
                 <td>주문일자</td>
-                <td><%=o.getPayDate() %></td>
+                <td><%=list.get(0).getPayDate() %></td>
             </tr>
             <tr>
                 <td>결제 수단</td>
