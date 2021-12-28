@@ -49,7 +49,7 @@ public class MyPageQnaUpdateController extends HttpServlet {
 		
 		if(result > 0) {
 
-			response.sendRedirect(request.getContextPath() + "/qnaList.mp");
+			response.sendRedirect(request.getContextPath() + "/qnaList.mp?cpage=1");
 		}
 	}
 
