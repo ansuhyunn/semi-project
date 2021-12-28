@@ -148,5 +148,23 @@ UPDATE REVIEW
    SET DELETE_STATUS = 'Y'
  WHERE RV_NO = ?
 </entry>
-	
+
+<!-- 리뷰 등록 -->
+<entry key="enrollReview">
+SELECT *
+  FROM (SELECT 
+               ORDER_NO
+             , TITLE
+             , MAIN_IMG
+             , MEM_NO
+          FROM ORDER_P
+          JOIN PRODUCT USING (PNO)
+          JOIN "ORDER" USING (ORDER_NO)
+         WHERE ORDER_STATUS = 'O'
+           AND MEM_NO = ?) A
+ WHERE NOT ORDER_NO IN (SELECT ORDER_NO
+                          FROM MEMBER
+                          JOIN REVIEW USING (MEM_NO)
+                         WHERE MEM_NO = ?)
+</entry>	
 </properties>

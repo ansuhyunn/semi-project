@@ -299,7 +299,7 @@
                         </td>    
                         <td style="padding-top:40px">~<%= r.getAvaDate() %></td>
                         <td style="padding-top:40px">
-                          <a href="<%= contextPath %>/views/community/reviewEnrollForm.jsp" class="btn btn-sm">리뷰 작성</a>
+                          <a href="<%= contextPath %>/reviewEnrollForm.pro" class="btn btn-sm">리뷰 작성</a>
                         </td>
                     </tr>             
                         <% } %>

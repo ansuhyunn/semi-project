@@ -8,9 +8,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.kh.community.model.service.ReviewService;
-import com.kh.community.model.vo.SelectTicket;
+import com.kh.community.model.vo.Review;
+import com.kh.member.model.vo.Member;
 
 /**
  * Servlet implementation class ReviewEnrollFormController
@@ -32,13 +34,13 @@ public class ReviewEnrollFormController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
  
-		ArrayList<SelectTicket> list = new ReviewService().selectTicketList();
-		// 카테고리는 없고 대신 회원번호/>>주문번호<<를 받아서 카테고리를 대신한다는 느낌으로..
+		HttpSession session = request.getSession();
+		int memNo = ((Member)session.getAttribute("loginUser")).getMemNo(); 
 		
+		Review rev = new ReviewService().enrollReview(memNo);
 		
-		
-		request.setAttribute("list", list);
-		request.getRequestDispatcher("views/community/ReviewEnrollForm.jsp").forward(request, response);
+		request.setAttribute("rev", rev);
+		request.getRequestDispatcher("views/community/reviewEnrollForm.jsp").forward(request, response);
 	
 	}
 

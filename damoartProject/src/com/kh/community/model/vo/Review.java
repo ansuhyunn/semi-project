@@ -79,6 +79,15 @@ public class Review {
 		this.reviewView = reviewView;
 		this.deleteStatus = deleteStatus;
 	}
+	
+	// 리뷰 등록
+	public Review(int orderNo, String title, String mainImg, int memNo) {
+		super();
+		this.orderNo = orderNo;
+		this.title = title;
+		this.mainImg = mainImg;
+		this.memNo = memNo;
+	}
 
 	public int getMemNo() {
 		return memNo;
