@@ -174,7 +174,7 @@
 							        <!-- Modal footer -->
 							        <div class="modal-footer">
 							            <p>인증번호를 받지 못하셨나요? <a href="">재발송</a></p>
-							          <button type="button" class="btn btn-danger" data-dismiss="modal">확인</button>
+							          <button type="button" class="btn btn-danger" onclick="checkMail();" data-dismiss="modal">확인</button>
 							        </div>
 						  
 						      	</div>
@@ -187,6 +187,10 @@
 								MailSend ms = new MailSend();
 								ms.MailSend();
 								%>
+							}
+							
+							function checkMail(){
+								alert("이메일 인증이 완료되었습니다.");
 							}
 						</script>
                     </td>

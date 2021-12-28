@@ -131,7 +131,7 @@
             </div>
         </div>
         <div class="button" align="right">
-        	<a href="javascript:window.history.back();" class="btn btn-sm" >목록가기</a>			
+        	<a href="<%=contextPath%>/list.no?cpage=1" class="btn btn-sm" >목록가기</a>			
         </div>
             
     </div>

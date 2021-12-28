@@ -132,7 +132,7 @@
         </div>
         <div class="button">
             <div>
-                <a id="list" href="javascript:window.history.back();" class="btn btn-sm">목록가기</a>			
+                <a id="list" href="<%=contextPath%>/adminList.fa?cpage=1" class="btn btn-sm">목록가기</a>			
             </div>
             <div align="right">
                 <a id="delete" class="btn btn-sm" data-toggle="modal" data-target="#myModal" type="button">삭제하기</a>

@@ -187,7 +187,7 @@
         </div>
         <div class="button">
             <div>
-                <a id="list" href="javascript:window.history.back();" class="btn btn-sm">목록가기</a>			
+                <a id="list" href="<%=contextPath%>/list.qa?cpage=1" class="btn btn-sm">목록가기</a>			
             </div>
             <div align="right">
             	<%if(loginUser != null) {%>
