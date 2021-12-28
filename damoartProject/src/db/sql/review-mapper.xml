@@ -167,4 +167,11 @@ SELECT *
                           JOIN REVIEW USING (MEM_NO)
                          WHERE MEM_NO = ?)
 </entry>	
+
+<entry key="deleteReview">
+UPDATE REVIEW
+   SET DELETE_STATUS = 'Y'
+ WHERE RV_NO = ?
+</entry>
+
 </properties>

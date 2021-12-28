@@ -51,7 +51,7 @@ public class ReviewInsertController extends HttpServlet {
 		
 		if(result > 0) {
 			request.getSession().setAttribute("alertMsg", "리뷰가 성공적으로 등록되었습니다.");
-			response.sendRedirect(request.getContextPath() + "/");
+			response.sendRedirect(request.getContextPath() + "/review.pro?cpage=1");
 		}else { // 에러페이지
 			
 		}
