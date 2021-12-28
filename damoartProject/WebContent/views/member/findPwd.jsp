@@ -69,10 +69,10 @@
             <input type="text" class="input" name="email" id="inputEmail" placeholder="가입한 이메일주소" required> 
             <select id="emailDomain" id="inputEmailDomain" name="emailDomain" class="email_select"> 
                 <option value="self">직접입력</option> 
-                <option value="naver.com">naver.com</option> 
-                <option value="gmail.com">gmail.com</option> 
-                <option value="daum.net">daum.net</option> 
-                <option value="nate.com">nate.com</option> 
+                <option value="@naver.com">@naver.com</option> 
+                <option value="@gmail.com">@gmail.com</option> 
+                <option value="@daum.net">@daum.net</option> 
+                <option value="@nate.com">@nate.com</option> 
             </select> 
             <br><br>
 
