@@ -11,8 +11,8 @@
 
 <body>
 	<div class="wrapper" >
-			<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1056.6080638964736!2d127.01131141549178!3d37.47850585035595!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca11a402c8dcf%3A0x5152710b8d99268a!2z7JiI7Iig7J2Y7KCE64u566as7IKs7J207YuA7ZmA!5e0!3m2!1sko!2skr!4v1640627978137!5m2!1sko!2skr" 
-				width="750" height="400" style="border:0;"  allowfullscreen="" loading="lazy"></iframe>
+			<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3163.3681292369633!2d127.06303641564762!3d37.54638973303865!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca5101cc6f12b%3A0xdd6344cff9fab415!2z6re465287Jq065OcIOyLnOyGjCDshLHsiJg!5e0!3m2!1sko!2skr!4v1640656434362!5m2!1sko!2skr" 
+					width="750" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
 	</div>
 </body>
 </html>
