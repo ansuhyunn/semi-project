@@ -42,7 +42,7 @@
     }
     .search-button{width:100%; height:40px; position:relative;}
     .search-button>div{float:left;}
-    .search a{
+    .search button{
         background-color:rgb(151, 138, 116);
         color:white;
     }
@@ -101,9 +101,10 @@
             
             <div class="search-button">
                 <div class="search" width="50%">
-                    <form action="">
-                        <input type="text">
-                        <a href="" class="btn btn-sm">검색</a>
+                    <form action="adminSearch.fa">
+                        <input type="text" name="keyword" placeholder="키워드를 입력해주세요" required>
+                        <input type="hidden" name="cpage" value="1">
+                        <button type="submit" class="btn btn-sm">검색</button>
                     </form>
                 </div>
                 <div class="button" width="50%">

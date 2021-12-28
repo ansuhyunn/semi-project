@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<%@ page import="java.util.ArrayList, com.kh.common.model.vo.PageInfo, com.kh.cscenter.model.vo.Notice" %>
+<%@ page import="java.util.ArrayList, com.kh.common.model.vo.PageInfo, com.kh.cscenter.model.vo.Guide" %>
     
 <% PageInfo pi = (PageInfo)request.getAttribute("pi");
-    ArrayList<Notice> list = (ArrayList<Notice>)request.getAttribute("list");
-    
+    ArrayList<Guide> searchList = (ArrayList<Guide>)request.getAttribute("searchList");
+    String keyword = request.getParameter("keyword");
     int currentPage = pi.getCurrentPage();
     int startPage = pi.getStartPage();
     int endPage = pi.getEndPage();
@@ -95,25 +95,26 @@
 		
 		<div id="outer">
             <br><br>
-			<h4 style="font-weight: bolder;">공지사항 관리</h4>
+			<h4 style="font-weight: bolder;">이용안내 관리</h4>
             
             <br>
             <hr>
             
             <div class="search-button">
                 <div class="search" width="50%">
-                    <form action="adminSearch.no">
+                    <form action="adminSearch.gu">
                         <input type="text" name="keyword" placeholder="키워드를 입력해주세요" required>
                         <input type="hidden" name="cpage" value="1">
                         <button type="submit" class="btn btn-sm">검색</button>
                     </form>
                 </div>
                 <div class="button" width="50%">
-                    <a href="<%= contextPath %>/enrollForm.no" class="btn btn-sm" id="enroll">등록</a>
+                    <a href="<%= contextPath %>/enrollForm.gu" class="btn btn-sm" id="enroll">등록</a>
                     <a href="" class="btn btn-sm" id="delete" data-toggle="modal" data-target="#myModal" type="button">선택 삭제</a>
                 </div>
             </div>
             <br>
+            <p><b>"<%=keyword%>" (으)로 검색한 결과</b></p>
             <div>
                 <table align="center" id="list-area" class="table table-bordered">
                     <thead>
@@ -123,23 +124,30 @@
                             <th width="280">제목</th>
                             <th width="60">작성자</th>
                             <th width="100">등록일</th>
-                            <th width="50">조회수</th>
+                            <th width="50">상태</th>
                         </tr>
                     </thead>
                     <tbody class="no-tb">
-                    	<% if(list.isEmpty()) { %>
+                    	<% if(searchList.isEmpty()) { %>
 	                        <tr>
 	                            <td colspan="6">게시글이 없습니다.</td>
 	                        </tr>
                         <% }else { %>
-                        	<%for(Notice n : list) { %>
+                        	<%for(Guide g : searchList) { %>
 		                        <tr>
-                                    <td><input type="checkbox" class="deleteCheck" name="checkNo" value="<%=n.getNoticeNo()%>"></td>
-		                            <td><%=n.getNoticeNo() %></td>
-		                            <td class="clickTitle"><%=n.getNoticeTitle() %></td>
-		                            <td><%=n.getNoticeWriter() %></td>
-		                            <td><%=n.getCreateDate() %></td>
-		                            <td><%=n.getCount() %></td>
+                                    <td><input type="checkbox" class="deleteCheck" name="checkNo" value="<%=g.getGuideNo()%>"></td>
+		                            <td><%=g.getGuideNo() %></td>
+		                            <td class="clickTitle"><%=g.getGuideTitle() %></td>
+		                            <td><%=g.getGuideWriter() %></td>
+		                            <td><%=g.getCreateDate() %></td>
+		                            <td>
+		                            	<%if(g.getStatus().equals("Y")) {%>
+		                            		게시중
+		                            	<%}else { %>
+		                            		숨김
+		                            	<% } %>
+		                            </td>
+		                            
 		                        </tr>
                         	<% } %>
                         <% } %>
@@ -148,7 +156,7 @@
                 <script>
                 	$(function(){
                 		$(".clickTitle").click(function(){
-                			location.href='<%=contextPath%>/adminDetail.no?nno=' + $(this).prev().text();
+                			location.href='<%=contextPath%>/detailAndUpdate.gu?gno=' + $(this).prev().text();
                 		})
                 		
                 		$("#allCheck").click(function(){
@@ -158,18 +166,18 @@
                 </script>
                 <div class="paging-area" align="center">
                 	<% if(currentPage != 1) {%>
-                    	<button class="btn" onclick="location.href='<%=contextPath%>/adminList.no?cpage=<%=currentPage-1%>';">&lt;</button>
+                    	<button class="btn" onclick="location.href='<%=contextPath%>/adminSearch.gu?cpage=<%=currentPage-1%>';">&lt;</button>
                     <% } %>
                     
                     <% for(int p=startPage; p<=endPage; p++) { %>
                     	<% if(p == currentPage) { %>
                     		<button class="btn" disabled><%=p %></button>
                     	<% }else { %>
-                    		<button class="btn" onclick="location.href='<%=contextPath %>/adminList.no?cpage=<%=p%>';"><%=p %></button>
+                    		<button class="btn" onclick="location.href='<%=contextPath %>/adminSearch.gu?cpage=<%=p%>';"><%=p %></button>
                     	<% } %>
                     <% } %>
                     <% if(currentPage != maxPage) {%>
-                    <button class="btn" onclick="location.href='<%=contextPath%>/adminList.no?cpage=<%=currentPage+1%>';">&gt;</button>
+                    <button class="btn" onclick="location.href='<%=contextPath%>/adminSearch.gu?cpage=<%=currentPage+1%>';">&gt;</button>
                     <% } %>
                 </div>
             </div>
@@ -219,13 +227,13 @@
 	                checkArr.push($(this).val());
 	            })
 	            console.log(checkArr);
-	            if(checkArr != "") {	            	
-	            	location.href = "/damoart/checkDelete.no?arr=" + checkArr
+	            if(checkArr != "") {	            		            	
+	            	location.href = "/damoart/checkDelete.gu?arr=" + checkArr
 	            }else {
 	            	$("#myModal2").modal();
 	            }
+	            
 			}    
 		</script>
-
 </body>
 </html>

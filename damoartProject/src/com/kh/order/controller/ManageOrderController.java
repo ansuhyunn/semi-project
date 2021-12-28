@@ -36,25 +36,41 @@ public class ManageOrderController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String replyContent = (String) request.getParameter("content");
-		ManageOrder o = service.selectOrderManageO();
-		
+
 		System.out.println(replyContent);
 		if(replyContent == null) {
 
 			ArrayList<ManageOrder> list = service.selectOrderManage();
+			int totalOrder = 0;
+			int totalPay = 0;
+			for(ManageOrder or : list) {
+				totalOrder += or.getOrderCount();
+				if(or.getOrderStatus().contentEquals("P")) {
+					totalPay += or.getOrderCount();
+				}
+			}
+			request.setAttribute("totalOrder", totalOrder);
+			request.setAttribute("totalPay", totalPay);
 			request.setAttribute("list", list);
-			request.setAttribute("o", o);
 			request.getRequestDispatcher("views/order/manageOrder.jsp").forward(request, response);
 		}
 		else if(replyContent.equals("today")) {
 			String startDt = request.getParameter("startDt");
 			String endDt = request.getParameter("endDt");
-			
 			System.out.println("되나?"+ "start: " + startDt + ", end: " + endDt);
 			
 			ArrayList<ManageOrder> list = service.selectOrderManage(startDt,endDt);
 			System.out.println("되나?"+ "start: " + startDt + ", end: " + endDt);
-			request.setAttribute("o", o);
+			int totalOrder = 0;
+			int totalPay = 0;
+			for(ManageOrder or : list) {
+				totalOrder += or.getOrderCount();
+				if(or.getOrderStatus() == "P") {
+					totalPay += or.getOrderCount();
+				}
+			}
+			request.setAttribute("totalOrder", totalOrder);
+			request.setAttribute("totalPay", totalPay);
 			request.setAttribute("list", list);
 			request.getRequestDispatcher("views/order/manageOrder.jsp").forward(request, response);
 
@@ -63,10 +79,19 @@ public class ManageOrderController extends HttpServlet {
 			String startDt = request.getParameter("startDt");
 			String endDt = request.getParameter("endDt");
 			System.out.println("되나?"+ "start: " + startDt + ", end: " + endDt);
-			
+
 			ArrayList<ManageOrder> list = service.selectOrderManage(startDt,endDt);
 			System.out.println("되나?"+ "start: " + startDt + ", end: " + endDt);
-			request.setAttribute("o", o);
+			int totalOrder = 0;
+			int totalPay = 0;
+			for(ManageOrder or : list) {
+				totalOrder += or.getOrderCount();
+				if(or.getOrderStatus() == "P") {
+					totalPay += or.getOrderCount();
+				}
+			}
+			request.setAttribute("totalOrder", totalOrder);
+			request.setAttribute("totalPay", totalPay);
 			request.setAttribute("list", list);
 			request.getRequestDispatcher("views/order/manageOrder.jsp").forward(request, response);
 			
@@ -79,7 +104,16 @@ public class ManageOrderController extends HttpServlet {
 			System.out.println("되나?"+ "start: " + startDt + ", end: " + endDt);
 
 			ArrayList<ManageOrder> list = service.selectOrderManage(startDt,endDt);
-			request.setAttribute("o", o);
+			int totalOrder = 0;
+			int totalPay = 0;
+			for(ManageOrder or : list) {
+				totalOrder += or.getOrderCount();
+				if(or.getOrderStatus() == "P") {
+					totalPay += or.getOrderCount();
+				}
+			}
+			request.setAttribute("totalOrder", totalOrder);
+			request.setAttribute("totalPay", totalPay);
 //			response.setContentType("application/json; charset=UTF-8");
 //			new Gson().toJson(list, response.getWriter());
 			request.setAttribute("list", list);

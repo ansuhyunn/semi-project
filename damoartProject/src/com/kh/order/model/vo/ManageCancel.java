@@ -14,11 +14,13 @@ public class ManageCancel {
    private int payPrice;
    private String payOpt;
    private String memId;
+   private String mainImg;
+   private int orderCount;
    
    public ManageCancel() {}
 
 public ManageCancel(int orderNo, String orderName, Date orderDate, int pNo, String title, String orderStatus,
-		int totalPrice, int payPrice, String payOpt, String memId) {
+		int totalPrice, int payPrice, String payOpt, String memId, String mainImg, int orderCount) {
 	super();
 	this.orderNo = orderNo;
 	this.orderName = orderName;
@@ -30,6 +32,8 @@ public ManageCancel(int orderNo, String orderName, Date orderDate, int pNo, Stri
 	this.payPrice = payPrice;
 	this.payOpt = payOpt;
 	this.memId = memId;
+	this.mainImg = mainImg;
+	this.orderCount = orderCount;
 }
 
 public int getOrderNo() {
@@ -112,12 +116,36 @@ public void setMemId(String memId) {
 	this.memId = memId;
 }
 
+
+
+public String getMainImg() {
+	return mainImg;
+}
+
+public void setMainImg(String mainImg) {
+	this.mainImg = mainImg;
+}
+
+
+
+public int getOrderCount() {
+	return orderCount;
+}
+
+public void setOrderCount(int orderCount) {
+	this.orderCount = orderCount;
+}
+
 @Override
 public String toString() {
 	return "ManageCancel [orderNo=" + orderNo + ", orderName=" + orderName + ", orderDate=" + orderDate + ", pNo=" + pNo
 			+ ", title=" + title + ", orderStatus=" + orderStatus + ", totalPrice=" + totalPrice + ", payPrice="
-			+ payPrice + ", payOpt=" + payOpt + ", memId=" + memId + "]";
+			+ payPrice + ", payOpt=" + payOpt + ", memId=" + memId + ", mainImg=" + mainImg + ", orderCount="
+			+ orderCount + "]";
 }
-   
+
+
+
+
    
 }

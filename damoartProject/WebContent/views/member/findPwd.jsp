@@ -61,7 +61,7 @@
 	
     <div class="outer">
         <h3 align="center" style="font-weight:bold">비밀번호 찾기</h3>
-        <br><br><br>
+        <br><br>
         
         <form action="" method="post"  class="findPwdForm">
             <input type="text" class="input" name="userId" placeholder="아이디" required> <br><br>

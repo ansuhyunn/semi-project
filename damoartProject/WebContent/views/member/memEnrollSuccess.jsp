@@ -70,7 +70,7 @@
 	
     <div class="outer">
         <br>
-        <h2 align="center" style="font-weight:bold">회원가입</h2><br>
+        <h2 align="center" style="font-weight:bold">가입완료</h2><br>
         <div align="center">
             <ul class="enrollList">
                 <li class="enrollList-1" >01 약관동의</li>
@@ -83,7 +83,7 @@
         <img src="../../resources/images/check.png" width="100" class="img">
         <br><br>
         <p id="comment1" align="center">DAMOART 회원가입이 완료되었습니다. </p>
-        <p id="comment2" align="center" style="font-size:20px;">xxx님의 가입을 환영합니다!</p>
+        <p id="comment2" align="center" style="font-size:20px;">홍길동님의 가입을 환영합니다!</p>
 
         <div align="center">
             <button onclick="loginPage();" type="button" class="btn-mem">> 로그인 화면으로 이동</button> <br>

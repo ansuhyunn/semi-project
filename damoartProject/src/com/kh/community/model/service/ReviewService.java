@@ -117,4 +117,11 @@ public class ReviewService {
 		return result;
 	}
 	
+	// 리뷰 등록
+	public Review enrollReview(int memNo) {
+		Connection conn = getConnection();
+		Review rev = new ReviewDao().enrollReview(conn, memNo);
+		close(conn);
+		return rev;
+	}
 }

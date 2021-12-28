@@ -66,6 +66,10 @@
     	padding-top:150px;
     }
 
+	.clickList{
+        cursor:pointer;
+    }
+
 
 </style>
 </head>

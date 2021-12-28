@@ -78,7 +78,8 @@ public class ManageOrderDao {
 										 rset.getInt("order_count"),
 										 rset.getString("title"),
 										 rset.getString("order_status"),
-										 rset.getString("pay_opt")));
+										 rset.getString("pay_opt"),
+										 rset.getString("main_img")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -116,7 +117,8 @@ public class ManageOrderDao {
 										 rset.getInt("order_count"),
 										 rset.getString("title"),
 										 rset.getString("order_status"),
-										 rset.getString("pay_opt"));
+										 rset.getString("pay_opt"),
+										 rset.getString("main_img"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -193,6 +195,24 @@ public class ManageOrderDao {
 			e.printStackTrace();
 		} finally {
 			close (pstmt);
+		}
+		return result;
+	}
+
+
+	public int deleteOrder(Connection conn, int orderNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateOrderCancel");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, orderNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
 		}
 		return result;
 	}

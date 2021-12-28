@@ -61,7 +61,7 @@
 	
     <div class="outer">
         <h3 align="center" style="font-weight:bold">아이디 찾기</h3>
-        <br><br><br>
+        <br><br>
         
         <div class="findIdForm" align="center">
             <br><br>

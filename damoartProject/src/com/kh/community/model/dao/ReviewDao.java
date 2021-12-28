@@ -296,7 +296,33 @@ public class ReviewDao {
 		return result;
 	}
 
-
+	// 리뷰 등록
+	public Review enrollReview(Connection conn, int memNo) {
+		Review rev =  null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("enrollReview");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, memNo);
+			pstmt.setInt(2, memNo);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				rev = new Review(rset.getInt("ORDER_NO"),
+									rset.getString("TITLE"),
+									rset.getString("MAIN_IMG"),
+									rset.getInt("MEM_NO"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return rev;
+	}
 
 }
 		

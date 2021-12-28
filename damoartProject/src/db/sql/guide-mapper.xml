@@ -171,4 +171,33 @@
 		  WHERE GUIDE_NO = ?
 	</entry>
 	
+	<entry key="selectSearchListCount">
+		SELECT COUNT(*) COUNT
+		  FROM GUIDE
+		 WHERE GUIDE_TITLE LIKE '%'||?||'%'
+		    OR GUIDE_CONTENT LIKE '%'||?||'%'
+	</entry>
+	
+	<entry key="selectSearchList">
+		SELECT *
+		  FROM (
+		        SELECT ROWNUM RNO, A.*
+		          FROM (
+		                SELECT
+		                       GUIDE_NO
+		                     , NICKNAME
+		                     , GUIDE_TITLE
+		                     , TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') "CREATE_DATE"
+		                     , G.STATUS
+		                  FROM GUIDE G
+		                  JOIN MEMBER ON(GUIDE_WRITER = MEM_NO)
+		                 WHERE GUIDE_TITLE LIKE '%'||?||'%'
+		    				OR GUIDE_CONTENT LIKE '%'||?||'%'
+		                 ORDER
+		                    BY GUIDE_NO DESC
+		                ) A
+		        )
+		  WHERE RNO BETWEEN ? AND ?
+	</entry>
+	
 </properties>

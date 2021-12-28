@@ -132,4 +132,19 @@ public class GuideService {
 		return result;
 	}
 	
+	public int selectSearchListCount(String keyword) {
+		Connection conn = getConnection();		
+		int listCount = new GuideDao().selectSearchListCount(conn, keyword);		
+		close(conn);
+		return listCount;
+		
+	}
+	
+	public ArrayList<Guide> selectSearchList(PageInfo pi, String keyword) {
+		Connection conn = getConnection();
+		ArrayList<Guide> list = new GuideDao().selectSearchList(conn, pi, keyword);
+		close(conn);
+		return list;
+	}
+	
 }

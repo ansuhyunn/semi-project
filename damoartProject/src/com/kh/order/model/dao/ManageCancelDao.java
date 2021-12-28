@@ -73,7 +73,9 @@ String endDt = "";
 											 rset.getInt("total_price"),
 											 rset.getInt("pay_price"),
 											 rset.getString("pay_opt"),
-											 rset.getString("mem_id")));
+											 rset.getString("mem_id"),
+											 rset.getString("main_img"),
+											 rset.getInt("order_count")));
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -91,5 +93,40 @@ String endDt = "";
 				startDt = st;
 				endDt = edt;
 			}
+		}
+
+
+		public int deleteOrder(Connection conn, int orderNo) {
+			int result = 0;
+			PreparedStatement pstmt = null;
+			String sql = prop.getProperty("updateCancelCancel");
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, orderNo);
+				
+				result = pstmt.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(pstmt);
+			}
+			return result;
+		}
+		
+		public int deletedenyOrder(Connection conn, int orderNo) {
+			int result = 0;
+			PreparedStatement pstmt = null;
+			String sql = prop.getProperty("updateCanceldeny");
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, orderNo);
+				
+				result = pstmt.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(pstmt);
+			}
+			return result;
 		}
 		}

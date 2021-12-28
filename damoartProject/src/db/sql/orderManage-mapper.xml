@@ -15,6 +15,7 @@ SELECT
 		   ,TITLE
            ,ORDER_STATUS
            ,PAY_OPT
+           ,MAIN_IMG
 FROM "ORDER_P" P
 JOIN "ORDER" O ON (O.ORDER_NO = P.ORDER_NO)
 JOIN PRODUCT ON (PRODUCT.PNO = P.PNO)
@@ -24,7 +25,7 @@ ORDER BY ORDER_DATE DESC
 </entry>
 
 
-<entry key="updateOrderCancelManage">
+<entry key="updateOrderCancel">
 UPDATE
     ORDER_P
 SET ORDER_STATUS = 'CC'

@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.kh.community.model.vo.Review"%>
+<%
+	Review rev = (Review)request.getAttribute("rev");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -86,12 +89,12 @@
                     <tr style="border-bottom:1px solid rgb(173, 157, 128); border-top:1px solid rgb(173, 157, 128)">
                         <th >&nbsp;&nbsp;&nbsp;상품</th>
                         <td colspan="3">
-                            			해당전시제목
+                         	<%= rev.getTitle() %>
                         </td>
                     </tr>
                     <tr>
                         <th>&nbsp;&nbsp;&nbsp;작성자</th>  
-                        <td>로그인유저닉네임</td>
+                        <td><%= loginUser.getNickName() %></td>
                     </tr>
                     <tr style="border-bottom:1px solid rgb(173, 157, 128)">
                         <th>&nbsp;&nbsp;&nbsp;내용</th>

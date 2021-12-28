@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import com.kh.common.model.vo.Attachment;
 import com.kh.common.model.vo.PageInfo;
 import com.kh.cscenter.model.dao.QnaDao;
-
 import com.kh.cscenter.model.vo.QnA;
 import com.kh.product.model.vo.Product;
 
@@ -172,6 +171,23 @@ public class QnaService {
 		int nonAnswerCount = new QnaDao().nonAnswerCount(conn);
 		close(conn);
 		return nonAnswerCount;
+	}
+	
+	public int adminSelectSearchListCount(String keyword) {
+		Connection conn = getConnection();
+		int listCount = 0;
+		listCount = new QnaDao().adminSelectSearchListCount(conn, keyword);
+		close(conn);
+		return listCount;
+		
+	}
+	
+	public ArrayList<QnA> adminSelectSearchList(PageInfo pi, String keyword) {
+		Connection conn = getConnection();
+		ArrayList<QnA> list = new ArrayList<>();		
+		list = new QnaDao().adminSelectSearchList(conn, pi, keyword);		
+		close(conn);
+		return list;
 	}
 	
 	

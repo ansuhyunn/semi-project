@@ -308,7 +308,7 @@
 	            }
 	            
 	            // 비밀번호 확인
-	            if(pwdInput.value != pwdInput2.value){
+	            if(pwdInput1.value != pwdInput2.value){
 	                alert("비밀번호가 일치하지 않습니다.");
 	                pwdInput2.value = "";
 	                pwdInput2.focus();

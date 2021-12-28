@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.order.model.service.ManageSalesService;
 import com.kh.order.model.vo.ManageSales;
+import com.kh.order.model.vo.Order;
 
 /**
  * Servlet implementation class ManageSalesController
@@ -33,6 +34,26 @@ public class ManageSalesController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		ArrayList<ManageSales> list = new ManageSalesService().selectSalesManage();
+		int totalOrder = 0;
+		int totalPay = 0;
+		int totalPrice = 0;
+		int cancel = 0;
+		// int total cancel 취소수 구해야되는데... 
+		
+		for(ManageSales or : list) {
+			totalOrder += or.getOrderCount();
+			totalPay += or.getFinalPrice();
+			totalPrice += or.getTotalPrice();
+			if(or.getorderStatus().equals("CC")) {
+				cancel += or.getOrderCount();
+			}
+		}
+		
+		
+		request.setAttribute("totalOrder", totalOrder);
+		request.setAttribute("totalPay", totalPay);
+		request.setAttribute("totalPrice", totalPrice);
+		request.setAttribute("cancel", cancel);
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("views/order/manageSales.jsp").forward(request, response);
 		

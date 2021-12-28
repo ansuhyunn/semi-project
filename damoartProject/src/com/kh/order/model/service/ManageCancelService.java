@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import com.kh.order.model.dao.ManageCancelDao;
+import com.kh.order.model.dao.ManageOrderDao;
 import com.kh.order.model.vo.ManageCancel;
 
 public class ManageCancelService {
@@ -29,5 +30,29 @@ public class ManageCancelService {
 		return list;
 
 	}
+
+
+	public int deleteOrder(int orderNo) {
+		Connection conn = getConnection();
+		int result = new ManageCancelDao().deleteOrder(conn, orderNo);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
 	
+	public int deletedenyOrder(int orderNo) {
+		Connection conn = getConnection();
+		int result = new ManageCancelDao().deletedenyOrder(conn, orderNo);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
 }

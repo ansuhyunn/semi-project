@@ -1,30 +1,25 @@
-package com.kh.community.controller;
+package com.kh.order.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import com.kh.community.model.service.ReviewService;
-import com.kh.community.model.vo.Review;
-import com.kh.member.model.vo.Member;
+import com.kh.order.model.service.ManageCancelService;
 
 /**
- * Servlet implementation class ReviewEnrollFormController
+ * Servlet implementation class ManageCanceldenyController
  */
-@WebServlet("/reviewEnrollForm.pro")
-public class ReviewEnrollFormController extends HttpServlet {
+@WebServlet("/canceldeny.mg")
+public class ManageCanceldenyController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReviewEnrollFormController() {
+    public ManageCanceldenyController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,17 +28,25 @@ public class ReviewEnrollFormController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
- 
-		HttpSession session = request.getSession();
-		int memNo = ((Member)session.getAttribute("loginUser")).getMemNo(); 
-		
-		Review rev = new ReviewService().enrollReview(memNo);
-		
-		request.setAttribute("rev", rev);
-		request.getRequestDispatcher("views/community/reviewEnrollForm.jsp").forward(request, response);
 	
+			int result = 1;
+			
+			String str = request.getParameter("arr");
+			String[] arr = str.split(",");
+			
+			
+			for(String orderNo : arr) {
+				System.out.println(orderNo);
+				result *= new ManageCancelService().deletedenyOrder(Integer.parseInt(orderNo));
+		
+			}
+			if(result > 0) {
+				request.getSession().setAttribute("alertMsg", "주문 취소가 거절 되었습니다.");
+				response.sendRedirect(request.getContextPath() + "/cancel.mg");
+			}else {
+				//에러
+			}	
 	}
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

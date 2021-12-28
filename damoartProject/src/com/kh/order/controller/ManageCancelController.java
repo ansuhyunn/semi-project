@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.kh.order.model.service.ManageCancelService;
 import com.kh.order.model.service.ManageCancelService;
 import com.kh.order.model.vo.ManageCancel;
+import com.kh.order.model.vo.ManageOrder;
 
 /**
  * Servlet implementation class ManageCancelController
@@ -40,6 +41,17 @@ public class ManageCancelController extends HttpServlet {
 		if(replyContent == null ) {
 			
 			ArrayList<ManageCancel> list = service.selectCancelManage();
+			int totalwant = 0;
+			int totalCancel = 0;
+			for(ManageCancel c : list) {
+				if(c.getOrderStatus().contentEquals("C")) {
+					totalwant += c.getOrderCount();
+				} else if (c.getOrderStatus().contentEquals("CC")) {
+					totalCancel += c.getOrderCount();
+				}
+			}
+			request.setAttribute("totalwant", totalwant);
+			request.setAttribute("totalCancel", totalCancel);
 			request.setAttribute("list", list);
 			request.getRequestDispatcher("views/order/manageCancel.jsp").forward(request, response);
 		
@@ -48,7 +60,17 @@ public class ManageCancelController extends HttpServlet {
 				String endDt = request.getParameter("endDt");
 				
 				ArrayList<ManageCancel> list = service.selectCancelManage(startDt,endDt);
-
+				int totalwant = 0;
+				int totalCancel = 0;
+				for(ManageCancel c : list) {
+					if(c.getOrderStatus().contentEquals("C")) {
+						totalwant += c.getOrderCount();
+					} else if (c.getOrderStatus().contentEquals("CC")) {
+						totalCancel += c.getOrderCount();
+					}
+				}
+				request.setAttribute("totalwant", totalwant);
+				request.setAttribute("totalCancel", totalCancel);
 				request.setAttribute("list", list);
 				request.getRequestDispatcher("views/order/manageCancel.jsp").forward(request, response);
 
@@ -58,7 +80,17 @@ public class ManageCancelController extends HttpServlet {
 				String endDt = request.getParameter("endDt");
 				
 				ArrayList<ManageCancel> list = service.selectCancelManage(startDt,endDt);
-
+				int totalwant = 0;
+				int totalCancel = 0;
+				for(ManageCancel c : list) {
+					if(c.getOrderStatus().contentEquals("C")) {
+						totalwant += c.getOrderCount();
+					} else if (c.getOrderStatus().contentEquals("CC")) {
+						totalCancel += c.getOrderCount();
+					}
+				}
+				request.setAttribute("totalwant", totalwant);
+				request.setAttribute("totalCancel", totalCancel);
 				request.setAttribute("list", list);
 				request.getRequestDispatcher("views/order/manageCancel.jsp").forward(request, response);
 				
@@ -69,7 +101,17 @@ public class ManageCancelController extends HttpServlet {
 				String endDt = request.getParameter("endDt");
 
 				ArrayList<ManageCancel> list = service.selectCancelManage(startDt,endDt);
-
+				int totalwant = 0;
+				int totalCancel = 0;
+				for(ManageCancel c : list) {
+					if(c.getOrderStatus().contentEquals("C")) {
+						totalwant += c.getOrderCount();
+					} else if (c.getOrderStatus().contentEquals("CC")) {
+						totalCancel += c.getOrderCount();
+					}
+				}
+				request.setAttribute("totalwant", totalwant);
+				request.setAttribute("totalCancel", totalCancel);
 				request.setAttribute("list", list);
 				request.getRequestDispatcher("views/order/manageCancel.jsp").forward(request, response);
 		}

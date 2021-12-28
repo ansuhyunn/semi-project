@@ -16,24 +16,26 @@ private String title;
 private String eDate;
 private String sDate;
 private String orderStatus;
+private String mainImg;
 
 public ManageSales() {}
 
 
 
-public ManageSales(int totalPrice, int finalPrice, Date orderDate, int orderCount, String orderStatus) {
+public ManageSales(int totalPrice, int finalPrice, Date orderDate, int orderCount, String orderStatus, String mainImg) {
 	super();
 	this.totalPrice = totalPrice;
 	this.finalPrice = finalPrice;
 	this.orderDate = orderDate;
 	this.orderCount = orderCount;
 	this.orderStatus = orderStatus;
+	this.mainImg = mainImg;
 }
 
 
 
 public ManageSales(int orderNo, int totalPrice, int finalPrice, Date orderDate, int pNo, String orderOpt,
-		int orderCount, String soldout, String title, String eDate, String sDate, String orderStatus) {
+		int orderCount, String soldout, String title, String eDate, String sDate, String orderStatus, String mainImg) {
 	super();
 	this.orderNo = orderNo;
 	this.totalPrice = totalPrice;
@@ -47,6 +49,7 @@ public ManageSales(int orderNo, int totalPrice, int finalPrice, Date orderDate, 
 	this.sDate = sDate;
 	this.eDate = eDate;
 	this.orderStatus = orderStatus;
+	this.mainImg = mainImg;
 }
 
 public int getOrderNo() {
@@ -145,12 +148,65 @@ public void orderStatus() {
 	this.orderStatus = orderStatus;
 }
 
+
+
+public String getSoldout() {
+	return soldout;
+}
+
+
+
+public void setSoldout(String soldout) {
+	this.soldout = soldout;
+}
+
+
+
+public String getOrderStatus() {
+	return orderStatus;
+}
+
+
+
+public void setOrderStatus(String orderStatus) {
+	this.orderStatus = orderStatus;
+}
+
+
+
+public String getMainImg() {
+	return mainImg;
+}
+
+
+
+public void setMainImg(String mainImg) {
+	this.mainImg = mainImg;
+}
+
+
+
+public void seteDate(String eDate) {
+	this.eDate = eDate;
+}
+
+
+
+public void setsDate(String sDate) {
+	this.sDate = sDate;
+}
+
+
+
 @Override
 public String toString() {
 	return "ManageSales [orderNo=" + orderNo + ", totalPrice=" + totalPrice + ", finalPrice=" + finalPrice
 			+ ", orderDate=" + orderDate + ", pNo=" + pNo + ", orderOpt=" + orderOpt + ", orderCount=" + orderCount
-			+ ", soldout=" + soldout + ", title=" + title + ", sDate=" + sDate + ", eDate=" + eDate + ", orderStatus=" + orderStatus + "]";
+			+ ", soldout=" + soldout + ", title=" + title + ", eDate=" + eDate + ", sDate=" + sDate + ", orderStatus="
+			+ orderStatus + ", mainImg=" + mainImg + "]";
 }
+
+
 
 
 

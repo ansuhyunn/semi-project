@@ -131,6 +131,7 @@
 				  		) A
 		  		)
 		  WHERE RNO BETWEEN ? AND ?
+            AND ENROLL_DATE BETWEEN SYSDATE-3 AND SYSDATE
 		    
 	</entry>
 	
