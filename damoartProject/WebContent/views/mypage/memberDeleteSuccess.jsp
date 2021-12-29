@@ -144,7 +144,7 @@
         font-size:13px;
     }
     #check_btn{
-        width:90px;
+        width:110px;
         height:40px;
         font-weight:600;
         background-color:rgb(151, 138, 116);
