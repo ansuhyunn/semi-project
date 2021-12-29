@@ -67,6 +67,10 @@
     #myModal, #myModal1{
     	padding-top:150px;
     }
+    
+    .clickList{
+        cursor:pointer;
+    }
 
 
 </style>
